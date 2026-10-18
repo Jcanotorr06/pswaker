@@ -1,0 +1,19 @@
+name: ci
+
+on:
+  workflow_dispatch
+
+permissions:
+  contents: read
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: run
+        run: |
+            echo "GitHub Actions is working"
+            echo "Triggered byL ${{ github.actor }}"
