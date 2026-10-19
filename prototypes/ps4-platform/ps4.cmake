@@ -1,0 +1,17 @@
+# Reconstructed root toolchain absent from the pinned Dusklight publication.
+# Use its selected public DolphinPS4 ABI/sysroot contract for static dependencies.
+if(NOT DEFINED ENV{DOLPHINPS4})
+  message(FATAL_ERROR "Set DOLPHINPS4 to the prepared, pinned source tree")
+endif()
+include("$ENV{DOLPHINPS4}/toolchain/ps4-love-modern.cmake")
+set(CMAKE_SYSTEM_NAME FreeBSD)
+set(PS4 TRUE CACHE BOOL "Build for the PS4 platform")
+set(DAWN_ABSEIL_DIR "$ENV{PS4_PORT_ROOT}/src/abseil" CACHE PATH "Selected patched Abseil" FORCE)
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+set(CMAKE_FIND_ROOT_PATH "${PS4_SYSROOT}" "${OPENORBIS}")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+string(APPEND CMAKE_C_FLAGS_INIT " -march=btver2 -ftls-model=initial-exec")
+string(APPEND CMAKE_CXX_FLAGS_INIT " -march=btver2 -ftls-model=initial-exec")
