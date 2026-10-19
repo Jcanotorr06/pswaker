@@ -1,0 +1,54 @@
+STAGE fresh-download-cache 2026-10-19T03:43:28+00:00
+Verified ps4-openorbis-musl-1.5-2-any.pkg.tar.xz
+Verified ps4-openorbis-vars-1.1-3-any.pkg.tar.xz
+Verified ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz
+Verified ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz
+Verified ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz
+Verified ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz
+Verified ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz
+Verified ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz
+Verified ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz
+Verified ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz
+Verified ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz
+Verified ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz
+Verified ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz
+Verified ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz
+SDK extracted: /tmp/pswaker-clean-a/sdk/opt/pacbrew/ps4/openorbis
+STAGE pinned-sources 2026-10-19T03:44:06+00:00
+Prepared refs/dusklight at fd483cf5d4f04b0f4d887ff412d0e8691925de08
+Prepared src/aurora at e281999cdb4fee6127525a9a9e97979480db4bf3
+Prepared refs/DolphinPS4 at b1879cc0267a2a4f0949d7b80478fcf2abca24f6
+Prepared src/liborbispkg at 594021fdc435409f755a6ae0781b65ec6cec846c
+Prepared src/abseil at 5c695e68fcd3e7483ed300b6591d1ec49ae37cf4
+Prepared src/sdl3 at 68159af2b34cc4fe5b3548faa89e87a69e4d2dce
+Prepared src/dawn at 652a3104791369cd23605856fbc041375ccda875
+Selected source patches applied. Dawn DEPS, Mesa and libdrm still require preparation.
+Recorded diagnostic CPU/TLS, memory measurement and neutral-input adaptations.
+STAGE runtime 2026-10-19T03:44:19+00:00
+STAGE graphics-inputs 2026-10-19T03:44:53+00:00
+STAGE graphics-libraries 2026-10-19T03:46:23+00:00
+SDL/Dawn/Mesa archives built; hardware behavior untested.
+STAGE diagnostic 2026-10-19T04:03:50+00:00
+STAGE package 2026-10-19T04:06:07+00:00
+error: No such remote 'origin'
+Traceback (most recent call last):
+  File "/mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/capture-inputs.py", line 35, in <module>
+    "origin": output("git", "-C", str(repo), "remote", "get-url", "origin")})
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/capture-inputs.py", line 14, in output
+    return subprocess.check_output(args, text=True).strip()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '('git', '-C', '/tmp/pswaker-clean-a/src/dawn/third_party/glslang/src', 'remote', 'get-url', 'origin')' returned non-zero exit status 2.
+Traceback (most recent call last):
+  File "/mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/package-probe.py", line 54, in <module>
+    run(["python3", str(HERE / "capture-inputs.py"), str(root)])
+  File "/mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/package-probe.py", line 15, in run
+    subprocess.run(command, check=True, **kwargs)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', '/mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/capture-inputs.py', '/tmp/pswaker-clean-a']' returned non-zero exit status 1.

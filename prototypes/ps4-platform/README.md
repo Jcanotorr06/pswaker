@@ -10,6 +10,8 @@ Install the prepared **PSWaker Platform Diagnostic** package through the existin
 USB package installer. Its title ID is `PSWK00010`, version `01.00`.
 The package filename, build identity and SHA-256 are recorded in the build evidence.
 Use the package associated with the clean-build comparison, not an exploratory build.
+The recorded host results, selected artifact and remaining gates are in
+[evidence/validation.md](evidence/validation.md).
 
 Confirm that the console is still the PS4 Slim on firmware 9.00 with GoldHEN
 v2.4b18, or report the actual versions before comparing results.

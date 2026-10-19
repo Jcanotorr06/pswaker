@@ -1,0 +1,6 @@
+MSBuild version 17.8.49+7806cbf7b for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  LibOrbisPkg.Core -> /tmp/pswaker-clean-a/src/liborbispkg/LibOrbisPkg.Core/bin/Release/net8.0/LibOrbisPkg.Core.dll
+  PkgTool.Core -> /tmp/pswaker-clean-a/src/liborbispkg/PkgTool.Core/bin/Release/net8.0/PkgTool.Core.dll
+  PkgTool.Core -> /tmp/pswaker-clean-a/build/pkgtool/

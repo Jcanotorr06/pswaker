@@ -1,0 +1,75 @@
+-- The C compiler identification is Clang 21.1.8
+-- The CXX compiler identification is Clang 21.1.8
+-- The ASM compiler identification is Clang with GNU-like command-line
+-- Found assembler: /usr/bin/clang-21
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/clang-21 - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++-21 - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- aurora: Using existing Dawn
+-- aurora: Fetching abseil-cpp (standalone)
+-- Performing Test ABSL_INTERNAL_AT_LEAST_CXX17
+-- Performing Test ABSL_INTERNAL_AT_LEAST_CXX17 - Success
+-- Performing Test ABSL_INTERNAL_AT_LEAST_CXX20
+-- Performing Test ABSL_INTERNAL_AT_LEAST_CXX20 - Success
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- aurora: Using system SDL3 (provider=system)
+-- aurora: Using static SDL3
+CMake Warning at /tmp/pswaker-clean-b/src/aurora/extern/CMakeLists.txt:13 (find_package):
+  By not providing "FindxxHash.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "xxHash", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "xxHash" with any
+  of the following names:
+
+    xxHashConfig.cmake
+    xxhash-config.cmake
+
+  Add the installation prefix of "xxHash" to CMAKE_PREFIX_PATH or set
+  "xxHash_DIR" to a directory containing one of the above files.  If "xxHash"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+Call Stack (most recent call first):
+  /tmp/pswaker-clean-b/src/aurora/extern/CMakeLists.txt:59 (aurora_find_package_global)
+
+
+-- aurora: Fetching xxhash
+-- xxHash build type: Release
+-- Architecture: x86_64
+-- aurora: Fetching fmt
+-- {fmt} version: 12.1.0
+-- Build type: Release
+-- Performing Test HAS_NULLPTR_WARNING
+-- Performing Test HAS_NULLPTR_WARNING - Success
+-- aurora: Using existing libpng
+-- Found PkgConfig: /tmp/pswaker-clean-b/sdk/opt/pacbrew/ps4/openorbis/usr/bin/openorbis-pkg-config (found version "1.8.1") 
+-- Checking for module 'freetype2'
+--   Package 'freetype2', required by 'virtual:world', not found
+-- aurora: Fetching Freetype
+-- Found ZLIB: /tmp/pswaker-clean-b/sdk/opt/pacbrew/ps4/openorbis/usr/lib/libz.a (found version "1.3.1")  
+-- Found BZip2: /tmp/pswaker-clean-b/sdk/opt/pacbrew/ps4/openorbis/usr/lib/libbz2.a (found version "1.0.6") 
+-- Looking for BZ2_bzCompressInit
+-- Looking for BZ2_bzCompressInit - found
+-- Checking for module 'bzip2'
+--   Package 'bzip2', required by 'virtual:world', not found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for fcntl.h
+-- Looking for fcntl.h - found
+-- aurora: Fetching imgui
+-- Could NOT find SQLite3 (missing: SQLite3_INCLUDE_DIR SQLite3_LIBRARY) 
+-- Checking for module 'sqlite3'
+--   Package 'sqlite3', required by 'virtual:world', not found
+-- aurora: Fetching sqlite3
+-- Configuring done (22.2s)
+-- Generating done (0.2s)
+-- Build files have been written to: /tmp/pswaker-clean-b/build/probe

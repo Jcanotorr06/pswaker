@@ -1,0 +1,11 @@
+--- a/refs/DolphinPS4/toolchain/env.sh
++++ b/refs/DolphinPS4/toolchain/env.sh
+@@ -14,7 +14,7 @@
+ 
+ # The OpenOrbis C library is musl; __PS4__ tells our patched libc++ not to
+ # take its FreeBSD code paths.
+-export PS4_BASE_FLAGS="--target=$PS4_TARGET -D_GNU_SOURCE -D__PS4__ -D__ORBIS__ -D__OPENORBIS__ -fPIC -funwind-tables \
++export PS4_BASE_FLAGS="--target=$PS4_TARGET -D_GNU_SOURCE -D__PS4__ -D__ORBIS__ -D__OPENORBIS__ -fPIC -funwind-tables -march=btver2 -ftls-model=initial-exec \
+  --sysroot=$OPENORBIS -isystem $PS4_SYSROOT/libc-overlay -isystem $OPENORBIS/include"
+ export PS4_CXX_FLAGS="-nostdinc++ -isystem $PS4_SYSROOT/include/c++/v1"
+ 

@@ -1,0 +1,12 @@
+STAGE clean-final-probe 2026-10-19T04:07:32+00:00
+Recorded actual host, SDK metadata, Dawn DEPS, CMake archives and NuGet closure.
+{
+  "package": {
+    "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+    "sha256": "2889424ad4c527b92bd60742e58667914910667359a464869cf958dfe75561e5"
+  },
+  "eboot_sha256": "a09bf5ce7e5369e1579f0205c47c0acb70bd2b68ac8bf7096b59dfdc2d07319f",
+  "elf_sha256": "ee8db70c19db8bcbafa9545ed04ac3472437a57b8624cc467ea317faffda1630",
+  "build_id": "97fc99208640c483fdc2"
+}
+COMPLETE final-host-build-only 2026-10-19T04:09:44+00:00

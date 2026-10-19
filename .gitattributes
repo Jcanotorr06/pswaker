@@ -1,0 +1,2 @@
+# Preserve raw generated logs and upstream patch whitespace as captured evidence.
+prototypes/ps4-platform/evidence/** text eol=lf -whitespace

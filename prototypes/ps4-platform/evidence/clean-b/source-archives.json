@@ -1,0 +1,57 @@
+[
+  {
+    "path": "refs/dusklight",
+    "repository": "BgbrhrWatchinOVO/dusklight-ps4",
+    "revision": "fd483cf5d4f04b0f4d887ff412d0e8691925de08",
+    "archive_url": "https://api.github.com/repos/BgbrhrWatchinOVO/dusklight-ps4/tarball/fd483cf5d4f04b0f4d887ff412d0e8691925de08",
+    "archive_sha256": "7cf29e0352d2ac75aef9a86772f2483c25ea749f5d669fa62738b3bdd22bca6c"
+  },
+  {
+    "path": "refs/DolphinPS4",
+    "repository": "iHaiDeeZ/DolphinPS4",
+    "revision": "b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+    "archive_url": "https://api.github.com/repos/iHaiDeeZ/DolphinPS4/tarball/b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+    "archive_sha256": "780f830d144a8d341ebc7025473f0a9b5eb95aa4e21661925242de304ee906bd"
+  },
+  {
+    "path": "src/aurora",
+    "repository": "mshivam019/dusklight-ps5",
+    "revision": "e281999cdb4fee6127525a9a9e97979480db4bf3",
+    "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/e281999cdb4fee6127525a9a9e97979480db4bf3",
+    "archive_sha256": "6024a0798bb7dce21a30a7a0b5983ab6b3fe3d760268c3c8334503ed997cf50c"
+  },
+  {
+    "path": "src/dawn",
+    "repository": "mshivam019/dusklight-ps5",
+    "revision": "652a3104791369cd23605856fbc041375ccda875",
+    "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/652a3104791369cd23605856fbc041375ccda875",
+    "archive_sha256": "b138eb6873fc643807a3337ab1d686e0df3fea2947d18e0a7995e54084bf621a"
+  },
+  {
+    "path": "src/sdl3",
+    "repository": "mshivam019/dusklight-ps5",
+    "revision": "68159af2b34cc4fe5b3548faa89e87a69e4d2dce",
+    "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/68159af2b34cc4fe5b3548faa89e87a69e4d2dce",
+    "archive_sha256": "2b245c54e7344a98285ffec986624589d6368f44bf4944cc0836049352a047fe"
+  },
+  {
+    "path": "src/abseil",
+    "repository": "mshivam019/dusklight-ps5",
+    "revision": "5c695e68fcd3e7483ed300b6591d1ec49ae37cf4",
+    "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/5c695e68fcd3e7483ed300b6591d1ec49ae37cf4",
+    "archive_sha256": "6da36dc862bf1abaefaa73f2fcec4130f02c99b8438793f0660619dcab995baa"
+  },
+  {
+    "path": "src/liborbispkg",
+    "repository": "OpenOrbis/LibOrbisPkg",
+    "revision": "594021fdc435409f755a6ae0781b65ec6cec846c",
+    "archive_url": "https://api.github.com/repos/OpenOrbis/LibOrbisPkg/tarball/594021fdc435409f755a6ae0781b65ec6cec846c",
+    "archive_sha256": "c4b918b404e486784717a415cc5a50d866bc56099ed027b4d6bd443cf7f90ee6"
+  },
+  {
+    "path": "src/llvm-project-21.1.6.src",
+    "revision": "a832a5222e489298337fbb5876f8dcaf072c5cca",
+    "archive_url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.6/llvm-project-21.1.6.src.tar.xz",
+    "archive_sha256": "ae67086eb04bed7ca11ab880349b5f1ab6f50e1b88cda376eaf8a845b935762b"
+  }
+]
