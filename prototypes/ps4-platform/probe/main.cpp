@@ -15,6 +15,7 @@
 #include <cmath>
 #include <cstdarg>
 #include <cstdio>
+#include <dirent.h>
 #include <memory>
 #include <mutex>
 #include <string>
@@ -228,6 +229,17 @@ int main(int argc,char** argv) {
     verdict(std::fclose(manifest)==0,"manifest-close");
   } else verdict(false,"build-manifest-open");
   checkpoint("runtime-preflight"); verdict(runtime_preflight_entry()==0,"runtime-preflight");
+  int launch=0;
+  if (FILE* state=std::fopen("/data/pswaker-diagnostic-prototype/preflight-state.txt","r")) {
+    verdict(std::fscanf(state,"%d",&launch)==1,"launch-identity-read");
+    verdict(std::fclose(state)==0,"launch-identity-close");
+  } else verdict(false,"launch-identity-open");
+  unsigned cache_entries=0;
+  if (DIR* cache=opendir("/data/pswaker-diagnostic-prototype/cache")) {
+    while (const auto* entry=readdir(cache)) if (entry->d_name[0]!='.') ++cache_entries;
+    verdict(closedir(cache)==0,"cache-inspection-close");
+  } else verdict(false,"cache-inspection-open");
+  note("RUN launch=%d cache-entries-before-Aurora=%u; owner must label cold/warm and confirm baseline",launch,cache_entries);
   AuroraConfig c{};
   c.appName="PSWaker platform diagnostic prototype";
   c.userPath="/data/pswaker-diagnostic-prototype"; c.cachePath="/data/pswaker-diagnostic-prototype/cache";
@@ -301,6 +313,7 @@ int main(int argc,char** argv) {
     triangle();
     ImGui::SetNextWindowPos(ImVec2(25,25),ImGuiCond_Always); ImGui::SetNextWindowSize(ImVec2(780,390),ImGuiCond_Always);
     ImGui::Begin("Disc-free diagnostic",nullptr,ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoCollapse);
+    ImGui::Text("Build %s",PSWAKER_BUILD_ID);
     ImGui::Text("Prototype | %.1f / 600 seconds | frames %u",elapsed,frames++);
     ImGui::Text("Checks %u | failures %d | audio errors %d",checks,errors.load(),audio_errors.load());
     ImGui::Text("Internal 1280x720 | requested surface 1920x1080");

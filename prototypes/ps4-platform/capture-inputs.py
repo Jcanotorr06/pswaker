@@ -45,5 +45,6 @@ for path in sorted((root / "build/probe/_deps").rglob("*")):
             **({"text": path.read_text()} if path.name.endswith("-urlinfo.txt") else {})})
 for path in sorted((root / "src/liborbispkg").rglob("packages.lock.json")):
     closure["nuget_locks"].append({"path": path.relative_to(root).as_posix(), "sha256": digest(path), "text": path.read_text()})
+closure["dawn_deps"].sort(key=lambda item: item["path"])
 (root / "evidence/input-closure.json").write_text(json.dumps(closure, indent=2) + "\n")
 print("Recorded actual host, SDK metadata, Dawn DEPS, CMake archives and NuGet closure.")
