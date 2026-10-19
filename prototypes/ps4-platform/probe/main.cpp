@@ -3,10 +3,12 @@
 #include <aurora/event.h>
 #include <aurora/gfx.hpp>
 #include <dolphin/gx.h>
+#include <dolphin/gx/GXAurora.h>
 #include <dolphin/mtx.h>
 #include <SDL3/SDL.h>
 #include <imgui.h>
 #include "webgpu/gpu.hpp"
+#include "window.hpp"
 #include "native/platform.h"
 #include <orbis/Pad.h>
 #include <orbis/UserService.h>
@@ -275,8 +277,15 @@ int main(int argc,char** argv) {
   const auto& adapter=aurora::webgpu::g_adapterInfo;
   note("ADAPTER vendor=%u device=%u description=%.*s",adapter.vendorID,adapter.deviceID,
     int(std::min(adapter.description.length,size_t(512))),adapter.description.data ? adapter.description.data : "");
-  aurora::webgpu::resize_swapchain(1280,720,1920,1080,true);
-  note("RESOLUTION internal=1280x720 surface=%ux%u; inspect platform log for actual display mode",info.windowSize.width,info.windowSize.height);
+  AuroraSetViewportPolicy(AURORA_VIEWPORT_NATIVE);
+  aurora::window::set_frame_buffer_scale(2.f/3.f);
+  // Process Aurora's deferred sizing events so GX coordinates are native target pixels.
+  aurora_update();
+  u32 internal_width=0,internal_height=0;
+  AuroraGetRenderSize(&internal_width,&internal_height);
+  verdict(internal_width==1280 && internal_height==720,"internal-render-size");
+  note("RESOLUTION internal=%ux%u surface=%ux%u; inspect platform log for actual display mode",internal_width,internal_height,
+    aurora::webgpu::g_graphicsConfig.surfaceConfiguration.width,aurora::webgpu::g_graphicsConfig.surfaceConfiguration.height);
   checkpoint("synthetic-audio"); verdict(SDL_InitSubSystem(SDL_INIT_AUDIO),"SDL-audio-init");
   SDL_AudioSpec spec{}; spec.freq=48000; spec.channels=2; spec.format=SDL_AUDIO_S16;
   auto* audio=SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK,&spec,audio_callback,nullptr);
@@ -341,7 +350,9 @@ int main(int argc,char** argv) {
     ImGui::Text("Build %s",PSWAKER_BUILD_ID);
     ImGui::Text("Prototype | %.1f / 600 seconds | frames %u",elapsed,frames++);
     ImGui::Text("Checks %u | failures %d | audio errors %d",checks,errors.load(),audio_errors.load());
-    ImGui::Text("Internal 1280x720 | requested surface 1920x1080");
+    AuroraGetRenderSize(&internal_width,&internal_height);
+    ImGui::Text("Internal %ux%u | surface %ux%u",internal_width,internal_height,
+      aurora::webgpu::g_graphicsConfig.surfaceConfiguration.width,aurora::webgpu::g_graphicsConfig.surfaceConfiguration.height);
     ImGui::Text("Pad %d | disconnects %u | reconnects %u",connected,disconnects,reconnects);
     ImGui::Text("Buttons %08x | L2 %u | R2 %u",raw.buttons,raw.analogButtons.l2,raw.analogButtons.r2);
     ImGui::Text("Disconnect/reconnect once. Cross resumes; Options closes.");
