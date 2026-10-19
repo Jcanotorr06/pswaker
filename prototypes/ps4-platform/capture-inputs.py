@@ -30,9 +30,16 @@ closure = {"mesa_revision": output("git", "-C", str(root / "src/mesa"), "rev-par
 for directory, children, files in os.walk(root / "src/dawn/third_party"):
     if ".git" in children or ".git" in files:
         repo = Path(directory)
+        fetch_head = Path(output("git", "-C", str(repo), "rev-parse", "--git-path", "FETCH_HEAD"))
+        if not fetch_head.is_absolute():
+            fetch_head = repo / fetch_head
+        changes = subprocess.check_output(["git", "-C", str(repo), "diff", "--binary"])
         closure["dawn_deps"].append({"path": repo.relative_to(root).as_posix(),
             "revision": output("git", "-C", str(repo), "rev-parse", "HEAD"),
-            "origin": output("git", "-C", str(repo), "remote", "get-url", "origin")})
+            # Dawn's shallow fetcher can fetch a URL directly without creating origin.
+            "fetch_head": fetch_head.read_text() if fetch_head.exists() else None,
+            "tracked_diff_sha256": hashlib.sha256(changes).hexdigest(),
+            "tracked_diff": changes.decode()})
         if ".git" in children:
             children.remove(".git")
 for path in sorted((root / "downloads/pacbrew").glob("*")):
