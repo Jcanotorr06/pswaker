@@ -72,7 +72,7 @@ a broken depth test would blend twice and change the result. Targets and pipelin
 are recreated periodically.
 
 Aurora creates its actual requested adapter/device. Its GX pipeline draws known
-white geometry to the EFB and to a separate offscreen pass. Resolved snapshots
+white geometry with a synthetic tiled RGBA8 texture to the EFB and to a separate offscreen pass. Resolved snapshots
 are read back asynchronously after render-worker submission; their checked region
 must be white. The RGB triangle and textured ImGui swatch also exercise repeated
 presentation. Internal rendering is requested at 1280x720, separately from the
