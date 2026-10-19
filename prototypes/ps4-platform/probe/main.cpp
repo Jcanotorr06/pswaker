@@ -208,8 +208,11 @@ void triangle(bool white=false,unsigned width=1280,unsigned height=720) {
   GXSetTevOrder(GX_TEVSTAGE0,GX_TEXCOORD_NULL,GX_TEXMAP_NULL,GX_COLOR0A0); GXSetTevOp(GX_TEVSTAGE0,GX_PASSCLR);
   GXSetCullMode(GX_CULL_NONE); GXSetZMode(GX_DISABLE,GX_ALWAYS,GX_DISABLE);
   GXSetBlendMode(GX_BM_NONE,GX_BL_ONE,GX_BL_ZERO,GX_LO_CLEAR);
+  GXSetColorUpdate(GX_TRUE); GXSetAlphaUpdate(GX_TRUE);
+  GXSetAlphaCompare(GX_ALWAYS,0,GX_AOP_AND,GX_ALWAYS,0);
   Mtx model{{1,0,0,0},{0,1,0,0},{0,0,1,0}};
-  Mtx44 projection{{1,0,0,0},{0,1,0,0},{0,0,-1,0},{0,0,0,1}};
+  // C_MTXOrtho's near=0, far=1 contract maps view z=-0.5 to GX clip z=-0.5.
+  Mtx44 projection{{1,0,0,0},{0,1,0,0},{0,0,-1,-1},{0,0,0,1}};
   GXLoadPosMtxImm(model,GX_PNMTX0); GXSetCurrentMtx(GX_PNMTX0); GXSetProjection(projection,GX_ORTHOGRAPHIC);
   GXSetViewport(0,0,width,height,0,1); GXSetScissor(0,0,width,height);
   GXBegin(GX_TRIANGLES,GX_VTXFMT0,3);
