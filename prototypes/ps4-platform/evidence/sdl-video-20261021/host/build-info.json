@@ -1,0 +1,683 @@
+{
+  "diagnostic_build_id": "3a73181f6dfdb86ca4b4",
+  "app_version": "01.01",
+  "diagnostic_scope": "Disc-free platform evidence only; not game correctness or performance",
+  "sources": [
+    {
+      "path": "refs/dusklight",
+      "repository": "BgbrhrWatchinOVO/dusklight-ps4",
+      "revision": "fd483cf5d4f04b0f4d887ff412d0e8691925de08",
+      "archive_url": "https://api.github.com/repos/BgbrhrWatchinOVO/dusklight-ps4/tarball/fd483cf5d4f04b0f4d887ff412d0e8691925de08",
+      "archive_sha256": "7cf29e0352d2ac75aef9a86772f2483c25ea749f5d669fa62738b3bdd22bca6c"
+    },
+    {
+      "path": "refs/DolphinPS4",
+      "repository": "iHaiDeeZ/DolphinPS4",
+      "revision": "b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+      "archive_url": "https://api.github.com/repos/iHaiDeeZ/DolphinPS4/tarball/b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+      "archive_sha256": "780f830d144a8d341ebc7025473f0a9b5eb95aa4e21661925242de304ee906bd"
+    },
+    {
+      "path": "src/aurora",
+      "repository": "mshivam019/dusklight-ps5",
+      "revision": "e281999cdb4fee6127525a9a9e97979480db4bf3",
+      "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/e281999cdb4fee6127525a9a9e97979480db4bf3",
+      "archive_sha256": "6024a0798bb7dce21a30a7a0b5983ab6b3fe3d760268c3c8334503ed997cf50c"
+    },
+    {
+      "path": "src/dawn",
+      "repository": "mshivam019/dusklight-ps5",
+      "revision": "652a3104791369cd23605856fbc041375ccda875",
+      "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/652a3104791369cd23605856fbc041375ccda875",
+      "archive_sha256": "b138eb6873fc643807a3337ab1d686e0df3fea2947d18e0a7995e54084bf621a"
+    },
+    {
+      "path": "src/sdl3",
+      "repository": "mshivam019/dusklight-ps5",
+      "revision": "68159af2b34cc4fe5b3548faa89e87a69e4d2dce",
+      "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/68159af2b34cc4fe5b3548faa89e87a69e4d2dce",
+      "archive_sha256": "2b245c54e7344a98285ffec986624589d6368f44bf4944cc0836049352a047fe"
+    },
+    {
+      "path": "src/abseil",
+      "repository": "mshivam019/dusklight-ps5",
+      "revision": "5c695e68fcd3e7483ed300b6591d1ec49ae37cf4",
+      "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/5c695e68fcd3e7483ed300b6591d1ec49ae37cf4",
+      "archive_sha256": "6da36dc862bf1abaefaa73f2fcec4130f02c99b8438793f0660619dcab995baa"
+    },
+    {
+      "path": "src/liborbispkg",
+      "repository": "OpenOrbis/LibOrbisPkg",
+      "revision": "594021fdc435409f755a6ae0781b65ec6cec846c",
+      "archive_url": "https://api.github.com/repos/OpenOrbis/LibOrbisPkg/tarball/594021fdc435409f755a6ae0781b65ec6cec846c",
+      "archive_sha256": "c4b918b404e486784717a415cc5a50d866bc56099ed027b4d6bd443cf7f90ee6"
+    },
+    {
+      "path": "src/llvm-project-21.1.6.src",
+      "revision": "a832a5222e489298337fbb5876f8dcaf072c5cca",
+      "archive_url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.6/llvm-project-21.1.6.src.tar.xz",
+      "archive_sha256": "ae67086eb04bed7ca11ab880349b5f1ab6f50e1b88cda376eaf8a845b935762b"
+    }
+  ],
+  "sdk": {
+    "repository": "https://pacman.mydedibox.fr/pacbrew/packages",
+    "database_sha256": "0e9357222106ccd3bda8e5404772e2e207407acdf27b64976af602151974cf40",
+    "source_revision_note": "Package database does not identify immutable source revisions. Inspect package build metadata; do not infer revisions from versions.",
+    "packages": [
+      {
+        "name": "ps4-openorbis-clang",
+        "version": "12.0.1-1",
+        "filename": "ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz",
+        "sha256": "3b59bd92595e0d556f89a462e41cc782d0dda3bfdd712d194b684340f3465fe2",
+        "bytes": 255524816,
+        "project_url": [
+          "https://github.com/llvm/llvm-project/"
+        ],
+        "declared_license": [
+          "custom:Apache 2.0 with LLVM Exception"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-headers",
+        "version": "0.5.2-4",
+        "filename": "ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz",
+        "sha256": "056c7fe8b1874f144d3d67464e96a779ff82a230b3179ba4ec43cd5b392c38d7",
+        "bytes": 37990512,
+        "project_url": [
+          "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain"
+        ],
+        "declared_license": [
+          "GNU GPL"
+        ],
+        "dependencies": [
+          "ps4-openorbis-clang"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-musl",
+        "version": "1.5-2",
+        "filename": "ps4-openorbis-musl-1.5-2-any.pkg.tar.xz",
+        "sha256": "9efb4e1c02b2004a79438b106e36bf0d311669cfcfdaa669d46caea462087f3f",
+        "bytes": 530196,
+        "project_url": [
+          "https://github.com/PacBrew/ps4-openorbis-musl"
+        ],
+        "declared_license": [
+          "MIT"
+        ],
+        "dependencies": [
+          "ps4-openorbis-clang"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-libcxx",
+        "version": "12.0.1-1",
+        "filename": "ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz",
+        "sha256": "26a230e2d53d1ed11732242e7c131d87719d187f5a6f3632c3c4786bf14d3416",
+        "bytes": 967180,
+        "project_url": [
+          "https://github.com/llvm/llvm-project/"
+        ],
+        "declared_license": [
+          "custom:Apache 2.0 with LLVM Exception"
+        ],
+        "dependencies": [
+          "ps4-openorbis-musl",
+          "ps4-openorbis-headers"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-vars",
+        "version": "1.1-3",
+        "filename": "ps4-openorbis-vars-1.1-3-any.pkg.tar.xz",
+        "sha256": "ad2353896b1a63e72e52ce52ff490f90682a0e3c24f1a98229881f685ac3fbcf",
+        "bytes": 4440,
+        "project_url": [
+          "https://github.com/PacBrew"
+        ],
+        "declared_license": [],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-create-fself",
+        "version": "1.2-3",
+        "filename": "ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz",
+        "sha256": "1e4780a0b7a77ca0005ab3f6244fac0c1bd1a3576b72b27e936a3227a5aa1fe6",
+        "bytes": 1267708,
+        "project_url": [
+          "https://github.com/OpenOrbis/create-fself"
+        ],
+        "declared_license": [
+          "MIT"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-create-gp4",
+        "version": "1.0-5",
+        "filename": "ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz",
+        "sha256": "3e3d478e35444f52088aa69457b247a93bde0dbbda5962783314f9b8629b1b1a",
+        "bytes": 1171384,
+        "project_url": [
+          "https://github.com/OpenOrbis/create-gp4"
+        ],
+        "declared_license": [
+          "MIT"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-pkgtools",
+        "version": "0.2.231-5",
+        "filename": "ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz",
+        "sha256": "49a97e56dbe35a9986461e9001e756029fdb39f427d0acff7d75cf3f721e533d",
+        "bytes": 22907516,
+        "project_url": [
+          "https://github.com/OpenOrbis/LibOrbisPkg"
+        ],
+        "declared_license": [
+          "GNU GPL"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-orbis-lib-gen",
+        "version": "1.3-2",
+        "filename": "ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz",
+        "sha256": "5ea71a7137a1a98eac09e33c4ed36806ecdf1412a4233e1eb0745e497899ec52",
+        "bytes": 419060,
+        "project_url": [
+          "https://github.com/OpenOrbis/orbis-lib-gen"
+        ],
+        "declared_license": [
+          "GNU GPL"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-readoelf",
+        "version": "1.0-2",
+        "filename": "ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz",
+        "sha256": "4a710c49a004ecb3e4daf64d5faf17415e11e3ffeb88677eef6a17eed0f3c16f",
+        "bytes": 1077972,
+        "project_url": [
+          "https://github.com/OpenOrbis/readoelf"
+        ],
+        "declared_license": [
+          "MIT"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-pkg-config",
+        "version": "1.0.0-2",
+        "filename": "ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz",
+        "sha256": "e0dc003c1011c158acc23d3de7b755f8b859b2a34a929aa351b9060e706a3f7a",
+        "bytes": 1756,
+        "project_url": [
+          "https://github.com/PacBrew"
+        ],
+        "declared_license": [],
+        "dependencies": [
+          "ps4-openorbis-clang"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-zlib",
+        "version": "1.3.1-2",
+        "filename": "ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz",
+        "sha256": "2b082d25f34d923e2fd35e0b5f29b19e142e263da4380665bb0e80f0a6378700",
+        "bytes": 103412,
+        "project_url": [
+          "http://www.zlib.net/"
+        ],
+        "declared_license": [
+          "zlib"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-libpng",
+        "version": "1.6.37-3",
+        "filename": "ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz",
+        "sha256": "abf49d48a24397c6a2f163fd60344458b662c9411eec215830c4b3d464d0cbb2",
+        "bytes": 205516,
+        "project_url": [
+          "http://www.libpng.org"
+        ],
+        "declared_license": [
+          "custom"
+        ],
+        "dependencies": [
+          "ps4-openorbis-zlib"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-bzip2",
+        "version": "1.0.6-3",
+        "filename": "ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz",
+        "sha256": "de5e4b3441326b47c9e57693d7e86bc837070c6af4581d60ccdbdb6230f3ffcb",
+        "bytes": 34792,
+        "project_url": [
+          "http://www.bzip.org"
+        ],
+        "declared_license": [
+          "custom"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      }
+    ]
+  },
+  "local_adaptations": [
+    {
+      "path": "refs/DolphinPS4/toolchain/env.sh",
+      "patch": "refs-DolphinPS4-toolchain-env.sh.patch",
+      "patch_sha256": "3756e3c66dd88458b2b1097e0730b237b57f1696843695d25f46ae122694c7cd",
+      "prepared_file_sha256": "a7f21817497ee8d03e31932045570551216b94ef70a2ae74c817220dc1300b67"
+    },
+    {
+      "path": "refs/DolphinPS4/port/ps4_dlmalloc.c",
+      "patch": "refs-DolphinPS4-port-ps4_dlmalloc.c.patch",
+      "patch_sha256": "db428601ac3971359a85da85847abce3ef9d473aeaece7c7922089d52e627895",
+      "prepared_file_sha256": "b00567c9122bef620319d4c6f6666583292945825b56a3e54bca56a2a4b9c2d5"
+    },
+    {
+      "path": "refs/DolphinPS4/port/ps4_runtime.cpp",
+      "patch": "refs-DolphinPS4-port-ps4_runtime.cpp.patch",
+      "patch_sha256": "91464b6565fdff1cfcf1e0fc7946ce5a6e3b92c85fea16d647a23e91f83c18cb",
+      "prepared_file_sha256": "b5d924dfe3ca22a2abd1555fa4f4df1807b5d3420a011c05091a9e727528656c"
+    },
+    {
+      "path": "src/native-platform/ps4/native/platform.c",
+      "patch": "src-native-platform-ps4-native-platform.c.patch",
+      "patch_sha256": "be02b7402a4b0b12bf29dbfd2ffe548a70c6db857c175739f40f99647bb48d12",
+      "prepared_file_sha256": "6d790349c3655f42f48e3ea15005a6e2683ec23faa82d7f965ecd6bb5f889d05"
+    },
+    {
+      "path": "refs/DolphinPS4/scripts/make-pkg.sh",
+      "patch": "refs-DolphinPS4-scripts-make-pkg.sh.patch",
+      "patch_sha256": "fbb0393bc1fbca2e02374ac202bbc6681c5a33502d12e1f63c3e5150f9bc8b94",
+      "prepared_file_sha256": "2de1b39301348e94850ac311b0b4284f59aab78ee530594e9d91aa241c53ccc0"
+    }
+  ],
+  "input_closure": {
+    "mesa_revision": "60e95b787857afbc9a00b693b91c0d9c8923a430",
+    "libdrm_revision": "76a1e97a9a7c29fa3035bb370d654791bdc23d90",
+    "host_versions": {
+      "clang": "Ubuntu clang version 21.1.8 (++20251221032922+2078da43e25a-1~exp1~20251221153059.70)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+      "cmake": "cmake version 3.28.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+      "ninja": "1.11.1",
+      "dotnet": ".NET SDK:\n Version:           8.0.132\n Commit:            e427fd2161\n Workload version:  8.0.100-manifests.ebe03ed1\n\nRuntime Environment:\n OS Name:     ubuntu\n OS Version:  24.04\n OS Platform: Linux\n RID:         ubuntu.24.04-x64\n Base Path:   /usr/lib/dotnet/sdk/8.0.132/\n\n.NET workloads installed:\n Workload version: 8.0.100-manifests.ebe03ed1\nThere are no installed workloads to display.\n\nHost:\n  Version:      8.0.32\n  Architecture: x64\n  Commit:       b9a49e4a6d\n\n.NET SDKs installed:\n  8.0.132 [/usr/lib/dotnet/sdk]\n\n.NET runtimes installed:\n  Microsoft.AspNetCore.App 8.0.32 [/usr/lib/dotnet/shared/Microsoft.AspNetCore.App]\n  Microsoft.NETCore.App 8.0.32 [/usr/lib/dotnet/shared/Microsoft.NETCore.App]\n\nOther architectures found:\n  None\n\nEnvironment variables:\n  Not set\n\nglobal.json file:\n  Not found\n\nLearn more:\n  https://aka.ms/dotnet/info\n\nDownload .NET:\n  https://aka.ms/dotnet/download",
+      "python": "Python 3.12.3"
+    },
+    "host_packages": "adduser\t3.137ubuntu1\nadwaita-icon-theme\t46.0-1\napparmor\t4.0.1really4.0.1-0ubuntu0.24.04.4\napport\t2.28.1-0ubuntu3.8\napport-core-dump-handler\t2.28.1-0ubuntu3.8\napport-symptoms\t0.25\nappstream\t1.0.2-1build6\napt\t2.8.3\napt-utils\t2.8.3\naspnetcore-runtime-8.0\t8.0.32-0ubuntu1~24.04.1\naspnetcore-targeting-pack-8.0\t8.0.32-0ubuntu1~24.04.1\nat-spi2-common\t2.52.0-1build1\nat-spi2-core\t2.52.0-1build1\nbase-files\t13ubuntu10.3\nbase-passwd\t3.6.3build1\nbash\t5.2.21-2ubuntu4\nbash-completion\t1:2.11-8\nbc\t1.07.1-3ubuntu4\nbinutils\t2.42-4ubuntu2.8\nbinutils-common:amd64\t2.42-4ubuntu2.8\nbinutils-x86-64-linux-gnu\t2.42-4ubuntu2.8\nbsdextrautils\t2.39.3-9ubuntu6.6\nbsdutils\t1:2.39.3-9ubuntu6.6\nbuild-essential\t12.10ubuntu1\nbyobu\t6.11-0ubuntu1\nbzip2\t1.0.8-5.1ubuntu0.1\nca-certificates\t20260601~24.04.1\nclang-21\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\ncloud-guest-utils\t0.33-1\ncloud-init\t25.1.4-0ubuntu0~24.04.1\ncmake\t3.28.3-1build7\ncmake-data\t3.28.3-1build7\ncommand-not-found\t23.04.0\nconsole-setup\t1.226ubuntu1\nconsole-setup-linux\t1.226ubuntu1\ncoreutils\t9.4-3ubuntu6.3\ncpp\t4:13.2.0-7ubuntu1\ncpp-13\t13.3.0-6ubuntu2~24.04.1\ncpp-13-x86-64-linux-gnu\t13.3.0-6ubuntu2~24.04.1\ncpp-x86-64-linux-gnu\t4:13.2.0-7ubuntu1\ncron\t3.0pl1-184ubuntu2\ncron-daemon-common\t3.0pl1-184ubuntu2\ncurl\t8.5.0-2ubuntu10.16\ndash\t0.5.12-6ubuntu5\ndbus\t1.14.10-4ubuntu4.1\ndbus-bin\t1.14.10-4ubuntu4.1\ndbus-daemon\t1.14.10-4ubuntu4.1\ndbus-session-bus-common\t1.14.10-4ubuntu4.1\ndbus-system-bus-common\t1.14.10-4ubuntu4.1\ndbus-user-session\t1.14.10-4ubuntu4.1\ndbus-x11\t1.14.10-4ubuntu4.1\ndconf-gsettings-backend:amd64\t0.40.0-4build2\ndconf-service\t0.40.0-4build2\ndebconf\t1.5.86ubuntu1\ndebconf-i18n\t1.5.86ubuntu1\ndebianutils\t5.17build1\ndhcpcd-base\t1:10.0.6-1ubuntu3.1\ndiffutils\t1:3.10-1ubuntu0.1\ndirmngr\t2.4.4-2ubuntu17.6\ndistro-info\t1.7build1\ndistro-info-data\t0.72-0ubuntu0.24.04.1\ndmsetup\t2:1.02.185-3ubuntu3.2\ndotnet-apphost-pack-8.0\t8.0.32-0ubuntu1~24.04.1\ndotnet-host-8.0\t8.0.32-0ubuntu1~24.04.1\ndotnet-hostfxr-8.0\t8.0.32-0ubuntu1~24.04.1\ndotnet-runtime-8.0\t8.0.32-0ubuntu1~24.04.1\ndotnet-sdk-8.0\t8.0.132-0ubuntu1~24.04.1\ndotnet-targeting-pack-8.0\t8.0.32-0ubuntu1~24.04.1\ndotnet-templates-8.0\t8.0.132-0ubuntu1~24.04.1\ndpkg\t1.22.6ubuntu6.6\ndpkg-dev\t1.22.6ubuntu6.6\ne2fsprogs\t1.47.0-2.4~exp1ubuntu4.1\ne2fsprogs-l10n\t1.47.0-2.4~exp1ubuntu4.1\neatmydata\t131-1ubuntu1\ned\t1.20.1-1\neject\t2.39.3-9ubuntu6.6\nethtool\t1:6.7-1build1\nfakeroot\t1.33-1\nfdisk\t2.39.3-9ubuntu6.6\nfile\t1:5.45-3build1\nfindutils\t4.9.0-5build1\nfontconfig\t2.15.0-1.1ubuntu2\nfontconfig-config\t2.15.0-1.1ubuntu2\nfonts-dejavu-core\t2.37-8\nfonts-dejavu-mono\t2.37-8\nfonts-ubuntu\t0.869+git20240321-0ubuntu1\nfuse3\t3.14.0-5build1\ng++\t4:13.2.0-7ubuntu1\ng++-13\t13.3.0-6ubuntu2~24.04.1\ng++-13-x86-64-linux-gnu\t13.3.0-6ubuntu2~24.04.1\ng++-x86-64-linux-gnu\t4:13.2.0-7ubuntu1\ngawk\t1:5.2.1-2ubuntu0.1\ngcc\t4:13.2.0-7ubuntu1\ngcc-13\t13.3.0-6ubuntu2~24.04.1\ngcc-13-base:amd64\t13.3.0-6ubuntu2~24.04.1\ngcc-13-x86-64-linux-gnu\t13.3.0-6ubuntu2~24.04.1\ngcc-14-base:amd64\t14.2.0-4ubuntu2~24.04.1\ngcc-x86-64-linux-gnu\t4:13.2.0-7ubuntu1\ngdisk\t1.0.10-1build1\ngettext-base\t0.21-14ubuntu2\ngir1.2-girepository-2.0:amd64\t1.80.1-1\ngir1.2-glib-2.0:amd64\t2.80.0-6ubuntu3.9\ngir1.2-packagekitglib-1.0\t1.2.8-2ubuntu1.5\ngit\t1:2.43.0-1ubuntu7.4\ngit-man\t1:2.43.0-1ubuntu7.4\nglslang-tools\t15.1.0-2~ubuntu0.24.04.2\ngnupg\t2.4.4-2ubuntu17.6\ngnupg-l10n\t2.4.4-2ubuntu17.6\ngnupg-utils\t2.4.4-2ubuntu17.6\ngpg\t2.4.4-2ubuntu17.6\ngpg-agent\t2.4.4-2ubuntu17.6\ngpg-wks-client\t2.4.4-2ubuntu17.6\ngpgconf\t2.4.4-2ubuntu17.6\ngpgsm\t2.4.4-2ubuntu17.6\ngpgv\t2.4.4-2ubuntu17.6\ngrep\t3.11-4build1\ngroff-base\t1.23.0-3build2\ngsettings-desktop-schemas\t46.1-0ubuntu1\ngtk-update-icon-cache\t3.24.41-4ubuntu1.3\ngzip\t1.12-1ubuntu3.2\nhicolor-icon-theme\t0.17-2\nhostname\t3.23+nmu2ubuntu2\nhumanity-icon-theme\t0.6.16\nicu-devtools\t74.2-1ubuntu3.1\ninfo\t7.1-3build2\ninit\t1.66ubuntu1\ninit-system-helpers\t1.66ubuntu1\ninstall-info\t7.1-3build2\niproute2\t6.1.0-1ubuntu6.2\niputils-ping\t3:20240117-1ubuntu0.1\niso-codes\t4.16.0-1\nkbd\t2.6.4-2ubuntu2\nkeyboard-configuration\t1.226ubuntu1\nkeyboxd\t2.4.4-2ubuntu17.6\nkmod\t31+20240202-2ubuntu7.2\nkrb5-locales\t1.20.1-6ubuntu2.7\nlandscape-client\t24.02-0ubuntu5.3\nlandscape-common\t24.02-0ubuntu5.3\nless\t590-2ubuntu2.1\nlibacl1:amd64\t2.3.2-1build1.1\nlibalgorithm-diff-perl\t1.201-1\nlibalgorithm-diff-xs-perl:amd64\t0.04-8build3\nlibalgorithm-merge-perl\t0.08-5\nlibaom3:amd64\t3.8.2-2ubuntu0.2\nlibapparmor1:amd64\t4.0.1really4.0.1-0ubuntu0.24.04.4\nlibappstream5:amd64\t1.0.2-1build6\nlibapt-pkg6.0t64:amd64\t2.8.3\nlibarchive13t64:amd64\t3.7.2-2ubuntu0.9\nlibargon2-1:amd64\t0~20190702+dfsg-4build1\nlibasan8:amd64\t14.2.0-4ubuntu2~24.04.1\nlibassuan0:amd64\t2.5.6-1build1\nlibatk-bridge2.0-0t64:amd64\t2.52.0-1build1\nlibatk1.0-0t64:amd64\t2.52.0-1build1\nlibatm1t64:amd64\t1:2.5.1-5.1build1\nlibatomic1:amd64\t14.2.0-4ubuntu2~24.04.1\nlibatspi2.0-0t64:amd64\t2.52.0-1build1\nlibattr1:amd64\t1:2.5.2-1ubuntu0.1\nlibaudit-common\t1:3.1.2-2.1build1.1\nlibaudit1:amd64\t1:3.1.2-2.1build1.1\nlibavahi-client3:amd64\t0.8-13ubuntu6.2\nlibavahi-common-data:amd64\t0.8-13ubuntu6.2\nlibavahi-common3:amd64\t0.8-13ubuntu6.2\nlibbinutils:amd64\t2.42-4ubuntu2.8\nlibblkid1:amd64\t2.39.3-9ubuntu6.6\nlibbpf1:amd64\t1:1.3.0-2build2\nlibbrotli1:amd64\t1.1.0-2build2\nlibbsd0:amd64\t0.12.1-1build1.1\nlibbz2-1.0:amd64\t1.0.8-5.1ubuntu0.1\nlibc-bin\t2.39-0ubuntu8.9\nlibc-dev-bin\t2.39-0ubuntu8.9\nlibc-devtools\t2.39-0ubuntu8.9\nlibc6:amd64\t2.39-0ubuntu8.9\nlibc6-dev:amd64\t2.39-0ubuntu8.9\nlibcairo-gobject2:amd64\t1.18.0-3build1\nlibcairo2:amd64\t1.18.0-3build1\nlibcap-ng0:amd64\t0.8.4-2build2\nlibcap2:amd64\t1:2.66-5ubuntu2.4\nlibcap2-bin\t1:2.66-5ubuntu2.4\nlibcbor0.10:amd64\t0.10.2-1.2ubuntu2\nlibcc1-0:amd64\t14.2.0-4ubuntu2~24.04.1\nlibclang-common-21-dev:amd64\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nlibclang-cpp21\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nlibclang1-21\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nlibcolord2:amd64\t1.4.7-1build2\nlibcom-err2:amd64\t1.47.0-2.4~exp1ubuntu4.1\nlibcrypt-dev:amd64\t1:4.4.36-4build1\nlibcrypt1:amd64\t1:4.4.36-4build1\nlibcryptsetup12:amd64\t2:2.7.0-1ubuntu4.2\nlibctf-nobfd0:amd64\t2.42-4ubuntu2.8\nlibctf0:amd64\t2.42-4ubuntu2.8\nlibcups2t64:amd64\t2.4.7-1.2ubuntu7.14\nlibcurl3t64-gnutls:amd64\t8.5.0-2ubuntu10.16\nlibcurl4t64:amd64\t8.5.0-2ubuntu10.16\nlibdatrie1:amd64\t0.2.13-3build1\nlibdb5.3t64:amd64\t5.3.28+dfsg2-7\nlibdbus-1-3:amd64\t1.14.10-4ubuntu4.1\nlibdconf1:amd64\t0.40.0-4build2\nlibde265-0:amd64\t1.0.15-1ubuntu0.2\nlibdebconfclient0:amd64\t0.271ubuntu3\nlibdeflate0:amd64\t1.19-1build1.1\nlibdevmapper1.02.1:amd64\t2:1.02.185-3ubuntu3.2\nlibdpkg-perl\t1.22.6ubuntu6.6\nlibdrm-amdgpu1:amd64\t2.4.125-1ubuntu0.1~24.04.2\nlibdrm-common\t2.4.125-1ubuntu0.1~24.04.2\nlibdrm-intel1:amd64\t2.4.125-1ubuntu0.1~24.04.2\nlibdrm2:amd64\t2.4.125-1ubuntu0.1~24.04.2\nlibduktape207:amd64\t2.7.0+tests-0ubuntu3\nlibdw1t64:amd64\t0.190-1.1ubuntu0.1\nlibeatmydata1:amd64\t131-1ubuntu1\nlibedit2:amd64\t3.1-20230828-1build1\nlibegl-mesa0:amd64\t25.2.8-0ubuntu0.24.04.2\nlibegl1:amd64\t1.7.0-1build1\nlibelf1t64:amd64\t0.190-1.1ubuntu0.1\nlibepoxy0:amd64\t1.5.10-1build1\nliberror-perl\t0.17029-2\nlibestr0:amd64\t0.1.11-1build1\nlibevent-core-2.1-7t64:amd64\t2.1.12-stable-9ubuntu2.2\nlibexpat1:amd64\t2.6.1-2ubuntu0.6\nlibext2fs2t64:amd64\t1.47.0-2.4~exp1ubuntu4.1\nlibfakeroot:amd64\t1.33-1\nlibfastjson4:amd64\t1.2304.0-1build1\nlibfdisk1:amd64\t2.39.3-9ubuntu6.6\nlibffi-dev:amd64\t3.4.6-1build1\nlibffi8:amd64\t3.4.6-1build1\nlibfido2-1:amd64\t1.14.0-1build3\nlibfile-fcntllock-perl\t0.22-4ubuntu5\nlibfontconfig1:amd64\t2.15.0-1.1ubuntu2\nlibfreetype6:amd64\t2.13.2+dfsg-1ubuntu0.2\nlibfribidi0:amd64\t1.0.13-3build1\nlibfuse3-3:amd64\t3.14.0-5build1\nlibgbm1:amd64\t25.2.8-0ubuntu0.24.04.2\nlibgc1:amd64\t1:8.2.6-1build1\nlibgcc-13-dev:amd64\t13.3.0-6ubuntu2~24.04.1\nlibgcc-s1:amd64\t14.2.0-4ubuntu2~24.04.1\nlibgcrypt20:amd64\t1.10.3-2ubuntu0.2\nlibgd3:amd64\t2.3.3-9ubuntu5\nlibgdbm-compat4t64:amd64\t1.23-5.1build1\nlibgdbm6t64:amd64\t1.23-5.1build1\nlibgdk-pixbuf-2.0-0:amd64\t2.42.10+dfsg-3ubuntu3.3\nlibgdk-pixbuf2.0-bin\t2.42.10+dfsg-3ubuntu3.3\nlibgdk-pixbuf2.0-common\t2.42.10+dfsg-3ubuntu3.3\nlibgirepository-1.0-1:amd64\t1.80.1-1\nlibgl1:amd64\t1.7.0-1build1\nlibgl1-mesa-dri:amd64\t25.2.8-0ubuntu0.24.04.2\nlibglib2.0-0t64:amd64\t2.80.0-6ubuntu3.9\nlibglib2.0-bin\t2.80.0-6ubuntu3.9\nlibglib2.0-data\t2.80.0-6ubuntu3.9\nlibglvnd0:amd64\t1.7.0-1build1\nlibglx-mesa0:amd64\t25.2.8-0ubuntu0.24.04.2\nlibglx0:amd64\t1.7.0-1build1\nlibgmp10:amd64\t2:6.3.0+dfsg-2ubuntu6.1\nlibgnutls30t64:amd64\t3.8.3-1.1ubuntu3.6\nlibgomp1:amd64\t14.2.0-4ubuntu2~24.04.1\nlibgpg-error-l10n\t1.47-3build2.1\nlibgpg-error0:amd64\t1.47-3build2.1\nlibgpm2:amd64\t1.20.7-11\nlibgprofng0:amd64\t2.42-4ubuntu2.8\nlibgraphite2-3:amd64\t1.3.14-2ubuntu0.24.04.1\nlibgssapi-krb5-2:amd64\t1.20.1-6ubuntu2.7\nlibgstreamer1.0-0:amd64\t1.24.2-1ubuntu0.1\nlibgtk-3-0t64:amd64\t3.24.41-4ubuntu1.3\nlibgtk-3-bin\t3.24.41-4ubuntu1.3\nlibgtk-3-common\t3.24.41-4ubuntu1.3\nlibharfbuzz0b:amd64\t8.3.0-2build2\nlibheif-plugin-aomdec:amd64\t1.17.6-1ubuntu4.9\nlibheif-plugin-aomenc:amd64\t1.17.6-1ubuntu4.9\nlibheif-plugin-libde265:amd64\t1.17.6-1ubuntu4.9\nlibheif1:amd64\t1.17.6-1ubuntu4.9\nlibhogweed6t64:amd64\t3.9.1-2.2build1.1\nlibhwasan0:amd64\t14.2.0-4ubuntu2~24.04.1\nlibice6:amd64\t2:1.0.10-1build3\nlibicu-dev:amd64\t74.2-1ubuntu3.1\nlibicu74:amd64\t74.2-1ubuntu3.1\nlibidn2-0:amd64\t2.3.7-2build1.1\nlibisl23:amd64\t0.26-3build1.1\nlibitm1:amd64\t14.2.0-4ubuntu2~24.04.1\nlibjansson4:amd64\t2.14-2build2\nlibjbig0:amd64\t2.1-6.1ubuntu2\nlibjpeg-turbo8:amd64\t2.1.5-2ubuntu2\nlibjpeg8:amd64\t8c-2ubuntu11\nlibjson-c5:amd64\t0.17-1build1\nlibjsoncpp25:amd64\t1.9.5-6build1\nlibk5crypto3:amd64\t1.20.1-6ubuntu2.7\nlibkeyutils1:amd64\t1.6.3-3build1\nlibkmod2:amd64\t31+20240202-2ubuntu7.2\nlibkrb5-3:amd64\t1.20.1-6ubuntu2.7\nlibkrb5support0:amd64\t1.20.1-6ubuntu2.7\nlibksba8:amd64\t1.6.6-1build1\nliblcms2-2:amd64\t2.14-2ubuntu0.1\nlibldap-common\t2.6.7+dfsg-1~exp1ubuntu8.2\nlibldap2:amd64\t2.6.7+dfsg-1~exp1ubuntu8.2\nliblerc4:amd64\t4.0.0+ds-4ubuntu2\nlibllvm20:amd64\t1:20.1.2-0ubuntu1~24.04.3\nlibllvm21:amd64\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nliblocale-gettext-perl\t1.07-6ubuntu5\nliblsan0:amd64\t14.2.0-4ubuntu2~24.04.1\nliblttng-ust-common1t64:amd64\t2.13.7-1.1ubuntu2\nliblttng-ust-ctl5t64:amd64\t2.13.7-1.1ubuntu2\nliblttng-ust1t64:amd64\t2.13.7-1.1ubuntu2\nlibluajit-5.1-2:amd64\t2.1.0+git20231223.c525bcb+dfsg-1ubuntu0.1\nlibluajit-5.1-common\t2.1.0+git20231223.c525bcb+dfsg-1ubuntu0.1\nliblz4-1:amd64\t1.9.4-1build1.1\nliblzma5:amd64\t5.6.1+really5.4.5-1ubuntu0.3\nliblzo2-2:amd64\t2.10-2build4\nlibmagic-mgc\t1:5.45-3build1\nlibmagic1t64:amd64\t1:5.45-3build1\nlibmd0:amd64\t1.1.0-2build1.1\nlibmnl0:amd64\t1.0.5-2build1\nlibmount1:amd64\t2.39.3-9ubuntu6.6\nlibmpc3:amd64\t1.3.1-1build1.1\nlibmpfr6:amd64\t4.2.1-1build1.1\nlibmsgpackc2:amd64\t4.0.0-3build1\nlibncurses-dev:amd64\t6.4+20240113-1ubuntu2.2\nlibncurses6:amd64\t6.4+20240113-1ubuntu2.2\nlibncursesw6:amd64\t6.4+20240113-1ubuntu2.2\nlibnetplan1:amd64\t1.1.2-2~ubuntu24.04.2\nlibnettle8t64:amd64\t3.9.1-2.2build1.1\nlibnewt0.52:amd64\t0.52.24-2ubuntu2\nlibnghttp2-14:amd64\t1.59.0-1ubuntu0.4\nlibnpth0t64:amd64\t1.6-3.1build1\nlibnss-systemd:amd64\t255.4-1ubuntu8.18\nlibnuma1:amd64\t2.0.18-1ubuntu0.24.04.1\nlibobjc-13-dev:amd64\t13.3.0-6ubuntu2~24.04.1\nlibobjc4:amd64\t14.2.0-4ubuntu2~24.04.1\nlibp11-kit0:amd64\t0.25.3-4ubuntu2.2\nlibpackagekit-glib2-18:amd64\t1.2.8-2ubuntu1.5\nlibpam-cap:amd64\t1:2.66-5ubuntu2.4\nlibpam-modules:amd64\t1.5.3-5ubuntu5.7\nlibpam-modules-bin\t1.5.3-5ubuntu5.7\nlibpam-runtime\t1.5.3-5ubuntu5.7\nlibpam-systemd:amd64\t255.4-1ubuntu8.18\nlibpam0g:amd64\t1.5.3-5ubuntu5.7\nlibpango-1.0-0:amd64\t1.52.1+ds-1build1\nlibpangocairo-1.0-0:amd64\t1.52.1+ds-1build1\nlibpangoft2-1.0-0:amd64\t1.52.1+ds-1build1\nlibpciaccess0:amd64\t0.17-3ubuntu0.24.04.2\nlibpcre2-8-0:amd64\t10.42-4ubuntu2.1\nlibperl5.38t64:amd64\t5.38.2-3.2ubuntu0.6\nlibpfm4:amd64\t4.13.0+git32-g0d4ed0e-1ubuntu0.1\nlibpipeline1:amd64\t1.5.7-2\nlibpixman-1-0:amd64\t0.42.2-1build1\nlibpkgconf3:amd64\t1.8.1-2build1\nlibpng16-16t64:amd64\t1.6.43-5ubuntu0.7\nlibpolkit-agent-1-0:amd64\t124-2ubuntu1.24.04.4\nlibpolkit-gobject-1-0:amd64\t124-2ubuntu1.24.04.4\nlibpopt0:amd64\t1.19+dfsg-1build1\nlibproc2-0:amd64\t2:4.0.4-4ubuntu3.2\nlibpsl5t64:amd64\t0.21.2-1.1build1\nlibpython3-stdlib:amd64\t3.12.3-0ubuntu2.1\nlibpython3.12-minimal:amd64\t3.12.3-1ubuntu0.17\nlibpython3.12-stdlib:amd64\t3.12.3-1ubuntu0.17\nlibpython3.12t64:amd64\t3.12.3-1ubuntu0.17\nlibquadmath0:amd64\t14.2.0-4ubuntu2~24.04.1\nlibreadline8t64:amd64\t8.2-4build1\nlibrhash0:amd64\t1.4.3-3build1\nlibrsvg2-2:amd64\t2.58.0+dfsg-1ubuntu0.1\nlibrsvg2-common:amd64\t2.58.0+dfsg-1ubuntu0.1\nlibrtmp1:amd64\t2.4+20151223.gitfa8646d.1-2build7\nlibsasl2-2:amd64\t2.1.28+dfsg1-5ubuntu3.1\nlibsasl2-modules:amd64\t2.1.28+dfsg1-5ubuntu3.1\nlibsasl2-modules-db:amd64\t2.1.28+dfsg1-5ubuntu3.1\nlibseccomp2:amd64\t2.5.5-1ubuntu3.1\nlibselinux1:amd64\t3.5-2ubuntu2.1\nlibsemanage-common\t3.5-1build5\nlibsemanage2:amd64\t3.5-1build5\nlibsensors-config\t1:3.6.0-9build1\nlibsensors5:amd64\t1:3.6.0-9build1\nlibsepol2:amd64\t3.5-2build1\nlibsframe1:amd64\t2.42-4ubuntu2.8\nlibsharpyuv0:amd64\t1.3.2-0.4build3\nlibsigsegv2:amd64\t2.14-1ubuntu2\nlibslang2:amd64\t2.3.3-3build2\nlibsm6:amd64\t2:1.2.3-1build3\nlibsmartcols1:amd64\t2.39.3-9ubuntu6.6\nlibsodium23:amd64\t1.0.18-1ubuntu0.24.04.1\nlibsqlite3-0:amd64\t3.45.1-1ubuntu2.8\nlibss2:amd64\t1.47.0-2.4~exp1ubuntu4.1\nlibssh-4:amd64\t0.10.6-2ubuntu0.5\nlibssl3t64:amd64\t3.0.13-0ubuntu3.16\nlibstdc++-13-dev:amd64\t13.3.0-6ubuntu2~24.04.1\nlibstdc++6:amd64\t14.2.0-4ubuntu2~24.04.1\nlibstemmer0d:amd64\t2.2.0-4build1\nlibsystemd-shared:amd64\t255.4-1ubuntu8.18\nlibsystemd0:amd64\t255.4-1ubuntu8.18\nlibtasn1-6:amd64\t4.19.0-3ubuntu0.24.04.2\nlibtermkey1:amd64\t0.22-1\nlibtext-charwidth-perl:amd64\t0.04-11build3\nlibtext-iconv-perl:amd64\t1.7-8build3\nlibtext-wrapi18n-perl\t0.06-10\nlibthai-data\t0.1.29-2build1\nlibthai0:amd64\t0.1.29-2build1\nlibtiff6:amd64\t4.5.1+git230720-4ubuntu2.5\nlibtinfo6:amd64\t6.4+20240113-1ubuntu2.2\nlibtirpc-common\t1.3.4+ds-1.1build1\nlibtirpc3t64:amd64\t1.3.4+ds-1.1build1\nlibtree-sitter0:amd64\t0.20.8-2\nlibtsan2:amd64\t14.2.0-4ubuntu2~24.04.1\nlibubsan1:amd64\t14.2.0-4ubuntu2~24.04.1\nlibuchardet0:amd64\t0.0.8-1build1\nlibudev1:amd64\t255.4-1ubuntu8.18\nlibunibilium4:amd64\t2.1.0-3\nlibunistring5:amd64\t1.1-2build1.1\nlibunwind8:amd64\t1.6.2-3build1.1\nlibutempter0:amd64\t1.2.1-3build1\nlibuuid1:amd64\t2.39.3-9ubuntu6.6\nlibuv1t64:amd64\t1.48.0-1.1build1\nlibvterm0:amd64\t0.3.3-2build1\nlibvulkan1:amd64\t1.3.275.0-1build1\nlibwayland-client0:amd64\t1.22.0-2.1build1\nlibwayland-cursor0:amd64\t1.22.0-2.1build1\nlibwayland-egl1:amd64\t1.22.0-2.1build1\nlibwebp7:amd64\t1.3.2-0.4build3\nlibx11-6:amd64\t2:1.8.7-1ubuntu0.1\nlibx11-data\t2:1.8.7-1ubuntu0.1\nlibx11-xcb1:amd64\t2:1.8.7-1ubuntu0.1\nlibxau6:amd64\t1:1.0.9-1build6\nlibxcb-dri3-0:amd64\t1.15-1ubuntu2\nlibxcb-glx0:amd64\t1.15-1ubuntu2\nlibxcb-present0:amd64\t1.15-1ubuntu2\nlibxcb-randr0:amd64\t1.15-1ubuntu2\nlibxcb-render0:amd64\t1.15-1ubuntu2\nlibxcb-shm0:amd64\t1.15-1ubuntu2\nlibxcb-sync1:amd64\t1.15-1ubuntu2\nlibxcb-xfixes0:amd64\t1.15-1ubuntu2\nlibxcb1:amd64\t1.15-1ubuntu2\nlibxcomposite1:amd64\t1:0.4.5-1build3\nlibxcursor1:amd64\t1:1.2.1-1build1\nlibxdamage1:amd64\t1:1.1.6-1build1\nlibxdmcp6:amd64\t1:1.1.3-0ubuntu6\nlibxext6:amd64\t2:1.3.4-1build2\nlibxfixes3:amd64\t1:6.0.0-2build1\nlibxi6:amd64\t2:1.8.1-1build1\nlibxinerama1:amd64\t2:1.1.4-3build1\nlibxkbcommon0:amd64\t1.6.0-1build1\nlibxml2:amd64\t2.9.14+dfsg-1.3ubuntu3.10\nlibxml2-dev:amd64\t2.9.14+dfsg-1.3ubuntu3.10\nlibxmlb2:amd64\t0.3.18-1\nlibxmu6:amd64\t2:1.1.3-3build2\nlibxmuu1:amd64\t2:1.1.3-3build2\nlibxpm4:amd64\t1:3.5.17-1ubuntu0.24.04.2\nlibxrandr2:amd64\t2:1.5.2-2build1\nlibxrender1:amd64\t1:0.9.10-1.1build1\nlibxshmfence1:amd64\t1.3-1build5\nlibxt6t64:amd64\t1:1.2.1-1.2build1\nlibxtables12:amd64\t1.8.10-3ubuntu2\nlibxtst6:amd64\t2:1.2.3-1.1ubuntu0.1\nlibxxf86vm1:amd64\t1:1.1.4-1build4\nlibxxhash0:amd64\t0.8.2-2build1\nlibyaml-0-2:amd64\t0.2.5-1build1\nlibzstd1:amd64\t1.5.5+dfsg2-2build1.1\nlinux-libc-dev:amd64\t6.8.0-147.147\nlld-21\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nllvm-21\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nllvm-21-dev\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nllvm-21-linker-tools\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nllvm-21-runtime\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nllvm-21-tools\t1:21.1.8~++20251221032922+2078da43e25a-1~exp1~20251221153059.70\nlocales\t2.39-0ubuntu8.9\nlogin\t1:4.13+dfsg1-4ubuntu3.2\nlogrotate\t3.21.0-2build1\nlogsave\t1.47.0-2.4~exp1ubuntu4.1\nlsb-release\t12.0-2\nlshw\t02.19.git.2021.06.19.996aaad9c7-2build3\nlsof\t4.95.0-1build3\nlto-disabled-list\t47\nlua-luv:amd64\t1.48.0-2-2build1\nmake\t4.3-4.1build2\nman-db\t2.12.0-4build2\nmanpages\t6.7-2\nmanpages-dev\t6.7-2\nmawk\t1.3.4.20240123-1build1\nmedia-types\t10.1.0\nmesa-libgallium:amd64\t25.2.8-0ubuntu0.24.04.2\nmesa-vulkan-drivers:amd64\t25.2.8-0ubuntu0.24.04.2\nmotd-news-config\t13ubuntu10.3\nmount\t2.39.3-9ubuntu6.6\nnano\t7.2-2ubuntu0.2\nncurses-base\t6.4+20240113-1ubuntu2.2\nncurses-bin\t6.4+20240113-1ubuntu2.2\nneovim\t0.9.5-6ubuntu2\nneovim-runtime\t0.9.5-6ubuntu2\nnetbase\t6.4\nnetcat-openbsd\t1.226-1ubuntu2\nnetplan-generator\t1.1.2-2~ubuntu24.04.2\nnetplan.io\t1.1.2-2~ubuntu24.04.2\nnetstandard-targeting-pack-2.1-8.0\t8.0.132-0ubuntu1~24.04.1\nnetworkd-dispatcher\t2.2.4-1\nninja-build\t1.11.1-2\nopenssh-client\t1:9.6p1-3ubuntu13.20\nopenssl\t3.0.13-0ubuntu3.16\npackagekit\t1.2.8-2ubuntu1.5\npackagekit-tools\t1.2.8-2ubuntu1.5\npasswd\t1:4.13+dfsg1-4ubuntu3.2\npastebinit\t1.6.2-1\npatch\t2.7.6-7build3\npci.ids\t0.0~2024.03.31-1ubuntu0.1\nperl\t5.38.2-3.2ubuntu0.6\nperl-base\t5.38.2-3.2ubuntu0.6\nperl-modules-5.38\t5.38.2-3.2ubuntu0.6\npinentry-curses\t1.2.1-3ubuntu5\npkgconf:amd64\t1.8.1-2build1\npkgconf-bin\t1.8.1-2build1\npolkitd\t124-2ubuntu1.24.04.4\nprocps\t2:4.0.4-4ubuntu3.2\npsmisc\t23.7-1build1\npublicsuffix\t20231001.0357-0.1\npython-apt-common\t2.7.7ubuntu5.1\npython-babel-localedata\t2.10.3-3build1\npython3\t3.12.3-0ubuntu2.1\npython3-apport\t2.28.1-0ubuntu3.8\npython3-apt\t2.7.7ubuntu5.1\npython3-attr\t23.2.0-2\npython3-automat\t22.10.0-2\npython3-babel\t2.10.3-3build1\npython3-bcrypt\t3.2.2-1build1\npython3-blinker\t1.7.0-1\npython3-certifi\t2023.11.17-1\npython3-cffi-backend:amd64\t1.16.0-2build1\npython3-chardet\t5.2.0+dfsg-1\npython3-click\t8.1.6-2\npython3-colorama\t0.4.6-4\npython3-commandnotfound\t23.04.0\npython3-configobj\t5.0.8-3\npython3-constantly\t23.10.4-1\npython3-cryptography\t41.0.7-4ubuntu0.4\npython3-dbus\t1.3.2-5build3\npython3-debconf\t1.5.86ubuntu1\npython3-distro\t1.9.0-1\npython3-distro-info\t1.7build1\npython3-distupgrade\t1:24.04.27\npython3-gdbm:amd64\t3.12.3-0ubuntu1\npython3-gi\t3.48.2-1\npython3-greenlet\t3.0.3-0ubuntu5.1\npython3-hamcrest\t2.1.0-1\npython3-httplib2\t0.20.4-3ubuntu0.1\npython3-hyperlink\t21.0.0-5\npython3-idna\t3.6-2ubuntu0.2\npython3-incremental\t22.10.0-1\npython3-jinja2\t3.1.2-1ubuntu1.3\npython3-json-pointer\t2.0-0ubuntu1\npython3-jsonpatch\t1.32-3\npython3-jsonschema\t4.10.3-2ubuntu1\npython3-jwt\t2.7.0-1ubuntu0.4\npython3-launchpadlib\t1.11.0-6\npython3-lazr.restfulclient\t0.14.6-1\npython3-lazr.uri\t1.0.6-3\npython3-markdown-it\t3.0.0-2\npython3-markupsafe\t2.1.5-1build2\npython3-mdurl\t0.1.2-1\npython3-minimal\t3.12.3-0ubuntu2.1\npython3-msgpack\t1.0.3-3build2\npython3-netifaces:amd64\t0.11.0-2build3\npython3-netplan\t1.1.2-2~ubuntu24.04.2\npython3-newt:amd64\t0.52.24-2ubuntu2\npython3-oauthlib\t3.2.2-1\npython3-openssl\t23.2.0-1ubuntu0.1\npython3-pip-whl\t24.0+dfsg-1ubuntu1.3\npython3-pkg-resources\t68.1.2-2ubuntu1.2\npython3-problem-report\t2.28.1-0ubuntu3.8\npython3-pyasn1\t0.4.8-4ubuntu0.3\npython3-pyasn1-modules\t0.2.8-1\npython3-pycurl\t7.45.3-1build2\npython3-pygments\t2.17.2+dfsg-1\npython3-pynvim\t0.5.0-1\npython3-pyparsing\t3.1.1-1\npython3-pyrsistent:amd64\t0.20.0-1build2\npython3-requests\t2.31.0+dfsg-1ubuntu1.2\npython3-rich\t13.7.1-1\npython3-serial\t3.5-2\npython3-service-identity\t24.1.0-1\npython3-setuptools\t68.1.2-2ubuntu1.2\npython3-setuptools-whl\t68.1.2-2ubuntu1.2\npython3-six\t1.16.0-4\npython3-software-properties\t0.99.49.2\npython3-systemd\t235-1build4\npython3-twisted\t24.3.0-1ubuntu0.2\npython3-typing-extensions\t4.10.0-1\npython3-tz\t2024.1-2\npython3-update-manager\t1:24.04.12\npython3-urllib3\t2.0.7-1ubuntu0.8\npython3-venv\t3.12.3-0ubuntu2.1\npython3-wadllib\t1.3.6-5\npython3-yaml\t6.0.1-2build2\npython3-zope.interface\t6.1-1build1\npython3.12\t3.12.3-1ubuntu0.17\npython3.12-minimal\t3.12.3-1ubuntu0.17\npython3.12-venv\t3.12.3-1ubuntu0.17\nreadline-common\t8.2-4build1\nrpcsvc-proto\t1.4.2-0ubuntu7\nrsync\t3.2.7-1ubuntu1.5\nrsyslog\t8.2312.0-3ubuntu9.4\nrun-one\t1.17-0ubuntu2\nsed\t4.9-2ubuntu0.24.04.1\nsensible-utils\t0.0.22\nsession-migration\t0.3.9build1\nsgml-base\t1.31\nshared-mime-info\t2.4-4\nshow-motd\t3.12\nsnapd\t2.76+ubuntu24.04.1\nsoftware-properties-common\t0.99.49.2\nspirv-tools\t2025.1~rc1-1~ubuntu0.24.04.2\nsquashfs-tools\t1:4.6.1-1build1\nsudo\t1.9.15p5-3ubuntu5.24.04.4\nsystemd\t255.4-1ubuntu8.18\nsystemd-dev\t255.4-1ubuntu8.18\nsystemd-hwe-hwdb\t255.1.4\nsystemd-resolved\t255.4-1ubuntu8.18\nsystemd-sysv\t255.4-1ubuntu8.18\nsystemd-timesyncd\t255.4-1ubuntu8.18\nsysvinit-utils\t3.08-6ubuntu3\ntar\t1.35+dfsg-3ubuntu0.4\ntime\t1.9-0.2build1\ntmux\t3.4-1ubuntu0.1\ntzdata\t2026e-0ubuntu0.24.04.1\nubuntu-keyring\t2023.11.28.1\nubuntu-minimal\t1.539.2\nubuntu-mono\t24.04-0ubuntu1\nubuntu-pro-client\t37.2ubuntu~24.04.1\nubuntu-pro-client-l10n\t37.2ubuntu~24.04.1\nubuntu-release-upgrader-core\t1:24.04.27\nubuntu-wsl\t1.539.2\nucf\t3.0043+nmu1\nudev\t255.4-1ubuntu8.18\nunattended-upgrades\t2.9.1+nmu4ubuntu1\nupdate-manager-core\t1:24.04.12\nupdate-motd\t3.12\nusb.ids\t2024.03.18-1\nutil-linux\t2.39.3-9ubuntu6.6\nuuid-runtime\t2.39.3-9ubuntu6.6\nvim\t2:9.1.0016-1ubuntu7.20\nvim-common\t2:9.1.0016-1ubuntu7.20\nvim-runtime\t2:9.1.0016-1ubuntu7.20\nvim-tiny\t2:9.1.0016-1ubuntu7.20\nwget\t1.21.4-1ubuntu4.5\nwhiptail\t0.52.24-2ubuntu2\nwsl-pro-service\t0.1.18~24.04.4\nwsl-setup\t0.5.10~24.04\nx11-common\t1:7.7+23ubuntu3\nxauth\t1:1.1.2-1build1\nxclip\t0.13-3\nxdg-user-dirs\t0.18-1build1\nxkb-data\t2.41-2ubuntu1.1\nxml-core\t0.19\nxxd\t2:9.1.0016-1ubuntu7.20\nxz-utils\t5.6.1+really5.4.5-1ubuntu0.3\nzlib1g:amd64\t1:1.3.dfsg-3.1ubuntu2.2",
+    "dawn_deps": [
+      {
+        "path": "src/dawn/third_party/EGL-Registry/src",
+        "revision": "3d7796b3721d93976b6bfe536aa97bbc4bce8667",
+        "fetch_head": "3d7796b3721d93976b6bfe536aa97bbc4bce8667\t\t'3d7796b3721d93976b6bfe536aa97bbc4bce8667' of https://chromium.googlesource.com/external/github.com/KhronosGroup/EGL-Registry\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/OpenGL-Registry/src",
+        "revision": "e8f7cd0e35ac8d6f5667a021ff83d04b1fec41ef",
+        "fetch_head": "e8f7cd0e35ac8d6f5667a021ff83d04b1fec41ef\t\t'e8f7cd0e35ac8d6f5667a021ff83d04b1fec41ef' of https://chromium.googlesource.com/external/github.com/KhronosGroup/OpenGL-Registry\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/abseil-cpp",
+        "revision": "b4f25e80201b0be113732ab2e0400f37739b94d9",
+        "fetch_head": "b4f25e80201b0be113732ab2e0400f37739b94d9\t\t'b4f25e80201b0be113732ab2e0400f37739b94d9' of https://github.com/mshivam019/dusklight-ps5\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/directx-headers/src",
+        "revision": "980971e835876dc0cde415e8f9bc646e64667bf7",
+        "fetch_head": "980971e835876dc0cde415e8f9bc646e64667bf7\t\t'980971e835876dc0cde415e8f9bc646e64667bf7' of https://chromium.googlesource.com/external/github.com/microsoft/DirectX-Headers\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/directx-shader-compiler/src",
+        "revision": "13730886e6a9019e4e0823746470f3ab75341d6b",
+        "fetch_head": "13730886e6a9019e4e0823746470f3ab75341d6b\t\t'13730886e6a9019e4e0823746470f3ab75341d6b' of https://chromium.googlesource.com/external/github.com/microsoft/DirectXShaderCompiler\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/glfw3/src",
+        "revision": "92dcf4ce74f2e2554a98fea09be7c705c17daa5a",
+        "fetch_head": "92dcf4ce74f2e2554a98fea09be7c705c17daa5a\t\t'92dcf4ce74f2e2554a98fea09be7c705c17daa5a' of https://chromium.googlesource.com/external/github.com/glfw/glfw\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/glslang/src",
+        "revision": "90afccfbd49dff0349d86a41762e9de24e1df811",
+        "fetch_head": "90afccfbd49dff0349d86a41762e9de24e1df811\t\t'90afccfbd49dff0349d86a41762e9de24e1df811' of https://chromium.googlesource.com/external/github.com/KhronosGroup/glslang\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/google_benchmark/src",
+        "revision": "8abf1e701fbd88c8170f48fe0558247e2e5f8e7d",
+        "fetch_head": "8abf1e701fbd88c8170f48fe0558247e2e5f8e7d\t\t'8abf1e701fbd88c8170f48fe0558247e2e5f8e7d' of https://chromium.googlesource.com/external/github.com/google/benchmark\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/googletest/src",
+        "revision": "4fe3307fb2d9f86d19777c7eb0e4809e9694dde7",
+        "fetch_head": "4fe3307fb2d9f86d19777c7eb0e4809e9694dde7\t\t'4fe3307fb2d9f86d19777c7eb0e4809e9694dde7' of https://chromium.googlesource.com/external/github.com/google/googletest\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/jinja2",
+        "revision": "c3027d884967773057bf74b957e3fea87e5df4d7",
+        "fetch_head": "c3027d884967773057bf74b957e3fea87e5df4d7\t\t'c3027d884967773057bf74b957e3fea87e5df4d7' of https://chromium.googlesource.com/chromium/src/third_party/jinja2\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/libprotobuf-mutator/src",
+        "revision": "c1c950eae0440c3808f2b8bd7c57d0c6a42c1a90",
+        "fetch_head": "c1c950eae0440c3808f2b8bd7c57d0c6a42c1a90\t\t'c1c950eae0440c3808f2b8bd7c57d0c6a42c1a90' of https://chromium.googlesource.com/external/github.com/google/libprotobuf-mutator\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/markupsafe",
+        "revision": "4256084ae14175d38a3ff7d739dca83ae49ccec6",
+        "fetch_head": "4256084ae14175d38a3ff7d739dca83ae49ccec6\t\t'4256084ae14175d38a3ff7d739dca83ae49ccec6' of https://chromium.googlesource.com/chromium/src/third_party/markupsafe\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/protobuf",
+        "revision": "f4b110307a4845dfe04c4fc5458d514eb8fc7d66",
+        "fetch_head": "f4b110307a4845dfe04c4fc5458d514eb8fc7d66\t\t'f4b110307a4845dfe04c4fc5458d514eb8fc7d66' of https://chromium.googlesource.com/chromium/src/third_party/protobuf\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/spirv-headers/src",
+        "revision": "942fe4b988359a0750b79f0ae7ed735994d3147d",
+        "fetch_head": "942fe4b988359a0750b79f0ae7ed735994d3147d\t\t'942fe4b988359a0750b79f0ae7ed735994d3147d' of https://chromium.googlesource.com/external/github.com/KhronosGroup/SPIRV-Headers\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/spirv-tools/src",
+        "revision": "5b5a25231a3543559b4f2cb27fe725a08b76b5d0",
+        "fetch_head": "5b5a25231a3543559b4f2cb27fe725a08b76b5d0\t\t'5b5a25231a3543559b4f2cb27fe725a08b76b5d0' of https://chromium.googlesource.com/external/github.com/KhronosGroup/SPIRV-Tools\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/vulkan-headers/src",
+        "revision": "f9973cd97e6f3584707e7ef1c425e336f1b92a5b",
+        "fetch_head": "f9973cd97e6f3584707e7ef1c425e336f1b92a5b\t\t'f9973cd97e6f3584707e7ef1c425e336f1b92a5b' of https://chromium.googlesource.com/external/github.com/KhronosGroup/Vulkan-Headers\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/vulkan-loader/src",
+        "revision": "e5715c8a3959f2a40a6bc13a3a88a3862843b105",
+        "fetch_head": "e5715c8a3959f2a40a6bc13a3a88a3862843b105\t\t'e5715c8a3959f2a40a6bc13a3a88a3862843b105' of https://chromium.googlesource.com/external/github.com/KhronosGroup/Vulkan-Loader\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/vulkan-utility-libraries/src",
+        "revision": "6673ca41d73d36c3c838451e66dd30dd1ec46a97",
+        "fetch_head": "6673ca41d73d36c3c838451e66dd30dd1ec46a97\t\t'6673ca41d73d36c3c838451e66dd30dd1ec46a97' of https://chromium.googlesource.com/external/github.com/KhronosGroup/Vulkan-Utility-Libraries\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      },
+      {
+        "path": "src/dawn/third_party/webgpu-headers/src",
+        "revision": "01addc4ba8a2915a061b7095a6768b512071ab96",
+        "fetch_head": "01addc4ba8a2915a061b7095a6768b512071ab96\t\t'01addc4ba8a2915a061b7095a6768b512071ab96' of https://chromium.googlesource.com/external/github.com/webgpu-native/webgpu-headers\n",
+        "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tracked_diff": ""
+      }
+    ],
+    "sdk_package_metadata": [
+      {
+        "filename": "ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "6cfc38f20e2dac989c86835c157d4978db580cda134e52d5e8804d7bd2188658",
+        "text": "format = 2\npkgname = ps4-openorbis-bzip2\npkgbase = ps4-openorbis-bzip2\npkgver = 1.0.6-3\npkgarch = any\npkgbuild_sha256sum = cda7c8f4150959c8c4c8d5883b91c62d027006bc152960625ee8f282c2d832f0\npackager = Unknown Packager\nbuilddate = 1731748438\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-portlibs/bzip2\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-portlibs/bzip2\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz.PKGINFO",
+        "sha256": "c6f7cd2357acdfda9f540d999bb64458d5dbe33e89658cff9827b6509ba62682",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-bzip2\npkgbase = ps4-openorbis-bzip2\npkgver = 1.0.6-3\npkgdesc = A high-quality data compression program\nurl = http://www.bzip.org\nbuilddate = 1731748438\npackager = Unknown Packager\nsize = 96527\narch = any\nlicense = custom\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-portlibs\ngroup = ps4-openorbis-portlibs\nmakedepend = ps4-openorbis-pkg-config\nmakedepend = ps4-openorbis-vars\n"
+      },
+      {
+        "filename": "ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "93d9b5277c5652cfd02948876dd0e66eca84f92854ab726693e0f7fab5e28777",
+        "text": "format = 2\npkgname = ps4-openorbis-clang\npkgbase = ps4-openorbis-clang\npkgver = 12.0.1-1\npkgarch = any\npkgbuild_sha256sum = 993788c97c09a5aabd2107c8fd1178b9a2d48682fac7dfd698c96cc3514240c9\npackager = Unknown Packager\nbuilddate = 1731715643\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/clang\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/clang\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-clang-12.0.1-1-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz.PKGINFO",
+        "sha256": "64100f34846013a8e3c1b9a98f5ff5986cfd1266deee47fa62def7e5168cb65c",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-clang\npkgbase = ps4-openorbis-clang\npkgver = 12.0.1-1\npkgdesc = clang for ps4\nurl = https://github.com/llvm/llvm-project/\nbuilddate = 1731715643\npackager = Unknown Packager\nsize = 1380625964\narch = any\nlicense = custom:Apache 2.0 with LLVM Exception\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\n"
+      },
+      {
+        "filename": "ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "8c7fb354018d1cb31427731f3cb2c43aec3be1b8c0ceb359b4001ba8ba85c2a5",
+        "text": "format = 2\npkgname = ps4-openorbis-create-fself\npkgbase = ps4-openorbis-create-fself\npkgver = 1.2-3\npkgarch = any\npkgbuild_sha256sum = 47633f8a00e03d96b7e8c61b7578d0b16ea3741c94b94981a119e10e4c82020d\npackager = Unknown Packager\nbuilddate = 1731748320\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/create-fself\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/create-fself\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz.PKGINFO",
+        "sha256": "48bc27572379e47bfd641a4451a2d035fd132079fb41ec9c89e2b4996a82cb3c",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-create-fself\npkgbase = ps4-openorbis-create-fself\npkgver = 1.2-3\npkgdesc = create-fself for ps4\nurl = https://github.com/OpenOrbis/create-fself\nbuilddate = 1731748320\npackager = Unknown Packager\nsize = 2513865\narch = any\nlicense = MIT\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\n"
+      },
+      {
+        "filename": "ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "a8784b492226751ba28d756eef39bfc43de3ecd0d8cc052689ee02ee8bc1c1b2",
+        "text": "format = 2\npkgname = ps4-openorbis-create-gp4\npkgbase = ps4-openorbis-create-gp4\npkgver = 1.0-5\npkgarch = any\npkgbuild_sha256sum = 3b8d3433aeb7f3e627b1d6d9db8212530ab84efa962568ebd350d21410469ee6\npackager = Unknown Packager\nbuilddate = 1731748329\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/create-gp4\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/create-gp4\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz.PKGINFO",
+        "sha256": "4f29f312df133c84ad73b583cc1e6ec784fdc5e48c5d488c2789a2b1f3bbfc2d",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-create-gp4\npkgbase = ps4-openorbis-create-gp4\npkgver = 1.0-5\npkgdesc = create-gp4 for ps4\nurl = https://github.com/OpenOrbis/create-gp4\nbuilddate = 1731748329\npackager = Unknown Packager\nsize = 2296596\narch = any\nlicense = MIT\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\n"
+      },
+      {
+        "filename": "ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "bb6c247ff59c2aa0fa9ffa9322effe4be6ea14bcacedb8a49e9d58f8496588f2",
+        "text": "format = 2\npkgname = ps4-openorbis-headers\npkgbase = ps4-openorbis-headers\npkgver = 0.5.2-4\npkgarch = any\npkgbuild_sha256sum = 2f688c71f5ff84f761e3c80ba479dc494c8c91de24aa7e2075ae03c584875c56\npackager = Unknown Packager\nbuilddate = 1731717678\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/headers\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/headers\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-clang-12.0.1-1-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz.PKGINFO",
+        "sha256": "0dd2726da91401a5cc543c32057d60c0ccc48d505d42a0fc52d0bc915463288a",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-headers\npkgbase = ps4-openorbis-headers\npkgver = 0.5.2-4\npkgdesc = headers for ps4 (include crtlib...)\nurl = https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain\nbuilddate = 1731717678\npackager = Unknown Packager\nsize = 52036611\narch = any\nlicense = GNU GPL\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\ndepend = ps4-openorbis-clang\n"
+      },
+      {
+        "filename": "ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "1bb9c51f429688e1c6ec21d4a283c1d767b1117d372714f677ee0887dfc7faf1",
+        "text": "format = 2\npkgname = ps4-openorbis-libcxx\npkgbase = ps4-openorbis-libcxx\npkgver = 12.0.1-1\npkgarch = any\npkgbuild_sha256sum = 69c86bc4495f4cc61dbf3c8947a1e83187821c800100661df135866011cbb60c\npackager = Unknown Packager\nbuilddate = 1731748267\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/libcxx\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/libcxx\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz.PKGINFO",
+        "sha256": "5576ed4819c5351aba41ac288a565b208295aa9dc5f9dcf79e8c2a9808a2c516",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-libcxx\npkgbase = ps4-openorbis-libcxx\npkgver = 12.0.1-1\npkgdesc = clang cxx support for ps4\nurl = https://github.com/llvm/llvm-project/\nbuilddate = 1731748267\npackager = Unknown Packager\nsize = 11638912\narch = any\nlicense = custom:Apache 2.0 with LLVM Exception\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\ndepend = ps4-openorbis-musl\ndepend = ps4-openorbis-headers\n"
+      },
+      {
+        "filename": "ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "6e6315779734f15dc4d6dcdc152f90502f46993fbe798043559c6b766d81bd93",
+        "text": "format = 2\npkgname = ps4-openorbis-libpng\npkgbase = ps4-openorbis-libpng\npkgver = 1.6.37-3\npkgarch = any\npkgbuild_sha256sum = f0e52991eebd84460ff95a41a8bbdda43752af0feb759259fbd4ef8ee7f7cbf6\npackager = Unknown Packager\nbuilddate = 1731748442\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-portlibs/libpng\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-portlibs/libpng\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz.PKGINFO",
+        "sha256": "3bdc662157dc1705c1dcc58429bd5b79b5c9dbe791a10f506398c5f0ca28354b",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-libpng\npkgbase = ps4-openorbis-libpng\npkgver = 1.6.37-3\npkgdesc = PNG format graphic files library\nurl = http://www.libpng.org\nbuilddate = 1731748442\npackager = Unknown Packager\nsize = 1371618\narch = any\nlicense = custom\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-portlibs\ngroup = ps4-openorbis-portlibs\ndepend = ps4-openorbis-zlib\nmakedepend = ps4-openorbis-vars\n"
+      },
+      {
+        "filename": "ps4-openorbis-musl-1.5-2-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "7fe30bde8cf4230c77f93b82172fefb1f85619b3c1f28f75f7fe94087bfd8fbf",
+        "text": "format = 2\npkgname = ps4-openorbis-musl\npkgbase = ps4-openorbis-musl\npkgver = 1.5-2\npkgarch = any\npkgbuild_sha256sum = bcddb4de41320598509e3c59300e09f592c6feea335ca88f60bdfdd7daa6f8aa\npackager = Unknown Packager\nbuilddate = 1731717798\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/musl\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/musl\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-musl-1.5-2-any.pkg.tar.xz.PKGINFO",
+        "sha256": "384e3fda910ffa52aec7d3d460b36da37646415b690a3f460bb6689dae9e95d8",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-musl\npkgbase = ps4-openorbis-musl\npkgver = 1.5-2\npkgdesc = musl for ps4\nurl = https://github.com/PacBrew/ps4-openorbis-musl\nbuilddate = 1731717798\npackager = Unknown Packager\nsize = 2812955\narch = any\nlicense = MIT\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\ndepend = ps4-openorbis-clang\n"
+      },
+      {
+        "filename": "ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "791b7b4de552d8d6f479be7cb4c06062b7816315d9425ae7572a2a5d0e78ab73",
+        "text": "format = 2\npkgname = ps4-openorbis-orbis-lib-gen\npkgbase = ps4-openorbis-orbis-lib-gen\npkgver = 1.3-2\npkgarch = any\npkgbuild_sha256sum = 5f67480ec03876f10af26183dca0eada534a3bc9cf7e27a429dd8c64550ef52e\npackager = Unknown Packager\nbuilddate = 1731748316\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/orbis-lib-gen\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/orbis-lib-gen\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz.PKGINFO",
+        "sha256": "0a997b07dc06735b7ae5aecf37a754f5d804d88ec8a50bce36fb0e2d3b2939b2",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-orbis-lib-gen\npkgbase = ps4-openorbis-orbis-lib-gen\npkgver = 1.3-2\npkgdesc = libs for ps4\nurl = https://github.com/OpenOrbis/orbis-lib-gen\nbuilddate = 1731748316\npackager = Unknown Packager\nsize = 7617912\narch = any\nlicense = GNU GPL\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\n"
+      },
+      {
+        "filename": "ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "3ee5a1222dc9019ce3930af7dc760951bdeb38bbbf4501763df4303e0ac93bc0",
+        "text": "format = 2\npkgname = ps4-openorbis-pkg-config\npkgbase = ps4-openorbis-pkg-config\npkgver = 1.0.0-2\npkgarch = any\npkgbuild_sha256sum = a8904dac8c2a02ce9011d5f2ae8b7b5378785997046c0707eaf3071e5f80aa24\npackager = Unknown Packager\nbuilddate = 1731748423\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/pkg-config\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/pkg-config\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz.PKGINFO",
+        "sha256": "ad3278cde3057caeb080c55d485719456f52eacc42c69e061f864676ff6c23db",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-pkg-config\npkgbase = ps4-openorbis-pkg-config\npkgver = 1.0.0-2\npkgdesc = pkg-config wrapper for ps4\nurl = https://github.com/PacBrew\nbuilddate = 1731748423\npackager = Unknown Packager\nsize = 442\narch = any\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\ndepend = ps4-openorbis-clang\n"
+      },
+      {
+        "filename": "ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "c41fe7a49411bacf82c421884105d0a23b0142f6ce1183f4c0861e97ac210bc1",
+        "text": "format = 2\npkgname = ps4-openorbis-pkgtools\npkgbase = ps4-openorbis-pkgtools\npkgver = 0.2.231-5\npkgarch = any\npkgbuild_sha256sum = b0e2538be1b7fa025b8b397981f6bbabadf46b0de78f805a123ee047007f45f7\npackager = Unknown Packager\nbuilddate = 1731748345\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/pkgtools\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/pkgtools\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz.PKGINFO",
+        "sha256": "c02e992e3ae839bb22aafd233540fcd9cb9a328358999879c018b65ed4396eb8",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-pkgtools\npkgbase = ps4-openorbis-pkgtools\npkgver = 0.2.231-5\npkgdesc = pkg tools for ps4\nurl = https://github.com/OpenOrbis/LibOrbisPkg\nbuilddate = 1731748345\npackager = Unknown Packager\nsize = 72736320\narch = any\nlicense = GNU GPL\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\n"
+      },
+      {
+        "filename": "ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "0f46ac0afe4016a9f3d58efd3a39ed25f963cc90c76cd44d03c5f9c2eaaae217",
+        "text": "format = 2\npkgname = ps4-openorbis-readoelf\npkgbase = ps4-openorbis-readoelf\npkgver = 1.0-2\npkgarch = any\npkgbuild_sha256sum = e257ff393fffd83f8008c6d16b4722d69471b3536391bfdaa9f164c3c347ddb9\npackager = Unknown Packager\nbuilddate = 1731748336\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/readoelf\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/readoelf\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz.PKGINFO",
+        "sha256": "268eabf906dfa8beac35f5e8181adc8f98faf9488bc2f2eaeee83baccc2da4d4",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-readoelf\npkgbase = ps4-openorbis-readoelf\npkgver = 1.0-2\npkgdesc = readoelf for ps4\nurl = https://github.com/OpenOrbis/readoelf\nbuilddate = 1731748336\npackager = Unknown Packager\nsize = 2112688\narch = any\nlicense = MIT\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\n"
+      },
+      {
+        "filename": "ps4-openorbis-vars-1.1-3-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "fbe40b6462d743084f4cd9610559266c385e1e41845ea06c4ef48ec9bbd31d7f",
+        "text": "format = 2\npkgname = ps4-openorbis-vars\npkgbase = ps4-openorbis-vars\npkgver = 1.1-3\npkgarch = any\npkgbuild_sha256sum = fafbd405011fe5a05c9888c23a71096d6253d14509b7223c876dc0e29fe8a359\npackager = Unknown Packager\nbuilddate = 1731748425\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/vars\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-toolchain/vars\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-vars-1.1-3-any.pkg.tar.xz.PKGINFO",
+        "sha256": "02357a5f5952347667c597abf810cb7a4ffea0018d6e7a10188ccad3ecce5bd2",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-vars\npkgbase = ps4-openorbis-vars\npkgver = 1.1-3\npkgdesc = helper scripts to set variables for ps4 toolchain\nurl = https://github.com/PacBrew\nbuilddate = 1731748425\npackager = Unknown Packager\nsize = 10383\narch = any\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-toolchain\ngroup = ps4-openorbis\n"
+      },
+      {
+        "filename": "ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz.BUILDINFO",
+        "sha256": "ff82f48f3a1d5725ec8034d50e61bde9b69819885dff283b8e0070ff3f86ad7e",
+        "text": "format = 2\npkgname = ps4-openorbis-zlib\npkgbase = ps4-openorbis-zlib\npkgver = 1.3.1-2\npkgarch = any\npkgbuild_sha256sum = f5f22d1f2eaca7b35c0233b6b154f09e029c465ed2c2baa9ce700f235673a539\npackager = Unknown Packager\nbuilddate = 1731748428\nbuilddir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-portlibs/zlib\nstartdir = /home/cpasjuste/dev/pacbrew/pacbrew-packages/ps4-portlibs/zlib\nbuildtool = makepkg\nbuildtoolver = 6.0.2\nbuildenv = !distcc\nbuildenv = color\nbuildenv = !ccache\nbuildenv = check\nbuildenv = !sign\noptions = strip\noptions = docs\noptions = libtool\noptions = staticlibs\noptions = emptydirs\noptions = zipman\noptions = purge\noptions = !debug\noptions = !lto\ninstalled = ps4-openorbis-bzip2-1.0.6-3-any\ninstalled = ps4-openorbis-clang-12.0.1-1-any\ninstalled = ps4-openorbis-create-fself-1.2-3-any\ninstalled = ps4-openorbis-create-gp4-1.0-5-any\ninstalled = ps4-openorbis-flac-1.3.2-2-any\ninstalled = ps4-openorbis-freetype-2.10.1-3-any\ninstalled = ps4-openorbis-headers-0.5.2-4-any\ninstalled = ps4-openorbis-libass-0.14.0-2-any\ninstalled = ps4-openorbis-libcurl-7.80.0-3-any\ninstalled = ps4-openorbis-libcxx-12.0.1-1-any\ninstalled = ps4-openorbis-libfribidi-1.0.4-2-any\ninstalled = ps4-openorbis-libjpeg-turbo-2.1.2-2-any\ninstalled = ps4-openorbis-libmodplug-0.8.9.0-2-any\ninstalled = ps4-openorbis-libogg-1.3.4-2-any\ninstalled = ps4-openorbis-libopus-1.3-2-any\ninstalled = ps4-openorbis-libpng-1.6.37-3-any\ninstalled = ps4-openorbis-libsamplerate-0.1.9-2-any\ninstalled = ps4-openorbis-libvorbis-1.3.7-2-any\ninstalled = ps4-openorbis-libwebp-1.2.1-2-any\ninstalled = ps4-openorbis-mbedtls-2.16.6-3-any\ninstalled = ps4-openorbis-mpg123-1.25.10-2-any\ninstalled = ps4-openorbis-musl-1.5-2-any\ninstalled = ps4-openorbis-opusfile-0.11-2-any\ninstalled = ps4-openorbis-orbis-lib-gen-1.3-2-any\ninstalled = ps4-openorbis-pkg-config-1.0.0-2-any\ninstalled = ps4-openorbis-pkgtools-0.2.231-5-any\ninstalled = ps4-openorbis-readoelf-1.0-2-any\ninstalled = ps4-openorbis-sdl2-2.0.18-16-any\ninstalled = ps4-openorbis-sdl2_image-2.0.5-2-any\ninstalled = ps4-openorbis-sdl2_mixer-2.0.4-2-any\ninstalled = ps4-openorbis-sdl2_ttf-2.0.15-2-any\ninstalled = ps4-openorbis-vars-1.1-3-any\ninstalled = ps4-openorbis-zlib-1.3.1-2-any\n"
+      },
+      {
+        "filename": "ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz.PKGINFO",
+        "sha256": "6aa7a11b061c3e70a17fc97a690f4a79d6e034555428f0235bddf3116149bb48",
+        "text": "# Generated by makepkg 6.0.2\n# using fakeroot version 1.33\npkgname = ps4-openorbis-zlib\npkgbase = ps4-openorbis-zlib\npkgver = 1.3.1-2\npkgdesc = Deflate compression method library\nurl = http://www.zlib.net/\nbuilddate = 1731748428\npackager = Unknown Packager\nsize = 350575\narch = any\nlicense = zlib\ngroup = pacbrew\ngroup = pacbrew-ps4\ngroup = pacbrew-ps4-portlibs\ngroup = ps4-openorbis-portlibs\nmakedepend = ps4-openorbis-vars\n"
+      }
+    ],
+    "cmake_downloads": [
+      {
+        "path": "build/probe/_deps/fmt-subbuild/fmt-populate-prefix/src/12.1.0.tar.gz",
+        "sha256": "ea7de4299689e12b6dddd392f9896f08fb0777ac7168897a244a6d6085043fea"
+      },
+      {
+        "path": "build/probe/_deps/fmt-subbuild/fmt-populate-prefix/src/fmt-populate-stamp/fmt-populate-urlinfo.txt",
+        "sha256": "828a3897d7ce48e164e505e693836a7f7a22f79acb65f3b967a8001b86c46d0e",
+        "text": "# This is a generated file and its contents are an internal implementation detail.\n# The download step will be re-executed if anything in this file changes.\n# No other meaning or use of this file is supported.\n\nmethod=url\ncommand=/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/fmt-subbuild/fmt-populate-prefix/src/fmt-populate-stamp/download-fmt-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/fmt-subbuild/fmt-populate-prefix/src/fmt-populate-stamp/verify-fmt-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/fmt-subbuild/fmt-populate-prefix/src/fmt-populate-stamp/extract-fmt-populate.cmake\nsource_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/fmt-src\nwork_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps\nurl(s)=https://github.com/fmtlib/fmt/archive/refs/tags/12.1.0.tar.gz\nhash=SHA256=ea7de4299689e12b6dddd392f9896f08fb0777ac7168897a244a6d6085043fea\nno_extract=\n\n"
+      },
+      {
+        "path": "build/probe/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-2.14.3.tar.gz",
+        "sha256": "e61b31ab26358b946e767ed7eb7f4bb2e507da1cfefeb7a8861ace7fd5c899a1"
+      },
+      {
+        "path": "build/probe/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/freetype-populate-urlinfo.txt",
+        "sha256": "d5439301d6a13776e786cb8b117fbbbc80fe6813c269597625c5753abf147f6d",
+        "text": "# This is a generated file and its contents are an internal implementation detail.\n# The download step will be re-executed if anything in this file changes.\n# No other meaning or use of this file is supported.\n\nmethod=url\ncommand=/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/download-freetype-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/verify-freetype-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/freetype-subbuild/freetype-populate-prefix/src/freetype-populate-stamp/extract-freetype-populate.cmake\nsource_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/freetype-src\nwork_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps\nurl(s)=https://files.twilitrealm.dev/freetype-2.14.3.tar.gz\nhash=SHA256=e61b31ab26358b946e767ed7eb7f4bb2e507da1cfefeb7a8861ace7fd5c899a1\nno_extract=\n\n"
+      },
+      {
+        "path": "build/probe/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-urlinfo.txt",
+        "sha256": "0d1c86301fff892a248f24739f6e55e270ef3116878f089573b394f723f28f12",
+        "text": "# This is a generated file and its contents are an internal implementation detail.\n# The download step will be re-executed if anything in this file changes.\n# No other meaning or use of this file is supported.\n\nmethod=url\ncommand=/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/download-imgui-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/verify-imgui-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/extract-imgui-populate.cmake\nsource_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/imgui-src\nwork_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps\nurl(s)=https://github.com/ocornut/imgui/archive/refs/tags/v1.91.9b-docking.tar.gz\nhash=SHA256=466fdef9b18de15f0bb6e288e3d00ffa3d82200ec458ce5e4f724a161d9528a5\nno_extract=\n\n"
+      },
+      {
+        "path": "build/probe/_deps/imgui-subbuild/imgui-populate-prefix/src/v1.91.9b-docking.tar.gz",
+        "sha256": "466fdef9b18de15f0bb6e288e3d00ffa3d82200ec458ce5e4f724a161d9528a5"
+      },
+      {
+        "path": "build/probe/_deps/sqlite3-subbuild/sqlite3-populate-prefix/src/sqlite-amalgamation-3510300.zip",
+        "sha256": "acb1e6f5d832484bf6d32b681e858c38add8b2acdfd42ac5df24b8afb46552b4"
+      },
+      {
+        "path": "build/probe/_deps/sqlite3-subbuild/sqlite3-populate-prefix/src/sqlite3-populate-stamp/sqlite3-populate-urlinfo.txt",
+        "sha256": "f936f80eff54ba11524ee2252d4914f35fac7383af276d48053c216734981902",
+        "text": "# This is a generated file and its contents are an internal implementation detail.\n# The download step will be re-executed if anything in this file changes.\n# No other meaning or use of this file is supported.\n\nmethod=url\ncommand=/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/sqlite3-subbuild/sqlite3-populate-prefix/src/sqlite3-populate-stamp/download-sqlite3-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/sqlite3-subbuild/sqlite3-populate-prefix/src/sqlite3-populate-stamp/verify-sqlite3-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/sqlite3-subbuild/sqlite3-populate-prefix/src/sqlite3-populate-stamp/extract-sqlite3-populate.cmake\nsource_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/sqlite3-src\nwork_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps\nurl(s)=https://sqlite.org/2026/sqlite-amalgamation-3510300.zip\nhash=SHA256=acb1e6f5d832484bf6d32b681e858c38add8b2acdfd42ac5df24b8afb46552b4\nno_extract=\n\n"
+      },
+      {
+        "path": "build/probe/_deps/tracy-subbuild/tracy-populate-prefix/src/tracy-populate-stamp/tracy-populate-urlinfo.txt",
+        "sha256": "96af269385e34edede4ada66e46aa46a14708624cfb7213dbe2fc210cefceb4a",
+        "text": "# This is a generated file and its contents are an internal implementation detail.\n# The download step will be re-executed if anything in this file changes.\n# No other meaning or use of this file is supported.\n\nmethod=url\ncommand=/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/tracy-subbuild/tracy-populate-prefix/src/tracy-populate-stamp/download-tracy-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/tracy-subbuild/tracy-populate-prefix/src/tracy-populate-stamp/verify-tracy-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/tracy-subbuild/tracy-populate-prefix/src/tracy-populate-stamp/extract-tracy-populate.cmake\nsource_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/tracy-src\nwork_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps\nurl(s)=https://github.com/wolfpld/tracy/archive/refs/tags/v0.14.1.zip\nhash=SHA256=908f3a2917fa86a247abfcf85dcf04bad1db6986a4d40f94b70512f3e9e98d5b\nno_extract=\n\n"
+      },
+      {
+        "path": "build/probe/_deps/tracy-subbuild/tracy-populate-prefix/src/v0.14.1.zip",
+        "sha256": "908f3a2917fa86a247abfcf85dcf04bad1db6986a4d40f94b70512f3e9e98d5b"
+      },
+      {
+        "path": "build/probe/_deps/xxhash-subbuild/xxhash-populate-prefix/src/v0.8.3.tar.gz",
+        "sha256": "aae608dfe8213dfd05d909a57718ef82f30722c392344583d3f39050c7f29a80"
+      },
+      {
+        "path": "build/probe/_deps/xxhash-subbuild/xxhash-populate-prefix/src/xxhash-populate-stamp/xxhash-populate-urlinfo.txt",
+        "sha256": "d04af010cca107ca59a85351edb7afc681e79298d3740398f0a3a7a49e6c8dc9",
+        "text": "# This is a generated file and its contents are an internal implementation detail.\n# The download step will be re-executed if anything in this file changes.\n# No other meaning or use of this file is supported.\n\nmethod=url\ncommand=/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/xxhash-subbuild/xxhash-populate-prefix/src/xxhash-populate-stamp/download-xxhash-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/xxhash-subbuild/xxhash-populate-prefix/src/xxhash-populate-stamp/verify-xxhash-populate.cmake;COMMAND;/usr/bin/cmake;-P;/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/xxhash-subbuild/xxhash-populate-prefix/src/xxhash-populate-stamp/extract-xxhash-populate.cmake\nsource_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/xxhash-src\nwork_dir=/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps\nurl(s)=https://github.com/Cyan4973/xxHash/archive/refs/tags/v0.8.3.tar.gz\nhash=SHA256=aae608dfe8213dfd05d909a57718ef82f30722c392344583d3f39050c7f29a80\nno_extract=\n\n"
+      }
+    ],
+    "nuget_locks": [
+      {
+        "path": "src/liborbispkg/LibOrbisPkg.Core/packages.lock.json",
+        "sha256": "22308ad23ccd417b5d96020fb92e203b85fad8c3788b3feadb2ca403d8ad596c",
+        "text": "{\n  \"version\": 1,\n  \"dependencies\": {\n    \"net8.0\": {}\n  }\n}"
+      },
+      {
+        "path": "src/liborbispkg/PkgTool.Core/packages.lock.json",
+        "sha256": "49297bb3860389ec195ad9082bd58eabef646cdb94ebff2c6b00a22d06cd62e1",
+        "text": "{\n  \"version\": 1,\n  \"dependencies\": {\n    \"net8.0\": {\n      \"liborbispkg.core\": {\n        \"type\": \"Project\"\n      }\n    }\n  }\n}"
+      }
+    ]
+  },
+  "dotnet_sdk": "8.0.132",
+  "eboot_sha256": "798188ed7cc04535d06dfdcbf0399f591c3c8fb4a4dcdf7d65d27d3f9775e549",
+  "owner_reported_baseline": {
+    "console": "PS4 Slim",
+    "firmware": "9.00",
+    "homebrew": "GoldHEN v2.4b18",
+    "status": "Confirm for each hardware run; not queried by the app"
+  }
+}

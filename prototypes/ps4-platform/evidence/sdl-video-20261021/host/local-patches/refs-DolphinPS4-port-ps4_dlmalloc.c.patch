@@ -1,0 +1,21 @@
+--- a/refs/DolphinPS4/port/ps4_dlmalloc.c
++++ b/refs/DolphinPS4/port/ps4_dlmalloc.c
+@@ -15,7 +15,7 @@
+ #define FOOTERS 1
+ #define INSECURE 0
+ #define USE_DEV_RANDOM 0
+-#define NO_MALLINFO 1
++#define NO_MALLINFO 0
+ #define NO_MALLOC_STATS 1
+ #define LACKS_SCHED_H 0
+ /* The PS4 page size; sysconf numbering differs between headers, so don't ask. */
+@@ -28,6 +28,9 @@
+ 
+ #include "third_party/dlmalloc/malloc.c"
+ 
++/* Diagnostic main-mspace allocated bytes (includes reserved thread arenas). */
++size_t pswaker_mspace_used(void* msp) { return mspace_mallinfo(msp).uordblks; }
++
+ /* Integrity check for diagnostics: is the mspace's state still intact? */
+ int ps4_heap_ok(void* msp) {
+   mstate ms = (mstate)msp;

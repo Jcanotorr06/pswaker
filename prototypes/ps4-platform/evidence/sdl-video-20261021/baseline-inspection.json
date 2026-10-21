@@ -1,0 +1,10 @@
+{
+  "baseline_build_id": "97fc99208640c483fdc2",
+  "verified_elf_sha256": "8201c9dbf32f17c5e67b17edddb4ae9740a529f730fd6b9d44249ad63e4459b1",
+  "compiled_video_bootstraps": [
+    "00000000026aa168 D DUMMY_bootstrap",
+    "00000000026aa1c8 D OFFSCREEN_bootstrap"
+  ],
+  "console_log_identifies_same_build": true,
+  "limit": "Host inspection of the original local ELF and supplied logs; not console execution."
+}

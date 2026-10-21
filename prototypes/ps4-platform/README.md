@@ -116,9 +116,16 @@ bash prototypes/ps4-platform/install-host.sh
 
 # Fresh builds as the normal user. Each destination must not already exist.
 # The cache is a previous fetch/build root containing downloads/, not target libraries.
-bash prototypes/ps4-platform/clean-build.sh /tmp/pswaker-clean-a /tmp/pswaker-diagnostic-build
-bash prototypes/ps4-platform/clean-build.sh /tmp/pswaker-clean-b /tmp/pswaker-diagnostic-build
+bash prototypes/ps4-platform/clean-build.sh /tmp/pswaker-clean-a /home/joseph_cano/.cache/pswaker/startup-20261021
+bash prototypes/ps4-platform/clean-build.sh /tmp/pswaker-clean-b /home/joseph_cano/.cache/pswaker/startup-20261021
+# Package the current retry with its distinguishing SFO version:
+python3 prototypes/ps4-platform/package-probe.py /tmp/pswaker-clean-a --app-version 01.01
+python3 prototypes/ps4-platform/package-probe.py /tmp/pswaker-clean-b --app-version 01.01
 ```
+
+These commands describe a fresh reproduction. The current 01.01 artifact's actual
+incremental build and checks are recorded in the investigation; the earlier paired
+clean-build evidence is historical and is not reassigned to this revision.
 
 `sdk.lock.json` fixes all 14 package filenames and hashes; it is used for fetching
 without consulting the live package database. `sources.lock.json` fixes fetched

@@ -1,0 +1,9 @@
+--- a/refs/DolphinPS4/port/ps4_runtime.cpp
++++ b/refs/DolphinPS4/port/ps4_runtime.cpp
+@@ -872,3 +872,6 @@
+ }
+ 
+ }  // extern "C"
++
++extern "C" size_t pswaker_mspace_used(void*);
++extern "C" size_t pswaker_heap_used(void) { return pswaker_mspace_used(getHeap()); }

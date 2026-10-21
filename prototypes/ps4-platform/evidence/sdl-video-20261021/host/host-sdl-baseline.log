@@ -1,0 +1,4 @@
+compiled-video-driver=offscreen
+compiled-video-driver=dummy
+compiled-video-driver=evdev
+FAIL SDL startup: No available video device

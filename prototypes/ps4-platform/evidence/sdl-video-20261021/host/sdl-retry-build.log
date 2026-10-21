@@ -1,0 +1,14 @@
+STAGE diagnostic 2026-10-21T21:53:57+00:00
+STAGE package 2026-10-21T21:55:35+00:00
+Recorded actual host, SDK metadata, Dawn DEPS, CMake archives and NuGet closure.
+{
+  "package": {
+    "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+    "sha256": "6544219acf0beed6a64361f2839721c06b06b9168c82fbd388bcdcb9b1ec9080"
+  },
+  "eboot_sha256": "798188ed7cc04535d06dfdcbf0399f591c3c8fb4a4dcdf7d65d27d3f9775e549",
+  "elf_sha256": "0d4cd39b72998fc57e0fa2627262cfacc5a3b8849b4e1df38c78195617d82c5e",
+  "build_id": "3a73181f6dfdb86ca4b4",
+  "app_version": "01.01"
+}
+COMPLETE host-build-only 2026-10-21T21:55:41+00:00

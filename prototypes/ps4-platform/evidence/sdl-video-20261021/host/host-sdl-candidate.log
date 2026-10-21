@@ -1,0 +1,4 @@
+compiled-video-driver=offscreen
+compiled-video-driver=dummy
+compiled-video-driver=evdev
+PASS SDL startup driver=dummy window=1920x1080 external-context=true
