@@ -1,0 +1,32 @@
+{
+  "build_id": "1a43c6a7cd47a32a0a3d",
+  "package": {
+    "filename": "IV0000-PSWK00011_00-PSWAKERSTARTUP01.pkg",
+    "sha256": "9d7473867e2cb0ad53d1de30cc9683bb2e1ea5626b6f6c9cff79b2a3addf9cb0"
+  },
+  "elf_sha256": "a34cf45a92b0a0b551df5fe26be4a293ae56054c74f11c0a98d4578c3051aefc",
+  "eboot_sha256": "206474f8ba6561d12767053b2bff73662f813ec467ffd610c96ada6a9d1247d0",
+  "package_inventory": {
+    "build-info.json": "f56615d9b4d6e9e175de5d8c97437a575ad39c4e904450a4de0dbbda81de4d0e",
+    "eboot.bin": "206474f8ba6561d12767053b2bff73662f813ec467ffd610c96ada6a9d1247d0",
+    "sce_sys/keystone": "d09eb8ab5f3b700164fc8ad85c54c2acbad71244e942aeedf7e3e7eb56408aac",
+    "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+    "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+    "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed"
+  },
+  "sfo": {
+    "APP_TYPE": 1,
+    "APP_VER": "01.00",
+    "ATTRIBUTE": 0,
+    "CATEGORY": "gd",
+    "CONTENT_ID": "IV0000-PSWK00011_00-PSWAKERSTARTUP01",
+    "DOWNLOAD_DATA_SIZE": 0,
+    "PUBTOOLINFO": "c_date=20261021,img0_l0_size=7,img0_l1_size=0,img0_sc_ksize=512,img0_pc_ksize=832",
+    "PUBTOOLVER": 42532864,
+    "SYSTEM_VER": 0,
+    "TITLE": "PSWaker Startup Probe",
+    "TITLE_ID": "PSWK00011",
+    "VERSION": "01.00"
+  },
+  "hardware_status": "Not executed on PS4; owner retry required"
+}

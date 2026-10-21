@@ -1,0 +1,343 @@
+{
+  "build_id": "1a43c6a7cd47a32a0a3d",
+  "scope": "Startup isolation only; no graphics/audio/pad validation",
+  "inputs": {
+    "files": {
+      "../adapt-platform.py": "47c496d732adb7915e9732b6a88dfbdf2da14c75a81b68c0df50564c65d5bfe5",
+      "../runtime-preflight/main.cpp": "17f21f65d40bbfd4b170547d5c8a01259fe892ca272c6010da91b793233b1dc3",
+      "../sdk.lock.json": "5c2d8fe06f773d62b0aef4c9c32a96685be52604666c69b8239f68dd319ec041",
+      "../sources.lock.json": "81b9f7e33fb1a61ba29660f6039906d29c059cefeb8272462d0d102f32615f4f",
+      "CMakeLists.txt": "ea907832e50370569a89bab8349a37a8454c1b312e2c2e1d443df8fd25edc0bf",
+      "build.py": "5491d9a6f36d9179f2e614118358e4347c8f971a5dba7d3731977ea107db6c54",
+      "early.c": "a19356bdd183fb55ba1af6fca156e0ac1a325189edd17f1c977cd6e063652fd4",
+      "main.cpp": "8749268f9a3b52a31534fb734ba83db398bb3dd9754ffa574c90b55bf6723318",
+      "retry.sh": "819a849f06e82971a1fab623e97b27fa65a0a8a97c8afe088d5a0fdf255b0850"
+    },
+    "runtime_archives": {
+      "libc++experimental.a": "9c49bcaa32db4e8be6fb363a34e54bfb0d720033d74830711fff0d02689db29a",
+      "libc++.a": "ef58ca7855735fd28161da87850b64399b85de4a033de347669cf82791bb9c47",
+      "libc++abi.a": "efdb110267afe7f3a9798cc4ee404bf05bed20c18faea418da39a0dba3996312"
+    },
+    "host_tools": {
+      "clang": "Ubuntu clang version 21.1.8 (++20251221032922+2078da43e25a-1~exp1~20251221153059.70)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+      "cmake": "cmake version 3.28.3\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+      "ninja": "1.11.1",
+      "dotnet": "8.0.132"
+    }
+  },
+  "selected_source_archives": [
+    {
+      "path": "refs/dusklight",
+      "repository": "BgbrhrWatchinOVO/dusklight-ps4",
+      "revision": "fd483cf5d4f04b0f4d887ff412d0e8691925de08",
+      "archive_url": "https://api.github.com/repos/BgbrhrWatchinOVO/dusklight-ps4/tarball/fd483cf5d4f04b0f4d887ff412d0e8691925de08",
+      "archive_sha256": "7cf29e0352d2ac75aef9a86772f2483c25ea749f5d669fa62738b3bdd22bca6c"
+    },
+    {
+      "path": "refs/DolphinPS4",
+      "repository": "iHaiDeeZ/DolphinPS4",
+      "revision": "b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+      "archive_url": "https://api.github.com/repos/iHaiDeeZ/DolphinPS4/tarball/b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+      "archive_sha256": "780f830d144a8d341ebc7025473f0a9b5eb95aa4e21661925242de304ee906bd"
+    },
+    {
+      "path": "src/aurora",
+      "repository": "mshivam019/dusklight-ps5",
+      "revision": "e281999cdb4fee6127525a9a9e97979480db4bf3",
+      "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/e281999cdb4fee6127525a9a9e97979480db4bf3",
+      "archive_sha256": "6024a0798bb7dce21a30a7a0b5983ab6b3fe3d760268c3c8334503ed997cf50c"
+    },
+    {
+      "path": "src/dawn",
+      "repository": "mshivam019/dusklight-ps5",
+      "revision": "652a3104791369cd23605856fbc041375ccda875",
+      "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/652a3104791369cd23605856fbc041375ccda875",
+      "archive_sha256": "b138eb6873fc643807a3337ab1d686e0df3fea2947d18e0a7995e54084bf621a"
+    },
+    {
+      "path": "src/sdl3",
+      "repository": "mshivam019/dusklight-ps5",
+      "revision": "68159af2b34cc4fe5b3548faa89e87a69e4d2dce",
+      "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/68159af2b34cc4fe5b3548faa89e87a69e4d2dce",
+      "archive_sha256": "2b245c54e7344a98285ffec986624589d6368f44bf4944cc0836049352a047fe"
+    },
+    {
+      "path": "src/abseil",
+      "repository": "mshivam019/dusklight-ps5",
+      "revision": "5c695e68fcd3e7483ed300b6591d1ec49ae37cf4",
+      "archive_url": "https://api.github.com/repos/mshivam019/dusklight-ps5/tarball/5c695e68fcd3e7483ed300b6591d1ec49ae37cf4",
+      "archive_sha256": "6da36dc862bf1abaefaa73f2fcec4130f02c99b8438793f0660619dcab995baa"
+    },
+    {
+      "path": "src/liborbispkg",
+      "repository": "OpenOrbis/LibOrbisPkg",
+      "revision": "594021fdc435409f755a6ae0781b65ec6cec846c",
+      "archive_url": "https://api.github.com/repos/OpenOrbis/LibOrbisPkg/tarball/594021fdc435409f755a6ae0781b65ec6cec846c",
+      "archive_sha256": "c4b918b404e486784717a415cc5a50d866bc56099ed027b4d6bd443cf7f90ee6"
+    },
+    {
+      "path": "src/llvm-project-21.1.6.src",
+      "revision": "a832a5222e489298337fbb5876f8dcaf072c5cca",
+      "archive_url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.6/llvm-project-21.1.6.src.tar.xz",
+      "archive_sha256": "ae67086eb04bed7ca11ab880349b5f1ab6f50e1b88cda376eaf8a845b935762b"
+    }
+  ],
+  "sdk": {
+    "repository": "https://pacman.mydedibox.fr/pacbrew/packages",
+    "database_sha256": "0e9357222106ccd3bda8e5404772e2e207407acdf27b64976af602151974cf40",
+    "source_revision_note": "Package database does not identify immutable source revisions. Inspect package build metadata; do not infer revisions from versions.",
+    "packages": [
+      {
+        "name": "ps4-openorbis-clang",
+        "version": "12.0.1-1",
+        "filename": "ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz",
+        "sha256": "3b59bd92595e0d556f89a462e41cc782d0dda3bfdd712d194b684340f3465fe2",
+        "bytes": 255524816,
+        "project_url": [
+          "https://github.com/llvm/llvm-project/"
+        ],
+        "declared_license": [
+          "custom:Apache 2.0 with LLVM Exception"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-headers",
+        "version": "0.5.2-4",
+        "filename": "ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz",
+        "sha256": "056c7fe8b1874f144d3d67464e96a779ff82a230b3179ba4ec43cd5b392c38d7",
+        "bytes": 37990512,
+        "project_url": [
+          "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain"
+        ],
+        "declared_license": [
+          "GNU GPL"
+        ],
+        "dependencies": [
+          "ps4-openorbis-clang"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-musl",
+        "version": "1.5-2",
+        "filename": "ps4-openorbis-musl-1.5-2-any.pkg.tar.xz",
+        "sha256": "9efb4e1c02b2004a79438b106e36bf0d311669cfcfdaa669d46caea462087f3f",
+        "bytes": 530196,
+        "project_url": [
+          "https://github.com/PacBrew/ps4-openorbis-musl"
+        ],
+        "declared_license": [
+          "MIT"
+        ],
+        "dependencies": [
+          "ps4-openorbis-clang"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-libcxx",
+        "version": "12.0.1-1",
+        "filename": "ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz",
+        "sha256": "26a230e2d53d1ed11732242e7c131d87719d187f5a6f3632c3c4786bf14d3416",
+        "bytes": 967180,
+        "project_url": [
+          "https://github.com/llvm/llvm-project/"
+        ],
+        "declared_license": [
+          "custom:Apache 2.0 with LLVM Exception"
+        ],
+        "dependencies": [
+          "ps4-openorbis-musl",
+          "ps4-openorbis-headers"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-vars",
+        "version": "1.1-3",
+        "filename": "ps4-openorbis-vars-1.1-3-any.pkg.tar.xz",
+        "sha256": "ad2353896b1a63e72e52ce52ff490f90682a0e3c24f1a98229881f685ac3fbcf",
+        "bytes": 4440,
+        "project_url": [
+          "https://github.com/PacBrew"
+        ],
+        "declared_license": [],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-create-fself",
+        "version": "1.2-3",
+        "filename": "ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz",
+        "sha256": "1e4780a0b7a77ca0005ab3f6244fac0c1bd1a3576b72b27e936a3227a5aa1fe6",
+        "bytes": 1267708,
+        "project_url": [
+          "https://github.com/OpenOrbis/create-fself"
+        ],
+        "declared_license": [
+          "MIT"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-create-gp4",
+        "version": "1.0-5",
+        "filename": "ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz",
+        "sha256": "3e3d478e35444f52088aa69457b247a93bde0dbbda5962783314f9b8629b1b1a",
+        "bytes": 1171384,
+        "project_url": [
+          "https://github.com/OpenOrbis/create-gp4"
+        ],
+        "declared_license": [
+          "MIT"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-pkgtools",
+        "version": "0.2.231-5",
+        "filename": "ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz",
+        "sha256": "49a97e56dbe35a9986461e9001e756029fdb39f427d0acff7d75cf3f721e533d",
+        "bytes": 22907516,
+        "project_url": [
+          "https://github.com/OpenOrbis/LibOrbisPkg"
+        ],
+        "declared_license": [
+          "GNU GPL"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-orbis-lib-gen",
+        "version": "1.3-2",
+        "filename": "ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz",
+        "sha256": "5ea71a7137a1a98eac09e33c4ed36806ecdf1412a4233e1eb0745e497899ec52",
+        "bytes": 419060,
+        "project_url": [
+          "https://github.com/OpenOrbis/orbis-lib-gen"
+        ],
+        "declared_license": [
+          "GNU GPL"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-readoelf",
+        "version": "1.0-2",
+        "filename": "ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz",
+        "sha256": "4a710c49a004ecb3e4daf64d5faf17415e11e3ffeb88677eef6a17eed0f3c16f",
+        "bytes": 1077972,
+        "project_url": [
+          "https://github.com/OpenOrbis/readoelf"
+        ],
+        "declared_license": [
+          "MIT"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-pkg-config",
+        "version": "1.0.0-2",
+        "filename": "ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz",
+        "sha256": "e0dc003c1011c158acc23d3de7b755f8b859b2a34a929aa351b9060e706a3f7a",
+        "bytes": 1756,
+        "project_url": [
+          "https://github.com/PacBrew"
+        ],
+        "declared_license": [],
+        "dependencies": [
+          "ps4-openorbis-clang"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-zlib",
+        "version": "1.3.1-2",
+        "filename": "ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz",
+        "sha256": "2b082d25f34d923e2fd35e0b5f29b19e142e263da4380665bb0e80f0a6378700",
+        "bytes": 103412,
+        "project_url": [
+          "http://www.zlib.net/"
+        ],
+        "declared_license": [
+          "zlib"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-libpng",
+        "version": "1.6.37-3",
+        "filename": "ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz",
+        "sha256": "abf49d48a24397c6a2f163fd60344458b662c9411eec215830c4b3d464d0cbb2",
+        "bytes": 205516,
+        "project_url": [
+          "http://www.libpng.org"
+        ],
+        "declared_license": [
+          "custom"
+        ],
+        "dependencies": [
+          "ps4-openorbis-zlib"
+        ],
+        "source_revision": null
+      },
+      {
+        "name": "ps4-openorbis-bzip2",
+        "version": "1.0.6-3",
+        "filename": "ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz",
+        "sha256": "de5e4b3441326b47c9e57693d7e86bc837070c6af4581d60ccdbdb6230f3ffcb",
+        "bytes": 34792,
+        "project_url": [
+          "http://www.bzip.org"
+        ],
+        "declared_license": [
+          "custom"
+        ],
+        "dependencies": [],
+        "source_revision": null
+      }
+    ]
+  },
+  "adaptations": [
+    {
+      "path": "refs/DolphinPS4/toolchain/env.sh",
+      "patch": "refs-DolphinPS4-toolchain-env.sh.patch",
+      "patch_sha256": "3756e3c66dd88458b2b1097e0730b237b57f1696843695d25f46ae122694c7cd",
+      "prepared_file_sha256": "a7f21817497ee8d03e31932045570551216b94ef70a2ae74c817220dc1300b67"
+    },
+    {
+      "path": "refs/DolphinPS4/port/ps4_dlmalloc.c",
+      "patch": "refs-DolphinPS4-port-ps4_dlmalloc.c.patch",
+      "patch_sha256": "db428601ac3971359a85da85847abce3ef9d473aeaece7c7922089d52e627895",
+      "prepared_file_sha256": "b00567c9122bef620319d4c6f6666583292945825b56a3e54bca56a2a4b9c2d5"
+    },
+    {
+      "path": "refs/DolphinPS4/port/ps4_runtime.cpp",
+      "patch": "refs-DolphinPS4-port-ps4_runtime.cpp.patch",
+      "patch_sha256": "91464b6565fdff1cfcf1e0fc7946ce5a6e3b92c85fea16d647a23e91f83c18cb",
+      "prepared_file_sha256": "b5d924dfe3ca22a2abd1555fa4f4df1807b5d3420a011c05091a9e727528656c"
+    },
+    {
+      "path": "src/native-platform/ps4/native/platform.c",
+      "patch": "src-native-platform-ps4-native-platform.c.patch",
+      "patch_sha256": "be02b7402a4b0b12bf29dbfd2ffe548a70c6db857c175739f40f99647bb48d12",
+      "prepared_file_sha256": "6d790349c3655f42f48e3ea15005a6e2683ec23faa82d7f965ecd6bb5f889d05"
+    },
+    {
+      "path": "refs/DolphinPS4/scripts/make-pkg.sh",
+      "patch": "refs-DolphinPS4-scripts-make-pkg.sh.patch",
+      "patch_sha256": "fbb0393bc1fbca2e02374ac202bbc6681c5a33502d12e1f63c3e5150f9bc8b94",
+      "prepared_file_sha256": "2de1b39301348e94850ac311b0b4284f59aab78ee530594e9d91aa241c53ccc0"
+    }
+  ],
+  "elf_sha256": "a34cf45a92b0a0b551df5fe26be4a293ae56054c74f11c0a98d4578c3051aefc",
+  "eboot_sha256": "206474f8ba6561d12767053b2bff73662f813ec467ffd610c96ada6a9d1247d0"
+}

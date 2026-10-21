@@ -1,0 +1,15 @@
+
+/home/joseph_cano/.cache/pswaker/startup-20261021/build/startup/startup_probe:	file format elf64-x86-64
+
+Disassembly of section .text:
+
+0000000000000020 <_start>:
+      20: 57                           	pushq	%rdi
+      21: 53                           	pushq	%rbx
+      22: 48 89 e3                     	movq	%rsp, %rbx
+      25: 48 83 e4 f0                  	andq	$-0x10, %rsp
+      29: e8 92 18 00 00               	callq	0x18c0 <pswaker_startup_entry>
+      2e: 48 89 dc                     	movq	%rbx, %rsp
+      31: 5b                           	popq	%rbx
+      32: 5f                           	popq	%rdi
+      33: e9 00 00 00 00               	jmp	0x38 <_start_ps4_c>

@@ -1,0 +1,6 @@
+                 U sceKernelClose
+                 U sceKernelDebugOutText
+                 U sceKernelFsync
+                 U sceKernelMkdir
+                 U sceKernelOpen
+                 U sceKernelWrite

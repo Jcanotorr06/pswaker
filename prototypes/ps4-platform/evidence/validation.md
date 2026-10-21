@@ -1,5 +1,10 @@
 # Host build evidence; console verdict pending
 
+Historical host report from 2026-10-19. The owner's first console attempt on
+2026-10-21 subsequently failed before producing logs; see the
+[startup investigation](startup-20261021/status.md). The paragraphs below describe
+what was known at the original handoff, not the current hardware outcome.
+
 Question: [Test the candidate PS4 platform with a disc-free diagnostic prototype](https://github.com/Jcanotorr06/pswaker/issues/10).
 This is a disposable diagnostic branch. No PS4 execution, install, owner observation,
 game integration or game performance result is recorded here.

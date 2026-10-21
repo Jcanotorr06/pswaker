@@ -1,0 +1,16 @@
+{
+  "mode": "full",
+  "record": "--record-existing",
+  "build": "97fc99208640c483fdc2",
+  "baseline": "PS4 Slim / 9.00 / GoldHEN v2.4b18; owner confirmed unchanged",
+  "outcome": "crash",
+  "error": "ce-34878-0",
+  "seconds_observed": "about 10",
+  "screen": "black",
+  "audio": "silent",
+  "files": "none",
+  "last_stage": "none",
+  "original_symptom_reported": true,
+  "execution": "prior owner report only",
+  "verdict": "RED_REPORTED"
+}

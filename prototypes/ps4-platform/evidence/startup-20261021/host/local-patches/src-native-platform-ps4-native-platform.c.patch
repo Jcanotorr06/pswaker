@@ -1,0 +1,17 @@
+--- a/src/native-platform/ps4/native/platform.c
++++ b/src/native-platform/ps4/native/platform.c
+@@ -306,8 +306,13 @@
+          continue;
+       struct pad_sample sample;
+       memset(&sample, 0, sizeof(sample));
+-      if (scePadReadState(state->handle, &sample) < 0 || !sample.connected)
++      if (scePadReadState(state->handle, &sample) < 0 || !sample.connected) {
++         const int32_t user = state->user, handle = state->handle;
++         pad_rest(state);
++         state->user = user;
++         state->handle = handle;
+          continue;
++      }
+       /* While the shell has the pad, the title sees it at rest. */
+       if (sample.buttons & PAD_INTERCEPTED) {
+          const int32_t user = state->user, handle = state->handle;

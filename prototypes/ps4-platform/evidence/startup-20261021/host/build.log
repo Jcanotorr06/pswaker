@@ -1,0 +1,14 @@
+[1/9] Building C object CMakeFiles/startup_probe.dir/early.c.obj
+[2/9] Building CXX object CMakeFiles/startup_probe.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_crashlog.cpp.obj
+/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_crashlog.cpp:96:16: warning: increment of object of volatile-qualified type 'volatile int' is deprecated [-Wdeprecated-volatile]
+   96 |     if (s_depth++ > 0)
+      |                ^
+1 warning generated.
+[3/9] Building C object CMakeFiles/startup_probe.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_string.c.obj
+[4/9] Building CXX object CMakeFiles/startup_probe.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_runtime.cpp.obj
+[5/9] Building C object CMakeFiles/startup_probe.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_dlmalloc.c.obj
+[6/9] Building CXX object CMakeFiles/startup_probe.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_sampler.cpp.obj
+[7/9] Building CXX object CMakeFiles/startup_probe.dir/main.cpp.obj
+[8/9] Linking CXX executable startup_probe
+[9/9] Generating startup_probe_eboot/eboot.bin
+-- check-oelf: /home/joseph_cano/.cache/pswaker/startup-20261021/build/startup/startup_probe_eboot/startup_probe.oelf: segments OK

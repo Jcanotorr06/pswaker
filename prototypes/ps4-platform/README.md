@@ -4,6 +4,12 @@ Evidence for [Test the candidate PS4 platform with a disc-free diagnostic protot
 This branch is a disposable prototype, not a game port or a merge candidate.
 No game data, game code, disc reader, keys or PS5 binary libraries are used.
 
+**Current status (2026-10-21):** the owner's first launch failed with a black screen,
+silence and `CE-34878-0` after about ten seconds, without logs. The cause is unknown.
+Use the [short startup-probe retry](startup-probe/README.md) before repeating the
+ten-minute acceptance sequence below. The original package remains available as
+the failed baseline.
+
 ## What the owner runs
 
 Install the prepared **PSWaker Platform Diagnostic** package through the existing
