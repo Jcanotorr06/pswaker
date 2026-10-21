@@ -35,14 +35,14 @@ if [[ "$RECORD" != --record-existing ]]; then
   step 'Retrieve probe files through existing FTP access before another launch. See README for paths. Preserve missing-file information too.'
 fi
 capture FILES 'Retrieved file names, or none (omit private addresses/credentials):'
-capture LAST_STAGE 'Last entry.log stage if present, or none:'
+capture LAST_STAGE 'Last diagnostic.log or entry.log stage/error if present, or none:'
 export MODE RECORD BUILD BASELINE OUTCOME ERROR SECONDS_OBSERVED SCREEN AUDIO FILES LAST_STAGE
 python3 - "$OUTPUT/observation.json" <<'PY'
 import json, os, pathlib, sys
 keys = ('MODE','RECORD','BUILD','BASELINE','OUTCOME','ERROR','SECONDS_OBSERVED','SCREEN','AUDIO','FILES','LAST_STAGE')
 record = {key.lower():os.environ[key] for key in keys}
 exact = (record['outcome']=='crash' and record['error'].lower()=='ce-34878-0'
-         and record['screen']=='black' and record['audio']=='silent' and record['files']=='none')
+         and record['screen']=='black' and record['audio']=='silent')
 record['original_symptom_reported'] = exact
 record['execution'] = 'prior owner report only' if record['record']=='--record-existing' else 'owner-operated console run'
 record['verdict'] = ('RED_REPORTED' if record['record']=='--record-existing' else 'RED_OBSERVED') if exact else 'REVIEW_REQUIRED'

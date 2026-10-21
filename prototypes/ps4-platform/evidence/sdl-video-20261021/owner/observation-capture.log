@@ -1,0 +1,21 @@
+Recording a previously observed run. This does not execute or reproduce it.
+
+>>> Build ID associated with the installed package:
+
+>>> Console / firmware / GoldHEN version (no network details):
+
+>>> Outcome: crash, running, normal-exit, or unknown:
+
+>>> PS4 error code, or none:
+
+>>> Approximate seconds until that outcome:
+
+>>> Visible result: black, diagnostic-ui, or describe:
+
+>>> Audible result: silent, tone, or describe:
+
+>>> Retrieved file names, or none (omit private addresses/credentials):
+
+>>> Last diagnostic.log or entry.log stage/error if present, or none:
+RED_REPORTED: /mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/evidence/sdl-video-20261021/owner/observation.json
+This records observations; it is not an unattended console test or a proof of a fix.

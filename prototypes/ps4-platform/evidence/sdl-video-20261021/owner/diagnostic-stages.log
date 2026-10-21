@@ -1,0 +1,16 @@
+BEGIN build=97fc99208640c483fdc2; console/homebrew baseline is owner-reported and must be confirmed per run
+PASS manifest-close
+STAGE runtime-preflight
+PASS runtime-preflight
+PASS launch-identity-read
+PASS launch-identity-close
+PASS cache-inspection-close
+RUN launch=1 cache-entries-before-Aurora=0; owner must label cold/warm and confirm baseline
+STAGE aurora-initialize
+AURORA level=1 module=aurora Aurora initializing
+AURORA level=1 module=aurora::system_info CPU model: Unknown
+AURORA level=1 module=aurora::system_info Memory: 0 MiB
+AURORA level=1 module=aurora::system_info Architecture: x86_64
+AURORA level=1 module=aurora::system_info OS: Unknown
+AURORA level=3 module=aurora::window Error initializing SDL: No available video device
+AURORA level=4 module=aurora Error initializing window

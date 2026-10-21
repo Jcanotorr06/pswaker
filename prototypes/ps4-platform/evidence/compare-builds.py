@@ -80,7 +80,7 @@ def inspect(root):
         key = sfo[key_start + key_offset:].split(b"\0",1)[0].decode()
         value = sfo[data_start+offset:][:length]
         fields[key] = int.from_bytes(value,"little") if kind == 0x0404 else value.rstrip(b"\0").decode()
-    assert fields["TITLE_ID"] == "PSWK00010" and fields["APP_VER"] == "01.00"
+    assert fields["TITLE_ID"] == "PSWK00010" and fields["APP_VER"] == artifact.get("app_version", "01.00")
     assert fields["TITLE"] == "PSWaker Platform Diagnostic" and fields["CATEGORY"] == "gd"
     return {"artifacts": artifact, "elf_sections": elf_sections(elf, root), "package_files": files,
             "package_sfo": fields,

@@ -4,25 +4,32 @@ Evidence for [Test the candidate PS4 platform with a disc-free diagnostic protot
 This branch is a disposable prototype, not a game port or a merge candidate.
 No game data, game code, disc reader, keys or PS5 binary libraries are used.
 
-**Current status (2026-10-21):** the owner's first launch failed with a black screen,
-silence and `CE-34878-0` after about ten seconds, without logs. The cause is unknown.
-Use the [short startup-probe retry](startup-probe/README.md) before repeating the
-ten-minute acceptance sequence below. The original package remains available as
-the failed baseline.
+**Current status (2026-10-21):** retrieved logs show that runtime checks passed,
+then SDL reported `No available video device` during Aurora initialization. The
+diagnostic omitted the selected PS4 entry point's explicit dummy-video setting.
+Version **01.01** adds that setting and passes a host reproduction of this SDL
+startup failure. It still needs a console retry. See the
+[investigation and retry handoff](evidence/sdl-video-20261021/status.md).
+The earlier startup-only probe is superseded by this evidence.
 
 ## What the owner runs
 
 Install the prepared **PSWaker Platform Diagnostic** package through the existing
-USB package installer. Its title ID is `PSWK00010`, version `01.00`.
+USB package installer. Its title ID is `PSWK00010`, current retry version **01.01**.
 The package filename, build identity and SHA-256 are recorded in the build evidence.
-Use the package associated with the clean-build comparison, not an exploratory build.
-The recorded host results, selected artifact and remaining gates are in
-[evidence/validation.md](evidence/validation.md).
+Use the version 01.01 artifact identified in the current investigation. The original
+01.00 package and [two-build report](evidence/validation.md) remain the failed baseline.
 
 Confirm that the console is still the PS4 Slim on firmware 9.00 with GoldHEN
 v2.4b18, or report the actual versions before comparing results.
 
 Run the following sequence, recording the displayed build identity and any error:
+
+For the startup retry, first observe the initial minute. If it crashes again,
+retrieve the new logs immediately and report the last stage/error; the runtime
+checks already passed on the supplied failed run. If the display and tone appear,
+continue the ten-minute sequence below. A short startup success alone does not
+satisfy the hardware gate.
 
 1. **Cold cache:** before the first run, use FTP to remove only
    `/data/pswaker-diagnostic-prototype/cache` if it already exists. Keep the other

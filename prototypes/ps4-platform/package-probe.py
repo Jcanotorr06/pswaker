@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -35,7 +36,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("root", type=Path)
     parser.add_argument("--identity-only", action="store_true")
+    parser.add_argument("--app-version", default="01.00", help="SFO version, e.g. 01.01 for an owner retry")
     args = parser.parse_args()
+    if not re.fullmatch(r"\d{2}\.\d{2}", args.app_version):
+        parser.error("--app-version must be NN.NN")
     if args.identity_only:
         print(identity())
         raise SystemExit(0)
@@ -58,7 +62,7 @@ if __name__ == "__main__":
     executable = root / "build/probe/platform_diagnostic_eboot/eboot.bin"
     shutil.copyfile(executable, stage / "eboot.bin")
     shutil.copyfile(root / "refs/DolphinPS4/sce_sys/icon0.png", stage / "sce_sys/icon0.png")
-    manifest = {"diagnostic_build_id": identity(),
+    manifest = {"diagnostic_build_id": identity(), "app_version": args.app_version,
                 "diagnostic_scope": "Disc-free platform evidence only; not game correctness or performance",
                 "sources": json.loads((root / "evidence/source-archives.json").read_text()),
                 "sdk": json.loads((HERE / "sdk.lock.json").read_text()),
@@ -73,7 +77,7 @@ if __name__ == "__main__":
     env["DOLPHIN_PS4_MODULES_DIR"] = "/nonexistent"
     with (root / "evidence/package-build.log").open("w") as log:
         run(["bash", str(root / "refs/DolphinPS4/scripts/make-pkg.sh"), str(stage),
-             "PSWK00010", "PSWaker Platform Diagnostic", "01.00", "PSWAKERPROBE", str(output)],
+             "PSWK00010", "PSWaker Platform Diagnostic", args.app_version, "PSWAKERPROBE", str(output)],
             env=env, stdout=log, stderr=subprocess.STDOUT)
     packages = list(output.glob("*.pkg"))
     if len(packages) != 1:
@@ -81,7 +85,7 @@ if __name__ == "__main__":
     hashes = {"package": {"filename": packages[0].name, "sha256": digest(packages[0])},
               "eboot_sha256": digest(executable),
               "elf_sha256": digest(root / "build/probe/platform_diagnostic"),
-              "build_id": identity()}
+              "build_id": identity(), "app_version": args.app_version}
     (root / "evidence/artifacts.json").write_text(json.dumps(hashes, indent=2) + "\n")
     shutil.copyfile(manifest_file, root / "evidence/build-info.json")
     print(json.dumps(hashes, indent=2))

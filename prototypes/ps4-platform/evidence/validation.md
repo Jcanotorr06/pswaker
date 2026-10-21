@@ -1,9 +1,11 @@
 # Host build evidence; console verdict pending
 
-Historical host report from 2026-10-19. The owner's first console attempt on
-2026-10-21 subsequently failed before producing logs; see the
-[startup investigation](startup-20261021/status.md). The paragraphs below describe
-what was known at the original handoff, not the current hardware outcome.
+Historical host report from 2026-10-19. The owner subsequently reported a console
+crash and supplied logs showing passed runtime checks followed by failed SDL video
+initialization; see the [current investigation](sdl-video-20261021/status.md).
+The paragraphs below describe what was known at the original handoff, not the
+current hardware outcome. The earlier no-log startup investigation is superseded
+by those retrieved files.
 
 Question: [Test the candidate PS4 platform with a disc-free diagnostic prototype](https://github.com/Jcanotorr06/pswaker/issues/10).
 This is a disposable diagnostic branch. No PS4 execution, install, owner observation,

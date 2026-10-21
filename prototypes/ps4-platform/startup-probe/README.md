@@ -1,5 +1,9 @@
 # Startup failure isolation — temporary diagnostic
 
+**Historical probe, superseded:** retrieved logs now establish that the original
+runtime preflight passed before SDL video startup failed. Use the
+[current full-diagnostic retry](../evidence/sdl-video-20261021/status.md).
+
 The owner reported that the original build `97fc99208640c483fdc2` showed a black
 screen for about ten seconds, no sound, then `CE-34878-0`, with no files in either
 `/data/pswaker-diagnostic-prototype/` or `/data/DolphinPS4/`. Firmware and GoldHEN

@@ -9,6 +9,7 @@
 #include <imgui.h>
 #include "webgpu/gpu.hpp"
 #include "window.hpp"
+#include "sdl-video.hpp"
 #include "native/platform.h"
 #include <orbis/Pad.h>
 #include <orbis/UserService.h>
@@ -272,7 +273,12 @@ int main(int argc,char** argv) {
   c.userPath="/data/pswaker-diagnostic-prototype"; c.cachePath="/data/pswaker-diagnostic-prototype/cache";
   c.resourcesPath="/app0"; c.desiredBackend=BACKEND_VULKAN; c.windowWidth=1920; c.windowHeight=1080;
   c.vsync=true; c.msaa=1; c.maxTextureAnisotropy=1; c.logCallback=logger; c.logLevel=LOG_INFO;
+  checkpoint("SDL-video-configuration");
+  for (int driver=0;driver<SDL_GetNumVideoDrivers();++driver)
+    note("SDL_VIDEO compiled=%s",SDL_GetVideoDriver(driver));
+  verdict(configure_console_sdl_video(),"SDL-dummy-video-selected");
   checkpoint("aurora-initialize"); const auto info=aurora_initialize(argc,argv,&c);
+  note("SDL_VIDEO active=%s; Dawn owns the direct-display surface",SDL_GetCurrentVideoDriver());
   verdict(info.backend==BACKEND_VULKAN,"selected-Vulkan-backend");
   const auto& adapter=aurora::webgpu::g_adapterInfo;
   note("ADAPTER vendor=%u device=%u description=%.*s",adapter.vendorID,adapter.deviceID,

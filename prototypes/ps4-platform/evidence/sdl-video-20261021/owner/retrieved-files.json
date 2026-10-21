@@ -1,0 +1,22 @@
+[
+    {
+        "name":  "diagnostic.log",
+        "bytes":  101873,
+        "sha256":  "079f4106383370b363232dc2c5666d1b81e6dbf248e4c97ec8cea11eaf02abec"
+    },
+    {
+        "name":  "platform.log",
+        "bytes":  46,
+        "sha256":  "367212a9dbab0e907b7b4e5a424a398fb61bcefa97e20ed25b05cadf6f0ba796"
+    },
+    {
+        "name":  "preflight-state.txt",
+        "bytes":  2,
+        "sha256":  "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+        "name":  "runtime-preflight.log",
+        "bytes":  495,
+        "sha256":  "73f849b7db1c9846cfc3237100b4a80ad4ef07c223c318ac7352f2d1b54e13f8"
+    }
+]

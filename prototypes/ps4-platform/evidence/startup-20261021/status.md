@@ -1,5 +1,10 @@
 # First console failure and startup feedback loop
 
+**Superseded by retrieved console logs:** the owner subsequently supplied files
+showing successful runtime preflight and an SDL video initialization failure.
+See the [current investigation](../sdl-video-20261021/status.md). This historical
+no-output assumption and proposed startup-only retry are no longer the next step.
+
 The owner reported on 2026-10-21: installed original build `97fc99208640c483fdc2`,
 black screen for about ten seconds, no sound, crash `CE-34878-0`, no emitted logs.
 In the follow-up, the owner confirmed no console/firmware/GoldHEN changes and that

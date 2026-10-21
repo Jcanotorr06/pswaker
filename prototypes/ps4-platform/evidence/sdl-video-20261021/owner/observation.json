@@ -1,0 +1,16 @@
+{
+  "mode": "full",
+  "record": "--record-existing",
+  "build": "97fc99208640c483fdc2",
+  "baseline": "Previously confirmed PS4 Slim / 9.00 / GoldHEN v2.4b18; not reconfirmed in this message",
+  "outcome": "crash",
+  "error": "ce-34878-0",
+  "seconds_observed": "about 10",
+  "screen": "black",
+  "audio": "silent",
+  "files": "diagnostic.log, runtime-preflight.log, platform.log, preflight-state.txt",
+  "last_stage": "aurora-initialize; Error initializing SDL: No available video device; Error initializing window",
+  "original_symptom_reported": true,
+  "execution": "prior owner report only",
+  "verdict": "RED_REPORTED"
+}
