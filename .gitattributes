@@ -1,3 +1,4 @@
 # Preserve raw generated logs and upstream patch whitespace as captured evidence.
 prototypes/ps4-platform/evidence/** text eol=lf -whitespace
 prototypes/ps4-platform/startup-probe/*.c text eol=lf
+prototypes/ps4-platform/probe/*.hpp text eol=lf
