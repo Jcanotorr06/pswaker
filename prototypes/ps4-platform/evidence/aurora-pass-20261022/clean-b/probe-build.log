@@ -1,0 +1,298 @@
+[1/283] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/refs/DolphinPS4/port/ps4_crashlog.cpp.o
+/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/refs/DolphinPS4/port/ps4_crashlog.cpp:96:16: warning: increment of object of volatile-qualified type 'volatile int' is deprecated [-Wdeprecated-volatile]
+   96 |     if (s_depth++ > 0)
+      |                ^
+1 warning generated.
+[2/283] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/refs/DolphinPS4/port/ps4_string.c.o
+[3/283] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/refs/DolphinPS4/port/ps4_runtime.cpp.o
+[4/283] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/refs/DolphinPS4/port/ps4_dlmalloc.c.o
+[5/283] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/native-platform/ps4/native/realpath.c.o
+[6/283] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/native-platform/ps4/native/platform.c.o
+[7/283] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/native-platform/ps4/input.cpp.o
+[8/283] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/refs/DolphinPS4/port/ps4_sampler.cpp.o
+[9/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/device.cpp.o
+[10/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/logging.cpp.o
+[11/283] Building CXX object CMakeFiles/platform_diagnostic.dir/main.cpp.o
+[12/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/io.cpp.o
+[13/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/system_info.cpp.o
+[14/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/time.cpp.o
+[15/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/thread.cpp.o
+[16/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/input.cpp.o
+[17/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/aurora.cpp.o
+[18/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/webgpu/gpu_prof.cpp.o
+[19/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/webgpu/gpu_cache.cpp.o
+[20/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/imgui.cpp.o
+[21/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/dawn/TracyPlatform.cpp.o
+[22/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/window.cpp.o
+[23/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/dawn/BackendBinding.cpp.o
+[24/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/clear.cpp.o
+[25/283] Building CXX object aurora/CMakeFiles/aurora_core.dir/lib/webgpu/gpu.cpp.o
+[26/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/depth_peek.cpp.o
+[27/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/encoding.cpp.o
+[28/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/frame.cpp.o
+[29/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/render_worker.cpp.o
+[30/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/pipeline_cache.cpp.o
+[31/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/dds_io.cpp.o
+[32/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/resource_cache.cpp.o
+[33/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/tex_palette_conv.cpp.o
+[34/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/recording.cpp.o
+[35/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/texture.cpp.o
+[36/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/texture_format.cpp.o
+[37/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/tex_copy_conv.cpp.o
+[38/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/texture_convert.cpp.o
+[39/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/attr_fmt.cpp.o
+[40/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/regs.cpp.o
+[41/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/command_processor.cpp.o
+[42/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/dl.cpp.o
+[43/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/fifo.cpp.o
+[44/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/texture_replacement.cpp.o
+[45/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/pipeline.cpp.o
+[46/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/gx.cpp.o
+[47/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/texture.cpp.o
+[48/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/shader.cpp.o
+[49/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gx/shader_info.cpp.o
+[50/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXBump.cpp.o
+/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/aurora/lib/dolphin/gx/GXBump.cpp:11:11: warning: enumeration value 'GX_MAX_INDTEXSTAGE' not handled in switch [-Wswitch]
+   11 |   switch (indStage) {
+      |           ^~~~~~~~
+/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/aurora/lib/dolphin/gx/GXBump.cpp:36:13: warning: enumeration values 'GX_INDTEXSTAGE2', 'GX_INDTEXSTAGE3', and 'GX_MAX_INDTEXSTAGE' not handled in switch [-Wswitch]
+   36 |     switch (indStage) {
+      |             ^~~~~~~~
+/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/aurora/lib/dolphin/gx/GXBump.cpp:48:13: warning: enumeration values 'GX_INDTEXSTAGE0', 'GX_INDTEXSTAGE1', and 'GX_MAX_INDTEXSTAGE' not handled in switch [-Wswitch]
+   48 |     switch (indStage) {
+      |             ^~~~~~~~
+3 warnings generated.
+[51/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXCull.cpp.o
+[52/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXCpu2Efb.cpp.o
+[53/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXDispList.cpp.o
+[54/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXDraw.cpp.o
+[55/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXExtra.cpp.o
+[56/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXFifo.cpp.o
+[57/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXFrameBuffer.cpp.o
+[58/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXGeometry.cpp.o
+[59/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXGet.cpp.o
+[60/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXLighting.cpp.o
+[61/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXManage.cpp.o
+[62/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXPerf.cpp.o
+[63/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXPixel.cpp.o
+[64/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXTev.cpp.o
+[65/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXTransform.cpp.o
+[66/283] Building CXX object aurora/CMakeFiles/aurora_main.dir/lib/main.cpp.o
+[67/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXTexture.cpp.o
+[68/283] Linking CXX static library aurora/libaurora_main.a
+[69/283] Building CXX object aurora/CMakeFiles/aurora_vi.dir/lib/dolphin/vi/vi.cpp.o
+[70/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/gfx/png_io.cpp.o
+[71/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXVert.cpp.o
+[72/283] Building CXX object aurora/CMakeFiles/aurora_gx.dir/lib/dolphin/gx/GXAurora.cpp.o
+[73/283] Building CXX object aurora/extern/CMakeFiles/imgui.dir/__/__/_deps/imgui-src/imgui_demo.cpp.o
+[74/283] Building CXX object aurora/extern/CMakeFiles/imgui.dir/__/__/_deps/imgui-src/imgui_tables.cpp.o
+[75/283] Building CXX object aurora/extern/CMakeFiles/imgui.dir/__/__/_deps/imgui-src/misc/cpp/imgui_stdlib.cpp.o
+[76/283] Building CXX object aurora/extern/CMakeFiles/imgui.dir/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/aurora/lib/imgui_config.cpp.o
+[77/283] Building CXX object aurora/extern/CMakeFiles/imgui_backends.dir/__/__/_deps/imgui-src/backends/imgui_impl_sdl3.cpp.o
+[78/283] Building CXX object aurora/extern/CMakeFiles/imgui_backends.dir/__/__/_deps/imgui-src/backends/imgui_impl_sdlrenderer3.cpp.o
+[79/283] Building CXX object aurora/extern/CMakeFiles/imgui.dir/__/__/_deps/imgui-src/misc/freetype/imgui_freetype.cpp.o
+[80/283] Building CXX object aurora/extern/CMakeFiles/imgui.dir/__/__/_deps/imgui-src/imgui_draw.cpp.o
+[81/283] Building CXX object aurora/extern/CMakeFiles/imgui_backends.dir/__/__/_deps/imgui-src/backends/imgui_impl_wgpu.cpp.o
+[82/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_log_severity.dir/log_severity.cc.o
+[83/283] Linking CXX static library _deps/abseil-cpp-build/absl/base/libabsl_log_severity.a
+[84/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_raw_logging_internal.dir/internal/raw_logging.cc.o
+[85/283] Linking CXX static library _deps/abseil-cpp-build/absl/base/libabsl_raw_logging_internal.a
+[86/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_spinlock_wait.dir/internal/spinlock_wait.cc.o
+[87/283] Linking CXX static library _deps/abseil-cpp-build/absl/base/libabsl_spinlock_wait.a
+[88/283] Building CXX object aurora/extern/CMakeFiles/imgui.dir/__/__/_deps/imgui-src/imgui_widgets.cpp.o
+[89/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_malloc_internal.dir/internal/low_level_alloc.cc.o
+[90/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_base.dir/internal/cycleclock.cc.o
+[91/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_base.dir/internal/spinlock.cc.o
+[92/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_base.dir/internal/unscaledcycleclock.cc.o
+[93/283] Building CXX object aurora/extern/CMakeFiles/imgui.dir/__/__/_deps/imgui-src/imgui.cpp.o
+[94/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_base.dir/internal/thread_identity.cc.o
+[95/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_base.dir/internal/sysinfo.cc.o
+[96/283] Linking CXX static library _deps/abseil-cpp-build/absl/base/libabsl_base.a
+[97/283] Linking CXX static library _deps/abseil-cpp-build/absl/base/libabsl_malloc_internal.a
+[98/283] Building CXX object _deps/abseil-cpp-build/absl/base/CMakeFiles/absl_throw_delegate.dir/internal/throw_delegate.cc.o
+[99/283] Linking CXX static library _deps/abseil-cpp-build/absl/base/libabsl_throw_delegate.a
+[100/283] Building CXX object _deps/abseil-cpp-build/absl/container/CMakeFiles/absl_hashtablez_sampler.dir/internal/hashtablez_sampler.cc.o
+[101/283] Building CXX object _deps/abseil-cpp-build/absl/crc/CMakeFiles/absl_crc_cpu_detect.dir/internal/cpu_detect.cc.o
+[102/283] Linking CXX static library _deps/abseil-cpp-build/absl/crc/libabsl_crc_cpu_detect.a
+[103/283] Building CXX object _deps/abseil-cpp-build/absl/container/CMakeFiles/absl_hashtablez_sampler.dir/internal/hashtablez_sampler_force_weak_definition.cc.o
+[104/283] Building CXX object _deps/abseil-cpp-build/absl/crc/CMakeFiles/absl_crc_internal.dir/internal/crc.cc.o
+[105/283] Building CXX object _deps/abseil-cpp-build/absl/container/CMakeFiles/absl_raw_hash_set.dir/internal/raw_hash_set.cc.o
+[106/283] Building CXX object _deps/abseil-cpp-build/absl/crc/CMakeFiles/absl_crc32c.dir/crc32c.cc.o
+[107/283] Building CXX object _deps/abseil-cpp-build/absl/crc/CMakeFiles/absl_crc_internal.dir/internal/crc_x86_arm_combined.cc.o
+[108/283] Linking CXX static library _deps/abseil-cpp-build/absl/crc/libabsl_crc_internal.a
+[109/283] Building CXX object _deps/abseil-cpp-build/absl/crc/CMakeFiles/absl_crc32c.dir/internal/crc_memcpy_fallback.cc.o
+[110/283] Building CXX object _deps/abseil-cpp-build/absl/crc/CMakeFiles/absl_crc32c.dir/internal/crc_memcpy_x86_arm_combined.cc.o
+[111/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_stacktrace.dir/stacktrace.cc.o
+[112/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_debugging_internal.dir/internal/address_is_readable.cc.o
+[113/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_debugging_internal.dir/internal/elf_mem_image.cc.o
+[114/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_debugging_internal.dir/internal/vdso_support.cc.o
+[115/283] Linking CXX static library _deps/abseil-cpp-build/absl/debugging/libabsl_debugging_internal.a
+[116/283] Linking CXX static library _deps/abseil-cpp-build/absl/debugging/libabsl_stacktrace.a
+[117/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_symbolize.dir/symbolize.cc.o
+[118/283] Building CXX object _deps/abseil-cpp-build/absl/crc/CMakeFiles/absl_crc32c.dir/internal/crc_non_temporal_memcpy.cc.o
+[119/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_demangle_internal.dir/internal/demangle.cc.o
+[120/283] Building CXX object _deps/abseil-cpp-build/absl/crc/CMakeFiles/absl_crc_cord_state.dir/internal/crc_cord_state.cc.o
+[121/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_utf8_for_code_point.dir/internal/utf8_for_code_point.cc.o
+[122/283] Linking CXX static library _deps/abseil-cpp-build/absl/debugging/libabsl_utf8_for_code_point.a
+[123/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_decode_rust_punycode.dir/internal/decode_rust_punycode.cc.o
+[124/283] Linking CXX static library _deps/abseil-cpp-build/absl/debugging/libabsl_decode_rust_punycode.a
+[125/283] Building CXX object _deps/abseil-cpp-build/absl/debugging/CMakeFiles/absl_demangle_rust.dir/internal/demangle_rust.cc.o
+[126/283] Linking CXX static library _deps/abseil-cpp-build/absl/debugging/libabsl_demangle_rust.a
+[127/283] Linking CXX static library _deps/abseil-cpp-build/absl/debugging/libabsl_demangle_internal.a
+[128/283] Building CXX object _deps/abseil-cpp-build/absl/hash/CMakeFiles/absl_city.dir/internal/city.cc.o
+[129/283] Linking CXX static library _deps/abseil-cpp-build/absl/hash/libabsl_city.a
+[130/283] Building CXX object _deps/abseil-cpp-build/absl/hash/CMakeFiles/absl_low_level_hash.dir/internal/low_level_hash.cc.o
+[131/283] Building CXX object _deps/abseil-cpp-build/absl/hash/CMakeFiles/absl_hash.dir/internal/hash.cc.o
+[132/283] Building CXX object _deps/abseil-cpp-build/absl/profiling/CMakeFiles/absl_exponential_biased.dir/internal/exponential_biased.cc.o
+[133/283] Linking CXX static library _deps/abseil-cpp-build/absl/profiling/libabsl_exponential_biased.a
+[134/283] Building CXX object _deps/abseil-cpp-build/absl/numeric/CMakeFiles/absl_int128.dir/int128.cc.o
+[135/283] Linking CXX static library _deps/abseil-cpp-build/absl/numeric/libabsl_int128.a
+[136/283] Linking CXX static library _deps/abseil-cpp-build/absl/hash/libabsl_low_level_hash.a
+[137/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_string_view.dir/string_view.cc.o
+[138/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_string_view.a
+[139/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/ascii.cc.o
+[140/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/charconv.cc.o
+[141/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/internal/charconv_parse.cc.o
+[142/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/escaping.cc.o
+[143/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/internal/charconv_bigint.cc.o
+[144/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/internal/damerau_levenshtein_distance.cc.o
+[145/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/internal/memutil.cc.o
+[146/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/internal/stringify_sink.cc.o
+[147/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/match.cc.o
+[148/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/numbers.cc.o
+[149/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/str_replace.cc.o
+[150/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/str_cat.cc.o
+[151/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings_internal.dir/internal/utf8.cc.o
+[152/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/str_split.cc.o
+[153/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings.dir/substitute.cc.o
+[154/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings_internal.dir/internal/ostringstream.cc.o
+[155/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_strings_internal.dir/internal/escaping.cc.o
+[156/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_strings_internal.a
+[157/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_strings.a
+[158/283] Linking CXX static library _deps/abseil-cpp-build/absl/debugging/libabsl_symbolize.a
+[159/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_str_format_internal.dir/internal/str_format/arg.cc.o
+[160/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_str_format_internal.dir/internal/str_format/extension.cc.o
+[161/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_str_format_internal.dir/internal/str_format/bind.cc.o
+[162/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_str_format_internal.dir/internal/str_format/output.cc.o
+[163/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_str_format_internal.dir/internal/str_format/float_conversion.cc.o
+[164/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_str_format_internal.dir/internal/str_format/parser.cc.o
+[165/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_str_format_internal.a
+[166/283] Linking CXX static library _deps/abseil-cpp-build/absl/crc/libabsl_crc32c.a
+[167/283] Linking CXX static library _deps/abseil-cpp-build/absl/crc/libabsl_crc_cord_state.a
+[168/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord_internal.dir/internal/cord_rep_btree_navigator.cc.o
+[169/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord_internal.dir/internal/cord_internal.cc.o
+[170/283] Building C object aurora/extern/CMakeFiles/sqlite3.dir/__/__/_deps/sqlite3-src/sqlite3.c.o
+[171/283] Linking C static library aurora/extern/libsqlite3.a
+[172/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord_internal.dir/internal/cord_rep_btree.cc.o
+[173/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord_internal.dir/internal/cord_rep_btree_reader.cc.o
+[174/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord_internal.dir/internal/cord_rep_consume.cc.o
+[175/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cordz_functions.dir/internal/cordz_functions.cc.o
+[176/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_cordz_functions.a
+[177/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord_internal.dir/internal/cord_rep_crc.cc.o
+[178/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_cord_internal.a
+[179/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cordz_handle.dir/internal/cordz_handle.cc.o
+[180/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cordz_info.dir/internal/cordz_info.cc.o
+[181/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord.dir/cord_buffer.cc.o
+[182/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord.dir/cord_analysis.cc.o
+[183/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_graphcycles_internal.dir/internal/graphcycles.cc.o
+[184/283] Linking CXX static library _deps/abseil-cpp-build/absl/synchronization/libabsl_graphcycles_internal.a
+[185/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/barrier.cc.o
+[186/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_kernel_timeout_internal.dir/internal/kernel_timeout.cc.o
+[187/283] Building CXX object _deps/abseil-cpp-build/absl/strings/CMakeFiles/absl_cord.dir/cord.cc.o
+[188/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/blocking_counter.cc.o
+[189/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/internal/sem_waiter.cc.o
+[190/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/internal/create_thread_identity.cc.o
+[191/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/internal/futex_waiter.cc.o
+[192/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/internal/win32_waiter.cc.o
+[193/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/internal/per_thread_sem.cc.o
+[194/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/internal/pthread_waiter.cc.o
+[195/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/internal/stdcpp_waiter.cc.o
+[196/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/internal/waiter_base.cc.o
+[197/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/notification.cc.o
+[198/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time.dir/civil_time.cc.o
+[199/283] Building CXX object _deps/abseil-cpp-build/absl/synchronization/CMakeFiles/absl_synchronization.dir/mutex.cc.o
+[200/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time.dir/clock.cc.o
+[201/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time.dir/duration.cc.o
+[202/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time.dir/format.cc.o
+[203/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_civil_time.dir/internal/cctz/src/civil_time_detail.cc.o
+[204/283] Linking CXX static library _deps/abseil-cpp-build/absl/time/libabsl_civil_time.a
+[205/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/time_zone_fixed.cc.o
+[206/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time.dir/time.cc.o
+[207/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/time_zone_format.cc.o
+[208/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/time_zone_if.cc.o
+[209/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/time_zone_libc.cc.o
+[210/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/time_zone_impl.cc.o
+[211/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/time_zone_posix.cc.o
+[212/283] Building CXX object _deps/abseil-cpp-build/absl/types/CMakeFiles/absl_bad_variant_access.dir/bad_variant_access.cc.o
+[213/283] Linking CXX static library _deps/abseil-cpp-build/absl/types/libabsl_bad_variant_access.a
+[214/283] Building CXX object _deps/abseil-cpp-build/absl/types/CMakeFiles/absl_bad_optional_access.dir/bad_optional_access.cc.o
+[215/283] Linking CXX static library _deps/abseil-cpp-build/absl/types/libabsl_bad_optional_access.a
+[216/283] Linking CXX static library _deps/abseil-cpp-build/absl/hash/libabsl_hash.a
+[217/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/time_zone_lookup.cc.o
+[218/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/time_zone_info.cc.o
+[219/283] Building CXX object _deps/abseil-cpp-build/absl/time/CMakeFiles/absl_time_zone.dir/internal/cctz/src/zone_info_source.cc.o
+[220/283] Linking CXX static library _deps/abseil-cpp-build/absl/time/libabsl_time_zone.a
+[221/283] Linking CXX static library _deps/abseil-cpp-build/absl/time/libabsl_time.a
+[222/283] Linking CXX static library _deps/abseil-cpp-build/absl/synchronization/libabsl_kernel_timeout_internal.a
+[223/283] Building C object _deps/xxhash-build/CMakeFiles/xxhash.dir/__/xxhash-src/xxhash.c.o
+[224/283] Linking CXX static library _deps/abseil-cpp-build/absl/synchronization/libabsl_synchronization.a
+[225/283] Linking C static library _deps/xxhash-build/libxxhash.a
+[226/283] Linking CXX static library _deps/abseil-cpp-build/absl/container/libabsl_hashtablez_sampler.a
+[227/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_cordz_handle.a
+[228/283] Linking CXX static library _deps/abseil-cpp-build/absl/container/libabsl_raw_hash_set.a
+[229/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_cordz_info.a
+[230/283] Linking CXX static library _deps/abseil-cpp-build/absl/strings/libabsl_cord.a
+[231/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftbbox.c.o
+[232/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftbdf.c.o
+[233/283] Building CXX object _deps/fmt-build/CMakeFiles/fmt.dir/src/os.cc.o
+[234/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftbitmap.c.o
+[235/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftcid.c.o
+[236/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftfstype.c.o
+[237/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftgasp.c.o
+[238/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftgxval.c.o
+[239/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftglyph.c.o
+[240/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftinit.c.o
+[241/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftotval.c.o
+[242/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftmm.c.o
+[243/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftpatent.c.o
+[244/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftpfr.c.o
+[245/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftsynth.c.o
+[246/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/fttype1.c.o
+[247/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftwinfnt.c.o
+[248/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftstroke.c.o
+[249/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/bzip2/ftbzip2.c.o
+[250/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/autofit/autofit.c.o
+[251/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/bdf/bdf.c.o
+[252/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftbase.c.o
+[253/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/gzip/ftgzip.c.o
+[254/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/cache/ftcache.c.o
+[255/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/lzw/ftlzw.c.o
+[256/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/cid/type1cid.c.o
+[257/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/pcf/pcf.c.o
+[258/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/cff/cff.c.o
+[259/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/pfr/pfr.c.o
+[260/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/psnames/psnames.c.o
+[261/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/raster/raster.c.o
+[262/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/pshinter/pshinter.c.o
+[263/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/smooth/smooth.c.o
+[264/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/svg/svg.c.o
+[265/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/sdf/sdf.c.o
+[266/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/psaux/psaux.c.o
+[267/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/type1/type1.c.o
+[268/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/type42/type42.c.o
+[269/283] Building CXX object _deps/fmt-build/CMakeFiles/fmt.dir/src/format.cc.o
+[270/283] Linking CXX static library _deps/fmt-build/libfmt.a
+[271/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/builds/unix/ftsystem.c.o
+[272/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/winfonts/winfnt.c.o
+[273/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/base/ftdebug.c.o
+[274/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/sfnt/sfnt.c.o
+[275/283] Building C object _deps/freetype-build/CMakeFiles/freetype.dir/src/truetype/truetype.c.o
+[276/283] Linking C static library _deps/freetype-build/libfreetype.a
+[277/283] Linking CXX static library aurora/extern/libimgui_backends.a
+[278/283] Linking CXX static library aurora/extern/libimgui.a
+[279/283] Linking CXX static library aurora/libaurora_core.a
+[280/283] Linking CXX static library aurora/libaurora_vi.a
+[281/283] Linking CXX static library aurora/libaurora_gx.a
+[282/283] Linking CXX executable platform_diagnostic
+[283/283] Generating platform_diagnostic_eboot/eboot.bin
+-- check-oelf: /home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/build/probe/platform_diagnostic_eboot/platform_diagnostic.oelf: segments OK

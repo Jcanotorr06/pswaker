@@ -4,16 +4,21 @@ Evidence for [Test the candidate PS4 platform with a disc-free diagnostic protot
 This branch is a disposable prototype, not a game port or a merge candidate.
 No game data, game code, disc reader, keys or PS5 binary libraries are used.
 
-**Current status (2026-10-22):** version **01.02** is built and inspected for
+**Current status (2026-10-22):** the owner completed three successful version **01.02**
+ten-minute Slim runs for
 [Validate Aurora geometry and internal resolution after the failed Slim diagnostic](https://github.com/Jcanotorr06/pswaker/issues/11).
-A Linux reproduction of the pinned Aurora path reproduces 01.01's black readbacks
-and 569x320 sizing. Correct GX initialization, an alpha-capable framebuffer and
-VI-based scaling pass the unchanged exact-white checks at 1280x720 locally.
-The shared correction, pipeline preparation and GPU drain are in the PS4 retry.
-**No 01.02 console result or renewed clean-build pair exists.** Hardware acceptance,
-final specification approval and game integration remain blocked.
-Use the [01.02 checklist](evidence/aurora-correction-20261022/Retry-checklist.md)
-and [diagnosis/build report](evidence/aurora-correction-20261022/status.md).
+The owner sees the expected RGB triangle, white background, purple swatch and
+summary, and hears the continuous quiet tone. Current logs pass 1280x720 allocated
+EFB, exact-white EFB/offscreen comparisons, purple checks, runtime, controller,
+audio, persistence and GPU drain, with zero failed checks. The
+[console evidence review](evidence/aurora-pass-20261022/status.md) isolates the latest
+launches from appended historical logs and reviews resource use and shutdown.
+Two renewed clean builds, package inspection, input comparison and bounded binary
+difference audit also pass. The disc-free platform gate is satisfied; final
+specification approval remains a separate human decision. The
+[01.02 checklist](evidence/aurora-correction-20261022/Retry-checklist.md) and
+[diagnosis/build report](evidence/aurora-correction-20261022/status.md) preserve
+the original retry handoff and its then-pending requirements.
 The [three failed 01.01 runs](evidence/aurora-results-20261022/status.md) and earlier
 packages remain preserved as the baseline.
 

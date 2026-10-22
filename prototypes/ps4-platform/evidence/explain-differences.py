@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Locate remaining clean-build byte differences for human review."""
 import bisect
+import argparse
 from collections import Counter
 import json
 from pathlib import Path
@@ -8,7 +9,12 @@ import re
 import struct
 import subprocess
 
-roots = [Path('/tmp/pswaker-clean-a'), Path('/tmp/pswaker-clean-b')]
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--first', type=Path, default=Path('/tmp/pswaker-clean-a'))
+parser.add_argument('--second', type=Path, default=Path('/tmp/pswaker-clean-b'))
+parser.add_argument('--output', type=Path, default=Path('/tmp/pswaker-difference-analysis.json'))
+args = parser.parse_args()
+roots = [args.first.resolve(), args.second.resolve()]
 
 def sections(root):
     data = (root / 'build/probe/platform_diagnostic').read_bytes()
@@ -77,6 +83,6 @@ result['relocation_comparison'] = {'differing_records':len(relocation_difference
 strings = [Counter(s['.rodata'][1].replace(str(root).encode(),b'/tmp/pswaker-clean-x').split(b'\0')) for s,root in zip((a,b),roots)]
 result['rodata_nul_split_multisets_equal'] = strings[0] == strings[1]
 result['rodata_nul_split_difference_examples'] = [[repr(value)[:300] for value in (strings[i]-strings[1-i]).keys()][:15] for i in (0,1)]
-output = Path('/tmp/pswaker-difference-analysis.json')
+output = args.output
 output.write_text(json.dumps(result, indent=2)+'\n')
 print(json.dumps({key:value for key,value in result.items() if key in ('instruction_comparison','relocation_comparison','rodata_nul_split_multisets_equal')}, indent=2))

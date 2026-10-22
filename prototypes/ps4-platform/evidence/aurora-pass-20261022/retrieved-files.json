@@ -1,0 +1,127 @@
+[
+  {
+    "path": "01.02 cold/cache/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "3e82781799c730bbfd921b817503debdaab8f8ad1db3d314cf9a049439752690"
+  },
+  {
+    "path": "01.02 cold/cache/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6"
+  },
+  {
+    "path": "01.02 cold/diagnostic.log",
+    "bytes": 1154000,
+    "sha256": "4421dab6c8f781933eadb8ca0341324c14f9c92b69e40a331098abfd9a85a110"
+  },
+  {
+    "path": "01.02 cold/imgui.ini",
+    "bytes": 205,
+    "sha256": "2364bcd327f94a6d3e20a3f9a18a318e4108833bf452b579d6eaf1bad11decf8"
+  },
+  {
+    "path": "01.02 cold/platform.log",
+    "bytes": 26506,
+    "sha256": "f1a45d2828642808314d1ebd783cd29ec015a92a201635eeaf812874dbb80f6b"
+  },
+  {
+    "path": "01.02 cold/platform.prev.log",
+    "bytes": 5458,
+    "sha256": "df740660931375e41bed121b60404b187142fa1922304444eac6d13f776399b0"
+  },
+  {
+    "path": "01.02 cold/preflight-state.txt",
+    "bytes": 2,
+    "sha256": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58"
+  },
+  {
+    "path": "01.02 cold/runtime-preflight.log",
+    "bytes": 3357,
+    "sha256": "3bec1ff0293de4c80e8700b847d9e373baa14ead33c1b9707b0741dc6e32aff5"
+  },
+  {
+    "path": "01.02 warm 1/cache/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "dc241a22bf2f68bc97d8cdf03a576fefd43129fe3e578d377a5ede3c5ea997c7"
+  },
+  {
+    "path": "01.02 warm 1/cache/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6"
+  },
+  {
+    "path": "01.02 warm 1/diagnostic.log",
+    "bytes": 1382419,
+    "sha256": "1a365d88b6b0b5e5b9b45ff208226e1429fc83881b98528268b11feda628682e"
+  },
+  {
+    "path": "01.02 warm 1/imgui.ini",
+    "bytes": 205,
+    "sha256": "2364bcd327f94a6d3e20a3f9a18a318e4108833bf452b579d6eaf1bad11decf8"
+  },
+  {
+    "path": "01.02 warm 1/platform.log",
+    "bytes": 26506,
+    "sha256": "7f26b9405fb43afdd7156d514a688ec66182acbfb3e74781c5ecd65f2ee797c7"
+  },
+  {
+    "path": "01.02 warm 1/platform.prev.log",
+    "bytes": 26506,
+    "sha256": "f1a45d2828642808314d1ebd783cd29ec015a92a201635eeaf812874dbb80f6b"
+  },
+  {
+    "path": "01.02 warm 1/preflight-state.txt",
+    "bytes": 2,
+    "sha256": "aa67a169b0bba217aa0aa88a65346920c84c42447c36ba5f7ea65f422c1fe5d8"
+  },
+  {
+    "path": "01.02 warm 1/runtime-preflight.log",
+    "bytes": 3834,
+    "sha256": "e62e2e15e5a0d67a2f34764d2bc3cd06620818a200a98b502730b7a46de98ed2"
+  },
+  {
+    "path": "01.02 warm 2/cache/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f"
+  },
+  {
+    "path": "01.02 warm 2/cache/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6"
+  },
+  {
+    "path": "01.02 warm 2/diagnostic.log",
+    "bytes": 1610838,
+    "sha256": "c8687e73f13c3dfa2067051f631ca80e099d8c1c7fb1dee5243e2c07f9fd58e2"
+  },
+  {
+    "path": "01.02 warm 2/imgui.ini",
+    "bytes": 205,
+    "sha256": "2364bcd327f94a6d3e20a3f9a18a318e4108833bf452b579d6eaf1bad11decf8"
+  },
+  {
+    "path": "01.02 warm 2/platform.log",
+    "bytes": 26506,
+    "sha256": "0e1437329f51a6d4f22b8ef9c56fa0630eaebd515b8806dfd71ea45714b8bca0"
+  },
+  {
+    "path": "01.02 warm 2/platform.prev.log",
+    "bytes": 26506,
+    "sha256": "7f26b9405fb43afdd7156d514a688ec66182acbfb3e74781c5ecd65f2ee797c7"
+  },
+  {
+    "path": "01.02 warm 2/preflight-state.txt",
+    "bytes": 2,
+    "sha256": "2e6d31a5983a91251bfae5aefa1c0a19d8ba3cf601d0e8a706b4cfa9661a6b8a"
+  },
+  {
+    "path": "01.02 warm 2/runtime-preflight.log",
+    "bytes": 4311,
+    "sha256": "0a8f54f50f855b560e9adc47f2e57ab040a2baee335e961a278c0a18f35da064"
+  },
+  {
+    "path": "visual.jpg",
+    "bytes": 1484332,
+    "sha256": "6be098dbad0ec25ebf489f9c0dd3b8b07f7d621bfd8d9e5d404669e945b30fca"
+  }
+]

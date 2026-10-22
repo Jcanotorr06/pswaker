@@ -1,0 +1,89 @@
+{
+  "scope": "Two new absent build roots; freshly compiled target dependencies, Aurora, probe and packager; no console execution",
+  "diagnostic_source_revision": "b45d5e29246bd1c86d78f9ca165cbc3f7b4d6e5b",
+  "evidence_base_revision": "ef3763e1cf0b370120fca027045fb45ba9381fc5",
+  "build_id": "4b1830b0443ff170425e",
+  "console_candidate_matches_source_sdk_adaptations_host_and_dependency_pins": true,
+  "roots": [
+    "/home/joseph_cano/.cache/pswaker/aurora-clean-a-20261022",
+    "/home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022"
+  ],
+  "artifacts": [
+    {
+      "package": {
+        "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+        "sha256": "1fb55a00c292ff80084b9f037167376d92f9c2f32ec3a54100a4f703a77e6dfb"
+      },
+      "eboot_sha256": "113d7a42f67609687885e8f5506fb377bdc870a3f36d3f45ef9c564fcf6d3265",
+      "elf_sha256": "011aea33d700fcc57eb12e7c5959223ff562c0766372d0776d2397d201a5a771",
+      "build_id": "4b1830b0443ff170425e",
+      "app_version": "01.02"
+    },
+    {
+      "package": {
+        "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+        "sha256": "6334121bfe8995b36940614fb9903ebafb344169bf0b280b487b789b3e7bf605"
+      },
+      "eboot_sha256": "b329edc3d4d4e3242a112e5ca4a3ea51e3331d9612abdeff02a8b2264d406a2a",
+      "elf_sha256": "af00a18171df85c1d2efe97cb8300645840a38debf12e0a1b126595819ae2512",
+      "build_id": "4b1830b0443ff170425e",
+      "app_version": "01.02"
+    }
+  ],
+  "captured_evidence_sha256": {
+    "clean-a/artifacts.json": "2eb927051dc28a35c2de71c6a98e10ddd1496fa8878fba1d01dd0cebd92a9e84",
+    "clean-a/build-info.json": "291b83a7cafda8a4d2480268c61068ff11a368204b5b2487ad276397a8f428ca",
+    "clean-a/clean-build.log": "07829fc0277005fddc0c37e14cf3d03188e3d8a3ea9259d1d2c8fd02bc282dc4",
+    "clean-a/dawn-build.log": "a00367f024d6b9aee69106f54cf0bf0b262d18e433f6a9715a96b2324d4f9472",
+    "clean-a/dawn-deps-fetch.log": "9644ddb4f24ff02e653195f3c732db6096e829ef8db2d9d866307867cae10972",
+    "clean-a/graphics-prepare.log": "aeecababe14ba8a6095f1547770dc1cd12bea57bd14c1d73fbdd87abe4ffa2f8",
+    "clean-a/host-tools.txt": "0ebc320f3322f41e335eafbcf9c0d455c9206bbac590c7b65ff90e570551dfc8",
+    "clean-a/input-closure.json": "94e900b63da1ee50ea0e96443e70e7007da3053154aff79f044ddb27754278c7",
+    "clean-a/libcxx-build.log": "fc65b8dc7922468804d83a316b20a64181d2b7e6c48221b35205b04d1e4b53e9",
+    "clean-a/libdrm-revision.txt": "f140116eaabbde56cb7e0f8a9d80a08c1197416066818b64f5aaa989bf766bc5",
+    "clean-a/local-adaptations.json": "07f2812fb773bc7bcac3e9b5adee348f8700b56e35089db7820606bc89098d82",
+    "clean-a/mesa-build.log": "1f6d31b0f055ea457acc5917bb0de9b9f735e95dc99d6a16f2e0a59b818f095f",
+    "clean-a/package-build.log": "ddea7a6fba86cf6b4854c51f28f7d6fd7e90927adf1305fca76278d834547a5a",
+    "clean-a/package-entries.txt": "fb923c9f32349598b930c549ad528e88201f63bc3d7d26b1276b8d37c6ce6b3a",
+    "clean-a/package-extract.log": "ec2d5b07e8c8432e32d1f46ac5016d6812fb9ab51a4764390d742a16aff09adf",
+    "clean-a/pkgtool-build.log": "bad68383560d33149d69b440d4730bed6bc748801ff6814848d7ec2ec04e8014",
+    "clean-a/probe-build.log": "a3b95b27e7a6be9cd3be82ba87ee4af10fd97e19485d62d9cb390e387c07de69",
+    "clean-a/probe-configure.log": "5cb528e9fb7d7bc7ac7fc2453a30c98b43d6615c21b448616311e9247f33a3cb",
+    "clean-a/python-tools.txt": "fadbb325ce6c40fd4f4b217f62003ca08b0aa615e761f25fbc2fb6d81ea61a1f",
+    "clean-a/python-wheels.sha256": "d757ff1cab910fac7faf6dbd7deeaff900920e9ff6aca94026958dc041af9e91",
+    "clean-a/runtime-artifact-hashes.txt": "26ff6e2aedf52f4a35d68fe8c58d29f7e803c971cfe50df84203371ae45e9c91",
+    "clean-a/runtime-build.log": "b768be22f6c919052ac4085af5b865a5627bb44550ffb7305e4d2c96823baca6",
+    "clean-a/runtime-configure.log": "55e90bfd98949d36edda0c8f4c7cc417c1f6f412ea8b7b4d4fc120884b5515a1",
+    "clean-a/runtime-driver.log": "7a81b8f9195847db9ad85581b9a155213e5bdcd5aff6bd11795d7a379699bdc9",
+    "clean-a/sdl3-build.log": "5b09a7d347b7ebfcc6db97322c194cb6e935bc1b71f970ddecce834d3e243f27",
+    "clean-a/source-archives.json": "81b9f7e33fb1a61ba29660f6039906d29c059cefeb8272462d0d102f32615f4f",
+    "clean-a/version-01.02-package.log": "9a8e4340506fcc71ff7c7278064b9413717fb27cdbc5cd1061b2a6ee89473583",
+    "clean-b/artifacts.json": "3f76fce3d1e53c8c1420b1128c863768a3dc074cd045982e9dc76d555e2e4ddc",
+    "clean-b/build-info.json": "048778b1cda13d430b1b6fce84a81fe310c8b968fb31578adf75b9e06399d50c",
+    "clean-b/clean-build.log": "74a4c7826af0f4a207295fa99c07fe67f77d5380f1763917a9e540f762128776",
+    "clean-b/dawn-build.log": "c746bd669d22c38113ef1059f06a93bc906838f10f7fe11987f5fd78a793ef4f",
+    "clean-b/dawn-deps-fetch.log": "cf685c45e3d8527e58018f99722cbc69197d7c67b55be6d2ce9038d45a80a4a7",
+    "clean-b/graphics-prepare.log": "657de96b54049a588565611ebd41476791f1345b0164ab92613b8fdafba019d2",
+    "clean-b/host-tools.txt": "0ebc320f3322f41e335eafbcf9c0d455c9206bbac590c7b65ff90e570551dfc8",
+    "clean-b/input-closure.json": "f82850c3be8985f93c98eaa929cff6635d36d93521c0d1a630c8714e6ce04c30",
+    "clean-b/libcxx-build.log": "449f11206fea4283bc2cc51de4ab9ffcb3fadc76478514889dd4e5f4ed47845f",
+    "clean-b/libdrm-revision.txt": "f140116eaabbde56cb7e0f8a9d80a08c1197416066818b64f5aaa989bf766bc5",
+    "clean-b/local-adaptations.json": "07f2812fb773bc7bcac3e9b5adee348f8700b56e35089db7820606bc89098d82",
+    "clean-b/mesa-build.log": "18981c48f079cbf61aba8f23bb7bc1b00b99f8b519b63b514c60cfa650a5ca86",
+    "clean-b/package-build.log": "5a14cd4bf481196ef362bf86a037a960fe5fb89562e338e0e716fcb675c18cc2",
+    "clean-b/package-entries.txt": "fb923c9f32349598b930c549ad528e88201f63bc3d7d26b1276b8d37c6ce6b3a",
+    "clean-b/package-extract.log": "ec2d5b07e8c8432e32d1f46ac5016d6812fb9ab51a4764390d742a16aff09adf",
+    "clean-b/pkgtool-build.log": "caa326b80774d171eaeb7a4957860c121432a51d17fbfa1ee53ff672bcc14691",
+    "clean-b/probe-build.log": "ac575cde5633ef5940a0d86312359bb6811a561961b1734d65a80d8d010b5d0e",
+    "clean-b/probe-configure.log": "e3635d394cd817041274cdc286e970c5b9ffbca7d73f525a18bd51acb9794faa",
+    "clean-b/python-tools.txt": "fadbb325ce6c40fd4f4b217f62003ca08b0aa615e761f25fbc2fb6d81ea61a1f",
+    "clean-b/python-wheels.sha256": "7350d23ed9bfec1d4c3ac00019406eb28744d83653c4996ef215b61fb267863d",
+    "clean-b/runtime-artifact-hashes.txt": "c87ed404bb54d24e6f604c1777495e938385e6ebbcc25bc5f1146e5683a47683",
+    "clean-b/runtime-build.log": "b0b6339cafab6f3b9f7a2812c05eb7971c25d1c36b2cb0f90450f99f662b6319",
+    "clean-b/runtime-configure.log": "e498c34390f59de98429c5b4ff184de92780db3e2228c5c27491e9bf73b9535c",
+    "clean-b/runtime-driver.log": "80a0f36ff333c9323d48e5e5fea4b282395b4c2048489ee632d6141df853a129",
+    "clean-b/sdl3-build.log": "c6ccba12645bd0592d894f706d45b53635c8a809f9452f136f5714c91885577f",
+    "clean-b/source-archives.json": "81b9f7e33fb1a61ba29660f6039906d29c059cefeb8272462d0d102f32615f4f",
+    "clean-b/version-01.02-package.log": "65a4cffdf90d10847ae91844b04a67fd59d8a002ff5b3f47493b99e16b7d3ba7"
+  }
+}

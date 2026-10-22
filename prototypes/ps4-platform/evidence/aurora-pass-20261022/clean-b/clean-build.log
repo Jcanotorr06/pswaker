@@ -1,0 +1,44 @@
+STAGE fresh-download-cache 2026-10-22T22:52:32+00:00
+Verified ps4-openorbis-musl-1.5-2-any.pkg.tar.xz
+Verified ps4-openorbis-vars-1.1-3-any.pkg.tar.xz
+Verified ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz
+Verified ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz
+Verified ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz
+Verified ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz
+Verified ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz
+Verified ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz
+Verified ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz
+Verified ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz
+Verified ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz
+Verified ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz
+Verified ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz
+Verified ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz
+SDK extracted: /home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/sdk/opt/pacbrew/ps4/openorbis
+STAGE pinned-sources 2026-10-22T22:53:09+00:00
+Prepared refs/dusklight at fd483cf5d4f04b0f4d887ff412d0e8691925de08
+Prepared src/aurora at e281999cdb4fee6127525a9a9e97979480db4bf3
+Prepared refs/DolphinPS4 at b1879cc0267a2a4f0949d7b80478fcf2abca24f6
+Prepared src/liborbispkg at 594021fdc435409f755a6ae0781b65ec6cec846c
+Prepared src/abseil at 5c695e68fcd3e7483ed300b6591d1ec49ae37cf4
+Prepared src/sdl3 at 68159af2b34cc4fe5b3548faa89e87a69e4d2dce
+Prepared src/dawn at 652a3104791369cd23605856fbc041375ccda875
+Selected source patches applied. Dawn DEPS, Mesa and libdrm still require preparation.
+Recorded diagnostic CPU/TLS, memory measurement and neutral-input adaptations.
+STAGE runtime 2026-10-22T22:53:22+00:00
+STAGE graphics-inputs 2026-10-22T22:54:02+00:00
+STAGE graphics-libraries 2026-10-22T22:55:03+00:00
+SDL/Dawn/Mesa archives built; hardware behavior untested.
+STAGE diagnostic 2026-10-22T23:12:35+00:00
+STAGE package 2026-10-22T23:15:05+00:00
+Recorded actual host, SDK metadata, Dawn DEPS, CMake archives and NuGet closure.
+{
+  "package": {
+    "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+    "sha256": "6e7eeae84e9f65b7a0f4daf6639309da7dd5e2334ef1af48d72f02582b5f9832"
+  },
+  "eboot_sha256": "b329edc3d4d4e3242a112e5ca4a3ea51e3331d9612abdeff02a8b2264d406a2a",
+  "elf_sha256": "af00a18171df85c1d2efe97cb8300645840a38debf12e0a1b126595819ae2512",
+  "build_id": "4b1830b0443ff170425e",
+  "app_version": "01.00"
+}
+COMPLETE host-build-only 2026-10-22T23:15:13+00:00

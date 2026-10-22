@@ -1,0 +1,2411 @@
+BEGIN build=4b1830b0443ff170425e; console/homebrew baseline is owner-reported and must be confirmed per run
+PASS manifest-close
+STAGE runtime-preflight
+PASS runtime-preflight
+PASS launch-identity-read
+PASS launch-identity-close
+PASS cache-inspection-close
+RUN launch=8 cache-entries-before-Aurora=2; owner must label cold/warm and confirm baseline
+STAGE SDL-video-configuration
+SDL_VIDEO compiled=offscreen
+SDL_VIDEO compiled=dummy
+PASS SDL-dummy-video-selected
+STAGE aurora-initialize
+AURORA level=1 module=aurora Aurora initializing
+AURORA level=1 module=aurora::system_info CPU model: Unknown
+AURORA level=1 module=aurora::system_info Memory: 0 MiB
+AURORA level=1 module=aurora::system_info Architecture: x86_64
+AURORA level=1 module=aurora::system_info OS: Unknown
+AURORA level=1 module=aurora::gpu Creating WebGPU instance
+AURORA level=1 module=aurora::gpu Attempting to initialize Vulkan
+AURORA level=1 module=aurora::gpu Requesting adapter
+  Feature level: Compatibility
+  Power preference: HighPerformance
+  Backend: Vulkan
+  Compatible surface: true
+AURORA level=1 module=aurora::gpu Graphics adapter information
+  API: Vulkan
+  Device: AMD Liverpool (PS4) (RADV BONAIRE) (IntegratedGPU)
+  Driver: radv: Mesa 26.0.8 (git-60e95b7878)
+AURORA level=1 module=aurora::gpu Using limits:
+  maxTextureDimension1D: 16384
+  maxTextureDimension2D: 16384
+  maxTextureDimension3D: 2048
+  maxTextureArrayLayers: 2048
+  maxStorageBuffersPerShaderStage: 2
+  minUniformBufferOffsetAlignment: 64
+  minStorageBufferOffsetAlignment: 16
+  maxImmediateSize: 64
+AURORA level=1 module=aurora::gpu Enabling features: 
+  CoreFeaturesAndLimits
+  TextureCompressionBC
+  DualSourceBlending
+  TextureComponentSwizzle
+AURORA level=1 module=aurora::gpu Using surface format RGBA8Unorm, present mode Fifo
+AURORA level=1 module=aurora::gfx::pipeline_cache No bundled initial pipeline cache found at '/app0/initial_pipeline_cache.db'
+AURORA level=1 module=aurora Using framebuffer size 1920x1080 scale 1
+SDL_VIDEO active=dummy; Dawn owns the direct-display surface
+PASS selected-Vulkan-backend
+ADAPTER vendor=4098 device=39200 description=radv: Mesa 26.0.8 (git-60e95b7878)
+STAGE GX-initialize-alpha-framebuffer-and-VI-scale
+AURORA level=1 module=aurora::gpu::cache Pruned 13 stale Dawn cache entries
+AURORA level=1 module=aurora::input Added controller 'DUALSHOCK 4' (instance 3, vid 054c, pid 09cc, type 5)
+PASS internal-render-size
+RESOLUTION internal=1280x720 surface=1920x1080; inspect platform log for actual display mode
+STAGE prepare-GX-pipelines-before-known-result-checks
+PASS GX-pipeline-preparation
+PREPARATION milliseconds=34.9; no pixel comparisons deferred beyond this stage
+STAGE synthetic-audio
+PASS SDL-audio-init
+PASS SDL-audio-stream
+PASS SDL-audio-resume
+STAGE create-targets-and-textured-depth-blend-pipelines
+PASS initial-user
+STAGE ten-minute-loop
+PAD connected=1 read-result=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+PASS flexible-memory-query
+RESOURCE seconds=0.0 garlic=438566912 onion=606208 buffers=36 heap-capacity=536870912 main-mspace-allocated=3053376 flexible-available=396361728 audio-frames=1792 audio-errors=0
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=30.0 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3832784 flexible-available=396361728 audio-frames=1442048 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PAD connected=0 read-result=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PAD connected=1 read-result=0
+PAD connected=0 read-result=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PAD connected=1 read-result=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=60.0 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3825936 flexible-available=396361728 audio-frames=2882816 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=90.0 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829264 flexible-available=396361728 audio-frames=4323328 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=120.1 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829520 flexible-available=396361728 audio-frames=5764096 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=150.1 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3828784 flexible-available=396361728 audio-frames=7204608 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=180.1 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3828960 flexible-available=396361728 audio-frames=8645376 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=210.1 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829616 flexible-available=396361728 audio-frames=10085888 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=240.1 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829648 flexible-available=396361728 audio-frames=11526656 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=270.1 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829040 flexible-available=396361728 audio-frames=12967168 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=300.1 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829008 flexible-available=396361728 audio-frames=14407936 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=330.2 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829648 flexible-available=396361728 audio-frames=15848448 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=360.2 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829648 flexible-available=396361728 audio-frames=17289216 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=390.2 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829120 flexible-available=396361728 audio-frames=18729728 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=420.2 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829152 flexible-available=396361728 audio-frames=20170496 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=450.2 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829600 flexible-available=396361728 audio-frames=21611008 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=480.2 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829568 flexible-available=396361728 audio-frames=23051776 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=510.2 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829120 flexible-available=396361728 audio-frames=24492288 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=540.2 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829120 flexible-available=396361728 audio-frames=25933056 audio-errors=0
+STAGE create-targets-and-textured-depth-blend-pipelines
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=570.3 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3829760 flexible-available=396361728 audio-frames=27373568 audio-errors=0
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+STAGE render-copy-async-readback-known-purple
+READBACK rgba=128,0,127,255 expected=128,0,127,255 tolerance=1
+PASS texture-depth-blend-offscreen-copy-readback
+STAGE Aurora-EFB-and-offscreen-resolve
+PASS Aurora-EFB-copy
+TARGET EFB=1280x720 format=22
+PASS allocated-EFB-render-size
+PASS Aurora-offscreen-create
+PASS Aurora-offscreen-resolve
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=1280 height=720 format=22
+MAP Aurora-EFB-known-white-readback status=1 message=
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22
+MAP Aurora-offscreen-known-white-readback status=1 message=
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PASS Aurora-offscreen-known-white-readback
+PASS flexible-memory-query
+RESOURCE seconds=600.3 garlic=438665216 onion=835584 buffers=43 heap-capacity=536870912 main-mspace-allocated=3840112 flexible-available=396361728 audio-frames=28814336 audio-errors=0
+STAGE shutdown
+PASS synthetic-audio-API-errors
+PASS controller-disconnect-reconnect-resume
+PASS ten-minute-loop
+STAGE drain-GPU-before-resource-and-device-destruction
+PASS GPU-queue-drained
+STAGE Aurora-shutdown-begin
+AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.
+AURORA level=2 module=aurora::window Error enabling screensaver: That operation is not supported
+STAGE Aurora-shutdown-complete
+END frames=35992 checks=120 failures=0; owner observations/resource review required

@@ -1,0 +1,13 @@
+[1/8] Building CXX object CMakeFiles/runtime_preflight.dir/home/joseph_cano/.cache/pswaker/aurora-clean-a-20261022/refs/DolphinPS4/port/ps4_crashlog.cpp.obj
+/home/joseph_cano/.cache/pswaker/aurora-clean-a-20261022/refs/DolphinPS4/port/ps4_crashlog.cpp:96:16: warning: increment of object of volatile-qualified type 'volatile int' is deprecated [-Wdeprecated-volatile]
+   96 |     if (s_depth++ > 0)
+      |                ^
+1 warning generated.
+[2/8] Building C object CMakeFiles/runtime_preflight.dir/home/joseph_cano/.cache/pswaker/aurora-clean-a-20261022/refs/DolphinPS4/port/ps4_string.c.obj
+[3/8] Building CXX object CMakeFiles/runtime_preflight.dir/home/joseph_cano/.cache/pswaker/aurora-clean-a-20261022/refs/DolphinPS4/port/ps4_runtime.cpp.obj
+[4/8] Building C object CMakeFiles/runtime_preflight.dir/home/joseph_cano/.cache/pswaker/aurora-clean-a-20261022/refs/DolphinPS4/port/ps4_dlmalloc.c.obj
+[5/8] Building CXX object CMakeFiles/runtime_preflight.dir/home/joseph_cano/.cache/pswaker/aurora-clean-a-20261022/refs/DolphinPS4/port/ps4_sampler.cpp.obj
+[6/8] Building CXX object CMakeFiles/runtime_preflight.dir/main.cpp.obj
+[7/8] Linking CXX executable runtime_preflight
+[8/8] Generating runtime_preflight_eboot/eboot.bin
+-- check-oelf: /home/joseph_cano/.cache/pswaker/aurora-clean-a-20261022/build/runtime-preflight/runtime_preflight_eboot/runtime_preflight.oelf: segments OK

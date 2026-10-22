@@ -1,0 +1,13 @@
+{
+  "source": "Owner's wayfinder invocation supplying the 01.02 retry evidence",
+  "received_date": "2026-10-22",
+  "package_version": "01.02",
+  "reported_followed_checklist": true,
+  "console": "PS4 Slim",
+  "firmware": "9.00",
+  "homebrew": "GoldHEN v2.4b18",
+  "owner_report": "Version 01.02 was installed an ran as instructed. The console is still PS4 Slim / firmware 9.00 / GoldHEN v2.4b18. The RGB triangle, white background, purple swatch, summary text and quiet continuous tone were present as expected.",
+  "supplied_evidence": "local-research/diagnostic-artifacts/aurora-gx-fix/output",
+  "photo": "visual.jpg",
+  "scope": "Supplied observations and logs; agent did not operate the physical console"
+}

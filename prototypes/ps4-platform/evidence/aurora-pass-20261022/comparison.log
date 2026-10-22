@@ -1,0 +1,56 @@
+{
+  "scope": "Two clean build directories on the recorded Ubuntu/WSL2 host; no PS4 execution",
+  "allocated_elf_section_differences": {
+    ".rela.dyn": {
+      "first": {
+        "size": 1085280,
+        "sha256": "a5a32bf3e75e2616b5a49b0faa9ec2c9a4dd7bbc60333cd47e6d03e5e82790ba",
+        "normalized_sha256": "a5a32bf3e75e2616b5a49b0faa9ec2c9a4dd7bbc60333cd47e6d03e5e82790ba",
+        "type": 4
+      },
+      "second": {
+        "size": 1085280,
+        "sha256": "c15525236449a8a6228079c06f16acc1de3b877ebcd2c6b24ea67f9503e672a8",
+        "normalized_sha256": "c15525236449a8a6228079c06f16acc1de3b877ebcd2c6b24ea67f9503e672a8",
+        "type": 4
+      },
+      "equal_after_normalizing_build_root": false
+    },
+    ".rodata": {
+      "first": {
+        "size": 14906644,
+        "sha256": "9cf6c359bd5a168f52cfa4bb7229ebae90f9d7154daf0b344b63a3dfe20a411e",
+        "normalized_sha256": "2f9f4d1b1817994ac75ea0a0df06c14b232eccb8e60c4b582e2234d9f55d29c6",
+        "type": 1
+      },
+      "second": {
+        "size": 14906644,
+        "sha256": "2707b081ed4620e522ca27c7f0e5be31ff2a5d5e84a12294184a6b36c6d28205",
+        "normalized_sha256": "6b13ba6228f209afeca611d03d47b522bd0137ef24f69c8bc6b05f192732e780",
+        "type": 1
+      },
+      "equal_after_normalizing_build_root": false
+    },
+    ".text": {
+      "first": {
+        "size": 21167384,
+        "sha256": "2147f66d8ce40d0904385358f5dd31273bb55eeb7e3dcd7334574baecf526ebb",
+        "normalized_sha256": "2147f66d8ce40d0904385358f5dd31273bb55eeb7e3dcd7334574baecf526ebb",
+        "type": 1
+      },
+      "second": {
+        "size": 21167384,
+        "sha256": "09d2ebbbe54756f97ac6908b33d88c7ecd01129dd211ca2151e2cab41123fe8b",
+        "normalized_sha256": "09d2ebbbe54756f97ac6908b33d88c7ecd01129dd211ca2151e2cab41123fe8b",
+        "type": 1
+      },
+      "equal_after_normalizing_build_root": false
+    }
+  },
+  "packaged_files_differing": [
+    "build-info.json",
+    "eboot.bin"
+  ],
+  "byte_identical_elf": false,
+  "byte_identical_pkg": false
+}

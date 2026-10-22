@@ -1,0 +1,354 @@
+{
+  "method": "Latest BEGIN block per supplied snapshot; parser is not console execution",
+  "build": "4b1830b0443ff170425e",
+  "runs": [
+    {
+      "run": 1,
+      "owner_cache_label": "cold",
+      "diagnostic_begin_blocks_in_original": 7,
+      "runtime_begin_blocks_in_original": 7,
+      "embedded_manifest_matches_inspected_candidate": true,
+      "identity": {
+        "launch": "7",
+        "cache-entries-before-Aurora": "0"
+      },
+      "preflight_state": 7,
+      "resolution": "RESOLUTION internal=1280x720 surface=1920x1080; inspect platform log for actual display mode",
+      "preparation": "PREPARATION milliseconds=111.6; no pixel comparisons deferred beyond this stage",
+      "end": {
+        "frames": "35836",
+        "checks": "120",
+        "failures": "0"
+      },
+      "failure_lines": {},
+      "passes_by_check": {
+        "manifest-close": 1,
+        "runtime-preflight": 1,
+        "launch-identity-read": 1,
+        "launch-identity-close": 1,
+        "cache-inspection-close": 1,
+        "SDL-dummy-video-selected": 1,
+        "selected-Vulkan-backend": 1,
+        "internal-render-size": 1,
+        "GX-pipeline-preparation": 1,
+        "SDL-audio-init": 1,
+        "SDL-audio-stream": 1,
+        "SDL-audio-resume": 1,
+        "initial-user": 1,
+        "texture-depth-blend-offscreen-copy-readback": 120,
+        "flexible-memory-query": 21,
+        "Aurora-EFB-copy": 120,
+        "allocated-EFB-render-size": 120,
+        "Aurora-offscreen-create": 120,
+        "Aurora-offscreen-resolve": 120,
+        "Aurora-EFB-known-white-readback": 120,
+        "Aurora-offscreen-known-white-readback": 120,
+        "synthetic-audio-API-errors": 1,
+        "controller-disconnect-reconnect-resume": 1,
+        "ten-minute-loop": 1,
+        "GPU-queue-drained": 1
+      },
+      "target_creations_including_initial": 10,
+      "pad_transitions": [
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0"
+      ],
+      "resource_samples": 21,
+      "resources_at_or_after_60_seconds": {
+        "garlic": {
+          "min": 438665216,
+          "max": 438665216,
+          "first": 438665216,
+          "last": 438665216
+        },
+        "onion": {
+          "min": 835584,
+          "max": 835584,
+          "first": 835584,
+          "last": 835584
+        },
+        "buffers": {
+          "min": 43,
+          "max": 43,
+          "first": 43,
+          "last": 43
+        },
+        "main-mspace-allocated": {
+          "min": 4002032,
+          "max": 4016192,
+          "first": 4002032,
+          "last": 4016192
+        },
+        "flexible-available": {
+          "min": 396361728,
+          "max": 396361728,
+          "first": 396361728,
+          "last": 396361728
+        }
+      },
+      "first_resource": {
+        "seconds": "0.0",
+        "garlic": "438566912",
+        "onion": "606208",
+        "buffers": "36",
+        "heap-capacity": "536870912",
+        "main-mspace-allocated": "3229952",
+        "flexible-available": "396361728",
+        "audio-frames": "1024",
+        "audio-errors": "0"
+      },
+      "last_resource": {
+        "seconds": "600.3",
+        "garlic": "438665216",
+        "onion": "835584",
+        "buffers": "43",
+        "heap-capacity": "536870912",
+        "main-mspace-allocated": "4016192",
+        "flexible-available": "396361728",
+        "audio-frames": "28813056",
+        "audio-errors": "0"
+      },
+      "shutdown_warnings": [
+        "AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.",
+        "AURORA level=2 module=aurora::window Error enabling screensaver: That operation is not supported"
+      ],
+      "mapping_aborted": false,
+      "platform_exit_status": 0
+    },
+    {
+      "run": 2,
+      "owner_cache_label": "warm 1",
+      "diagnostic_begin_blocks_in_original": 8,
+      "runtime_begin_blocks_in_original": 8,
+      "embedded_manifest_matches_inspected_candidate": true,
+      "identity": {
+        "launch": "8",
+        "cache-entries-before-Aurora": "2"
+      },
+      "preflight_state": 8,
+      "resolution": "RESOLUTION internal=1280x720 surface=1920x1080; inspect platform log for actual display mode",
+      "preparation": "PREPARATION milliseconds=34.9; no pixel comparisons deferred beyond this stage",
+      "end": {
+        "frames": "35992",
+        "checks": "120",
+        "failures": "0"
+      },
+      "failure_lines": {},
+      "passes_by_check": {
+        "manifest-close": 1,
+        "runtime-preflight": 1,
+        "launch-identity-read": 1,
+        "launch-identity-close": 1,
+        "cache-inspection-close": 1,
+        "SDL-dummy-video-selected": 1,
+        "selected-Vulkan-backend": 1,
+        "internal-render-size": 1,
+        "GX-pipeline-preparation": 1,
+        "SDL-audio-init": 1,
+        "SDL-audio-stream": 1,
+        "SDL-audio-resume": 1,
+        "initial-user": 1,
+        "texture-depth-blend-offscreen-copy-readback": 120,
+        "flexible-memory-query": 21,
+        "Aurora-EFB-copy": 120,
+        "allocated-EFB-render-size": 120,
+        "Aurora-offscreen-create": 120,
+        "Aurora-offscreen-resolve": 120,
+        "Aurora-EFB-known-white-readback": 120,
+        "Aurora-offscreen-known-white-readback": 120,
+        "synthetic-audio-API-errors": 1,
+        "controller-disconnect-reconnect-resume": 1,
+        "ten-minute-loop": 1,
+        "GPU-queue-drained": 1
+      },
+      "target_creations_including_initial": 10,
+      "pad_transitions": [
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0"
+      ],
+      "resource_samples": 21,
+      "resources_at_or_after_60_seconds": {
+        "garlic": {
+          "min": 438665216,
+          "max": 438665216,
+          "first": 438665216,
+          "last": 438665216
+        },
+        "onion": {
+          "min": 835584,
+          "max": 835584,
+          "first": 835584,
+          "last": 835584
+        },
+        "buffers": {
+          "min": 43,
+          "max": 43,
+          "first": 43,
+          "last": 43
+        },
+        "main-mspace-allocated": {
+          "min": 3825936,
+          "max": 3840112,
+          "first": 3825936,
+          "last": 3840112
+        },
+        "flexible-available": {
+          "min": 396361728,
+          "max": 396361728,
+          "first": 396361728,
+          "last": 396361728
+        }
+      },
+      "first_resource": {
+        "seconds": "0.0",
+        "garlic": "438566912",
+        "onion": "606208",
+        "buffers": "36",
+        "heap-capacity": "536870912",
+        "main-mspace-allocated": "3053376",
+        "flexible-available": "396361728",
+        "audio-frames": "1792",
+        "audio-errors": "0"
+      },
+      "last_resource": {
+        "seconds": "600.3",
+        "garlic": "438665216",
+        "onion": "835584",
+        "buffers": "43",
+        "heap-capacity": "536870912",
+        "main-mspace-allocated": "3840112",
+        "flexible-available": "396361728",
+        "audio-frames": "28814336",
+        "audio-errors": "0"
+      },
+      "shutdown_warnings": [
+        "AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.",
+        "AURORA level=2 module=aurora::window Error enabling screensaver: That operation is not supported"
+      ],
+      "mapping_aborted": false,
+      "platform_exit_status": 0
+    },
+    {
+      "run": 3,
+      "owner_cache_label": "warm 2",
+      "diagnostic_begin_blocks_in_original": 9,
+      "runtime_begin_blocks_in_original": 9,
+      "embedded_manifest_matches_inspected_candidate": true,
+      "identity": {
+        "launch": "9",
+        "cache-entries-before-Aurora": "2"
+      },
+      "preflight_state": 9,
+      "resolution": "RESOLUTION internal=1280x720 surface=1920x1080; inspect platform log for actual display mode",
+      "preparation": "PREPARATION milliseconds=35.4; no pixel comparisons deferred beyond this stage",
+      "end": {
+        "frames": "35908",
+        "checks": "120",
+        "failures": "0"
+      },
+      "failure_lines": {},
+      "passes_by_check": {
+        "manifest-close": 1,
+        "runtime-preflight": 1,
+        "launch-identity-read": 1,
+        "launch-identity-close": 1,
+        "cache-inspection-close": 1,
+        "SDL-dummy-video-selected": 1,
+        "selected-Vulkan-backend": 1,
+        "internal-render-size": 1,
+        "GX-pipeline-preparation": 1,
+        "SDL-audio-init": 1,
+        "SDL-audio-stream": 1,
+        "SDL-audio-resume": 1,
+        "initial-user": 1,
+        "texture-depth-blend-offscreen-copy-readback": 120,
+        "flexible-memory-query": 21,
+        "Aurora-EFB-copy": 120,
+        "allocated-EFB-render-size": 120,
+        "Aurora-offscreen-create": 120,
+        "Aurora-offscreen-resolve": 120,
+        "Aurora-EFB-known-white-readback": 120,
+        "Aurora-offscreen-known-white-readback": 120,
+        "synthetic-audio-API-errors": 1,
+        "controller-disconnect-reconnect-resume": 1,
+        "ten-minute-loop": 1,
+        "GPU-queue-drained": 1
+      },
+      "target_creations_including_initial": 10,
+      "pad_transitions": [
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0"
+      ],
+      "resource_samples": 21,
+      "resources_at_or_after_60_seconds": {
+        "garlic": {
+          "min": 438665216,
+          "max": 438665216,
+          "first": 438665216,
+          "last": 438665216
+        },
+        "onion": {
+          "min": 835584,
+          "max": 835584,
+          "first": 835584,
+          "last": 835584
+        },
+        "buffers": {
+          "min": 43,
+          "max": 43,
+          "first": 43,
+          "last": 43
+        },
+        "main-mspace-allocated": {
+          "min": 3826032,
+          "max": 3840096,
+          "first": 3826032,
+          "last": 3840096
+        },
+        "flexible-available": {
+          "min": 396361728,
+          "max": 396361728,
+          "first": 396361728,
+          "last": 396361728
+        }
+      },
+      "first_resource": {
+        "seconds": "0.0",
+        "garlic": "438566912",
+        "onion": "606208",
+        "buffers": "36",
+        "heap-capacity": "536870912",
+        "main-mspace-allocated": "3053408",
+        "flexible-available": "396361728",
+        "audio-frames": "1024",
+        "audio-errors": "0"
+      },
+      "last_resource": {
+        "seconds": "600.3",
+        "garlic": "438665216",
+        "onion": "835584",
+        "buffers": "43",
+        "heap-capacity": "536870912",
+        "main-mspace-allocated": "3840096",
+        "flexible-available": "396361728",
+        "audio-frames": "28813056",
+        "audio-errors": "0"
+      },
+      "shutdown_warnings": [
+        "AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.",
+        "AURORA level=2 module=aurora::window Error enabling screensaver: That operation is not supported"
+      ],
+      "mapping_aborted": false,
+      "platform_exit_status": 0
+    }
+  ]
+}

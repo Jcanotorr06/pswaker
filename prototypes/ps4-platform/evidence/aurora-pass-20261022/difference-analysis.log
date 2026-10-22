@@ -1,0 +1,15 @@
+{
+  "instruction_comparison": {
+    "differing_instructions_referencing_equal_nonempty_ASCII_string": 57889,
+    "differing_instructions_referencing_equal_empty_or_non_ASCII_nul_terminated_bytes": 1060,
+    "other_differing_instructions_count": 0,
+    "examples": [],
+    "limit": "NUL-terminated target comparisons are not a proof that arbitrary binary constants or all runtime behavior are equivalent."
+  },
+  "relocation_comparison": {
+    "differing_records": 11881,
+    "other_than_equal_nul_terminated_rodata_targets": 0,
+    "examples": []
+  },
+  "rodata_nul_split_multisets_equal": false
+}

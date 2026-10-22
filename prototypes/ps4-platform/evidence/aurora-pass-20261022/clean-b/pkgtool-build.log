@@ -1,0 +1,6 @@
+MSBuild version 17.8.60+293f66545 for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  LibOrbisPkg.Core -> /home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/liborbispkg/LibOrbisPkg.Core/bin/Release/net8.0/LibOrbisPkg.Core.dll
+  PkgTool.Core -> /home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/src/liborbispkg/PkgTool.Core/bin/Release/net8.0/PkgTool.Core.dll
+  PkgTool.Core -> /home/joseph_cano/.cache/pswaker/aurora-clean-b-20261022/build/pkgtool/
