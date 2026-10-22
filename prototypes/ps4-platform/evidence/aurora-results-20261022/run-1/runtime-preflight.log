@@ -1,0 +1,17 @@
+BEGIN runtime build preflight; incomplete diagnostic
+STAGE constructors
+PASS static-constructor
+STAGE tls-and-once
+PASS thread-local-isolation
+PASS thread-local-destructors
+PASS pthread-once
+STAGE mutex-condition-variable
+PASS condition-variable
+STAGE atomic-wait-notify
+PASS atomic-wait-notify
+STAGE file-replacement
+PASS previous-launch-state
+PASS state-read-close
+PASS state-write-flush-sync-close
+PASS state-rename
+END failures=0 launch=2; hardware gate remains incomplete

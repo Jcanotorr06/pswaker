@@ -1,5 +1,10 @@
 # SDL video startup failure and candidate correction
 
+**2026-10-22 update:** the owner ran 01.01 three times. The SDL startup correction
+works on the console, but Aurora graphics and internal sizing checks fail.
+See the [current console result](../aurora-results-20261022/status.md). The retry
+instructions and pending-console statements below describe the original handoff.
+
 The owner reports build `97fc99208640c483fdc2`: black screen for about ten seconds,
 silence, then `CE-34878-0`. Supplied files are recorded by original SHA-256 in
 [owner/retrieved-files.json](owner/retrieved-files.json); the useful non-manifest

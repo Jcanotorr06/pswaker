@@ -4,13 +4,15 @@ Evidence for [Test the candidate PS4 platform with a disc-free diagnostic protot
 This branch is a disposable prototype, not a game port or a merge candidate.
 No game data, game code, disc reader, keys or PS5 binary libraries are used.
 
-**Current status (2026-10-21):** retrieved logs show that runtime checks passed,
-then SDL reported `No available video device` during Aurora initialization. The
-diagnostic omitted the selected PS4 entry point's explicit dummy-video setting.
-Version **01.01** adds that setting and passes a host reproduction of this SDL
-startup failure. It still needs a console retry. See the
-[investigation and retry handoff](evidence/sdl-video-20261021/status.md).
-The earlier startup-only probe is superseded by this evidence.
+**Current status (2026-10-22):** the owner completed three version **01.01**
+ten-minute runs. Startup, purple readback, synthetic audio, runtime/persistence
+and reconnect checks succeed, but each run has 241 failed graphics checks:
+internal sizing is 569x320 and Aurora EFB/offscreen white comparisons fail.
+The owner sees a black background and no RGB triangle. The hardware gate has
+failed; final specification approval and game integration remain blocked.
+See the [console evidence and next boundary](evidence/aurora-results-20261022/status.md).
+The [SDL investigation and 01.01 build handoff](evidence/sdl-video-20261021/status.md)
+remain historical build evidence. No replacement package has been prepared yet.
 
 ## What the owner runs
 

@@ -1,0 +1,122 @@
+[
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 1/cache/dawn_cache.db",
+    "bytes": 331776,
+    "sha256": "8b1cd053b606c6d9aa68f9232031ed2fcbd3bad9e2f2e20add0eeb2891821649"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 1/cache/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "467d39e15633e9d6a54c13b64fefb38488089dae91d33d83f1f243c83a23bcbf"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 1/diagnostic.log",
+    "bytes": 264697,
+    "sha256": "6bf6ff926e87494c77ee5320190785597b1ea2769a53ac98926dbacc22df8b2e"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 1/imgui.ini",
+    "bytes": 128,
+    "sha256": "5ec019c9dca30cb9c1230f5ca97028f3acc71da09da4797c03d405cdd143eb65"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 1/platform.log",
+    "bytes": 26852,
+    "sha256": "41237903aaadc81d31e45ec2a396c3fed8bf28498087fde6c209b4939d960625"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 1/platform.prev.log",
+    "bytes": 46,
+    "sha256": "367212a9dbab0e907b7b4e5a424a398fb61bcefa97e20ed25b05cadf6f0ba796"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 1/preflight-state.txt",
+    "bytes": 2,
+    "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 1/runtime-preflight.log",
+    "bytes": 972,
+    "sha256": "c11eb00e052a9da6bc4c79acf37681a7a1850a17acbcf324cd1e190cd882b1b5"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 2/cache/dawn_cache.db",
+    "bytes": 339968,
+    "sha256": "baab1b1903398d03c6d1c8d54c4503726cb9745b4bdb8b91fc5fa01966b615f6"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 2/cache/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "467d39e15633e9d6a54c13b64fefb38488089dae91d33d83f1f243c83a23bcbf"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 2/diagnostic.log",
+    "bytes": 427656,
+    "sha256": "df4a428fef9afd4a604eab31c167fda2c0fd4c3360525da40255a2a4fc05f237"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 2/imgui.ini",
+    "bytes": 128,
+    "sha256": "5ec019c9dca30cb9c1230f5ca97028f3acc71da09da4797c03d405cdd143eb65"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 2/platform.log",
+    "bytes": 26506,
+    "sha256": "ab7eb79585add7f016244ca5e1a7d2c729e499c385a6e7be0d8d4e6fa73ca291"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 2/platform.prev.log",
+    "bytes": 26852,
+    "sha256": "41237903aaadc81d31e45ec2a396c3fed8bf28498087fde6c209b4939d960625"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 2/preflight-state.txt",
+    "bytes": 2,
+    "sha256": "1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 2/runtime-preflight.log",
+    "bytes": 1449,
+    "sha256": "4ec5b8c9eb1def7c76acec9de727b645073995f582924db62989e6f255876c54"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 3/cache/dawn_cache.db",
+    "bytes": 339968,
+    "sha256": "c7b4369ca00cf62c5d721e22424ca70fd684fcd767ab4d79baab0b339af62c17"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 3/cache/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "467d39e15633e9d6a54c13b64fefb38488089dae91d33d83f1f243c83a23bcbf"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 3/diagnostic.log",
+    "bytes": 590496,
+    "sha256": "2f24e57d6049180cabc028ff49f3847d3107e3dd47caf4a62b13b47350eca290"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 3/imgui.ini",
+    "bytes": 128,
+    "sha256": "5ec019c9dca30cb9c1230f5ca97028f3acc71da09da4797c03d405cdd143eb65"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 3/platform.log",
+    "bytes": 26506,
+    "sha256": "3109e85f7f2cf8793cff348b3d43f5925268338782dcf8625df6e0bd42e50088"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 3/platform.prev.log",
+    "bytes": 26506,
+    "sha256": "ab7eb79585add7f016244ca5e1a7d2c729e499c385a6e7be0d8d4e6fa73ca291"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 3/preflight-state.txt",
+    "bytes": 2,
+    "sha256": "7de1555df0c2700329e815b93b32c571c3ea54dc967b89e81ab73b9972b72d1d"
+  },
+  {
+    "path": "pswaker-diagnostic-prototype 1.01 Run 3/runtime-preflight.log",
+    "bytes": 1926,
+    "sha256": "e2316abcaa0a966fc6c25a8a3d124d2aefbda0b516d3fc984b2bce7357fc45c0"
+  }
+]

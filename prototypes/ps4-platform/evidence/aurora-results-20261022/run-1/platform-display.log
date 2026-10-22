@@ -1,0 +1,8 @@
+[Aurora] Surface requested: 1920 x 1080
+radv/ps4: device initialized
+[Dawn] Display mode: 1920 x 1080, 59940 mHz
+[Dawn] Display mode: 1920 x 1080, 59940 mHz
+[Dawn] swapchain 1920x1080: 2 images, present mode 2, needsBlit 0 (usage 0x10 of 0x9f)
+wsi/videoout: 1920x1080 swapchain, buffers 0-2 (set 0), pitch 1920
+[Dawn] swapchain 1920x1080: 2 images, present mode 2, needsBlit 0 (usage 0x10 of 0x9f)
+wsi/videoout: 1920x1080 swapchain, buffers 3-5 (set 1), pitch 1920
