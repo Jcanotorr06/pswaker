@@ -30,7 +30,8 @@ bool prepare_gx_diagnostic_pipelines() {
   aurora::gfx::synchronize();
   const auto until=std::chrono::steady_clock::now()+std::chrono::seconds(30);
   const auto queued=[] {
-    return std::atomic_ref<const uint32_t>(aurora_get_stats()->queuedPipelines).load(std::memory_order_relaxed);
+    // Match Aurora's atomic stat accesses; libc++ 21 cannot load atomic_ref<const T>.
+    return __atomic_load_n(&aurora_get_stats()->queuedPipelines,__ATOMIC_RELAXED);
   };
   while (queued()!=0 && std::chrono::steady_clock::now()<until) {
     aurora::webgpu::g_instance.ProcessEvents();
