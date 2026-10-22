@@ -2,9 +2,11 @@
 #include <aurora/aurora.h>
 #include <aurora/event.h>
 #include <aurora/gfx.hpp>
+#include <aurora/gfx.h>
 #include <dolphin/gx.h>
 #include <dolphin/gx/GXAurora.h>
 #include <dolphin/mtx.h>
+#include <dolphin/vi.h>
 #include <SDL3/SDL.h>
 #include <imgui.h>
 #include "webgpu/gpu.hpp"
@@ -176,75 +178,8 @@ struct Targets {
     return verdict(valid,"texture-depth-blend-offscreen-copy-readback");
   }
 };
-bool white_snapshot(const wgpu::Texture& texture,const char* name) {
-  if (!texture) return verdict(false,name);
-  checkpoint(name);
-  auto device=aurora::webgpu::g_device;
-  auto encoder=device.CreateCommandEncoder();
-  wgpu::BufferDescriptor descriptor{};
-  descriptor.usage=wgpu::BufferUsage::CopyDst|wgpu::BufferUsage::MapRead; descriptor.size=256*32;
-  auto buffer=device.CreateBuffer(&descriptor);
-  wgpu::TexelCopyTextureInfo source{}; source.texture=texture;
-  wgpu::TexelCopyBufferInfo target{}; target.buffer=buffer; target.layout.bytesPerRow=256; target.layout.rowsPerImage=32;
-  const wgpu::Extent3D size{32,32,1}; encoder.CopyTextureToBuffer(&source,&target,&size);
-  auto commands=encoder.Finish(); aurora::webgpu::g_queue.Submit(1,&commands);
-  auto done=std::make_shared<std::atomic<int>>(0);
-  buffer.MapAsync(wgpu::MapMode::Read,0,256*32,wgpu::CallbackMode::AllowSpontaneous,
-    [done](wgpu::MapAsyncStatus status,wgpu::StringView) { done->store(status==wgpu::MapAsyncStatus::Success ? 1 : -1); });
-  const auto until=std::chrono::steady_clock::now()+std::chrono::seconds(5);
-  while (*done==0 && std::chrono::steady_clock::now()<until) {
-    aurora::webgpu::g_instance.ProcessEvents(); std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-  if (*done!=1) { buffer.Destroy(); return verdict(false,name); }
-  const auto* pixels=static_cast<const uint8_t*>(buffer.GetConstMappedRange());
-  bool pass=pixels!=nullptr;
-  if (pixels) for (unsigned y=0;y<32;++y) for (unsigned x=0;x<32*4;++x) pass &= pixels[y*256+x]==255;
-  buffer.Unmap(); return verdict(pass,name);
-}
-void triangle(bool white=false,unsigned width=1280,unsigned height=720) {
-  GXSetCopyClear(GXColor{8,12,28,255},GX_MAX_Z24); GXClearVtxDesc();
-  GXSetVtxDesc(GX_VA_POS,GX_DIRECT); GXSetVtxDesc(GX_VA_CLR0,GX_DIRECT);
-  GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_POS_XYZ,GX_F32,0);
-  GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_CLR0,GX_CLR_RGBA,GX_RGBA8,0);
-  GXSetNumChans(1); GXSetNumTexGens(white ? 1 : 0); GXSetNumTevStages(1);
-  GXSetChanCtrl(GX_COLOR0A0,GX_DISABLE,GX_SRC_REG,GX_SRC_VTX,GX_LIGHT_NULL,GX_DF_NONE,GX_AF_NONE);
-  if (white) {
-    alignas(32) static const auto pixels=[] { std::array<u8,64> value{}; value.fill(255); return value; }();
-    static GXTexObj texture{};
-    static bool initialized=false;
-    if (!initialized) {
-      GXInitTexObj(&texture,pixels.data(),4,4,GX_TF_RGBA8,GX_CLAMP,GX_CLAMP,GX_FALSE);
-      GXInitTexObjLOD(&texture,GX_NEAR,GX_NEAR,0,0,0,GX_FALSE,GX_FALSE,GX_ANISO_1);
-      initialized=true;
-    }
-    GXSetVtxDesc(GX_VA_TEX0,GX_DIRECT);
-    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_TEX_ST,GX_F32,0);
-    GXSetTexCoordGen(GX_TEXCOORD0,GX_TG_MTX2x4,GX_TG_TEX0,GX_IDENTITY);
-    GXLoadTexObj(&texture,GX_TEXMAP0);
-    GXSetTevOrder(GX_TEVSTAGE0,GX_TEXCOORD0,GX_TEXMAP0,GX_COLOR0A0);
-    GXSetTevOp(GX_TEVSTAGE0,GX_MODULATE);
-  } else {
-    GXSetTevOrder(GX_TEVSTAGE0,GX_TEXCOORD_NULL,GX_TEXMAP_NULL,GX_COLOR0A0);
-    GXSetTevOp(GX_TEVSTAGE0,GX_PASSCLR);
-  }
-  GXSetCullMode(GX_CULL_NONE); GXSetZMode(GX_DISABLE,GX_ALWAYS,GX_DISABLE);
-  GXSetBlendMode(GX_BM_NONE,GX_BL_ONE,GX_BL_ZERO,GX_LO_CLEAR);
-  GXSetColorUpdate(GX_TRUE); GXSetAlphaUpdate(GX_TRUE);
-  GXSetAlphaCompare(GX_ALWAYS,0,GX_AOP_AND,GX_ALWAYS,0);
-  Mtx model{{1,0,0,0},{0,1,0,0},{0,0,1,0}};
-  // C_MTXOrtho's near=0, far=1 contract maps view z=-0.5 to GX clip z=-0.5.
-  Mtx44 projection{{1,0,0,0},{0,1,0,0},{0,0,-1,-1},{0,0,0,1}};
-  GXLoadPosMtxImm(model,GX_PNMTX0); GXSetCurrentMtx(GX_PNMTX0); GXSetProjection(projection,GX_ORTHOGRAPHIC);
-  GXSetViewport(0,0,width,height,0,1); GXSetScissor(0,0,width,height);
-  GXBegin(GX_TRIANGLES,GX_VTXFMT0,3);
-  GXPosition3f32(white ? -1.f : -.8f,white ? -1.f : -.7f,-.5f); GXColor4u8(255,white ? 255 : 0,white ? 255 : 0,255);
-  if (white) GXTexCoord2f32(0,0);
-  GXPosition3f32(white ? 3.f : .8f,white ? -1.f : -.7f,-.5f); GXColor4u8(white ? 255 : 0,255,white ? 255 : 0,255);
-  if (white) GXTexCoord2f32(2,0);
-  GXPosition3f32(white ? -1.f : 0,white ? 3.f : .8f,-.5f); GXColor4u8(white ? 255 : 0,white ? 255 : 0,255,255);
-  if (white) GXTexCoord2f32(0,2);
-  GXEnd();
-}
+#include "white-readback.hpp"
+#include "gx-setup.hpp"
 }
 int main(int argc,char** argv) {
   platform_init("PSWaker disc-free diagnostic prototype");
@@ -284,7 +219,8 @@ int main(int argc,char** argv) {
   note("ADAPTER vendor=%u device=%u description=%.*s",adapter.vendorID,adapter.deviceID,
     int(std::min(adapter.description.length,size_t(512))),adapter.description.data ? adapter.description.data : "");
   AuroraSetViewportPolicy(AURORA_VIEWPORT_NATIVE);
-  aurora::window::set_frame_buffer_scale(2.f/3.f);
+  checkpoint("GX-initialize-alpha-framebuffer-and-VI-scale");
+  configure_gx_diagnostic();
   // Process Aurora's deferred sizing events so GX coordinates are native target pixels.
   aurora_update();
   u32 internal_width=0,internal_height=0;
@@ -292,6 +228,11 @@ int main(int argc,char** argv) {
   verdict(internal_width==1280 && internal_height==720,"internal-render-size");
   note("RESOLUTION internal=%ux%u surface=%ux%u; inspect platform log for actual display mode",internal_width,internal_height,
     aurora::webgpu::g_graphicsConfig.surfaceConfiguration.width,aurora::webgpu::g_graphicsConfig.surfaceConfiguration.height);
+  checkpoint("prepare-GX-pipelines-before-known-result-checks");
+  const auto prepare_start=std::chrono::steady_clock::now();
+  verdict(prepare_gx_diagnostic_pipelines(),"GX-pipeline-preparation");
+  note("PREPARATION milliseconds=%.1f; no pixel comparisons deferred beyond this stage",
+    std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-prepare_start).count());
   checkpoint("synthetic-audio"); verdict(SDL_InitSubSystem(SDL_INIT_AUDIO),"SDL-audio-init");
   SDL_AudioSpec spec{}; spec.freq=48000; spec.channels=2; spec.format=SDL_AUDIO_S16;
   auto* audio=SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK,&spec,audio_callback,nullptr);
@@ -345,6 +286,8 @@ int main(int argc,char** argv) {
     if (capture) {
       checkpoint("Aurora-EFB-and-offscreen-resolve");
       verdict(aurora::gfx::resolve_pass({},efb_snapshot),"Aurora-EFB-copy");
+      note("TARGET EFB=%ux%u format=%u",efb_snapshot.width,efb_snapshot.height,unsigned(efb_snapshot.colorFormat));
+      verdict(efb_snapshot.width==1280 && efb_snapshot.height==720,"allocated-EFB-render-size");
       if (verdict(aurora::gfx::create_pass(32,32),"Aurora-offscreen-create")) {
         triangle(true,32,32);
         verdict(aurora::gfx::resolve_pass({},offscreen_snapshot),"Aurora-offscreen-resolve");
@@ -378,8 +321,14 @@ int main(int argc,char** argv) {
   verdict(audio_errors==0,"synthetic-audio-API-errors");
   verdict(disconnects>0 && reconnects>0 && !awaiting_resume,"controller-disconnect-reconnect-resume");
   verdict(std::chrono::steady_clock::now()-start>=std::chrono::seconds(600),"ten-minute-loop");
+  checkpoint("drain-GPU-before-resource-and-device-destruction");
+  verdict(drain_diagnostic_gpu(),"GPU-queue-drained");
+  targets={};
+  checkpoint("Aurora-shutdown-begin");
+  aurora_shutdown();
+  checkpoint("Aurora-shutdown-complete");
   note("END frames=%u checks=%u failures=%d; owner observations/resource review required",frames,checks,errors.load());
-  aurora_shutdown(); targets={};
-  std::fflush(evidence); fsync(fileno(evidence)); std::fclose(evidence);
+  // Keep the process-owned evidence stream valid for late destruction callbacks.
+  std::fflush(evidence); fsync(fileno(evidence));
   catchReturnFromMain(errors ? 1 : 0);
 }
