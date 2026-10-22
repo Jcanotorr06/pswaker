@@ -1,0 +1,431 @@
+Fresh host evidence/cache directory: /home/joseph_cano/.cache/pswaker/aurora-host-20261022/runs/run-G7vN9m
+VARIANT repeat
+AURORA level=1 module=aurora Aurora initializing
+AURORA level=1 module=aurora::system_info CPU model: AMD Ryzen 5 5600 6-Core Processor
+AURORA level=1 module=aurora::system_info Memory: 32053 MiB
+AURORA level=1 module=aurora::system_info Architecture: x86_64
+AURORA level=1 module=aurora::system_info OS: Ubuntu 24.04.3 LTS (Noble Numbat)
+AURORA level=1 module=aurora::gpu Creating WebGPU instance
+AURORA level=1 module=aurora::gpu Attempting to initialize Vulkan
+AURORA level=1 module=aurora::gpu Requesting adapter
+  Feature level: Compatibility
+  Power preference: HighPerformance
+  Backend: Vulkan
+  Compatible surface: true
+Warning: maxDynamicUniformBuffersPerPipelineLayout artificially reduced from 500000 to 16 to fit dynamic offset allocation limit.
+Warning: maxDynamicStorageBuffersPerPipelineLayout artificially reduced from 500000 to 16 to fit dynamic offset allocation limit.
+AURORA level=1 module=aurora::gpu Graphics adapter information
+  API: Vulkan
+  Device: llvmpipe (LLVM 20.1.2, 256 bits) (CPU)
+  Driver: llvmpipe: Mesa 25.2.8-0ubuntu0.24.04.2 (LLVM 20.1.2)
+AURORA level=1 module=aurora::gpu Using limits:
+  maxTextureDimension1D: 16384
+  maxTextureDimension2D: 16384
+  maxTextureDimension3D: 4096
+  maxTextureArrayLayers: 2048
+  maxStorageBuffersPerShaderStage: 2
+  minUniformBufferOffsetAlignment: 64
+  minStorageBufferOffsetAlignment: 16
+  maxImmediateSize: 64
+AURORA level=1 module=aurora::gpu Enabling features: 
+  CoreFeaturesAndLimits
+  TextureCompressionBC
+  DualSourceBlending
+  TextureComponentSwizzle
+AURORA level=1 module=aurora::gpu Using surface format BGRA8Unorm, present mode Mailbox
+AURORA level=1 module=aurora::gfx::pipeline_cache No bundled initial pipeline cache found at './initial_pipeline_cache.db'
+AURORA level=1 module=aurora Using framebuffer size 1920x1080 scale 1
+FAIL internal-size actual=569x320 expected=1280x720
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 0 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 1 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 2 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 3 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 4 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 5 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 6 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 7 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 8 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 9 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 10 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 11 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 12 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 13 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 14 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 15 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 16 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 17 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 18 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 19 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 20 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 21 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 22 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 23 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 24 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 25 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 26 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 27 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 28 graphics=0
+STAGE Aurora-EFB-known-white-readback
+TEXTURE Aurora-EFB-known-white-readback width=569 height=320 format=27
+MAP Aurora-EFB-known-white-readback status=1 message=
+MISMATCH Aurora-EFB-known-white-readback xy=0,0 actual=0,0,0,255 expected=255,255,255,255
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-EFB-known-white-readback
+STAGE Aurora-offscreen-known-white-readback
+TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=27
+MAP Aurora-offscreen-known-white-readback status=1 message=
+MISMATCH Aurora-offscreen-known-white-readback xy=0,0 actual=0,0,0,0 expected=255,255,255,255
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FAIL Aurora-offscreen-known-white-readback
+FRAME 29 graphics=0
+PASS GPU-queue-drained
+AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.
+RESULT sizing=0 graphics=0

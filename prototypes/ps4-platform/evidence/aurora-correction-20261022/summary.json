@@ -1,0 +1,52 @@
+{
+  "scope": "Local Aurora reproduction and one incremental PS4 candidate; no 01.02 console evidence",
+  "candidate_source_revision": "b45d5e29246bd1c86d78f9ca165cbc3f7b4d6e5b",
+  "unchanged_selected_platform_and_runtime": true,
+  "identical_host_native_generated_API_headers": {
+    "webgpu.h": "73879efab14c9664069fb94b4601dc4db7ead7884349b5414dfe5c49e7f60880",
+    "webgpu_cpp.h": "466d7f2ab1a9fec4880272e8b35141d1b4651f5507cb30b6a25b5e6b8f0d2abb",
+    "dawn_proc_table.h": "cc7e07ec2552ec79f8cafb9c099d670787f61bf403fb5e647788630125ac6d02"
+  },
+  "host_repro_executable_sha256": "049ffa56cefd3330f3b814d1255ada7699c080dd6d250425dcc607ab94a47d0b",
+  "artifacts": {
+    "package": {
+      "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+      "sha256": "9764e1acb1e7fa8a17c8c7aee9ca3793ac908da38368188b52de33a49dd399be"
+    },
+    "eboot_sha256": "af8e612f623f1a2142ce5f9fab73f2429751993b1a5bde67e9d84ad87de1b8c9",
+    "elf_sha256": "07e7dd55d78939de352343cc5d3cc46616de5af7176a940e834eb1f0c20fdb9a",
+    "build_id": "4b1830b0443ff170425e",
+    "app_version": "01.02"
+  },
+  "new_clean_build_pair": false,
+  "evidence_sha256": {
+    "host-repro/alpha.log": "726f871a1d53ad68b6d6146b63a888b628f39a4075676ce8771b5becdd74bfb0",
+    "host-repro/baseline.log": "e425294c1deb2a37324944277605d8c719e40e380c782209d27f54b796f2d4b4",
+    "host-repro/corrected.log": "0fdf2be3567baa3255d47409a1e0cf4347eff1e5ae6dfbf1d130faca69734b4b",
+    "host-repro/dawn-build.log": "8c2c3b36e3308b121eaf5dd404e5766b3ea2f6addc79f32759c22b7d8e1ea3e2",
+    "host-repro/dawn-configure.log": "18029593da4354aea637bca618ba308d9c4f4eba332140e941f726fed863d0f3",
+    "host-repro/differential-check.log": "a3f44bb7aeb10757ac42f2e6151d542ec8274719ebf099a42232d3ea02654135",
+    "host-repro/drain.log": "f739d89b4406a62ba67ff4f98b3d2300ad3a292d3a6f170d1c6dd46179db5454",
+    "host-repro/initialize-repeat.log": "67aa6bb0713a4c09a5f1ae61d3bbd83a7496f43d64f326e4dae4e7f58cfc37cb",
+    "host-repro/repeat.log": "7b0a44c8ab6f5e16d87674f7c2d5b8347978c5a52dbba350f31f543b772d0249",
+    "host-repro/repro-build.log": "ca620640247fe2fbcc92da8f0d6ebcd93b9da4efdf01a335bf12be0d9b6dc12d",
+    "host-repro/repro-configure.log": "7c0ea26b294bdda4aeaf6bf5166267334be7b90d015293a5f510e01600403ceb",
+    "host-repro/scale.log": "036704641712cd5ba5b7c52a095c26856a9bc6cdb0525be6f478fbcd3383d3ed",
+    "host-repro/sdl-build.log": "c2ed93ffd93c840755c0e91392ae593b1b52de9b7aaf6c208123feaceb1dde2e",
+    "host-repro/sdl-configure.log": "c6c56ca055dfd7495d44ccff164ede0b6ab0c9ef23e6f4c35f690de4da619e89",
+    "native/artifacts.json": "1af2e9a4f33e2df23bc4bee3d2746f7a6e098ecb37a627b7cf8cd6a470c26589",
+    "native/aurora-atomic-compile-failure.log": "93014c00b8ee38e26065457275d9a11077ffb7b0902396b20ffba89c133811db",
+    "native/aurora-candidate-build.log": "d171e461c6b284b5f20d73415c56408cdf3f11c8e8726c48a15804f17b402d1d",
+    "native/aurora-retry-inspection.json": "954fcec3bc7dfec2bb42e302ff0b013894d8ae39fc039d83b8bf8de18987cdf6",
+    "native/build-info.json": "d4b21c37fc7839de9bf6ebf73a54e26fb58fffe53b637b5897a4dd9840278dc8",
+    "native/input-closure.json": "be9f3a48f4f6170371661c9147e18a7bf1ad02f8d601c2b9afb8ee6f00a94f20",
+    "native/local-adaptations.json": "07f2812fb773bc7bcac3e9b5adee348f8700b56e35089db7820606bc89098d82",
+    "native/package-build.log": "2d95d793a33fddeb2581613aa79bea90b4e8a14eeeefa22e174a186afccb8726",
+    "native/package-entries.txt": "fb923c9f32349598b930c549ad528e88201f63bc3d7d26b1276b8d37c6ce6b3a",
+    "native/package-extract.log": "ec2d5b07e8c8432e32d1f46ac5016d6812fb9ab51a4764390d742a16aff09adf",
+    "native/pkgtool-build.log": "69b16519be2e26db1fe76d0f30f2ae3ece8451f1067aff1302ed636eacc4a8f2",
+    "native/probe-build.log": "dedb3efa3d0b32fe3af89c84f0ad2ed26a527e03165527635a987cb0b8feb99f",
+    "native/probe-configure.log": "6155bcf45121b6b29dbaf56746dcf8dae09c2dc8ff79b29bf4896b6863b80851",
+    "native/source-archives.json": "81b9f7e33fb1a61ba29660f6039906d29c059cefeb8272462d0d102f32615f4f"
+  }
+}

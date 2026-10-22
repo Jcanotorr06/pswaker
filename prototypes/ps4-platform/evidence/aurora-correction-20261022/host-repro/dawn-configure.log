@@ -1,0 +1,124 @@
+-- Build type...........: Release
+-- C++ compiler.........: /usr/bin/clang++-21
+-- CMake generator......: Ninja
+-- CMake version........: 3.28.3
+-- 
+-- Dawn building using Emscripten toolchain: 0
+-- Dawn build D3D11 backend: OFF
+-- Dawn build D3D12 backend: OFF
+-- Dawn build Metal backend: OFF
+-- Dawn build Vulkan backend: ON
+-- Dawn build OpenGL backend: OFF
+-- Dawn build OpenGL ES backend: OFF
+-- Dawn build Null backend: OFF
+-- 
+-- Tint build SPIR-V reader: ON
+-- Tint build WGSL reader: ON
+-- Tint build GLSL writer: OFF
+-- Tint build GLSL validator: ON
+-- Tint build HLSL writer: OFF
+-- Tint build MSL writer: OFF
+-- Tint build SPIR-V writer: ON
+-- Tint build WGSL writer: ON
+-- Tint build NULL writer: OFF
+-- 
+-- Dawn build with ASan: OFF
+-- Dawn build with TSan: OFF
+-- Dawn build with MSan: OFF
+-- Dawn build with UBSan: OFF
+-- Dawn build with RTTI: OFF
+-- DAWN Werror: OFF
+-- Dawn enable install: OFF
+-- Dawn allow system component fallback: OFF
+-- Dawn enable SPIR-V validation: ON
+-- Dawn build with asserts in all configurations: OFF
+-- Dawn build Wayland support: OFF
+-- Dawn build X11 support: ON
+-- Dawn build GLFW support: ON
+-- Dawn build Windows UI support: OFF
+-- Dawn build and use DXC: OFF
+-- Dawn enable DXC asserts in non-debug builds: ON
+-- Dawn target MacOS: OFF
+-- Dawn build samples: OFF
+-- Dawn build Node bindings: OFF
+-- Dawn build Swiftshader: OFF
+-- Dawn build benchmarks: OFF
+-- Dawn build protobuf: OFF
+-- Dawn build monolithic library: STATIC
+-- Dawn build PIC: ON
+-- Dawn emit coverage: OFF
+-- Dawn fetch dependencies: OFF
+-- LLVM Source dir: 
+-- 
+-- Tint build command line executable tools: OFF
+-- Tint install: OFF
+-- Tint build IR binary: OFF
+-- Tint build fuzzers: OFF
+-- Tint build fuzzing vulkan drivers: OFF
+-- Tint build benchmarks: OFF
+-- Tint build tests: OFF
+-- Tint build tintd: OFF
+-- Tint enable IR dumping: ON
+-- Tint enable IR validation assertions: ON
+-- Tint enable break in debugger: OFF
+-- Tint build checking [chromium-style]: OFF
+-- Tint randomize hashes: OFF
+-- Tint build Mesa: OFF
+-- 
+-- Dawn third_party dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party
+-- Dawn GLFW dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/glfw3/src
+-- Dawn Jinja2 dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/jinja2
+-- Dawn MarkupSafe dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/markupsafe
+-- Dawn Khronos dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/khronos
+-- Dawn Swiftshader dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/swiftshader
+-- Dawn Protobuf dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/protobuf
+-- Dawn LPM dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/libprotobuf-mutator/src
+-- Dawn Emdawnwebgpu dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/emdawnwebgpu
+-- Dawn Spir-Tools dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/spirv-tools/src
+-- Dawn Spirv-Headers dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/spirv-headers/src
+-- Dawn Glslang dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/glslang/src
+-- Dawn Vulkan Headers dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/vulkan-headers/src
+-- Dawn Vulkan Utility Libraries dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/vulkan-utility-libraries/src
+-- 
+-- Node Addon API dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/node-addon-api
+-- Node API Headers dir: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/node-api-headers
+-- Webgpu IDL path: /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/gpuweb/webgpu.idl
+-- Go exe: go
+-- 
+-- Dawn: using python at /usr/bin/python3
+-- Dawn: using Abseil at /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/abseil-cpp
+-- Dawn: using SPIRV-Headers at /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/spirv-headers/src
+-- Dawn: using SPIRV-Tools at /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/spirv-tools/src
+-- Dawn: using GLFW at /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/glfw3/src
+-- Including X11 support
+-- Dawn: using Vulkan::Headers at /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/vulkan-headers/src
+-- Dawn: using VulkanUtilityLibraries at /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/vulkan-utility-libraries/src
+CMake Warning at third_party/vulkan-utility-libraries/src/CMakeLists.txt:27 (find_package):
+  Could not find a configuration file for package "VulkanHeaders" that is
+  compatible with requested version "1.4.358".
+
+  The following configuration files were considered but not accepted:
+
+    /usr/share/cmake/VulkanHeaders/VulkanHeadersConfig.cmake, version: 1.3.275
+
+
+
+-- Dawn: using jinja2 at /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/jinja2
+-- Dawn: using markupsafe at /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/third_party/markupsafe
+-- Dawn: Configuring DawnGenerator for Dawn WebGPU Emscripten headers.
+-- Dawn: Configuring DawnGenerator for Dawn WebGPU Emscripten JS files.
+-- Dawn: Configuring DawnGenerator for Dawn version based utilities.
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+-- Dawn: Configuring DawnGenerator for Dawn headers.
+-- Dawn: Configuring DawnGenerator for Dawn C++ headers.
+-- Dawn: Configuring DawnGenerator for Dawn GPU info utilities.
+-- Dawn: Configuring DawnGenerator for Dawn native utilities.
+-- Dawn: Configuring DawnGenerator for Dawn wire.
+-- Dawn: Configuring DawnGenerator for Dawn native utilities.
+-- Dawn: Configuring DawnGenerator for Dawn native WebGPU procs.
+-- Dawn: Configuring DawnGenerator for Dawn C++ wrapper.
+-- Dawn: Configuring DawnGenerator for WebGPU headers.
+-- Configuring done (9.2s)
+-- Generating done (0.2s)
+-- Build files have been written to: /home/joseph_cano/.cache/pswaker/aurora-host-20261022/dawn

@@ -4,22 +4,25 @@ Evidence for [Test the candidate PS4 platform with a disc-free diagnostic protot
 This branch is a disposable prototype, not a game port or a merge candidate.
 No game data, game code, disc reader, keys or PS5 binary libraries are used.
 
-**Current status (2026-10-22):** the owner completed three version **01.01**
-ten-minute runs. Startup, purple readback, synthetic audio, runtime/persistence
-and reconnect checks succeed, but each run has 241 failed graphics checks:
-internal sizing is 569x320 and Aurora EFB/offscreen white comparisons fail.
-The owner sees a black background and no RGB triangle. The hardware gate has
-failed; final specification approval and game integration remain blocked.
-See the [console evidence and next boundary](evidence/aurora-results-20261022/status.md).
-The [SDL investigation and 01.01 build handoff](evidence/sdl-video-20261021/status.md)
-remain historical build evidence. No replacement package has been prepared yet.
+**Current status (2026-10-22):** version **01.02** is built and inspected for
+[Validate Aurora geometry and internal resolution after the failed Slim diagnostic](https://github.com/Jcanotorr06/pswaker/issues/11).
+A Linux reproduction of the pinned Aurora path reproduces 01.01's black readbacks
+and 569x320 sizing. Correct GX initialization, an alpha-capable framebuffer and
+VI-based scaling pass the unchanged exact-white checks at 1280x720 locally.
+The shared correction, pipeline preparation and GPU drain are in the PS4 retry.
+**No 01.02 console result or renewed clean-build pair exists.** Hardware acceptance,
+final specification approval and game integration remain blocked.
+Use the [01.02 checklist](evidence/aurora-correction-20261022/Retry-checklist.md)
+and [diagnosis/build report](evidence/aurora-correction-20261022/status.md).
+The [three failed 01.01 runs](evidence/aurora-results-20261022/status.md) and earlier
+packages remain preserved as the baseline.
 
 ## What the owner runs
 
 Install the prepared **PSWaker Platform Diagnostic** package through the existing
-USB package installer. Its title ID is `PSWK00010`, current retry version **01.01**.
+USB package installer. Its title ID is `PSWK00010`, current retry version **01.02**.
 The package filename, build identity and SHA-256 are recorded in the build evidence.
-Use the version 01.01 artifact identified in the current investigation. The original
+Use the version 01.02 artifact identified in the current investigation. The original
 01.00 package and [two-build report](evidence/validation.md) remain the failed baseline.
 
 Confirm that the console is still the PS4 Slim on firmware 9.00 with GoldHEN
@@ -27,7 +30,7 @@ v2.4b18, or report the actual versions before comparing results.
 
 Run the following sequence, recording the displayed build identity and any error:
 
-For the startup retry, first observe the initial minute. If it crashes again,
+For the graphics retry, first observe the initial minute. If it crashes again,
 retrieve the new logs immediately and report the last stage/error; the runtime
 checks already passed on the supplied failed run. If the display and tone appear,
 continue the ten-minute sequence below. A short startup success alone does not
@@ -92,7 +95,12 @@ Aurora creates its actual requested adapter/device. Its GX pipeline draws known
 white geometry with a synthetic tiled RGBA8 texture to the EFB and to a separate offscreen pass. Resolved snapshots
 are read back asynchronously after render-worker submission; their checked region
 must be white. The RGB triangle and textured ImGui swatch also exercise repeated
-presentation. Internal rendering is requested at 1280x720, separately from the
+presentation. The retry calls GXInit, selects RGBA6 for the GX alpha check and
+uses 1.5x the explicit 640x480 VI base, expanded to the display aspect. Initial
+pipeline compilation is a bounded preparation stage before any comparisons.
+Every checked snapshot still requires all four bytes to equal 255. Snapshot
+dimensions establish the allocated EFB target independently of the size getter.
+Internal rendering is requested at 1280x720, separately from the
 1920x1080 display surface; inspect the recorded actual settings and WSI mode.
 
 Audio uses the selected SDL3 SceAudioOut backend with synthetic 48 kHz stereo
@@ -121,11 +129,11 @@ bash prototypes/ps4-platform/install-host.sh
 bash prototypes/ps4-platform/clean-build.sh /tmp/pswaker-clean-a /home/joseph_cano/.cache/pswaker/startup-20261021
 bash prototypes/ps4-platform/clean-build.sh /tmp/pswaker-clean-b /home/joseph_cano/.cache/pswaker/startup-20261021
 # Package the current retry with its distinguishing SFO version:
-python3 prototypes/ps4-platform/package-probe.py /tmp/pswaker-clean-a --app-version 01.01
-python3 prototypes/ps4-platform/package-probe.py /tmp/pswaker-clean-b --app-version 01.01
+python3 prototypes/ps4-platform/package-probe.py /tmp/pswaker-clean-a --app-version 01.02
+python3 prototypes/ps4-platform/package-probe.py /tmp/pswaker-clean-b --app-version 01.02
 ```
 
-These commands describe a fresh reproduction. The current 01.01 artifact's actual
+These commands describe a fresh reproduction. The current 01.02 artifact's actual
 incremental build and checks are recorded in the investigation; the earlier paired
 clean-build evidence is historical and is not reassigned to this revision.
 

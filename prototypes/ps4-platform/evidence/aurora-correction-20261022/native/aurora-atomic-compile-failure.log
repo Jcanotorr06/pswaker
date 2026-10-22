@@ -1,0 +1,25 @@
+[1/11] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_crashlog.cpp.o
+/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_crashlog.cpp:96:16: warning: increment of object of volatile-qualified type 'volatile int' is deprecated [-Wdeprecated-volatile]
+   96 |     if (s_depth++ > 0)
+      |                ^
+1 warning generated.
+[2/11] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_string.c.o
+[3/11] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/src/native-platform/ps4/native/platform.c.o
+[4/11] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/src/native-platform/ps4/native/realpath.c.o
+[5/11] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_runtime.cpp.o
+[6/11] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_dlmalloc.c.o
+[7/11] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/src/native-platform/ps4/input.cpp.o
+[8/11] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_sampler.cpp.o
+[9/11] Building CXX object CMakeFiles/platform_diagnostic.dir/main.cpp.o
+FAILED: CMakeFiles/platform_diagnostic.dir/main.cpp.o 
+/usr/bin/clang++-21 -DAURORA -DAURORA_ENABLE_GX -DIMGUI_ENABLE_FREETYPE -DIMGUI_USER_CONFIG=\"aurora/imgui_config.h\" -DPS4_DEV_TOOLS=0 -DPSWAKER_BUILD_ID=\"5e18ffaf51d309dfbf5a\" -DTARGET_PC -DWEBGPU_DAWN -I/home/joseph_cano/.cache/pswaker/startup-20261021/src/aurora/lib -I/home/joseph_cano/.cache/pswaker/startup-20261021/src/native-platform/ps4 -I/home/joseph_cano/.cache/pswaker/startup-20261021/src/aurora/include -I/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/fmt-src/include -I/home/joseph_cano/.cache/pswaker/startup-20261021/build/sdl3/include-revision -I/home/joseph_cano/.cache/pswaker/startup-20261021/src/sdl3/include -I/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/xxhash-src/cmake_unofficial/.. -I/home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/_deps/imgui-src -isystem /home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/include -isystem /home/joseph_cano/.cache/pswaker/startup-20261021/build/dawn/gen/include -nostdinc++ -isystem /home/joseph_cano/.cache/pswaker/startup-20261021/sysroot/include/c++/v1 -target x86_64-pc-freebsd12-elf    -D_GNU_SOURCE -D__PS4__ -D__OPENORBIS__ -D__ORBIS__    -DPS4 -D__BSD_VISIBLE -D_BSD_SOURCE    -fPIC -funwind-tables    -isysroot /home/joseph_cano/.cache/pswaker/startup-20261021/sdk/opt/pacbrew/ps4/openorbis -isystem /home/joseph_cano/.cache/pswaker/startup-20261021/sysroot/libc-overlay -isystem /home/joseph_cano/.cache/pswaker/startup-20261021/sdk/opt/pacbrew/ps4/openorbis/include    -I/home/joseph_cano/.cache/pswaker/startup-20261021/sdk/opt/pacbrew/ps4/openorbis/usr/include -march=btver2 -ftls-model=initial-exec -O3 -DNDEBUG -std=gnu++23 -fPIE -march=btver2 -ftls-model=initial-exec -MD -MT CMakeFiles/platform_diagnostic.dir/main.cpp.o -MF CMakeFiles/platform_diagnostic.dir/main.cpp.o.d -o CMakeFiles/platform_diagnostic.dir/main.cpp.o -c '/mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/probe/main.cpp'
+In file included from /mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/probe/main.cpp:19:
+In file included from /home/joseph_cano/.cache/pswaker/startup-20261021/sysroot/include/c++/v1/atomic:620:
+/home/joseph_cano/.cache/pswaker/startup-20261021/sysroot/include/c++/v1/__atomic/atomic_ref.h:147:27: error: cannot initialize a parameter of type 'unsigned int *' with an lvalue of type 'const unsigned int *'
+  147 |     __atomic_load(__ptr_, __ret, std::__to_gcc_order(__order));
+      |                           ^~~~~
+/mnt/c/Users/Joseph Cano/Code/pswaker/local-research/wayfinder-worktrees/diagnostic/prototypes/ps4-platform/probe/gx-setup.hpp:33:81: note: in instantiation of member function 'std::__atomic_ref_base<const unsigned int>::load' requested here
+   33 |     return std::atomic_ref<const uint32_t>(aurora_get_stats()->queuedPipelines).load(std::memory_order_relaxed);
+      |                                                                                 ^
+1 error generated.
+ninja: build stopped: subcommand failed.

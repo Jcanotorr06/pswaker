@@ -1,0 +1,16 @@
+[1/11] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_crashlog.cpp.o
+/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_crashlog.cpp:96:16: warning: increment of object of volatile-qualified type 'volatile int' is deprecated [-Wdeprecated-volatile]
+   96 |     if (s_depth++ > 0)
+      |                ^
+1 warning generated.
+[2/11] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_string.c.o
+[3/11] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/src/native-platform/ps4/native/platform.c.o
+[4/11] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/src/native-platform/ps4/native/realpath.c.o
+[5/11] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_runtime.cpp.o
+[6/11] Building C object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_dlmalloc.c.o
+[7/11] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/src/native-platform/ps4/input.cpp.o
+[8/11] Building CXX object CMakeFiles/platform_diagnostic.dir/home/joseph_cano/.cache/pswaker/startup-20261021/refs/DolphinPS4/port/ps4_sampler.cpp.o
+[9/11] Building CXX object CMakeFiles/platform_diagnostic.dir/main.cpp.o
+[10/11] Linking CXX executable platform_diagnostic
+[11/11] Generating platform_diagnostic_eboot/eboot.bin
+-- check-oelf: /home/joseph_cano/.cache/pswaker/startup-20261021/build/probe/platform_diagnostic_eboot/platform_diagnostic.oelf: segments OK

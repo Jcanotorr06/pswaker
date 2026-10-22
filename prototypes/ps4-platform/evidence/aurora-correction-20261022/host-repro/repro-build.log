@@ -1,0 +1,45 @@
+[1/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSCache.cpp.o
+[2/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSBootInfo.cpp.o
+[3/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSInit.cpp.o
+[4/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSAlloc.cpp.o
+[5/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSMemory.cpp.o
+[6/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSArena.cpp.o
+[7/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSAddress.cpp.o
+[8/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDIndirect.cpp.o
+[9/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDPixel.cpp.o
+[10/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDTev.cpp.o
+[11/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDLight.cpp.o
+[12/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDTexture.cpp.o
+[13/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDTransform.cpp.o
+[14/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDBase.cpp.o
+[15/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSReport.cpp.o
+[16/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/AR.cpp.o
+[17/38] Building CXX object aurora/CMakeFiles/aurora_main.dir/lib/main.cpp.o
+[18/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDGeometry.cpp.o
+/home/joseph_cano/.cache/pswaker/startup-20261021/src/aurora/lib/dolphin/gd/GDGeometry.cpp:33:17: warning: 6 enumeration values not handled in switch: 'GX_POS_MTX_ARRAY', 'GX_NRM_MTX_ARRAY', 'GX_TEX_MTX_ARRAY'... [-Wswitch]
+   33 |         switch (attrPtr->attr) {
+      |                 ^~~~~~~~~~~~~
+/home/joseph_cano/.cache/pswaker/startup-20261021/src/aurora/lib/dolphin/gd/GDGeometry.cpp:177:17: warning: 15 enumeration values not handled in switch: 'GX_VA_PNMTXIDX', 'GX_VA_TEX0MTXIDX', 'GX_VA_TEX1MTXIDX'... [-Wswitch]
+  177 |         switch (list->attr) {
+      |                 ^~~~~~~~~~
+2 warnings generated.
+[19/38] Linking CXX static library aurora/libaurora_main.a
+[20/38] Building C object aurora/CMakeFiles/aurora_mtx.dir/lib/dolphin/mtx/mtxstack.c.o
+[21/38] Building C object aurora/CMakeFiles/aurora_mtx.dir/lib/dolphin/mtx/mtx.c.o
+[22/38] Building C object aurora/CMakeFiles/aurora_mtx.dir/lib/dolphin/mtx/mtxvec.c.o
+[23/38] Building C object aurora/CMakeFiles/aurora_mtx.dir/lib/dolphin/mtx/mtx44.c.o
+[24/38] Building C object aurora/CMakeFiles/aurora_mtx.dir/lib/dolphin/mtx/vec.c.o
+[25/38] Building CXX object aurora/CMakeFiles/aurora_os.dir/lib/dolphin/os/OSTime.cpp.o
+[26/38] Building C object aurora/CMakeFiles/aurora_mtx.dir/lib/dolphin/mtx/quat.c.o
+[27/38] Linking CXX static library aurora/libaurora_os.a
+[28/38] Linking C static library aurora/libaurora_mtx.a
+[29/38] Building CXX object aurora/CMakeFiles/aurora_gd.dir/lib/dolphin/gd/GDAurora.cpp.o
+[30/38] Linking CXX static library aurora/libaurora_gd.a
+[31/38] Building CXX object CMakeFiles/aurora-repro.dir/main.cpp.o
+[32/38] Building CXX object aurora/CMakeFiles/aurora_si.dir/lib/dolphin/si/si.cpp.o
+[33/38] Linking CXX static library aurora/libaurora_si.a
+[34/38] Building CXX object aurora/CMakeFiles/aurora_ms.dir/lib/dolphin/ms/mouse.cpp.o
+[35/38] Linking CXX static library aurora/libaurora_ms.a
+[36/38] Building CXX object aurora/CMakeFiles/aurora_pad.dir/lib/dolphin/pad/pad.cpp.o
+[37/38] Linking CXX static library aurora/libaurora_pad.a
+[38/38] Linking CXX executable aurora-repro

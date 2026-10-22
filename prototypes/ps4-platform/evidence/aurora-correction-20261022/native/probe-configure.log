@@ -1,0 +1,43 @@
+-- aurora: Using existing Dawn
+-- aurora: Fetching abseil-cpp (standalone)
+-- aurora: Using system SDL3 (provider=system)
+-- aurora: Using static SDL3
+CMake Warning at /home/joseph_cano/.cache/pswaker/startup-20261021/src/aurora/extern/CMakeLists.txt:13 (find_package):
+  By not providing "FindxxHash.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "xxHash", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "xxHash" with any
+  of the following names:
+
+    xxHashConfig.cmake
+    xxhash-config.cmake
+
+  Add the installation prefix of "xxHash" to CMAKE_PREFIX_PATH or set
+  "xxHash_DIR" to a directory containing one of the above files.  If "xxHash"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+Call Stack (most recent call first):
+  /home/joseph_cano/.cache/pswaker/startup-20261021/src/aurora/extern/CMakeLists.txt:59 (aurora_find_package_global)
+
+
+-- aurora: Fetching xxhash
+-- xxHash build type: Release
+-- Architecture: x86_64
+-- aurora: Fetching fmt
+-- {fmt} version: 12.1.0
+-- Build type: Release
+-- aurora: Using existing libpng
+-- Checking for module 'freetype2'
+--   Package 'freetype2', required by 'virtual:world', not found
+-- aurora: Fetching Freetype
+-- Checking for module 'bzip2'
+--   Package 'bzip2', required by 'virtual:world', not found
+-- aurora: Fetching imgui
+-- Could NOT find SQLite3 (missing: SQLite3_INCLUDE_DIR SQLite3_LIBRARY) 
+-- Checking for module 'sqlite3'
+--   Package 'sqlite3', required by 'virtual:world', not found
+-- aurora: Fetching sqlite3
+-- Configuring done (5.8s)
+-- Generating done (0.1s)
+-- Build files have been written to: /home/joseph_cano/.cache/pswaker/startup-20261021/build/probe

@@ -1,0 +1,56 @@
+PASS preserved-baseline-scene 605d57a581e3657ce4a485140f17552b1c6119d2 d72a62a12e61ad159f290b6a1a93d8d2fade89ad01c485fe8fe27a360c21f24d
+variant=baseline exit=1
+FAIL internal-size actual=569x320 expected=1280x720
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FRAME 0 graphics=0
+RESULT sizing=0 graphics=0
+variant=repeat exit=1
+FRAME 27 graphics=0
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FRAME 28 graphics=0
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FRAME 29 graphics=0
+RESULT sizing=0 graphics=0
+variant=drain exit=1
+FAIL internal-size actual=569x320 expected=1280x720
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FRAME 0 graphics=0
+RESULT sizing=0 graphics=0
+variant=scale exit=1
+PASS internal-size actual=1280x720 expected=1280x720
+PIXEL Aurora-EFB-known-white-readback first=0,0,0,255 expected=255,255,255,255 mismatches=1024/1024
+PIXEL Aurora-offscreen-known-white-readback first=0,0,0,0 expected=255,255,255,255 mismatches=1024/1024
+FRAME 0 graphics=0
+RESULT sizing=1 graphics=0
+variant=initialize-repeat exit=1
+FRAME 27 graphics=0
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,0 expected=255,255,255,255 mismatches=1024/1024
+FRAME 28 graphics=0
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,0 expected=255,255,255,255 mismatches=1024/1024
+FRAME 29 graphics=0
+RESULT sizing=0 graphics=0
+variant=alpha exit=1
+FRAME 27 graphics=1
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+FRAME 28 graphics=1
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+FRAME 29 graphics=1
+RESULT sizing=0 graphics=1
+variant=corrected exit=0
+FRAME 27 graphics=1
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+FRAME 28 graphics=1
+PIXEL Aurora-EFB-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+PIXEL Aurora-offscreen-known-white-readback first=255,255,255,255 expected=255,255,255,255 mismatches=0/1024
+FRAME 29 graphics=1
+RESULT sizing=1 graphics=1
+PASS differential: failed baseline retained; corrected shared path passes every comparison
