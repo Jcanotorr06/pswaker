@@ -1,0 +1,52 @@
+{
+  "scope": "One clean maintained Linux/WSL2 host build; no maintained console run",
+  "build_root": "/home/joseph_cano/.cache/pswaker/maintained-13-complete",
+  "local_artifact_directory": "local-research/diagnostic-artifacts/maintained-13",
+  "command": "JOBS=12 bash /home/joseph_cano/.cache/pswaker/maintained-source-13-complete/platform/ps4/clean-build.sh /home/joseph_cano/.cache/pswaker/maintained-13-complete /home/joseph_cano/.cache/pswaker/maintained-13-final",
+  "prebuild_git_tree": "3482b018a584d4795b2bc97d69558a9966707737",
+  "source_archive_sha256": "e2b6f1a8e2294869678b3fb78f65a5b2481e6d828e112e0868b37542770d4105",
+  "cache_use": "Verified downloads only; all target implementation libraries recompiled",
+  "exports": {
+    "PSWaker-Platform-Diagnostic-01.03.pkg": {
+      "sha256": "1f5ae5da58bdb6283a5abff15beee3e36aa61be0c4d6655d346acb24b9dcf0a8",
+      "bytes": 43778048
+    },
+    "platform_diagnostic.elf": {
+      "sha256": "e1a42f297207f3df164600d95f44ec3bb0b45858cd660d61a863a5d36dbc9a3a",
+      "bytes": 47441504
+    },
+    "eboot.bin": {
+      "sha256": "1bb0000e6eabf128a8854bfe3a0d315a63ffddcaa735a1fac17096c960fdd9da",
+      "bytes": 41730000
+    },
+    "platform_diagnostic.oelf": {
+      "sha256": "f9cb057c77e876954b52156a95a500a3baccc9712cbb95e7eae2c89b3018f5fc",
+      "bytes": 48541248
+    }
+  },
+  "build_id": "f89abcb363a45bfbe8cc",
+  "sdk_recipes_verified": 14,
+  "inherited_modules": [
+    {
+      "path": "samples/piglet/sce_module/libSceFios2.prx",
+      "sha256": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "source_archive_member": "samples/piglet/sce_module/libSceFios2.prx",
+      "status": "Inherited binary; per-file redistribution grant and corresponding source unresolved"
+    },
+    {
+      "path": "samples/piglet/sce_module/libc.prx",
+      "sha256": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "source_archive_member": "samples/piglet/sce_module/libc.prx",
+      "status": "Inherited binary; per-file redistribution grant and corresponding source unresolved"
+    },
+    {
+      "path": "samples/piglet/sce_sys/about/right.sprx",
+      "sha256": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "source_archive_member": "samples/piglet/sce_sys/about/right.sprx",
+      "status": "Inherited binary; per-file redistribution grant and corresponding source unresolved"
+    }
+  ],
+  "notice_files_retained": 103,
+  "distribution_cleared": false,
+  "next_gate": "Issue #15: two clean builds and renewed owner hardware evidence tied to installed PKG"
+}

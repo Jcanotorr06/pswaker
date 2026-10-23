@@ -1,0 +1,36 @@
+# Maintainer: cpasjuste <cpasjuste@gmail.com>
+
+pkgname=ps4-openorbis-create-gp4
+pkgver=1.0
+pkgrel=5
+pkgdesc='create-gp4 for ps4'
+arch=('any')
+url='https://github.com/OpenOrbis/create-gp4'
+license=('MIT')
+options=(!debug !strip libtool)
+source=(
+  "$url/archive/bf8e66e9e9bdd92e41e1697893bc8098a151fa24.zip"
+  "https://go.dev/dl/go1.17.5.linux-amd64.tar.gz"
+)
+sha256sums=(
+  'bf089a7c4c301fe93bc1908fd66d35367cd6ac4548dece60096ade3483a06bee'
+  'bd78114b0d441b029c8fe0341f4910370925a4d270a6a590668840675b0c653e'
+)
+groups=(
+  'pacbrew' 'pacbrew-ps4' 'pacbrew-ps4-toolchain' 
+  'ps4-openorbis' # for backward compatibility
+)
+
+build() {
+  cd create-gp4-bf8e66e9e9bdd92e41e1697893bc8098a151fa24
+
+  cd cmd/create-gp4
+  ../../../go/bin/go build -o create-gp4
+}
+
+package() {
+  cd create-gp4-bf8e66e9e9bdd92e41e1697893bc8098a151fa24
+  install -d $pkgdir/opt/pacbrew/ps4/openorbis/bin/linux
+  install -m755 cmd/create-gp4/create-gp4 $pkgdir/opt/pacbrew/ps4/openorbis/bin/create-gp4
+  cd $pkgdir/opt/pacbrew/ps4/openorbis/bin/linux && ln -s ../create-gp4 create-gp4
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "package": "ps4-openorbis-clang",
+    "recipe": "provenance/pacbrew-toolchain/clang.PKGBUILD",
+    "recipe_sha256": "993788c97c09a5aabd2107c8fd1178b9a2d48682fac7dfd698c96cc3514240c9",
+    "binary_build_recipe_sha256": "993788c97c09a5aabd2107c8fd1178b9a2d48682fac7dfd698c96cc3514240c9",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-headers",
+    "recipe": "provenance/pacbrew-toolchain/headers.PKGBUILD",
+    "recipe_sha256": "2f688c71f5ff84f761e3c80ba479dc494c8c91de24aa7e2075ae03c584875c56",
+    "binary_build_recipe_sha256": "2f688c71f5ff84f761e3c80ba479dc494c8c91de24aa7e2075ae03c584875c56",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-musl",
+    "recipe": "provenance/pacbrew-toolchain/musl.PKGBUILD",
+    "recipe_sha256": "bcddb4de41320598509e3c59300e09f592c6feea335ca88f60bdfdd7daa6f8aa",
+    "binary_build_recipe_sha256": "bcddb4de41320598509e3c59300e09f592c6feea335ca88f60bdfdd7daa6f8aa",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-libcxx",
+    "recipe": "provenance/pacbrew-toolchain/libcxx.PKGBUILD",
+    "recipe_sha256": "69c86bc4495f4cc61dbf3c8947a1e83187821c800100661df135866011cbb60c",
+    "binary_build_recipe_sha256": "69c86bc4495f4cc61dbf3c8947a1e83187821c800100661df135866011cbb60c",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-vars",
+    "recipe": "provenance/pacbrew-toolchain/vars.PKGBUILD",
+    "recipe_sha256": "fafbd405011fe5a05c9888c23a71096d6253d14509b7223c876dc0e29fe8a359",
+    "binary_build_recipe_sha256": "fafbd405011fe5a05c9888c23a71096d6253d14509b7223c876dc0e29fe8a359",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-create-fself",
+    "recipe": "provenance/pacbrew-toolchain/create-fself.PKGBUILD",
+    "recipe_sha256": "47633f8a00e03d96b7e8c61b7578d0b16ea3741c94b94981a119e10e4c82020d",
+    "binary_build_recipe_sha256": "47633f8a00e03d96b7e8c61b7578d0b16ea3741c94b94981a119e10e4c82020d",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-create-gp4",
+    "recipe": "provenance/pacbrew-toolchain/create-gp4.PKGBUILD",
+    "recipe_sha256": "3b8d3433aeb7f3e627b1d6d9db8212530ab84efa962568ebd350d21410469ee6",
+    "binary_build_recipe_sha256": "3b8d3433aeb7f3e627b1d6d9db8212530ab84efa962568ebd350d21410469ee6",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-pkgtools",
+    "recipe": "provenance/pacbrew-toolchain/pkgtools.PKGBUILD",
+    "recipe_sha256": "b0e2538be1b7fa025b8b397981f6bbabadf46b0de78f805a123ee047007f45f7",
+    "binary_build_recipe_sha256": "b0e2538be1b7fa025b8b397981f6bbabadf46b0de78f805a123ee047007f45f7",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-orbis-lib-gen",
+    "recipe": "provenance/pacbrew-toolchain/orbis-lib-gen.PKGBUILD",
+    "recipe_sha256": "5f67480ec03876f10af26183dca0eada534a3bc9cf7e27a429dd8c64550ef52e",
+    "binary_build_recipe_sha256": "5f67480ec03876f10af26183dca0eada534a3bc9cf7e27a429dd8c64550ef52e",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-readoelf",
+    "recipe": "provenance/pacbrew-toolchain/readoelf.PKGBUILD",
+    "recipe_sha256": "e257ff393fffd83f8008c6d16b4722d69471b3536391bfdaa9f164c3c347ddb9",
+    "binary_build_recipe_sha256": "e257ff393fffd83f8008c6d16b4722d69471b3536391bfdaa9f164c3c347ddb9",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-pkg-config",
+    "recipe": "provenance/pacbrew-toolchain/pkg-config.PKGBUILD",
+    "recipe_sha256": "a8904dac8c2a02ce9011d5f2ae8b7b5378785997046c0707eaf3071e5f80aa24",
+    "binary_build_recipe_sha256": "a8904dac8c2a02ce9011d5f2ae8b7b5378785997046c0707eaf3071e5f80aa24",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-zlib",
+    "recipe": "provenance/pacbrew-portlibs/zlib.PKGBUILD",
+    "recipe_sha256": "f5f22d1f2eaca7b35c0233b6b154f09e029c465ed2c2baa9ce700f235673a539",
+    "binary_build_recipe_sha256": "f5f22d1f2eaca7b35c0233b6b154f09e029c465ed2c2baa9ce700f235673a539",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-libpng",
+    "recipe": "provenance/pacbrew-portlibs/libpng.PKGBUILD",
+    "recipe_sha256": "f0e52991eebd84460ff95a41a8bbdda43752af0feb759259fbd4ef8ee7f7cbf6",
+    "binary_build_recipe_sha256": "f0e52991eebd84460ff95a41a8bbdda43752af0feb759259fbd4ef8ee7f7cbf6",
+    "matches": true
+  },
+  {
+    "package": "ps4-openorbis-bzip2",
+    "recipe": "provenance/pacbrew-portlibs/bzip2.PKGBUILD",
+    "recipe_sha256": "cda7c8f4150959c8c4c8d5883b91c62d027006bc152960625ee8f282c2d832f0",
+    "binary_build_recipe_sha256": "cda7c8f4150959c8c4c8d5883b91c62d027006bc152960625ee8f282c2d832f0",
+    "matches": true
+  }
+]
