@@ -2,7 +2,9 @@
 
 Implements the preparation slice in [issue #13](https://github.com/Jcanotorr06/pswaker/issues/13).
 This builds a **disc-free program package**, title ID `PSWK00010`, version `01.03`.
-It contains synthetic test content only. Game integration, renderer reconciliation,
+It contains synthetic test content only. Owner validation of the provided 01.03
+prototype is required before #13 can close; use the [console checklist](Console-checklist.md)
+for test steps and evidence to return. Game integration, renderer reconciliation,
 the maintained clean-build pair and renewed console gate belong to #14 and #15.
 
 ## Reproduce on Linux / WSL2
@@ -128,7 +130,7 @@ Evidence remains at `/data/pswaker-diagnostic-prototype/` for compatibility:
 only the matching BEGIN/build block with a run. Do not mistake older records for
 this package. Last-stage files are not established crash dumps.
 
-#15 owns the owner checklist and renewed gate: one cold-cache and two warm-cache
+#15 owns the later renderer-reconciled stack's renewed gate: one cold-cache and two warm-cache
 600-second runs, full close/relaunch, expected RGB triangle/white/purple/text,
 continuous quiet tone, controller exercise, persistence and evidence retrieval,
 with no failures/crashes/hangs or sustained resource growth. No current host
