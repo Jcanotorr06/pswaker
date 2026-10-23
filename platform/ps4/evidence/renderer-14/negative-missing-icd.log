@@ -1,0 +1,27 @@
+AURORA level=1 module=aurora Aurora initializing
+AURORA level=1 module=aurora::system_info CPU model: AMD Ryzen 5 5600 6-Core Processor
+AURORA level=1 module=aurora::system_info Memory: 32053 MiB
+AURORA level=1 module=aurora::system_info Architecture: x86_64
+AURORA level=1 module=aurora::system_info OS: Ubuntu 24.04.3 LTS (Noble Numbat)
+AURORA level=1 module=aurora::gpu Creating WebGPU instance
+AURORA level=1 module=aurora::gpu Attempting to initialize Vulkan
+AURORA level=1 module=aurora::gpu Requesting adapter
+  Feature level: Compatibility
+  Power preference: HighPerformance
+  Backend: Vulkan
+  Compatible surface: true
+AURORA level=2 module=aurora::gpu WebGPU message: vkCreateInstance failed with VK_ERROR_INCOMPATIBLE_DRIVER
+    at CheckVkSuccessImpl (/home/joseph_cano/.cache/pswaker/startup-20261021/src/dawn/src/dawn/native/vulkan/VulkanError.cpp:106)
+
+AURORA level=2 module=aurora::gpu Adapter request failed: Unavailable: No supported adapters
+AURORA level=3 module=aurora::gpu Failed to create adapter: request status Unavailable, message: No supported adapters
+AURORA level=1 module=aurora::gpu Attempting to initialize Vulkan
+AURORA level=1 module=aurora::gpu Requesting adapter
+  Feature level: Compatibility
+  Power preference: HighPerformance
+  Backend: Vulkan
+  Compatible surface: true
+AURORA level=2 module=aurora::gpu Adapter request failed: Unavailable: No supported adapters
+AURORA level=3 module=aurora::gpu Failed to create adapter: request status Unavailable, message: No supported adapters
+AURORA level=4 module=aurora Error creating window: 
+Aborted (core dumped)

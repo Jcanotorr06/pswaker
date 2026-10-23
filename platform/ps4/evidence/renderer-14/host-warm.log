@@ -1,0 +1,257 @@
+AURORA level=1 module=aurora Aurora initializing
+AURORA level=1 module=aurora::system_info CPU model: AMD Ryzen 5 5600 6-Core Processor
+AURORA level=1 module=aurora::system_info Memory: 32053 MiB
+AURORA level=1 module=aurora::system_info Architecture: x86_64
+AURORA level=1 module=aurora::system_info OS: Ubuntu 24.04.3 LTS (Noble Numbat)
+AURORA level=1 module=aurora::gpu Creating WebGPU instance
+AURORA level=1 module=aurora::gpu Attempting to initialize Vulkan
+AURORA level=1 module=aurora::gpu Requesting adapter
+  Feature level: Compatibility
+  Power preference: HighPerformance
+  Backend: Vulkan
+  Compatible surface: true
+Warning: maxDynamicUniformBuffersPerPipelineLayout artificially reduced from 500000 to 16 to fit dynamic offset allocation limit.
+Warning: maxDynamicStorageBuffersPerPipelineLayout artificially reduced from 500000 to 16 to fit dynamic offset allocation limit.
+AURORA level=1 module=aurora::gpu Graphics adapter information
+  API: Vulkan
+  Device: llvmpipe (LLVM 20.1.2, 256 bits) (CPU)
+  Driver: llvmpipe: Mesa 25.2.8-0ubuntu0.24.04.2 (LLVM 20.1.2)
+AURORA level=1 module=aurora::gpu Using limits:
+  maxTextureDimension1D: 16384
+  maxTextureDimension2D: 16384
+  maxTextureDimension3D: 4096
+  maxTextureArrayLayers: 2048
+  maxStorageBuffersPerShaderStage: 2
+  minUniformBufferOffsetAlignment: 64
+  minStorageBufferOffsetAlignment: 16
+  maxImmediateSize: 64
+AURORA level=1 module=aurora::gpu Enabling features: 
+  CoreFeaturesAndLimits
+  TextureCompressionBC
+  DualSourceBlending
+  TextureComponentSwizzle
+AURORA level=1 module=aurora::gpu Using surface format BGRA8Unorm, present mode Mailbox
+AURORA level=1 module=aurora::gfx::pipeline_cache No bundled initial pipeline cache found at './initial_pipeline_cache.db'
+AURORA level=1 module=aurora Using framebuffer size 1280x720 scale 1
+PASS GX-pipeline-preparation
+STAGE Wind-Waker-renderer-known-results
+PASS GX-alpha-R8-GT
+STAGE GX-alpha-R8-GT
+TEXTURE GX-alpha-R8-GT width=32 height=32 format=27
+MAP GX-alpha-R8-GT status=1 message=
+PIXEL GX-alpha-R8-GT origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-R8-GT
+PASS GX-alpha-R8-EQ
+STAGE GX-alpha-R8-EQ
+TEXTURE GX-alpha-R8-EQ width=32 height=32 format=27
+MAP GX-alpha-R8-EQ status=1 message=
+PIXEL GX-alpha-R8-EQ origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-R8-EQ
+PASS GX-alpha-GR16-GT
+STAGE GX-alpha-GR16-GT
+TEXTURE GX-alpha-GR16-GT width=32 height=32 format=27
+MAP GX-alpha-GR16-GT status=1 message=
+PIXEL GX-alpha-GR16-GT origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-GR16-GT
+PASS GX-alpha-GR16-EQ
+STAGE GX-alpha-GR16-EQ
+TEXTURE GX-alpha-GR16-EQ width=32 height=32 format=27
+MAP GX-alpha-GR16-EQ status=1 message=
+PIXEL GX-alpha-GR16-EQ origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-GR16-EQ
+PASS GX-alpha-BGR24-GT
+STAGE GX-alpha-BGR24-GT
+TEXTURE GX-alpha-BGR24-GT width=32 height=32 format=27
+MAP GX-alpha-BGR24-GT status=1 message=
+PIXEL GX-alpha-BGR24-GT origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-BGR24-GT
+PASS GX-alpha-BGR24-EQ
+STAGE GX-alpha-BGR24-EQ
+TEXTURE GX-alpha-BGR24-EQ width=32 height=32 format=27
+MAP GX-alpha-BGR24-EQ status=1 message=
+PIXEL GX-alpha-BGR24-EQ origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-BGR24-EQ
+PASS GX-alpha-R8-GT-false
+STAGE GX-alpha-R8-GT-false
+TEXTURE GX-alpha-R8-GT-false width=32 height=32 format=27
+MAP GX-alpha-R8-GT-false status=1 message=
+PIXEL GX-alpha-R8-GT-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-R8-GT-false
+PASS GX-alpha-R8-EQ-false
+STAGE GX-alpha-R8-EQ-false
+TEXTURE GX-alpha-R8-EQ-false width=32 height=32 format=27
+MAP GX-alpha-R8-EQ-false status=1 message=
+PIXEL GX-alpha-R8-EQ-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-R8-EQ-false
+PASS GX-alpha-GR16-GT-false
+STAGE GX-alpha-GR16-GT-false
+TEXTURE GX-alpha-GR16-GT-false width=32 height=32 format=27
+MAP GX-alpha-GR16-GT-false status=1 message=
+PIXEL GX-alpha-GR16-GT-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-GR16-GT-false
+PASS GX-alpha-GR16-EQ-false
+STAGE GX-alpha-GR16-EQ-false
+TEXTURE GX-alpha-GR16-EQ-false width=32 height=32 format=27
+MAP GX-alpha-GR16-EQ-false status=1 message=
+PIXEL GX-alpha-GR16-EQ-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-GR16-EQ-false
+PASS GX-alpha-BGR24-GT-false
+STAGE GX-alpha-BGR24-GT-false
+TEXTURE GX-alpha-BGR24-GT-false width=32 height=32 format=27
+MAP GX-alpha-BGR24-GT-false status=1 message=
+PIXEL GX-alpha-BGR24-GT-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-BGR24-GT-false
+PASS GX-alpha-BGR24-EQ-false
+STAGE GX-alpha-BGR24-EQ-false
+TEXTURE GX-alpha-BGR24-EQ-false width=32 height=32 format=27
+MAP GX-alpha-BGR24-EQ-false status=1 message=
+PIXEL GX-alpha-BGR24-EQ-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-BGR24-EQ-false
+PASS GX-lit-SRTG
+STAGE GX-lit-SRTG
+TEXTURE GX-lit-SRTG width=32 height=32 format=27
+MAP GX-lit-SRTG status=1 message=
+PIXEL GX-lit-SRTG origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-lit-SRTG
+PASS GX-three-vertex-quad
+STAGE GX-three-vertex-quad
+TEXTURE GX-three-vertex-quad width=32 height=32 format=27
+MAP GX-three-vertex-quad status=1 message=
+PIXEL GX-three-vertex-quad origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-three-vertex-quad
+PASS GX-zero-brightness-attenuation
+STAGE GX-zero-brightness-attenuation
+TEXTURE GX-zero-brightness-attenuation width=32 height=32 format=27
+MAP GX-zero-brightness-attenuation status=1 message=
+PIXEL GX-zero-brightness-attenuation origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-zero-brightness-attenuation
+PASS GX-EFB-copy-to-texture-resolve
+STAGE GX-EFB-copy-to-texture-known-white
+TEXTURE GX-EFB-copy-to-texture-known-white width=32 height=32 format=27
+MAP GX-EFB-copy-to-texture-known-white status=1 message=
+PIXEL GX-EFB-copy-to-texture-known-white origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-EFB-copy-to-texture-known-white
+PASS GX-content-scale-allocation
+STAGE GX-content-scale-upper-left
+TEXTURE GX-content-scale-upper-left width=1280 height=720 format=27
+MAP GX-content-scale-upper-left status=1 message=
+PIXEL GX-content-scale-upper-left origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-content-scale-upper-left
+STAGE GX-content-scale-lower-right
+TEXTURE GX-content-scale-lower-right width=1280 height=720 format=27
+MAP GX-content-scale-lower-right status=1 message=
+PIXEL GX-content-scale-lower-right origin=1248,688 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-content-scale-lower-right
+PASS renderer-checks
+STAGE Wind-Waker-renderer-known-results
+PASS GX-alpha-R8-GT
+STAGE GX-alpha-R8-GT
+TEXTURE GX-alpha-R8-GT width=32 height=32 format=27
+MAP GX-alpha-R8-GT status=1 message=
+PIXEL GX-alpha-R8-GT origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-R8-GT
+PASS GX-alpha-R8-EQ
+STAGE GX-alpha-R8-EQ
+TEXTURE GX-alpha-R8-EQ width=32 height=32 format=27
+MAP GX-alpha-R8-EQ status=1 message=
+PIXEL GX-alpha-R8-EQ origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-R8-EQ
+PASS GX-alpha-GR16-GT
+STAGE GX-alpha-GR16-GT
+TEXTURE GX-alpha-GR16-GT width=32 height=32 format=27
+MAP GX-alpha-GR16-GT status=1 message=
+PIXEL GX-alpha-GR16-GT origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-GR16-GT
+PASS GX-alpha-GR16-EQ
+STAGE GX-alpha-GR16-EQ
+TEXTURE GX-alpha-GR16-EQ width=32 height=32 format=27
+MAP GX-alpha-GR16-EQ status=1 message=
+PIXEL GX-alpha-GR16-EQ origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-GR16-EQ
+PASS GX-alpha-BGR24-GT
+STAGE GX-alpha-BGR24-GT
+TEXTURE GX-alpha-BGR24-GT width=32 height=32 format=27
+MAP GX-alpha-BGR24-GT status=1 message=
+PIXEL GX-alpha-BGR24-GT origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-BGR24-GT
+PASS GX-alpha-BGR24-EQ
+STAGE GX-alpha-BGR24-EQ
+TEXTURE GX-alpha-BGR24-EQ width=32 height=32 format=27
+MAP GX-alpha-BGR24-EQ status=1 message=
+PIXEL GX-alpha-BGR24-EQ origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-alpha-BGR24-EQ
+PASS GX-alpha-R8-GT-false
+STAGE GX-alpha-R8-GT-false
+TEXTURE GX-alpha-R8-GT-false width=32 height=32 format=27
+MAP GX-alpha-R8-GT-false status=1 message=
+PIXEL GX-alpha-R8-GT-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-R8-GT-false
+PASS GX-alpha-R8-EQ-false
+STAGE GX-alpha-R8-EQ-false
+TEXTURE GX-alpha-R8-EQ-false width=32 height=32 format=27
+MAP GX-alpha-R8-EQ-false status=1 message=
+PIXEL GX-alpha-R8-EQ-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-R8-EQ-false
+PASS GX-alpha-GR16-GT-false
+STAGE GX-alpha-GR16-GT-false
+TEXTURE GX-alpha-GR16-GT-false width=32 height=32 format=27
+MAP GX-alpha-GR16-GT-false status=1 message=
+PIXEL GX-alpha-GR16-GT-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-GR16-GT-false
+PASS GX-alpha-GR16-EQ-false
+STAGE GX-alpha-GR16-EQ-false
+TEXTURE GX-alpha-GR16-EQ-false width=32 height=32 format=27
+MAP GX-alpha-GR16-EQ-false status=1 message=
+PIXEL GX-alpha-GR16-EQ-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-GR16-EQ-false
+PASS GX-alpha-BGR24-GT-false
+STAGE GX-alpha-BGR24-GT-false
+TEXTURE GX-alpha-BGR24-GT-false width=32 height=32 format=27
+MAP GX-alpha-BGR24-GT-false status=1 message=
+PIXEL GX-alpha-BGR24-GT-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-BGR24-GT-false
+PASS GX-alpha-BGR24-EQ-false
+STAGE GX-alpha-BGR24-EQ-false
+TEXTURE GX-alpha-BGR24-EQ-false width=32 height=32 format=27
+MAP GX-alpha-BGR24-EQ-false status=1 message=
+PIXEL GX-alpha-BGR24-EQ-false origin=0,0 first-storage=0,0,0,0 expected-rgba=0,0,0,0 mismatches=0/1024
+PASS GX-alpha-BGR24-EQ-false
+PASS GX-lit-SRTG
+STAGE GX-lit-SRTG
+TEXTURE GX-lit-SRTG width=32 height=32 format=27
+MAP GX-lit-SRTG status=1 message=
+PIXEL GX-lit-SRTG origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-lit-SRTG
+PASS GX-three-vertex-quad
+STAGE GX-three-vertex-quad
+TEXTURE GX-three-vertex-quad width=32 height=32 format=27
+MAP GX-three-vertex-quad status=1 message=
+PIXEL GX-three-vertex-quad origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-three-vertex-quad
+PASS GX-zero-brightness-attenuation
+STAGE GX-zero-brightness-attenuation
+TEXTURE GX-zero-brightness-attenuation width=32 height=32 format=27
+MAP GX-zero-brightness-attenuation status=1 message=
+PIXEL GX-zero-brightness-attenuation origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-zero-brightness-attenuation
+PASS GX-EFB-copy-to-texture-resolve
+STAGE GX-EFB-copy-to-texture-known-white
+TEXTURE GX-EFB-copy-to-texture-known-white width=32 height=32 format=27
+MAP GX-EFB-copy-to-texture-known-white status=1 message=
+PIXEL GX-EFB-copy-to-texture-known-white origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-EFB-copy-to-texture-known-white
+PASS GX-content-scale-allocation
+STAGE GX-content-scale-upper-left
+TEXTURE GX-content-scale-upper-left width=1280 height=720 format=27
+MAP GX-content-scale-upper-left status=1 message=
+PIXEL GX-content-scale-upper-left origin=0,0 first-storage=0,0,0,255 expected-rgba=0,0,0,255 mismatches=0/1024
+PASS GX-content-scale-upper-left
+STAGE GX-content-scale-lower-right
+TEXTURE GX-content-scale-lower-right width=1280 height=720 format=27
+MAP GX-content-scale-lower-right status=1 message=
+PIXEL GX-content-scale-lower-right origin=1248,688 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024
+PASS GX-content-scale-lower-right
+PASS renderer-checks-after-recreation
+PASS GPU-queue-drained
+AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.
+END failures=0

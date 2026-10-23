@@ -1,0 +1,54 @@
+{
+  "method": "Selected platform files and generated WebGPU headers compared to maintained-13-complete; target compilation checks remaining type/link contracts.",
+  "files": [
+    {
+      "path": "src/aurora/lib/dawn/BackendBinding.cpp",
+      "sha256": "25245f535f105a48f579c9cc885c222b919fa343c6540599ad713cd7204f6e88",
+      "baseline_sha256": "25245f535f105a48f579c9cc885c222b919fa343c6540599ad713cd7204f6e88",
+      "unchanged": true
+    },
+    {
+      "path": "src/dawn/src/dawn/native/Surface.cpp",
+      "sha256": "72da80c501da055b74f2d279b9a4a384cfae47343458c528fe3fbf924d0cb5c6",
+      "baseline_sha256": "72da80c501da055b74f2d279b9a4a384cfae47343458c528fe3fbf924d0cb5c6",
+      "unchanged": true
+    },
+    {
+      "path": "src/dawn/src/dawn/native/vulkan/VulkanFunctions.cpp",
+      "sha256": "0c846921bb783277c042dc148fc5932753caa23229939d68b49189db4e61ad26",
+      "baseline_sha256": "0c846921bb783277c042dc148fc5932753caa23229939d68b49189db4e61ad26",
+      "unchanged": true
+    },
+    {
+      "path": "src/dawn/src/dawn/native/vulkan/SwapChainVk.cpp",
+      "sha256": "3105a93c06e18c51844d6933aec0b24649fc9a1a46dcdb4a55e305d46a6fe5fa",
+      "baseline_sha256": "3105a93c06e18c51844d6933aec0b24649fc9a1a46dcdb4a55e305d46a6fe5fa",
+      "unchanged": true
+    },
+    {
+      "path": "build/dawn/gen/include/dawn/webgpu.h",
+      "sha256": "73879efab14c9664069fb94b4601dc4db7ead7884349b5414dfe5c49e7f60880",
+      "baseline_sha256": "73879efab14c9664069fb94b4601dc4db7ead7884349b5414dfe5c49e7f60880",
+      "unchanged": true
+    },
+    {
+      "path": "build/dawn/gen/include/dawn/webgpu_cpp.h",
+      "sha256": "466d7f2ab1a9fec4880272e8b35141d1b4651f5507cb30b6a25b5e6b8f0d2abb",
+      "baseline_sha256": "466d7f2ab1a9fec4880272e8b35141d1b4651f5507cb30b6a25b5e6b8f0d2abb",
+      "unchanged": true
+    },
+    {
+      "path": "refs/DolphinPS4/port/ps4_runtime.cpp",
+      "sha256": "b5d924dfe3ca22a2abd1555fa4f4df1807b5d3420a011c05091a9e727528656c",
+      "baseline_sha256": "b5d924dfe3ca22a2abd1555fa4f4df1807b5d3420a011c05091a9e727528656c",
+      "unchanged": true
+    },
+    {
+      "path": "src/mesa/src/vulkan/wsi/wsi_common_display.c",
+      "sha256": "c0c7c9a3474486b7a272e6e4044374c00b2fca3709aeac0a033270944599e631",
+      "baseline_sha256": "c0c7c9a3474486b7a272e6e4044374c00b2fca3709aeac0a033270944599e631",
+      "unchanged": true
+    }
+  ],
+  "limits": "Source/header identity and a host cross-build are not PS4 runtime or display validation."
+}

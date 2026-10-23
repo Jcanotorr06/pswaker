@@ -106,6 +106,32 @@ establish PS4 RADV/VideoOut behavior, performance, hardware cache recovery, game
 TEV coverage, every texture-object reinterpretation, or gameplay correctness.
 The new package needs #15's two clean builds and renewed owner console gate.
 
+## Repeat the host observation
+
+The host harness consumes an explicitly supplied host-built Dawn/SDL3 pair and
+host zlib/libpng source directories; it does not build the PS4 libraries as host
+libraries. The recorded host archive/header/source hashes and environment are in
+`evidence/renderer-14/host-renderer.json`. With those recorded local inputs:
+
+```bash
+cmake -S platform/ps4/host-renderer -B /tmp/pswaker-renderer-host -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang-21 \
+  -DCMAKE_CXX_COMPILER=clang++-21 \
+  -DPLATFORM_ROOT="$HOME/.cache/pswaker/maintained-14" \
+  -DHOST_ROOT="$HOME/.cache/pswaker/aurora-host-20261022"
+cmake --build /tmp/pswaker-renderer-host --parallel 12
+mkdir /tmp/pswaker-renderer-run
+cd /tmp/pswaker-renderer-run
+SDL_VIDEODRIVER=x11 XDG_RUNTIME_DIR=/tmp \
+  VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/lvp_icd.json \
+  xvfb-run -a /tmp/pswaker-renderer-host/renderer-check
+```
+
+Repeat the last command in the same run directory for a warm cache. Preserve a
+copy before corrupting disposable host cache files for a recovery trial. Use a
+fresh run directory for a cold trial. This recipe reuses recorded host archives;
+the maintained target clean build is the independent PS4 compilation path.
+
 See [build and host evidence](evidence/renderer-14/REPORT.md) and the
 [renderer candidate checklist](Renderer-checklist.md). The historical 01.02
 and maintained 01.03 packages establish no hardware result for 01.04.

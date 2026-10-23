@@ -1082,5 +1082,156 @@
       "disposition": "excluded",
       "resolution": "Excluded: optional FIFO memoisation/fast paths depend on 0020 and target 60 Hz. Keep existing fork draw cache and FIFO paths; no performance equivalence claimed."
     }
+  ],
+  "platform_reference_patches": [
+    {
+      "source_url": "https://raw.githubusercontent.com/griches/PS5_SwitchWaker/3c0f213f2d4c17606ac8637eda2c5da6cbcc73b0/ps5/patches/aurora.patch",
+      "original": "provenance/wind-waker/ps5-aurora.patch",
+      "original_sha256": "6d29babe902a8f40b9126e0864049f2284e3d8a9d04139eba25c00f47446f954",
+      "disposition": "excluded",
+      "files": [
+        "lib/dawn/BackendBinding.cpp",
+        "lib/dolphin/pad/pad.cpp",
+        "lib/imgui.cpp"
+      ],
+      "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups.",
+      "hunks": [
+        {
+          "file": "lib/dawn/BackendBinding.cpp",
+          "hunk": "@@ -28,6 +28,13 @@ std::shared_ptr<wgpu::ChainedStruct> SetupWindowAndGetSurfaceDescriptor(SDL_Wind",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "lib/dolphin/pad/pad.cpp",
+          "hunk": "@@ -96,10 +96,12 @@ std::array<PADButtonMapping, PAD_BUTTON_COUNT> g_defaultButtonsPS4{{",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "lib/imgui.cpp",
+          "hunk": "@@ -236,9 +236,16 @@ void render(const wgpu::RenderPassEncoder& pass, const DrawData& drawData) noexc",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        }
+      ]
+    },
+    {
+      "source_url": "https://raw.githubusercontent.com/griches/PS5_SwitchWaker/3c0f213f2d4c17606ac8637eda2c5da6cbcc73b0/ps5/patches/dawn.patch",
+      "original": "provenance/wind-waker/ps5-dawn.patch",
+      "original_sha256": "96a090eff5c39b3d17a6a70add8965cf58c4fecd6424f20ca45b6225c3492b40",
+      "disposition": "excluded",
+      "files": [
+        "src/dawn/common/SystemUtils.cpp",
+        "src/dawn/native/CMakeLists.txt",
+        "src/dawn/native/Surface.cpp",
+        "src/dawn/native/vulkan/BackendVk.cpp",
+        "src/dawn/native/vulkan/SwapChainVk.cpp",
+        "src/dawn/native/vulkan/VulkanExtensions.cpp",
+        "src/dawn/native/vulkan/VulkanExtensions.h",
+        "src/dawn/native/vulkan/VulkanFunctions.cpp",
+        "src/dawn/native/vulkan/VulkanFunctions.h",
+        "src/utils/platform.h"
+      ],
+      "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups.",
+      "hunks": [
+        {
+          "file": "src/dawn/common/SystemUtils.cpp",
+          "hunk": "@@ -47,7 +47,7 @@",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/common/SystemUtils.cpp",
+          "hunk": "@@ -161,7 +161,7 @@ std::optional<std::string> GetExecutablePath() {",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/common/SystemUtils.cpp",
+          "hunk": "@@ -219,7 +219,7 @@ std::optional<std::string> GetModulePath() {",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/CMakeLists.txt",
+          "hunk": "@@ -869,7 +869,7 @@ if (DAWN_ENABLE_VULKAN)",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/Surface.cpp",
+          "hunk": "@@ -181,7 +181,7 @@ ResultOrError<UnpackedPtr<SurfaceDescriptor>> ValidateSurfaceDescriptor(",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/BackendVk.cpp",
+          "hunk": "@@ -69,7 +69,7 @@ constexpr char kVulkanLibName[] = \"vulkan-1.dll\";",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/SwapChainVk.cpp",
+          "hunk": "@@ -687,6 +687,46 @@ ResultOrError<VkSurfaceKHR> CreateVulkanSurface(InstanceBase* instance,",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/VulkanExtensions.cpp",
+          "hunk": "@@ -50,6 +50,7 @@ static constexpr std::array<InstanceExtInfo, kInstanceExtCount> sInstanceExtInfo",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/VulkanExtensions.cpp",
+          "hunk": "@@ -104,6 +105,7 @@ InstanceExtSet EnsureDependencies(const InstanceExtSet& advertisedExts) {",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/VulkanExtensions.h",
+          "hunk": "@@ -48,6 +48,7 @@ enum class InstanceExt : uint32_t {",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/VulkanFunctions.cpp",
+          "hunk": "@@ -35,7 +35,7 @@",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/VulkanFunctions.cpp",
+          "hunk": "@@ -95,7 +95,7 @@ F AsVkFn(void(VKAPI_PTR* addr)()) {",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/VulkanFunctions.cpp",
+          "hunk": "@@ -233,6 +233,12 @@ MaybeError VulkanFunctions::LoadInstanceProcs(VkInstance instance,",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/dawn/native/vulkan/VulkanFunctions.h",
+          "hunk": "@@ -204,6 +204,11 @@ struct VulkanFunctions {",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/utils/platform.h",
+          "hunk": "@@ -99,6 +99,10 @@",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        },
+        {
+          "file": "src/utils/platform.h",
+          "hunk": "@@ -248,6 +252,9 @@ static_assert(sizeof(sizeof(char)) == 4, \"Expect sizeof(size_t) == 4\");",
+          "disposition": "excluded",
+          "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+        }
+      ]
+    }
   ]
 }
