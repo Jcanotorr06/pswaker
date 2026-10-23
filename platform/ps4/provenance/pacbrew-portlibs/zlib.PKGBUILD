@@ -1,0 +1,44 @@
+# Maintainer: cpasjuste <cpasjuste@gmail.com>
+
+pkgname=ps4-openorbis-zlib
+pkgver=1.3.1
+pkgrel=2
+pkgdesc='Deflate compression method library'
+arch=('any')
+url='http://www.zlib.net/'
+license=('zlib')
+options=(!strip !debug libtool staticlibs)
+source=("https://zlib.net/zlib-$pkgver.tar.gz")
+sha256sums=('9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23')
+makedepends=('ps4-openorbis-vars')
+groups=(
+  'pacbrew' 'pacbrew-ps4' 'pacbrew-ps4-portlibs'
+  'ps4-openorbis-portlibs' # for backward compatibility
+)
+
+build() {
+  source /opt/pacbrew/ps4/openorbis/ps4vars.sh
+  cd zlib-$pkgver
+  
+  # zlib
+  ./configure --prefix="${OPENORBIS}/usr" --static
+  make libz.a # only build library, no programs
+
+  # libminizip
+  cd contrib/minizip
+  autoreconf --force --verbose --install
+  CFLAGS="${CFLAGS} -DUSE_FILE32API" \
+    ./configure --prefix="${OPENORBIS}/usr" --host=x86_64 \
+      --disable-shared --enable-static
+  make
+}
+
+package() {
+  source /opt/pacbrew/ps4/openorbis/ps4vars.sh
+  cd zlib-$pkgver
+  # zlib
+  make DESTDIR="$pkgdir" install
+  # libminizip
+  cd contrib/minizip
+  make DESTDIR="$pkgdir" install
+}

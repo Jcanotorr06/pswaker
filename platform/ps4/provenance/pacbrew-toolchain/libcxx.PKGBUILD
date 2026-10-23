@@ -1,0 +1,167 @@
+# Maintainer: cpasjuste <cpasjuste@gmail.com>
+
+pkgname=ps4-openorbis-libcxx
+pkgver=12.0.1
+pkgrel=1
+pkgdesc='clang cxx support for ps4'
+arch=('any')
+url='https://github.com/llvm/llvm-project/'
+license=('custom:Apache 2.0 with LLVM Exception')
+options=(!debug !strip libtool)
+source=(
+  "https://github.com/llvm/llvm-project/releases/download/llvmorg-$pkgver/llvm-project-$pkgver.src.tar.xz"
+  "001-ps4.patch"
+)
+sha256sums=(
+  '129cb25cd13677aad951ce5c2deb0fe4afc1e9d98950f53b51bdcfb5a73afa0e'
+  '975aa42e4cd76a55e377ef63ef50781f7fd874af1872a4aa6f2320e5ff2d55d3'
+)
+depends=('ps4-openorbis-musl' 'ps4-openorbis-headers')
+groups=(
+  'pacbrew' 'pacbrew-ps4' 'pacbrew-ps4-toolchain' 
+  'ps4-openorbis' # for backward compatibility
+)
+
+prepare() {
+  cd llvm-project-$pkgver.src
+  patch -Np2 -i "../001-ps4.patch"
+}
+
+build() {
+  cd llvm-project-$pkgver.src
+  
+  ########################
+  # compiler-rt
+  ########################
+  
+  cd compiler-rt && mkdir -p build && cd build
+  
+  cmake \
+    -DCMAKE_C_COMPILER=/opt/pacbrew/ps4/openorbis/bin/clang \
+    -DCMAKE_CXX_COMPILER=/opt/pacbrew/ps4/openorbis/bin/clang++ \
+    -DCMAKE_C_FLAGS="-fPIC -D__PS4__ -D_LIBUNWIND_IS_BAREMETAL=1" \
+    -DCMAKE_CXX_FLAGS="-fPIC -D__PS4__ -D_LIBUNWIND_IS_BAREMETAL=1" \
+    -DLLVM_PATH=../../llvm \
+    -DCOMPILER_RT_DEFAULT_TARGET_TRIPLE=x86_64-scei-ps4 \
+    -DCOMPILER_RT_BAREMETAL_BUILD=YES \
+    -DCOMPILER_RT_BUILD_BUILTINS=ON \
+    -DCOMPILER_RT_BUILD_CRT=OFF \
+    -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
+    -DCOMPILER_RT_BUILD_XRAY=OFF \
+    -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
+    -DCOMPILER_RT_BUILD_PROFILE=OFF \
+    -DCMAKE_INSTALL_PREFIX=/opt/pacbrew/ps4/openorbis \
+    ..
+    
+  make
+  
+  ########################
+  # libunwind
+  ########################
+
+  cd ../../libunwind && mkdir -p build && cd build
+
+  cmake \
+    -DCMAKE_C_COMPILER=/opt/pacbrew/ps4/openorbis/bin/clang \
+    -DCMAKE_CXX_COMPILER=/opt/pacbrew/ps4/openorbis/bin/clang++ \
+    -DCMAKE_C_FLAGS="-fPIC -D__PS4__ -D_LIBUNWIND_IS_BAREMETAL=1" \
+    -DCMAKE_CXX_FLAGS="-fPIC -D__PS4__ -D_LIBUNWIND_IS_BAREMETAL=1" \
+    -DLLVM_PATH=../../llvm \
+    -DLIBUNWIND_USE_COMPILER_RT=YES \
+    -DLIBUNWIND_BUILD_32_BITS=NO \
+    -DLIBUNWIND_ENABLE_STATIC=ON \
+    -DLIBUNWIND_ENABLE_SHARED=OFF \
+    -DLIBUNWIND_SYSROOT=/opt/pacbrew/ps4/openorbis \
+    -DCMAKE_INSTALL_PREFIX=/opt/pacbrew/ps4/openorbis \
+    ..
+
+  make
+
+  ########################
+  # libcxxabi
+  ########################
+
+  cd ../../libcxxabi && mkdir -p build && cd build
+
+  cmake \
+    -DCMAKE_C_COMPILER=/opt/pacbrew/ps4/openorbis/bin/clang \
+    -DCMAKE_CXX_COMPILER=/opt/pacbrew/ps4/openorbis/bin/clang++ \
+    -DCMAKE_C_FLAGS="-fPIC -D__PS4__ -D_LIBUNWIND_IS_BAREMETAL=1 -I/opt/pacbrew/ps4/openorbis/usr/include" \
+    -DCMAKE_CXX_FLAGS="-fPIC -D__PS4__ -D_LIBUNWIND_IS_BAREMETAL=1 -I/opt/pacbrew/ps4/openorbis/usr/include" \
+    -DLLVM_PATH="../../llvm" \
+    -DLIBCXXABI_ENABLE_SHARED=NO \
+    -DLIBCXXABI_ENABLE_STATIC=YES \
+    -DLIBCXXABI_ENABLE_EXCEPTIONS=YES \
+    -DLIBCXXABI_USE_COMPILER_RT=YES \
+    -DLIBCXXABI_USE_LLVM_UNWINDER=YES \
+    -DLIBCXXABI_ENABLE_PIC=YES \
+    -DLIBCXXABI_LIBUNWIND_PATH="../../libunwind" \
+    -DLIBCXXABI_LIBCXX_INCLUDES="../../libcxx/include" \
+    -DLIBCXXABI_SYSROOT=/opt/pacbrew/ps4/openorbis \
+    -DCMAKE_INSTALL_PREFIX=/opt/pacbrew/ps4/openorbis \
+    ..
+
+  make
+
+  ########################
+  # libcxx
+  ########################
+
+  cd ../../libcxx && mkdir -p build && cd build
+
+  cmake \
+    -DCMAKE_C_COMPILER=/opt/pacbrew/ps4/openorbis/bin/clang \
+    -DCMAKE_CXX_COMPILER=/opt/pacbrew/ps4/openorbis/bin/clang++ \
+    -DCMAKE_C_FLAGS="-fPIC -D__PS4__" \
+    -DCMAKE_CXX_FLAGS="-fPIC -D__PS4__" \
+    -DLLVM_PATH="../../llvm" \
+    -DLIBCXX_ENABLE_RTTI=YES \
+    -DLIBCXX_HAS_MUSL_LIBC=1 \
+    -DLIBCXX_HAS_GCC_S_LIB=0 \
+    -DLIBCXX_ENABLE_SHARED=NO \
+    -DLIBCXX_ENABLE_THREADS=1 \
+    -DLIBCXX_HAS_THREAD_API_PTHREAD=1 \
+    -DLIBCXX_CXX_ABI=libcxxabi \
+    -DLIBCXX_CXX_ABI_INCLUDE_PATHS="../../libcxxabi/include" \
+    -DLIBCXX_CXX_ABI_LIBRARY_PATH="../../libcxxabi/build/lib" \
+    -DLIBCXX_ENABLE_STATIC_ABI_LIBRARY=ON \
+    -DLIBCXX_SYSROOT=/opt/pacbrew/ps4/openorbis \
+    -DCMAKE_INSTALL_PREFIX=/opt/pacbrew/ps4/openorbis \
+    ..
+
+  make
+}
+
+package() {
+  # compiler-rt
+  cd llvm-project-$pkgver.src/compiler-rt/build
+  make DESTDIR="$pkgdir" install
+  
+  # libunwind
+  cd ../../libunwind/build
+  make DESTDIR="$pkgdir" install
+  
+  # libcxxabi
+  cd ../../libcxxabi/build
+  make DESTDIR="$pkgdir" install
+  
+  # libcxx
+  cd ../../libcxx/build
+  make DESTDIR="$pkgdir" install
+  mv $pkgdir/opt/pacbrew/ps4/openorbis/lib/linux/libclang_rt.builtins-x86_64.a \
+    $pkgdir/opt/pacbrew/ps4/openorbis/lib
+  rm -r $pkgdir/opt/pacbrew/ps4/openorbis/lib/linux
+  
+  # TODO: do not merge libs ?
+  # Combine libc++, libc++abi and libunwind into a single archive
+  # https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/81a318fc104df3babbfa5a854c00efbff01d7e0a/build/build.sh#L98
+  cd $pkgdir/opt/pacbrew/ps4/openorbis/lib
+  touch mri.txt
+  echo "CREATE libc++M.a"   >> mri.txt
+  echo "ADDLIB libunwind.a" >> mri.txt
+  echo "ADDLIB libc++abi.a" >> mri.txt
+  echo "ADDLIB libc++.a"    >> mri.txt
+  echo "SAVE"               >> mri.txt
+  echo "END"                >> mri.txt
+  /opt/pacbrew/ps4/openorbis/bin/llvm-ar -M < mri.txt && rm mri.txt && rm libc++.a && mv libc++M.a libc++.a
+}

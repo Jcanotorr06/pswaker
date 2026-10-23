@@ -1,0 +1,100 @@
+[
+  {
+    "filename": "ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-musl-1.5-2-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-musl-1.5-2-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-vars-1.1-3-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-vars-1.1-3-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  },
+  {
+    "filename": "ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz",
+    "url": "https://pacman.mydedibox.fr/pacbrew/packages/ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz",
+    "http_status": "200",
+    "exit_code": 0,
+    "error": ""
+  }
+]

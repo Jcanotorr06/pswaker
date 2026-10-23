@@ -1,19 +1,24 @@
 name: ci
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  push:
+    paths: ['platform/ps4/**', '.github/workflows/ci.yml']
+  pull_request:
+    paths: ['platform/ps4/**', '.github/workflows/ci.yml']
 
 permissions:
   contents: read
 
 jobs:
-  placeholder:
+  diagnostic-host-checks:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: run
+      - name: Check maintained diagnostic tools
         run: |
-            echo "GitHub Actions is working"
-            echo "Triggered byL ${{ github.actor }}"
+          python3 -m compileall -q platform/ps4
+          for script in platform/ps4/*.sh; do bash -n "$script"; done
+          python3 -m unittest discover -s platform/ps4/tests

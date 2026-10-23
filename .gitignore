@@ -69,3 +69,4 @@ gxruntime-memory-card-*.dolcard*
 *.so
 *.keystore
 *.jks
+*.pyc

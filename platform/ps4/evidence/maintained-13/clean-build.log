@@ -1,0 +1,87 @@
+STAGE fresh-download-cache 2026-10-23T04:18:04+00:00
+Verified all locked downloads
+Verified ps4-openorbis-musl-1.5-2-any.pkg.tar.xz
+Verified ps4-openorbis-vars-1.1-3-any.pkg.tar.xz
+Verified ps4-openorbis-libcxx-12.0.1-1-any.pkg.tar.xz
+Verified ps4-openorbis-create-gp4-1.0-5-any.pkg.tar.xz
+Verified ps4-openorbis-create-fself-1.2-3-any.pkg.tar.xz
+Verified ps4-openorbis-orbis-lib-gen-1.3-2-any.pkg.tar.xz
+Verified ps4-openorbis-readoelf-1.0-2-any.pkg.tar.xz
+Verified ps4-openorbis-pkg-config-1.0.0-2-any.pkg.tar.xz
+Verified ps4-openorbis-zlib-1.3.1-2-any.pkg.tar.xz
+Verified ps4-openorbis-libpng-1.6.37-3-any.pkg.tar.xz
+Verified ps4-openorbis-bzip2-1.0.6-3-any.pkg.tar.xz
+Verified ps4-openorbis-pkgtools-0.2.231-5-any.pkg.tar.xz
+Verified ps4-openorbis-headers-0.5.2-4-any.pkg.tar.xz
+Verified ps4-openorbis-clang-12.0.1-1-any.pkg.tar.xz
+SDK extracted: /home/joseph_cano/.cache/pswaker/maintained-13-complete/sdk/opt/pacbrew/ps4/openorbis
+STAGE pinned-sources 2026-10-23T04:18:41+00:00
+Prepared refs/dusklight at fd483cf5d4f04b0f4d887ff412d0e8691925de08
+Prepared src/aurora at e281999cdb4fee6127525a9a9e97979480db4bf3
+Prepared refs/DolphinPS4 at b1879cc0267a2a4f0949d7b80478fcf2abca24f6
+Prepared src/liborbispkg at 594021fdc435409f755a6ae0781b65ec6cec846c
+Prepared src/abseil at 5c695e68fcd3e7483ed300b6591d1ec49ae37cf4
+Prepared src/sdl3 at 68159af2b34cc4fe5b3548faa89e87a69e4d2dce
+Prepared src/dawn at 652a3104791369cd23605856fbc041375ccda875
+Selected source patches applied. Dawn DEPS, Mesa and libdrm still require preparation.
+Recorded diagnostic CPU/TLS, memory measurement and neutral-input adaptations.
+STAGE sdk-target-support 2026-10-23T04:19:08+00:00
+STAGE runtime 2026-10-23T04:19:43+00:00
+STAGE graphics-inputs 2026-10-23T04:20:14+00:00
+STAGE graphics-libraries 2026-10-23T04:21:05+00:00
+SDL/Dawn/Mesa archives built; hardware behavior untested.
+STAGE diagnostic 2026-10-23T04:31:55+00:00
+STAGE package 2026-10-23T04:33:17+00:00
+Recorded actual host, SDK metadata, Dawn DEPS, CMake archives and NuGet closure.
+{
+  "package": {
+    "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+    "sha256": "1f5ae5da58bdb6283a5abff15beee3e36aa61be0c4d6655d346acb24b9dcf0a8"
+  },
+  "eboot_sha256": "1bb0000e6eabf128a8854bfe3a0d315a63ffddcaa735a1fac17096c960fdd9da",
+  "elf_sha256": "e1a42f297207f3df164600d95f44ec3bb0b45858cd660d61a863a5d36dbc9a3a",
+  "build_id": "f89abcb363a45bfbe8cc",
+  "app_version": "01.03"
+}
+/home/joseph_cano/.cache/pswaker/maintained-13-complete/build/musl/lib/libc.a:__unmapself.lo: no symbols
+{
+  "scope": "Host inspection only; no hardware result",
+  "artifacts": {
+    "package": {
+      "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+      "sha256": "1f5ae5da58bdb6283a5abff15beee3e36aa61be0c4d6655d346acb24b9dcf0a8"
+    },
+    "eboot_sha256": "1bb0000e6eabf128a8854bfe3a0d315a63ffddcaa735a1fac17096c960fdd9da",
+    "elf_sha256": "e1a42f297207f3df164600d95f44ec3bb0b45858cd660d61a863a5d36dbc9a3a",
+    "build_id": "f89abcb363a45bfbe8cc",
+    "app_version": "01.03"
+  },
+  "package_files": {
+    "build-info.json": "eb82bac11e88fbd920212c6c883ddb6c9144f5023715451163d56b8e97021b04",
+    "eboot.bin": "1bb0000e6eabf128a8854bfe3a0d315a63ffddcaa735a1fac17096c960fdd9da",
+    "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+    "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+    "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+    "sce_sys/keystone": "d09eb8ab5f3b700164fc8ad85c54c2acbad71244e942aeedf7e3e7eb56408aac",
+    "sce_sys/param.sfo": "4119bdec77dafaae87039d8689abe22bc85b76ad2b454815c7609430c57dd8c7",
+    "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7"
+  },
+  "sfo": {
+    "APP_TYPE": 1,
+    "APP_VER": "01.03",
+    "ATTRIBUTE": 0,
+    "CATEGORY": "gd",
+    "CONTENT_ID": "IV0000-PSWK00010_00-PSWAKERPROBE0000",
+    "DOWNLOAD_DATA_SIZE": 0,
+    "PUBTOOLINFO": "c_date=20261023,img0_l0_size=42,img0_l1_size=0,img0_sc_ksize=512,img0_pc_ksize=832",
+    "PUBTOOLVER": 42532864,
+    "SYSTEM_VER": 0,
+    "TITLE": "PSWaker Platform Diagnostic",
+    "TITLE_ID": "PSWK00010",
+    "VERSION": "01.03"
+  },
+  "unresolved_wider_atomics": [],
+  "emitted_archive_atomic_references": []
+}
+Verified 14 SDK recipes; retained 103 notice files; inventoried 3 inherited modules
+COMPLETE host-build-only 2026-10-23T04:33:31+00:00

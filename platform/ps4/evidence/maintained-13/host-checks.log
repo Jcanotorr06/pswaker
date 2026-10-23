@@ -1,0 +1,20 @@
+$ ['/usr/bin/python3', '-m', 'compileall', '-q', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4']
+$ ['bash', '-n', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/build-graphics.sh']
+$ ['bash', '-n', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/build-probe.sh']
+$ ['bash', '-n', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/build-runtime.sh']
+$ ['bash', '-n', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/build-sdk-support.sh']
+$ ['bash', '-n', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/clean-build.sh']
+$ ['bash', '-n', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/install-host.sh']
+$ ['bash', '-n', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/prepare-graphics.sh']
+$ ['/usr/bin/python3', '-m', 'unittest', 'discover', '-v', '-s', '/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/tests']
+test_changed_package_is_rejected_before_extraction (test_artifacts.ArtifactTests.test_changed_package_is_rejected_before_extraction) ... ok
+test_changed_download_is_rejected (test_inputs.InputTests.test_changed_download_is_rejected) ... ok
+test_sdk_preparation_preserves_ps4_setjmp_directory_link (test_inputs.InputTests.test_sdk_preparation_preserves_ps4_setjmp_directory_link) ... ok
+test_unchanged_locked_download_is_accepted (test_inputs.InputTests.test_unchanged_locked_download_is_accepted) ... ok
+test_extra_packaged_file_is_rejected (test_package_roundtrip.PackageRoundtripTests.test_extra_packaged_file_is_rejected) ... ok
+test_real_package_is_accepted (test_package_roundtrip.PackageRoundtripTests.test_real_package_is_accepted) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 4.055s
+
+OK

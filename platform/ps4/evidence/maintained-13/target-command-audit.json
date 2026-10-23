@@ -1,0 +1,62 @@
+[
+  {
+    "component": "builtins",
+    "target_compile_commands": 328,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "libunwind",
+    "target_compile_commands": 6,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "zlib",
+    "target_compile_commands": 30,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "libpng",
+    "target_compile_commands": 15,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "libcxx",
+    "target_compile_commands": 74,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "runtime-preflight",
+    "target_compile_commands": 6,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "mesa",
+    "target_compile_commands": 639,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "sdl3",
+    "target_compile_commands": 205,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "dawn",
+    "target_compile_commands": 1017,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  },
+  {
+    "component": "probe",
+    "target_compile_commands": 258,
+    "without_btver2": 0,
+    "ps5_flag_commands": 0
+  }
+]

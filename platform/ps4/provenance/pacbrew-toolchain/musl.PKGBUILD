@@ -1,0 +1,34 @@
+# Maintainer: cpasjuste <cpasjuste@gmail.com>
+
+pkgname=ps4-openorbis-musl
+pkgver=1.5
+pkgrel=2
+pkgdesc='musl for ps4'
+arch=('any')
+url='https://github.com/PacBrew/ps4-openorbis-musl'
+license=('MIT')
+options=(!debug !strip libtool)
+source=("https://github.com/PacBrew/ps4-openorbis-musl/archive/140a653299ffcb1457bc63a5ab1f507d7bb37c54.zip")
+sha256sums=('6094df1c1f37f56392fd1b30f67222976268b940a174219ff42731e27c7e0a6b')
+depends=('ps4-openorbis-clang')
+groups=(
+  'pacbrew' 'pacbrew-ps4' 'pacbrew-ps4-toolchain' 
+  'ps4-openorbis' # for backward compatibility
+)
+
+build() {
+  cd ps4-openorbis-musl-140a653299ffcb1457bc63a5ab1f507d7bb37c54
+  
+  ./configure --target=x86_64-scei-ps4 \
+    --prefix=/opt/pacbrew/ps4/openorbis \
+    --disable-shared \
+    CC=/opt/pacbrew/ps4/openorbis/bin/clang \
+    CFLAGS="-fPIC -DPS4 -D_LIBUNWIND_IS_BAREMETAL=1 -DPS4_FLEXIBLE_MEMORY=1"
+
+  make --quiet -j $(getconf _NPROCESSORS_ONLN)
+}
+
+package() {
+  cd ps4-openorbis-musl-140a653299ffcb1457bc63a5ab1f507d7bb37c54
+  make DESTDIR="${pkgdir}" install
+}
