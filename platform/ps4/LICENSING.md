@@ -48,6 +48,11 @@ The exact payload allowlist rejects additional private modules or other files.
 Before distribution, resolve the outstanding per-file/module/stub rights and
 combined terms, retain all notices, and make the exact corresponding sources,
 local changes, host/input locks and build instructions available as required.
+Wind Waker renderer patch originals, immutable source URLs, hashes, individual
+dispositions and adapted diffs are retained in `provenance/wind-waker/`,
+`renderer.lock.json` and `patches/wind-waker/`; preserve them with corresponding
+Aurora/SwitchWaker source and per-file notices. Excluded PS5 reference patches
+are provenance inputs rather than linked platform implementations.
 The source archives and generated notice corpus are retained with each local
 build. A top-level license cannot substitute for this audit. Public release is
 outside #13 and remains outside the first-playable scope.

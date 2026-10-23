@@ -1,0 +1,34 @@
+diff --git a/lib/gx/shader.cpp b/lib/gx/shader.cpp
+index b934a03..43eafcd 100644
+--- a/lib/gx/shader.cpp
++++ b/lib/gx/shader.cpp
+@@ -1260,7 +1260,12 @@ std::string build_shader_source(const ShaderConfig& config, DstAlphaMode dstAlph
+       fragmentFnPre += fmt::format("\n    var tex{0}_uv = in.tex{0}_uv.xy;", i);
+       continue;
+     }
+-    if (tcg.src >= GX_TG_TEX0 && tcg.src <= GX_TG_TEX7) {
++    if (tcg.type == GX_TG_SRTG && !UsePerPixelLighting &&
++        (tcg.src == GX_TG_COLOR0 || tcg.src == GX_TG_COLOR1)) {
++      // The hardware feeds GX_TG_SRTG the lit colour channel output (Dolphin: vertex_lighting_N),
++      // not the raw vertex colour: toon shading samples a ramp at (lit R, lit G)
++      vtxXfrAttrs += fmt::format("\n    var tc{} = out.cc{};", i, tcg.src - GX_TG_COLOR0);
++    } else if (tcg.src >= GX_TG_TEX0 && tcg.src <= GX_TG_TEX7) {
+       vtxXfrAttrs += fmt::format("\n    var tc{} = vec4f({}, 1.0, 1.0);", i,
+                                  vtx_attr(config, GXAttr(GX_VA_TEX0 + (tcg.src - GX_TG_TEX0))));
+     } else if (tcg.src == GX_TG_POS) {
+diff --git a/lib/gx/shader_info.cpp b/lib/gx/shader_info.cpp
+index c74bd6d..8761d67 100644
+--- a/lib/gx/shader_info.cpp
++++ b/lib/gx/shader_info.cpp
+@@ -305,6 +305,11 @@ ShaderInfo build_shader_info(const ShaderConfig& config) noexcept {
+       info.sampledTexCoords.set(tcg.embossSrc);
+       info.lightingEnabled = true;
+     }
++    // GX_TG_SRTG reads the R and G of a lit colour channel's output, so that channel must be
++    // computed even when no TEV stage rasterizes it
++    if (tcg.type == GX_TG_SRTG && (tcg.src == GX_TG_COLOR0 || tcg.src == GX_TG_COLOR1)) {
++      info.sampledColorChannels.set(tcg.src - GX_TG_COLOR0);
++    }
+   }
+ 
+   info.uniformSize += info.loadsTevReg.count() * sizeof(Vec4<float>);

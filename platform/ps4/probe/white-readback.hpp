@@ -1,17 +1,18 @@
 // Shared known-result check: exact RGBA white, never a relaxed RGB-only check.
-bool white_snapshot(const wgpu::Texture& texture,const char* name) {
+bool rgba_snapshot(const wgpu::Texture& texture,const char* name,
+                   const std::array<uint8_t,4>& expected,unsigned x_offset=0,unsigned y_offset=0) {
   checkpoint(name);
   if (!texture) { note("TEXTURE %s missing",name); return verdict(false,name); }
   note("TEXTURE %s width=%u height=%u format=%u",name,texture.GetWidth(),texture.GetHeight(),unsigned(texture.GetFormat()));
   // White has the same exact bytes in either supported four-channel layout.
-  if (texture.GetWidth()<32 || texture.GetHeight()<32 ||
+  if (texture.GetWidth()<x_offset+32 || texture.GetHeight()<y_offset+32 ||
       (texture.GetFormat()!=wgpu::TextureFormat::RGBA8Unorm && texture.GetFormat()!=wgpu::TextureFormat::BGRA8Unorm))
     return verdict(false,name);
   auto encoder=aurora::webgpu::g_device.CreateCommandEncoder();
   wgpu::BufferDescriptor descriptor{};
   descriptor.usage=wgpu::BufferUsage::CopyDst|wgpu::BufferUsage::MapRead; descriptor.size=256*32;
   auto buffer=aurora::webgpu::g_device.CreateBuffer(&descriptor);
-  wgpu::TexelCopyTextureInfo source{}; source.texture=texture;
+  wgpu::TexelCopyTextureInfo source{}; source.texture=texture; source.origin={x_offset,y_offset,0};
   wgpu::TexelCopyBufferInfo target{}; target.buffer=buffer; target.layout.bytesPerRow=256; target.layout.rowsPerImage=32;
   const wgpu::Extent3D size{32,32,1}; encoder.CopyTextureToBuffer(&source,&target,&size);
   auto commands=encoder.Finish(); aurora::webgpu::g_queue.Submit(1,&commands);
@@ -35,13 +36,17 @@ bool white_snapshot(const wgpu::Texture& texture,const char* name) {
   if (pixels) {
     for (unsigned y=0;y<32;++y) for (unsigned x=0;x<32;++x) {
       const auto* p=pixels+y*256+x*4;
-      if (p[0]!=255 || p[1]!=255 || p[2]!=255 || p[3]!=255) {
-        if (!mismatches) note("MISMATCH %s xy=%u,%u actual=%u,%u,%u,%u expected=255,255,255,255",name,x,y,p[0],p[1],p[2],p[3]);
+      const auto red=texture.GetFormat()==wgpu::TextureFormat::BGRA8Unorm ? 2u : 0u;
+      if (p[red]!=expected[0] || p[1]!=expected[1] || p[2-red]!=expected[2] || p[3]!=expected[3]) {
+        if (!mismatches) note("MISMATCH %s xy=%u,%u actual=%u,%u,%u,%u expected=%u,%u,%u,%u",name,x+x_offset,y+y_offset,p[red],p[1],p[2-red],p[3],expected[0],expected[1],expected[2],expected[3]);
         ++mismatches;
       }
     }
-    note("PIXEL %s first=%u,%u,%u,%u expected=255,255,255,255 mismatches=%u/1024",name,pixels[0],pixels[1],pixels[2],pixels[3],mismatches);
+    note("PIXEL %s origin=%u,%u first-storage=%u,%u,%u,%u expected-rgba=%u,%u,%u,%u mismatches=%u/1024",name,x_offset,y_offset,pixels[0],pixels[1],pixels[2],pixels[3],expected[0],expected[1],expected[2],expected[3],mismatches);
     pass &= mismatches==0;
   } else note("READBACK %s mapped-range=null; pixel comparison not performed",name);
   buffer.Unmap(); return verdict(pass,name);
+}
+bool white_snapshot(const wgpu::Texture& texture,const char* name) {
+  return rgba_snapshot(texture,name,{255,255,255,255});
 }

@@ -38,6 +38,7 @@ echo "STAGE graphics-libraries $(date --utc --iso-8601=seconds)"
 bash "$HERE/build-graphics.sh" "$ROOT"
 echo "STAGE diagnostic $(date --utc --iso-8601=seconds)"
 python3 "$HERE/apply-patches.py" "$ROOT" aurora
+python3 "$HERE/reconcile-renderer.py" "$ROOT"
 bash "$HERE/build-probe.sh" "$ROOT"
 echo "STAGE package $(date --utc --iso-8601=seconds)"
 python3 "$HERE/apply-patches.py" "$ROOT" packager

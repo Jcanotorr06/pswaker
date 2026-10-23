@@ -1,0 +1,1086 @@
+{
+  "method": "For each original in filename order, git apply --check --verbose against the selected fork after PS4 and previously selected reconciled changes; excluded changes are not applied. This is context evidence only, not behavioral equivalence.",
+  "patches": [
+    {
+      "name": "0001-alpha-stage-channel-compares.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/gx/shader.cpp...\n",
+      "hunks": [
+        {
+          "file": "lib/gx/shader.cpp",
+          "hunk": "@@ -363,6 +363,23 @@"
+        },
+        {
+          "file": "lib/gx/shader.cpp",
+          "hunk": "@@ -1094,7 +1111,14 @@"
+        },
+        {
+          "file": "lib/gx/shader.cpp",
+          "hunk": "@@ -1106,8 +1130,11 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Latch TEV stage colour A/B before writing the colour result; alpha R8/GR16/BGR24 compares use these vector inputs."
+    },
+    {
+      "name": "0002-srtg-texgen-lit-colour.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/gx/shader.cpp...\nChecking patch lib/gx/shader_info.cpp...\n",
+      "hunks": [
+        {
+          "file": "lib/gx/shader.cpp",
+          "hunk": "@@ -1260,7 +1260,12 @@"
+        },
+        {
+          "file": "lib/gx/shader_info.cpp",
+          "hunk": "@@ -305,6 +305,11 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Compute SRTG sampled colour channels even without TEV raster use, and read lit vertex output."
+    },
+    {
+      "name": "0003-quads-three-vertex-triangle.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/gx/command_processor.cpp...\n",
+      "hunks": [
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -26,9 +26,13 @@"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -42,6 +46,12 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Emit complete quads plus a triangle for a remainder of three; never index a fourth vertex."
+    },
+    {
+      "name": "0004-light-dist-attn-zero-brightness.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/dolphin/gx/GXLighting.cpp...\n",
+      "hunks": [
+        {
+          "file": "lib/dolphin/gx/GXLighting.cpp",
+          "hunk": "@@ -83,7 +83,9 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Treat reference brightness zero as attenuation disabled; avoid division by zero."
+    },
+    {
+      "name": "0005-blocking-pipelines-option.patch",
+      "original_apply_exit": 1,
+      "original_apply_output": "Checking patch include/aurora/aurora.h...\nChecking patch lib/gfx/pipeline_cache.cpp...\nerror: while searching for:\n  g_pipelineCacheWriteQueue.clear();\n}\n\nPipelineRef find_pipeline(const clear::PipelineConfig& config, const RenderTargetLayout& layout) {\n  remember_pipeline_config(ShaderType::Clear, config, current_frame(), true);\n  return resolve_pipeline(ShaderType::Clear, config, layout, PipelinePriority::Normal);\n}\n\nPipelineRef find_pipeline(const gx::PipelineConfig& config, const RenderTargetLayout& layout) {\n  remember_pipeline_config(ShaderType::GX, config, current_frame(), true);\n  return resolve_pipeline(ShaderType::GX, config, layout, PipelinePriority::Normal);\n}\n\n#ifdef AURORA_ENABLE_RMLUI\n\nerror: patch failed: lib/gfx/pipeline_cache.cpp:1087\nerror: lib/gfx/pipeline_cache.cpp: patch does not apply\n",
+      "hunks": [
+        {
+          "file": "include/aurora/aurora.h",
+          "hunk": "@@ -116,6 +116,13 @@"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -1087,14 +1087,19 @@"
+        }
+      ],
+      "disposition": "adapted",
+      "resolution": "Adapt around fork pipeline census/priority changes. Add opt-in blockingPipelines; default remains asynchronous."
+    },
+    {
+      "name": "0006-fit-aspect-option.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch include/dolphin/gx/GXAurora.h...\nChecking patch lib/dolphin/gx/GXAurora.cpp...\nChecking patch lib/window.cpp...\nChecking patch lib/window.hpp...\n",
+      "hunks": [
+        {
+          "file": "include/dolphin/gx/GXAurora.h",
+          "hunk": "@@ -132,6 +132,14 @@"
+        },
+        {
+          "file": "lib/dolphin/gx/GXAurora.cpp",
+          "hunk": "@@ -36,6 +36,8 @@"
+        },
+        {
+          "file": "lib/window.cpp",
+          "hunk": "@@ -45,6 +45,7 @@"
+        },
+        {
+          "file": "lib/window.cpp",
+          "hunk": "@@ -465,8 +466,9 @@"
+        },
+        {
+          "file": "lib/window.cpp",
+          "hunk": "@@ -584,6 +586,17 @@"
+        },
+        {
+          "file": "lib/window.hpp",
+          "hunk": "@@ -50,5 +50,6 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Keep optional FIT-aspect API with zero default. Diagnostic retains native viewport and existing VI sizing; no widescreen mod enabled."
+    },
+    {
+      "name": "0007-sqlite-cache-recovery.patch",
+      "original_apply_exit": 1,
+      "original_apply_output": "Checking patch lib/gfx/pipeline_cache.cpp...\nHunk #1 succeeded at 548 (offset 1 line).\nerror: while searching for:\n  return seedDb;\n}\n\nstatic void seed_pipeline_cache() {\n  if (g_pipelineCacheBroken || g_pipelineCacheDb == nullptr || g_pipelineCacheUpsertStmt == nullptr) {\n    return;\n  }\n\n  const auto seedPath = pipeline_cache_seed_path();\n  sqlite3* seedDb = open_pipeline_cache_seed_db(seedPath);\n  if (seedDb == nullptr) {\n    return;\n  }\n\n  sqlite3_stmt* seedStmt = nullptr;\n\nerror: patch failed: lib/gfx/pipeline_cache.cpp:612\nerror: lib/gfx/pipeline_cache.cpp: patch does not apply\nChecking patch lib/sqlite_utils.hpp...\nChecking patch lib/webgpu/gpu_cache.cpp...\nerror: while searching for:\n      CACHE_SCHEMA);\n  ret = sqlite::exec(db, cmd.c_str());\n  if (ret != SQLITE_OK) {\n    Log.error(\"Failed to update schema: {}\", sqlite3_errmsg(db));\n    return false;\n  }\n\n  tx.commit();\n  return true;\n}\n\nstatic bool cache_init_core() {\n  Log.debug(\"SQLite version {}\", sqlite3_libversion());\n\n  std::string file = io::fs_path_to_string(cache_path());\n  Log.debug(\"Using dawn cache at {}\", file);\n  auto ret = sqlite3_open(file.c_str(), &db);\n  if (ret != SQLITE_OK) {\n    Log.error(\"Failed to open database: {}\", sqlite3_errmsg(db));\n    return false;\n  }\n\n  // WAL mode + NORMAL = no need for disk syncs, consistent but not durable is fine.\n  ret = sqlite::exec(db, \"PRAGMA journal_mode=WAL; PRAGMA synchronous=NORMAL;\");\n  if (ret != SQLITE_OK) {\n    Log.error(\"Failed to set pragmas: {}\", sqlite3_errmsg(db));\n    return false;\n  }\n\n  if (!ensure_schema_up_to_date()) {\n    Log.error(\"Failed to validate schema\");\n    return false;\n  }\n\n  ret = sqlite3_prepare_v3(db, \"SELECT value, size, compressed FROM cache WHERE key = ?\", -1, SQLITE_PREPARE_PERSISTENT,\n                           &load_stmt, nullptr);\n  if (ret != SQLITE_OK) {\n    Log.error(\"Failed to prepare statement: {}\", sqlite3_errmsg(db));\n    return false;\n  }\n\n  ret = sqlite3_prepare_v3(db, \"REPLACE INTO cache (key, value, size, compressed) VALUES (?, ?, ?, ?)\", -1,\n                           SQLITE_PREPARE_PERSISTENT, &store_stmt, nullptr);\n  if (ret != SQLITE_OK) {\n    Log.error(\"Failed to prepare statement: {}\", sqlite3_errmsg(db));\n    return false;\n  }\n\n  return true;\n}\n\nstatic std::optional<uint64_t> select_uint64(const char* sql) {\n\nerror: patch failed: lib/webgpu/gpu_cache.cpp:91\nerror: lib/webgpu/gpu_cache.cpp: patch does not apply\n",
+      "hunks": [
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -547,8 +547,18 @@ static PipelineRef resolve_pipeline(ShaderType type, const rmlui::PipelineConfig"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -612,15 +622,34 @@ static sqlite3* open_pipeline_cache_seed_db(const std::string& path) {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -639,7 +668,7 @@ static void seed_pipeline_cache() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -650,9 +679,9 @@ static void seed_pipeline_cache() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -695,55 +724,123 @@ static void seed_pipeline_cache() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -754,7 +851,7 @@ static bool prepare_pipeline_cache_db() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -778,7 +875,7 @@ INSERT INTO aurora_schema VALUES ({});)\","
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -789,8 +886,7 @@ INSERT INTO aurora_schema VALUES ({});)\","
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -799,9 +895,8 @@ INSERT INTO aurora_schema VALUES ({});)\","
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -815,9 +910,8 @@ INSERT INTO aurora_schema VALUES ({});)\","
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -837,7 +931,9 @@ static void prune_old_pipeline_cache_versions() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -846,7 +942,9 @@ static void prune_old_pipeline_cache_versions() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -856,7 +954,9 @@ static void prune_old_pipeline_cache_versions() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -864,6 +964,7 @@ static void prune_old_pipeline_cache_versions() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -902,7 +1003,9 @@ static bool write_pipeline_cache_record(const PipelineCacheWrite& write) {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -928,28 +1031,41 @@ static void pipeline_cache_writer() {"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -1035,7 +1151,9 @@ static size_t load_pipeline_cache_entries(ShaderType type, uint32_t configVersio"
+        },
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -1044,7 +1162,25 @@ static size_t load_pipeline_cache_entries(ShaderType type, uint32_t configVersio"
+        },
+        {
+          "file": "lib/sqlite_utils.hpp",
+          "hunk": "@@ -4,8 +4,63 @@"
+        },
+        {
+          "file": "lib/sqlite_utils.hpp",
+          "hunk": "@@ -42,7 +97,8 @@ public:"
+        },
+        {
+          "file": "lib/sqlite_utils.hpp",
+          "hunk": "@@ -52,18 +108,19 @@ public:"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -25,6 +25,9 @@ static sqlite3* db;"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -39,43 +42,92 @@ static std::filesystem::path cache_path() {"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -91,52 +143,63 @@ INSERT INTO aurora_schema VALUES ({});)\","
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -209,10 +272,28 @@ static bool cache_init() {"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -220,89 +301,130 @@ static bool cache_init() {"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -312,7 +434,7 @@ void store_to_cache(void const* key, size_t keySize, void const* value, size_t v"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -322,7 +444,7 @@ void store_to_cache(void const* key, size_t keySize, void const* value, size_t v"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -332,25 +454,47 @@ void store_to_cache(void const* key, size_t keySize, void const* value, size_t v"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -366,20 +510,19 @@ void cache_prune() {"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -389,12 +532,19 @@ void cache_prune() {"
+        },
+        {
+          "file": "lib/webgpu/gpu_cache.cpp",
+          "hunk": "@@ -418,22 +568,12 @@ void cache_prune() {"
+        }
+      ],
+      "disposition": "adapted",
+      "resolution": "Merge seed-identity optimisation with recovery; keep unix-none opens and move PS4 exclusive WAL pragmas into shared helper. Preserve return types and early exits in retry path."
+    },
+    {
+      "name": "0008-draw-census-and-debug-markers.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch cmake/aurora_gx.cmake...\nChecking patch lib/gfx/census.cpp...\nChecking patch lib/gfx/census.hpp...\nChecking patch lib/gfx/encoding.cpp...\nChecking patch lib/gfx/frame.cpp...\nChecking patch lib/gfx/frame_packet.hpp...\nChecking patch lib/gfx/recording.cpp...\nChecking patch lib/gfx/recording.hpp...\nChecking patch lib/gx/command_processor.cpp...\nChecking patch lib/gx/shader.cpp...\n",
+      "hunks": [
+        {
+          "file": "cmake/aurora_gx.cmake",
+          "hunk": "@@ -1,4 +1,5 @@"
+        },
+        {
+          "file": "lib/gfx/census.cpp",
+          "hunk": "@@ -0,0 +1,207 @@"
+        },
+        {
+          "file": "lib/gfx/census.hpp",
+          "hunk": "@@ -0,0 +1,92 @@"
+        },
+        {
+          "file": "lib/gfx/encoding.cpp",
+          "hunk": "@@ -155,7 +155,12 @@ void render_pass(const wgpu::RenderPassEncoder& pass, FramePacket& frame, Render"
+        },
+        {
+          "file": "lib/gfx/encoding.cpp",
+          "hunk": "@@ -171,9 +176,8 @@ void render_pass(const wgpu::RenderPassEncoder& pass, FramePacket& frame, Render"
+        },
+        {
+          "file": "lib/gfx/encoding.cpp",
+          "hunk": "@@ -185,6 +189,33 @@ void render_pass(const wgpu::RenderPassEncoder& pass, FramePacket& frame, Render"
+        },
+        {
+          "file": "lib/gfx/encoding.cpp",
+          "hunk": "@@ -242,8 +273,11 @@ void render(wgpu::CommandEncoder& cmd, FramePacket& frame, RenderPass& passInfo,"
+        },
+        {
+          "file": "lib/gfx/encoding.cpp",
+          "hunk": "@@ -412,6 +446,11 @@ void encode_op(wgpu::CommandEncoder& cmd, FramePacket& frame, const FrameOp& op)"
+        },
+        {
+          "file": "lib/gfx/frame.cpp",
+          "hunk": "@@ -439,7 +439,7 @@ void initialize() {"
+        },
+        {
+          "file": "lib/gfx/frame.cpp",
+          "hunk": "@@ -459,13 +459,27 @@ void initialize() {"
+        },
+        {
+          "file": "lib/gfx/frame.cpp",
+          "hunk": "@@ -475,6 +489,12 @@ void initialize() {"
+        },
+        {
+          "file": "lib/gfx/frame.cpp",
+          "hunk": "@@ -686,6 +706,12 @@ void end_frame(EndFrameCallback callback) {"
+        },
+        {
+          "file": "lib/gfx/frame_packet.hpp",
+          "hunk": "@@ -4,11 +4,13 @@"
+        },
+        {
+          "file": "lib/gfx/frame_packet.hpp",
+          "hunk": "@@ -47,6 +49,8 @@ enum class CommandType {"
+        },
+        {
+          "file": "lib/gfx/frame_packet.hpp",
+          "hunk": "@@ -190,9 +194,11 @@ struct FramePacket {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -568,6 +568,7 @@ void begin_recording(FramePacket& packet, size_t frameSlot) {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -611,6 +612,7 @@ RecordedFrame end_recording() {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -1221,14 +1223,41 @@ uint32_t align_uniform(uint32_t value) {"
+        },
+        {
+          "file": "lib/gfx/recording.hpp",
+          "hunk": "@@ -107,4 +107,8 @@ void set_viewport(const Viewport& viewport) noexcept;"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -1,5 +1,6 @@"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -389,12 +390,76 @@ static u32 calc_vtx_size(GXVtxFmt fmt) noexcept {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -480,6 +545,8 @@ static void push_gx_draw(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, gfx::Rang"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -550,6 +617,14 @@ static void draw_prim(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, ByteReader&"
+        },
+        {
+          "file": "lib/gx/shader.cpp",
+          "hunk": "@@ -1,3 +1,4 @@"
+        },
+        {
+          "file": "lib/gx/shader.cpp",
+          "hunk": "@@ -1704,6 +1705,14 @@ std::string build_shader_source(const ShaderConfig& config, DstAlphaMode dstAlph"
+        },
+        {
+          "file": "lib/gx/shader.cpp",
+          "hunk": "@@ -2052,7 +2061,7 @@ struct Uniform {{"
+        },
+        {
+          "file": "lib/gx/shader.cpp",
+          "hunk": "@@ -2074,7 +2083,8 @@ fn fs_main(in: VertexOutput) -> {10} {{{6}{5}{11}"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Keep optional draw census and FIFO debug markers; recording remains disabled unless explicitly requested."
+    },
+    {
+      "name": "0009-efb-content-scale.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch include/dolphin/gx/GXAurora.h...\nChecking patch lib/dolphin/gx/GXAurora.cpp...\nChecking patch lib/dolphin/gx/GXFrameBuffer.cpp...\nChecking patch lib/gfx/encoding.cpp...\nChecking patch lib/gfx/frame_packet.hpp...\nChecking patch lib/gfx/recording.cpp...\nChecking patch lib/gfx/recording.hpp...\nChecking patch lib/gx/command_processor.cpp...\nChecking patch lib/gx/gx.cpp...\n",
+      "hunks": [
+        {
+          "file": "include/dolphin/gx/GXAurora.h",
+          "hunk": "@@ -96,6 +96,15 @@ extern \"C\" {"
+        },
+        {
+          "file": "include/dolphin/gx/GXAurora.h",
+          "hunk": "@@ -168,6 +177,12 @@ void GX2SetPolygonOffset(f32 mFrontOffset, f32 mFrontScale, f32 mBackOffset, f32"
+        },
+        {
+          "file": "lib/dolphin/gx/GXAurora.cpp",
+          "hunk": "@@ -88,6 +88,12 @@ void GX2SetPolygonOffset(f32 mFrontOffset, f32 mFrontScale, f32 mBackOffset, f32"
+        },
+        {
+          "file": "lib/dolphin/gx/GXFrameBuffer.cpp",
+          "hunk": "@@ -19,7 +19,7 @@ aurora::Vec2<uint32_t> scale_copy_dst(u32 logicalWidth, u32 logicalHeight) {"
+        },
+        {
+          "file": "lib/gfx/encoding.cpp",
+          "hunk": "@@ -18,6 +18,7 @@"
+        },
+        {
+          "file": "lib/gfx/encoding.cpp",
+          "hunk": "@@ -284,8 +285,15 @@ void render(wgpu::CommandEncoder& cmd, FramePacket& frame, RenderPass& passInfo,"
+        },
+        {
+          "file": "lib/gfx/frame_packet.hpp",
+          "hunk": "@@ -110,6 +110,7 @@ struct RenderPass {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -69,6 +69,11 @@ struct FrameRecorder {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -568,6 +573,7 @@ void begin_recording(FramePacket& packet, size_t frameSlot) {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -791,6 +797,22 @@ gx::DrawData* get_last_draw_command() {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -1168,6 +1190,7 @@ void finish() {"
+        },
+        {
+          "file": "lib/gfx/recording.hpp",
+          "hunk": "@@ -103,6 +103,11 @@ void resolve_pass_into(TextureHandle texture, ClipRect rect, bool clearColor, bo"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -778,6 +778,11 @@ void handle_aurora(ByteReader& reader) noexcept {"
+        },
+        {
+          "file": "lib/gx/gx.cpp",
+          "hunk": "@@ -245,7 +245,7 @@ gfx::Viewport map_logical_viewport(const gfx::Viewport& logicalViewport) noexcep"
+        },
+        {
+          "file": "lib/gx/gx.cpp",
+          "hunk": "@@ -268,7 +268,7 @@ gfx::ClipRect map_logical_scissor(const gfx::ClipRect& logicalScissor) noexcept"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Map viewport/scissor/copy destination and depth snapshot to EFB content fraction; offscreen targets unaffected. Allocated EFB remains 1280x720."
+    },
+    {
+      "name": "0010-texture-replacement-streaming.patch",
+      "original_apply_exit": 1,
+      "original_apply_output": "Checking patch include/aurora/texture.hpp...\nChecking patch lib/gfx/texture_replacement.cpp...\nHunk #1 succeeded at 24 (offset 4 lines).\nerror: while searching for:\nnamespace {\nconstexpr Module Log{\"aurora::texture\"};\n\nconstexpr uint64_t kReplacementCacheBudgetBytes = 4294967296; // 4GB\nconstexpr uint64_t kReplacementWildcardTextureHash = kWildcardTextureHash;\nconstexpr uint64_t kReplacementWildcardTlutHash = kWildcardTlutHash;\n\n\nerror: patch failed: lib/gfx/texture_replacement.cpp:42\nerror: lib/gfx/texture_replacement.cpp: patch does not apply\nChecking patch lib/gx/texture.cpp...\nChecking patch lib/gx/texture.hpp...\nHunk #1 succeeded at 44 (offset 7 lines).\n",
+      "hunks": [
+        {
+          "file": "include/aurora/texture.hpp",
+          "hunk": "@@ -97,6 +97,53 @@ void reload_replacement_directory(const std::filesystem::path& root, Replacement"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -20,6 +20,7 @@"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -42,7 +43,26 @@ namespace aurora::texture {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -135,6 +155,8 @@ std::mutex s_registryMutex;"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -797,10 +819,26 @@ void worker_main(std::stop_token token) {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -841,7 +879,9 @@ void start_worker_pool() {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -902,7 +942,7 @@ void queue_thumbnail_load(const EntryLoadSnapshot& entry) {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -950,8 +990,8 @@ bool publish_fits_budget(uint64_t publishedCount, uint64_t publishedBytes, uint6"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -987,6 +1027,15 @@ gfx::TextureHandle create_converted_texture_handle(const EntryLoadSnapshot& entr"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1033,17 +1082,61 @@ void touch_cached_replacement(decltype(s_cacheByKey)::iterator it) noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1153,7 +1246,8 @@ find_replacement_for_key_locked(const ReplacementKey& key) noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1173,7 +1267,7 @@ find_replacement_for_key_locked(const ReplacementKey& key) noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1342,6 +1436,7 @@ void clear_replacement_runtime_state_locked(std::vector<std::shared_ptr<VirtualR"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1688,6 +1783,57 @@ void reload_replacement_directory(const std::filesystem::path& root, Replacement"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1781,6 +1927,19 @@ StreamingStats process_streaming() noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1801,6 +1960,8 @@ StreamingStats process_streaming() noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1810,6 +1971,8 @@ StreamingStats process_streaming() noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1838,6 +2001,9 @@ std::optional<ReplacementResult> find_pointer_replacement(const GXTexObj_& obj)"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1846,6 +2012,9 @@ std::optional<ReplacementResult> find_source_replacement(const GXTexObj_& obj,"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -592,6 +592,22 @@ void invalidate_replacement(uint64_t replacementId) noexcept {"
+        },
+        {
+          "file": "lib/gx/texture.hpp",
+          "hunk": "@@ -37,6 +37,10 @@ void invalidate_bindings() noexcept;"
+        }
+      ],
+      "disposition": "excluded",
+      "resolution": "Excluded: HD replacement streaming and budgets are outside stock-texture scope; retain selected fork replacement implementation."
+    },
+    {
+      "name": "0011-texture-replacement-smooth-publish.patch",
+      "original_apply_exit": 1,
+      "original_apply_output": "Checking patch include/aurora/texture.hpp...\nerror: while searching for:\n  uint32_t workerCount = 0;\n  uint32_t keepRecentFrames = 60;\n  uint32_t retryFrames = 300;\n};\nvoid set_runtime_config(const ReplacementRuntimeConfig& config) noexcept;\nReplacementRuntimeConfig runtime_config() noexcept;\n\nerror: patch failed: include/aurora/texture.hpp:113\nerror: include/aurora/texture.hpp: patch does not apply\nChecking patch lib/gfx/texture_replacement.cpp...\nerror: while searching for:\n  std::atomic<uint64_t> publishedBytes{0};\n  std::atomic<uint64_t> evictions{0};\n  std::atomic<uint64_t> budgetRejects{0};\n};\nAtomicStats s_atomicStats;\n\nstd::atomic<SourceKeyObserver> s_sourceKeyObserver{nullptr};\n\nerror: patch failed: lib/gfx/texture_replacement.cpp:58\nerror: lib/gfx/texture_replacement.cpp: patch does not apply\nChecking patch lib/gx/texture.cpp...\nHunk #8 succeeded at 671 (offset -16 lines).\nHunk #9 succeeded at 723 (offset -16 lines).\nerror: while searching for:\n  ++s_frameCount;\n  apply_pending_invalidations();\n  sweep_object_caches();\n}\n\nvoid shutdown() noexcept {\n\nerror: patch failed: lib/gx/texture.cpp:738\nerror: lib/gx/texture.cpp: patch does not apply\nChecking patch lib/gx/texture.hpp...\nerror: while searching for:\n// (0: none cached); for the replacement cache's eviction (cos_native patch 0010).\nuint64_t frame_count() noexcept;\nuint64_t replacement_last_used_frame(uint64_t replacementId) noexcept;\nvoid shutdown() noexcept;\nvoid set_content_cache_budget_for_testing(uint64_t bytes) noexcept;\n\n\nerror: patch failed: lib/gx/texture.hpp:41\nerror: lib/gx/texture.hpp: patch does not apply\n",
+      "hunks": [
+        {
+          "file": "include/aurora/texture.hpp",
+          "hunk": "@@ -83,11 +83,34 @@ struct VirtualFileSource {"
+        },
+        {
+          "file": "include/aurora/texture.hpp",
+          "hunk": "@@ -113,6 +136,18 @@ struct ReplacementRuntimeConfig {"
+        },
+        {
+          "file": "include/aurora/texture.hpp",
+          "hunk": "@@ -134,6 +169,14 @@ struct ReplacementStats {"
+        },
+        {
+          "file": "include/aurora/texture.hpp",
+          "hunk": "@@ -144,6 +187,20 @@ void reset_stats() noexcept;"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -58,7 +58,20 @@ struct AtomicStats {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -994,6 +1007,13 @@ bool publish_fits_budget(uint64_t publishedCount, uint64_t publishedBytes, uint6"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1713,6 +1733,103 @@ ReplacementRegistration register_virtual_replacement(std::string_view path, Virt"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1789,6 +1906,7 @@ void set_runtime_config(const ReplacementRuntimeConfig& config) noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1809,6 +1927,13 @@ ReplacementStats stats() noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1824,7 +1949,10 @@ void reset_stats() noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1906,6 +2034,9 @@ StreamingStats process_streaming() noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1924,6 +2055,14 @@ StreamingStats process_streaming() noexcept {"
+        },
+        {
+          "file": "lib/gfx/texture_replacement.cpp",
+          "hunk": "@@ -1960,10 +2099,23 @@ StreamingStats process_streaming() noexcept {"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -13,6 +13,7 @@"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -51,6 +52,7 @@ struct CachedTextureEntry {"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -130,6 +132,37 @@ std::atomic<uint64_t> s_pendingInvalidations = 0;"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -152,7 +185,21 @@ void apply_pending_invalidations() noexcept {"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -211,6 +258,7 @@ void store_cached_texture(const GXTexObj_& obj, gfx::TextureHandle handle, u32 t"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -278,7 +326,19 @@ struct TextureKeys {"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -510,6 +570,19 @@ bool use_replacement(std::optional<gfx::texture_replacement::ReplacementResult>"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -614,7 +687,8 @@ gfx::TextureHandle resolve_static_texture(const GXTexObj_& obj) {"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -665,7 +739,7 @@ gfx::TextureHandle resolve_static_palette_texture(const GXTexObj_& obj, const GX"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -738,6 +812,35 @@ void end_frame() noexcept {"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -754,6 +857,11 @@ void shutdown() noexcept {"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -893,3 +1001,24 @@ void resolve_sampled_textures(const ShaderInfo& info) noexcept {"
+        },
+        {
+          "file": "lib/gx/texture.hpp",
+          "hunk": "@@ -41,6 +41,11 @@ void end_frame() noexcept;"
+        }
+      ],
+      "disposition": "excluded",
+      "resolution": "Excluded: smooth HD replacement publish/rescan depends on 0010; unnecessary for stock textures."
+    },
+    {
+      "name": "0012-texture-object-cache-image-check.patch",
+      "original_apply_exit": 1,
+      "original_apply_output": "Checking patch lib/gx/texture.cpp...\nHunk #1 succeeded at 47 (offset -1 lines).\nerror: while searching for:\nstd::atomic<uint64_t> s_rescanFrames = 0;\nstd::atomic<bool> s_rescanActivePublic = false;\n\nbool entry_stale(const CachedTextureEntry& entry) noexcept {\n  return entry.scanGeneration < s_rescanAllBefore ||\n         (entry.replacementId != 0 && entry.scanGeneration < s_rescanReplacementsBefore);\n\nerror: patch failed: lib/gx/texture.cpp:155\nerror: lib/gx/texture.cpp: patch does not apply\n",
+      "hunks": [
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -48,6 +48,13 @@"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -155,6 +162,25 @@"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -254,6 +280,10 @@"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -688,7 +718,7 @@"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -739,7 +769,7 @@"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -970,7 +1000,10 @@"
+        }
+      ],
+      "disposition": "adapted",
+      "resolution": "Extract image identity checks from HD rescan context. Keep existing invalidation logic; no rescan fields or replacement streaming imported."
+    },
+    {
+      "name": "0013-linux-local-time-without-tzdb.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/dolphin/os/OSTime.cpp...\n",
+      "hunks": [
+        {
+          "file": "lib/dolphin/os/OSTime.cpp",
+          "hunk": "@@ -13,6 +13,14 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Retain Linux local-time fallback for host reproduction; PS4 code path is unchanged."
+    },
+    {
+      "name": "0014-game-name-nul-terminated.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/aurora.cpp...\nHunk #1 succeeded at 46 (offset 12 lines).\nChecking patch lib/internal.hpp...\n",
+      "hunks": [
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -34,7 +34,9 @@"
+        },
+        {
+          "file": "lib/internal.hpp",
+          "hunk": "@@ -181,7 +181,7 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "NUL-terminate game-name value at public configuration boundary."
+    },
+    {
+      "name": "0015-dvd-queue-malloc.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/dolphin/dvd/dvd.cpp...\nHunk #2 succeeded at 606 (offset 4 lines).\n",
+      "hunks": [
+        {
+          "file": "lib/dolphin/dvd/dvd.cpp",
+          "hunk": "@@ -10,6 +10,7 @@"
+        },
+        {
+          "file": "lib/dolphin/dvd/dvd.cpp",
+          "hunk": "@@ -601,7 +602,31 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Keep DVD queue storage aligned with malloc/free; DVD disabled in disc-free diagnostic, not exercised by it."
+    },
+    {
+      "name": "0016-pipeline-cache-load-abort-return.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/gfx/pipeline_cache.cpp...\nHunk #1 succeeded at 1211 (offset 57 lines).\n",
+      "hunks": [
+        {
+          "file": "lib/gfx/pipeline_cache.cpp",
+          "hunk": "@@ -1154,7 +1154,8 @@"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Return acceptedRows immediately after load abort finalizes statements; retain 0007 recovery on next attempt."
+    },
+    {
+      "name": "0017-copy-texture-lookup.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch lib/gx/gx.hpp...\nChecking patch lib/gx/texture.cpp...\nHunk #1 succeeded at 832 (offset -122 lines).\n",
+      "hunks": [
+        {
+          "file": "lib/gx/gx.hpp",
+          "hunk": "@@ -439,6 +439,11 @@ void set_viewport_policy(AuroraViewportPolicy policy) noexcept;"
+        },
+        {
+          "file": "lib/gx/texture.cpp",
+          "hunk": "@@ -954,6 +954,11 @@ void clear_copy_texture_cache() noexcept {"
+        }
+      ],
+      "disposition": "applied",
+      "resolution": "Expose copy texture lookup without external GXState layout access; caller must synchronize FIFO first."
+    },
+    {
+      "name": "0018-async-end-frame.patch",
+      "original_apply_exit": 1,
+      "original_apply_output": "Checking patch include/aurora/aurora.h...\nChecking patch lib/aurora.cpp...\nHunk #2 succeeded at 253 (offset 15 lines).\nHunk #3 succeeded at 296 (offset 15 lines).\nHunk #4 succeeded at 312 (offset 15 lines).\nHunk #5 succeeded at 525 (offset 28 lines).\nHunk #6 succeeded at 538 (offset 28 lines).\nChecking patch lib/gfx/frame.cpp...\nChecking patch lib/gx/fifo.cpp...\nerror: while searching for:\n  }\n}\n\nvoid worker_main(std::stop_token token) noexcept {\n  std::stop_callback wakeOnStop{token, wake_worker};\n  while (true) {\n    const uint32_t event = sWorkerWake.load(std::memory_order_acquire);\n    const uint64_t processed = sProcessed.load(std::memory_order_relaxed);\n    const uint64_t published = sPublished.load(std::memory_order_acquire);\n    if (published != processed) {\n      process_to(published, std::memory_order_release);\n      continue;\n    }\n\n\nerror: patch failed: lib/gx/fifo.cpp:73\nerror: lib/gx/fifo.cpp: patch does not apply\nChecking patch lib/gx/fifo.hpp...\nChecking patch lib/gx/gx.cpp...\n",
+      "hunks": [
+        {
+          "file": "include/aurora/aurora.h",
+          "hunk": "@@ -138,6 +138,20 @@ void aurora_shutdown();"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -28,6 +28,9 @@"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -235,6 +238,29 @@ const AuroraEvent* update() noexcept {"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -255,7 +281,12 @@ bool begin_frame() noexcept {"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -266,12 +297,36 @@ bool begin_frame() noexcept {"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -442,9 +497,8 @@ void end_frame() noexcept {"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -456,6 +510,25 @@ void aurora_shutdown() { aurora::shutdown(); }"
+        },
+        {
+          "file": "lib/gfx/frame.cpp",
+          "hunk": "@@ -9,6 +9,7 @@"
+        },
+        {
+          "file": "lib/gfx/frame.cpp",
+          "hunk": "@@ -734,7 +735,12 @@ uint32_t current_frame() noexcept { return g_frameIndex; }"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -1,13 +1,16 @@"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -37,6 +40,29 @@ std::atomic<uint32_t> sWorkerWake{0};"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -73,14 +99,80 @@ void process_to(uint64_t target, std::memory_order order) noexcept {"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -137,7 +229,11 @@ void init() {"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -146,6 +242,66 @@ void end_frame() noexcept {"
+        },
+        {
+          "file": "lib/gx/fifo.hpp",
+          "hunk": "@@ -3,6 +3,7 @@"
+        },
+        {
+          "file": "lib/gx/fifo.hpp",
+          "hunk": "@@ -32,6 +33,26 @@ void shutdown();"
+        },
+        {
+          "file": "lib/gx/gx.cpp",
+          "hunk": "@@ -11,6 +11,7 @@"
+        },
+        {
+          "file": "lib/gx/gx.cpp",
+          "hunk": "@@ -229,6 +230,7 @@ void set_viewport_policy(AuroraViewportPolicy policy) noexcept {"
+        }
+      ],
+      "disposition": "excluded",
+      "resolution": "Excluded: optional async end-frame/one-frame-ahead mode is off in original and not required at original 30 Hz. Retain fork FIFO worker and synchronous frame drain/order, surface synchronization and shutdown."
+    },
+    {
+      "name": "0019-view-delta.patch",
+      "original_apply_exit": 0,
+      "original_apply_output": "Checking patch include/dolphin/gx/GXAurora.h...\nChecking patch lib/dolphin/gx/GXAurora.cpp...\nChecking patch lib/gx/command_processor.cpp...\nChecking patch lib/gx/gx.hpp...\nChecking patch lib/gx/shader_info.cpp...\n",
+      "hunks": [
+        {
+          "file": "include/dolphin/gx/GXAurora.h",
+          "hunk": "@@ -105,6 +105,17 @@ extern \"C\" {"
+        },
+        {
+          "file": "include/dolphin/gx/GXAurora.h",
+          "hunk": "@@ -183,6 +194,13 @@ void GXSetProjectionFull(const void* mtx);"
+        },
+        {
+          "file": "lib/dolphin/gx/GXAurora.cpp",
+          "hunk": "@@ -94,6 +94,24 @@ void AuroraSetContentScale(f32 scale) {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -783,6 +783,26 @@ void handle_aurora(ByteReader& reader) noexcept {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -854,6 +874,7 @@ void handle_aurora(ByteReader& reader) noexcept {"
+        },
+        {
+          "file": "lib/gx/gx.hpp",
+          "hunk": "@@ -306,6 +306,14 @@ inline bool operator==(const AttrArray& lhs, const AttrArray& rhs) {"
+        },
+        {
+          "file": "lib/gx/gx.hpp",
+          "hunk": "@@ -330,6 +338,7 @@ struct GXState {"
+        },
+        {
+          "file": "lib/gx/shader_info.cpp",
+          "hunk": "@@ -374,8 +374,49 @@ ShaderInfo build_shader_info(const ShaderConfig& config) noexcept {"
+        },
+        {
+          "file": "lib/gx/shader_info.cpp",
+          "hunk": "@@ -395,6 +436,16 @@ static void fill_uniform(ByteBuffer& buf, const ShaderInfo& info) noexcept {"
+        },
+        {
+          "file": "lib/gx/shader_info.cpp",
+          "hunk": "@@ -402,8 +453,13 @@ static void fill_uniform(ByteBuffer& buf, const ShaderInfo& info) noexcept {"
+        },
+        {
+          "file": "lib/gx/shader_info.cpp",
+          "hunk": "@@ -411,7 +467,11 @@ static void fill_uniform(ByteBuffer& buf, const ShaderInfo& info) noexcept {"
+        },
+        {
+          "file": "lib/gx/shader_info.cpp",
+          "hunk": "@@ -422,7 +482,17 @@ static void fill_uniform(ByteBuffer& buf, const ShaderInfo& info) noexcept {"
+        }
+      ],
+      "disposition": "excluded",
+      "resolution": "Excluded: interpolated repaint view delta is a 60 Hz enhancement outside original 30 Hz scope."
+    },
+    {
+      "name": "0020-fifo-profile.patch",
+      "original_apply_exit": 1,
+      "original_apply_output": "Checking patch include/aurora/aurora.h...\nerror: while searching for:\n */\nvoid aurora_frame_sync();\n\nvoid aurora_set_log_level(AuroraLogLevel level);\nvoid aurora_set_pause_on_focus_lost(bool value);\nvoid aurora_set_background_input(bool value);\n\nerror: patch failed: include/aurora/aurora.h:153\nerror: include/aurora/aurora.h: patch does not apply\nChecking patch lib/aurora.cpp...\nerror: while searching for:\n  aurora::gx::fifo::sync();\n#endif\n}\nAuroraBackend aurora_get_backend() { return aurora::g_config.desiredBackend; }\nconst AuroraBackend* aurora_get_available_backends(size_t* count) {\n  if (count != nullptr) {\n\nerror: patch failed: lib/aurora.cpp:529\nerror: lib/aurora.cpp: patch does not apply\nChecking patch lib/gx/command_processor.cpp...\nChecking patch lib/gx/fifo.cpp...\nerror: while searching for:\n#include \"../thread.hpp\"\n#include \"../gfx/render_worker.hpp\"\n#include \"command_processor.hpp\"\n\n#include <algorithm>\n#include <atomic>\n\nerror: patch failed: lib/gx/fifo.cpp:3\nerror: lib/gx/fifo.cpp: patch does not apply\nChecking patch lib/gx/fifo_profile.hpp...\n",
+      "hunks": [
+        {
+          "file": "include/aurora/aurora.h",
+          "hunk": "@@ -153,6 +153,47 @@ bool aurora_get_async_end_frame();"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -8,6 +8,7 @@"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -529,6 +530,18 @@ void aurora_frame_sync() {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -6,6 +6,7 @@"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -238,7 +239,11 @@ ProcessResult process(const u8* data, u32 size) noexcept {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -247,6 +252,7 @@ ProcessResult process(const u8* data, u32 size) noexcept {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -255,6 +261,8 @@ ProcessResult process(const u8* data, u32 size) noexcept {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -264,6 +272,8 @@ ProcessResult process(const u8* data, u32 size) noexcept {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -460,12 +470,15 @@ static void push_gx_draw(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, gfx::Rang"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -476,12 +489,17 @@ static void push_gx_draw(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, gfx::Rang"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -496,8 +514,13 @@ static void push_gx_draw(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, gfx::Rang"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -509,7 +532,10 @@ static void push_gx_draw(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, gfx::Rang"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -533,6 +559,7 @@ static void push_gx_draw(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, gfx::Rang"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -584,6 +611,7 @@ static void draw_prim(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, ByteReader&"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -626,6 +654,7 @@ static void draw_prim(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, ByteReader&"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -635,12 +664,15 @@ static void draw_prim(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, ByteReader&"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -3,6 +3,7 @@"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -85,6 +86,7 @@ void process_to(uint64_t target, std::memory_order order) noexcept {"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -94,6 +96,7 @@ void process_to(uint64_t target, std::memory_order order) noexcept {"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -111,6 +114,7 @@ bool run_due_job(uint64_t processed) noexcept {"
+        },
+        {
+          "file": "lib/gx/fifo.cpp",
+          "hunk": "@@ -179,7 +183,9 @@ void worker_main(std::stop_token token) noexcept {"
+        },
+        {
+          "file": "lib/gx/fifo_profile.hpp",
+          "hunk": "@@ -0,0 +1,93 @@"
+        }
+      ],
+      "disposition": "excluded",
+      "resolution": "Excluded: optional sampling profiler depends on 0018; retain platform timing/resource logs without adding sampler thread."
+    },
+    {
+      "name": "0021-fifo-fast-paths.patch",
+      "original_apply_exit": 1,
+      "original_apply_output": "Checking patch include/aurora/aurora.h...\nerror: while searching for:\n  AURORA_FIFO_PROFILE_STREAM_BYTES, /* GX stream bytes translated */\n  AURORA_FIFO_PROFILE_BP_LOADS,\n  AURORA_FIFO_PROFILE_XF_LOADS,\n  AURORA_FIFO_PROFILE_COUNT\n} AuroraFifoProfileValue;\nvoid aurora_fifo_profile_enable(bool enabled);\nvoid aurora_fifo_profile_get(uint64_t* out, size_t count);\n\nvoid aurora_set_log_level(AuroraLogLevel level);\nvoid aurora_set_pause_on_focus_lost(bool value);\n\nerror: patch failed: include/aurora/aurora.h:189\nerror: include/aurora/aurora.h: patch does not apply\nChecking patch lib/aurora.cpp...\nerror: while searching for:\n  }\n  aurora::gx::fifo::profile::g_enabled.store(enabled, std::memory_order_relaxed);\n}\nvoid aurora_fifo_profile_get(uint64_t* out, size_t count) {\n  for (size_t i = 0; i < count; ++i) {\n    out[i] = i < AURORA_FIFO_PROFILE_COUNT ? aurora::gx::fifo::profile::g_values[i].load(std::memory_order_relaxed)\n\nerror: patch failed: lib/aurora.cpp:536\nerror: lib/aurora.cpp: patch does not apply\nChecking patch lib/gfx/recording.cpp...\nChecking patch lib/gfx/recording.hpp...\nChecking patch lib/gx/command_processor.cpp...\nHunk #2 succeeded at 19 (offset -1 lines).\nHunk #3 succeeded at 106 (offset -1 lines).\nerror: while searching for:\n\n    case CP_CMD_LOAD_BP_REG: {\n      const u32 value = reader.read<u32>();\n      {\n        profile::Scope prof{AURORA_FIFO_PROFILE_BP};\n        profile::count(AURORA_FIFO_PROFILE_BP_LOADS);\n        handle_bp(value);\n      }\n      if (reg_get(value, 8, 24) == GX_BP_REG_DRAWDONE) {\n\nerror: patch failed: lib/gx/command_processor.cpp:239\nerror: lib/gx/command_processor.cpp: patch does not apply\nChecking patch lib/gx/command_processor.hpp...\nChecking patch lib/gx/regs.cpp...\nChecking patch lib/gx/regs.hpp...\n",
+      "hunks": [
+        {
+          "file": "include/aurora/aurora.h",
+          "hunk": "@@ -189,10 +189,19 @@ typedef enum {"
+        },
+        {
+          "file": "lib/aurora.cpp",
+          "hunk": "@@ -536,6 +536,13 @@ void aurora_fifo_profile_enable(bool enabled) {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -663,6 +663,12 @@ void increment_merged_draw_count() noexcept {"
+        },
+        {
+          "file": "lib/gfx/recording.cpp",
+          "hunk": "@@ -1212,6 +1218,26 @@ Range push_indices(const uint8_t* data, size_t length, size_t alignment) {"
+        },
+        {
+          "file": "lib/gfx/recording.hpp",
+          "hunk": "@@ -18,6 +18,7 @@ void begin_recording(FramePacket& packet, size_t frameSlot);"
+        },
+        {
+          "file": "lib/gfx/recording.hpp",
+          "hunk": "@@ -71,6 +72,11 @@ Range push_verts(ArrayRef<T> data, size_t alignment) {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -2,6 +2,7 @@"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -19,6 +20,7 @@"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -105,6 +107,130 @@ u16 prepare_idx_buffer(ByteBuffer& buf, GXPrimitive prim, u16 vtxStart, u16 vtxC"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -239,9 +365,9 @@ ProcessResult process(const u8* data, u32 size) noexcept {"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -495,8 +621,26 @@ static void push_gx_draw(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, gfx::Rang"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -521,7 +665,23 @@ static void push_gx_draw(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, gfx::Rang"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -581,7 +741,12 @@ static void handle_draw_unmerged(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, g"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -592,7 +757,118 @@ static void handle_draw_unmerged(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, g"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -614,7 +890,51 @@ static void draw_prim(GXPrimitive prim, GXVtxFmt fmt, u16 vtxCount, ByteReader&"
+        },
+        {
+          "file": "lib/gx/command_processor.cpp",
+          "hunk": "@@ -905,7 +1225,16 @@ void handle_aurora(ByteReader& reader) noexcept {"
+        },
+        {
+          "file": "lib/gx/command_processor.hpp",
+          "hunk": "@@ -14,5 +14,7 @@ struct ProcessResult {"
+        },
+        {
+          "file": "lib/gx/regs.cpp",
+          "hunk": "@@ -938,6 +938,15 @@ bool store_xf_f32(f32& dst, u32 bits) noexcept {"
+        },
+        {
+          "file": "lib/gx/regs.hpp",
+          "hunk": "@@ -2,6 +2,7 @@"
+        },
+        {
+          "file": "lib/gx/regs.hpp",
+          "hunk": "@@ -13,6 +14,17 @@ constexpr u32 reg_get(const u32 reg, const u32 size, const u32 shift) noexcept {"
+        }
+      ],
+      "disposition": "excluded",
+      "resolution": "Excluded: optional FIFO memoisation/fast paths depend on 0020 and target 60 Hz. Keep existing fork draw cache and FIFO paths; no performance equivalence claimed."
+    }
+  ]
+}

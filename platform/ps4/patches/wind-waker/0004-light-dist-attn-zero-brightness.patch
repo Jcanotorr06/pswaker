@@ -1,0 +1,15 @@
+diff --git a/lib/dolphin/gx/GXLighting.cpp b/lib/dolphin/gx/GXLighting.cpp
+index 4a88255..98329af 100644
+--- a/lib/dolphin/gx/GXLighting.cpp
++++ b/lib/dolphin/gx/GXLighting.cpp
+@@ -83,7 +83,9 @@ void GXInitLightSpot(GXLightObj* light_, float cutoff, GXSpotFn spotFn) {
+ }
+ 
+ void GXInitLightDistAttn(GXLightObj* light_, float refDistance, float refBrightness, GXDistAttnFn distFunc) {
+-  if (refDistance < 0.f || refBrightness < 0.f || refBrightness >= 1.f) {
++  // As the SDK: a reference brightness of 0 (not only a negative one) turns the attenuation
++  // off; GX_DA_GENTLE with 0 would divide by zero and black out the light
++  if (refDistance < 0.f || refBrightness <= 0.f || refBrightness >= 1.f) {
+     distFunc = GX_DA_OFF;
+   }
+   float k0 = 1.f;

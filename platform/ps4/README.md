@@ -1,11 +1,11 @@
 # Maintained PS4 platform diagnostic
 
-Implements the preparation slice in [issue #13](https://github.com/Jcanotorr06/pswaker/issues/13).
-This builds a **disc-free program package**, title ID `PSWK00010`, version `01.03`.
-It contains synthetic test content only. Owner validation of the provided 01.03
-prototype is required before #13 can close; use the [console checklist](Console-checklist.md)
-for test steps and evidence to return. Game integration, renderer reconciliation,
-the maintained clean-build pair and renewed console gate belong to #14 and #15.
+Implements the preparation in [issue #13](https://github.com/Jcanotorr06/pswaker/issues/13)
+and [renderer reconciliation in #14](RENDERER.md).
+This builds a **disc-free program package**, title ID `PSWK00010`, version `01.04`.
+It contains synthetic test content only. The [renderer candidate checklist](Renderer-checklist.md)
+hands the new package to #15 for its clean-build pair and renewed console gate.
+The [01.03 checklist](Console-checklist.md) remains specific to the older #13 package.
 
 ## Reproduce on Linux / WSL2
 
@@ -28,15 +28,15 @@ bash platform/ps4/install-host.sh
 
 python3 platform/ps4/inputs.py host /tmp
 # Destination must not exist. Fetches recorded inputs without the live SDK database.
-bash platform/ps4/clean-build.sh "$HOME/.cache/pswaker/diagnostic-01.03"
+bash platform/ps4/clean-build.sh "$HOME/.cache/pswaker/diagnostic-01.04"
 
 # Alternatively, reuse downloads from a previous root. No source/build libraries
 # are copied; every locked download is checked again before use.
-bash platform/ps4/clean-build.sh "$HOME/.cache/pswaker/diagnostic-01.03-new" \
-  "$HOME/.cache/pswaker/diagnostic-01.03"
+bash platform/ps4/clean-build.sh "$HOME/.cache/pswaker/diagnostic-01.04-new" \
+  "$HOME/.cache/pswaker/diagnostic-01.04"
 
 # Repeat inspection without rebuilding; extraction is always fresh:
-python3 platform/ps4/inspect-artifacts.py "$HOME/.cache/pswaker/diagnostic-01.03"
+python3 platform/ps4/inspect-artifacts.py "$HOME/.cache/pswaker/diagnostic-01.04"
 ```
 
 `JOBS=5` is the default. Build paths must not contain spaces because the inherited
@@ -67,7 +67,9 @@ sources' existing adaptations, not a source of binary libraries for this build.
    unresolved `80c7811` tree.** Apply the selected Abseil/Dawn/SDL3 PS4 changes.
    Build Mesa, SDL3 and Dawn, preserving static ICD loading, VideoOut WSI and
    generated WebGPU bindings from this Dawn build.
-3. Apply the selected Aurora PS4 changes and build the corrected diagnostic.
+3. Apply the selected Aurora PS4 changes, then the locked Wind Waker renderer
+   reconciliation, and build the corrected diagnostic. The renderer preparation
+   checks exact before/after source identities and records all 21 patch dispositions.
    Its source requires C++23; the other dependencies retain their own language
    requirements. No PS5 binaries, `znver2` flags, signal contexts or caches are
    imported. The SDK's selected LLVM-12 builtins/unwinder source is rebuilt using
@@ -105,13 +107,17 @@ The manifest labels console status as untested. Keep the PKG hash, matching ELF,
 manifest and all logs together; later console results must identify that PKG.
 See [licensing and provenance](LICENSING.md) before distributing any artifact.
 The first maintained clean build's [report and hashes](evidence/maintained-13/REPORT.md)
-record the inspected 01.03 artifact and its exact source identity.
+record the inspected 01.03 artifact. The [renderer build report](evidence/renderer-14/REPORT.md)
+records the new 01.04 package and its own source identity.
 
 ## Diagnostic behavior and next gate
 
 The retained checks cover known-result textured depth/blend/copy/readback output,
 exact-white GX EFB/offscreen pixels, map status and sampled pixel diagnostics,
 allocated 1280x720 EFB dimensions, target recreation and pipeline readiness.
+The shared renderer sweep adds true/false TEV alpha compares, lit SRTG, three-vertex
+quads, zero-brightness attenuation, actual GX EFB copy-to-texture and content-scale
+comparisons. See [coverage and limitations](RENDERER.md).
 Explicit SDL dummy-video selection precedes the independent PS4 presentation
 path. GX initialization, an alpha-capable framebuffer and an explicit 640x480 VI
 base at 1.5x retain the corrected sizing/state contract. Scanout is independently
@@ -146,7 +152,7 @@ python3 -m unittest discover -s platform/ps4/tests
 python3 -m compileall -q platform/ps4
 for script in platform/ps4/*.sh; do bash -n "$script"; done
 # After a build, also exercise the actual packaging tools and payload rejection:
-PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/diagnostic-01.03" \
+PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/diagnostic-01.04" \
   python3 -m unittest discover -s platform/ps4/tests
 ```
 

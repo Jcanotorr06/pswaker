@@ -1,0 +1,372 @@
+{
+  "upstream_aurora": "encounter/aurora@3227d76c60e1e782ca576610bce61c9e7744d8be",
+  "switchwaker": "centollOS/SwitchWaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c",
+  "selected_aurora": "mshivam019/dusklight-ps5@e281999cdb4fee6127525a9a9e97979480db4bf3",
+  "prerequisite": "aurora-ps4.patch@675fb93ccc2fc6b792b6a57806b798f072af90bc3458ed3cb77aaf4d9ccc9ab2",
+  "initial_files": {
+    "cmake/aurora_gx.cmake": "c81d5e1291dc8a228abbf6ac2c8accf3a8bf64fdb2e1c5818934c6295c906e91",
+    "include/aurora/aurora.h": "e263107600af2a26f320557026fb3648b1a32fde3d29c6fd4e4f74cf8c7689e9",
+    "include/dolphin/gx/GXAurora.h": "90f354d8aba19759d20b5f96e81a26ef8c9adf47f44a23aa3fbe28923d2d4d07",
+    "lib/aurora.cpp": "4205a603abc6c4c208de2a1a57db1014890f19d3c1371c06774394482c63bdca",
+    "lib/dolphin/dvd/dvd.cpp": "27ff38b58659034753011a2aafad25b606df138cdaabd6edcef6ae114db771ed",
+    "lib/dolphin/gx/GXAurora.cpp": "9bedfcf46f350a42f5f667e3ed706bb1d1c9efc022ff2ec9d0c6bba4c1d44dee",
+    "lib/dolphin/gx/GXFrameBuffer.cpp": "8d2ba595885e3c52e78a843c511e89348899ebfbadc810d691aeb7efbe908010",
+    "lib/dolphin/gx/GXLighting.cpp": "50755f23961077fda260ac175f843d889bb36fff67d63bd561bf3dffe334d88a",
+    "lib/dolphin/os/OSTime.cpp": "fa35f1fb12c8688d2ce62cfcc8ac76569448af88e12edd67a4c409a5c81dca3f",
+    "lib/gfx/encoding.cpp": "7bc1988a170e016786d863abce5f45aa0db33165a31613840d1a1a05c7461675",
+    "lib/gfx/frame.cpp": "1b64edf2ff31e7839e2a579cd056167f425b70610ad829c118636930ff84e695",
+    "lib/gfx/frame_packet.hpp": "33038b7772244be291597b5dbf0cd50eda7965a658a15a5a04fddbbe1331c4d6",
+    "lib/gfx/pipeline_cache.cpp": "157ce681f93914c2de2b4481e8dd58196e68e446cf2264e6b24d37869d47a11e",
+    "lib/gfx/recording.cpp": "8ecd916a9dc5911d8907c34c6912f7105bfa5a70c2f1ca9b0f9448565cfac650",
+    "lib/gfx/recording.hpp": "82eecf091b40d67f23a05b06eb53714e2730ab5ae93d1bfcb5af3d3a0d3c3acc",
+    "lib/gx/command_processor.cpp": "ff3eeb1c06562c0cbbeb5cbad0daa45aeb4370733dd073ccd34f10f6303ba5ab",
+    "lib/gx/gx.cpp": "ef6604ddfa9b66f167730d076bc7eb87fa20b1c9591b1c2fd249d1d64c3463dc",
+    "lib/gx/gx.hpp": "7cc8b98806ebabd340f66926940a126e6b97f0c42d7f8b9c825c094a7ee8ac62",
+    "lib/gx/shader.cpp": "baa10f92ae26c716623ba3a51a763661ad5146735c1163899bbd196f59899652",
+    "lib/gx/shader_info.cpp": "285de67570398a317d69f711e19d00fb8e10c641ccc34ad61b49b0eed720d125",
+    "lib/gx/texture.cpp": "03741b698f35a59dc4ca63737ebd6e1cff6024f27a930cbfc327c8544afc0871",
+    "lib/internal.hpp": "0ca805251b1b7d6d513834cd2c46ecc1bfc411588fad130babf71b3448439c94",
+    "lib/sqlite_utils.hpp": "56f42098e6d0f4c0f5def2af8ea9a127edef45519ca015d92e24af005760f969",
+    "lib/webgpu/gpu_cache.cpp": "5faf47b29c5eedc6bcb5bb162d3a3722e5c26e6ec9817eea3f7920f9bfdc227c",
+    "lib/window.cpp": "72f7afec8ebf6a0b3420868e0d746e3afd379bc3b60ee16d24f9f083a9b26e40",
+    "lib/window.hpp": "acb344f5866236783c4d173c33912b6a90bc368e1bc3ea8a84abfdf0990864a2"
+  },
+  "created_files": [
+    "lib/gfx/census.cpp",
+    "lib/gfx/census.hpp"
+  ],
+  "final_files": {
+    "cmake/aurora_gx.cmake": "5f9f3138c225bc26e44c273cd3455aad6dd5a1541543dd477a7be246275ae1c9",
+    "include/aurora/aurora.h": "74e0c3480b3797d3478b88370901a9a3de27f52b90309ec8009bf2d182cddb0a",
+    "include/dolphin/gx/GXAurora.h": "bc7c4dbe6374035664019aae722c2223134ce93e0f7d4b63897584eda41bf349",
+    "lib/aurora.cpp": "e821697ff6af2a1c68e1c626957b6d7c522f6a473854b91c5ded2ecc75bd1127",
+    "lib/dolphin/dvd/dvd.cpp": "171e9583207a5560eec895bf32a0b4df512b28768106d7ab114eaf3dc043a79f",
+    "lib/dolphin/gx/GXAurora.cpp": "4281614b626e8cb8dfa67cbdabc6eb1b266a73d130ac2a35460de4d4b176199e",
+    "lib/dolphin/gx/GXFrameBuffer.cpp": "8c710c6776098e637dae82e7d8a949acff3f060cdfeede6d7804755fd228dc77",
+    "lib/dolphin/gx/GXLighting.cpp": "c67e0c26461b6cae5cbd91787c0def6a20863b93c9aaaf125618feaec22806c0",
+    "lib/dolphin/os/OSTime.cpp": "807396f34f2abce24146e9b024bbf47f77559fd40d0e4dbc882a8a859ca2a84b",
+    "lib/gfx/census.cpp": "a4e95d41ce577ab19bceb32364eff360b47cd40abd9549581548742f55efc904",
+    "lib/gfx/census.hpp": "fa57757ae6ed4d2381862082749c3dcf0db7018bd96fa063b91ccb7fb786faa0",
+    "lib/gfx/encoding.cpp": "d17f329e6c4deab48c219fe9ba2bbc42916118b9e8a9a19160eed9d74fb80b5a",
+    "lib/gfx/frame.cpp": "7e0623792b68298b6db5e3f6390c9cffbafba244e71e4bca78a5e735f83765d5",
+    "lib/gfx/frame_packet.hpp": "bb739c1989f882b83f4e88109b1659ad3c8da08888a20f4592f0ce0547862a77",
+    "lib/gfx/pipeline_cache.cpp": "ee9ac293287ce39ec659fa5c31ef6fd795e77dd568637acc8f6c870fb5dac51d",
+    "lib/gfx/recording.cpp": "58f6fb07b2bcd16269c03cc8dc456c7c5b5024b0d8ef01ade32d7867be1446a7",
+    "lib/gfx/recording.hpp": "948edde135da283b8f4985e1a17bf123acdc5a23cb1410b62e903bf16104e22b",
+    "lib/gx/command_processor.cpp": "91164af5f1e26698dc9b1fb0485c287320758b3b21d5a245d3965f3b2f9edd8d",
+    "lib/gx/gx.cpp": "4c00ae29b6a8c50389a9fd51a34b2eb35173601ddff898470ae3f50a2ca3450a",
+    "lib/gx/gx.hpp": "1798f68c8de3b0f1205629053992667e834f79bd9143756ad0808523a4d0943e",
+    "lib/gx/shader.cpp": "035be30e91973e70dfafc6478e779d334155411383b9077975a6b58f80c200b5",
+    "lib/gx/shader_info.cpp": "7e08e718a9840616108d16a9beb94cf0880c14184dba1c35c4a816ba560fb569",
+    "lib/gx/texture.cpp": "d85f4b1c60f7bd9e57fe2547d728db36c348f315fb6f1b4e5ab5bea8fcd9bb18",
+    "lib/internal.hpp": "a80156a692ec7680c39cab6c32147f1b3a5ec655d2572f31c9dc32d7b49481bc",
+    "lib/sqlite_utils.hpp": "906e3815901fdb7dc53d388495d4cdb2885869c2bade6e4aa0cfa01e020b87f3",
+    "lib/webgpu/gpu_cache.cpp": "c1cc74d13e5857d65724faf7e12a9cb90498e382e4b332bfd32872f57779ec3e",
+    "lib/window.cpp": "a318f053e468fbd19ebf9928aec9081e45d9ce136895dd4af366902260475e44",
+    "lib/window.hpp": "143ae173dae2d39792f830b275489edd24a66a63c14c0c3b2abe402690baa5d4"
+  },
+  "patches": [
+    {
+      "name": "0001-alpha-stage-channel-compares.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0001-alpha-stage-channel-compares.patch",
+      "original": "provenance/wind-waker/0001-alpha-stage-channel-compares.patch",
+      "original_sha256": "749b79597847430d324c1c489ff087b97585c4ca6c565c7dca967bf04f73b8b2",
+      "disposition": "applied",
+      "resolution": "Latch TEV stage colour A/B before writing the colour result; alpha R8/GR16/BGR24 compares use these vector inputs.",
+      "patch": "patches/wind-waker/0001-alpha-stage-channel-compares.patch",
+      "sha256": "47168bacc5a24702b7dc4a62a8747345a3caee3a79448549c77010cc80f98ac3",
+      "files": [
+        "lib/gx/shader.cpp"
+      ]
+    },
+    {
+      "name": "0002-srtg-texgen-lit-colour.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0002-srtg-texgen-lit-colour.patch",
+      "original": "provenance/wind-waker/0002-srtg-texgen-lit-colour.patch",
+      "original_sha256": "064a69fa71471137d44fee8e7e3a628ac500a30c6ee76ee174553566f7110814",
+      "disposition": "applied",
+      "resolution": "Compute SRTG sampled colour channels even without TEV raster use, and read lit vertex output.",
+      "patch": "patches/wind-waker/0002-srtg-texgen-lit-colour.patch",
+      "sha256": "8ac11872712f63c0b9fb44a709349e57fee82ed694c22f012fa3bbdae49f1dc5",
+      "files": [
+        "lib/gx/shader.cpp",
+        "lib/gx/shader_info.cpp"
+      ]
+    },
+    {
+      "name": "0003-quads-three-vertex-triangle.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0003-quads-three-vertex-triangle.patch",
+      "original": "provenance/wind-waker/0003-quads-three-vertex-triangle.patch",
+      "original_sha256": "caa096292d80c36c11626e42e71f175f136ae969f94921ced30d36aeed8bd41a",
+      "disposition": "applied",
+      "resolution": "Emit complete quads plus a triangle for a remainder of three; never index a fourth vertex.",
+      "patch": "patches/wind-waker/0003-quads-three-vertex-triangle.patch",
+      "sha256": "83af6a653332a0b0e639579f24404aebf90fca037b644ec03e6300f9447cebd4",
+      "files": [
+        "lib/gx/command_processor.cpp"
+      ]
+    },
+    {
+      "name": "0004-light-dist-attn-zero-brightness.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0004-light-dist-attn-zero-brightness.patch",
+      "original": "provenance/wind-waker/0004-light-dist-attn-zero-brightness.patch",
+      "original_sha256": "0a4c4bc69708583bdaf59a32310088d7e56cf998384f2c5271666243229f981b",
+      "disposition": "applied",
+      "resolution": "Treat reference brightness zero as attenuation disabled; avoid division by zero.",
+      "patch": "patches/wind-waker/0004-light-dist-attn-zero-brightness.patch",
+      "sha256": "dd28328ef306ac8e031e92b71eb8412b8c6cdbbe2f07015d0646b7f65a50c32b",
+      "files": [
+        "lib/dolphin/gx/GXLighting.cpp"
+      ]
+    },
+    {
+      "name": "0005-blocking-pipelines-option.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0005-blocking-pipelines-option.patch",
+      "original": "provenance/wind-waker/0005-blocking-pipelines-option.patch",
+      "original_sha256": "9953d3ebc835233696df8f46619cad0fc53ac35081fd3d6118577a355a6fda0e",
+      "disposition": "adapted",
+      "resolution": "Adapt around fork pipeline census/priority changes. Add opt-in blockingPipelines; default remains asynchronous.",
+      "patch": "patches/wind-waker/0005-blocking-pipelines-option.patch",
+      "sha256": "ad1f0c26ef1422eea0554e292963306499580c08c45a6d9560a2c939d799793f",
+      "files": [
+        "include/aurora/aurora.h",
+        "lib/gfx/pipeline_cache.cpp"
+      ]
+    },
+    {
+      "name": "0006-fit-aspect-option.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0006-fit-aspect-option.patch",
+      "original": "provenance/wind-waker/0006-fit-aspect-option.patch",
+      "original_sha256": "854fd94e992a28a9308d1440c5ba9a52469c71979f54322dbe1007bd9994a129",
+      "disposition": "applied",
+      "resolution": "Keep optional FIT-aspect API with zero default. Diagnostic retains native viewport and existing VI sizing; no widescreen mod enabled.",
+      "patch": "patches/wind-waker/0006-fit-aspect-option.patch",
+      "sha256": "353b6746d38cea99ac3a06e38d2c1447f67838f918964f51e0a94b1fd13f2680",
+      "files": [
+        "include/dolphin/gx/GXAurora.h",
+        "lib/dolphin/gx/GXAurora.cpp",
+        "lib/window.cpp",
+        "lib/window.hpp"
+      ]
+    },
+    {
+      "name": "0007-sqlite-cache-recovery.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0007-sqlite-cache-recovery.patch",
+      "original": "provenance/wind-waker/0007-sqlite-cache-recovery.patch",
+      "original_sha256": "57447f34bc63751a6c8709eb6565edfbe930eb4e02d5781e861f1256321e3b30",
+      "disposition": "adapted",
+      "resolution": "Merge seed-identity optimisation with recovery; keep unix-none opens and move PS4 exclusive WAL pragmas into shared helper. Preserve return types and early exits in retry path.",
+      "patch": "patches/wind-waker/0007-sqlite-cache-recovery.patch",
+      "sha256": "f459255d2d5dba60c76c407d15e2a75dd53dec95ed65b39a461ce8358d189895",
+      "files": [
+        "lib/gfx/pipeline_cache.cpp",
+        "lib/sqlite_utils.hpp",
+        "lib/webgpu/gpu_cache.cpp"
+      ]
+    },
+    {
+      "name": "0008-draw-census-and-debug-markers.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0008-draw-census-and-debug-markers.patch",
+      "original": "provenance/wind-waker/0008-draw-census-and-debug-markers.patch",
+      "original_sha256": "5bd873815c16c8267ba99935914a8486014d2da843cb6f300649c398d50cdffc",
+      "disposition": "applied",
+      "resolution": "Keep optional draw census and FIFO debug markers; recording remains disabled unless explicitly requested.",
+      "patch": "patches/wind-waker/0008-draw-census-and-debug-markers.patch",
+      "sha256": "4a8ad7badd4940fe2d1657ca776212426de2dc128fe87c97e9f714dde902ade3",
+      "files": [
+        "cmake/aurora_gx.cmake",
+        "lib/gfx/census.cpp",
+        "lib/gfx/census.hpp",
+        "lib/gfx/encoding.cpp",
+        "lib/gfx/frame.cpp",
+        "lib/gfx/frame_packet.hpp",
+        "lib/gfx/recording.cpp",
+        "lib/gfx/recording.hpp",
+        "lib/gx/command_processor.cpp",
+        "lib/gx/shader.cpp"
+      ]
+    },
+    {
+      "name": "0009-efb-content-scale.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0009-efb-content-scale.patch",
+      "original": "provenance/wind-waker/0009-efb-content-scale.patch",
+      "original_sha256": "21b25946ef1744567da552a36190167f64d638f14b0f08ace2c45546b95fcc18",
+      "disposition": "applied",
+      "resolution": "Map viewport/scissor/copy destination and depth snapshot to EFB content fraction; offscreen targets unaffected. Allocated EFB remains 1280x720.",
+      "patch": "patches/wind-waker/0009-efb-content-scale.patch",
+      "sha256": "31a1594086cd1c7a4d206fa047b5f3d195e6f0033a25f48153a00d38fd3bf845",
+      "files": [
+        "include/dolphin/gx/GXAurora.h",
+        "lib/dolphin/gx/GXAurora.cpp",
+        "lib/dolphin/gx/GXFrameBuffer.cpp",
+        "lib/gfx/encoding.cpp",
+        "lib/gfx/frame_packet.hpp",
+        "lib/gfx/recording.cpp",
+        "lib/gfx/recording.hpp",
+        "lib/gx/command_processor.cpp",
+        "lib/gx/gx.cpp"
+      ]
+    },
+    {
+      "name": "0010-texture-replacement-streaming.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0010-texture-replacement-streaming.patch",
+      "original": "provenance/wind-waker/0010-texture-replacement-streaming.patch",
+      "original_sha256": "686b400185dc8e6ecb3430ee897bd748202b71bbb9259ad8de535d0313426896",
+      "disposition": "excluded",
+      "resolution": "Excluded: HD replacement streaming and budgets are outside stock-texture scope; retain selected fork replacement implementation."
+    },
+    {
+      "name": "0011-texture-replacement-smooth-publish.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0011-texture-replacement-smooth-publish.patch",
+      "original": "provenance/wind-waker/0011-texture-replacement-smooth-publish.patch",
+      "original_sha256": "764c47415d858f4b5971b40be2e4830a7c29346cb38ceecd83a7de1779d08148",
+      "disposition": "excluded",
+      "resolution": "Excluded: smooth HD replacement publish/rescan depends on 0010; unnecessary for stock textures."
+    },
+    {
+      "name": "0012-texture-object-cache-image-check.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0012-texture-object-cache-image-check.patch",
+      "original": "provenance/wind-waker/0012-texture-object-cache-image-check.patch",
+      "original_sha256": "643cc3eec438126a68c15b99d19d9429e7f78cc952d91397c379a76cd7337257",
+      "disposition": "adapted",
+      "resolution": "Extract image identity checks from HD rescan context. Keep existing invalidation logic; no rescan fields or replacement streaming imported.",
+      "patch": "patches/wind-waker/0012-texture-object-cache-image-check.patch",
+      "sha256": "2ca9ff9aff89f3d93497a7e7bc844fc7b7d95861214b68560668d60ce709a8e0",
+      "files": [
+        "lib/gx/texture.cpp"
+      ]
+    },
+    {
+      "name": "0013-linux-local-time-without-tzdb.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0013-linux-local-time-without-tzdb.patch",
+      "original": "provenance/wind-waker/0013-linux-local-time-without-tzdb.patch",
+      "original_sha256": "d4f758eaed1305a37650eae470e3fff0f1757e99d3eb5b4bebebd124612e8028",
+      "disposition": "applied",
+      "resolution": "Retain Linux local-time fallback for host reproduction; PS4 code path is unchanged.",
+      "patch": "patches/wind-waker/0013-linux-local-time-without-tzdb.patch",
+      "sha256": "2a22383f6cb06011bdb8f6f2f65801f07bc33baaafb1889b7a84ebce1458f82a",
+      "files": [
+        "lib/dolphin/os/OSTime.cpp"
+      ]
+    },
+    {
+      "name": "0014-game-name-nul-terminated.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0014-game-name-nul-terminated.patch",
+      "original": "provenance/wind-waker/0014-game-name-nul-terminated.patch",
+      "original_sha256": "7e9f906d7cc3843f88901d82799877b9a10b434f760242555ab3098551bfa68c",
+      "disposition": "applied",
+      "resolution": "NUL-terminate game-name value at public configuration boundary.",
+      "patch": "patches/wind-waker/0014-game-name-nul-terminated.patch",
+      "sha256": "88cb0d00dd2b7aaebb699296e97d9be3923d0cae934f829a0b6e12b85d902a20",
+      "files": [
+        "lib/aurora.cpp",
+        "lib/internal.hpp"
+      ]
+    },
+    {
+      "name": "0015-dvd-queue-malloc.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0015-dvd-queue-malloc.patch",
+      "original": "provenance/wind-waker/0015-dvd-queue-malloc.patch",
+      "original_sha256": "42ff801cc65c1e8b5f694e864c782512f3cc3dd21baac67fe2f2e8bc3c500385",
+      "disposition": "applied",
+      "resolution": "Keep DVD queue storage aligned with malloc/free; DVD disabled in disc-free diagnostic, not exercised by it.",
+      "patch": "patches/wind-waker/0015-dvd-queue-malloc.patch",
+      "sha256": "8990778508483b6d490edea0375d4ff382a1e95c53fb1a068439934411036bf4",
+      "files": [
+        "lib/dolphin/dvd/dvd.cpp"
+      ]
+    },
+    {
+      "name": "0016-pipeline-cache-load-abort-return.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0016-pipeline-cache-load-abort-return.patch",
+      "original": "provenance/wind-waker/0016-pipeline-cache-load-abort-return.patch",
+      "original_sha256": "d5b303abd64db1e195eb338bc05930d7db0f69989c96d73581b54845d3dc1511",
+      "disposition": "applied",
+      "resolution": "Return acceptedRows immediately after load abort finalizes statements; retain 0007 recovery on next attempt.",
+      "patch": "patches/wind-waker/0016-pipeline-cache-load-abort-return.patch",
+      "sha256": "9f636141caf2e214e28c74c88a38f89e596784d98c7ac133b51472800f7b3328",
+      "files": [
+        "lib/gfx/pipeline_cache.cpp"
+      ]
+    },
+    {
+      "name": "0017-copy-texture-lookup.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0017-copy-texture-lookup.patch",
+      "original": "provenance/wind-waker/0017-copy-texture-lookup.patch",
+      "original_sha256": "4ac00177ea1492bffbb20ba931f6e02a67e00a4449ed4484512dac8b3256d529",
+      "disposition": "applied",
+      "resolution": "Expose copy texture lookup without external GXState layout access; caller must synchronize FIFO first.",
+      "patch": "patches/wind-waker/0017-copy-texture-lookup.patch",
+      "sha256": "15d5c99e65cb1f41d2bd84419aa536cfd957d8a524e308ebda3f4b908ca5224e",
+      "files": [
+        "lib/gx/gx.hpp",
+        "lib/gx/texture.cpp"
+      ]
+    },
+    {
+      "name": "0018-async-end-frame.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0018-async-end-frame.patch",
+      "original": "provenance/wind-waker/0018-async-end-frame.patch",
+      "original_sha256": "bc1ccf7f86ecce852f82198c380f1f220c9226fee8c8980637a20cf81af4dff5",
+      "disposition": "excluded",
+      "resolution": "Excluded: optional async end-frame/one-frame-ahead mode is off in original and not required at original 30 Hz. Retain fork FIFO worker and synchronous frame drain/order, surface synchronization and shutdown."
+    },
+    {
+      "name": "0019-view-delta.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0019-view-delta.patch",
+      "original": "provenance/wind-waker/0019-view-delta.patch",
+      "original_sha256": "b9fbbeafb932f08a5ea62488a59af4632d24775b48ac9dd62cb33eb0bc8df39b",
+      "disposition": "excluded",
+      "resolution": "Excluded: interpolated repaint view delta is a 60 Hz enhancement outside original 30 Hz scope."
+    },
+    {
+      "name": "0020-fifo-profile.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0020-fifo-profile.patch",
+      "original": "provenance/wind-waker/0020-fifo-profile.patch",
+      "original_sha256": "c61f316f382c2578f2a917fe2139f584323ac6783c1c6dbb25e0908f5229cf96",
+      "disposition": "excluded",
+      "resolution": "Excluded: optional sampling profiler depends on 0018; retain platform timing/resource logs without adding sampler thread."
+    },
+    {
+      "name": "0021-fifo-fast-paths.patch",
+      "source_url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/patches/aurora/0021-fifo-fast-paths.patch",
+      "original": "provenance/wind-waker/0021-fifo-fast-paths.patch",
+      "original_sha256": "b61098d616b69f6c8a67b2be41ffc26b2a0bb621761717da1de2531cf0e20c7f",
+      "disposition": "excluded",
+      "resolution": "Excluded: optional FIFO memoisation/fast paths depend on 0020 and target 60 Hz. Keep existing fork draw cache and FIFO paths; no performance equivalence claimed."
+    }
+  ],
+  "platform_reference_patches": [
+    {
+      "source_url": "https://raw.githubusercontent.com/griches/PS5_SwitchWaker/3c0f213f2d4c17606ac8637eda2c5da6cbcc73b0/ps5/patches/aurora.patch",
+      "original": "provenance/wind-waker/ps5-aurora.patch",
+      "original_sha256": "6d29babe902a8f40b9126e0864049f2284e3d8a9d04139eba25c00f47446f954",
+      "disposition": "excluded",
+      "files": [
+        "lib/dawn/BackendBinding.cpp",
+        "lib/dolphin/pad/pad.cpp",
+        "lib/imgui.cpp"
+      ],
+      "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+    },
+    {
+      "source_url": "https://raw.githubusercontent.com/griches/PS5_SwitchWaker/3c0f213f2d4c17606ac8637eda2c5da6cbcc73b0/ps5/patches/dawn.patch",
+      "original": "provenance/wind-waker/ps5-dawn.patch",
+      "original_sha256": "96a090eff5c39b3d17a6a70add8965cf58c4fecd6424f20ca45b6225c3492b40",
+      "disposition": "excluded",
+      "files": [
+        "src/dawn/common/SystemUtils.cpp",
+        "src/dawn/native/CMakeLists.txt",
+        "src/dawn/native/Surface.cpp",
+        "src/dawn/native/vulkan/BackendVk.cpp",
+        "src/dawn/native/vulkan/SwapChainVk.cpp",
+        "src/dawn/native/vulkan/VulkanExtensions.cpp",
+        "src/dawn/native/vulkan/VulkanExtensions.h",
+        "src/dawn/native/vulkan/VulkanFunctions.cpp",
+        "src/dawn/native/vulkan/VulkanFunctions.h",
+        "src/utils/platform.h"
+      ],
+      "resolution": "Retain the matched PS4 direct-display/static ICD API and diagnostics. PS5 pad mapping belongs to later controller integration; do not transplant a PS5 surface token or suppress debug groups."
+    }
+  ]
+}

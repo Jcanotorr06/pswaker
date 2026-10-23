@@ -1,0 +1,8 @@
+{
+  "base_commit": "9a7fc54aa775c8c0d91de672a40691ca94c6697f",
+  "source_archive": "/home/joseph_cano/.cache/pswaker/maintained-source-14.tar",
+  "source_archive_sha256": "5adbf0b576d7ac4c84308618d79c61a3348cddbbdd6d8eab0b1003ea29304967",
+  "build_root": "/home/joseph_cano/.cache/pswaker/maintained-14",
+  "frozen_source": "/home/joseph_cano/.cache/pswaker/maintained-source-14",
+  "cache_use": "Verified downloads only; all target libraries rebuilt"
+}

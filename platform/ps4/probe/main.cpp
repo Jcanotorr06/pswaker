@@ -139,6 +139,8 @@ struct Targets {
   }
   bool verify() {
     checkpoint("render-copy-async-readback-known-purple");
+    note("TEXTURE purple-source width=%u height=%u format=%u copy-width=%u copy-height=%u copy-format=%u",
+      color.GetWidth(),color.GetHeight(),unsigned(color.GetFormat()),copy.GetWidth(),copy.GetHeight(),unsigned(copy.GetFormat()));
     auto device=aurora::webgpu::g_device;
     auto encoder=device.CreateCommandEncoder();
     wgpu::RenderPassColorAttachment c{};
@@ -159,7 +161,10 @@ struct Targets {
     auto command=encoder.Finish(); aurora::webgpu::g_queue.Submit(1,&command);
     auto done=std::make_shared<std::atomic<int>>(0);
     readback.MapAsync(wgpu::MapMode::Read,0,256*32,wgpu::CallbackMode::AllowSpontaneous,
-      [done](wgpu::MapAsyncStatus status,wgpu::StringView) { done->store(status==wgpu::MapAsyncStatus::Success ? 1 : -1); });
+      [done](wgpu::MapAsyncStatus status,wgpu::StringView message) {
+        note("MAP purple status=%u message=%.*s",unsigned(status),int(std::min(message.length,size_t(512))),message.data ? message.data : "");
+        done->store(status==wgpu::MapAsyncStatus::Success ? 1 : -1);
+      });
     const auto until=std::chrono::steady_clock::now()+std::chrono::seconds(5);
     while (*done==0 && std::chrono::steady_clock::now()<until) {
       aurora::webgpu::g_instance.ProcessEvents(); std::this_thread::sleep_for(std::chrono::milliseconds(1));
@@ -180,6 +185,7 @@ struct Targets {
 };
 #include "white-readback.hpp"
 #include "gx-setup.hpp"
+#include "renderer-checks.hpp"
 }
 int main(int argc,char** argv) {
   platform_init("PSWaker disc-free diagnostic prototype");
@@ -208,6 +214,7 @@ int main(int argc,char** argv) {
   c.userPath="/data/pswaker-diagnostic-prototype"; c.cachePath="/data/pswaker-diagnostic-prototype/cache";
   c.resourcesPath="/app0"; c.desiredBackend=BACKEND_VULKAN; c.windowWidth=1920; c.windowHeight=1080;
   c.vsync=true; c.msaa=1; c.maxTextureAnisotropy=1; c.logCallback=logger; c.logLevel=LOG_INFO;
+  c.blockingPipelines=true;
   checkpoint("SDL-video-configuration");
   for (int driver=0;driver<SDL_GetNumVideoDrivers();++driver)
     note("SDL_VIDEO compiled=%s",SDL_GetVideoDriver(driver));
@@ -233,6 +240,7 @@ int main(int argc,char** argv) {
   verdict(prepare_gx_diagnostic_pipelines(),"GX-pipeline-preparation");
   note("PREPARATION milliseconds=%.1f; no pixel comparisons deferred beyond this stage",
     std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-prepare_start).count());
+  verdict(renderer_checks(),"Wind-Waker-renderer-checks");
   checkpoint("synthetic-audio"); verdict(SDL_InitSubSystem(SDL_INIT_AUDIO),"SDL-audio-init");
   SDL_AudioSpec spec{}; spec.freq=48000; spec.channels=2; spec.format=SDL_AUDIO_S16;
   auto* audio=SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK,&spec,audio_callback,nullptr);
@@ -268,7 +276,10 @@ int main(int argc,char** argv) {
       // ImGui stores the preview's raw view handle in queued frame packets.
       // Finish encoding earlier packets before replacing that view.
       aurora::gfx::synchronize();
-      if (checks && checks%12==0) targets.recreate();
+      if (checks && checks%12==0) {
+        targets.recreate();
+        verdict(renderer_checks(),"Wind-Waker-renderer-checks-after-recreation");
+      }
       targets.verify(); ++checks; next_check=now+std::chrono::seconds(5);
     }
     if (now>=next_resource) {

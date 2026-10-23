@@ -36,7 +36,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("root", type=Path)
     parser.add_argument("--identity-only", action="store_true")
-    parser.add_argument("--app-version", default="01.03", help="Maintained diagnostic SFO version")
+    parser.add_argument("--app-version", default="01.04", help="Maintained diagnostic SFO version")
     args = parser.parse_args()
     if not re.fullmatch(r"\d{2}\.\d{2}", args.app_version):
         parser.error("--app-version must be NN.NN")
@@ -73,6 +73,7 @@ if __name__ == "__main__":
                 "local_adaptations": json.loads((root / "evidence/local-adaptations.json").read_text()),
                 "input_closure": json.loads((root / "evidence/input-closure.json").read_text()),
                 "patch_series": json.loads((HERE / "patch-series.json").read_text()),
+                "renderer_reconciliation": json.loads((root / "evidence/renderer-reconciliation.json").read_text()),
                 "dependency_lock": json.loads((HERE / "dependencies.lock.json").read_text()),
                 "dotnet_sdk": sdk_version, "eboot_sha256": digest(executable),
                 "owner_reported_baseline": {"console": "PS4 Slim", "firmware": "9.00", "homebrew": "GoldHEN v2.4b18", "status": "Confirm for each hardware run; not queried by the app"}}

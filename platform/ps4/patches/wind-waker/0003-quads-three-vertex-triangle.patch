@@ -1,0 +1,33 @@
+diff --git a/lib/gx/command_processor.cpp b/lib/gx/command_processor.cpp
+index 9c6ffa1..afbf220 100644
+--- a/lib/gx/command_processor.cpp
++++ b/lib/gx/command_processor.cpp
+@@ -26,9 +26,13 @@ constexpr Module Log{"aurora::gx::fifo"};
+ u16 prepare_idx_buffer(ByteBuffer& buf, GXPrimitive prim, u16 vtxStart, u16 vtxCount) noexcept {
+   u16 numIndices = 0;
+   if (prim == GX_QUADS) {
+-    buf.reserve_extra((vtxCount / 4) * 6 * sizeof(u16));
++    buf.reserve_extra(((vtxCount / 4) * 6 + 3) * sizeof(u16));
+ 
+-    for (u16 v = 0; v < vtxCount; v += 4) {
++    // Only whole quads; the hardware draws three vertices left over as a triangle (the game
++    // draws its stars and sun rays as GX_QUADS of 3 vertices; Dolphin's IndexGenerator AddQuads
++    // does the same) and ignores one or two
++    u16 v = 0;
++    for (; v + 4 <= vtxCount; v += 4) {
+       u16 idx0 = vtxStart + v;
+       u16 idx1 = vtxStart + v + 1;
+       u16 idx2 = vtxStart + v + 2;
+@@ -44,6 +48,12 @@ u16 prepare_idx_buffer(ByteBuffer& buf, GXPrimitive prim, u16 vtxStart, u16 vtxC
+       buf.append(idx0);
+       numIndices += 3;
+     }
++    if (vtxCount - v == 3) {
++      buf.append(static_cast<u16>(vtxStart + v));
++      buf.append(static_cast<u16>(vtxStart + v + 1));
++      buf.append(static_cast<u16>(vtxStart + v + 2));
++      numIndices += 3;
++    }
+   } else if (prim == GX_TRIANGLES) {
+     buf.reserve_extra(vtxCount * sizeof(u16));
+     for (u16 v = 0; v < vtxCount; ++v) {
