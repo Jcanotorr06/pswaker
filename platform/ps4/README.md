@@ -6,6 +6,8 @@ This builds a **disc-free program package**, title ID `PSWK00010`, version `01.0
 It contains synthetic test content only. The [renderer candidate checklist](Renderer-checklist.md)
 hands the new package to #15 for its clean-build pair and renewed console gate.
 The [01.03 checklist](Console-checklist.md) remains specific to the older #13 package.
+The returned [01.04 console evidence review](evidence/renderer-14/console-01.04/REPORT.md)
+records the new candidate's own runs, their identity checks and remaining gates.
 
 ## Reproduce on Linux / WSL2
 

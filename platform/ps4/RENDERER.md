@@ -93,6 +93,10 @@ readback code. Each renderer sweep checks 1,024 RGBA pixels per sample:
   samples must be black, lower-right white, and allocation must remain 1280x720.
 
 The sweep runs at startup and after periodic diagnostic target recreation.
+Its intermediate frames can briefly present dark blue, and the content-scale
+sample can present white with a black upper-left quarter. The sweep repeats every
+12 capture cycles, explaining the brief once-a-minute flashes before the normal
+diagnostic scene returns.
 The original EFB/offscreen white checks and raw WebGPU purple depth/blend/copy
 checks remain in the ten-minute loop. Logs retain actual texture dimensions,
 formats, map status and mismatch diagnostics. Blocking draw pipelines are enabled
@@ -135,3 +139,5 @@ the maintained target clean build is the independent PS4 compilation path.
 See [build and host evidence](evidence/renderer-14/REPORT.md) and the
 [renderer candidate checklist](Renderer-checklist.md). The historical 01.02
 and maintained 01.03 packages establish no hardware result for 01.04.
+The subsequent [01.04 owner evidence review](evidence/renderer-14/console-01.04/REPORT.md)
+records observations and logs from this candidate separately from these host checks.

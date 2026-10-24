@@ -21,6 +21,10 @@ For the candidate actually installed by the owner:
    resume sequence. Confirm the RGB triangle, white background, purple preview,
    readable text and continuous quiet tone. Report startup/preparation duration
    and any visible/audio defect. No game or disc image is needed.
+   Brief dark-blue flashes can appear during the renderer sweep at startup and
+   every 12 check cycles (about once a minute). The content-scale check can also
+   briefly show white with a black upper-left quarter. These frames are deliberate
+   diagnostic test content; the normal triangle/preview panel then returns.
 4. Retrieve the complete `diagnostic.log`, `runtime-preflight.log`,
    `preflight-state.txt`, `platform.log` and optional `platform.prev.log` from
    `/data/pswaker-diagnostic-prototype/` after every close. Preserve failed runs
@@ -41,3 +45,6 @@ Expected new renderer names include `GX-alpha-*` (both true and `-false` cases),
 
 Retain this candidate's own logs/photos/observations. No historical console pass
 validates it. Game integration and graphics acceptance remain later work.
+
+Returned evidence for build `60975dcf4480aa914369` is reviewed in the
+[01.04 console evidence report](evidence/renderer-14/console-01.04/REPORT.md).

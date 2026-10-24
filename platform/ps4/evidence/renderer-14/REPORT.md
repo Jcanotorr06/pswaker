@@ -3,7 +3,9 @@
 One absent-root Linux/WSL2 clean cross-build produced and inspected the disc-free
 `PSWK00010` version `01.04` package. Build ID: `60975dcf4480aa914369`.
 All 99 maintained input files match the frozen source and compiled package identity.
-This is renderer preparation and host evidence; this binary has no console result.
+This original build record covers renderer preparation and host evidence; the
+binary was untested on a console when it was written. Returned owner evidence
+from 2026-10-24 is reviewed separately in the [01.04 console report](console-01.04/REPORT.md).
 
 ## Build and retained outputs
 
