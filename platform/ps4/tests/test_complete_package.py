@@ -34,6 +34,20 @@ class PreparationCliTestCase(unittest.TestCase):
 
 
 class ImageValidationTests(PreparationCliTestCase):
+    def test_catalogued_dump_acceptance_keeps_required_content_checks(self):
+        contract_file = self.cli.with_name('content-contract.json')
+        contract = json.loads(contract_file.read_text())
+        contract['additional_images'] = [{'sha1': contract['image_sha1'],
+                                          'source': 'https://example.invalid/synthetic-catalogue'}]
+        contract['image_sha1'] = '0' * 40
+        contract_file.write_text(json.dumps(contract))
+        result = self.run_cli('validate', self.image)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.change(0x1100, b'BAD')
+        rejected = self.run_cli('validate', self.image)
+        self.assertNotEqual(rejected.returncode, 0)
+        self.assertIn('sys/main.dol: content SHA-1 mismatch', rejected.stderr)
+
     def test_raw_image_and_compressed_required_members_are_accepted(self):
         result = self.run_cli('validate', self.image)
         self.assertEqual(result.returncode, 0, result.stderr)

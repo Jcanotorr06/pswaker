@@ -23,8 +23,8 @@ python3 platform/ps4/complete-package.py validate '/path/to/owner/GZLE01.iso'
 ```
 
 Only the full, unmodified USA GameCube **GZLE01, disc 0, revision 0** raw image
-is supported: 1,459,978,240 bytes, with the full-image SHA-1 pinned by
-SwitchWaker's disc oracle. Scrubbed, compacted, compressed and other container
+is supported: 1,459,978,240 bytes, with an exact full-image SHA-1 allowlist.
+Scrubbed, compacted, compressed and other container
 formats are unsupported even if renamed `.iso`. Export a full raw ISO/GCM from
 the owner's original disc instead. A PAL `GZLP01` image is rejected; renaming
 the file or changing its disc label does not make its content supported.
@@ -34,7 +34,7 @@ file bounds, DOL section/file bounds, and the pinned content hashes. The eight
 required objects are `sys/main.dol`, five standalone RELs, and two RELs inside
 `RELS.arc`. Yaz0-compressed required files, archives and members are expanded
 only in bounded host memory for checking, never rewritten into the image.
-Finally the entire image must match the pinned SHA-1. Every accepted image also
+Finally the entire image must match an allowlisted SHA-1. Every accepted image also
 gets a SHA-256 for artifact association. No timestamp/path validation cache is
 trusted, and there is no CLI switch to change the production content contract.
 
@@ -51,6 +51,17 @@ PyYAML required only for this maintenance command):
 python3 platform/ps4/prepare-content-contract.py /tmp/pswaker-content-contract.json
 diff -u platform/ps4/content-contract.json /tmp/pswaker-content-contract.json
 ```
+
+The full-image allowlist retains the pinned upstream oracle's
+`0289e70f470dc758c73be9b8bcd8c865fb82d8ae` and the independently catalogued
+USA/Canada retail disc's `6b5f06c10d50ebb4099cded88217eb71e5bfbb4a`.
+The latter comes from [disc catalogue entry 1086](https://redump.info/disc/1086),
+corroborated by [GameTDB GZLE01](https://www.gametdb.com/Wii/GZLE01), checked
+2026-10-24 and recorded in `additional_images`. These are two explicit whole-image
+fingerprints, not permission to accept arbitrary data with a matching label.
+Both must pass the same unchanged upstream DOL/REL hashes, identity/revision,
+structure and size checks. The cause of the difference between the two full-image
+fingerprints is not established; no byte equivalence between them is claimed.
 
 ## Assemble with an explicit program
 
@@ -174,9 +185,11 @@ decryption key is introduced. Real packaging tests use the explicit diagnostic
 ELF/stage, real converters/packager and synthetic image, checking extraction,
 nonplayable labelling, stable IDs across versions and rejection behavior.
 
-The locally available owner's Wind Waker image identifies as PAL `GZLP01` and
-is rejected by the production validator with a USA-region instruction. No
-supported USA image has been supplied for a positive production-contract run.
-The generated-image round trip exercises the host workflow; successful
-validation/assembly of a real supported disc remains to be recorded privately.
-There is no installed-game-content, console-startup or playable result in #16.
+The owner's PAL `GZLP01` image is rejected with a USA-region instruction.
+The subsequently supplied full USA `GZLE01` revision-0 image passed production
+validation and real private assembly with the explicit #15 diagnostic payload,
+followed by independent fresh-extraction inspection. See the
+[owner-image verification](evidence/private-package-16/OWNER-USA.md) for hashes,
+the exact fingerprint correction and evidence limits. The complete package
+remains private and NONPLAYABLE. There is no console-startup or playable result
+in #16; installed game content is checked with an actual game program in #17.

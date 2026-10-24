@@ -46,6 +46,14 @@ def generate():
     iso_sha1 = re.search(r'^EXPECTED_ISO_SHA1 = "([0-9a-f]{40})"', sources['oracle'], re.M)[1]
     return {'schema': 1, 'game_id': 'GZLE01', 'disc_number': 0, 'revision': 0,
             'image_size': 1459978240, 'image_sha1': iso_sha1,
+            # Preserve the upstream author's fingerprint; also admit the independently
+            # catalogued retail USA revision-0 image, subject to the same DOL/REL pins.
+            'additional_images': [{
+                'sha1': '6b5f06c10d50ebb4099cded88217eb71e5bfbb4a',
+                'source': 'https://redump.info/disc/1086',
+                'corroboration': 'https://www.gametdb.com/Wii/GZLE01',
+                'description': 'Catalogued full raw USA/Canada retail GZLE01 revision 0',
+                'verified_on': '2026-10-24'}],
             'switchwaker_revision': 'ba8d0a31446cd53ceaebd6b7269cca641e73bf4c',
             'decomp_revision': 'b09eebc39852e18397031d9a563a8eae124f21f1',
             'sources': SOURCES, 'required_content': required}

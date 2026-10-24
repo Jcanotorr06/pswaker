@@ -1,8 +1,11 @@
 # Private complete-package preparation (#16)
 
-Host implementation and data-free verification completed on 2026-10-24.
-**No supported USA owner image has been supplied for positive production
-validation/assembly. No actual game-containing complete package was produced.**
+Initial host implementation and data-free verification completed on 2026-10-24.
+The later [owner USA-image verification](OWNER-USA.md) supersedes the pending
+real-image status in this initial report and records the private package hashes.
+**At the initial review, no supported USA owner image had been supplied for
+positive production validation/assembly, and no game-containing complete package
+had been produced.**
 The available owner's image is PAL `GZLP01` and is correctly rejected with:
 
 ```text
@@ -84,11 +87,12 @@ or published. No game data or keys are in this report or test log.
 
 ## Limits and handoff
 
-Positive production-contract validation and private assembly of the owner's
-actual supported USA GZLE01 revision-0 image remain unverified. Supply that
-local image and run the documented CLI privately to record its own image,
-program and package hashes. Synthetic small-image tests do not establish
-full-image performance, installed game startup or playability.
+At this initial checkpoint, positive production-contract validation and private
+assembly of the owner's actual supported USA GZLE01 revision-0 image remained
+unverified. The subsequent supplied image, fingerprint correction, real
+assembly and fresh inspection are recorded in [OWNER-USA.md](OWNER-USA.md).
+Synthetic small-image tests do not establish full-image performance, installed
+game startup or playability.
 
 There is no console checkpoint in #16. #17 verifies installed game content and
 startup with an actual game program. Save/settings behavior, installed update

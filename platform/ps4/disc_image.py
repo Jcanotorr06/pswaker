@@ -220,7 +220,8 @@ def validate(path):
         while chunk := stream.read(8 << 20):
             sha1.update(chunk)
             sha256.update(chunk)
-        require(sha1.hexdigest() == contract['image_sha1'],
+        accepted_images = [contract['image_sha1']] + [row['sha1'] for row in contract.get('additional_images', [])]
+        require(sha1.hexdigest() in accepted_images,
                 'Full image SHA-1 mismatch against pinned GZLE01 revision 0; use the unmodified full raw dump')
     return {'game_id': contract['game_id'], 'revision': contract['revision'],
             'size': disc.size, 'sha1': sha1.hexdigest(), 'sha256': sha256.hexdigest(),
