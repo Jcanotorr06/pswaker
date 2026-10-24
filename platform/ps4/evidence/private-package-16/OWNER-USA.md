@@ -70,6 +70,21 @@ The source image was opened read-only, and its bytes were copied without
 compaction or rewriting. The diagnostic SELF is still
 `f62940819abeb92ea4af228442f8fb83c00a33199861b1e38b78e9b20e9ffd7a`.
 
+## Final host checks and independent review
+
+After the fingerprint correction and real assembly, the full host suite passed
+**21 tests with no skips**, using the actual selected #15 packaging tools.
+See [the full test output](host-checks-usa.log). Python compilation, shell
+syntax checks and regeneration of the committed content contract also passed.
+The original owner-image CLI invocation now succeeds without changing the
+supplied image, completing the diagnosis loop.
+
+Independent Standards and Spec reviews of `ab42038` against `d39380b` found
+no findings. They checked that the exact additional fingerprint matches its
+public metadata, every required executable/identity check remains in place,
+and the data-free evidence matches the committed preparation files. See the
+[follow-up review record](REVIEW.md#retail-image-follow-up).
+
 No installed-console read, game startup, save/update preservation, game audio,
 rendering or gameplay performance was tested. Those remain later acceptance
 work. Keep the actual combined artifact's license/notices/provenance review

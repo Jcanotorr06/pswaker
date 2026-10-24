@@ -44,3 +44,37 @@ regression checks that preservation. No further findings in this delta.
 
 Standards: 0 actionable findings. Spec: 0 actionable findings; real USA-image
 acceptance remains unverified. The optional command-history improvement is fixed.
+
+## Retail-image follow-up
+
+The owner subsequently supplied the full USA revision-0 image. Its initial
+whole-image rejection, externally verified retail fingerprint, corrected exact
+allowlist and successful real assembly/fresh extraction are recorded in
+[OWNER-USA.md](OWNER-USA.md). This supersedes the initial pending real-image
+status above. Both independent agents reviewed follow-up commit `ab42038` with:
+
+```text
+git diff d39380b...ab42038
+git log d39380b..ab42038 --oneline
+```
+
+### Standards
+
+No findings. No documented-standard breaches or material baseline smells.
+The allowlist change preserves the existing identity, structural and executable
+checks. Documentation and retained inspection evidence agree, and all four
+recorded preparation hashes match the committed files. The added fingerprint
+matches Redump entry 1086.
+
+### Spec
+
+No Spec findings in `ab42038`. The added exact retail fingerprint matches
+Redump entry 1086. Validation retains every identity, revision, size, structural
+and pinned DOL/REL check, without introducing an override.
+The new data-free evidence records real private assembly and fresh extraction
+with matching image hashes. NONPLAYABLE status, licensing limits and absence
+of console acceptance remain explicit. No scope creep or incorrectly
+implemented requirement found.
+
+Follow-up totals: Standards 0 findings; Spec 0 findings. The final full host suite
+passed 21 tests with no skips after this change.
