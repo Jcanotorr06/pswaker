@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "game_id": "GZLE01",
+  "disc_number": 0,
+  "revision": 0,
+  "image_size": 1459978240,
+  "image_sha1": "0289e70f470dc758c73be9b8bcd8c865fb82d8ae",
+  "switchwaker_revision": "ba8d0a31446cd53ceaebd6b7269cca641e73bf4c",
+  "decomp_revision": "b09eebc39852e18397031d9a563a8eae124f21f1",
+  "sources": {
+    "upstream": {
+      "url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/game/UPSTREAM",
+      "sha256": "809b2f08edea049a2ec9f0dd9f47cad7c0ee433f533efd90e79ea90c7a4b1075"
+    },
+    "oracle": {
+      "url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/tools/disc_manifest.py",
+      "sha256": "f017dc882a0ef447119aabca7a09c12ef70d61fa19f70f3599869bb8b467d845"
+    },
+    "generator": {
+      "url": "https://raw.githubusercontent.com/centollOS/SwitchWaker/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c/native/tools/gen_asset_stubs.py",
+      "sha256": "b23a652fe72c184f69b093794f2463e2386f7ba087ec7676a2ebcb2e5cecf4ee"
+    },
+    "config": {
+      "url": "https://raw.githubusercontent.com/snrubrm/tww/b09eebc39852e18397031d9a563a8eae124f21f1/config/GZLE01/config.yml",
+      "sha256": "0676fb874cec639ed426b23d12c18afbca7b1a92dc341bd2fd351b50722bb883"
+    }
+  },
+  "required_content": [
+    {
+      "path": "sys/main.dol",
+      "member": "",
+      "sha1": "8d28bab68bb5078c38e43f29206f0bd01f7e7a67",
+      "asset_count": 117
+    },
+    {
+      "path": "RELS.arc",
+      "member": "rels/mmem/d_a_majuu_flag.rel",
+      "sha1": "9844a606bcebcceaeff329256665eea72d5aa970",
+      "asset_count": 5
+    },
+    {
+      "path": "RELS.arc",
+      "member": "rels/mmem/d_a_pirate_flag.rel",
+      "sha1": "ad8581d91ce176c711a4db6a7862e2be510c0645",
+      "asset_count": 4
+    },
+    {
+      "path": "rels/d_a_bwdg.rel",
+      "member": "",
+      "sha1": "7cef0d0967ffbdae93dfc4a28ef0b8a672b052c9",
+      "asset_count": 4
+    },
+    {
+      "path": "rels/d_a_goal_flag.rel",
+      "member": "",
+      "sha1": "360285b55c8d8d9353c8c027bcfcc90c368f86b4",
+      "asset_count": 5
+    },
+    {
+      "path": "rels/d_a_mant.rel",
+      "member": "",
+      "sha1": "a565cdff34a1346c7db964d795179b81ece22ef8",
+      "asset_count": 14
+    },
+    {
+      "path": "rels/d_a_obj_buoyflag.rel",
+      "member": "",
+      "sha1": "a4db26857f985f6a3c963e183e6be28bf37e46c3",
+      "asset_count": 5
+    },
+    {
+      "path": "rels/d_a_sail.rel",
+      "member": "",
+      "sha1": "36cd36d17a50769045c087cbb56b26f4ad3a2b6e",
+      "asset_count": 9
+    }
+  ]
+}

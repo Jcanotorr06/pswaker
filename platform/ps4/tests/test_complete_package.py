@@ -1,0 +1,195 @@
+"""Observable preparation/package CLI behavior; fixtures contain synthetic bytes only."""
+import json
+import hashlib
+import os
+from pathlib import Path
+import shutil
+import struct
+import subprocess
+import sys
+import tempfile
+import unittest
+
+from synthetic_disc import generate
+
+HERE = Path(__file__).resolve().parents[1]
+REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
+
+
+class PreparationCliTestCase(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory(prefix='pswaker-content-test-')
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.cli, self.image = generate(self.root, HERE)
+
+    def run_cli(self, *args, cli=None):
+        return subprocess.run([sys.executable, str(cli or self.cli), *map(str, args)],
+                              capture_output=True, text=True)
+
+    def change(self, offset, data):
+        with self.image.open('r+b') as stream:
+            stream.seek(offset)
+            stream.write(data)
+
+
+class ImageValidationTests(PreparationCliTestCase):
+    def test_raw_image_and_compressed_required_members_are_accepted(self):
+        result = self.run_cli('validate', self.image)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report['game_id'], 'GZLE01')
+        self.assertEqual(report['size'], 32768)
+        self.assertEqual([row['size'] for row in report['required_content']], [288, 6, 20, 20])
+        self.image.rename(self.image.with_suffix('.GCM'))
+        result = self.run_cli('validate', self.image.with_suffix('.GCM'))
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_synthetic_image_never_passes_the_production_contract(self):
+        result = self.run_cli('validate', self.image, cli=HERE / 'complete-package.py')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('full raw dump', result.stderr)
+
+    def test_wrong_region_revision_and_disc_number_are_rejected(self):
+        for offset, value in [(3, b'P'), (7, b'\x01'), (6, b'\x01')]:
+            with self.subTest(offset=offset):
+                original = self.image.read_bytes()
+                self.change(offset, value)
+                result = self.run_cli('validate', self.image)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('supply USA GZLE01 revision 0', result.stderr)
+                self.image.write_bytes(original)
+
+    def test_label_alone_does_not_allow_changed_executable_or_rel(self):
+        for offset, label in [(0x1100, 'sys/main.dol'), (0x3011, 'rels/direct.rel'),
+                              (0x4148, 'RELS.arc:rels/mmem/second.rel')]:
+            with self.subTest(label=label):
+                original = self.image.read_bytes()
+                self.change(offset, b'BAD')
+                result = self.run_cli('validate', self.image)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(label, result.stderr)
+                self.assertIn('content SHA-1 mismatch', result.stderr)
+                self.assertNotIn('Traceback', result.stderr)
+                self.image.write_bytes(original)
+
+    def test_changed_unchecked_asset_fails_the_full_image_contract(self):
+        self.change(0x7000, b'changed padding/asset')
+        result = self.run_cli('validate', self.image)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Full image SHA-1 mismatch', result.stderr)
+
+    def test_truncated_image_and_bad_file_table_ranges_are_rejected(self):
+        for offset, value in [(0x424, struct.pack('>I', 0xFFFFFF00)),
+                              (0x2020, struct.pack('>I', 0xFFFFFFFF))]:
+            with self.subTest(offset=offset):
+                original = self.image.read_bytes()
+                self.change(offset, value)
+                result = self.run_cli('validate', self.image)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('invalid', result.stderr.lower())
+                self.assertNotIn('Traceback', result.stderr)
+                self.image.write_bytes(original)
+        with self.image.open('r+b') as stream:
+            stream.truncate(0x6000)
+        result = self.run_cli('validate', self.image)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('truncated', result.stderr)
+
+    def test_compressed_image_renamed_iso_has_actionable_format_error(self):
+        with tempfile.TemporaryDirectory() as folder:
+            image = Path(folder) / 'compressed.iso'
+            image.write_bytes(b'RVZ\x01' + bytes(60))
+            result = subprocess.run([sys.executable, str(HERE / 'complete-package.py'), 'validate', str(image)],
+                                    capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('Unsupported/compressed image', result.stderr)
+            self.assertIn('raw ISO/GCM', result.stderr)
+            self.assertNotIn('Traceback', result.stderr)
+
+
+@unittest.skipUnless(REFERENCE, 'Set PSWAKER_REFERENCE_BUILD to exercise real packaging tools')
+class CompletePackageRoundtripTests(PreparationCliTestCase):
+    def setUp(self):
+        super().setUp()
+        self.reference = Path(REFERENCE)
+        self.output = self.root / 'private-complete'
+
+    def assembly_args(self, stage=None, kind='diagnostic', output=None, version='01.05'):
+        return ['assemble', '--image', self.image,
+                '--program-stage', stage or self.reference / 'build/probe-stage',
+                '--elf', self.reference / 'build/probe/platform_diagnostic',
+                '--platform-root', self.reference, '--kind', kind,
+                '--app-version', version, '--output', output or self.output]
+
+    def test_explicit_diagnostic_roundtrip_and_changed_package_rejection(self):
+        result = self.run_cli(*self.assembly_args())
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        inspected = self.run_cli('inspect', self.output, '--platform-root', self.reference)
+        self.assertEqual(inspected.returncode, 0, inspected.stderr)
+        report = json.loads(inspected.stdout)
+        self.assertEqual(report['installed_image'], '/app0/game.iso')
+        self.assertEqual(report['sfo']['TITLE_ID'], 'PSWK00010')
+        self.assertEqual(report['sfo']['CONTENT_ID'], 'IV0000-PSWK00010_00-PSWAKERPROBE0000')
+        self.assertEqual(report['sfo']['APP_VER'], '01.05')
+        self.assertIn('NONPLAYABLE', report['scope'])
+        self.assertFalse(report['distribution_cleared'])
+        self.assertEqual(report['image']['size'], 32768)
+        package = self.output / 'out' / report['package']['filename']
+        with package.open('r+b') as stream:
+            stream.seek(0x40)
+            stream.write(b'IV0000-FAIL00000')
+        assembly = json.loads((self.output / 'assembly.json').read_text())
+        with package.open('rb') as stream:
+            assembly['package']['sha256'] = hashlib.file_digest(stream, 'sha256').hexdigest()
+        (self.output / 'assembly.json').write_text(json.dumps(assembly))
+        rejected = self.run_cli('inspect', self.output, '--platform-root', self.reference)
+        self.assertNotEqual(rejected.returncode, 0)
+        self.assertIn('Package header content ID mismatch', rejected.stderr)
+        self.assertFalse((self.output / 'inspection.json').exists())
+        with package.open('r+b') as stream:
+            stream.write(b'changed package')
+        rejected = self.run_cli('inspect', self.output, '--platform-root', self.reference)
+        self.assertNotEqual(rejected.returncode, 0)
+        self.assertIn('Package SHA-256 mismatch', rejected.stderr)
+
+    def test_version_updates_keep_the_same_application_and_image_identity(self):
+        reports = []
+        for version in ['01.05', '01.06']:
+            output = self.root / version
+            result = self.run_cli(*self.assembly_args(output=output, version=version))
+            self.assertEqual(result.returncode, 0, result.stderr)
+            reports.append(json.loads((output / 'inspection.json').read_text()))
+        self.assertEqual([r['sfo']['APP_VER'] for r in reports], ['01.05', '01.06'])
+        self.assertEqual(reports[0]['sfo']['TITLE_ID'], reports[1]['sfo']['TITLE_ID'])
+        self.assertEqual(reports[0]['sfo']['CONTENT_ID'], reports[1]['sfo']['CONTENT_ID'])
+        self.assertEqual(reports[0]['image'], reports[1]['image'])
+
+    def test_mismatched_elf_leaves_no_complete_package(self):
+        other_elf = self.root / 'wrong.elf'
+        other_elf.write_bytes(b'not an executable')
+        args = self.assembly_args()
+        args[args.index('--elf') + 1] = other_elf
+        result = self.run_cli(*args)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('x86-64 ELF', result.stderr)
+        self.assertFalse(self.output.exists())
+
+    def test_diagnostic_cannot_be_relabelled_as_a_game(self):
+        result = self.run_cli(*self.assembly_args(kind='game'))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('NONPLAYABLE', result.stderr)
+        self.assertFalse(self.output.exists())
+
+    def test_unapproved_program_file_leaves_no_complete_package(self):
+        stage = self.root / 'program'
+        shutil.copytree(self.reference / 'build/probe-stage', stage)
+        (stage / 'unexpected.key').write_text('Synthetic forbidden payload')
+        result = self.run_cli(*self.assembly_args(stage=stage))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('unexpected.key', result.stderr)
+        self.assertFalse(self.output.exists())
+
+
+if __name__ == '__main__':
+    unittest.main()
