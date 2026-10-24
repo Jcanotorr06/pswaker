@@ -59,7 +59,9 @@ class Tools:
         self.env = dict(os.environ, OPENORBIS=str(self.sdk), OO_PS4_TOOLCHAIN=str(self.sdk),
                         PS4_PKGTOOL=str(self.pkgtool), SFO_STYLE='plain', NO_RIGHT_SPRX='0',
                         DOLPHIN_PS4_MODULES_DIR='/nonexistent', DOTNET_SYSTEM_GLOBALIZATION_INVARIANT='1')
-        self.commands = []
+        history = work / 'commands.json'
+        self.commands = json.loads(history.read_text()) if history.exists() else []
+        require(isinstance(self.commands, list), 'Invalid retained tool command history')
 
     def run(self, command, cwd=None):
         self.commands.append({'argv': list(map(str, command)), 'cwd': str(cwd or self.work)})

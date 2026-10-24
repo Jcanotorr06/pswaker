@@ -125,8 +125,11 @@ class CompletePackageRoundtripTests(PreparationCliTestCase):
     def test_explicit_diagnostic_roundtrip_and_changed_package_rejection(self):
         result = self.run_cli(*self.assembly_args())
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        original_commands = json.loads((self.output / 'commands.json').read_text())
         inspected = self.run_cli('inspect', self.output, '--platform-root', self.reference)
         self.assertEqual(inspected.returncode, 0, inspected.stderr)
+        commands = json.loads((self.output / 'commands.json').read_text())
+        self.assertEqual(commands[:len(original_commands)], original_commands)
         report = json.loads(inspected.stdout)
         self.assertEqual(report['installed_image'], '/app0/game.iso')
         self.assertEqual(report['sfo']['TITLE_ID'], 'PSWK00010')
