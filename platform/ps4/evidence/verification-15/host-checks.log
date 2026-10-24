@@ -1,0 +1,22 @@
+$ ['python3', '-m', 'unittest', 'discover', '-s', 'platform/ps4/tests', '-v']
+test_changed_package_is_rejected_before_extraction (test_artifacts.ArtifactTests.test_changed_package_is_rejected_before_extraction) ... ok
+test_changed_download_is_rejected (test_inputs.InputTests.test_changed_download_is_rejected) ... ok
+test_sdk_preparation_preserves_ps4_setjmp_directory_link (test_inputs.InputTests.test_sdk_preparation_preserves_ps4_setjmp_directory_link) ... ok
+test_unchanged_locked_download_is_accepted (test_inputs.InputTests.test_unchanged_locked_download_is_accepted) ... ok
+test_extra_packaged_file_is_rejected (test_package_roundtrip.PackageRoundtripTests.test_extra_packaged_file_is_rejected) ... ok
+test_real_package_is_accepted (test_package_roundtrip.PackageRoundtripTests.test_real_package_is_accepted) ... ok
+test_changed_source_is_rejected_before_any_renderer_patch_is_applied (test_renderer.RendererPreparationTests.test_changed_source_is_rejected_before_any_renderer_patch_is_applied) ... ok
+test_matched_platform_accepts_ordered_renderer_reconciliation (test_renderer.RendererPreparationTests.test_matched_platform_accepts_ordered_renderer_reconciliation) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 5.732s
+
+OK
+$ ['python3', '-m', 'compileall', '-q', 'platform/ps4']
+$ ['bash', '-n', 'platform/ps4/build-graphics.sh']
+$ ['bash', '-n', 'platform/ps4/build-probe.sh']
+$ ['bash', '-n', 'platform/ps4/build-runtime.sh']
+$ ['bash', '-n', 'platform/ps4/build-sdk-support.sh']
+$ ['bash', '-n', 'platform/ps4/clean-build.sh']
+$ ['bash', '-n', 'platform/ps4/install-host.sh']
+$ ['bash', '-n', 'platform/ps4/prepare-graphics.sh']

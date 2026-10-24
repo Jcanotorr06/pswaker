@@ -8,6 +8,9 @@ hands the new package to #15 for its clean-build pair and renewed console gate.
 The [01.03 checklist](Console-checklist.md) remains specific to the older #13 package.
 The returned [01.04 console evidence review](evidence/renderer-14/console-01.04/REPORT.md)
 records the new candidate's own runs, their identity checks and remaining gates.
+The [#15 verification report](evidence/verification-15/REPORT.md) completes the
+clean-build pair and bounded platform gate for that owner-confirmed candidate,
+with explained binary differences and separate identities for the untested rebuilds.
 
 ## Reproduce on Linux / WSL2
 
@@ -105,7 +108,8 @@ Each build root retains:
 - `downloads/`, `src/`, `refs/`: exact inputs, source trees and inherited recipes.
 
 The program embeds `build-info.json` and logs its source/toolchain build identity.
-The manifest labels console status as untested. Keep the PKG hash, matching ELF,
+The build-time manifest labels console status as untested; later evidence reviews
+are separate and do not rewrite that tested artifact. Keep the PKG hash, matching ELF,
 manifest and all logs together; later console results must identify that PKG.
 See [licensing and provenance](LICENSING.md) before distributing any artifact.
 The first maintained clean build's [report and hashes](evidence/maintained-13/REPORT.md)
@@ -138,11 +142,13 @@ Evidence remains at `/data/pswaker-diagnostic-prototype/` for compatibility:
 only the matching BEGIN/build block with a run. Do not mistake older records for
 this package. Last-stage files are not established crash dumps.
 
-#15 owns the later renderer-reconciled stack's renewed gate: one cold-cache and two warm-cache
+#15 completed the renderer-reconciled stack's bounded gate: one cold-cache and two warm-cache
 600-second runs, full close/relaunch, expected RGB triangle/white/purple/text,
 continuous quiet tone, controller exercise, persistence and evidence retrieval,
-with no failures/crashes/hangs or sustained resource growth. No current host
-inspection establishes those outcomes. Synthetic audio/storage and the historical
+with no failures/crashes/hangs or sustained measured resource growth. The
+[verification report](evidence/verification-15/REPORT.md) combines two new clean
+builds with this installed candidate's own returned evidence. Host inspection
+alone does not establish those outcomes. Synthetic audio/storage and the historical
 pass establish no game DSP, game-save correctness or gameplay performance.
 
 ## Host checks

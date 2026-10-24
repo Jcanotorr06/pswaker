@@ -1,0 +1,96 @@
+{
+  "reference_build": "/home/joseph_cano/.cache/pswaker/maintained-15-a",
+  "full_suite_runs": 1,
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "platform/ps4/tests",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "compileall",
+        "-q",
+        "platform/ps4"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "platform/ps4/build-graphics.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "platform/ps4/build-probe.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "platform/ps4/build-runtime.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "platform/ps4/build-sdk-support.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "platform/ps4/clean-build.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "platform/ps4/install-host.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "platform/ps4/prepare-graphics.sh"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "earlier_single_file_checks": {
+    "test_artifacts.py": "1 passed",
+    "test_renderer.py": "2 passed"
+  },
+  "evidence_trials": {
+    "console_records": "47 original files and three runs verified",
+    "different_installed_package": "Rejected before writing a success report",
+    "changed_source_snapshot": "Rejected before writing a comparison report",
+    "analyzer_self_comparison": "5,347,803 identical instructions and 45,238 identical relocations"
+  },
+  "typechecking": "Two complete cross-builds typecheck selected C/C++ interfaces; Python byte compilation and shell syntax checks pass",
+  "host_after_builds": "1:1.3.dfsg-3.1ubuntu2.3"
+}

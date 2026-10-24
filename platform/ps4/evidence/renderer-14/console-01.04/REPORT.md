@@ -1,5 +1,9 @@
 # Returned 01.04 console evidence — 2026-10-24
 
+Follow-up: [issue #15 verification](../../verification-15/REPORT.md) completed the
+outstanding clean-build pair and binary-difference review. This original console
+review retains its observations and scope below.
+
 All three supplied runs pass the instrumented disc-free checks and the owner's
 written visual, audio and controller observations. The executed build and embedded
 SELF identity match the prepared 01.04 candidate. The owner subsequently confirmed
