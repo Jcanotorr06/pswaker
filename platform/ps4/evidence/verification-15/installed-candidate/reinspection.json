@@ -1,0 +1,33 @@
+{
+  "scope": "Fresh PC-export hash verification and WSL package re-extraction/ELF/SELF inspection; not a new console run",
+  "command": [
+    "python3",
+    "platform/ps4/inspect-artifacts.py",
+    "/home/joseph_cano/.cache/pswaker/maintained-14"
+  ],
+  "owner_confirmation_source_commit": "c5278db",
+  "exports_verified": [
+    {
+      "path": "local-research/diagnostic-artifacts/renderer-14/PSWaker-Platform-Diagnostic-01.04.pkg",
+      "sha256": "edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522",
+      "bytes": 43909120
+    },
+    {
+      "path": "local-research/diagnostic-artifacts/renderer-14/platform_diagnostic.elf",
+      "sha256": "1cb796480f3961447158d6658c56e7bb309f3fc2a290ef2195b38d4b1c6e40e6",
+      "bytes": 47494376
+    },
+    {
+      "path": "local-research/diagnostic-artifacts/renderer-14/eboot.bin",
+      "sha256": "5d3438436d381fef0facd0cd2397461e9d3f9741b52f996b88c8e7b89952c036",
+      "bytes": 41763824
+    },
+    {
+      "path": "local-research/diagnostic-artifacts/renderer-14/platform_diagnostic.oelf",
+      "sha256": "48db76f35879cfcfe5430cd7af7e707f415bb452f5c23f73d58021dec569ea17",
+      "bytes": 48595112
+    }
+  ],
+  "source_snapshot_sha256": "5adbf0b576d7ac4c84308618d79c61a3348cddbbdd6d8eab0b1003ea29304967",
+  "maintained_source_files_verified": 99
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "phase": "aurora",
+    "target": "src/aurora",
+    "context": ".",
+    "patch": "aurora-ps4.patch",
+    "sha256": "675fb93ccc2fc6b792b6a57806b798f072af90bc3458ed3cb77aaf4d9ccc9ab2",
+    "origin": "BgbrhrWatchinOVO/dusklight-ps4@fd483cf5d4f04b0f4d887ff412d0e8691925de08"
+  }
+]

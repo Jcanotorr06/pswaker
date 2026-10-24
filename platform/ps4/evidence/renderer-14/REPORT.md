@@ -1,5 +1,9 @@
 # Renderer reconciliation evidence — issue #14
 
+Follow-up: [issue #15 verification](../verification-15/REPORT.md) completed the
+clean-build pair and maintained platform gate. This original preparation report
+retains its build-time scope and status below.
+
 One absent-root Linux/WSL2 clean cross-build produced and inspected the disc-free
 `PSWK00010` version `01.04` package. Build ID: `60975dcf4480aa914369`.
 All 99 maintained input files match the frozen source and compiled package identity.

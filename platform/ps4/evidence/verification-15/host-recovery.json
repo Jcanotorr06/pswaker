@@ -1,0 +1,29 @@
+{
+  "initial_host_check": "Both attempts rejected before build-root creation; zlib1g:amd64 differed from host.lock.json",
+  "before_and_restoration_version": "1:1.3.dfsg-3.1ubuntu2.3",
+  "temporary_build_version": "1:1.3.dfsg-3.1ubuntu2.2",
+  "snapshot_url": "https://snapshot.ubuntu.com/ubuntu/20261021T000000Z/",
+  "signature_verification": [
+    "gpgv",
+    "--keyring",
+    "/usr/share/keyrings/ubuntu-archive-keyring.gpg",
+    "InRelease"
+  ],
+  "archive_signing_key": "F6ECB3762474EDA9D21B7022871920D1991BC93C",
+  "InRelease_sha256": "b88eac44c07e3606175cbca290f26508b7c5aa84aa8fecb4098f59a34c2ceab9",
+  "signed_Packages_xz_sha256": "77d4f4ca8c11f014296303ef93bddca148019188f0e97b2d7ac4c18ec794463a",
+  "packages": {
+    "zlib1g_1%3a1.3.dfsg-3.1ubuntu2.3_amd64.deb": {
+      "sha256": "376249c8de139568221dbb242318cc8cb8f02299e3a62b7432948e1754fbddf9",
+      "bytes": 63158
+    },
+    "zlib1g_1.3.dfsg-3.1ubuntu2.2_amd64.deb": {
+      "sha256": "84b9cf5752b29c9f92c27cd4c4ba9bbcc70b5ccf9b1b515421a28ae23212e273",
+      "bytes": 62988
+    }
+  },
+  "full_package_inventory_matches_candidate_during_builds": true,
+  "restoration_status": "Restored original current zlib package after both builds completed",
+  "local_evidence_directory": "/home/joseph_cano/.cache/pswaker/verification-15-host",
+  "restored_version": "1:1.3.dfsg-3.1ubuntu2.3"
+}

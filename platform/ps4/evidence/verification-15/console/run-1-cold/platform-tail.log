@@ -1,0 +1,20 @@
+radv/ps4: submit 65000: 5 IBs (first 0x20001dd00, 32 bytes) = 0, GPU completed 64999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 979 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 804 us max 1910 us
+radv/ps4: submit 66000: 5 IBs (first 0x20001da00, 32 bytes) = 0, GPU completed 65999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 991 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 819 us max 1864 us
+radv/ps4: submit 67000: 5 IBs (first 0x20001d700, 32 bytes) = 0, GPU completed 66999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 991 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 810 us max 1843 us
+radv/ps4: submit 68000: 5 IBs (first 0x20001d400, 32 bytes) = 0, GPU completed 67999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 990 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 817 us max 1880 us
+radv/ps4: submit 69000: 5 IBs (first 0x20001d100, 32 bytes) = 0, GPU completed 68999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 991 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 815 us max 1881 us
+radv/ps4: submit 70000: 5 IBs (first 0x20001ce00, 32 bytes) = 0, GPU completed 69999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 991 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 810 us max 1936 us
+radv/ps4: submit 71000: 5 IBs (first 0x20001cb00, 32 bytes) = 0, GPU completed 70999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 991 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 806 us max 1845 us
+radv/ps4: submit 72000: 5 IBs (first 0x20001c800, 32 bytes) = 0, GPU completed 71999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 992 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 825 us max 1864 us
+radv/ps4: submit 73000: 5 IBs (first 0x20001c500, 32 bytes) = 0, GPU completed 72999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 992 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 824 us max 1912 us
+radv/ps4: submit 74000: 5 IBs (first 0x20001c200, 32 bytes) = 0, GPU completed 73999, 0 memory writes checked, 0 disabled
+exit status 0: asking the shell to close the title

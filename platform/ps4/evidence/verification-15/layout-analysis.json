@@ -1,0 +1,77 @@
+{
+  "scope": "Supplemental decoded unwind/header and relative exception-table inspection; not semantic equivalence",
+  "roots": [
+    "/home/joseph_cano/.cache/pswaker/maintained-14",
+    "/home/joseph_cano/.cache/pswaker/maintained-15-a",
+    "/home/joseph_cano/.cache/pswaker/maintained-15-b"
+  ],
+  "embedded_build_paths": [
+    {
+      "occurrences": 257,
+      "rodata_size": 14907380,
+      "root_normalized_size": 14897357
+    },
+    {
+      "occurrences": 257,
+      "rodata_size": 14907892,
+      "root_normalized_size": 14897355
+    },
+    {
+      "occurrences": 257,
+      "rodata_size": 14907892,
+      "root_normalized_size": 14897355
+    }
+  ],
+  "decoded_unwind_A_B_equal": true,
+  "decoded_unwind_line_counts": [
+    1189386,
+    1189386
+  ],
+  "decoded_unwind_differences": {
+    "LSDA_address_deltas": {
+      "512": 1371
+    },
+    "augmentation": [
+      [
+        "  Augmentation data:     9B CD 74 14 00 1B 1B",
+        "  Augmentation data:     9B CD 72 14 00 1B 1B"
+      ]
+    ],
+    "other": [],
+    "unmatched_lines": 0
+  },
+  "augmentation_personality_pointer": [
+    {
+      "encoded_PC_relative_delta": -512,
+      "unchanged_absolute_target_after_section_shift": true
+    }
+  ],
+  "unwind_header_FDE_counts": [
+    47450,
+    47450,
+    47450
+  ],
+  "unwind_header_same_code_PC_and_frame_offsets": true,
+  "exception_table_sizes": [
+    20184,
+    20184
+  ],
+  "exception_table_differing_32bit_word_deltas": {
+    "-512": 4
+  },
+  "exception_table_changed_words_same_PC_relative_destination": true,
+  "symbol_counts": [
+    71003,
+    71003,
+    71003
+  ],
+  "symbol_metadata_equal": true,
+  "function_symbol_addresses_equal": true,
+  "symbol_address_delta_counts_candidate_A": {
+    "512": 5160,
+    "125": 1,
+    "-1570": 1,
+    "514": 1
+  },
+  "limits": "Complete decoded frame records and observed 32-bit exception-table differences support the layout explanation. No universal ABI, exception or runtime equivalence claim; rodata contents need the separate comparison."
+}
