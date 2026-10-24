@@ -40,6 +40,10 @@ dolphin_*.bin
 .DS_Store
 
 # Build artifacts
+*.pkg
+*.gp4
+*.oelf
+*.elf
 *.o
 *.a
 *.dylib

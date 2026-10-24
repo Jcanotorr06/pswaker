@@ -12,6 +12,12 @@ The [#15 verification report](evidence/verification-15/REPORT.md) completes the
 clean-build pair and bounded platform gate for that owner-confirmed candidate,
 with explained binary differences and separate identities for the untested rebuilds.
 
+The [private complete-package workflow](COMPLETE-PACKAGES.md) adds host image
+validation and assembly around an explicit program payload for #16. It keeps
+this program build disc-free. The owner's USA revision-0 image has passed
+[private diagnostic assembly and fresh inspection](evidence/private-package-16/OWNER-USA.md).
+That complete package remains nonplayable; no game startup or console result is claimed.
+
 ## Reproduce on Linux / WSL2
 
 Use the recorded Ubuntu 24.04 x86-64 environment in `host.lock.json`. It identifies
