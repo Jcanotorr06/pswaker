@@ -281,8 +281,10 @@ interfaces. Earlier individual artifact/renderer test files also passed. Control
 different-package and changed-source trials fail before writing success reports.
 [host-checks.json](host-checks.json) records commands and boundaries.
 
-Independent Standards/Spec review is the remaining workflow step before the final
-commit; its report will be retained in `REVIEW.md`.
+[Independent Standards/Spec review](REVIEW.md): **0 findings on each axis**.
+The reviewers independently verified maintained inputs, artifact identities,
+retained inventories and owner evidence. Their reports and the reviewed revision
+are preserved without assigning the rebuilds any console results.
 
 To regenerate supporting records from the retained roots, run from the repository
 root on Linux/WSL2 (choose fresh output paths for a separate review):
