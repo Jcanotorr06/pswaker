@@ -11,8 +11,9 @@
     "firmware": "9.00",
     "homebrew": "GoldHEN v2.4b18"
   },
-  "package_confirmation": "pending owner reply; original report has a stale 01.03 field and blank PKG hash",
-  "behavior_status": "All supplied runs pass the instrumented bounded checks and owner visual/audio/input observations; exact installed PKG confirmation pending",
+  "package_confirmation": "Owner confirmed in this conversation: Yes, that exact package — PSWaker-Platform-Diagnostic-01.04.pkg with the expected SHA-256",
+  "installed_pkg_sha256_owner_confirmed": "edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522",
+  "behavior_status": "PASS: all three supplied runs pass the instrumented bounded checks and owner visual/audio/input observations, tied to the owner-confirmed installed PKG",
   "original_evidence_directory": "local-research/diagnostic-artifacts/renderer-14/console-01.04-evidence",
   "owner_notes": [
     "Starting the prototype flashed a dark blue screen, followed by a flash of a white screen with a black rectangle in the upper left quarter, followed by the prototype as expected.",

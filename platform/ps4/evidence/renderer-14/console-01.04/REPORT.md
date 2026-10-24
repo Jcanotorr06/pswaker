@@ -2,9 +2,12 @@
 
 All three supplied runs pass the instrumented disc-free checks and the owner's
 written visual, audio and controller observations. The executed build and embedded
-SELF identity match the prepared 01.04 candidate. Confirmation of the exact
-installed PKG is pending: the original report retains `01.03` in one field and
-leaves the package hash blank. The original report has not been edited.
+SELF identity match the prepared 01.04 candidate. The owner subsequently confirmed
+in this conversation that they installed `PSWaker-Platform-Diagnostic-01.04.pkg`
+with SHA-256 `edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522`:
+“Yes, that exact package.” The bounded three-run console gate passes for this
+confirmed candidate. The original report's stale `01.03` field and blank package
+hash remain preserved without editing the supplied evidence.
 
 The owner reconfirmed PS4 Slim / firmware 9.00 / GoldHEN v2.4b18. This review
 covers the returned runs; #15's two independent clean builds and explained binary
@@ -129,4 +132,5 @@ underruns or establish game DSP correctness.
 No photos/video or display/audio-output device details were supplied. Startup wall
 times and some report metadata remain blank. Those limitations are retained; no
 game-frame pacing or gameplay performance is inferred. Exact installed package
-confirmation remains the outstanding identity clarification for this review.
+identity is now owner-confirmed; #15's clean-build pair and binary-difference
+review remain outstanding before the maintained platform gate is complete.
