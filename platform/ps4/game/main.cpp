@@ -1,5 +1,6 @@
 #include "game-platform.hpp"
 #include "installed-content.hpp"
+#include "controls.hpp"
 #include "native/platform.h"
 #include <aurora/event.h>
 #include <aurora/gfx.h>
@@ -33,7 +34,6 @@ extern "C" uint64_t ps4_disc_busy_until_ns() { return 0; }
 namespace {
 const auto launch = std::chrono::steady_clock::now();
 bool graphics = false;
-bool showLegend = true;
 std::atomic<unsigned> checkedErrors{0};
 struct PipelineCounts { uint32_t created, queued; };
 PipelineCounts pipelines() {
@@ -48,7 +48,64 @@ void events() {
     for (const auto* event = aurora_update(); event && event->type != AURORA_NONE; ++event)
         if (event->type == AURORA_EXIT) pswaker_exit(0);
 }
-void screen(const char* title, const char* text, float progress = -1) {
+enum class Symbol { Cross, Circle, Square, Triangle };
+void symbolLine(Symbol symbol, const char* text) {
+    // Draw the symbols, rather than relying on optional PlayStation font glyphs.
+    const ImVec2 origin = ImGui::GetCursorScreenPos();
+    const float size = ImGui::GetTextLineHeight();
+    const ImVec2 center(origin.x + size/2, origin.y + size/2);
+    const float radius = size * .35f;
+    auto* draw = ImGui::GetWindowDrawList();
+    const auto color = ImGui::GetColorU32(ImGuiCol_Text);
+    if (symbol == Symbol::Circle) draw->AddCircle(center, radius, color, 24, 2);
+    else if (symbol == Symbol::Square)
+        draw->AddRect(ImVec2(center.x-radius, center.y-radius), ImVec2(center.x+radius, center.y+radius), color, 0, 0, 2);
+    else if (symbol == Symbol::Triangle)
+        draw->AddTriangle(ImVec2(center.x, center.y-radius), ImVec2(center.x-radius, center.y+radius),
+                          ImVec2(center.x+radius, center.y+radius), color, 2);
+    else {
+        draw->AddLine(ImVec2(center.x-radius, center.y-radius), ImVec2(center.x+radius, center.y+radius), color, 2);
+        draw->AddLine(ImVec2(center.x-radius, center.y+radius), ImVec2(center.x+radius, center.y-radius), color, 2);
+    }
+    ImGui::Dummy(ImVec2(size, size));
+    ImGui::SameLine(); ImGui::TextUnformatted(text);
+}
+void portContent() {
+    const auto view = pswaker_port_view();
+    if (view.screen == PortScreen::Legend) {
+        symbolLine(Symbol::Cross, "Cross = GameCube A");
+        symbolLine(Symbol::Circle, "Circle = GameCube B");
+        symbolLine(Symbol::Square, "Square = GameCube X");
+        symbolLine(Symbol::Triangle, "Triangle = GameCube Y");
+        ImGui::TextUnformatted("R1 = Z     Options = Start     Touchpad click = Port settings");
+        ImGui::TextUnformatted("Left stick = Control Stick     Right stick = C Stick     D-pad = D-pad");
+        ImGui::TextUnformatted("L2 / R2 = analog L / R; terminal click starts at 90% travel.");
+        ImGui::TextUnformatted("Original GameCube prompts remain in the game.");
+        ImGui::Separator();
+        symbolLine(Symbol::Cross, "Continue / Return to settings");
+        symbolLine(Symbol::Circle, "Back to settings (when opened from settings)");
+    } else if (view.screen == PortScreen::Settings) {
+        constexpr const char* choices[] = {"Resume game", "DualShock 4 legend", "Resume and check failed read in 5 seconds", "Quit game..."};
+        ImGui::TextUnformatted("D-pad Up / Down: Choose");
+        for (unsigned i = 0; i < 4; ++i)
+            ImGui::Text("%s %s", view.selection == i ? ">" : " ", choices[i]);
+        ImGui::Separator();
+        symbolLine(Symbol::Cross, "Confirm"); symbolLine(Symbol::Circle, "Cancel / Resume game");
+        ImGui::TextWrapped("The read check resumes gameplay, then pauses after 5 seconds. Hold movement, buttons and triggers during the check; explicitly resume afterward.");
+    } else if (view.screen == PortScreen::Quit) {
+        ImGui::TextUnformatted("Quit PSWaker?");
+        ImGui::TextUnformatted("Only completed in-game saves are retained. Quitting does not save current progress.");
+        symbolLine(Symbol::Cross, "Confirm quit"); symbolLine(Symbol::Circle, "Cancel / Back to settings");
+    } else if (view.screen == PortScreen::InputLost) {
+        ImGui::TextUnformatted("Game paused. Controller disconnected or a controller read failed.");
+        ImGui::TextUnformatted(view.connected ? "Controller connected. Release all buttons, sticks and triggers." : "Reconnect your controller to continue.");
+        symbolLine(Symbol::Cross, "After releasing all controls, press to resume, then release again.");
+        ImGui::TextUnformatted("Reconnection alone does not resume the game.");
+    }
+    if (view.releasing) ImGui::TextUnformatted("Release all buttons, sticks and triggers to continue.");
+}
+void screen(const char* title, const char* text, float progress = -1,
+            const char* confirm = nullptr, const char* cancel = nullptr) {
     events();
     if (!aurora_begin_frame()) { usleep(16000); return; }
     ImGui::SetNextWindowPos(ImVec2(0, 0));
@@ -58,8 +115,11 @@ void screen(const char* title, const char* text, float progress = -1) {
     ImGui::SetWindowFontScale(1.7f);
     ImGui::TextUnformatted(title);
     ImGui::Separator();
-    ImGui::TextWrapped("%s", text);
+    if (text) ImGui::TextWrapped("%s", text);
+    else portContent();
     if (progress >= 0) ImGui::ProgressBar(progress, ImVec2(-1, 28));
+    if (confirm) symbolLine(Symbol::Cross, confirm);
+    if (cancel) symbolLine(Symbol::Circle, cancel);
     ImGui::End();
     aurora_end_frame();
 }
@@ -81,9 +141,10 @@ void initializeErrorDisplay() {
 bool confirmScreen(const char* title, const char* text, bool allowExit) {
     bool released = false;
     for (;;) {
-        screen(title, text);
+        screen(title, text, -1, "Retry", allowExit ? "Exit" : nullptr);
         pad state{};
         const bool connected = pad_player(0, &state);
+        if (!connected) released = false;
         if (connected && !(state.held & (PAD_CROSS | PAD_CIRCLE))) released = true;
         if (released && connected && (state.held & PAD_CROSS)) return true;
         if (allowExit && released && connected && (state.held & PAD_CIRCLE)) return false;
@@ -176,7 +237,7 @@ void pswaker_graphics_ready() {
     while (!storageProbe()) {
         ++checkedErrors;
         say("ERROR writable save storage check errno=%d", errno);
-        if (!confirmScreen("Save storage unavailable", "Cross: Retry    Circle: Exit\nCheck free space and permissions for /data/pswaker/saves. Existing files will be preserved.", true)) pswaker_exit(2);
+        if (!confirmScreen("Save storage unavailable", "Check free space and permissions for /data/pswaker/saves. Existing files will be preserved.", true)) pswaker_exit(2);
     }
     pswaker_stage("writable-storage-checked");
     VISetFrameBufferScale(1.5f);
@@ -204,27 +265,14 @@ void pswaker_graphics_ready() {
 void pswaker_frame_boundary() {
     JKRPcHostAllocScope hostAlloc;
     static double next = 0;
-    static bool hadController = false;
-    pad state{};
-    bool connected = pad_player(0, &state);
-    if (showLegend) {
-        showLegend = false;
-        confirmScreen("DualShock 4 controls", "Cross = A   Circle = B   Square = X   Triangle = Y\nR1 = Z   L2/R2 = analog L/R   Options = Start\nLeft stick = move   Right stick = C-stick\nTouchpad click = this legend / port menu\nOriginal GameCube prompts are retained.\n\nCross: Continue", false);
-        // Neutralize the confirmation press before the game reads its first sample.
-        do { events(); pad_player(0, &state); usleep(16000); } while (state.held & PAD_CROSS);
-        connected = pad_player(0, &state);
+    pswaker_enable_controls();
+    while (pswaker_port_view().screen != PortScreen::Game) {
+        if (pswaker_port_view().screen == PortScreen::Exit) pswaker_exit(0);
+        screen("PSWaker - game paused", nullptr);
+        pswaker_log_controls();
+        usleep(16000);
     }
-    if (!connected && hadController) {
-        say("INPUT disconnected or failed read; paused at game-frame boundary ms=%.1f", milliseconds());
-        confirmScreen("Controller disconnected - game paused", "Reconnect, release Cross, then press Cross to resume. Reconnection alone does not resume.", false);
-        do { events(); pad_player(0, &state); usleep(16000); } while (state.held & PAD_CROSS);
-        say("INPUT deliberate resume ms=%.1f", milliseconds());
-    }
-    if (connected) hadController = true;
-    if (connected && (state.held & PAD_TOUCH_PAD)) {
-        if (!confirmScreen("PSWaker port menu", "Cross: Resume    Circle: Exit\nA/B/X/Y = Cross/Circle/Square/Triangle\nOptions = Start; R1 = Z; L2/R2 = analog L/R.\nStartup checkpoint: fixed 720p internal rendering, stock textures, original 30 Hz logic.\nSave durability and full-route acceptance remain unverified.", true)) pswaker_exit(0);
-        do { events(); pad_player(0, &state); usleep(16000); } while (state.held & (PAD_CROSS | PAD_TOUCH_PAD));
-    }
+    pswaker_log_controls();
     if (milliseconds() >= next) {
         next = milliseconds()+5000;
         const auto stats = pipelines();
@@ -264,15 +312,15 @@ void pswaker_frame_boundary() {
     initializeErrorDisplay();
     if (graphics) {
         char text[1024];
-        snprintf(text, sizeof text, "%s\n\nRebuild the complete package on the computer and reinstall. Existing saves/settings are preserved.\n\nCircle: Exit", reason);
+        snprintf(text, sizeof text, "%s\n\nRebuild the complete package on the computer and reinstall. Existing saves/settings are preserved.", reason);
         bool released = false;
         for (;;) {
-            screen("Installation error", text);
+            screen("Installation error", text, -1, nullptr, "Exit");
             pad state{};
             if (pad_player(0, &state)) {
                 if (!(state.held & PAD_CIRCLE)) released = true;
                 if (released && (state.held & PAD_CIRCLE)) break;
-            }
+            } else released = false;
             usleep(16000);
         }
     }
