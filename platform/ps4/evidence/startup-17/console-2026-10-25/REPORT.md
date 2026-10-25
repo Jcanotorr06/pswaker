@@ -1,8 +1,9 @@
 # Returned startup evidence — 2026-10-25
 
 Follow-up: the [returned controlled-failure/repair review](../content-checks-2026-10-25/REPORT.md)
-now confirms all three error stops and repaired startup. The original observations
-below are retained; seeded save/settings byte-preservation evidence remains pending.
+now confirms all three error stops, repaired startup and owner-confirmed matching
+seeded-file comparisons at every step. The bounded #17 evidence review is complete.
+The original observations and then-outstanding checks below are retained as history.
 
 The owner reports reaching controllable Outset and continuing through the
 Forsaken Fortress and Windfall Island to Dragon Roost Island, with no observed

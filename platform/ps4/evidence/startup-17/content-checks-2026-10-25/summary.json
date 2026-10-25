@@ -1,5 +1,5 @@
 {
-  "scope": "Current platform.log selected for each case; platform.prev.log belongs to preceding package, not a second run of the current case. Seeded save/settings comparisons not supplied.",
+  "scope": "Current platform.log selected for each case; platform.prev.log belongs to preceding package, not a second run of the current case. Logs do not measure seeded-file preservation; owner-confirmed per-step results and independent before/after GCI comparison are retained separately.",
   "runs": [
     {
       "variant": "missing",

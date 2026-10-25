@@ -6,6 +6,8 @@
   "invalid_01_03_message": "Installation error: installed image checksum is invalid",
   "failure_guidance_observed": "Rebuild the complete package on the computer and reinstall. Existing saves/settings are preserved. Circle: Exit",
   "repair_01_04_observation": "No error message, launched as expected",
-  "seeded_save_settings_comparison_results": "Not supplied at review time; follow-up question pending",
-  "scope": "Expected visible error handling and repaired startup; preservation not established by the error-message wording"
+  "seeded_save_settings_comparison_results": "Owner confirms: Compared; all files matched at every step",
+  "comparison_coverage": "Seeded save and settings files compared with the backup after each failure package and before launching the repair, as asked in the follow-up question",
+  "comparison_evidence_type": "Owner-confirmed per-step results, plus independently identical owner-labelled before/after GCI copies; settings snapshots and per-step hash lists were not supplied",
+  "scope": "Expected visible error handling, repaired startup and owner-confirmed seeded-file preservation for these checks; no broader save-durability acceptance"
 }

@@ -5,7 +5,9 @@ computer-side rebuild/reinstall guidance and exit code 14. The repaired 01.04
 launch validates the installed image and reaches file selection/gameplay with
 zero checked errors, consistent with the owner's report that it launched as
 expected. The behavioral failure and startup-recovery checks pass for the
-recorded candidates. Seeded save/settings byte preservation is still pending.
+recorded candidates. The owner subsequently confirmed that seeded saves and
+settings matched the backup at every step. The bounded #17 startup checkpoint
+evidence is complete.
 
 ## Candidate and evidence association
 
@@ -59,26 +61,35 @@ owner confirms the expected launch without an error. The last heartbeat is at
 normal shutdown/audio-join sequence is present. This is startup recovery evidence,
 not a repeated full-route or save-durability acceptance run.
 
-## Preservation evidence still needed
+## Owner-confirmed preservation
 
-The supplied evidence tree contains one unlabelled GCI save snapshot,
-saves/USA/Card A/01-GZLE-gczelda.gci, and imgui.ini. Their sizes and hashes are
-retained as private-snapshot metadata in the inventory; no save bytes are
-committed. There is no settings.ini, labelled pre-test baseline, per-fault
-post-test snapshot, repair-before-launch snapshot or comparison record in these
-directories. imgui.ini is not the specified /data/pswaker/settings.ini consumer.
-The single save snapshot cannot establish unchanged bytes across all updates.
+At the initial review, the evidence tree held one unlabelled GCI save snapshot
+and imgui.ini; their metadata remains in the original inventory. The owner then
+provided labelled saves-before and saves-after copies of
+USA/Card A/01-GZLE-gczelda.gci. An independent byte comparison confirms that both
+98,368-byte copies are identical, with SHA-256
+8ac1391a71ed6891c9c1265fdf29ec536d322425e16ebd52762277a79e554621.
+[preservation-comparison.json](preservation-comparison.json) records their private
+paths, lengths, hashes and comparison result. No save bytes are committed.
+There are no per-step snapshot/hash lists or settings.ini copies in the supplied
+tree. imgui.ini is not the specified /data/pswaker/settings.ini consumer.
 
-The runtime's visible "saves/settings are preserved" guidance is not itself a
-measurement of the seeded files. The owner's earlier no-issues-saving report
-also does not replace this comparison. A question about existing comparisons or
-their local paths is pending; there is no claim that files changed or were lost.
+In response to the explicit question about comparing seeded saves and settings
+with the backup after each failure package and before launching the repair, the
+owner confirmed: "Compared; all files matched at every step."
+That confirmation supplies the missing comparison result and completes the
+preservation check for this sequence. Per-step save/settings results are
+owner-confirmed; the before/after GCI endpoint comparison is independently
+verified. The agent has not compared the absent settings/per-step files or hash
+lists. The runtime's visible preservation guidance is not treated as a separate
+measurement of those files.
 
-#17 therefore remains open only for this required preservation evidence. If no
-before/after comparison was made, use the [controlled-failure checklist](../../../Startup-checklist.md)
-with a backed-up valid save and identifiable settings seed, compare each stopped
-launch and the repaired installation before gameplay can legitimately change
-those files. The successful gameplay route does not need repeating.
+Together with the [startup/Outset evidence](../console-2026-10-25/REPORT.md), the
+error stops and repaired startup, this completes the bounded #17 evidence review.
+The [owner checklist](../../../Startup-checklist.md) remains the reproduction
+procedure. No repeat of the gameplay route or fault sequence is required for
+this checkpoint. Full save durability, backup/recovery behavior and performance
+remain later acceptance work.
 
 Host verification for this review checks logged-manifest equality against all
 four retained inspections, expected error/stage/exit records, lack of gameplay

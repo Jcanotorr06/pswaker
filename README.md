@@ -4,7 +4,7 @@ This project aims to port [SwitchWaker](https://github.com/centollOS/SwitchWaker
 
 ## Status
 
-The native game is integrated with the verified PS4 platform. The owner [reports gameplay through Outset, Forsaken Fortress and Windfall to Dragon Roost Island](platform/ps4/evidence/startup-17/console-2026-10-25/REPORT.md), with no observed graphics/audio glitches and brief loading/first-effect pauses. Controlled content failures and repaired startup also pass their [returned behavioral checks](platform/ps4/evidence/startup-17/content-checks-2026-10-25/REPORT.md). The [startup checkpoint](platform/ps4/evidence/startup-17/REPORT.md) remains open for seeded save/settings byte-preservation evidence. The confirmed hardware is a **PS4 Slim running firmware 9.00 / GoldHEN v2.4b18**, with USA disc `GZLE01`, revision 0.
+The native game is integrated with the verified PS4 platform. The owner [reports gameplay through Outset, Forsaken Fortress and Windfall to Dragon Roost Island](platform/ps4/evidence/startup-17/console-2026-10-25/REPORT.md), with no observed graphics/audio glitches and brief loading/first-effect pauses. Controlled content failures, repaired startup and owner-confirmed seeded save/settings comparisons complete the bounded [startup checkpoint evidence review](platform/ps4/evidence/startup-17/REPORT.md). The confirmed hardware is a **PS4 Slim running firmware 9.00 / GoldHEN v2.4b18**, with USA disc `GZLE01`, revision 0.
 
 The [maintained disc-free platform diagnostic](platform/ps4/README.md) passed its [bounded platform gate](platform/ps4/evidence/verification-15/REPORT.md). Those synthetic checks do not validate the game candidate. Full-route rendering/audio, save durability and performance remain later acceptance checkpoints.
 

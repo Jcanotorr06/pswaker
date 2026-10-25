@@ -1,4 +1,4 @@
-# Startup checkpoint #17: candidate handoff
+# Startup checkpoint #17: completed evidence review
 
 The native game builds and the private complete startup, controlled-failure and
 repair packages pass host extraction/inspection. The [returned console review](console-2026-10-25/REPORT.md)
@@ -7,8 +7,12 @@ through Dragon Roost Island, with no reported graphics/audio glitches and brief
 loading/first-effect pauses. Both logs match this candidate's build and manifest.
 The owner confirms Slim / 9.00 / GoldHEN v2.4b18, USB-free play, a fresh first
 cache and no issues saving. The [returned controlled-failure/repair review](content-checks-2026-10-25/REPORT.md)
-confirms all three intended error stops and successful repaired startup.
-**#17 remains open only for seeded save/settings byte-preservation evidence.**
+confirms all three intended error stops and successful repaired startup. The
+owner also confirms that seeded save/settings comparisons matched the backup
+at every step. **The bounded #17 startup checkpoint evidence is complete.**
+Per-step preservation comparisons are owner-confirmed. Supplied before/after GCI
+copies are independently byte-identical; settings/per-step snapshots or hash
+listings were not supplied for independent comparison.
 
 Use the [owner checklist](../../Startup-checklist.md) with these exact artifacts.
 The scope is startup through access to Outset on PS4 Slim / 9.00 /
@@ -85,14 +89,14 @@ No image, extracted assets, save, ELF or PKG is committed to the repository.
 Cold preparation may have zero known shaders; new pipelines compile synchronously
 when encountered. Scene creation logs mark requests/intervals rather than visible
 transition completion. DMA counters do not prove audible audio. Pair these logs
-with owner observations. Full image hashing adds an unmeasured console startup
-cost. Initial controls and trigger thresholds still require hardware checks.
+with owner observations. Full image checking spans roughly 44.8–46.0 seconds in
+the returned startup logs. Full control/trigger validation remains later work.
 
 The returned logs confirm allocated internal 1280x720 and output 1920x1080,
 installed-image/runtime-asset validation and basic pause/resume events. The
-owner reports the startup route and game audio/rendering. Remaining evidence
-is seeded save/settings byte preservation through the failure updates and repair;
-error guidance and repaired startup are now observed. One earlier card-file-open
-error remains in the log, despite
+owner reports the startup route and game audio/rendering. Error guidance and
+repaired startup are observed, and the owner confirms matching seeded-file
+comparisons through the failures and repair. One earlier card-file-open error
+remains in the log, despite
 no owner-observed error or saving issue. See the returned review for identity
 confirmation, timings, artifact-association limits and later acceptance work.
