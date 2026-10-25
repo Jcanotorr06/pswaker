@@ -1,0 +1,20 @@
+{
+  "original_directory": "local-research/game-17-artifacts/evidence/logs",
+  "files": [
+    {
+      "path": "last-stage.txt",
+      "size": 94,
+      "sha256": "79e7339e75b0a88473c970e25e9080206998ea9664870cc1f7938b4142c16815"
+    },
+    {
+      "path": "platform.log",
+      "size": 699303,
+      "sha256": "4566d05ef41a616d290843ff3740c27328d2a46629d1bd3902869c9da835d4db"
+    },
+    {
+      "path": "platform.prev.log",
+      "size": 326867,
+      "sha256": "be97cbaa2d59c202d8e911e55fcf073fb03141e6a9d9de78a5a365519dd58a96"
+    }
+  ]
+}

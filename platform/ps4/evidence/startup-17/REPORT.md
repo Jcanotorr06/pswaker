@@ -1,9 +1,13 @@
 # Startup checkpoint #17: candidate handoff
 
 The native game builds and the private complete startup, controlled-failure and
-repair packages pass host extraction/inspection. **Console acceptance is pending.**
-No title/name/prologue/Outset, visible rendering, audible game audio or seeded-file
-preservation observation has been returned for this binary. Keep #17 open.
+repair packages pass host extraction/inspection. The [returned console review](console-2026-10-25/REPORT.md)
+records the owner's successful startup/Outset observations and exploratory play
+through Dragon Roost Island, with no reported graphics/audio glitches and brief
+loading/first-effect pauses. Both logs match this candidate's build and manifest.
+The owner confirms Slim / 9.00 / GoldHEN v2.4b18, USB-free play, a fresh first
+cache and no issues saving. **#17 remains open:** controlled-failure save/settings
+preservation and repair evidence are outstanding.
 
 Use the [owner checklist](../../Startup-checklist.md) with these exact artifacts.
 The scope is startup through access to Outset on PS4 Slim / 9.00 /
@@ -83,7 +87,10 @@ transition completion. DMA counters do not prove audible audio. Pair these logs
 with owner observations. Full image hashing adds an unmeasured console startup
 cost. Initial controls and trigger thresholds still require hardware checks.
 
-The remaining evidence is the exact candidate's title/name/prologue/Outset route,
-game audio/rendering and allocated internal/output dimensions, controlled failure
-guidance plus seeded save/settings byte preservation, repair recovery, and any
-uncertain scene/audio comparison with the original game.
+The returned logs confirm allocated internal 1280x720 and output 1920x1080,
+installed-image/runtime-asset validation and basic pause/resume events. The
+owner reports the startup route and game audio/rendering. Remaining evidence
+includes controlled failure guidance with seeded save/settings byte preservation
+and repair recovery. One earlier card-file-open error remains in the log, despite
+no owner-observed error or saving issue. See the returned review for identity
+confirmation, timings, artifact-association limits and later acceptance work.

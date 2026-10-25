@@ -21,8 +21,10 @@ That complete package remains nonplayable; no game startup or console result is 
 The separate [installed-game integration](GAME-STARTUP.md) builds pinned
 SwitchWaker against this verified stack. Its [startup candidate report](evidence/startup-17/REPORT.md)
 and [owner checklist](Startup-checklist.md) cover the private game package and
-controlled content failures. This candidate still requires its own console
-evidence through Outset; the diagnostic results above do not validate it.
+controlled content failures. The [returned startup review](evidence/startup-17/console-2026-10-25/REPORT.md)
+records owner-observed play beyond Outset on the confirmed target hardware;
+controlled-failure preservation and repair checks keep #17 open. The diagnostic
+results above do not validate the game.
 
 ## Reproduce on Linux / WSL2
 
