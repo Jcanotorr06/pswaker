@@ -51,6 +51,47 @@ class GamePreparationTests(unittest.TestCase):
 
 @unittest.skipUnless(shutil.which('clang++-21'), 'Linux host compiler required')
 class InstalledApplicationTests(unittest.TestCase):
+    def test_build_staging_rejects_changed_dsp_reader_and_platform_headers(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / 'game'
+            platform = Path(directory) / 'platform'
+            (root / 'evidence').mkdir(parents=True)
+            source_files = {}
+            for name in ['switchwaker', 'recompcore', 'ps5-reference']:
+                path = root / 'src' / name / 'input.cpp'
+                path.parent.mkdir(parents=True)
+                path.write_bytes(b'original')
+                source_files[name] = {'input.cpp': hashlib.sha256(b'original').hexdigest()}
+            for name in ['aurora', 'platform']:
+                (root / 'src' / name).mkdir()
+            (root / 'assets/GZLE01').mkdir(parents=True)
+            (root / 'evidence/game-inputs.json').write_text(json.dumps({
+                'prepared_game': source_files['switchwaker'], 'prepared_sources': source_files,
+                'stub_headers': {}, 'aurora': {}, 'platform': {}}))
+            for archive in ['build/dawn/src/dawn/native/libwebgpu_dawn.a', 'build/sdl3/libSDL3.a']:
+                path = platform / archive
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b'fixture archive')
+            header = platform / 'build/dawn/gen/include/webgpu/webgpu_cpp.h'
+            header.parent.mkdir(parents=True)
+            header.write_bytes(b'original header')
+            cli = [sys.executable, str(HERE / 'game-build.py')]
+            configured = subprocess.run(cli + ['identity', str(root), str(platform)],
+                                        capture_output=True, text=True)
+            self.assertEqual(configured.returncode, 0, configured.stderr)
+            for path in [root / 'src/recompcore/input.cpp',
+                         root / 'src/ps5-reference/input.cpp', header]:
+                with self.subTest(path=path):
+                    before = path.read_bytes()
+                    path.write_bytes(b'unrecorded change')
+                    staged = subprocess.run(cli + ['stage', str(root), str(platform)],
+                                            capture_output=True, text=True)
+                    self.assertNotEqual(staged.returncode, 0)
+                    self.assertTrue('Prepared input changed' in staged.stderr or
+                                    'Build inputs changed since configuration' in staged.stderr,
+                                    staged.stderr)
+                    path.write_bytes(before)
+
     def test_installed_content_failures_stop_and_preserve_user_files(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

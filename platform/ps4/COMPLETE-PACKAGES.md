@@ -124,8 +124,9 @@ update tests:
 
 `--app-version NN.NN` is explicit and changes version metadata, never those IDs.
 The separate game identity prevents a diagnostic from replacing the game.
-No integrated game program exists yet. `--kind game` identifies an explicitly
-supplied program; it grants no game, hardware or performance acceptance.
+The [startup game build](GAME-STARTUP.md) supplies an integrated program for #17.
+`--kind game` identifies an explicitly supplied program; it grants no game,
+hardware or performance acceptance.
 
 ## Inspection and retained private evidence
 

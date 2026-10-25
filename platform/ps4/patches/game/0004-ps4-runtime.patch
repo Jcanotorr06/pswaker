@@ -9,9 +9,32 @@
  #else
      static JKRHeap* sCurrentHeap;
  #endif
+--- a/native/sdk/include/cos_sdk/audio.h
++++ b/native/sdk/include/cos_sdk/audio.h
+@@ -16,6 +16,10 @@
+ // engine runs from AIInit on) and the sum of the squares of both channels' s16 samples. The RMS
+ // level over an interval is sqrt(d(sumSquares) / (2 * d(frames))).
+ void COSAIGetOutputStats(u64* frames, u64* sumSquares);
++#if defined(__ORBIS__)
++// After COSSdkRequestShutdown, join the output producer before SDL_Quit.
++BOOL COSAIShutdownOutput(void);
++#endif
+ 
+ #ifdef __cplusplus
+ }
 --- a/native/sdk/src/audio/AI.cpp
 +++ b/native/sdk/src/audio/AI.cpp
-@@ -224,7 +224,8 @@
+@@ -135,6 +135,9 @@
+ 
+ // ---- the AI DMA thread (only it touches what follows) -----------------------------------------
+ 
++#if defined(__ORBIS__)
++pthread_t sDmaHandle{};
++#endif
+ OSThread sDmaThreadRecord;
+ HostThread sDmaThreadHost;
+ 
+@@ -224,7 +227,8 @@
          Log("AI: no SDL playback stream (%s); the DMA runs without output", SDL_GetError());
          return;
      }
@@ -21,7 +44,7 @@
      Log("AI: audio output over SDL3 (driver %s), 16-bit stereo, %u Hz",
          SDL_GetCurrentAudioDriver() ? SDL_GetCurrentAudioDriver() : "?", hz);
  }
-@@ -235,7 +236,8 @@
+@@ -235,7 +239,8 @@
      }
      if (hz != sStreamHz) {
          const SDL_AudioSpec spec = {SDL_AUDIO_S16, 2, int(hz)};
@@ -31,7 +54,7 @@
          sStreamHz = hz;
      }
      const int bytes = int(frames.size() * sizeof(s16));
-@@ -245,7 +247,8 @@
+@@ -245,7 +250,8 @@
                           "once)");
          return;
      }
@@ -41,6 +64,44 @@
  }
  
  const u8* Mem1Range(uintptr_t address, u32 size) {
+@@ -375,9 +381,14 @@
+     sDmaThreadRecord.priority = sDmaThreadRecord.base = OS_PRIORITY_MIN;
+     pthread_attr_t attr;
+     pthread_attr_init(&attr);
++#if !defined(__ORBIS__)
+     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+-    pthread_t handle;
++#endif
++    pthread_t handle{};
+     const int err = pthread_create(&handle, &attr, &DmaThreadMain, nullptr);
++#if defined(__ORBIS__)
++    sDmaHandle = handle;
++#endif
+     pthread_attr_destroy(&attr);
+     if (err != 0) {
+         Fatal("AIInit: pthread_create of the AI DMA thread failed (%d: %s)", err,
+@@ -564,6 +575,21 @@
+     *sumSquares = sAI.outSumSquares;
+ }
+ 
++#if defined(__ORBIS__)
++// COSSdkRequestShutdown must precede this call. Join outside the OS lock:
++// the DMA thread needs that lock to observe shutdown and finish PlayOutput.
++BOOL COSAIShutdownOutput(void) {
++    pthread_t handle;
++    {
++        Guard guard;
++        if (!sAI.threadStarted) return TRUE;
++        handle = sDmaHandle;
++    }
++    if (pthread_equal(pthread_self(), handle)) return FALSE;
++    return pthread_join(handle, nullptr) == 0 ? TRUE : FALSE;
++}
++#endif
++
+ void AIReset(void) {
+     Guard guard;
+     sAI.init = false; // as the SDK: the next AIInit starts again
 --- a/native/sdk/src/os/os_internal.h
 +++ b/native/sdk/src/os/os_internal.h
 @@ -51,11 +51,11 @@

@@ -30,7 +30,7 @@ diagnostic tree is preserved.
 
 The output's parent must exist. Complete packages stay outside the repository.
 See [COMPLETE-PACKAGES.md](COMPLETE-PACKAGES.md) for private output and inspection.
-Game identity is PSWK00001 / IV0000-PSWK00001_00-PSWAKERGAME000000. Versions
+Game identity is PSWK00001 / IV0000-PSWK00001_00-PSWAKERGAME00000. Versions
 change SFO metadata, never that identity.
 
 Use a fresh game root for different source/patch inputs. The source lock includes
@@ -96,6 +96,9 @@ ELF and return available traces.
 - Keep clock-driven DMA/DSP conversion through SDL3's PS4 backend. Setup,
   format and queue failures are logged. Heartbeats include DMA frame/energy
   counters; these do not prove audible output or route correctness.
+- Normal exit requests SDK shutdown and joins the DMA producer before Aurora
+  destroys SDL audio. Fatal paths preserve those objects until process exit.
+  Full write coordination and persistence acceptance remain later work.
 - Content validation and known-shader preparation show progress before gameplay.
   Cold startup has no imported game pipeline cache; the actual known queue may
   be zero. New shaders compile synchronously when encountered; gameplay stalls

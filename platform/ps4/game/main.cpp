@@ -7,6 +7,9 @@
 #include <dolphin/card.h>
 #include <dolphin/vi.h>
 #include <cos_sdk/audio.h>
+#include <cos_sdk/hooks.h>
+class JKRHeap;
+#include "pc/game_hooks/jkr_heap.h"
 #include <SDL3/SDL.h>
 #include <imgui.h>
 #include "webgpu/gpu.hpp"
@@ -159,6 +162,7 @@ void pswaker_aurora_log(AuroraLogLevel level, const char* module, const char* me
     if (level == LOG_FATAL) { fflush(nullptr); abort(); }
 }
 void pswaker_graphics_ready() {
+    JKRPcHostAllocScope hostAlloc;
     graphics = true;
     pswaker_stage("graphics-initialized");
     FILE* image = fopen("/app0/game.iso", "rb");
@@ -198,6 +202,7 @@ void pswaker_graphics_ready() {
     pswaker_stage("known-shaders-prepared");
 }
 void pswaker_frame_boundary() {
+    JKRPcHostAllocScope hostAlloc;
     static double next = 0;
     static bool hadController = false;
     pad state{};
@@ -233,13 +238,26 @@ void pswaker_frame_boundary() {
     }
 }
 [[noreturn]] void pswaker_exit(int code) {
+    JKRPcHostAllocScope hostAlloc;
     say("EXIT code=%d ms=%.1f checked-errors=%u", code, milliseconds(), unsigned(checkedErrors));
-    if (graphics) { aurora::gfx::synchronize(); aurora_shutdown(); }
+    if (graphics) {
+        aurora::gfx::synchronize();
+        // Fatal paths may originate inside an SDK lock. Leave process cleanup to
+        // the console there, without destroying a stream under its producer.
+        if (code == 0) {
+            COSSdkRequestShutdown();
+            const bool stopped = COSAIShutdownOutput() != 0;
+            say("SHUTDOWN audio-producer-joined=%d", stopped);
+            if (stopped) aurora_shutdown();
+            else { ++checkedErrors; say("ERROR audio producer could not be joined; retaining SDL until process exit"); }
+        }
+    }
     fflush(nullptr);
     catchReturnFromMain(code);
     for (;;) sleep(1);
 }
 [[noreturn]] void pswaker_installation_error(const char* reason) {
+    JKRPcHostAllocScope hostAlloc;
     say("INSTALLATION ERROR: %s. Rebuild the complete package on the computer and reinstall. Saves/settings are preserved.", reason);
     ++checkedErrors;
     pswaker_stage("installation-error-stopped-before-gameplay");
@@ -267,6 +285,12 @@ int main(int argc, char** argv) {
     mkdir("/data/pswaker/cache/" PSWAKER_BUILD_ID, 0755);
     platform_init("PSWaker");
     say("BEGIN build=%s platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/%s", PSWAKER_BUILD_ID, PSWAKER_BUILD_ID);
+    if (FILE* manifest = fopen("/app0/complete-package.json", "r")) {
+        char line[1024];
+        while (fgets(line, sizeof line, manifest)) say("PACKAGE_MANIFEST %s", line);
+        if (ferror(manifest)) { ++checkedErrors; say("ERROR reading package identity manifest"); }
+        if (fclose(manifest)) { ++checkedErrors; say("ERROR closing package identity manifest"); }
+    } else { ++checkedErrors; say("ERROR opening complete-package identity manifest errno=%d", errno); }
     logCache();
     setenv("COS_AUDIO", "on", 1);
     setenv("COS_UNCAPPED", "0", 1);

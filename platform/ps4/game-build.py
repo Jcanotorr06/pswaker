@@ -23,8 +23,11 @@ def write_json(path, value):
 
 def inputs(root, platform):
     prepared = json.loads((root / 'evidence/game-inputs.json').read_text())
-    for key, directory in [('prepared_game', root / 'src/switchwaker'),
-                           ('stub_headers', root / 'assets/GZLE01'),
+    for name, expected in prepared['prepared_sources'].items():
+        directory = root / 'src' / name
+        if expected != preparation.inventory(directory):
+            raise ValueError(f'Prepared input changed: {directory}; rerun prepare-game.py')
+    for key, directory in [('stub_headers', root / 'assets/GZLE01'),
                            ('aurora', root / 'src/aurora'), ('platform', root / 'src/platform')]:
         if prepared[key] != preparation.inventory(directory):
             raise ValueError(f'Prepared input changed: {directory}; rerun prepare-game.py')
@@ -34,7 +37,10 @@ def inputs(root, platform):
         archives += sorted((platform / directory).rglob('*.a'))
     # Include exact runtime sources/toolchain; a platform change invalidates the game cache ID.
     records = {p.relative_to(platform).as_posix(): preparation.digest(p) for p in archives}
-    for directory in ['toolchain', 'refs/DolphinPS4/port', 'src/native-platform/ps4']:
+    for directory in ['toolchain', 'refs/DolphinPS4/toolchain', 'refs/DolphinPS4/port',
+                      'src/native-platform/ps4', 'src/dawn/include', 'build/dawn/gen/include',
+                      'src/sdl3/include', 'build/sdl3', 'src/abseil', 'src/fetch',
+                      'sysroot', 'sdk/opt/pacbrew/ps4/openorbis']:
         records.update({directory + '/' + name: sha for name, sha in
                         preparation.inventory(platform / directory).items()})
     code = {p.relative_to(HERE).as_posix(): preparation.digest(p) for p in sorted(HERE.rglob('*'))
@@ -105,6 +111,8 @@ def stage(root, platform, version):
     env = dict(os.environ, OPENORBIS=str(sdk), OO_PS4_TOOLCHAIN=str(sdk),
                PS4_PKGTOOL=str(platform / 'build/pkgtool/PkgTool.Core'), SFO_STYLE='plain',
                DOLPHIN_PS4_MODULES_DIR='/nonexistent')
+    # The inherited packager resolves this path before creating its output tree.
+    (root / 'out/program').mkdir(parents=True, exist_ok=True)
     with (root / 'evidence/game-program-package.log').open('w') as log:
         subprocess.run(['bash', str(platform / 'refs/DolphinPS4/scripts/make-pkg.sh'),
                         str(stage_dir), 'PSWK00001', 'PSWaker', version, 'PSWAKERGAME',

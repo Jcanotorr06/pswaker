@@ -1,0 +1,63 @@
+-- cos_native: runtime assets (COS_RUNTIME_ASSETS): stub headers from /home/joseph_cano/.cache/pswaker/game-17/assets/GZLE01
+-- aurora: Using existing Dawn
+-- aurora: Fetching abseil-cpp (standalone)
+-- aurora: Using system SDL3 (provider=system)
+-- aurora: Using static SDL3
+CMake Warning at /home/joseph_cano/.cache/pswaker/game-17/src/aurora/extern/CMakeLists.txt:13 (find_package):
+  By not providing "FindxxHash.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "xxHash", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "xxHash" with any
+  of the following names:
+
+    xxHashConfig.cmake
+    xxhash-config.cmake
+
+  Add the installation prefix of "xxHash" to CMAKE_PREFIX_PATH or set
+  "xxHash_DIR" to a directory containing one of the above files.  If "xxHash"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+Call Stack (most recent call first):
+  /home/joseph_cano/.cache/pswaker/game-17/src/aurora/extern/CMakeLists.txt:59 (aurora_find_package_global)
+
+
+-- aurora: Fetching xxhash
+-- xxHash build type: Release
+-- Architecture: x86_64
+-- aurora: Fetching fmt
+-- {fmt} version: 12.1.0
+-- Build type: Release
+-- aurora: Using existing libpng
+-- Checking for module 'freetype2'
+--   Package 'freetype2', required by 'virtual:world', not found
+-- aurora: Fetching Freetype
+-- Checking for module 'bzip2'
+--   Package 'bzip2', required by 'virtual:world', not found
+-- aurora: Fetching imgui
+-- Could NOT find SQLite3 (missing: SQLite3_INCLUDE_DIR SQLite3_LIBRARY) 
+-- Checking for module 'sqlite3'
+--   Package 'sqlite3', required by 'virtual:world', not found
+-- aurora: Fetching sqlite3
+-- aurora: Using existing nod
+-- cos_native: Aurora e281999cdb4fee6127525a9a9e97979480db4bf3 from /home/joseph_cano/.cache/pswaker/game-17/src/aurora
+-- cos_native: module SSystem: 36 units (0 deferred)
+-- cos_native: module JSystem-core: 59 units (0 deferred)
+-- cos_native: module JSystem-J3D: 31 units (0 deferred)
+-- cos_native: module JSystem-2D-particle: 26 units (0 deferred)
+-- cos_native: module JSystem-studio: 37 units (0 deferred)
+-- cos_native: module framework: 57 units (0 deferred)
+-- cos_native: module m_Do: 17 units (0 deferred)
+-- cos_native: module d-core: 136 units (0 deferred)
+-- cos_native: module actors-1: 74 units (0 deferred)
+-- cos_native: module actors-2: 74 units (0 deferred)
+-- cos_native: module actors-3: 74 units (0 deferred)
+-- cos_native: module actors-4: 74 units (0 deferred)
+-- cos_native: module actors-5: 74 units (0 deferred)
+-- cos_native: module actors-6: 71 units (0 deferred)
+-- cos_native: module audio: 74 units (0 deferred)
+-- cos_native: link census disabled (it needs macOS ld64, nm and otool)
+-- cos_native: executable switchwaker from 416 REL units after the main.dol units, then audio
+-- Configuring done (6.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: /home/joseph_cano/.cache/pswaker/game-17/build

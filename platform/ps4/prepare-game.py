@@ -82,7 +82,9 @@ def prepare(root, platform_root=None):
         'constexpr const char* image_sha1[] = {' + ','.join(json.dumps(h) for h in hashes) + '};\n')
     result = {'sources': records,
               'patches': inventory(HERE / 'patches/game'),
-              'prepared_game': inventory(game), 'stub_headers': inventory(assets)}
+              'prepared_sources': {row['name']: inventory(root / 'src' / row['name'])
+                                   for row in lock['sources']},
+              'stub_headers': inventory(assets)}
     if platform_root:
         # Work on game-local copies. Never mutate the verified diagnostic's inputs.
         with tempfile.TemporaryDirectory(prefix='.platform-', dir=root) as directory:
