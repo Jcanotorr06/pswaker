@@ -1,0 +1,75 @@
+===== logs-CONTENT-FAILURE-missing-01.01/platform.log: original line numbers =====
+1: PSWaker starts
+2: BEGIN build=6ebc07987fe3b6c6064a platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6ebc07987fe3b6c6064a
+61: CACHE before-init name=dawn_cache.db bytes=17305600 sha1=ff435b2ee2ca3763aa3d90c1ef4d3c3d421c8b89 readable=1
+62: CACHE before-init name=dawn_cache.db-wal bytes=4144752 sha1=36bce3f764a5d8d205d7880446e6592795a58422 readable=1
+63: CACHE before-init name=pipeline_cache.db bytes=4083712 sha1=7d008c6807b39e847728090c930481c6602853b0 readable=1
+64: CACHE before-init name=pipeline_cache.db-wal bytes=4136512 sha1=474714f89f1626a4433cf7944a3a28650109f866 readable=1
+65: CACHE identity=6ebc07987fe3b6c6064a files-before-init=4; owner labels cold/warm
+66: STAGE completed=platform-initialized ms=1135.9 build=6ebc07987fe3b6c6064a errors=0
+69: STAGE completed=PS4-runtime-crash-logger-selected ms=1169.3 build=6ebc07987fe3b6c6064a errors=0
+71: INSTALLATION ERROR: cannot open COS_DISC=/app0/game.iso: No such file or directory. Rebuild the complete package on the computer and reinstall. Saves/settings are preserved.
+72: STAGE completed=installation-error-stopped-before-gameplay ms=1196.5 build=6ebc07987fe3b6c6064a errors=1
+240: EXIT code=14 ms=27053.7 checked-errors=1
+
+===== logs-CONTENT-FAILURE-unreadable-01.02/platform.log: original line numbers =====
+1: PSWaker starts
+2: BEGIN build=6ebc07987fe3b6c6064a platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6ebc07987fe3b6c6064a
+61: CACHE before-init name=dawn_cache.db bytes=17305600 sha1=ff435b2ee2ca3763aa3d90c1ef4d3c3d421c8b89 readable=1
+62: CACHE before-init name=dawn_cache.db-wal bytes=4144752 sha1=36bce3f764a5d8d205d7880446e6592795a58422 readable=1
+63: CACHE before-init name=pipeline_cache.db bytes=4083712 sha1=7d008c6807b39e847728090c930481c6602853b0 readable=1
+64: CACHE before-init name=pipeline_cache.db-wal bytes=4136512 sha1=474714f89f1626a4433cf7944a3a28650109f866 readable=1
+65: CACHE identity=6ebc07987fe3b6c6064a files-before-init=4; owner labels cold/warm
+66: STAGE completed=platform-initialized ms=1206.6 build=6ebc07987fe3b6c6064a errors=0
+69: STAGE completed=PS4-runtime-crash-logger-selected ms=1216.3 build=6ebc07987fe3b6c6064a errors=0
+71: INSTALLATION ERROR: /app0/game.iso is not a regular file with a disc header. Rebuild the complete package on the computer and reinstall. Saves/settings are preserved.
+72: STAGE completed=installation-error-stopped-before-gameplay ms=1242.8 build=6ebc07987fe3b6c6064a errors=1
+238: EXIT code=14 ms=15385.0 checked-errors=1
+
+===== logs-CONTENT-FAILURE-invalid-01.03/platform.log: original line numbers =====
+1: PSWaker starts
+2: BEGIN build=6ebc07987fe3b6c6064a platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6ebc07987fe3b6c6064a
+61: CACHE before-init name=dawn_cache.db bytes=17305600 sha1=ff435b2ee2ca3763aa3d90c1ef4d3c3d421c8b89 readable=1
+62: CACHE before-init name=dawn_cache.db-wal bytes=4144752 sha1=36bce3f764a5d8d205d7880446e6592795a58422 readable=1
+63: CACHE before-init name=pipeline_cache.db bytes=4083712 sha1=7d008c6807b39e847728090c930481c6602853b0 readable=1
+64: CACHE before-init name=pipeline_cache.db-wal bytes=4136512 sha1=474714f89f1626a4433cf7944a3a28650109f866 readable=1
+65: CACHE identity=6ebc07987fe3b6c6064a files-before-init=4; owner labels cold/warm
+66: STAGE completed=platform-initialized ms=1827.0 build=6ebc07987fe3b6c6064a errors=0
+69: STAGE completed=PS4-runtime-crash-logger-selected ms=2038.9 build=6ebc07987fe3b6c6064a errors=0
+71: STAGE completed=aurora-initialize ms=2050.3 build=6ebc07987fe3b6c6064a errors=0
+189: STAGE completed=graphics-initialized ms=3165.3 build=6ebc07987fe3b6c6064a errors=0
+394: INSTALLATION ERROR: Installation error: installed image checksum is invalid. Rebuild the complete package on the computer and reinstall; existing saves/settings are preserved.. Rebuild the complete package on the computer and reinstall. Saves/settings are preserved.
+395: STAGE completed=installation-error-stopped-before-gameplay ms=48268.1 build=6ebc07987fe3b6c6064a errors=1
+409: EXIT code=14 ms=105471.4 checked-errors=1
+
+===== logs-repair-01.04/platform.log: original line numbers =====
+1: PSWaker starts
+2: BEGIN build=6ebc07987fe3b6c6064a platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6ebc07987fe3b6c6064a
+171: CACHE before-init name=dawn_cache.db bytes=17305600 sha1=ff435b2ee2ca3763aa3d90c1ef4d3c3d421c8b89 readable=1
+172: CACHE before-init name=dawn_cache.db-wal bytes=4144752 sha1=36bce3f764a5d8d205d7880446e6592795a58422 readable=1
+173: CACHE before-init name=pipeline_cache.db bytes=4083712 sha1=7d008c6807b39e847728090c930481c6602853b0 readable=1
+174: CACHE before-init name=pipeline_cache.db-wal bytes=4136512 sha1=474714f89f1626a4433cf7944a3a28650109f866 readable=1
+175: CACHE identity=6ebc07987fe3b6c6064a files-before-init=4; owner labels cold/warm
+176: STAGE completed=platform-initialized ms=1950.4 build=6ebc07987fe3b6c6064a errors=0
+179: STAGE completed=PS4-runtime-crash-logger-selected ms=1961.7 build=6ebc07987fe3b6c6064a errors=0
+181: STAGE completed=aurora-initialize ms=2104.0 build=6ebc07987fe3b6c6064a errors=0
+299: STAGE completed=graphics-initialized ms=2833.3 build=6ebc07987fe3b6c6064a errors=0
+496: STAGE completed=installed-image-validated ms=47916.8 build=6ebc07987fe3b6c6064a errors=0
+497: STAGE completed=writable-storage-checked ms=47962.9 build=6ebc07987fe3b6c6064a errors=0
+498: DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=47974.3
+499: SHADERS created=1138 queued=0 ms=47982.7
+500: TIMING shader-preparation_ms=4.1 startup_to_preparation_complete_ms=47986.8
+501: STAGE completed=known-shaders-prepared ms=47994.0 build=6ebc07987fe3b6c6064a errors=0
+504: STAGE completed=runtime-assets-validated ms=48183.3 build=6ebc07987fe3b6c6064a errors=0
+505: [cos] MILESTONE aurora-up frame=0 retrace=0 ms=46350
+517: [cos] MILESTONE heaps frame=0 retrace=0 ms=46422
+520: [cos] MILESTONE gfx-create frame=0 retrace=0 ms=46424
+522: HEARTBEAT ms=50834.2 shaders-created=1138 queued=0 checked-errors=0
+533: [cos] MILESTONE logo-scene frame=6 retrace=6 ms=48986
+537: [cos] MILESTONE frame-loop frame=120 retrace=120 ms=50886
+547: [cos] MILESTONE logo-res frame=243 retrace=244 ms=52956
+550: [cos] MILESTONE opening frame=281 retrace=282 ms=53586
+570: [cos] MILESTONE file-select frame=535 retrace=787 ms=62024
+572: [cos] MILESTONE title-stage frame=587 retrace=891 ms=63758
+593: HEARTBEAT ms=85919.5 shaders-created=1138 queued=0 checked-errors=0
+598: INPUT disconnected or failed read; paused at game-frame boundary ms=86562.6

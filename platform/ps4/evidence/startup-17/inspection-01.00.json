@@ -1,0 +1,114 @@
+{
+  "scope": "Unverified game program; package assembly does not establish playable acceptance",
+  "installed_image": "/app0/game.iso",
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "0b619d1b85d51f6c2bebae12369c170f88446c543747bf0d1c24c1fe97643ac1"
+  },
+  "sfo": {
+    "APP_TYPE": 1,
+    "APP_VER": "01.00",
+    "ATTRIBUTE": 0,
+    "CATEGORY": "gd",
+    "CONTENT_ID": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+    "DOWNLOAD_DATA_SIZE": 0,
+    "PUBTOOLINFO": "c_date=20261025,img0_l0_size=1447,img0_l1_size=0,img0_sc_ksize=512,img0_pc_ksize=832",
+    "PUBTOOLVER": 42532864,
+    "SYSTEM_VER": 0,
+    "TITLE": "PSWaker",
+    "TITLE_ID": "PSWK00001",
+    "VERSION": "01.00"
+  },
+  "payload_sha256": {
+    "build-info.json": "27790f3b98885abad6be9e65c33bc05e8c418e439276a228a14ac8bcaaaccae7",
+    "complete-package.json": "8afe7a3c90212b374ce8ae0ea69dfc7b17c08f463434181b0cfd45c49b49c86d",
+    "eboot.bin": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+    "game.iso": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+    "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+    "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+    "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+    "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+    "sce_sys/param.sfo": "6944aeeccd702b4494b53075a4322201c1d61a963c0bf409975a9b3122398d1b",
+    "sce_sys/keystone": "d09eb8ab5f3b700164fc8ad85c54c2acbad71244e942aeedf7e3e7eb56408aac"
+  },
+  "package_header": {
+    "magic": "7f434e54",
+    "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+    "size": 1516568576
+  },
+  "image": {
+    "game_id": "GZLE01",
+    "revision": 0,
+    "size": 1459978240,
+    "sha1": "6b5f06c10d50ebb4099cded88217eb71e5bfbb4a",
+    "sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+    "contract_sha256": "309ab1c521a53945760b01d3592721b041206745207515ddaca54d29139eda1c",
+    "required_content": [
+      {
+        "path": "sys/main.dol",
+        "member": "",
+        "sha1": "8d28bab68bb5078c38e43f29206f0bd01f7e7a67",
+        "size": 3822272
+      },
+      {
+        "path": "RELS.arc",
+        "member": "rels/mmem/d_a_majuu_flag.rel",
+        "sha1": "9844a606bcebcceaeff329256665eea72d5aa970",
+        "size": 15208
+      },
+      {
+        "path": "RELS.arc",
+        "member": "rels/mmem/d_a_pirate_flag.rel",
+        "sha1": "ad8581d91ce176c711a4db6a7862e2be510c0645",
+        "size": 11888
+      },
+      {
+        "path": "rels/d_a_bwdg.rel",
+        "member": "",
+        "sha1": "7cef0d0967ffbdae93dfc4a28ef0b8a672b052c9",
+        "size": 154876
+      },
+      {
+        "path": "rels/d_a_goal_flag.rel",
+        "member": "",
+        "sha1": "360285b55c8d8d9353c8c027bcfcc90c368f86b4",
+        "size": 26820
+      },
+      {
+        "path": "rels/d_a_mant.rel",
+        "member": "",
+        "sha1": "a565cdff34a1346c7db964d795179b81ece22ef8",
+        "size": 58364
+      },
+      {
+        "path": "rels/d_a_obj_buoyflag.rel",
+        "member": "",
+        "sha1": "a4db26857f985f6a3c963e183e6be28bf37e46c3",
+        "size": 25120
+      },
+      {
+        "path": "rels/d_a_sail.rel",
+        "member": "",
+        "sha1": "36cd36d17a50769045c087cbb56b26f4ad3a2b6e",
+        "size": 18992
+      }
+    ]
+  },
+  "program": {
+    "build_id": "6ebc07987fe3b6c6064a",
+    "elf_filename": "switchwaker",
+    "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+    "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+    "payload_sha256": {
+      "build-info.json": "27790f3b98885abad6be9e65c33bc05e8c418e439276a228a14ac8bcaaaccae7",
+      "eboot.bin": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+      "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+      "sce_sys/param.sfo": "66e42d2cdfa70b26b6839249300f1330165112595913f849f5f28d547734682f"
+    }
+  },
+  "distribution_cleared": false,
+  "hardware_status": "Untested; no console checkpoint in issue #16"
+}

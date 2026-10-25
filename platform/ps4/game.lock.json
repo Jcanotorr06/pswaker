@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "sources": [
+    {"name": "switchwaker", "repository": "centollOS/SwitchWaker", "revision": "ba8d0a31446cd53ceaebd6b7269cca641e73bf4c", "sha256": "46a2c04b67eb0e9f9177cb349c43fb2687392787d2999dbf7e67af880c14daac"},
+    {"name": "decomp", "repository": "snrubrm/tww", "revision": "b09eebc39852e18397031d9a563a8eae124f21f1", "sha256": "8850b88c6f0eefd30631396ba734c57d077ea546b1e021f475993fb08e220426"},
+    {"name": "recompcore", "repository": "elliotttate/RecompCore", "revision": "8ab24daee9c641634fda5cac30389ad4b2cfda5e", "sha256": "b9210c6473125edb8e3bdfa67189f737dfd4e2ac06ce9338606aa3fe039b2ce4"},
+    {"name": "ps5-reference", "repository": "griches/PS5_SwitchWaker", "revision": "3c0f213f2d4c17606ac8637eda2c5da6cbcc73b0", "sha256": "f3a3c875b96709fadc022d174a273dc468a55294bbdcdae322bdb438c0c39f52"}
+  ]
+}

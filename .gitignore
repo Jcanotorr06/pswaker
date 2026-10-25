@@ -4,6 +4,9 @@ local-research/
 generated/
 /build*/
 game/
+# Maintained data-free PS4 integration sources and patches (never extracted assets).
+!/platform/ps4/game/
+!/platform/ps4/patches/game/
 
 # Disc images and extracted game data
 *.iso

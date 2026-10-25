@@ -1,0 +1,441 @@
+--- a/game/include/JSystem/JKernel/JKRHeap.h
++++ b/game/include/JSystem/JKernel/JKRHeap.h
+@@ -176,7 +176,7 @@
+     // whose OSResumeThread started it, as on the GameCube (the game glue's cos_sdk thread hooks,
+     // native/src/pc/runtime/pc_main.cpp); other host threads (Aurora, SDL, Dawn) start with none, so the
+     // global operator new gives them host memory.
+-    static thread_local JKRHeap* sCurrentHeap;
++    static thread_local constinit JKRHeap* sCurrentHeap;
+ #else
+     static JKRHeap* sCurrentHeap;
+ #endif
+--- a/native/sdk/include/cos_sdk/audio.h
++++ b/native/sdk/include/cos_sdk/audio.h
+@@ -16,6 +16,10 @@
+ // engine runs from AIInit on) and the sum of the squares of both channels' s16 samples. The RMS
+ // level over an interval is sqrt(d(sumSquares) / (2 * d(frames))).
+ void COSAIGetOutputStats(u64* frames, u64* sumSquares);
++#if defined(__ORBIS__)
++// After COSSdkRequestShutdown, join the output producer before SDL_Quit.
++BOOL COSAIShutdownOutput(void);
++#endif
+ 
+ #ifdef __cplusplus
+ }
+--- a/native/sdk/src/audio/AI.cpp
++++ b/native/sdk/src/audio/AI.cpp
+@@ -135,6 +135,9 @@
+ 
+ // ---- the AI DMA thread (only it touches what follows) -----------------------------------------
+ 
++#if defined(__ORBIS__)
++pthread_t sDmaHandle{};
++#endif
+ OSThread sDmaThreadRecord;
+ HostThread sDmaThreadHost;
+ 
+@@ -224,7 +227,8 @@
+         Log("AI: no SDL playback stream (%s); the DMA runs without output", SDL_GetError());
+         return;
+     }
+-    SDL_ResumeAudioStreamDevice(sStream);
++    if (!SDL_ResumeAudioStreamDevice(sStream))
++        Log("ERROR AI: cannot resume playback: %s", SDL_GetError());
+     Log("AI: audio output over SDL3 (driver %s), 16-bit stereo, %u Hz",
+         SDL_GetCurrentAudioDriver() ? SDL_GetCurrentAudioDriver() : "?", hz);
+ }
+@@ -235,7 +239,8 @@
+     }
+     if (hz != sStreamHz) {
+         const SDL_AudioSpec spec = {SDL_AUDIO_S16, 2, int(hz)};
+-        SDL_SetAudioStreamFormat(sStream, &spec, nullptr);
++        if (!SDL_SetAudioStreamFormat(sStream, &spec, nullptr))
++            Log("ERROR AI: cannot set playback format: %s", SDL_GetError());
+         sStreamHz = hz;
+     }
+     const int bytes = int(frames.size() * sizeof(s16));
+@@ -245,7 +250,8 @@
+                          "once)");
+         return;
+     }
+-    SDL_PutAudioStreamData(sStream, frames.data(), bytes);
++    if (!SDL_PutAudioStreamData(sStream, frames.data(), bytes))
++        Log("ERROR AI: cannot queue playback data: %s", SDL_GetError());
+ }
+ 
+ const u8* Mem1Range(uintptr_t address, u32 size) {
+@@ -375,9 +381,14 @@
+     sDmaThreadRecord.priority = sDmaThreadRecord.base = OS_PRIORITY_MIN;
+     pthread_attr_t attr;
+     pthread_attr_init(&attr);
++#if !defined(__ORBIS__)
+     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+-    pthread_t handle;
++#endif
++    pthread_t handle{};
+     const int err = pthread_create(&handle, &attr, &DmaThreadMain, nullptr);
++#if defined(__ORBIS__)
++    sDmaHandle = handle;
++#endif
+     pthread_attr_destroy(&attr);
+     if (err != 0) {
+         Fatal("AIInit: pthread_create of the AI DMA thread failed (%d: %s)", err,
+@@ -564,6 +575,21 @@
+     *sumSquares = sAI.outSumSquares;
+ }
+ 
++#if defined(__ORBIS__)
++// COSSdkRequestShutdown must precede this call. Join outside the OS lock:
++// the DMA thread needs that lock to observe shutdown and finish PlayOutput.
++BOOL COSAIShutdownOutput(void) {
++    pthread_t handle;
++    {
++        Guard guard;
++        if (!sAI.threadStarted) return TRUE;
++        handle = sDmaHandle;
++    }
++    if (pthread_equal(pthread_self(), handle)) return FALSE;
++    return pthread_join(handle, nullptr) == 0 ? TRUE : FALSE;
++}
++#endif
++
+ void AIReset(void) {
+     Guard guard;
+     sAI.init = false; // as the SDK: the next AIInit starts again
+--- a/native/sdk/src/os/os_internal.h
++++ b/native/sdk/src/os/os_internal.h
+@@ -51,11 +51,11 @@
+ std::mutex& Lock();
+ 
+ // Whether the calling thread holds Lock(), i.e. has interrupts disabled.
+-extern thread_local bool tInterruptsDisabled;
++extern thread_local constinit bool tInterruptsDisabled;
+ 
+ // The calling thread's OSThread and HostThread. Null until the thread first calls the SDK.
+-extern thread_local OSThread* tCurrent;
+-extern thread_local HostThread* tHost;
++extern thread_local constinit OSThread* tCurrent;
++extern thread_local constinit HostThread* tHost;
+ 
+ // Takes Lock() unless the calling thread already holds it, gives the calling thread an OSThread
+ // if it has none (AdoptCurrentLocked), and runs the checkpoint (CheckpointLocked).
+--- a/native/src/pc/game_hooks/pc_capture.cpp
++++ b/native/src/pc/game_hooks/pc_capture.cpp
+@@ -1,3 +1,4 @@
++#include <aurora/gfx.hpp>
+ // The picto box's screen capture (mDoGph_screenCapture, m_Do_graphic.cpp; bug B36). On GameCube
+ // GXCopyTex writes the photo's part of the EFB into main memory as an I8 (the picto box) or
+ // RGB565 (the deluxe picto box) texture, and the capture thread (mCaptureProc, encode_s3tc) reads
+@@ -215,7 +216,7 @@
+               uint32_t& srcHeight) {
+     // With the async end of frame (Aurora patch 0018, COS_ASYNC_END_FRAME) the GX worker may still be
+     // ending the frame: wait for it, so the copy texture exists and the readback goes in behind the frame.
+-    aurora_frame_sync();
++    aurora::gfx::synchronize();
+     const aurora::gfx::TextureHandle handle = aurora::gx::find_copy_texture(dest);
+     if (!handle) {
+         pc::writef(STDERR_FILENO, "[cos] %s: no copy texture for %p\n", what, dest);
+--- a/native/src/pc/game_hooks/pc_fps60_camera.cpp
++++ b/native/src/pc/game_hooks/pc_fps60_camera.cpp
+@@ -351,14 +351,18 @@
+                          lerpf(sPrev.nearZ, sCur.nearZ, t), lerpf(sPrev.farZ, sCur.farZ, t));
+         projParams(projT, sProjTo);
+     }
++#if !defined(__ORBIS__)
+     AuroraSetViewDelta(&sDelta[0][0], sProjFrom, sProjTo);
++#endif
+     sDeltaOn = true;
+     sInterp++;
+ }
+ 
+ void pc_fps60_view_end(void) {
+     if (sDeltaOn) {
++#if !defined(__ORBIS__)
+         AuroraSetViewDelta(nullptr, nullptr, nullptr);
++#endif
+         sDeltaOn = false;
+     }
+     sSkyOn = false;
+@@ -375,14 +379,18 @@
+         return !(v != nullptr && v[0] == '0');
+     }();
+     if (skyOn && sDeltaOn && !sSkyOn) {
++#if !defined(__ORBIS__)
+         AuroraSetViewDelta(&sSkyDelta[0][0], sProjFrom, sProjTo);
++#endif
+         sSkyOn = true;
+     }
+ }
+ 
+ void pc_fps60_sky_end(void) {
+     if (sDeltaOn && sSkyOn) {
++#if !defined(__ORBIS__)
+         AuroraSetViewDelta(&sDelta[0][0], sProjFrom, sProjTo);
++#endif
+     }
+     sSkyOn = false;
+ }
+--- a/native/src/pc/harness/pc_shot.cpp
++++ b/native/src/pc/harness/pc_shot.cpp
+@@ -1,3 +1,4 @@
++#include <aurora/gfx.hpp>
+ // Screenshots of the presented frame (COS_SHOT, COS_SHOT_EVERY; docs/NATIVE_PORT_PHASE4_6.md,
+ // phase 6 log): what the window shows, read back from the GPU, so a run needs no macOS Screen
+ // Recording permission to keep an image of what it drew.
+@@ -518,7 +519,7 @@
+ 
+ void shotProbe(unsigned int frame,
+                std::function<void(const std::vector<uint8_t>&, uint32_t, uint32_t)> check) {
+-    aurora_frame_sync(); // the frame on the render worker first (async end of frame, Aurora 0018)
++    aurora::gfx::synchronize(); // the frame on the render worker first (async end of frame, Aurora 0018)
+     aurora::gfx::render_worker::enqueue_work([frame, &check] {
+         std::vector<uint8_t> rgb;
+         uint32_t width = 0, height = 0;
+@@ -551,7 +552,7 @@
+     initCrcTable();
+     std::shared_ptr<ImguiSnap> imgui = overlay ? snapImgui(true) : nullptr;
+     bool ok = false;
+-    aurora_frame_sync(); // the frame on the render worker first (async end of frame, Aurora 0018)
++    aurora::gfx::synchronize(); // the frame on the render worker first (async end of frame, Aurora 0018)
+     aurora::gfx::render_worker::enqueue_work([frame, imgui, &path, &ok] {
+         std::vector<uint8_t> rgb;
+         uint32_t width = 0, height = 0;
+@@ -574,7 +575,7 @@
+         return;
+     }
+     std::shared_ptr<ImguiSnap> imgui = snapImgui();
+-    aurora_frame_sync(); // the frame on the render worker first (async end of frame, Aurora 0018)
++    aurora::gfx::synchronize(); // the frame on the render worker first (async end of frame, Aurora 0018)
+     aurora::gfx::render_worker::enqueue_work([frame, imgui] { readBack(frame, imgui); });
+     aurora::gfx::render_worker::synchronize();
+ }
+@@ -590,14 +591,14 @@
+         return;
+     }
+     std::shared_ptr<ImguiSnap> imgui = snapImgui();
+-    aurora_frame_sync(); // the frame on the render worker first (async end of frame, Aurora 0018)
++    aurora::gfx::synchronize(); // the frame on the render worker first (async end of frame, Aurora 0018)
+     aurora::gfx::render_worker::enqueue_work([frame, imgui] { readBack(frame, imgui, "a"); });
+     aurora::gfx::render_worker::synchronize();
+ }
+ 
+ bool captureFrame(unsigned int frame, FrameSink sink, void* user) {
+     bool ok = false;
+-    aurora_frame_sync(); // the frame on the render worker first (async end of frame, Aurora 0018)
++    aurora::gfx::synchronize(); // the frame on the render worker first (async end of frame, Aurora 0018)
+     aurora::gfx::render_worker::enqueue_work([frame, sink, user, &ok] {
+         std::vector<uint8_t> rgb;
+         uint32_t width = 0, height = 0;
+--- a/native/src/pc/runtime/pc_crash.cpp
++++ b/native/src/pc/runtime/pc_crash.cpp
+@@ -1,3 +1,6 @@
++#if defined(__ORBIS__)
++#include "runtime-diagnostics.inc"
++#else
+ // Crash handler, OSPanic on PC, the trace state it prints, and thread backtraces
+ // (docs/NATIVE_PORT_PHASE4_6.md, step 6.0).
+ //
+@@ -543,3 +546,5 @@
+ }
+ 
+ } // extern "C"
++
++#endif
+--- a/native/src/pc/runtime/pc_disc.cpp
++++ b/native/src/pc/runtime/pc_disc.cpp
+@@ -6,6 +6,9 @@
+ // Opening the disc for the game (aurora_dvd_open) is step 6.1; the SHA-1 check of the image on
+ // first use is done by native/tools/run.sh (main.dol SHA-1 against the supported revision).
+ #include "pc_internal.h"
++#if defined(__ORBIS__)
++#include "game-platform.hpp"
++#endif
+ 
+ #include <cerrno>
+ #include <cstdarg>
+@@ -34,6 +37,9 @@
+ }
+ 
+ void exitDisc() {
++#if defined(__ORBIS__)
++    pswaker_installation_error(sDiscError);
++#endif
+ #if defined(__SWITCH__)
+     char text[1024];
+     snprintf(text, sizeof text,
+--- a/native/src/pc/runtime/pc_frame.cpp
++++ b/native/src/pc/runtime/pc_frame.cpp
+@@ -31,6 +31,9 @@
+ // the same spin); no frame-usage statistics, interpolation, turbo mode or settings; a refused
+ // aurora_begin_frame waits and retries instead of skipping the game frame.
+ #include "pc_internal.h"
++#if defined(__ORBIS__)
++#include "game-platform.hpp"
++#endif
+ #include "pc_fps60_budget.h"
+ #include "pc/game_hooks.h"
+ #include "pc/pc_settings.h"
+@@ -803,6 +806,12 @@
+ // time per game frame (both paints with 60 fps; sampled every ~250 us), and what it translated.
+ // COS_FIFO_FAST=0 (Aurora patch 0021): Aurora's original GX translation paths instead of the fast ones
+ // (pipeline lookup memo, merged primitives' indices written in place), for A/B checks. Read once.
++#if defined(__ORBIS__)
++// The selected PS4 renderer excludes upstream FIFO fast paths/profiling (patches 20/21).
++void fifoFastPathsApply() {}
++bool fifoProfileOn() { return false; }
++void fifoProfileLine(double) {}
++#else
+ void fifoFastPathsApply() {
+     static const bool applied = [] {
+         const char* v = getenv("COS_FIFO_FAST");
+@@ -862,6 +871,8 @@
+            d[AURORA_FIFO_PROFILE_UNIFORM_BYTES] / 1024.0, d[AURORA_FIFO_PROFILE_VERTEX_BYTES] / 1024.0,
+            d[AURORA_FIFO_PROFILE_ARRAY_BYTES] / 1024.0, d[AURORA_FIFO_PROFILE_STREAM_BYTES] / 1024.0);
+ }
++
++#endif
+ 
+ void perfFrameEnd(uint64_t endFrameStartNs, uint64_t now, const AuroraStats* stats) {
+     if (!sPerfOn) {
+@@ -1553,6 +1564,7 @@
+         sTraceFrame = pc_trace_enabled("frame") != 0;
+     }
+     {
++#if !defined(__ORBIS__)
+         // Between frames, before aurora_begin_frame: the async end of frame follows the 60 fps mode
+         // (the menu can switch it; aurora_set_async_end_frame syncs the worker first).
+         fifoFastPathsApply();
+@@ -1563,6 +1575,7 @@
+                                               "to Aurora's GX worker (at most one frame ahead)\n"
+                                             : "[cos] COS_ASYNC_END_FRAME: off\n");
+         }
++#endif
+     }
+     sFrameStartNs = monotonicNs();
+     sPaceStartNs = sPaceEndNs = 0;
+@@ -1579,6 +1592,9 @@
+         sEndCallNs = sSplitEndCallNs = 0;
+     }
+     pumpEvents();
++#if defined(__ORBIS__)
++    pswaker_frame_boundary();
++#endif
+     sEventsDoneNs = monotonicNs();
+     // COS_GPU_GROUPS / COS_DRAW_CENSUS (pc_gpu_opts.h): before Aurora starts recording the frame.
+     pc_gpu_groups_frame_begin(pc_frame_count() + 1);
+--- a/native/src/pc/runtime/pc_harness.cpp
++++ b/native/src/pc/runtime/pc_harness.cpp
+@@ -1,6 +1,9 @@
+ // Run harness of the native executable switchwaker: environment, start-up order and exit
+ // (docs/NATIVE_PORT_PHASE4_6.md, step 6.0). Public API in native/include/pc/pc_harness.h.
+ #include "pc_internal.h"
++#if defined(__ORBIS__)
++#include "game-platform.hpp"
++#endif
+ #include "pc/pc_settings.h"
+ #include "pc/pc_aspect.h"
+ 
+@@ -145,7 +148,9 @@
+     sStartNs = monotonicNs();
+     // The options menu's settings file (pc_settings.h) into the environment before anything reads
+     // it (on the Switch cos_switch_start did it already, before its defaults).
++#if !defined(__ORBIS__)
+     pc_settings_load_early();
++#endif
+ 
+     // Line-buffered stdout: the game reports with printf/OSReport into a pipe or file; a watchdog
+     // or crash exit must not lose the last lines in a full buffer.
+@@ -282,8 +287,12 @@
+     // Writes the logs out (SD card, USB) and ends the process (switch/native/source).
+     cos_switch_exit(code);
+ #else
++#if defined(__ORBIS__)
++    pswaker_exit(code);
++#else
+     _Exit(code);
+ #endif
++#endif
+ }
+ 
+ } // extern "C"
+--- a/native/src/pc/runtime/pc_main.cpp
++++ b/native/src/pc/runtime/pc_main.cpp
+@@ -21,6 +21,10 @@
+ // audio is disabled). Changed: no settings, ImGui, mods or prelaunch UI; paths and options come
+ // from the harness environment; failures exit through the harness codes.
+ #include "pc_internal.h"
++#if defined(__ORBIS__)
++#include "game-platform.hpp"
++#include <SDL3/SDL.h>
++#endif
+ #include "pc/pc_hd_textures.h"
+ #include "pc/pc_aspect.h"
+ 
+@@ -31,6 +35,7 @@
+ #include <aurora/aurora.h>
+ #include <aurora/dvd.h>
+ #include <dolphin/dvd.h>
++#include <dolphin/card.h>
+ #include <dolphin/gx/GXAurora.h>
+ #include <dolphin/os.h>
+ 
+@@ -74,7 +79,10 @@
+ // <directory of the executable>/user and <directory of the executable>/user/cache (or COS_CACHE_DIR);
+ // on the Switch <COS_SWITCH_ROOT>/user (the native port's directory on the SD card, switch/native/source).
+ void makeUserPaths(const char* argv0) {
+-#if defined(__SWITCH__)
++#if defined(__ORBIS__)
++    (void)argv0;
++    snprintf(sUserPath, sizeof(sUserPath), "/data/pswaker");
++#elif defined(__SWITCH__)
+     (void)argv0;
+     snprintf(sUserPath, sizeof(sUserPath), "%s/user", COS_SWITCH_ROOT);
+ #else
+@@ -236,7 +244,19 @@
+     config.mem1Size = kMem1Size;
+     config.mem2Size = kMem2Size;
+     config.blockingPipelines = gConfig.syncPipelines;
++#if defined(__ORBIS__)
++    config.resourcesPath = "/app0";
++    config.desiredBackend = BACKEND_VULKAN;
++    config.logCallback = pswaker_aurora_log;
++    config.windowWidth = 1920;
++    config.windowHeight = 1080;
++    config.msaa = 1;
++    config.blockingPipelines = true;
++    SDL_SetHintWithPriority(SDL_HINT_VIDEO_DRIVER, "dummy", SDL_HINT_OVERRIDE);
++    pswaker_stage("aurora-initialize");
++#endif
+     const AuroraInfo info = aurora_initialize(argc, argv, &config);
++
+     if (info.window == nullptr) {
+         writef(STDERR_FILENO, "[cos] aurora_initialize returned no window\n");
+         pc_exit(PC_EXIT_USAGE);
+@@ -264,7 +284,11 @@
+            (unsigned int)info.windowSize.fb_height, config.vsync ? 1 : 0,
+            config.blockingPipelines ? "sync" : "async", sUserPath);
+     // The options menu's built-in settings (pc_menu.cpp), once Aurora and ImGui exist.
++#if defined(__ORBIS__)
++    pswaker_graphics_ready();
++#else
+     menuInit();
++#endif
+     precompileInit(sCachePath);
+     // COS_PRECOMPILE=boot/full: the loading screen, before the game (and its boot logo) starts.
+     precompileLoadingScreen();
+@@ -288,8 +312,15 @@
+            (unsigned int)id->gameVersion, (unsigned int)id->diskNumber);
+     // COS_RUNTIME_ASSETS: the game's data arrays from main.dol and the RELs, before any game code.
+     loadAssets();
++#if defined(__ORBIS__)
++    pswaker_stage("runtime-assets-validated");
++#endif
+ 
+     // On the GameCube __start ran OSInit before main; here MEM1 (mem1Size) must be configured first.
++#if defined(__ORBIS__)
++    CARDSetBasePath("/data/pswaker/saves", 0);
++    CARDSetBasePath("/data/pswaker/saves", 1);
++#endif
+     OSInit();
+ 
+     COSSdkSetThreadLaunchHook(threadLaunchHook);

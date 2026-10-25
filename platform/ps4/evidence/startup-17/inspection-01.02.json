@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "kind": "CONTROLLED CONTENT FAILURE",
+  "variant": "unreadable",
+  "expected": "Installation error, stopped before gameplay; rebuild/reinstall guidance; preserve saves/settings",
+  "parent_package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "0b619d1b85d51f6c2bebae12369c170f88446c543747bf0d1c24c1fe97643ac1"
+  },
+  "program": {
+    "build_id": "6ebc07987fe3b6c6064a",
+    "elf_filename": "switchwaker",
+    "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+    "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+    "payload_sha256": {
+      "build-info.json": "27790f3b98885abad6be9e65c33bc05e8c418e439276a228a14ac8bcaaaccae7",
+      "eboot.bin": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+      "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+      "sce_sys/param.sfo": "66e42d2cdfa70b26b6839249300f1330165112595913f849f5f28d547734682f"
+    }
+  },
+  "installed_image": "/app0/game.iso",
+  "app_version": "01.02",
+  "distribution_cleared": false,
+  "hardware_status": "UNTESTED",
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "829320640034436560d174b7b2c43c3864953b1b8adf0ed525003cb9bb08583e",
+    "size": 55705600
+  },
+  "payload_sha256": {
+    "build-info.json": "27790f3b98885abad6be9e65c33bc05e8c418e439276a228a14ac8bcaaaccae7",
+    "complete-package.json": "ebb657f9706eb55b14ac7d3fc2d1061cd5c2e0f0883aa286a1b50f367d26176b",
+    "eboot.bin": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+    "game.iso/INTENTIONALLY-NOT-A-FILE.txt": "92746cfc4a84daaadce01c6809c87028349bccf2422cf140d9411dff01960f5b",
+    "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+    "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+    "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+    "sce_sys/keystone": "d09eb8ab5f3b700164fc8ad85c54c2acbad71244e942aeedf7e3e7eb56408aac"
+  },
+  "sfo": {
+    "APP_TYPE": 1,
+    "APP_VER": "01.02",
+    "ATTRIBUTE": 0,
+    "CATEGORY": "gd",
+    "CONTENT_ID": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+    "DOWNLOAD_DATA_SIZE": 0,
+    "PUBTOOLINFO": "c_date=20261025,img0_l0_size=54,img0_l1_size=0,img0_sc_ksize=512,img0_pc_ksize=832",
+    "PUBTOOLVER": 42532864,
+    "SYSTEM_VER": 0,
+    "TITLE": "PSWaker",
+    "TITLE_ID": "PSWK00001",
+    "VERSION": "01.02"
+  },
+  "tools": {
+    "files": {
+      "sdk/opt/pacbrew/ps4/openorbis/bin/create-fself": "99f62af15c573a37f3d8ab434bd04fd9efd5566faf9e738deb0c627debfd95ee",
+      "sdk/opt/pacbrew/ps4/openorbis/bin/linux/create-gp4": "f8c52de1cd58f20dea19752decd0768d10bd4b04bcbf469ae2b5ae0acd264729",
+      "build/pkgtool/PkgTool.Core": "f38ac2afee79e49ad0026f2f69ce4660fa2eaf7d34d3dbbee554d29d063980fb",
+      "build/pkgtool/PkgTool.Core.dll": "18b3e9d11a0c061b818da52f4e483be8f80406de3d1af3b5c16be53a7b0c1000",
+      "build/pkgtool/LibOrbisPkg.Core.dll": "5c955568eb914764ae127c5ffeda97e196dac4b7bb549ff25d3ae997b28e3a62",
+      "refs/DolphinPS4/scripts/make-pkg.sh": "2de1b39301348e94850ac311b0b4284f59aab78ee530594e9d91aa241c53ccc0",
+      "refs/DolphinPS4/toolchain/ps4-love-style.cmake": "002ed2d04f1ca09183b56eedef4987482b4abfdb6dca1ac63b4a7c6549ae2ff5",
+      "refs/DolphinPS4/toolchain/check-oelf.cmake": "7a604fc8aff3bbfab88a4b5f24063c3039372810d559beaa7f0b8d018edcecd1"
+    },
+    "source_closure_sha256": "8c4dfb704ef6067b7b43caa284f08555c9893e1083cf0d6d43ee5dbdb6efa196",
+    "sources": [
+      {
+        "path": "refs/DolphinPS4",
+        "repository": "iHaiDeeZ/DolphinPS4",
+        "revision": "b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+        "archive_url": "https://api.github.com/repos/iHaiDeeZ/DolphinPS4/tarball/b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+        "archive_sha256": "780f830d144a8d341ebc7025473f0a9b5eb95aa4e21661925242de304ee906bd"
+      },
+      {
+        "path": "src/liborbispkg",
+        "repository": "OpenOrbis/LibOrbisPkg",
+        "revision": "594021fdc435409f755a6ae0781b65ec6cec846c",
+        "archive_url": "https://api.github.com/repos/OpenOrbis/LibOrbisPkg/tarball/594021fdc435409f755a6ae0781b65ec6cec846c",
+        "archive_sha256": "c4b918b404e486784717a415cc5a50d866bc56099ed027b4d6bd443cf7f90ee6"
+      }
+    ],
+    "patches_sha256": "f38cb257b362020477bebe5aa28fc1d83a7758c686ba363482873fc9a97aac33"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "received_date": "2026-10-25",
+  "source": "Owner reports and follow-up confirmations in this implementation conversation",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "usb_removed_while_playing": true,
+  "first_install_and_launch_had_fresh_cache": true,
+  "reported_progress": [
+    "Completed prologue on Outset Island",
+    "Completed Forsaken Fortress",
+    "Completed Windfall Island",
+    "Reached Dragon Roost Island"
+  ],
+  "graphics_or_audio_glitches_observed": false,
+  "reported_pauses": "A couple of seconds when loading a new big area or seeing a new effect such as explosion or smoke for the first time",
+  "estimated_checking_and_preparation_seconds": 30,
+  "visible_memory_card_or_save_error_observed": false,
+  "issues_saving_reported": false,
+  "load_after_restart_separately_confirmed": false,
+  "controlled_missing_unreadable_invalid_and_repair_checks": "Owner confirms still pending",
+  "installed_package_pc_sha256_separately_confirmed": false,
+  "per_launch_route_attribution": "Not separately supplied; review uses the owner's overall report and each log's records",
+  "scope": "Startup route observation plus exploratory later play; no full-route, save-durability or performance acceptance"
+}

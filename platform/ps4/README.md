@@ -18,6 +18,16 @@ this program build disc-free. The owner's USA revision-0 image has passed
 [private diagnostic assembly and fresh inspection](evidence/private-package-16/OWNER-USA.md).
 That complete package remains nonplayable; no game startup or console result is claimed.
 
+The separate [installed-game integration](GAME-STARTUP.md) builds pinned
+SwitchWaker against this verified stack. Its [startup candidate report](evidence/startup-17/REPORT.md)
+and [owner checklist](Startup-checklist.md) cover the private game package and
+controlled content failures. The [returned startup review](evidence/startup-17/console-2026-10-25/REPORT.md)
+records owner-observed play beyond Outset on the confirmed target hardware;
+the [controlled-failure/repair review](evidence/startup-17/content-checks-2026-10-25/REPORT.md)
+confirms error stops, repaired startup and owner-confirmed matching seeded
+save/settings comparisons. The bounded #17 startup evidence review is complete;
+full-route, save-durability and performance acceptance remain later work.
+
 ## Reproduce on Linux / WSL2
 
 Use the recorded Ubuntu 24.04 x86-64 environment in `host.lock.json`. It identifies

@@ -1,0 +1,9 @@
+{
+  "boundary": "Exact installed-content checker compiled for host with the production generated contract",
+  "returncode": 0,
+  "stdout": "Installed image verified\n",
+  "stderr": "",
+  "seconds": 19.614316519997374,
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "console_status": "Untested"
+}

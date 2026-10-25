@@ -5,9 +5,13 @@
 *.cmake text eol=lf
 *.patch text eol=lf
 /platform/ps4/** text eol=lf
+# Unified-diff context prefixes on blank lines are part of the patch format.
+/platform/ps4/patches/game/** whitespace=-trailing-space,-blank-at-eof
+/platform/ps4/patches/game-platform/** whitespace=-trailing-space,-blank-at-eof
 # Preserve byte-identical upstream recipes, including their original whitespace.
 /platform/ps4/provenance/pacbrew-*/** -text whitespace=-trailing-space,-blank-at-eof
 # Keep diagnostic captures and tool output byte-identical, including whitespace.
+/platform/ps4/evidence/startup-17/*.log -text whitespace=-trailing-space,-blank-at-eof
 /platform/ps4/evidence/verification-15/**/*.log -text whitespace=-trailing-space,-blank-at-eof
 /platform/ps4/evidence/verification-15/**/elf-*.txt -text whitespace=-trailing-space,-blank-at-eof
 /platform/ps4/evidence/verification-15/console/** -text whitespace=-trailing-space,-blank-at-eof

@@ -1,0 +1,329 @@
+{
+  "scope": "Current platform.log selected for each case; platform.prev.log belongs to preceding package, not a second run of the current case. Logs do not measure seeded-file preservation; owner-confirmed per-step results and independent before/after GCI comparison are retained separately.",
+  "runs": [
+    {
+      "variant": "missing",
+      "version": "01.01",
+      "selected_log": "logs-CONTENT-FAILURE-missing-01.01/platform.log",
+      "selected_sha256": "295bb679325ecc9aae88a1eb96f05da7f68f2ff419b2687fff02901f1a9fad9e",
+      "expected_package_sha256": "3d61d258bf86727832d22b08c18a698c3f08d2bcde172b9e26707b00c65ca2dd",
+      "manifest_matches_retained_inspection": true,
+      "program": {
+        "build_id": "6ebc07987fe3b6c6064a",
+        "elf_filename": "switchwaker",
+        "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+        "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+        "payload_sha256": {
+          "build-info.json": "27790f3b98885abad6be9e65c33bc05e8c418e439276a228a14ac8bcaaaccae7",
+          "eboot.bin": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+          "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+          "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+          "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+          "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+          "sce_sys/param.sfo": "66e42d2cdfa70b26b6839249300f1330165112595913f849f5f28d547734682f"
+        }
+      },
+      "stages": [
+        {
+          "line": 66,
+          "stage": "platform-initialized",
+          "main_ms": 1135.9,
+          "errors": 0
+        },
+        {
+          "line": 69,
+          "stage": "PS4-runtime-crash-logger-selected",
+          "main_ms": 1169.3,
+          "errors": 0
+        },
+        {
+          "line": 72,
+          "stage": "installation-error-stopped-before-gameplay",
+          "main_ms": 1196.5,
+          "errors": 1
+        }
+      ],
+      "installation_errors": [
+        {
+          "line": 71,
+          "text": "INSTALLATION ERROR: cannot open COS_DISC=/app0/game.iso: No such file or directory. Rebuild the complete package on the computer and reinstall. Saves/settings are preserved."
+        }
+      ],
+      "exits": [
+        {
+          "line": 240,
+          "text": "EXIT code=14 ms=27053.7 checked-errors=1"
+        }
+      ],
+      "milestones": [],
+      "dimensions": [],
+      "preparation_timings": [],
+      "heartbeat_count": 0,
+      "last_heartbeat": null,
+      "rotated_log_version": "01.00",
+      "last_stage_file": "build=6ebc07987fe3b6c6064a stage=installation-error-stopped-before-gameplay elapsed_ms=1206.5 checked_errors=1"
+    },
+    {
+      "variant": "unreadable",
+      "version": "01.02",
+      "selected_log": "logs-CONTENT-FAILURE-unreadable-01.02/platform.log",
+      "selected_sha256": "865a8ca1f0a91ca2d0df2a978b33c449d3febc9f2127ea606e1faf758e06f839",
+      "expected_package_sha256": "829320640034436560d174b7b2c43c3864953b1b8adf0ed525003cb9bb08583e",
+      "manifest_matches_retained_inspection": true,
+      "program": {
+        "build_id": "6ebc07987fe3b6c6064a",
+        "elf_filename": "switchwaker",
+        "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+        "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+        "payload_sha256": {
+          "build-info.json": "27790f3b98885abad6be9e65c33bc05e8c418e439276a228a14ac8bcaaaccae7",
+          "eboot.bin": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+          "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+          "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+          "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+          "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+          "sce_sys/param.sfo": "66e42d2cdfa70b26b6839249300f1330165112595913f849f5f28d547734682f"
+        }
+      },
+      "stages": [
+        {
+          "line": 66,
+          "stage": "platform-initialized",
+          "main_ms": 1206.6,
+          "errors": 0
+        },
+        {
+          "line": 69,
+          "stage": "PS4-runtime-crash-logger-selected",
+          "main_ms": 1216.3,
+          "errors": 0
+        },
+        {
+          "line": 72,
+          "stage": "installation-error-stopped-before-gameplay",
+          "main_ms": 1242.8,
+          "errors": 1
+        }
+      ],
+      "installation_errors": [
+        {
+          "line": 71,
+          "text": "INSTALLATION ERROR: /app0/game.iso is not a regular file with a disc header. Rebuild the complete package on the computer and reinstall. Saves/settings are preserved."
+        }
+      ],
+      "exits": [
+        {
+          "line": 238,
+          "text": "EXIT code=14 ms=15385.0 checked-errors=1"
+        }
+      ],
+      "milestones": [],
+      "dimensions": [],
+      "preparation_timings": [],
+      "heartbeat_count": 0,
+      "last_heartbeat": null,
+      "rotated_log_version": "01.01",
+      "last_stage_file": "build=6ebc07987fe3b6c6064a stage=installation-error-stopped-before-gameplay elapsed_ms=1252.8 checked_errors=1"
+    },
+    {
+      "variant": "invalid",
+      "version": "01.03",
+      "selected_log": "logs-CONTENT-FAILURE-invalid-01.03/platform.log",
+      "selected_sha256": "204833dcbac4628f85f669f8bad45722b530241cc7697153dbecc717b8d8fcb7",
+      "expected_package_sha256": "0f39c301fc784b9ac95ca105515aa032f74ba091e381eaa682800297cfef9e98",
+      "manifest_matches_retained_inspection": true,
+      "program": {
+        "build_id": "6ebc07987fe3b6c6064a",
+        "elf_filename": "switchwaker",
+        "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+        "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+        "payload_sha256": {
+          "build-info.json": "27790f3b98885abad6be9e65c33bc05e8c418e439276a228a14ac8bcaaaccae7",
+          "eboot.bin": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+          "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+          "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+          "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+          "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+          "sce_sys/param.sfo": "66e42d2cdfa70b26b6839249300f1330165112595913f849f5f28d547734682f"
+        }
+      },
+      "stages": [
+        {
+          "line": 66,
+          "stage": "platform-initialized",
+          "main_ms": 1827.0,
+          "errors": 0
+        },
+        {
+          "line": 69,
+          "stage": "PS4-runtime-crash-logger-selected",
+          "main_ms": 2038.9,
+          "errors": 0
+        },
+        {
+          "line": 71,
+          "stage": "aurora-initialize",
+          "main_ms": 2050.3,
+          "errors": 0
+        },
+        {
+          "line": 189,
+          "stage": "graphics-initialized",
+          "main_ms": 3165.3,
+          "errors": 0
+        },
+        {
+          "line": 395,
+          "stage": "installation-error-stopped-before-gameplay",
+          "main_ms": 48268.1,
+          "errors": 1
+        }
+      ],
+      "installation_errors": [
+        {
+          "line": 394,
+          "text": "INSTALLATION ERROR: Installation error: installed image checksum is invalid. Rebuild the complete package on the computer and reinstall; existing saves/settings are preserved.. Rebuild the complete package on the computer and reinstall. Saves/settings are preserved."
+        }
+      ],
+      "exits": [
+        {
+          "line": 409,
+          "text": "EXIT code=14 ms=105471.4 checked-errors=1"
+        }
+      ],
+      "milestones": [],
+      "dimensions": [],
+      "preparation_timings": [],
+      "heartbeat_count": 0,
+      "last_heartbeat": null,
+      "rotated_log_version": "01.02",
+      "last_stage_file": "build=6ebc07987fe3b6c6064a stage=installation-error-stopped-before-gameplay elapsed_ms=48278.4 checked_errors=1"
+    },
+    {
+      "variant": "repair",
+      "version": "01.04",
+      "selected_log": "logs-repair-01.04/platform.log",
+      "selected_sha256": "81e5ba78ee7aea87e33b7f745e1a37e8b053e0966e6becd2c4210bf05b70c0df",
+      "expected_package_sha256": "a4423a4feff53678b5617d56d1187964bbc894dff9aec7cb1b600525c791fb14",
+      "manifest_matches_retained_inspection": true,
+      "program": {
+        "build_id": "6ebc07987fe3b6c6064a",
+        "elf_filename": "switchwaker",
+        "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+        "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+        "payload_sha256": {
+          "build-info.json": "27790f3b98885abad6be9e65c33bc05e8c418e439276a228a14ac8bcaaaccae7",
+          "eboot.bin": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+          "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+          "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+          "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+          "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+          "sce_sys/param.sfo": "66e42d2cdfa70b26b6839249300f1330165112595913f849f5f28d547734682f"
+        }
+      },
+      "stages": [
+        {
+          "line": 176,
+          "stage": "platform-initialized",
+          "main_ms": 1950.4,
+          "errors": 0
+        },
+        {
+          "line": 179,
+          "stage": "PS4-runtime-crash-logger-selected",
+          "main_ms": 1961.7,
+          "errors": 0
+        },
+        {
+          "line": 181,
+          "stage": "aurora-initialize",
+          "main_ms": 2104.0,
+          "errors": 0
+        },
+        {
+          "line": 299,
+          "stage": "graphics-initialized",
+          "main_ms": 2833.3,
+          "errors": 0
+        },
+        {
+          "line": 496,
+          "stage": "installed-image-validated",
+          "main_ms": 47916.8,
+          "errors": 0
+        },
+        {
+          "line": 497,
+          "stage": "writable-storage-checked",
+          "main_ms": 47962.9,
+          "errors": 0
+        },
+        {
+          "line": 501,
+          "stage": "known-shaders-prepared",
+          "main_ms": 47994.0,
+          "errors": 0
+        },
+        {
+          "line": 504,
+          "stage": "runtime-assets-validated",
+          "main_ms": 48183.3,
+          "errors": 0
+        }
+      ],
+      "installation_errors": [],
+      "exits": [],
+      "milestones": [
+        {
+          "line": 505,
+          "text": "[cos] MILESTONE aurora-up frame=0 retrace=0 ms=46350"
+        },
+        {
+          "line": 517,
+          "text": "[cos] MILESTONE heaps frame=0 retrace=0 ms=46422"
+        },
+        {
+          "line": 520,
+          "text": "[cos] MILESTONE gfx-create frame=0 retrace=0 ms=46424"
+        },
+        {
+          "line": 533,
+          "text": "[cos] MILESTONE logo-scene frame=6 retrace=6 ms=48986"
+        },
+        {
+          "line": 537,
+          "text": "[cos] MILESTONE frame-loop frame=120 retrace=120 ms=50886"
+        },
+        {
+          "line": 547,
+          "text": "[cos] MILESTONE logo-res frame=243 retrace=244 ms=52956"
+        },
+        {
+          "line": 550,
+          "text": "[cos] MILESTONE opening frame=281 retrace=282 ms=53586"
+        },
+        {
+          "line": 570,
+          "text": "[cos] MILESTONE file-select frame=535 retrace=787 ms=62024"
+        },
+        {
+          "line": 572,
+          "text": "[cos] MILESTONE title-stage frame=587 retrace=891 ms=63758"
+        }
+      ],
+      "dimensions": [
+        "DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=47974.3"
+      ],
+      "preparation_timings": [
+        "TIMING shader-preparation_ms=4.1 startup_to_preparation_complete_ms=47986.8"
+      ],
+      "heartbeat_count": 8,
+      "last_heartbeat": {
+        "line": 593,
+        "text": "HEARTBEAT ms=85919.5 shaders-created=1138 queued=0 checked-errors=0"
+      },
+      "rotated_log_version": "01.03",
+      "last_stage_file": "build=6ebc07987fe3b6c6064a stage=runtime-assets-validated elapsed_ms=48191.9 checked_errors=0"
+    }
+  ]
+}

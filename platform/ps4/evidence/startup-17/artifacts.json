@@ -1,0 +1,47 @@
+[
+  {
+    "version": "01.00",
+    "filename": "PSWaker-startup-01.00.pkg",
+    "sha256": "0b619d1b85d51f6c2bebae12369c170f88446c543747bf0d1c24c1fe97643ac1",
+    "size": 1516568576,
+    "build_id": "6ebc07987fe3b6c6064a",
+    "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+    "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2"
+  },
+  {
+    "version": "01.01",
+    "filename": "PSWaker-CONTENT-FAILURE-missing-01.01.pkg",
+    "sha256": "3d61d258bf86727832d22b08c18a698c3f08d2bcde172b9e26707b00c65ca2dd",
+    "size": 55574528,
+    "build_id": "6ebc07987fe3b6c6064a",
+    "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+    "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2"
+  },
+  {
+    "version": "01.02",
+    "filename": "PSWaker-CONTENT-FAILURE-unreadable-01.02.pkg",
+    "sha256": "829320640034436560d174b7b2c43c3864953b1b8adf0ed525003cb9bb08583e",
+    "size": 55705600,
+    "build_id": "6ebc07987fe3b6c6064a",
+    "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+    "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2"
+  },
+  {
+    "version": "01.03",
+    "filename": "PSWaker-CONTENT-FAILURE-invalid-01.03.pkg",
+    "sha256": "0f39c301fc784b9ac95ca105515aa032f74ba091e381eaa682800297cfef9e98",
+    "size": 1516568576,
+    "build_id": "6ebc07987fe3b6c6064a",
+    "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+    "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2"
+  },
+  {
+    "version": "01.04",
+    "filename": "PSWaker-repair-01.04.pkg",
+    "sha256": "a4423a4feff53678b5617d56d1187964bbc894dff9aec7cb1b600525c791fb14",
+    "size": 1516568576,
+    "build_id": "6ebc07987fe3b6c6064a",
+    "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+    "eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2"
+  }
+]
