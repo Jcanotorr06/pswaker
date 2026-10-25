@@ -6,8 +6,9 @@ records the owner's successful startup/Outset observations and exploratory play
 through Dragon Roost Island, with no reported graphics/audio glitches and brief
 loading/first-effect pauses. Both logs match this candidate's build and manifest.
 The owner confirms Slim / 9.00 / GoldHEN v2.4b18, USB-free play, a fresh first
-cache and no issues saving. **#17 remains open:** controlled-failure save/settings
-preservation and repair evidence are outstanding.
+cache and no issues saving. The [returned controlled-failure/repair review](content-checks-2026-10-25/REPORT.md)
+confirms all three intended error stops and successful repaired startup.
+**#17 remains open only for seeded save/settings byte-preservation evidence.**
 
 Use the [owner checklist](../../Startup-checklist.md) with these exact artifacts.
 The scope is startup through access to Outset on PS4 Slim / 9.00 /
@@ -90,7 +91,8 @@ cost. Initial controls and trigger thresholds still require hardware checks.
 The returned logs confirm allocated internal 1280x720 and output 1920x1080,
 installed-image/runtime-asset validation and basic pause/resume events. The
 owner reports the startup route and game audio/rendering. Remaining evidence
-includes controlled failure guidance with seeded save/settings byte preservation
-and repair recovery. One earlier card-file-open error remains in the log, despite
+is seeded save/settings byte preservation through the failure updates and repair;
+error guidance and repaired startup are now observed. One earlier card-file-open
+error remains in the log, despite
 no owner-observed error or saving issue. See the returned review for identity
 confirmation, timings, artifact-association limits and later acceptance work.

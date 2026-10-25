@@ -23,8 +23,9 @@ SwitchWaker against this verified stack. Its [startup candidate report](evidence
 and [owner checklist](Startup-checklist.md) cover the private game package and
 controlled content failures. The [returned startup review](evidence/startup-17/console-2026-10-25/REPORT.md)
 records owner-observed play beyond Outset on the confirmed target hardware;
-controlled-failure preservation and repair checks keep #17 open. The diagnostic
-results above do not validate the game.
+the [controlled-failure/repair review](evidence/startup-17/content-checks-2026-10-25/REPORT.md)
+confirms error stops and repaired startup. Seeded save/settings byte comparisons
+keep #17 open. The diagnostic results above do not validate the game.
 
 ## Reproduce on Linux / WSL2
 

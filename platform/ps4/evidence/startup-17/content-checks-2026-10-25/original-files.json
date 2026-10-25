@@ -1,0 +1,79 @@
+{
+  "original_directory": "local-research/game-17-artifacts/evidence",
+  "files": [
+    {
+      "path": "logs-CONTENT-FAILURE-missing-01.01/last-stage.txt",
+      "size": 112,
+      "sha256": "719c83a7ca4721de0a3d9c3dc4d86cbb282922cef888c193d793073f6df8dfa0"
+    },
+    {
+      "path": "logs-CONTENT-FAILURE-missing-01.01/platform.log",
+      "size": 15395,
+      "sha256": "295bb679325ecc9aae88a1eb96f05da7f68f2ff419b2687fff02901f1a9fad9e"
+    },
+    {
+      "path": "logs-CONTENT-FAILURE-missing-01.01/platform.prev.log",
+      "size": 699303,
+      "sha256": "4566d05ef41a616d290843ff3740c27328d2a46629d1bd3902869c9da835d4db"
+    },
+    {
+      "path": "logs-CONTENT-FAILURE-unreadable-01.02/last-stage.txt",
+      "size": 112,
+      "sha256": "2aaff2bb294dbbdaea2292ced13341eeee521a149634ed3dd6ae984c9f3a2dc8"
+    },
+    {
+      "path": "logs-CONTENT-FAILURE-unreadable-01.02/platform.log",
+      "size": 15151,
+      "sha256": "865a8ca1f0a91ca2d0df2a978b33c449d3febc9f2127ea606e1faf758e06f839"
+    },
+    {
+      "path": "logs-CONTENT-FAILURE-unreadable-01.02/platform.prev.log",
+      "size": 15395,
+      "sha256": "295bb679325ecc9aae88a1eb96f05da7f68f2ff419b2687fff02901f1a9fad9e"
+    },
+    {
+      "path": "logs-CONTENT-FAILURE-invalid-01.03/last-stage.txt",
+      "size": 113,
+      "sha256": "64647881b21901ed610042c71fbd7a08f692218a06c59d4d2c4f2af6d27d4cb3"
+    },
+    {
+      "path": "logs-CONTENT-FAILURE-invalid-01.03/platform.log",
+      "size": 25702,
+      "sha256": "204833dcbac4628f85f669f8bad45722b530241cc7697153dbecc717b8d8fcb7"
+    },
+    {
+      "path": "logs-CONTENT-FAILURE-invalid-01.03/platform.prev.log",
+      "size": 15151,
+      "sha256": "865a8ca1f0a91ca2d0df2a978b33c449d3febc9f2127ea606e1faf758e06f839"
+    },
+    {
+      "path": "logs-repair-01.04/last-stage.txt",
+      "size": 95,
+      "sha256": "f0e92a26435b73039d42dc7319561cfe1ff9d33aac50f886a90f77c9a7d1b794"
+    },
+    {
+      "path": "logs-repair-01.04/platform.log",
+      "size": 35253,
+      "sha256": "81e5ba78ee7aea87e33b7f745e1a37e8b053e0966e6becd2c4210bf05b70c0df"
+    },
+    {
+      "path": "logs-repair-01.04/platform.prev.log",
+      "size": 25702,
+      "sha256": "204833dcbac4628f85f669f8bad45722b530241cc7697153dbecc717b8d8fcb7"
+    }
+  ],
+  "private_snapshot_inventory": [
+    {
+      "path": "imgui.ini",
+      "size": 61,
+      "sha256": "07f42c9fac95a5774dc0487293ad4a7d2cc898027650474e15622f1ae3e046cc",
+      "scope": "Single snapshot; no before/after pairing established"
+    },
+    {
+      "path": "saves/USA/Card A/01-GZLE-gczelda.gci",
+      "size": 98368,
+      "sha256": "8ac1391a71ed6891c9c1265fdf29ec536d322425e16ebd52762277a79e554621",
+      "scope": "Single snapshot; no before/after pairing established"
+    }
+  ]
+}

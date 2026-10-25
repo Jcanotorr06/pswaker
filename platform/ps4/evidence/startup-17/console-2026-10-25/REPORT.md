@@ -1,5 +1,9 @@
 # Returned startup evidence — 2026-10-25
 
+Follow-up: the [returned controlled-failure/repair review](../content-checks-2026-10-25/REPORT.md)
+now confirms all three error stops and repaired startup. The original observations
+below are retained; seeded save/settings byte-preservation evidence remains pending.
+
 The owner reports reaching controllable Outset and continuing through the
 Forsaken Fortress and Windfall Island to Dragon Roost Island, with no observed
 graphical or audio glitches. Continuing beyond Outset does not invalidate the

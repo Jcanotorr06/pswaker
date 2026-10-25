@@ -1,0 +1,11 @@
+{
+  "received_date": "2026-10-25",
+  "source": "Owner report in the implementation conversation, with four local log directories",
+  "missing_01_01_message": "cannot open COS_DISC=/app0/game.iso: No such file or directory",
+  "unreadable_01_02_message": "/app0/game.iso is not a regular file with a disc header",
+  "invalid_01_03_message": "Installation error: installed image checksum is invalid",
+  "failure_guidance_observed": "Rebuild the complete package on the computer and reinstall. Existing saves/settings are preserved. Circle: Exit",
+  "repair_01_04_observation": "No error message, launched as expected",
+  "seeded_save_settings_comparison_results": "Not supplied at review time; follow-up question pending",
+  "scope": "Expected visible error handling and repaired startup; preservation not established by the error-message wording"
+}
