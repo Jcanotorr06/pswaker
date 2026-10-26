@@ -1,0 +1,196 @@
+{
+  "schema": 1,
+  "identity": {
+    "schema": 1,
+    "build": "8c892c5b54b28d9f41da",
+    "tsc_frequency": 1593977062,
+    "method": "VideoOut-completed-flip-tsc",
+    "platform": "owner-confirm-required",
+    "cache": "/data/pswaker/cache/8c892c5b54b28d9f41da",
+    "internal": [
+      1280,
+      720
+    ],
+    "logic_hz": 30,
+    "textures": "stock"
+  },
+  "installed_program": {
+    "build_id": "8c892c5b54b28d9f41da",
+    "elf_filename": "switchwaker",
+    "elf_sha256": "e2eca045bcef3d90757661f3400ca982253d7206ec9d548585d49bf8d19e9c48",
+    "eboot_sha256": "57548190e0948df2b59c30aaffaf410ab353b343698a9e51f6c57b7e6900476f",
+    "payload_sha256": {
+      "build-info.json": "279bbbbe7312a512a6d742ba9a2ea9ab5b0bd54e8f78690cc84a2de1808bdae6",
+      "eboot.bin": "57548190e0948df2b59c30aaffaf410ab353b343698a9e51f6c57b7e6900476f",
+      "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+      "sce_sys/param.sfo": "991c76bed7e82f8060aa6fdec2d2e2aff0198c3d84758d53ae487449e6400654"
+    }
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "b6b47e7031c83eee06583e78eac456cec625b5477aff1765476fdb7f1d1a47f8"
+  },
+  "owner": {
+    "build": "8c892c5b54b28d9f41da",
+    "package_sha256": "b6b47e7031c83eee06583e78eac456cec625b5477aff1765476fdb7f1d1a47f8",
+    "platform": {
+      "model": "PS4 Slim",
+      "firmware": "9.00",
+      "goldhen": "v2.4b18"
+    },
+    "cache_state": "warm",
+    "timing_method_verified": true,
+    "timing_verification_notes": "Describe returned display/clock/mapping evidence; leave false until reviewed.",
+    "samples": {
+      "1": {
+        "scene": "outset",
+        "actions": "Ran from the watch tower's base to the island and rand across the bridge to grandma's house and back. Used sword to cut grass, shrubs and trees, swam and rolled.",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "2": {
+        "scene": "forest",
+        "actions": "Ran laps in the two first sections of the forest. Used sword to cut grass and trees, and rolled around",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      }
+    }
+  },
+  "samples": [
+    {
+      "sample": 1,
+      "scene": "outset",
+      "owner": {
+        "scene": "outset",
+        "actions": "Ran from the watch tower's base to the island and rand across the bridge to grandma's house and back. Used sword to cut grass, shrubs and trees, swam and rolled.",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "metrics": {
+        "seconds": 120.00493278553841,
+        "intervals": 3573,
+        "average_fps": 29.773776102898463,
+        "p95_ms": 33.40128178080394,
+        "p99_ms": 50.05267698137051,
+        "maximum_ms": 100.09723339419047,
+        "shader_wait_ms": 150.958116,
+        "shader_wait_calls": 4,
+        "active_shader_waits_over_35ms": 3,
+        "active_shader_wait_total_ms": 150.958116,
+        "resume_to_first_observation_ms": 26.178977,
+        "shader_correlated_hitches": 3
+      },
+      "invalid_reasons": [
+        "launch has no completed recorder shutdown"
+      ],
+      "shortfalls": [
+        {
+          "metric": "p99_ms",
+          "measured": 50.05267698137051,
+          "limit": 50
+        },
+        {
+          "metric": "maximum_ms",
+          "measured": 100.09723339419047,
+          "limit": 100
+        }
+      ],
+      "target_met": false
+    },
+    {
+      "sample": 2,
+      "scene": "forest",
+      "owner": {
+        "scene": "forest",
+        "actions": "Ran laps in the two first sections of the forest. Used sword to cut grass and trees, and rolled around",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "metrics": {
+        "seconds": 120.02161567617338,
+        "intervals": 3573,
+        "average_fps": 29.769637576286268,
+        "p95_ms": 33.398195789093485,
+        "p99_ms": 50.04960228216885,
+        "maximum_ms": 133.47104928414583,
+        "shader_wait_ms": 0.0,
+        "shader_wait_calls": 0,
+        "active_shader_waits_over_35ms": 0,
+        "active_shader_wait_total_ms": 0.0,
+        "resume_to_first_observation_ms": 39.885021,
+        "shader_correlated_hitches": 0
+      },
+      "invalid_reasons": [
+        "launch has no completed recorder shutdown"
+      ],
+      "shortfalls": [
+        {
+          "metric": "p99_ms",
+          "measured": 50.04960228216885,
+          "limit": 50
+        },
+        {
+          "metric": "maximum_ms",
+          "measured": 133.47104928414583,
+          "limit": 100
+        }
+      ],
+      "target_met": false
+    }
+  ],
+  "phases": [
+    {
+      "phase": "startup",
+      "start_ns": 732072128645690,
+      "duration_ms": 1934.429874
+    },
+    {
+      "phase": "content-validation",
+      "start_ns": 732074063075564,
+      "duration_ms": 40381.338258
+    },
+    {
+      "phase": "storage-check",
+      "start_ns": 732114444413822,
+      "duration_ms": 169.379548
+    },
+    {
+      "phase": "shader-preparation",
+      "start_ns": 732114613793370,
+      "duration_ms": 21.167656
+    },
+    {
+      "phase": "loading",
+      "start_ns": 732114634961026,
+      "duration_ms": 97874.618575
+    },
+    {
+      "phase": "gameplay",
+      "start_ns": 732212509579601,
+      "duration_ms": 8482.09985
+    },
+    {
+      "phase": "gameplay",
+      "start_ns": 732220991679451,
+      "duration_ms": 319524.930999
+    },
+    {
+      "phase": "transition",
+      "start_ns": 732540516610450,
+      "duration_ms": 8408.941063
+    }
+  ],
+  "missing_scenes": [],
+  "acceptance": "Individual measured candidates only; final integrated acceptance belongs to issue #23",
+  "evidence_sha256": {
+    "inspection.json": "9313934e9693ba4902a604d83bec2efcf8bd4cf5a7afae7067e45da5a207aa67",
+    "owner.json": "03eecc83cab269d3997cd9818a73db21654dca3630ab9418fca0eb5b51761a56",
+    "raw-launch/events.csv": "0bd183c84410b64ddc4965e24c4a368b7972b392197da70fb196b1a7f330d93e",
+    "raw-launch/frames.csv": "d0c9011c43d843919496a94146e15de8f105b992f219101f86407ba746485596",
+    "raw-launch/identity.json": "307025693915f15540cb0c1d8f3b6b550465894f6bed63418d3cfa98565bcbff",
+    "raw-launch/samples.csv": "1132ef9f4cb5147f923e1d3061225f8c21fc430996351df41ba19459c44df9c4"
+  }
+}

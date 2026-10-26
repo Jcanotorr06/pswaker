@@ -1,5 +1,10 @@
 # Frame-pacing candidate (#22)
 
+The [01.10 owner return](console-return-01.10/REPORT.md) now records independent
+cold/warm measurements with numerical shortfalls, an early cold Outset pause,
+and timing verification still pending. The original preparation report below
+describes the candidate's status at handoff; its untested wording is historical.
+
 This branch adds completed-console-flip instrumentation and the
 [owner sampling workflow](../../Frame-pacing-checklist.md) to the existing
 playable baseline. **Installed-console measurements and acceptance remain

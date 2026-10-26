@@ -1,9 +1,14 @@
 # Owner sampling checklist (#22)
 
 Status: **no console performance pass yet for this candidate**. Use the exact
-package/build hashes in [the candidate report](evidence/performance-22/REPORT.md).
+package/build hashes in [the 01.11 candidate report](evidence/performance-22/candidate-01.11/REPORT.md).
 Retain previous failures and save/settings backups. No new test data or cache
 operation should touch your genuine profile.
+
+The [01.10 return](evidence/performance-22/console-return-01.10/REPORT.md)
+contains real shortfalls and an early cold-Outset pause. It was copied before
+Quit without a video comparison. For this retry, finish each complete sample,
+record visible timing corroboration, Quit normally and retrieve afterward.
 
 1. Confirm PS4 Slim / firmware 9.00 / GoldHEN v2.4b18, USA GZLE01 revision 0,
    the installed candidate version/build and package SHA-256. Install through
