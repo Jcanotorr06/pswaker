@@ -1,0 +1,88 @@
+--- a/game/src/m_Do/m_Do_MemCardRWmng.cpp
++++ b/game/src/m_Do/m_Do_MemCardRWmng.cpp
+@@ -63,13 +63,13 @@
+     if (ret != CARD_ERROR_READY) return ret;
+     ret = CARDRead(card, sTmpBuf, sizeof(card_savedata), 1 * sizeof(card_savedata));
+     if (ret != CARD_ERROR_READY) return ret;
+-    if (mDoMemCdRWm_CalcCheckSum(sTmpBuf, sizeof(card_savedata) - sizeof(save->csum)) != csum) return ret;
++    if (mDoMemCdRWm_CalcCheckSum(sTmpBuf, sizeof(card_savedata) - sizeof(save->csum)) != csum) return CARD_ERROR_IOERROR;
+ 
+     ret = CARDWrite(card, sTmpBuf, sizeof(card_savedata), 2 * sizeof(card_savedata));
+     if (ret != CARD_ERROR_READY) return ret;
+     ret = CARDRead(card, sTmpBuf, sizeof(card_savedata), 2 * sizeof(card_savedata));
+     if (ret != CARD_ERROR_READY) return ret;
+-    if (mDoMemCdRWm_CalcCheckSum(sTmpBuf, sizeof(card_savedata) - sizeof(save->csum)) != csum) return ret;
++    if (mDoMemCdRWm_CalcCheckSum(sTmpBuf, sizeof(card_savedata) - sizeof(save->csum)) != csum) return CARD_ERROR_IOERROR;
+ 
+     s32 i;
+     u32 slot;
+@@ -82,7 +82,7 @@
+                 if (ret != CARD_ERROR_READY) return ret;
+                 ret = CARDRead(card, sTmpBuf, sizeof(card_pictdata), (slot + i) * sizeof(card_pictdata));
+                 if (ret != CARD_ERROR_READY) return ret;
+-                if (!mDoMemCdRWm_TestCheckSumPictData(picData)) return ret;
++                if (memcmp(picData, sTmpBuf, sizeof(card_pictdata)) != 0) return CARD_ERROR_IOERROR;
+             }
+         }
+     } else {
+@@ -97,15 +97,14 @@
+                 if (ret != CARD_ERROR_READY) return ret;
+ #if VERSION == VERSION_DEMO
+                 if (!mDoMemCdRWm_TestCheckSumPictData(sTmpBuf)) {
+-                    return ret;
++                    return CARD_ERROR_IOERROR;
+                 }
+ #endif
+             }
+         }
+     }
+ 
+-    mDoMemCdRWm_SetCardStat(card);
+-    return ret;
++    return mDoMemCdRWm_SetCardStat(card);
+ }
+ 
+ /* 80019CE8-80019F4C       .text mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl */
+@@ -250,9 +249,10 @@
+ }
+ 
+ /* 8001A0A8-8001A1EC       .text mDoMemCdRWm_SetCardStat__FP12CARDFileInfo */
+-void mDoMemCdRWm_SetCardStat(CARDFileInfo* card) {
++s32 mDoMemCdRWm_SetCardStat(CARDFileInfo* card) {
+     CARDStat stat;
+-    CARDGetStatus(mDoMemCd_getNowSlot(), card->fileNo, &stat);
++    const s32 result = CARDGetStatus(mDoMemCd_getNowSlot(), card->fileNo, &stat);
++    if (result != CARD_ERROR_READY) return result;
+     stat.iconAddr = 0;
+     stat.commentAddr = offsetof(mDoMemCdRWm_HeaderData, comment);
+     CARDSetBannerFormat(&stat, 1);
+@@ -273,7 +273,7 @@
+     CARDSetIconSpeed(&stat, 5, 0);
+     CARDSetIconSpeed(&stat, 6, 0);
+     CARDSetIconSpeed(&stat, 7, 0);
+-    CARDSetStatus(mDoMemCd_getNowSlot(), card->fileNo, &stat);
++    return CARDSetStatus(mDoMemCd_getNowSlot(), card->fileNo, &stat);
+ }
+ 
+ /* 8001A1EC-8001A2F0       .text mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo */
+--- a/game/include/m_Do/m_Do_MemCardRWmng.h
++++ b/game/include/m_Do/m_Do_MemCardRWmng.h
+@@ -52,7 +52,7 @@
+ s32 mDoMemCdRWm_Restore2(CARDFileInfo*);
+ #endif
+ void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData*);
+-void mDoMemCdRWm_SetCardStat(CARDFileInfo*);
++s32 mDoMemCdRWm_SetCardStat(CARDFileInfo*);
+ BOOL mDoMemCdRWm_CheckCardStat(CARDFileInfo*);
+ u32 mDoMemCdRWm_CalcCheckSum(void*, u32 size);
+ u16 mDoMemCdRWm_CalcCheckSumPictData(void*, u32 size);
+--- a/native/src/pc/runtime/pc_main.cpp
++++ b/native/src/pc/runtime/pc_main.cpp
+@@ -318,6 +318,7 @@
+ 
+     // On the GameCube __start ran OSInit before main; here MEM1 (mem1Size) must be configured first.
+ #if defined(__ORBIS__)
++    CARDSetLoadType(CARD_GCIFOLDER);
+     CARDSetBasePath("/data/pswaker/saves", 0);
+     CARDSetBasePath("/data/pswaker/saves", 1);
+ #endif

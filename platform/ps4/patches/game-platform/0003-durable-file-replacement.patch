@@ -1,0 +1,27 @@
+--- a/aurora/lib/io.cpp
++++ b/aurora/lib/io.cpp
+@@ -11,5 +11,9 @@
+ #include <SDL3/SDL_filesystem.h>
+ 
++#if defined(__ORBIS__)
++extern "C" bool pswaker_commit_file(const char* temporary, const char* destination);
++#endif
++
+ namespace aurora::io {
+ namespace {
+ 
+@@ -225,7 +229,14 @@
+     return false;
+   }
+ 
++#if defined(__ORBIS__)
++  // Report completion only after the file and its replacement directory sync.
++  // The port owns the checked POSIX implementation and startup capability gate.
++  if (!pswaker_commit_file(m_temporaryPath.c_str(), m_targetPath.c_str())) {
++    SDL_SetError("PSWaker durable file replacement failed");
++#else
+   if (!SDL_RenamePath(m_temporaryPath.c_str(), m_targetPath.c_str())) {
++#endif
+     const std::string error{SDL_GetError()};
+     discard();
+     restore_error(error);

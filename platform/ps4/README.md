@@ -51,6 +51,14 @@ remain outstanding.
 Hardware underrun counts are unavailable in the selected backend; clean counters
 do not replace audible game observations or the later frame-pacing contract.
 
+The [save/settings persistence checkpoint](PERSISTENCE.md) adds a persistent
+port-menu text-size setting, checks both card directories and the settings root
+before gameplay, and syncs atomic GCI/settings replacements. Its
+[owner checklist](Persistence-checklist.md) requires separate full-relaunch and
+newer complete-package installation observations while protecting real progress.
+The [candidate report](evidence/persistence-20/REPORT.md) keeps its hardware status
+and evidence limits explicit; #21 still owns full failure/backup recovery.
+
 ## Reproduce on Linux / WSL2
 
 Use the recorded Ubuntu 24.04 x86-64 environment in `host.lock.json`. It identifies

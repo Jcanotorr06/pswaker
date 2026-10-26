@@ -1,6 +1,7 @@
 #include "game-platform.hpp"
 #include "installed-content.hpp"
 #include "controls.hpp"
+#include "storage.hpp"
 #include "native/platform.h"
 #include <aurora/event.h>
 #include <aurora/gfx.h>
@@ -37,6 +38,8 @@ namespace {
 const auto launch = std::chrono::steady_clock::now();
 bool graphics = false;
 bool quitting = false;
+PortSettings settings;
+bool settingsSaved = false;
 std::atomic<unsigned> checkedErrors{0};
 struct PipelineCounts { uint32_t created, queued; };
 PipelineCounts pipelines() {
@@ -91,6 +94,11 @@ void portContent() {
         ImGui::TextUnformatted("D-pad Up / Down: Choose");
         for (unsigned i = 0; i < portMenuItems.size(); ++i)
             ImGui::Text("%s %s", view.selection == i ? ">" : " ", portMenuItems[i].label);
+        ImGui::Text("Port text size: %s", settings.largeText() ? "Large" : "Standard");
+        if (*settings.error()) {
+            ImGui::TextWrapped("Settings could not be saved: %s", settings.error());
+            ImGui::TextWrapped("Check free space/permissions, then select Change port text size to retry. Saving was not confirmed.");
+        } else if (settingsSaved) ImGui::TextUnformatted("Port text size saved.");
         ImGui::Separator();
         symbolLine(Symbol::Cross, "Confirm"); symbolLine(Symbol::Circle, "Cancel / Resume game");
         ImGui::TextWrapped("The read check resumes gameplay, then pauses after 5 seconds. Hold movement, buttons and triggers during the check; explicitly resume afterward.");
@@ -114,7 +122,7 @@ void screen(const char* title, const char* text, float progress = -1,
     ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
     ImGui::Begin("PSWaker", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |
                                       ImGuiWindowFlags_NoSavedSettings);
-    ImGui::SetWindowFontScale(1.7f);
+    ImGui::SetWindowFontScale(settings.largeText() ? 1.7f : 1.3f);
     ImGui::TextUnformatted(title);
     ImGui::Separator();
     if (text) ImGui::TextWrapped("%s", text);
@@ -152,16 +160,6 @@ bool confirmScreen(const char* title, const char* text, bool allowExit) {
         if (allowExit && released && connected && (state.held & PAD_CIRCLE)) return false;
         usleep(16000);
     }
-}
-bool storageProbe() {
-    char path[] = "/data/pswaker/saves/.write-check-XXXXXX";
-    const int fd = mkstemp(path);
-    if (fd < 0) return false;
-    bool good = write(fd, "PSWaker", 7) == 7;
-    if (fsync(fd)) good = false;
-    if (close(fd)) good = false;
-    if (unlink(path)) good = false;
-    return good;
 }
 void imageProgress(uint64_t done, uint64_t total) {
     static double next = 0;
@@ -208,6 +206,12 @@ void logCache() {
     say("CACHE identity=%s files-before-init=%u; owner labels cold/warm", PSWAKER_BUILD_ID, files);
 }
 }
+void pswaker_toggle_text_size() {
+    settingsSaved = settings.setLargeText(!settings.largeText());
+    say("SETTINGS saved=%d port-text=%s path=/data/pswaker/settings.ini error=%s",
+        settingsSaved, settings.largeText() ? "large" : "standard", settings.error());
+    if (!settingsSaved) ++checkedErrors;
+}
 void pswaker_stage(const char* name) {
     say("STAGE completed=%s ms=%.1f build=%s errors=%u", name, milliseconds(), PSWAKER_BUILD_ID, unsigned(checkedErrors));
     if (FILE* state = fopen("/data/pswaker/logs/last-stage.txt", "w")) {
@@ -235,12 +239,14 @@ void pswaker_graphics_ready() {
     if (!valid) pswaker_installation_error(error);
     if (!closed) pswaker_installation_error("Closing installed content failed");
     pswaker_stage("installed-image-validated");
-    mkdir("/data/pswaker/saves", 0755);
-    while (!storageProbe()) {
+    while (!settings.check()) {
         ++checkedErrors;
-        say("ERROR writable save storage check errno=%d", errno);
-        if (!confirmScreen("Save storage unavailable", "Check free space and permissions for /data/pswaker/saves. Existing files will be preserved.", true)) pswaker_exit(2);
+        say("ERROR writable profile storage check: %s", settings.error());
+        char message[1024];
+        snprintf(message, sizeof message, "%s\n\nCheck free space, permissions and the indicated path under /data/pswaker. Existing saves/settings are preserved. Repair the problem, then Retry; or Exit.", settings.error());
+        if (!confirmScreen("Save/settings storage unavailable", message, true)) pswaker_exit(2);
     }
+    say("STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=%s GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent", settings.largeText() ? "large" : "standard");
     pswaker_stage("writable-storage-checked");
     VISetFrameBufferScale(1.5f);
     // Pump resize events and allocate a frame before querying actual GPU textures.
