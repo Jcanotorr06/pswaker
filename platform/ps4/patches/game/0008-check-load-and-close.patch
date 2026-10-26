@@ -1,0 +1,37 @@
+--- a/game/src/m_Do/m_Do_MemCard.cpp
++++ b/game/src/m_Do/m_Do_MemCard.cpp
+@@ -26,6 +26,7 @@
+ static bool pswakerStoreFailed = false; // protected by the card manager's mMutex
+ extern "C" bool pswaker_save_begin(int slot);
+ extern "C" bool pswaker_save_finish(bool completed);
++extern "C" bool pswaker_save_check(int slot);
+ #endif
+ 
+ #if TARGET_PC
+@@ -109,5 +110,13 @@
+         switch (mCommand) {
+         case CARD_RESTORE:
++#if defined(__ORBIS__)
++            // Block the inherited replica-repair writes on affected data.
++            if (pswakerStoreFailed || !pswaker_save_check(mCardSlot)) {
++                field_0x1660 = 12;
++                pswakerStoreFailed = true;
++                break;
++            }
++#endif
+             restore();
+             break;
+         case CARD_STORE:
+@@ -231,6 +240,11 @@
+             else
+                 field_0x1660 = 4;
+-            CARDClose(&cardInfo);
++#if defined(__ORBIS__)
++            const s32 closed = CARDClose(&cardInfo);
++            if (closed != CARD_ERROR_READY) setCardState(closed);
++#else
++            CARDClose(&cardInfo);
++#endif
+         } else {
+             setCardState(ret);
+         }

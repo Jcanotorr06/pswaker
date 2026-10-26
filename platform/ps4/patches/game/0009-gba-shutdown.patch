@@ -1,0 +1,27 @@
+--- a/game/src/JSystem/JUtility/JUTGba.cpp
++++ b/game/src/JSystem/JUtility/JUTGba.cpp
+@@ -258,11 +258,24 @@
+     JUTGbaThreadVar threadVar;
+     threadVar.field_0x0 = param;
+     while (true) {
++#if defined(__ORBIS__)
++        // Host messages are pointers, wider than the original u32 command.
++        OSMessage message = NULL;
++        threadVar.field_0x1c = OSReceiveMessage(&param->msg_q, &message, OS_MESSAGE_NOBLOCK);
++        if (!threadVar.field_0x1c) {
++            param->field_0x54 = 0;
++            // The SDK returns FALSE when shutdown wakes an empty queue. There
++            // is no command to dispatch; doing so panics at line 623 on Quit.
++            if (!OSReceiveMessage(&param->msg_q, &message, OS_MESSAGE_BLOCK)) return NULL;
++        }
++        threadVar.field_0x10 = static_cast<u32>(reinterpret_cast<uintptr_t>(message));
++#else
+         threadVar.field_0x1c = OSReceiveMessage(&param->msg_q, (OSMessage*)&threadVar.field_0x10, OS_MESSAGE_NOBLOCK);
+         if (!threadVar.field_0x1c) {
+             param->field_0x54 = 0;
+             OSReceiveMessage(&param->msg_q, (OSMessage*)&threadVar.field_0x10, OS_MESSAGE_BLOCK);
+         }
++#endif
+         param->field_0x54 = 1;
+         param->field_0x40 = 0;
+         param->field_0x24 = threadVar.field_0x10;

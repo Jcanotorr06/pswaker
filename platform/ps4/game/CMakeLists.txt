@@ -63,6 +63,7 @@ add_library(pswaker_entry STATIC main.cpp installed-content.cpp controls.cpp aud
   "${GAME_ROOT}/src/platform/native/platform.c"
   "${PLATFORM_ROOT}/src/native-platform/ps4/native/realpath.c")
 target_include_directories(pswaker_entry PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}" "${GAME_ROOT}/src/platform" "${GAME_ROOT}/src/aurora/lib" "${GAME_ROOT}/assets/GZLE01")
+target_compile_definitions(pswaker_entry PRIVATE PSWAKER_GAME_STORAGE=1)
 target_link_libraries(pswaker_entry PUBLIC aurora::core aurora::gx aurora::vi dawn::dawncpp_headers)
 if(PSWAKER_BUILD_ID)
   target_compile_definitions(pswaker_entry PRIVATE PSWAKER_BUILD_ID="${PSWAKER_BUILD_ID}")

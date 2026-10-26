@@ -49,6 +49,24 @@ class GciPersistenceTests(unittest.TestCase):
     def test_gci_data_and_metadata_survive_close_and_reopen(self):
         self.scenario('roundtrip')
 
+    def test_interrupted_multiblock_save_preserves_completed_save_until_explicit_restore(self):
+        self.scenario('transaction')
+
+    def test_corrupt_progress_is_preserved_before_explicit_backup_restore(self):
+        self.scenario('corrupt')
+
+    def test_corrupt_progress_without_backup_cannot_be_reset_or_restored(self):
+        self.scenario('corrupt-no-backup')
+
+    def test_wrong_size_save_can_be_restored_without_losing_original_evidence(self):
+        self.scenario('corrupt-size')
+
+    def test_missing_primary_with_retained_backup_requires_explicit_recovery(self):
+        self.scenario('missing-primary')
+
+    def test_owner_controlled_write_failure_reaches_real_gci_ioerror(self):
+        self.scenario('controlled-failure')
+
     def test_sync_failure_returns_ioerror_and_preserves_previous_gci(self):
         self.scenario('sync-failure')
 

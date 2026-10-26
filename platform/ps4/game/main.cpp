@@ -148,10 +148,10 @@ void initializeErrorDisplay() {
     const auto info = aurora_initialize(0, nullptr, &config);
     graphics = info.window != nullptr;
 }
-bool confirmScreen(const char* title, const char* text, bool allowExit) {
+bool confirmScreen(const char* title, const char* text, bool allowExit, const char* confirm = "Retry") {
     bool released = false;
     for (;;) {
-        screen(title, text, -1, "Retry", allowExit ? "Exit" : nullptr);
+        screen(title, text, -1, confirm, allowExit ? "Exit" : nullptr);
         pad state{};
         const bool connected = pad_player(0, &state);
         if (!connected) released = false;
@@ -248,6 +248,34 @@ void pswaker_graphics_ready() {
     }
     say("STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=%s GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent", settings.largeText() ? "large" : "standard");
     pswaker_stage("writable-storage-checked");
+    for (const char* channel : {"A", "B"}) {
+        SaveFile save(std::string("/data/pswaker/saves/USA/Card ") + channel + "/01-GZLE-gczelda.gci");
+        while (!save.check()) {
+            ++checkedErrors;
+            const bool backup = save.canRestore();
+            say("RECOVERY blocked=%s valid-backup=%d choice=pending", save.error(), backup);
+            char message[1400];
+            snprintf(message, sizeof message, "%s\n\n%s", save.error(), backup ?
+                "A valid previous save backup exists. Cross explicitly restores that older progress; affected files are retained as evidence. Circle declines and exits without changing progress." :
+                "No valid backup is available. Exit and copy this card directory to the computer for recovery. Check storage/permissions and Retry after repair. Do not delete or initialize your progress.");
+            if (!confirmScreen("Save recovery required", message, true, backup ? "Restore previous save" : "Retry")) {
+                say("RECOVERY choice=decline-exit channel=%s affected-data=preserved", channel);
+                pswaker_exit(3);
+            }
+            if (backup) {
+                const bool restored = save.restore();
+                say("RECOVERY choice=restore channel=%s confirmed=%d error=%s", channel, restored, save.error());
+                if (!restored && !confirmScreen("Restore was not confirmed", save.error(), true)) pswaker_exit(3);
+            }
+        }
+        const auto testMode = save.testMode();
+        if (!testMode.empty()) {
+            say("STORAGE TEST startup channel=%s mode=%s awaiting-explicit-choice", channel, testMode.c_str());
+            if (!confirmScreen("Controlled storage test is enabled",
+                "This card has a .test marker. fail-write deliberately fails saves; hold-publish delays completion by 20 seconds. Use only disposable test progress. Exit and remove the marker to return to normal play.", true, "Continue controlled test")) pswaker_exit(3);
+        }
+    }
+    pswaker_stage("save-recovery-checked");
     VISetFrameBufferScale(1.5f);
     // Pump resize events and allocate a frame before querying actual GPU textures.
     screen("Preparing graphics", "Allocating the 1280x720 game render target.");
@@ -274,6 +302,9 @@ void pswaker_frame_boundary() {
     JKRPcHostAllocScope hostAlloc;
     static double next = 0;
     pswaker_enable_controls();
+    // The worker records failure only after the transaction finishes. Stop at
+    // the next frame boundary so affected progress cannot be overwritten.
+    if (pswaker_card_shutdown_status() < 0) pswaker_exit(0);
     while (pswaker_port_view().screen != PortScreen::Game) {
         if (pswaker_port_view().screen == PortScreen::Exit) pswaker_exit(0);
         screen("PSWaker - game paused", nullptr);
@@ -306,21 +337,31 @@ void pswaker_frame_boundary() {
             for (;;) {
                 const auto deadline = milliseconds() + 30000;
                 int status;
+                bool reportedPending = false;
                 while ((status = pswaker_card_shutdown_status()) == 0 && milliseconds() < deadline) {
+                    if (!reportedPending) { say("SHUTDOWN card-status=0 pending; waiting without requesting a save"); reportedPending = true; }
                     screen("Finishing pending card work", "Waiting for an already requested card operation. Quitting does not save current gameplay.");
                     usleep(16000);
                 }
                 say("SHUTDOWN card-status=%d (0=busy 1=idle -1=last-store-failed)", status);
                 if (status == 1) break;
                 ++checkedErrors;
+                if (status == 0) {
+                    confirmScreen("Card work is still pending",
+                        "Quit must wait for the requested save. Retry continues waiting; current gameplay is not automatically saved.", false);
+                    continue;
+                }
                 if (!confirmScreen("Card work did not complete successfully",
-                    "A previous save failed or card work is still pending. Retry waits again; Exit closes without claiming that progress was saved.", true)) {
+                    "The requested save failed. Previous valid save/backup and affected data are retained. Exit, repair storage and relaunch for recovery. Retry checks completion again; no new save is requested.", true)) {
                     code = 3;
                     break;
                 }
             }
+            pswaker_stage("shutdown-card-finished");
             pswaker_log_game_state();
+            pswaker_stage("shutdown-requesting-sdk-stop");
             COSSdkRequestShutdown();
+            pswaker_stage("shutdown-sdk-stop-requested");
             const bool stopped = COSAIShutdownOutput() != 0;
             say("SHUTDOWN audio-producer-joined=%d", stopped);
             pswaker_log_audio_output();

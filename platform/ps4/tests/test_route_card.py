@@ -33,9 +33,11 @@ class RouteCardTests(unittest.TestCase):
         for path in includes:
             flags += ['-I', str(path)]
         sources = [game / 'game/src/m_Do/m_Do_MemCard.cpp',
+                   game / 'game/src/JSystem/JUtility/JUTGba.cpp',
                    sdk / 'src/os/OSThread.cpp', sdk / 'src/os/OSMutex.cpp',
                    sdk / 'src/os/OSInterrupt.cpp', sdk / 'src/os/OSAlarm.cpp',
-                   sdk / 'src/os/OSContext.cpp',
+                   sdk / 'src/os/OSContext.cpp', sdk / 'src/os/OSMessage.cpp',
+                   sdk / 'src/os/OSReport.cpp', sdk / 'src/gba/GBA.cpp',
                    HERE / 'tests/route-card.cpp']
         result = subprocess.run(flags + list(map(str, sources)) + ['-o', str(cls.binary)],
                                 capture_output=True, text=True)
@@ -52,3 +54,6 @@ class RouteCardTests(unittest.TestCase):
 
     def test_quit_observer_reports_failed_store_without_claiming_success(self):
         self.check_scenario('failed-store')
+
+    def test_idle_gba_workers_join_on_shutdown_without_unknown_command_panic(self):
+        self.check_scenario('shutdown-gba')

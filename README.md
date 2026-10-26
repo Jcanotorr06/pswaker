@@ -21,6 +21,12 @@ and byte-identical settings snapshots corroborate the owner's results. A logged
 Quit panic after an idle card remains an unresolved internal shutdown finding;
 full storage-failure recovery remains separate.
 
+The [storage recovery candidate](platform/ps4/STORAGE-RECOVERY.md) adds whole-save
+staging, previous valid backups, explicit corruption recovery and a regression
+for the captured GBA shutdown panic. Its [controlled owner checklist](platform/ps4/Storage-recovery-checklist.md)
+isolates genuine progress and exercises failure/pending-write behavior. Installed
+console acceptance remains pending for that exact binary.
+
 ## Standing on the shoulders of others
 
 This repository draws inspiration from several community projects.
