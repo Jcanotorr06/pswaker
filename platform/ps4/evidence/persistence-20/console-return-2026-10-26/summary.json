@@ -1,0 +1,416 @@
+{
+  "launches": [
+    {
+      "path": "logs-1/platform.log",
+      "size": 127295,
+      "sha256": "33885eb8bffb54eac034764fb98a7a72f76d1b3dd0d3f50bf3dc4949f030e698",
+      "version": "01.07",
+      "program": {
+        "build_id": "9ac6fb9b2da43e02d642",
+        "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+        "eboot_sha256": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2"
+      },
+      "selected": [
+        {
+          "line": 2,
+          "text": "BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642"
+        },
+        {
+          "line": 171,
+          "text": "CACHE identity=9ac6fb9b2da43e02d642 files-before-init=0; owner labels cold/warm"
+        },
+        {
+          "line": 172,
+          "text": "STAGE completed=platform-initialized ms=805.7 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 175,
+          "text": "STAGE completed=PS4-runtime-crash-logger-selected ms=814.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 177,
+          "text": "STAGE completed=aurora-initialize ms=826.0 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 295,
+          "text": "STAGE completed=graphics-initialized ms=1791.4 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 492,
+          "text": "STAGE completed=installed-image-validated ms=47039.2 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 493,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 494,
+          "text": "STAGE completed=writable-storage-checked ms=47218.2 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 498,
+          "text": "STAGE completed=known-shaders-prepared ms=47250.3 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 501,
+          "text": "STAGE completed=runtime-assets-validated ms=47505.2 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 1102,
+          "text": "SETTINGS saved=1 port-text=standard path=/data/pswaker/settings.ini error="
+        }
+      ],
+      "errors": [],
+      "last_heartbeat": "HEARTBEAT ms=358781.2 shaders-created=264 queued=0 checked-errors=0",
+      "cache_files": [],
+      "manifest_matches_inspected_program": true,
+      "image_matches_inspection": true,
+      "stable_identity_matches": true
+    },
+    {
+      "path": "logs-2/platform.log",
+      "size": 53031,
+      "sha256": "583d84b8a76a03da2a60d4bc189bbd4608d0302ed40806fce4ecbc9720c26b43",
+      "version": "01.07",
+      "program": {
+        "build_id": "9ac6fb9b2da43e02d642",
+        "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+        "eboot_sha256": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2"
+      },
+      "selected": [
+        {
+          "line": 2,
+          "text": "BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642"
+        },
+        {
+          "line": 175,
+          "text": "CACHE identity=9ac6fb9b2da43e02d642 files-before-init=4; owner labels cold/warm"
+        },
+        {
+          "line": 176,
+          "text": "STAGE completed=platform-initialized ms=1284.1 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 179,
+          "text": "STAGE completed=PS4-runtime-crash-logger-selected ms=1313.4 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 181,
+          "text": "STAGE completed=aurora-initialize ms=1324.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 299,
+          "text": "STAGE completed=graphics-initialized ms=2030.1 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 465,
+          "text": "STAGE completed=installed-image-validated ms=41375.5 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 466,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 467,
+          "text": "STAGE completed=writable-storage-checked ms=41466.5 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 471,
+          "text": "STAGE completed=known-shaders-prepared ms=41498.3 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 474,
+          "text": "STAGE completed=runtime-assets-validated ms=41663.3 build=9ac6fb9b2da43e02d642 errors=0"
+        }
+      ],
+      "errors": [],
+      "last_heartbeat": "HEARTBEAT ms=115982.9 shaders-created=264 queued=0 checked-errors=0",
+      "cache_files": [
+        "CACHE before-init name=dawn_cache.db bytes=3887104 sha1=ba42c7a761cbb8d67f2c0472e265cc9711ef9f9a readable=1",
+        "CACHE before-init name=dawn_cache.db-wal bytes=4144752 sha1=0d373d7275f0bd0282b6d9e8b4f517eb4eeaebdf readable=1",
+        "CACHE before-init name=pipeline_cache.db bytes=835584 sha1=08f2a3c75dfaa0e3405d25ed1845e9577eb6242a readable=1",
+        "CACHE before-init name=pipeline_cache.db-wal bytes=4128272 sha1=a52803f529ec1feb14f68b46084577e3e3ecbfbb readable=1"
+      ],
+      "manifest_matches_inspected_program": true,
+      "image_matches_inspection": true,
+      "stable_identity_matches": true
+    },
+    {
+      "path": "logs-3/platform.prev.log",
+      "size": 66261,
+      "sha256": "12b6a49bcdf10ea2005f8df29b6fa8fc81cbde9de068bc8d53c61d73d35538b6",
+      "version": "01.08",
+      "program": {
+        "build_id": "9ac6fb9b2da43e02d642",
+        "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+        "eboot_sha256": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2"
+      },
+      "selected": [
+        {
+          "line": 2,
+          "text": "BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642"
+        },
+        {
+          "line": 175,
+          "text": "CACHE identity=9ac6fb9b2da43e02d642 files-before-init=4; owner labels cold/warm"
+        },
+        {
+          "line": 176,
+          "text": "STAGE completed=platform-initialized ms=1604.4 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 179,
+          "text": "STAGE completed=PS4-runtime-crash-logger-selected ms=1738.3 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 181,
+          "text": "STAGE completed=aurora-initialize ms=1749.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 299,
+          "text": "STAGE completed=graphics-initialized ms=2453.7 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 496,
+          "text": "STAGE completed=installed-image-validated ms=49973.5 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 497,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 498,
+          "text": "STAGE completed=writable-storage-checked ms=50067.5 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 502,
+          "text": "STAGE completed=known-shaders-prepared ms=50099.3 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 505,
+          "text": "STAGE completed=runtime-assets-validated ms=50277.5 build=9ac6fb9b2da43e02d642 errors=0"
+        }
+      ],
+      "errors": [],
+      "last_heartbeat": "HEARTBEAT ms=151852.3 shaders-created=265 queued=0 checked-errors=0",
+      "cache_files": [
+        "CACHE before-init name=dawn_cache.db bytes=3887104 sha1=ba42c7a761cbb8d67f2c0472e265cc9711ef9f9a readable=1",
+        "CACHE before-init name=dawn_cache.db-wal bytes=4144752 sha1=0d373d7275f0bd0282b6d9e8b4f517eb4eeaebdf readable=1",
+        "CACHE before-init name=pipeline_cache.db bytes=835584 sha1=08f2a3c75dfaa0e3405d25ed1845e9577eb6242a readable=1",
+        "CACHE before-init name=pipeline_cache.db-wal bytes=4128272 sha1=a52803f529ec1feb14f68b46084577e3e3ecbfbb readable=1"
+      ],
+      "manifest_matches_inspected_program": true,
+      "image_matches_inspection": true,
+      "stable_identity_matches": true
+    },
+    {
+      "path": "logs-4/platform.log",
+      "size": 69558,
+      "sha256": "f9df2ea55963f72f546bc95349ab168222de0ad244ea02299b786a16de8ae10f",
+      "version": "01.08",
+      "program": {
+        "build_id": "9ac6fb9b2da43e02d642",
+        "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+        "eboot_sha256": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2"
+      },
+      "selected": [
+        {
+          "line": 2,
+          "text": "BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642"
+        },
+        {
+          "line": 171,
+          "text": "CACHE identity=9ac6fb9b2da43e02d642 files-before-init=0; owner labels cold/warm"
+        },
+        {
+          "line": 172,
+          "text": "STAGE completed=platform-initialized ms=590.9 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 175,
+          "text": "STAGE completed=PS4-runtime-crash-logger-selected ms=711.7 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 177,
+          "text": "STAGE completed=aurora-initialize ms=722.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 295,
+          "text": "STAGE completed=graphics-initialized ms=1653.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 498,
+          "text": "STAGE completed=installed-image-validated ms=48092.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 499,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 500,
+          "text": "STAGE completed=writable-storage-checked ms=48147.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 504,
+          "text": "STAGE completed=known-shaders-prepared ms=48178.6 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 507,
+          "text": "STAGE completed=runtime-assets-validated ms=48344.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 805,
+          "text": "EXIT code=0 ms=171225.5 checked-errors=0"
+        },
+        {
+          "line": 806,
+          "text": "STAGE completed=shutdown-waiting-for-card ms=171229.5 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 807,
+          "text": "SHUTDOWN card-status=1 (0=busy 1=idle -1=last-store-failed)"
+        },
+        {
+          "line": 809,
+          "text": "PANIC /home/joseph_cano/.cache/pswaker/game-20-final/src/switchwaker/game/src/JSystem/JUtility/JUTGba.cpp:623"
+        },
+        {
+          "line": 811,
+          "text": "EXIT code=12 ms=171245.6 checked-errors=0"
+        }
+      ],
+      "errors": [
+        {
+          "line": 809,
+          "text": "PANIC /home/joseph_cano/.cache/pswaker/game-20-final/src/switchwaker/game/src/JSystem/JUtility/JUTGba.cpp:623"
+        },
+        {
+          "line": 811,
+          "text": "EXIT code=12 ms=171245.6 checked-errors=0"
+        }
+      ],
+      "last_heartbeat": "HEARTBEAT ms=159782.4 shaders-created=221 queued=0 checked-errors=0",
+      "cache_files": [],
+      "manifest_matches_inspected_program": true,
+      "image_matches_inspection": true,
+      "stable_identity_matches": true
+    },
+    {
+      "path": "logs-5/platform.log",
+      "size": 45800,
+      "sha256": "42ad61072300c2f6cd8f294a9ca7d3bdac7417ac752509ddb2c249a188076905",
+      "version": "01.08",
+      "program": {
+        "build_id": "9ac6fb9b2da43e02d642",
+        "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+        "eboot_sha256": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2"
+      },
+      "selected": [
+        {
+          "line": 2,
+          "text": "BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642"
+        },
+        {
+          "line": 175,
+          "text": "CACHE identity=9ac6fb9b2da43e02d642 files-before-init=4; owner labels cold/warm"
+        },
+        {
+          "line": 176,
+          "text": "STAGE completed=platform-initialized ms=1125.9 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 179,
+          "text": "STAGE completed=PS4-runtime-crash-logger-selected ms=1135.4 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 181,
+          "text": "STAGE completed=aurora-initialize ms=1146.7 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 299,
+          "text": "STAGE completed=graphics-initialized ms=1984.9 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 465,
+          "text": "STAGE completed=installed-image-validated ms=41529.0 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 466,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 467,
+          "text": "STAGE completed=writable-storage-checked ms=41581.8 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 471,
+          "text": "STAGE completed=known-shaders-prepared ms=41613.4 build=9ac6fb9b2da43e02d642 errors=0"
+        },
+        {
+          "line": 474,
+          "text": "STAGE completed=runtime-assets-validated ms=41766.3 build=9ac6fb9b2da43e02d642 errors=0"
+        }
+      ],
+      "errors": [],
+      "last_heartbeat": "HEARTBEAT ms=73824.6 shaders-created=224 queued=0 checked-errors=0",
+      "cache_files": [
+        "CACHE before-init name=dawn_cache.db bytes=3977216 sha1=677ffd39b6f7be939654b1639f8a4a491d13134b readable=1",
+        "CACHE before-init name=dawn_cache.db-wal bytes=4140632 sha1=2157eccf5770b5c94ad1b48506f34545606ded61 readable=1",
+        "CACHE before-init name=pipeline_cache.db bytes=835584 sha1=8e313a50cdc5e7fc5453161952048676c5f8fa47 readable=1",
+        "CACHE before-init name=pipeline_cache.db-wal bytes=4128272 sha1=1eea4df6576cf47fad51e78e1564d7850bdb0249 readable=1"
+      ],
+      "manifest_matches_inspected_program": true,
+      "image_matches_inspection": true,
+      "stable_identity_matches": true
+    }
+  ],
+  "settings_snapshots": [
+    {
+      "path": "settings.ini 2",
+      "size": 21,
+      "sha256": "9a017da4410aec1edb9b5deefacacdfe7dd7e7c078b1d8d47fdbfc87a756acdc",
+      "text": "PSWAKER_LARGE_TEXT=0\n"
+    },
+    {
+      "path": "settings.ini 3",
+      "size": 21,
+      "sha256": "9a017da4410aec1edb9b5deefacacdfe7dd7e7c078b1d8d47fdbfc87a756acdc",
+      "text": "PSWAKER_LARGE_TEXT=0\n"
+    },
+    {
+      "path": "settings.ini 4",
+      "size": 21,
+      "sha256": "9a017da4410aec1edb9b5deefacacdfe7dd7e7c078b1d8d47fdbfc87a756acdc",
+      "text": "PSWAKER_LARGE_TEXT=0\n"
+    },
+    {
+      "path": "settings.ini 5",
+      "size": 21,
+      "sha256": "9a017da4410aec1edb9b5deefacacdfe7dd7e7c078b1d8d47fdbfc87a756acdc",
+      "text": "PSWAKER_LARGE_TEXT=0\n"
+    }
+  ],
+  "relationships": [
+    {
+      "path": "logs-1/platform.prev.log",
+      "role": "Historical 01.06 launch; not a new-candidate run"
+    },
+    {
+      "path": "logs-2/platform.prev.log",
+      "byte_identical_to": "logs-1/platform.log"
+    },
+    {
+      "path": "logs-3/platform.log",
+      "exact_prefix_of": "logs-4/platform.log"
+    },
+    {
+      "path": "logs-4/platform.prev.log",
+      "byte_identical_to": "logs-3/platform.prev.log"
+    },
+    {
+      "path": "logs-5/platform.prev.log",
+      "byte_identical_to": "logs-4/platform.log"
+    }
+  ],
+  "limits": "Logged manifest association; no independently read installed PKG/ELF hash or GCI snapshots. Owner-visible outcomes recorded separately."
+}

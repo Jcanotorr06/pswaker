@@ -58,6 +58,11 @@ before gameplay, and syncs atomic GCI/settings replacements. Its
 newer complete-package installation observations while protecting real progress.
 The [candidate report](evidence/persistence-20/REPORT.md) keeps its hardware status
 and evidence limits explicit; #21 still owns full failure/backup recovery.
+The [returned console review](evidence/persistence-20/console-return-2026-10-26/REPORT.md)
+completes bounded save/settings persistence across relaunch, separate 01.08
+installation and cache-only clearing, with no automatic saving on Quit. The
+same return exposes a Quit panic after the card is idle; orderly internal
+shutdown remains unresolved despite the owner's normal visible return.
 
 ## Reproduce on Linux / WSL2
 

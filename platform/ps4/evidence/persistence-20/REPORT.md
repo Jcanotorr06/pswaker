@@ -1,9 +1,14 @@
 # Save/settings persistence candidate (#20)
 
 Implementation is prepared on `feature/20-save-settings-persistence` from
-develop `7364a4fc197ae54ccd2ee4eba365dc9c9fb9754c`. This candidate is **not
-hardware-accepted**. The owner must return separate full-relaunch and newer
-complete-package installation observations tied to its actual identities.
+develop `7364a4fc197ae54ccd2ee4eba365dc9c9fb9754c`. The
+[returned console review](console-return-2026-10-26/REPORT.md) completes the
+**bounded #20 persistence checkpoint**: the owner confirms save behavior and
+visible setting retention after full relaunch, separate 01.08 installation and
+cache-only clearing, plus preservation of the last completed save without
+automatic saving of an unsaved action on Quit. Runtime identities and returned
+settings corroborate that sequence. A logged shutdown panic remains unresolved;
+orderly internal shutdown and #21's full recovery guarantees are not accepted.
 
 The owner's prior Dragon Roost progress/no-save-problem report and the
 [byte-identical GCI / owner settings preservation checks](../startup-17/content-checks-2026-10-25/REPORT.md)
@@ -57,7 +62,8 @@ dependency lock was bypassed.
 
 Independent [Standards and Spec reviews](REVIEW.md) leave zero outstanding
 actionable findings after correcting the exact card paths in the storage log.
-Owner hardware acceptance remains pending.
+The later owner return and its known shutdown limit are reviewed separately
+below; they do not rewrite the original build-time untested manifests.
 
 ## Candidate and update identity
 
@@ -92,7 +98,8 @@ extraction/inspection passed for each; the Windows export hashes match.
 [provenance.json](provenance.json) retains source/patch hashes, the complete
 port-input inventory and private inventory hashes. A comparison against 01.06
 confirms the verified platform's archived/runtime/header/toolchain inputs are
-unchanged. Neither package has returned console observations.
+unchanged. Both package versions now have matching returned console manifests
+and owner observations; original build-time hardware-status labels stay intact.
 
 ## Retention and outstanding acceptance
 
@@ -114,13 +121,21 @@ and combined distribution terms remain unresolved under
 [LICENSING.md](../../LICENSING.md); these artifacts stay private. No image,
 extracted game data, save, ELF or package is committed.
 
-Outstanding for this candidate: owner-observed startup gate behavior on the
-selected PS4 filesystem, completed recognizable in-game save and visible port
-setting; full close/relaunch; **separate 01.08 installation** with matching
-progress/settings and hash comparison; cache-only clearing; normal Quit
-preserving only completed progress; and matching per-launch evidence. No
-console directory-sync or power-loss result is inferred from host tests.
-File replacement is per write, not an all-or-nothing multi-block gameplay-save
-transaction. Full backups, corruption restoration, controlled failure recovery
-and pending-write overlap remain #21. Keep #20 open until its focused owner
-return is reviewed; do not overwrite real progress to obtain that return.
+The [owner return](console-return-2026-10-26/REPORT.md) supplies matching 01.07
+and 01.08 manifests, five distinct candidate launches, successful target storage
+checks and four byte-identical Standard settings snapshots. The owner confirms
+saves behaved as expected, the visible setting survived full relaunch, separate
+update and cache-only clearing, and Quit retained completed progress without
+saving the unsaved action. No GCI snapshots were supplied for an independent
+byte comparison in this return; save/load behavior is owner-reported. The prior
+byte-identical GCI preservation evidence remains retained separately.
+
+The bounded persistence checkpoint is complete. Outstanding: the Quit capture
+records an idle card followed by a `JUTGba.cpp:623` panic/exit 12, without final
+audio/GPU completion stages, despite the owner's normal visible return. This
+lifecycle defect remains a #19/#21 follow-up. Controlled target unavailable-
+storage, write-failure/corruption and pending-write trials remain #21. No power-
+loss guarantee is inferred. File replacement is per write, not an all-or-nothing
+multi-block gameplay-save transaction. No first-playable-wide acceptance or
+broader compatibility is declared; do not overwrite real owner progress for
+later controlled validation.

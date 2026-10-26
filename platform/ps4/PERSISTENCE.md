@@ -95,3 +95,9 @@ never a new save/settings profile. No package includes or restores user data.
 Use the [owner checklist](Persistence-checklist.md). Full close/relaunch,
 separate installation of the newer complete package, cache-only clearing and
 owner progress/settings observations are required before #20 can be accepted.
+The [returned console review](evidence/persistence-20/console-return-2026-10-26/REPORT.md)
+now completes that bounded persistence checkpoint for build
+`9ac6fb9b2da43e02d642`, with matching 01.07/01.08 manifests and settings
+comparisons. A captured Quit panic after an idle card remains an unresolved
+lifecycle finding; successful visible Quit/save preservation does not establish
+completed internal audio/GPU teardown or #21 failure-recovery acceptance.

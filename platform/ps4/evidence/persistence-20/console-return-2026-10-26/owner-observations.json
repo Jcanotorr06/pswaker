@@ -1,0 +1,29 @@
+{
+  "source": "Owner return in the implementation conversation after the 01.07/01.08 handoff",
+  "original_statement": "Logs and settings can be found in `local-research/persistence-20-artifacts/evidence`\nPS4 Slim / firmware 9.00 / GoldHEN v2.4b18\nNo settings.ini was present on the first run.\nSaves across all runs behaved as expected",
+  "hardware_environment": {
+    "console": "PS4 Slim",
+    "firmware": "9.00",
+    "enabler": "GoldHEN v2.4b18",
+    "basis": "Explicitly reconfirmed by the owner in this return"
+  },
+  "initial_settings_ini": "Owner confirms absent on the first run; initial Large default is also logged",
+  "save_behavior": "Owner reports saves across all runs behaved as expected",
+  "recognizable_name_slot_and_progress_landmark": "Not separately supplied in this return",
+  "candidate_association": "Returned 01.07/01.08 launch manifests match the inspected candidate's program/image objects and stable application identity",
+  "gci_snapshot_comparison": "No GCI snapshots or per-run GCI hash list supplied; save behavior is owner-reported",
+  "follow_up_confirmations": [
+    {
+      "question": "To complete the observations that logs cannot prove: did the text visibly change and stay Standard after full close/relaunch, the 01.08 installation, and clearing only the cache?",
+      "answer": "Yes, all three checks passed"
+    },
+    {
+      "question": "The Quit log shows a panic after confirming the card was idle. Did Quit visibly hang/show an error, and did relaunch still load the last completed save without keeping the unsaved gameplay action?",
+      "answer": "Returned normally; last completed save loaded; unsaved action was absent"
+    }
+  ],
+  "visible_text_size_after_change_relaunch_update_and_cache_clear": "Owner confirms all three checks passed",
+  "cache_only_deletion_scope": "Owner confirms the cache-only clearing check passed; an empty-cache 01.08 launch is independently logged",
+  "normal_quit_visible_behavior_and_unsaved_action": "Owner confirms normal visible return, last completed save loaded, and unsaved action absent",
+  "limits": "The visible Quit return does not negate the logged JUTGba panic or establish completed orderly audio/GPU teardown. No GCI byte comparisons were supplied. Controlled storage failure/corruption and pending-write acceptance remain #21."
+}
