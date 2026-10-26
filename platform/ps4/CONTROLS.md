@@ -3,8 +3,10 @@
 The [owner checklist](Controls-checklist.md) covers every agreed action and safe
 input loss on the updated private complete package. The
 [candidate report](evidence/controls-18/REPORT.md) identifies that exact binary.
-Acceptance remains pending returned owner observations; previous #17 progression
-does not establish the focused control cases for this candidate.
+The [returned controls review](evidence/controls-18/console-return-01.05/REPORT.md)
+records owner-confirmed passes for mapped buttons and the three focused
+trigger/menu/input-loss checks on 01.05. Its original-capture and shutdown
+evidence limits remain explicit. Previous #17 progression is separate evidence.
 
 ## Controls and menus
 
@@ -29,8 +31,8 @@ for neutral controls before handing input back to gameplay.
 The native reader's existing 12% stick dead zone is retained, with clamped
 GameCube axes and inverted Y (up positive). L2/R2 retain their full 0–255 analog
 travel independently of the terminal-click bits: 229/255 is below 90%, 230/255
-is the first representable sample at/above it. This is a provisional threshold,
-not a hardware-validated final setting.
+is the first representable sample at/above it. The initial provisional threshold
+has now passed the owner's partial/full action checks on candidate 01.05.
 
 ## Input loss and installed failure check
 

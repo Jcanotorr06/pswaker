@@ -2,7 +2,11 @@
 
 The owner reports: "Controls work just as they did before, buttons remain mapped
 and functional as expected." This confirms functional mapped buttons on the
-returned candidate. **The focused #18 hardware checklist remains partially open.**
+returned candidate. In a follow-up, the owner explicitly confirms **all three
+requested focused checks were tested and passed**: partial/full L2/R2 actions,
+touchpad settings/legend with Cross confirm/Circle cancel, and held-input
+disconnect/reconnect plus the delayed failed-read check. This validates the
+current 90% trigger threshold through owner-observed actions on candidate 01.05.
 No new binary or control changes are indicated by this report.
 
 ## Candidate association and retained originals
@@ -58,7 +62,8 @@ separate from inferred log evidence and unreported checklist results.
   bits agree with the initial threshold (first representable sample 230/255).
   This shows separate analog and digital values reaching the game-facing
   boundary, but does not confirm the original game's distinct partial/full
-  player actions. The 90% threshold remains provisional.
+  player actions by itself. The owner's follow-up separately confirms those
+  actions passed at the current 90% threshold.
 - At line 1985 the state changes from game to input-lost with connected=0,
   followed by a controller-removal record and 19 neutral input-lost samples.
   The last preceding gameplay sample is neutral except for an unmapped raw
@@ -75,20 +80,23 @@ last-stage.txt identifies the same build and runtime-assets-validated at
 stage record followed by its file write. It is a startup breadcrumb, not a
 record of the furthest gameplay scene or final lifecycle state.
 
-## Remaining focused owner checks
+## Owner-confirmed focused checks and capture limits
 
-Use the [controls checklist](../../../Controls-checklist.md) for:
+The owner answered the bundled follow-up question with: "Yes to all three,
+all three were tested and passed." Record these as owner-observed passes:
 
-- Actual partial versus full L2/R2 actions, before locking the provisional 90%.
-- First-launch/settings legend, unchanged GameCube prompts, PlayStation symbols
-  and Cross confirm/Circle cancel, including canceling Quit.
+- Actual partial versus full L2/R2 actions at the current 90% threshold.
+- Touchpad settings and legend with Cross confirm/Circle cancel.
 - Physical disconnect while holding movement, buttons and triggers; visible
   pause/neutralization; reconnect remaining paused until deliberate resume.
 - The settings menu's delayed failed-read check during held gameplay input,
   followed by neutralization and deliberate resume.
-- Normal Cross-confirmed Quit with audio-producer join/orderly shutdown evidence.
 
-The owner has been asked which of these passed or remains untested. Until that
-evidence is returned, mapped-button functionality is owner-confirmed and the
-overall controls checkpoint remains partial. Save/settings durability and
-performance acceptance are separate work.
+The supplied log still does not capture the settings/reconnect/check sequences;
+the follow-up supplies their pass verdict, not additional trace records.
+Per-action scene/item details and individual symbol appearance were not
+separately described. Normal Cross-confirmed Quit and audio-producer join/orderly
+shutdown were not included in the three-part question and remain unverified by
+these returned observations/logs. No such pass is inferred. The original
+[controls checklist](../../../Controls-checklist.md) remains the detailed reference.
+Save/settings durability and performance acceptance are separate work.

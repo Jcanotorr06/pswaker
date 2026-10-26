@@ -33,8 +33,10 @@ PlayStation port menus and deliberate input-loss recovery for #18. Its
 [owner checklist](Controls-checklist.md) requires focused observations tied to
 the new complete package, including a delayed installed-game failed-read check.
 The [returned 01.05 controls review](evidence/controls-18/console-return-01.05/REPORT.md)
-records owner-confirmed functional mapped buttons and matching candidate logs;
-the focused trigger, menu and input-loss/recovery checks remain partially open.
+records matching candidate logs and owner-confirmed passes for mapped buttons,
+partial/full triggers, settings/legend conventions, held-input reconnect/resume
+and the delayed failed-read check. Capture and shutdown-evidence limits remain
+explicit in that review.
 
 ## Reproduce on Linux / WSL2
 

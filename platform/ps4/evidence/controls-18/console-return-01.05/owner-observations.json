@@ -4,10 +4,13 @@
   "statement": "Controls work just as they did before, buttons remain mapped and functional as expected",
   "mapped_button_functionality_confirmed": true,
   "per_action_scene_and_item_results": "Not separately supplied",
-  "partial_and_full_trigger_action_distinction": "Not separately confirmed",
-  "port_legend_symbols_and_confirm_cancel_behavior": "Not separately confirmed",
-  "held_input_physical_disconnect_and_deliberate_reconnect_resume": "Not separately confirmed",
-  "installed_delayed_failed_read_check": "Not separately confirmed; no check markers in supplied candidate log",
+  "follow_up_statement": "Yes to all three, all three were tested and passed",
+  "follow_up_question": "Did you also verify (1) partial versus full L2/R2 actions, (2) touchpad settings and legend with Cross confirm/Circle cancel, and (3) held-input disconnect/reconnect plus the settings menu's delayed failed-read check?",
+  "partial_and_full_trigger_action_distinction": "Owner tested and passed",
+  "trigger_threshold_percent": 90,
+  "port_legend_symbols_and_confirm_cancel_behavior": "Owner confirms touchpad settings/legend and Cross confirm/Circle cancel tested and passed; individual symbol appearance was not separately described",
+  "held_input_physical_disconnect_and_deliberate_reconnect_resume": "Owner tested and passed",
+  "installed_delayed_failed_read_check": "Owner tested and passed; check markers are absent from the supplied capture",
   "normal_quit_confirmation_and_shutdown": "Not separately confirmed; no EXIT/SHUTDOWN records in supplied candidate log",
-  "scope": "Owner confirmation of functional mapped buttons on the returned candidate; focused hardware acceptance remains partial"
+  "scope": "Mapped buttons plus all three requested focused controls checks are owner-confirmed passed on candidate 01.05; capture limitations and normal shutdown remain separately recorded"
 }

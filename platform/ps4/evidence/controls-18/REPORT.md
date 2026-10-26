@@ -4,12 +4,14 @@ The updated complete package is built and freshly extracted/inspected. The
 [returned controls review](console-return-01.05/REPORT.md) associates the current
 log with this exact 01.05 binary and records the owner's confirmation that
 mapped buttons remain functional as expected. Sampled input includes partial
-and terminal trigger values, plus a neutral input-loss state. **Focused hardware
-acceptance remains partial:** actual partial/full actions, port-menu conventions,
-held-input loss/reconnect, the delayed read check and orderly Quit still need
-the [owner checklist](../../Controls-checklist.md) evidence. The previous log is
-01.04 and is not counted as another controls-candidate run. The 90% terminal-click
-threshold remains provisional.
+and terminal trigger values, plus a neutral input-loss state. The owner subsequently
+confirms **all three requested focused checks passed**: actual partial/full L2/R2
+actions, touchpad settings/legend with Cross confirm/Circle cancel, and held-input
+disconnect/reconnect plus the delayed failed-read check. The 90% terminal-click
+threshold is therefore owner-validated on this candidate. These follow-up passes
+are owner observations; their full sequences are absent from the supplied capture.
+Normal Quit/orderly shutdown remains separately unverified in this return. The
+previous log is 01.04 and is not counted as another controls-candidate run.
 
 ## Candidate identity
 
@@ -26,8 +28,10 @@ threshold remains provisional.
 - Disposable cache: /data/pswaker/cache/d532217ac6a319ff6ad3/.
 
 The [artifact inventory](artifacts.json), [package inspection](inspection-01.05.json)
-and [provenance](provenance.json) preserve the full association. Internal rendering
-remains 1280x720 with original 30 Hz game logic and stock textures. Support stays
+and [provenance](provenance.json) preserve the full association. Original
+build-time UNTESTED labels are retained as historical build evidence;
+the returned controls review above supplies the subsequent owner verdict.
+Internal rendering remains 1280x720 with original 30 Hz game logic and stock textures. Support stays
 PS4 Slim / firmware 9.00 / GoldHEN v2.4b18, to be reconfirmed by the owner.
 
 ## Implementation and host verification
