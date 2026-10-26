@@ -1,0 +1,17 @@
+{
+  "version": "01.09",
+  "filename": "PSWaker-storage-01.09.pkg",
+  "size": 1516634112,
+  "sha256": "0b3259d464d99900897dcfbee1852622c19a83ce1999cec45e91dc2500a00e63",
+  "build_id": "d560ee2a9e873f83dc20",
+  "title_id": "PSWK00001",
+  "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+  "elf_sha256": "ea28f5aa548a724e4038d5089087940e8b5082a4d55586514b5e5627712ed353",
+  "self_sha256": "5c9396983bd26d0597df2668aed7d9b3b5825a546ef2dbbb2e58c837fa2ef1b9",
+  "image_sha1": "6b5f06c10d50ebb4099cded88217eb71e5bfbb4a",
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "inspection": "inspection-01.09.json",
+  "fresh_inspection_passed": true,
+  "windows_export_matches": true,
+  "hardware_status": "UNTESTED; owner evidence required"
+}

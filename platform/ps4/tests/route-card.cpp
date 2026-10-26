@@ -2,6 +2,7 @@
 // bookkeeping are simulated. No GCI bytes, disk assets or save durability claim.
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_Reset.h"
+#include "JSystem/JUtility/JUTGba.h"
 #include <cos_sdk/hooks.h>
 #include <dolphin/card.h>
 #include <dolphin/dvd/dvd.h>
@@ -13,6 +14,11 @@
 #include <thread>
 
 extern "C" int pswaker_card_shutdown_status();
+// This existing lifecycle harness simulates storage. Whole-save bytes are
+// exercised separately through the real GCI/backend application seam.
+extern "C" bool pswaker_save_begin(int) { return true; }
+extern "C" bool pswaker_save_finish(bool completed) { return completed; }
+extern "C" bool pswaker_save_check(int) { return true; }
 // Reset context is normally supplied by game startup.
 mDoRstData* mDoRst::mResetData = nullptr;
 namespace {
@@ -46,6 +52,9 @@ s32 mDoMemCdRWm_Store(CARDFileInfo*, void*, u32) {
 }
 s32 mDoMemCdRWm_Restore(CARDFileInfo*, void*, u32) { std::abort(); }
 extern "C" {
+// No clock or SI device is needed to wake an empty GBA queue on shutdown.
+OSTime OSGetTime() { return 0; }
+u32 SIProbe(s32) { std::abort(); }
 void CARDInit(const char*, const char*) {}
 DVDDiskID* DVDGetCurrentDiskID() { return &disk; }
 s32 CARDMount(s32, void*, CARDCallback) { return CARD_RESULT_READY; }
@@ -72,6 +81,21 @@ s32 CARDFormat(s32) { std::abort(); }
 
 int main(int argc, char** argv) {
     assert(argc == 2);
+    if (!std::strcmp(argv[1], "shutdown-gba")) {
+        JUTGba gba;
+        std::memset(&gba, 0, sizeof gba);
+        JUTGba::sManager = &gba;
+        for (int i = 0; i < 4; ++i) {
+            auto& param = gba.mParams[i];
+            OSInitMessageQueue(&param.msg_q, param.msg, 1);
+            assert(OSCreateThread(&gba.mThreads[i], JUTGba::gbaThreadMain, &param,
+                                  gba.mStacks+i+1, 0x1000, 8, 0));
+            OSResumeThread(&gba.mThreads[i]);
+        }
+        COSSdkRequestShutdown();
+        for (auto& thread : gba.mThreads) assert(OSJoinThread(&thread, nullptr));
+        return 0;
+    }
     failStore = !std::strcmp(argv[1], "failed-store");
     assert(pswaker_card_shutdown_status() == 1); // Quit before card initialization.
     g_mDoMemCd_control.ThdInit();

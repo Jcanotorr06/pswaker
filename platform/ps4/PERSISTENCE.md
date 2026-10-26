@@ -53,11 +53,12 @@ real GCI data/metadata replacement; the game routine's additional propagation
 changes are source-reviewed and target-compiled. The existing pending-card Quit
 observer remains unchanged and never requests a gameplay save.
 
-Replacement is atomic per GCI file write, not a transaction across all calls
-in a multi-block game save. Previous-valid-save backups, explicit corruption
-recovery, controlled failure/pending-write hardware cases and recovery from an
-uncertain completion remain #21. This checkpoint does not declare those
-guarantees implemented. Retain the game's replicated data and existing progress.
+The #20 implementation was atomic per GCI file write, without a transaction
+across a multi-block game save. The subsequent [#21 recovery candidate](STORAGE-RECOVERY.md)
+adds whole-store staging, previous-valid-save backups and explicit recovery.
+Controlled installed-console failure/pending-write acceptance still requires
+that candidate's owner return. Retain the game's replicated data and existing
+progress; the historical #20 evidence does not validate the newer binary.
 
 ## Reproduce and validate
 
