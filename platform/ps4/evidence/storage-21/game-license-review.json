@@ -1,0 +1,104 @@
+{
+  "program": {
+    "program_build_id": "d560ee2a9e873f83dc20",
+    "app_version": "01.09",
+    "eboot_sha256": "5c9396983bd26d0597df2668aed7d9b3b5825a546ef2dbbb2e58c837fa2ef1b9",
+    "elf_sha256": "ea28f5aa548a724e4038d5089087940e8b5082a4d55586514b5e5627712ed353",
+    "hardware_status": "UNTESTED installed-game candidate; owner evidence required for this exact binary",
+    "scope": "Storage recovery candidate; installed-console corruption, failed-write, pending-Quit and relaunch evidence required for this exact binary; performance acceptance remains separate",
+    "installed_image": "/app0/game.iso",
+    "user_data": "/data/pswaker/",
+    "cache": "/data/pswaker/cache/d560ee2a9e873f83dc20",
+    "sources": [
+      {
+        "name": "switchwaker",
+        "repository": "centollOS/SwitchWaker",
+        "revision": "ba8d0a31446cd53ceaebd6b7269cca641e73bf4c",
+        "sha256": "46a2c04b67eb0e9f9177cb349c43fb2687392787d2999dbf7e67af880c14daac",
+        "archive_url": "https://api.github.com/repos/centollOS/SwitchWaker/tarball/ba8d0a31446cd53ceaebd6b7269cca641e73bf4c"
+      },
+      {
+        "name": "decomp",
+        "repository": "snrubrm/tww",
+        "revision": "b09eebc39852e18397031d9a563a8eae124f21f1",
+        "sha256": "8850b88c6f0eefd30631396ba734c57d077ea546b1e021f475993fb08e220426",
+        "archive_url": "https://api.github.com/repos/snrubrm/tww/tarball/b09eebc39852e18397031d9a563a8eae124f21f1"
+      },
+      {
+        "name": "recompcore",
+        "repository": "elliotttate/RecompCore",
+        "revision": "8ab24daee9c641634fda5cac30389ad4b2cfda5e",
+        "sha256": "b9210c6473125edb8e3bdfa67189f737dfd4e2ac06ce9338606aa3fe039b2ce4",
+        "archive_url": "https://api.github.com/repos/elliotttate/RecompCore/tarball/8ab24daee9c641634fda5cac30389ad4b2cfda5e"
+      },
+      {
+        "name": "ps5-reference",
+        "repository": "griches/PS5_SwitchWaker",
+        "revision": "3c0f213f2d4c17606ac8637eda2c5da6cbcc73b0",
+        "sha256": "f3a3c875b96709fadc022d174a273dc468a55294bbdcdae322bdb438c0c39f52",
+        "archive_url": "https://api.github.com/repos/griches/PS5_SwitchWaker/tarball/3c0f213f2d4c17606ac8637eda2c5da6cbcc73b0"
+      }
+    ],
+    "patches": {
+      "0001-division.patch": "b9a8bffd763abdd57676b5c03d28671e65f16c8c91dbea9dc562301ff95bbf44",
+      "0002-float-lookup.patch": "d0c0efec0f0b72f9ba76ca3f6f8731f9a26a87b1a9184fa6d993eb87f461d56f",
+      "0003-callback-return.patch": "f9172ad24f68662d18fcf48d34679a92b639bde30eaddd247d8883c510948986",
+      "0004-ps4-runtime.patch": "5b9499ba021d7806146458935f548b811252c3131d1792c85fc1fb736d7ac234",
+      "0005-route-audio-lifecycle.patch": "3635b646bbe2c730012d315abc021aca29581524a9c4ddf8a334c3a6db307669",
+      "0006-save-completion.patch": "e9425231335d1b114fee27ab1612ba76819cfff683ddd93c73f14f57ffd37e66",
+      "0007-save-recovery.patch": "d7fc6aa973ba8108062c27c58b28b4d001130441f11a88ee3c268a5d79fbd81d",
+      "0008-check-load-and-close.patch": "b8cf83f39677a5e210947d5fe1842c5e58f72d9cb7725ac277a12dcd981486be",
+      "0009-gba-shutdown.patch": "7127f7ae8714b3f4ef5fd0132317241cda8267882838f1bbb9837ab749552bc0"
+    },
+    "platform_patches": {
+      "0001-game-controls-and-logging.patch": "6d34e78453b96cceb1e1496803cbf2bf9c770c1f5a8790206b5cddda89bb010b",
+      "0002-complete-controls.patch": "3e90d07fb01c112e5978b3e30a6aa4eed09c4777e940b2d467a437c7e9f8466d",
+      "0003-durable-file-replacement.patch": "c78467c8bbb61e05a6af3e5c6a62f34a4598802c371bd87a562dfec80ba6e6e2",
+      "0004-save-transaction.patch": "bb837a89c65107f5146e167cde8c08de84cb4ebbc8a1ae6e5a38a0f7ea8ecdda"
+    },
+    "platform_evidence": {
+      "artifacts.json": "9844f122fe9f27c4c4365f022584d0b1b15a2f3ca9439ee3194651244faa0fa4",
+      "inspection.json": "e787b884ed4cfad7ae8ef9ba02a6c53b026266c5f71f327887c7ebf3b541e3e2",
+      "input-closure.json": "8c4dfb704ef6067b7b43caa284f08555c9893e1083cf0d6d43ee5dbdb6efa196",
+      "license-audit.json": "8a2d411aebb2682c2efa36a6b6edc54c0d3f36afaff5f7c7d16540866a283e37",
+      "renderer-reconciliation.json": "8ef2bb33a4ac8676c9c5752d43ed9769352e89b4f7f93a6636867da04b2643cc"
+    },
+    "build_inputs_sha256": "7271b70ce5289af85803d71e9c6129b46d1005b392b5ef917a20faa4c3348c2e",
+    "distribution_cleared": false
+  },
+  "game_notice_sha256": {
+    "src/switchwaker/LICENSE": "71d04f366855708ab0e1742de8ba996950908d8f5dbccd6ad36cbb4acee89d50",
+    "src/switchwaker/game/LICENSE": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "src/switchwaker/switch/uam/LICENSE": "055680c0dae55c2e5cc341707811a12e992e44ea44563296f2f73359eb4b4720",
+    "src/switchwaker/native/dsp_hle/LICENSE": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3",
+    "src/recompcore/COPYING": "695114256e306a5e1ca407bc6e2a11877b112328dbe990253b52f59726e01b4b",
+    "src/recompcore/StrikersRecomp/LICENSE": "c3069321e339a754d810a467c8bdd13a4cc3be8c8d46bf55b6ba0d0478cd41ea",
+    "src/recompcore/Externals/licenses.md": "91427b0efa56f0fe0493420660263e11cae742130ed1f018cd18ae2c6736bcc7",
+    "src/recompcore/GXRuntime/LICENSE": "c3069321e339a754d810a467c8bdd13a4cc3be8c8d46bf55b6ba0d0478cd41ea",
+    "src/recompcore/Externals/SFML/license.txt": "d077528956532ae91d04a40c1c17cc6839e8327661ce958b12e94857b0dee4ed",
+    "src/recompcore/Externals/discord-rpc/LICENSE": "12054cc15e274c9a10966fd7d8740c12dbd679dec2468e370818d899f9a3a634",
+    "src/recompcore/Externals/MoltenVK/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "src/recompcore/Externals/implot/LICENSE": "38bd30c2111fe7e3d8fb86d8607491239659eff1df1b1004b9a8349e20a91967",
+    "src/recompcore/Externals/liblzma/COPYING": "bcb02973ef6e87ea73d331b3a80df7748407f17efdb784b61b47e0e610d3bb5c",
+    "src/recompcore/Externals/mbedtls/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "src/recompcore/Externals/picojson/LICENSE": "5585fe141cc7bb08c953f3859db608852968d0bbc625b9b6d95c0bd6349bacb6",
+    "src/recompcore/Externals/LZO/COPYING": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+    "src/recompcore/Externals/expr/LICENSE": "9d384ed698915ee19fef1e5563b79a29d7c14615a426a1eeccff5ee2d91053ff",
+    "src/recompcore/Externals/FatFs/LICENSE.txt": "b896e32fb2cdb3fc8b3b6fd854706fca4ac55619fbb6d5eb2429cb05ee338966",
+    "src/recompcore/Externals/ed25519/license.txt": "f68d76b9c1c2271422e55134ea94cf71f2ac3fc3ed6a7ec6b83a1a0538753214",
+    "src/recompcore/GXRuntime/graphics/aurora/LICENSE": "40c03cee04cda570d1029b85b6c2ee7ba78431ab1a754b9d912091d73b8ecb18",
+    "src/decomp/LICENSE": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "src/ps5-reference/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "src/ps5-reference/ps5/art/kenney/License.txt": "ca2f58f80f903512119da5828868199478119818cd7ecffb303d625cb74cbb5a"
+  },
+  "platform_license_audit_sha256": "8a2d411aebb2682c2efa36a6b6edc54c0d3f36afaff5f7c7d16540866a283e37",
+  "review": "GPL game/DSP sources and MIT reader provenance retained; inherited component notices retained with the maintained platform; SDK module/stub rights and combined distribution terms remain unresolved",
+  "complete_package": {
+    "inspection_sha256": "2944a521af770ae2750111d4803eedae18c46d0b05fdae15b501b613944c2485",
+    "package_sha256": "0b3259d464d99900897dcfbee1852622c19a83ce1999cec45e91dc2500a00e63",
+    "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+    "version": "01.09",
+    "review": "Actual packaged ELF/SELF match this program; unchanged inherited SDK modules/notices and owner image retained privately; no distribution clearance"
+  },
+  "distribution_cleared": false
+}
