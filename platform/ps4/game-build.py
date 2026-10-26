@@ -98,7 +98,7 @@ def stage(root, platform, version):
                 'eboot_sha256': preparation.digest(executable),
                 'elf_sha256': preparation.digest(elf),
                 'hardware_status': 'UNTESTED installed-game candidate; owner evidence required for this exact binary',
-                'scope': 'Startup and DualShock 4 controls checkpoint; no full-route, persistence or performance acceptance',
+                'scope': 'Outset/forest route and audio checkpoint; returned owner evidence required; no final persistence or performance acceptance',
                 'installed_image': '/app0/game.iso', 'user_data': '/data/pswaker/',
                 'cache': '/data/pswaker/cache/' + build_id,
                 'sources': prepared['sources'], 'patches': prepared['patches'],

@@ -38,6 +38,13 @@ partial/full triggers, settings/legend conventions, held-input reconnect/resume
 and the delayed failed-read check. Capture and shutdown-evidence limits remain
 explicit in that review.
 
+The [route/audio checkpoint](ROUTE-AUDIO.md) retains the tested game/renderer
+baseline, counts repeated software audio defects and backend errors, and
+coordinates pending card work with audio/GPU shutdown. Use its separate
+[owner checklist](Route-audio-checklist.md) and [candidate report](evidence/route-19/REPORT.md).
+Hardware underrun counts are unavailable in the selected backend; clean counters
+do not replace audible game observations or the later frame-pacing contract.
+
 ## Reproduce on Linux / WSL2
 
 Use the recorded Ubuntu 24.04 x86-64 environment in `host.lock.json`. It identifies

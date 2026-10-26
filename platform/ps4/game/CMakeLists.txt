@@ -58,7 +58,7 @@ set(COS_ASSETS_DIR "${GAME_ROOT}/assets/GZLE01" CACHE PATH "" FORCE)
 set(COS_RECOMPCORE_DIR "${GAME_ROOT}/src/recompcore" CACHE PATH "" FORCE)
 set(COS_RUNTIME_ASSETS ON CACHE BOOL "" FORCE)
 set(COS_EXE_ENTRY pswaker_entry CACHE STRING "" FORCE)
-add_library(pswaker_entry STATIC main.cpp installed-content.cpp controls.cpp
+add_library(pswaker_entry STATIC main.cpp installed-content.cpp controls.cpp audio-evidence.cpp
   "${GAME_ROOT}/src/platform/input.cpp"
   "${GAME_ROOT}/src/platform/native/platform.c"
   "${PLATFORM_ROOT}/src/native-platform/ps4/native/realpath.c")
@@ -82,6 +82,7 @@ target_include_directories(pswaker_entry PRIVATE "${GAME_ROOT}/src/switchwaker/n
 target_include_directories(cos_dsp_hle PRIVATE "${OPENORBIS}/include")
 target_link_options(switchwaker PRIVATE "LINKER:--wrap=realpath")
 target_link_options(switchwaker PRIVATE "LINKER:--wrap=scePadReadState")
+target_link_options(switchwaker PRIVATE "LINKER:--wrap=sceAudioOutOutput")
 target_link_libraries(switchwaker PRIVATE z SceSysmodule SceSystemService SceUserService SceVideoOut SceAudioOut ScePad SceNet pthread)
 ps4_link_mesa(switchwaker)
 ps4_add_eboot(switchwaker)

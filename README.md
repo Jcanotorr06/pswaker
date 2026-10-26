@@ -8,6 +8,8 @@ The native game is integrated with the verified PS4 platform. The owner [reports
 
 The [maintained disc-free platform diagnostic](platform/ps4/README.md) passed its [bounded platform gate](platform/ps4/evidence/verification-15/REPORT.md). Those synthetic checks do not validate the game candidate. Full-route rendering/audio, save durability and performance remain later acceptance checkpoints.
 
+The [Outset/forest route and audio checkpoint](platform/ps4/ROUTE-AUDIO.md) adds repeated audio-defect counters and pending-card/audio/GPU shutdown coordination. Its [owner checklist](platform/ps4/Route-audio-checklist.md) requires focused observations on the updated private package before route acceptance.
+
 The canonical planning map is [Plan the first playable Wind Waker port for PS4 Slim 9.00](https://github.com/Jcanotorr06/pswaker/issues/1). It tracks the decisions needed before implementation. The [initial porting investigation](docs/PORTING_PLAN.md) and [platform research](docs/research/ps4-platform.md) provide background, using [Dusklight's PS4 port](https://github.com/BgbrhrWatchinOVO/dusklight-ps4) as the main platform reference.
 
 This repository and the releases contain no game data and no keys. You need your own disc, dumped yourself.
