@@ -1,11 +1,15 @@
 # Controls candidate for issue #18
 
-The updated complete package is built, freshly extracted/inspected, and ready
-for the [owner checklist](../../Controls-checklist.md). **Hardware acceptance
-is pending returned evidence for this exact binary.** The earlier owner-tested
-#17 build's progression is useful baseline context, not a pass for these changes.
-The 90% terminal-click threshold remains provisional until the owner verifies
-partial/full actions on hardware.
+The updated complete package is built and freshly extracted/inspected. The
+[returned controls review](console-return-01.05/REPORT.md) associates the current
+log with this exact 01.05 binary and records the owner's confirmation that
+mapped buttons remain functional as expected. Sampled input includes partial
+and terminal trigger values, plus a neutral input-loss state. **Focused hardware
+acceptance remains partial:** actual partial/full actions, port-menu conventions,
+held-input loss/reconnect, the delayed read check and orderly Quit still need
+the [owner checklist](../../Controls-checklist.md) evidence. The previous log is
+01.04 and is not counted as another controls-candidate run. The 90% terminal-click
+threshold remains provisional.
 
 ## Candidate identity
 

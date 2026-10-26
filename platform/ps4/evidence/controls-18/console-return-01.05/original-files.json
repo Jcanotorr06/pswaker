@@ -1,0 +1,23 @@
+{
+  "original_directory": "local-research/controls-18-artifacts/evidence/logs",
+  "files": [
+    {
+      "path": "last-stage.txt",
+      "size": 95,
+      "sha256": "456e2ed8f76e6869e25c208b7452e125d72751332e09e46299eb614cc788a019",
+      "lines": 1
+    },
+    {
+      "path": "platform.log",
+      "size": 232274,
+      "sha256": "107cbfa228dd40fafaf5089d1a7bc75bfbae6ba8079e62b9cfe9fd93f5025346",
+      "lines": 2010
+    },
+    {
+      "path": "platform.prev.log",
+      "size": 35253,
+      "sha256": "81e5ba78ee7aea87e33b7f745e1a37e8b053e0966e6becd2c4210bf05b70c0df",
+      "lines": 600
+    }
+  ]
+}

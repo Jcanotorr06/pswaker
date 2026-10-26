@@ -32,6 +32,9 @@ The [DualShock 4 controls checkpoint](CONTROLS.md) adds the fixed mappings,
 PlayStation port menus and deliberate input-loss recovery for #18. Its
 [owner checklist](Controls-checklist.md) requires focused observations tied to
 the new complete package, including a delayed installed-game failed-read check.
+The [returned 01.05 controls review](evidence/controls-18/console-return-01.05/REPORT.md)
+records owner-confirmed functional mapped buttons and matching candidate logs;
+the focused trigger, menu and input-loss/recovery checks remain partially open.
 
 ## Reproduce on Linux / WSL2
 

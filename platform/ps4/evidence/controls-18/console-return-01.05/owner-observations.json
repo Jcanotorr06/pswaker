@@ -1,0 +1,13 @@
+{
+  "source": "Owner follow-up in the implementation conversation",
+  "original_logs_directory": "local-research/controls-18-artifacts/evidence/logs",
+  "statement": "Controls work just as they did before, buttons remain mapped and functional as expected",
+  "mapped_button_functionality_confirmed": true,
+  "per_action_scene_and_item_results": "Not separately supplied",
+  "partial_and_full_trigger_action_distinction": "Not separately confirmed",
+  "port_legend_symbols_and_confirm_cancel_behavior": "Not separately confirmed",
+  "held_input_physical_disconnect_and_deliberate_reconnect_resume": "Not separately confirmed",
+  "installed_delayed_failed_read_check": "Not separately confirmed; no check markers in supplied candidate log",
+  "normal_quit_confirmation_and_shutdown": "Not separately confirmed; no EXIT/SHUTDOWN records in supplied candidate log",
+  "scope": "Owner confirmation of functional mapped buttons on the returned candidate; focused hardware acceptance remains partial"
+}

@@ -1,0 +1,37 @@
+platform.log:2: BEGIN build=d532217ac6a319ff6ad3 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/d532217ac6a319ff6ad3
+platform.log:172: STAGE completed=platform-initialized ms=681.2 build=d532217ac6a319ff6ad3 errors=0
+platform.log:175: STAGE completed=PS4-runtime-crash-logger-selected ms=690.8 build=d532217ac6a319ff6ad3 errors=0
+platform.log:177: STAGE completed=aurora-initialize ms=701.8 build=d532217ac6a319ff6ad3 errors=0
+platform.log:295: STAGE completed=graphics-initialized ms=1624.3 build=d532217ac6a319ff6ad3 errors=0
+platform.log:461: STAGE completed=installed-image-validated ms=40561.2 build=d532217ac6a319ff6ad3 errors=0
+platform.log:462: STAGE completed=writable-storage-checked ms=40574.4 build=d532217ac6a319ff6ad3 errors=0
+platform.log:463: DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=40585.6
+platform.log:466: STAGE completed=known-shaders-prepared ms=40605.1 build=d532217ac6a319ff6ad3 errors=0
+platform.log:469: STAGE completed=runtime-assets-validated ms=40763.8 build=d532217ac6a319ff6ad3 errors=0
+platform.log:487: INPUT sample connected=1 screen=legend releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+platform.log:500: INPUT sample connected=1 screen=legend releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+platform.log:501: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+platform.log:502: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+platform.log:623: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+platform.log:869: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+platform.log:870: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x1000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x800 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+platform.log:1432: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x200 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.314 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,80 threshold=90%
+platform.log:1465: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x100 sticks=0.000,0.000,0.000,0.000 triggers=0.698,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=178,0 threshold=90%
+platform.log:1485: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x800 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x10 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+platform.log:1494: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x200 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.965 game-buttons=0x20 game-sticks=0,0,0,0 game-triggers=0,246 threshold=90%
+platform.log:1957: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x300 sticks=0.000,0.000,0.000,0.000 triggers=0.925,0.984 game-buttons=0x60 game-sticks=0,0,0,0 game-triggers=236,251 threshold=90%
+platform.log:1974: HEARTBEAT ms=780460.7 shaders-created=299 queued=0 checked-errors=0
+platform.log:1985: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+platform.log:1987: INPUT sample connected=0 screen=input-lost releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+platform.log:2010: INPUT sample connected=0 screen=input-lost releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+platform.prev.log:2: BEGIN build=6ebc07987fe3b6c6064a platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6ebc07987fe3b6c6064a
+platform.prev.log:176: STAGE completed=platform-initialized ms=1950.4 build=6ebc07987fe3b6c6064a errors=0
+platform.prev.log:179: STAGE completed=PS4-runtime-crash-logger-selected ms=1961.7 build=6ebc07987fe3b6c6064a errors=0
+platform.prev.log:181: STAGE completed=aurora-initialize ms=2104.0 build=6ebc07987fe3b6c6064a errors=0
+platform.prev.log:299: STAGE completed=graphics-initialized ms=2833.3 build=6ebc07987fe3b6c6064a errors=0
+platform.prev.log:496: STAGE completed=installed-image-validated ms=47916.8 build=6ebc07987fe3b6c6064a errors=0
+platform.prev.log:497: STAGE completed=writable-storage-checked ms=47962.9 build=6ebc07987fe3b6c6064a errors=0
+platform.prev.log:498: DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=47974.3
+platform.prev.log:501: STAGE completed=known-shaders-prepared ms=47994.0 build=6ebc07987fe3b6c6064a errors=0
+platform.prev.log:504: STAGE completed=runtime-assets-validated ms=48183.3 build=6ebc07987fe3b6c6064a errors=0
+platform.prev.log:593: HEARTBEAT ms=85919.5 shaders-created=1138 queued=0 checked-errors=0
