@@ -84,11 +84,13 @@ void pswaker_poll_controls() {
     const bool cross = current.held & PAD_CROSS;
     const bool circle = current.held & PAD_CIRCLE;
     if (view.screen == PortScreen::Settings && (current.held & (PAD_UP | PAD_DOWN))) {
-        view.selection = (view.selection + ((current.held & PAD_DOWN) ? 1 : 3)) % 4;
+        const unsigned count = portMenuItems.size();
+        view.selection = (view.selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
         armed = false;
         return;
     }
     destination = view.screen;
+    const auto action = portMenuItems[view.selection].action;
     switch (view.screen) {
     case PortScreen::Legend:
         if (cross || (circle && afterLegend == PortScreen::Settings)) destination = afterLegend;
@@ -97,14 +99,14 @@ void pswaker_poll_controls() {
         if (cross) destination = beforeLoss;
         break;
     case PortScreen::Settings:
-        if (circle || (cross && view.selection == 0)) destination = PortScreen::Game;
-        else if (cross && view.selection == 1) {
+        if (circle || (cross && action == PortAction::Resume)) destination = PortScreen::Game;
+        else if (cross && action == PortAction::ShowLegend) {
             afterLegend = PortScreen::Settings;
             destination = PortScreen::Legend;
-        } else if (cross && view.selection == 2) {
+        } else if (cross && action == PortAction::CheckFailedRead) {
             checkAfterResume = true;
             destination = PortScreen::Game;
-        } else if (cross && view.selection == 3) destination = PortScreen::Quit;
+        } else if (cross && action == PortAction::Quit) destination = PortScreen::Quit;
         break;
     case PortScreen::Quit:
         if (circle) destination = PortScreen::Settings;

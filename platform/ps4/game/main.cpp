@@ -85,10 +85,9 @@ void portContent() {
         symbolLine(Symbol::Cross, "Continue / Return to settings");
         symbolLine(Symbol::Circle, "Back to settings (when opened from settings)");
     } else if (view.screen == PortScreen::Settings) {
-        constexpr const char* choices[] = {"Resume game", "DualShock 4 legend", "Resume and check failed read in 5 seconds", "Quit game..."};
         ImGui::TextUnformatted("D-pad Up / Down: Choose");
-        for (unsigned i = 0; i < 4; ++i)
-            ImGui::Text("%s %s", view.selection == i ? ">" : " ", choices[i]);
+        for (unsigned i = 0; i < portMenuItems.size(); ++i)
+            ImGui::Text("%s %s", view.selection == i ? ">" : " ", portMenuItems[i].label);
         ImGui::Separator();
         symbolLine(Symbol::Cross, "Confirm"); symbolLine(Symbol::Circle, "Cancel / Resume game");
         ImGui::TextWrapped("The read check resumes gameplay, then pauses after 5 seconds. Hold movement, buttons and triggers during the check; explicitly resume afterward.");

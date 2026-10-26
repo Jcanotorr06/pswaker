@@ -1,7 +1,16 @@
 #pragma once
 #include <dolphin/pad.h>
+#include <array>
 
 enum class PortScreen { Legend, Game, Settings, Quit, InputLost, Exit };
+enum class PortAction { Resume, ShowLegend, CheckFailedRead, Quit };
+struct PortMenuItem { PortAction action; const char* label; };
+inline constexpr std::array<PortMenuItem, 4> portMenuItems{{
+    {PortAction::Resume, "Resume game"},
+    {PortAction::ShowLegend, "DualShock 4 legend"},
+    {PortAction::CheckFailedRead, "Resume and check failed read in 5 seconds"},
+    {PortAction::Quit, "Quit game..."},
+}};
 struct PortView {
     PortScreen screen;
     unsigned selection;
