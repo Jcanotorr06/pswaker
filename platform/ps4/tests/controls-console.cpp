@@ -79,6 +79,9 @@ void pswaker_toggle_text_size() {
     ++textChanges;
     assert(settings && settings->setLargeText(!settings->largeText()));
 }
+// Performance actions are outside the existing controls scenarios.
+void pswaker_perf_arm(const char*) {}
+void pswaker_perf_phase(const char*) {}
 int main(int argc, char** argv) {
     assert(argc == 3);
     if (std::strcmp(argv[1], "boot-loss") == 0) {

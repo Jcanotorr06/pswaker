@@ -1,6 +1,7 @@
 // PS4 uses the selected DolphinPS4 crash logger; no foreign ucontext layout or recovery.
 #include "pc_internal.h"
 #include "game-platform.hpp"
+#include "frame-pacing.hpp"
 #include <atomic>
 #include <algorithm>
 #include <cstdarg>
@@ -75,6 +76,7 @@ extern "C" int pc_trace_enabled(const char* channel) {
     return 0;
 }
 extern "C" void pc_trace_scene(int id) {
+    pswaker_perf_scene_request(pc::traceSceneName(id));
     static uint64_t previousMs = 0;
     const auto now = pc::elapsedMs();
     pc::scene = id;

@@ -2,6 +2,7 @@
 #include "installed-content.hpp"
 #include "controls.hpp"
 #include "storage.hpp"
+#include "frame-pacing.hpp"
 #include "native/platform.h"
 #include <aurora/event.h>
 #include <aurora/gfx.h>
@@ -32,6 +33,9 @@ class JKRHeap;
 extern "C" int aurora_main(int argc, char** argv);
 extern "C" void pswaker_log_game_state();
 extern "C" int pswaker_card_shutdown_status();
+extern "C" void ac_ps4_get_memory(uint64_t*, uint64_t*, uint64_t*);
+extern "C" size_t pswaker_heap_used();
+extern "C" int sceKernelAvailableFlexibleMemorySize(size_t*);
 void pswaker_log_audio_output();
 extern "C" uint64_t ps4_disc_busy_until_ns() { return 0; }
 namespace {
@@ -95,6 +99,7 @@ void portContent() {
         for (unsigned i = 0; i < portMenuItems.size(); ++i)
             ImGui::Text("%s %s", view.selection == i ? ">" : " ", portMenuItems[i].label);
         ImGui::Text("Port text size: %s", settings.largeText() ? "Large" : "Standard");
+        ImGui::TextWrapped("%s", pswaker_perf_status());
         if (*settings.error()) {
             ImGui::TextWrapped("Settings could not be saved: %s", settings.error());
             ImGui::TextWrapped("Check free space/permissions, then select Change port text size to retry. Saving was not confirmed.");
@@ -232,6 +237,7 @@ void pswaker_graphics_ready() {
     JKRPcHostAllocScope hostAlloc;
     graphics = true;
     pswaker_stage("graphics-initialized");
+    pswaker_perf_phase("content-validation");
     FILE* image = fopen("/app0/game.iso", "rb");
     char error[512];
     const bool valid = pswaker_validate_image(image, error, sizeof error, imageProgress);
@@ -239,6 +245,7 @@ void pswaker_graphics_ready() {
     if (!valid) pswaker_installation_error(error);
     if (!closed) pswaker_installation_error("Closing installed content failed");
     pswaker_stage("installed-image-validated");
+    pswaker_perf_phase("storage-check");
     while (!settings.check()) {
         ++checkedErrors;
         say("ERROR writable profile storage check: %s", settings.error());
@@ -282,6 +289,7 @@ void pswaker_graphics_ready() {
     screen("Preparing graphics", "Preparing shaders for this PS4 build.");
     logDimensions();
     const auto start = milliseconds();
+    pswaker_perf_phase("shader-preparation");
     uint32_t previous = UINT32_MAX;
     for (;;) {
         const auto stats = pipelines();
@@ -297,6 +305,7 @@ void pswaker_graphics_ready() {
     }
     say("TIMING shader-preparation_ms=%.1f startup_to_preparation_complete_ms=%.1f", milliseconds()-start, milliseconds());
     pswaker_stage("known-shaders-prepared");
+    pswaker_perf_phase("loading");
 }
 void pswaker_frame_boundary() {
     JKRPcHostAllocScope hostAlloc;
@@ -306,6 +315,7 @@ void pswaker_frame_boundary() {
     // the next frame boundary so affected progress cannot be overwritten.
     if (pswaker_card_shutdown_status() < 0) pswaker_exit(0);
     while (pswaker_port_view().screen != PortScreen::Game) {
+        pswaker_perf_pause();
         if (pswaker_port_view().screen == PortScreen::Exit) pswaker_exit(0);
         screen("PSWaker - game paused", nullptr);
         pswaker_log_controls();
@@ -323,6 +333,13 @@ void pswaker_frame_boundary() {
             (unsigned long long)frames, (unsigned long long)squares);
         pswaker_log_audio_output();
         pswaker_log_game_state();
+        uint64_t garlic = 0, onion = 0, buffers = 0;
+        ac_ps4_get_memory(&garlic, &onion, &buffers);
+        size_t flexible = 0;
+        const int result = sceKernelAvailableFlexibleMemorySize(&flexible);
+        say("RESOURCE ms=%.1f garlic=%llu onion=%llu buffers=%llu main-mspace-allocated=%zu flexible-available=%zu query-result=%d",
+            milliseconds(), (unsigned long long)garlic, (unsigned long long)onion,
+            (unsigned long long)buffers, pswaker_heap_used(), flexible, result);
     }
 }
 [[noreturn]] void pswaker_exit(int code) {
@@ -367,6 +384,7 @@ void pswaker_frame_boundary() {
             pswaker_log_audio_output();
             aurora::gfx::synchronize();
             say("SHUTDOWN gpu-synchronized=1");
+            pswaker_perf_shutdown();
             if (stopped) {
                 aurora_shutdown();
                 pswaker_log_audio_output(); // Includes the backend's final drain call.
@@ -376,6 +394,7 @@ void pswaker_frame_boundary() {
         }
     }
     fflush(nullptr);
+    pswaker_perf_shutdown();
     catchReturnFromMain(code);
     for (;;) sleep(1);
 }
@@ -407,6 +426,7 @@ int main(int argc, char** argv) {
     mkdir("/data/pswaker/cache", 0755);
     mkdir("/data/pswaker/cache/" PSWAKER_BUILD_ID, 0755);
     platform_init("PSWaker");
+    pswaker_perf_initialize(PSWAKER_BUILD_ID);
     say("BEGIN build=%s platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/%s", PSWAKER_BUILD_ID, PSWAKER_BUILD_ID);
     if (FILE* manifest = fopen("/app0/complete-package.json", "r")) {
         char line[1024];

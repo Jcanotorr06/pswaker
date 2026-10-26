@@ -3,14 +3,18 @@
 #include <array>
 
 enum class PortScreen { Legend, Game, Settings, Quit, InputLost, Exit };
-enum class PortAction { Resume, ShowLegend, CheckFailedRead, ToggleText, Quit };
+enum class PortAction { Resume, ShowLegend, CheckFailedRead, ToggleText, Quit, SampleOutset, SampleForest, Transition, Gameplay };
 struct PortMenuItem { PortAction action; const char* label; };
-inline constexpr std::array<PortMenuItem, 5> portMenuItems{{
+inline constexpr std::array<PortMenuItem, 9> portMenuItems{{
     {PortAction::Resume, "Resume game"},
     {PortAction::ShowLegend, "DualShock 4 legend"},
     {PortAction::CheckFailedRead, "Resume and check failed read in 5 seconds"},
     {PortAction::ToggleText, "Change port text size"},
     {PortAction::Quit, "Quit game..."},
+    {PortAction::SampleOutset, "Measure Outset (resume for two minutes)"},
+    {PortAction::SampleForest, "Measure forest (resume for two minutes)"},
+    {PortAction::Transition, "Mark loading / transition start and resume"},
+    {PortAction::Gameplay, "Mark visible gameplay ready and resume"},
 }};
 struct PortView {
     PortScreen screen;

@@ -205,6 +205,10 @@ pass establish no game DSP, game-save correctness or gameplay performance.
 
 ## Host checks
 
+For installed-game frame measurements, use [FRAME-PACING.md](FRAME-PACING.md)
+and the [owner sampling checklist](Frame-pacing-checklist.md). Diagnostic or
+host FPS cannot establish the game's performance targets.
+
 The agreed test boundaries are the preparation and artifact-inspection CLIs:
 
 ```bash

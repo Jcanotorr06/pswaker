@@ -1,5 +1,6 @@
 #include "controls.hpp"
 #include "native/platform.h"
+#include "frame-pacing.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -110,6 +111,13 @@ void pswaker_poll_controls() {
             pswaker_toggle_text_size();
             armed = false;
         } else if (cross && action == PortAction::Quit) destination = PortScreen::Quit;
+        else if (cross && (action == PortAction::SampleOutset || action == PortAction::SampleForest)) {
+            pswaker_perf_arm(action == PortAction::SampleOutset ? "outset" : "forest");
+            destination = PortScreen::Game;
+        } else if (cross && (action == PortAction::Transition || action == PortAction::Gameplay)) {
+            pswaker_perf_phase(action == PortAction::Transition ? "transition" : "gameplay");
+            destination = PortScreen::Game;
+        }
         break;
     case PortScreen::Quit:
         if (circle) destination = PortScreen::Settings;
