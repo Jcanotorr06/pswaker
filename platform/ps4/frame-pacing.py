@@ -95,6 +95,13 @@ def analyze(run, inspection, owner):
         ends = [e for e in events if e['kind'] == 'sample-end' and int(e['sample']) == number]
         if len(ends) != 1 or ends[0]['detail'] != 'complete':
             reasons.append('missing complete sample end marker')
+        outside_boundary = []
+        if len(ends) == 1:
+            boundary = int(ends[0]['monotonic_ns'])
+            # A frame already queued when the owner pauses can complete later.
+            # Retain it in raw-launch, but honor the explicit sample end marker.
+            outside_boundary = [f for f in raw if f['observed_ns'] > boundary]
+            raw = [f for f in raw if f['observed_ns'] <= boundary]
         if len(raw) < 2:
             reasons.append('insufficient game presentations')
         seconds = (raw[-1]['tsc'] - raw[0]['tsc']) / frequency if len(raw) >= 2 else 0
@@ -141,6 +148,7 @@ def analyze(run, inspection, owner):
                 if (value < limit if minimum else value > limit):
                     shortfalls.append({'metric': metric, 'measured': value, 'limit': limit})
         results.append({'sample': number, 'scene': scene, 'owner': action, 'metrics': metrics,
+                        'outside_boundary_presentations': len(outside_boundary),
                         'invalid_reasons': reasons, 'shortfalls': shortfalls,
                         'target_met': bool(metrics and not reasons and not shortfalls), 'raw': raw})
     phases = []

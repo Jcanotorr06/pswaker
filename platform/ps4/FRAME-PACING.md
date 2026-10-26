@@ -57,6 +57,9 @@ at the baseline. Do not claim an overall gameplay pass while an unexplained
 resume freeze remains. Port pauses, input recovery, actual stage changes,
 missing frames and unfinished shutdowns produce incomplete/invalid samples;
 they are retained, never silently dropped in favor of a later successful run.
+A queued game frame can complete after a manual pause ends a sample. Analysis
+uses the explicit monotonic end marker, counts these outside-boundary arrivals,
+and preserves them in the full raw launch rather than changing the ended sample.
 Scene-creation requests are observations, not proof of a visible transition:
 they do **not** automatically reclassify an active-gameplay hitch as loading.
 
@@ -101,6 +104,12 @@ observations (driver garlic/onion/buffer bytes, main-mspace allocation,
 available flexible memory) and audio DMA/output diagnostics accompany the
 ordinary five-second heartbeat. They are observations, not universal leak or
 audio-correctness guarantees.
+
+Follow-up builds record `diagnostic-input-ns`, `diagnostic-heartbeat-ns` and
+`diagnostic-recorder-flush-ns` events to measure these operations directly.
+They are elapsed CPU/operation durations, not proof of GPU cost or sole stall
+causality. The selected release game keeps FTP log output but omits duplicate
+`sceKernelDebugOutText` output when `PS4_DEV_TOOLS=0`; developer builds retain it.
 
 Copy [frame-pacing-owner.example.json](frame-pacing-owner.example.json) into
 the private returned launch, fill in actual package/build/platform/cache and

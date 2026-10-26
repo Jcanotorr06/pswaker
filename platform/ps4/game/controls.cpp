@@ -165,6 +165,7 @@ void pswaker_log_controls() {
     static double next = 0;
     const double now = now_seconds();
     if (now < next) return;
+    const auto diagnosticStart = pswaker_perf_now();
     next = now + 1;
     PADStatus status[PAD_CHANMAX];
     pswaker_read_gamepad(status);
@@ -173,4 +174,5 @@ void pswaker_log_controls() {
         view.connected, screenName(view.screen), view.releasing, current.held,
         current.left_x, current.left_y, current.right_x, current.right_y, current.l2, current.r2,
         p.button, p.stickX, p.stickY, p.substickX, p.substickY, p.triggerLeft, p.triggerRight);
+    pswaker_perf_diagnostic(PswakerDiagnostic::Input, diagnosticStart);
 }

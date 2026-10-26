@@ -1,6 +1,7 @@
 """Public exported-record and summary-CLI seams; console services are the boundary."""
 import csv
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -72,6 +73,25 @@ class SummaryTests(unittest.TestCase):
         result, report = self.analyze()
         self.assertEqual(result.returncode, 2, result.stderr)
         self.assertTrue(all(not sample['target_met'] for sample in report['samples']))
+
+    def test_a_presentation_arriving_after_pause_stays_in_launch_but_outside_sample(self):
+        self.sample(1, 'outset')
+        self.samples[0][2] = self.events[-1][2] = 'paused'
+        late = self.frames[-1].copy()
+        late[0] += 1
+        late[2] += 1000
+        late[3] += 33333333
+        late[4] += 1
+        late[5] += 1
+        late[9] += 33333333
+        self.frames.append(late)
+        self.tick += 1000
+        result, report = self.analyze()
+        self.assertEqual(result.returncode, 2)
+        self.assertEqual(report['samples'][0]['metrics']['intervals'], 3600)
+        self.assertEqual(report['samples'][0]['outside_boundary_presentations'], 1)
+        with (self.root / 'analysis/raw-launch/frames.csv').open() as stream:
+            self.assertEqual(len(list(csv.DictReader(stream))), 3602)
 
     def test_two_independent_30_hz_samples_preserve_raw_evidence(self):
         self.sample(1, 'outset')
@@ -213,3 +233,41 @@ class RecorderTests(unittest.TestCase):
                 events = list(csv.DictReader(stream))
             self.assertEqual([(f['game_frame'], f['sample']) for f in frames], [('0', '0'), ('1', '1'), ('2', '1')])
             self.assertEqual([e['sample'] for e in events if e['kind'] == 'shader-wait-ns'], ['0', '1'])
+
+    @unittest.skipUnless(os.environ.get('PSWAKER_GAME_ROOT'), 'Prepared native platform required')
+    def test_periodic_diagnostics_preserve_file_evidence_without_stalling_presentations(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            platform = Path(os.environ['PSWAKER_GAME_ROOT']) / 'src/platform'
+            compiled = subprocess.run(['clang-21', '-std=c11', '-D_POSIX_C_SOURCE=200809L',
+                '-DPS4_DEV_TOOLS=0', '-ffunction-sections', '-fdata-sections', '-I', str(platform),
+                '-c', str(platform / 'native/platform.c'), '-o', str(root / 'platform.o')],
+                capture_output=True, text=True)
+            self.assertEqual(compiled.returncode, 0, compiled.stderr)
+            linked = subprocess.run(['clang++-21', '-std=c++23', '-pthread', '-Wall', '-Wextra', '-Werror',
+                '-DPSWAKER_TEST_PLATFORM_LOGGER', '-Wl,--gc-sections', '-I', str(HERE / 'game'),
+                str(HERE / 'game/frame-pacing.cpp'), str(HERE / 'tests/frame-pacing.cpp'),
+                str(root / 'platform.o'), '-o', str(root / 'recorder')], capture_output=True, text=True)
+            self.assertEqual(linked.returncode, 0, linked.stderr)
+            result = subprocess.run([str(root / 'recorder'), directory, 'diagnostics'],
+                                    capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            run = next(root.glob('performance-*'))
+            with (run / 'frames.csv').open() as stream:
+                frames = list(csv.DictReader(stream))
+            self.assertEqual((int(frames[1]['tsc']) - int(frames[0]['tsc'])), 33,
+                             'Periodic diagnostics delayed the next game presentation')
+            self.assertEqual(result.stderr.splitlines(), [f'heartbeat-evidence-{i}' for i in range(7)])
+
+    def test_diagnostic_costs_are_exported_with_the_active_sample(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = subprocess.run([str(self.binary), directory, 'diagnostic-cost'], capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            run = next(Path(directory).glob('performance-*'))
+            with (run / 'events.csv').open() as stream:
+                events = list(csv.DictReader(stream))
+            costs = [e for e in events if e['kind'].startswith('diagnostic-')]
+            self.assertEqual([(e['kind'], e['sample']) for e in costs],
+                             [('diagnostic-heartbeat-ns', '1'), ('diagnostic-input-ns', '1')])
+            self.assertGreaterEqual(int(costs[0]['detail']), 44000000)
+            self.assertGreaterEqual(int(costs[1]['detail']), 10000000)

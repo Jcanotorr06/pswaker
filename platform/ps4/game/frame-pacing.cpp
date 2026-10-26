@@ -151,8 +151,12 @@ void poll() {
                 else if (flip.count) observe(flip, pswaker_perf_now(), sceKernelReadTsc());
             }
             if (++polls % 1000 == 0) {
+                const auto start = pswaker_perf_now();
                 if (frames && fflush(frames)) fail("frames-flush");
                 if (events && fflush(events)) fail("events-flush");
+                char text[32];
+                snprintf(text, sizeof text, "%llu", (unsigned long long)(pswaker_perf_now() - start));
+                event("diagnostic-recorder-flush-ns", text);
             }
         }
         usleep(1000);
@@ -161,6 +165,13 @@ void poll() {
 }
 extern "C" uint64_t pswaker_perf_now() {
     return std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+}
+void pswaker_perf_diagnostic(PswakerDiagnostic kind, uint64_t start) {
+    const auto duration = pswaker_perf_now() - start;
+    std::lock_guard lock(mutex);
+    char text[32]; snprintf(text, sizeof text, "%llu", (unsigned long long)duration);
+    event(kind == PswakerDiagnostic::Input ? "diagnostic-input-ns" : "diagnostic-heartbeat-ns", text,
+          sample.resumeNs ? activeSample : 0);
 }
 void pswaker_perf_initialize(const char* build, const char* logsRoot) {
     const int length = snprintf(directory, sizeof directory, "%s/performance-XXXXXX", logsRoot);

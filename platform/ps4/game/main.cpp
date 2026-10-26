@@ -323,6 +323,7 @@ void pswaker_frame_boundary() {
     }
     pswaker_log_controls();
     if (milliseconds() >= next) {
+        const auto diagnosticStart = pswaker_perf_now();
         next = milliseconds()+5000;
         const auto stats = pipelines();
         say("HEARTBEAT ms=%.1f shaders-created=%u queued=%u checked-errors=%u", milliseconds(), stats.created,
@@ -340,6 +341,7 @@ void pswaker_frame_boundary() {
         say("RESOURCE ms=%.1f garlic=%llu onion=%llu buffers=%llu main-mspace-allocated=%zu flexible-available=%zu query-result=%d",
             milliseconds(), (unsigned long long)garlic, (unsigned long long)onion,
             (unsigned long long)buffers, pswaker_heap_used(), flexible, result);
+        pswaker_perf_diagnostic(PswakerDiagnostic::Heartbeat, diagnosticStart);
     }
 }
 [[noreturn]] void pswaker_exit(int code) {

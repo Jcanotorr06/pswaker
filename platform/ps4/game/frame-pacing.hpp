@@ -4,6 +4,8 @@
 // Shared by the game thread and Aurora's recording/render workers. UI frames
 // carry frame=0. The tag follows the actual present, rather than a CPU heartbeat.
 struct PswakerFrameTag { uint64_t frame; unsigned sample; char stage[64]; int room; };
+enum class PswakerDiagnostic { Input, Heartbeat };
+void pswaker_perf_diagnostic(PswakerDiagnostic kind, uint64_t start);
 void pswaker_perf_initialize(const char* build, const char* logsRoot = "/data/pswaker/logs");
 void pswaker_perf_shutdown();
 void pswaker_perf_arm(const char* scene);

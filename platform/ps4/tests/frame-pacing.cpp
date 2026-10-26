@@ -32,6 +32,16 @@ void present(uint64_t frame, uint64_t argument, uint64_t time) {
 }
 extern "C" int __wrap_sceVideoOutSubmitFlip(int, int, uint32_t, int64_t);
 namespace { int submit(uint64_t arg) { return __wrap_sceVideoOutSubmitFlip(1, 0, 1, arg); } }
+#if defined(PSWAKER_TEST_PLATFORM_LOGGER)
+extern "C" void say(const char*, ...);
+extern "C" int sceKernelDebugOutText(int, const char*) {
+    // The external debugger consumes ten milliseconds per line. Use the fake
+    // display clock rather than host wall time to keep the regression exact.
+    std::lock_guard lock(serviceMutex);
+    tick += 10;
+    return 0;
+}
+#endif
 extern "C" uint64_t sceKernelGetTscFrequency() { return 1000; }
 extern "C" uint64_t sceKernelReadTsc() { std::lock_guard lock(serviceMutex); return tick + 1; }
 extern "C" int __real_sceVideoOutSubmitFlip(int, int, uint32_t, int64_t) { return 0; }
@@ -48,6 +58,19 @@ int main(int argc, char** argv) {
     pswaker_perf_initialize("synthetic", argv[1]);
     pswaker_perf_stage("sea", 44);
     pswaker_perf_arm("outset");
+#if defined(PSWAKER_TEST_PLATFORM_LOGGER)
+    if (!strcmp(argv[2], "diagnostics")) {
+        present(1, 1, 1000);
+        // The real native say() path used by the periodic heartbeat. Its FTP
+        // file/stdout evidence must remain while the unused debugger is slow.
+        for (int i = 0; i < 7; ++i) say("heartbeat-evidence-%d", i);
+        uint64_t next;
+        { std::lock_guard lock(serviceMutex); next = tick + 33; }
+        present(2, 2, next);
+        pswaker_perf_shutdown();
+        return 0;
+    }
+#endif
     if (!strcmp(argv[2], "ui")) {
         pswaker_perf_shader_wait(pswaker_perf_now() - 40000000);
         present(0, 1, 1000); // Armed menu frame remains outside gameplay.
@@ -60,6 +83,13 @@ int main(int argc, char** argv) {
         return 0;
     }
     present(1, 1, 1000);
+    if (!strcmp(argv[2], "diagnostic-cost")) {
+        pswaker_perf_diagnostic(PswakerDiagnostic::Heartbeat, pswaker_perf_now() - 44000000);
+        pswaker_perf_diagnostic(PswakerDiagnostic::Input, pswaker_perf_now() - 10000000);
+        present(2, 2, 121000);
+        pswaker_perf_shutdown();
+        return 0;
+    }
     if (!strcmp(argv[2], "pause")) {
         pswaker_perf_pause();
         pswaker_perf_stage("A_mori", 0);
