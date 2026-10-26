@@ -64,6 +64,15 @@ int main(int argc, char** argv) {
             data[block+0x1ffe] = inverse >> 8; data[block+0x1fff] = inverse;
         }
         assert(staged.fileWrite(handle, data.data(), data.size()) == ECardResult::READY);
+        CardStat gameMetadata{};
+        assert(staged.getStatus(handle, gameMetadata) == ECardResult::READY);
+        gameMetadata.x2e_bannerFormat = 1;
+        gameMetadata.x30_iconAddr = 0;
+        gameMetadata.x34_iconFormat = 1;
+        gameMetadata.x36_iconSpeed = 3;
+        gameMetadata.x38_commentAddr = 0x1c00;
+        assert(staged.setStatus(handle, gameMetadata) == ECardResult::READY);
+        assert(staged.commit() == ECardResult::READY);
         assert(save.finish(true));
         const auto completed = read(path);
         assert(!completed.empty());
@@ -90,8 +99,16 @@ int main(int argc, char** argv) {
         if (std::string(argv[1]).starts_with("corrupt")) {
             // Finish a second save to establish a previous valid backup.
             assert(save.finish(true));
+            if (!std::strcmp(argv[1], "corrupt-marker")) {
+                { std::ofstream marker(path.string()+".test"); marker << "unknown test mode\n"; }
+                assert(!save.check());
+                assert(!save.canRestore());
+                assert(!save.restore());
+                assert(read(path) == completed);
+                return 0;
+            }
             std::string damaged = completed;
-            damaged[0x2048] ^= 1;
+            damaged[!std::strcmp(argv[1], "corrupt-metadata") ? 0x2c : 0x2048] ^= 1;
             if (!std::strcmp(argv[1], "corrupt-size")) damaged.append(8192, 'X');
             { std::ofstream out(path, std::ios::binary); out.write(damaged.data(), damaged.size()); }
             const bool noBackup = !std::strcmp(argv[1], "corrupt-no-backup");

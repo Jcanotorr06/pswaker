@@ -16,7 +16,9 @@ GCI = Path('saves/USA/Card A/01-GZLE-gczelda.gci')
 
 def valid_save(data):
     if (len(data) != 0x18040 or data[:6] != b'GZLE01' or
-            data[8:16] != b'gczelda\0' or data[0x38:0x3a] != b'\0\x0c'):
+            data[8:16] != b'gczelda\0' or data[0x38:0x3a] != b'\0\x0c' or
+            data[7] & 7 != 1 or data[0x2c:0x30] != bytes(4) or
+            data[0x30:0x34] != b'\0\x01\0\x03' or data[0x3c:0x40] != b'\0\0\x1c\0'):
         return False
     for offset in (0x2040, 0x4040):
         block = data[offset:offset+0x2000]

@@ -25,7 +25,8 @@ affected stage, and prohibit further stores in that process. The port stops at
 a frame boundary and surfaces the failure through its Quit error screen; it
 does not request a new save. Logs distinguish `save-completed=0/1`.
 
-Validation checks the fixed USA identity/filename/block count/size, supported
+Validation checks the fixed USA identity/filename/block count/size, the game's
+required banner/icon/comment metadata, supported
 data version, both block checksums, all three slot checksums in each replica,
 and matching replicas. A missing primary with backup data is an error rather
 than permission to initialize new progress. Startup checks both channels before
@@ -78,6 +79,7 @@ Only an owner-created `.gci.test` text marker enables controlled faults:
 | `fail-write\n` | Return ENOSPC from the checked commit of an active staged CARD write. No primary-write fault is injected and no genuine full-disk condition is needed. |
 | `hold-publish\n` | Hold a completed requested store for 20 seconds before publication, allowing a pending-write Quit check. |
 
+Marker errors offer Retry/Exit and cannot offer to restore healthy progress.
 Startup visibly explains any enabled mode and requires an explicit choice to
 continue. Unknown/unreadable markers gate startup. Markers persist until the
 owner removes them; they are never bundled in the package. Use only isolated

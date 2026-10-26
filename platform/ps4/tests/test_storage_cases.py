@@ -19,6 +19,9 @@ class StorageCaseTests(unittest.TestCase):
             data[:6] = b'GZLE01'
             data[8:16] = b'gczelda\0'
             data[0x38:0x3a] = b'\0\x0c'
+            data[7] = 1
+            data[0x30:0x34] = b'\0\x01\0\x03'
+            data[0x3c:0x40] = b'\0\0\x1c\0'
             for block in (0x2040, 0x4040):
                 for slot in range(3):
                     start = block+8+slot*0x770+0x768

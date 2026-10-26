@@ -89,7 +89,7 @@ bool readSave(const std::string& path, std::string& bytes, bool& exists) {
     char buffer[4096];
     while (const auto count = fread(buffer, 1, sizeof buffer, file)) {
         bytes.append(buffer, count);
-        if (bytes.size() > 0x18040) { fclose(file); errno = EINVAL; return false; }
+        if (bytes.size() > 0x18040) { fclose(file); errno = EFBIG; return false; }
     }
     const bool good = !ferror(file);
     const bool closed = fclose(file) == 0;
@@ -102,7 +102,10 @@ uint64_t bigEndian(const std::string& bytes, size_t offset, size_t count) {
 }
 bool validSave(const std::string& bytes) {
     if (bytes.size() != 0x18040 || bytes.compare(0, 6, "GZLE01") ||
-        bytes.compare(8, 8, std::string("gczelda\0", 8)) || bigEndian(bytes, 0x38, 2) != 12)
+        bytes.compare(8, 8, std::string("gczelda\0", 8)) || bigEndian(bytes, 0x38, 2) != 12 ||
+        (uint8_t(bytes[7]) & 7) != 1 || bigEndian(bytes, 0x2c, 4) != 0 ||
+        bigEndian(bytes, 0x30, 2) != 1 || bigEndian(bytes, 0x32, 2) != 3 ||
+        bigEndian(bytes, 0x3c, 4) != 0x1c00)
         return false;
     // Both replicas must be complete. Do not invoke the game's automatic
     // replica repair on affected data or silently load reset slot contents.
@@ -164,27 +167,32 @@ constexpr const char* key = "PSWAKER_LARGE_TEXT=";
 }
 
 thread_local SaveFile* SaveFile::active_ = nullptr;
-bool SaveFile::failure(const char* reason) {
+bool SaveFile::failure(const char* reason, Problem problem) {
+    problem_ = problem;
     error_ = path_ + ": " + reason;
     return false;
 }
 bool SaveFile::check() {
     error_.clear();
-    if (testMode() == "invalid") return failure("Unreadable/unknown controlled-test marker (.test). Exit and repair or remove the marker; saves preserved.");
-    if (present(path_ + ".pending")) return failure("Interrupted or failed save retained (.pending). Exit or explicitly restore a valid backup.");
+    problem_ = Problem::None;
+    if (testMode() == "invalid") return failure("Unreadable/unknown controlled-test marker (.test). Exit and repair or remove the marker; saves preserved.", Problem::InvalidTest);
+    if (present(path_ + ".pending")) return failure("Interrupted or failed save retained (.pending). Exit or explicitly restore a valid backup.", Problem::Recovery);
     std::string bytes;
     bool exists;
-    if (!readSave(path_, bytes, exists)) return failure("Cannot read save. Check storage/permissions, then Retry; data was preserved.");
-    if (!exists && present(path_ + ".backup")) return failure("Primary save is missing but backup data exists. Explicit recovery is required; new-game initialization is blocked.");
-    if (exists && !validSave(bytes)) return failure("Save corruption detected. Data preserved; restore a valid backup or Exit and recover on the computer.");
+    if (!readSave(path_, bytes, exists)) return failure("Cannot read save. Check storage/size/permissions, then Retry; data was preserved.", errno == EFBIG ? Problem::Recovery : Problem::Unavailable);
+    if (!exists && present(path_ + ".backup")) return failure("Primary save is missing but backup data exists. Explicit recovery is required; new-game initialization is blocked.", Problem::Recovery);
+    if (exists && !validSave(bytes)) return failure("Save corruption detected. Data preserved; restore a valid backup or Exit and recover on the computer.", Problem::Recovery);
     return true;
 }
 bool SaveFile::canRestore() const {
+    if (problem_ != Problem::Recovery) return false;
     std::string bytes;
     bool exists;
     return readSave(path_ + ".backup", bytes, exists) && exists && validSave(bytes);
 }
 bool SaveFile::restore() {
+    check();
+    if (!canRestore()) return failure("No recoverable save problem with a valid backup. Repair the reported path or Exit; progress was preserved.");
     std::string bytes;
     bool exists;
     if (!readSave(path_ + ".backup", bytes, exists) || !exists || !validSave(bytes))

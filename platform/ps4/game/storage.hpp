@@ -20,8 +20,10 @@ public:
     static const char* cardPath(const char* path);
     static bool rejectCardWrite(const char* path);
 private:
-    bool failure(const char* reason);
+    enum class Problem { None, Unavailable, InvalidTest, Recovery };
+    bool failure(const char* reason, Problem problem = Problem::Unavailable);
     std::string path_, error_, testMode_;
+    Problem problem_ = Problem::None;
     static thread_local SaveFile* active_;
 };
 extern "C" const char* pswaker_gci_path(const char* path);

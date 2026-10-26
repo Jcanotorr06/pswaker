@@ -67,6 +67,12 @@ class GciPersistenceTests(unittest.TestCase):
     def test_owner_controlled_write_failure_reaches_real_gci_ioerror(self):
         self.scenario('controlled-failure')
 
+    def test_invalid_game_metadata_is_detected_before_loading_or_backup(self):
+        self.scenario('corrupt-metadata')
+
+    def test_bad_test_marker_cannot_offer_restore_or_roll_back_healthy_progress(self):
+        self.scenario('corrupt-marker')
+
     def test_sync_failure_returns_ioerror_and_preserves_previous_gci(self):
         self.scenario('sync-failure')
 
