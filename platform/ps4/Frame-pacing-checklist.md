@@ -30,8 +30,9 @@ operation should touch your genuine profile.
    and return that limitation; agree substitute evidence before any pass.
 5. Reach controllable Outset outdoors. After transitions and story sequences
    finish, choose **Mark visible gameplay ready and resume** in port settings.
-   Start **Measure Outset**, release controls to resume, and use an external
-   timer to stay in active play for at least 125 seconds. Keep to the village
+   Start **Measure Outset**, release controls to resume, record any resume delay,
+   then start an external timer at the first visible game frame and stay in
+   active play for at least 125 seconds. Keep to the village
    and shore; do not enter interiors, menus or transitions during the sample.
 6. Use the same action pattern in both scenes and all launches: first 30 seconds
    walk/run a small loop with a slow full camera pan; next 30 repeat it in the

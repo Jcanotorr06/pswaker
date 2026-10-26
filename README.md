@@ -27,6 +27,13 @@ for the captured GBA shutdown panic. Its [controlled owner checklist](platform/p
 isolates genuine progress and exercises failure/pending-write behavior. Installed
 console acceptance remains pending for that exact binary.
 
+The [frame-pacing candidate](platform/ps4/FRAME-PACING.md) records completed PS4
+game-frame flips, separate Outset/forest samples, shader waits and startup/loading
+phases. Its [owner sampling checklist](platform/ps4/Frame-pacing-checklist.md)
+and [inspected 01.10 handoff](platform/ps4/evidence/performance-22/REPORT.md)
+are ready; console timing verification, measured performance and any resulting
+bottleneck corrections remain pending.
+
 ## Standing on the shoulders of others
 
 This repository draws inspiration from several community projects.

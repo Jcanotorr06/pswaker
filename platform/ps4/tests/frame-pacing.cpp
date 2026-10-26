@@ -48,6 +48,17 @@ int main(int argc, char** argv) {
     pswaker_perf_initialize("synthetic", argv[1]);
     pswaker_perf_stage("sea", 44);
     pswaker_perf_arm("outset");
+    if (!strcmp(argv[2], "ui")) {
+        pswaker_perf_shader_wait(pswaker_perf_now() - 40000000);
+        present(0, 1, 1000); // Armed menu frame remains outside gameplay.
+        pswaker_perf_pause(); // Arming in a paused menu must survive until resume.
+        pswaker_perf_game_frame(1);
+        pswaker_perf_shader_wait(pswaker_perf_now() - 40000000);
+        present(1, 2, 2000);
+        present(2, 3, 122000);
+        pswaker_perf_shutdown();
+        return 0;
+    }
     present(1, 1, 1000);
     if (!strcmp(argv[2], "pause")) {
         pswaker_perf_pause();

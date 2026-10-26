@@ -201,3 +201,15 @@ class RecorderTests(unittest.TestCase):
                 samples = list(csv.DictReader(stream))
             self.assertEqual(samples[0]['outcome'], 'invalid')
             self.assertIn('missed-flip-completion', (run / 'events.csv').read_text())
+
+    def test_arming_excludes_ui_but_retains_first_game_frame_shader_wait(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = subprocess.run([str(self.binary), directory, 'ui'], capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            run = next(Path(directory).glob('performance-*'))
+            with (run / 'frames.csv').open() as stream:
+                frames = list(csv.DictReader(stream))
+            with (run / 'events.csv').open() as stream:
+                events = list(csv.DictReader(stream))
+            self.assertEqual([(f['game_frame'], f['sample']) for f in frames], [('0', '0'), ('1', '1'), ('2', '1')])
+            self.assertEqual([e['sample'] for e in events if e['kind'] == 'shader-wait-ns'], ['0', '1'])
