@@ -29,6 +29,7 @@ class InstalledControlsTests(unittest.TestCase):
             raise AssertionError(native.stderr)
         build = subprocess.run(['clang++-21', '-std=c++23', '-Wall', '-Wextra', '-Werror',
                                 *includes, str(HERE / 'game/controls.cpp'),
+                                str(HERE / 'game/storage.cpp'),
                                 str(HERE / 'tests/controls-console.cpp'), str(root / 'platform.o'),
                                 '-Wl,--wrap=scePadReadState', '-o', str(cls.binary)],
                                capture_output=True, text=True)
@@ -36,11 +37,15 @@ class InstalledControlsTests(unittest.TestCase):
             raise AssertionError(build.stderr)
 
     def check_scenario(self, name):
-        result = subprocess.run([str(self.binary), name], capture_output=True, text=True)
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        with tempfile.TemporaryDirectory(prefix='pswaker-menu-profile-') as profile:
+            result = subprocess.run([str(self.binary), name, profile], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_legend_confirmation_does_not_leak_into_game(self):
         self.check_scenario('legend')
+
+    def test_port_text_setting_requires_separate_confirmations_and_pauses_game(self):
+        self.check_scenario('text-setting')
 
     def test_gamecube_actions_sticks_and_analog_terminal_click(self):
         self.check_scenario('mapping')

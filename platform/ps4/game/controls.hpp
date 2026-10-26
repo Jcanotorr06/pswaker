@@ -3,12 +3,13 @@
 #include <array>
 
 enum class PortScreen { Legend, Game, Settings, Quit, InputLost, Exit };
-enum class PortAction { Resume, ShowLegend, CheckFailedRead, Quit };
+enum class PortAction { Resume, ShowLegend, CheckFailedRead, ToggleText, Quit };
 struct PortMenuItem { PortAction action; const char* label; };
-inline constexpr std::array<PortMenuItem, 4> portMenuItems{{
+inline constexpr std::array<PortMenuItem, 5> portMenuItems{{
     {PortAction::Resume, "Resume game"},
     {PortAction::ShowLegend, "DualShock 4 legend"},
     {PortAction::CheckFailedRead, "Resume and check failed read in 5 seconds"},
+    {PortAction::ToggleText, "Change port text size"},
     {PortAction::Quit, "Quit game..."},
 }};
 struct PortView {
@@ -24,5 +25,6 @@ void pswaker_poll_controls();
 void pswaker_enable_controls();
 PortView pswaker_port_view();
 void pswaker_log_controls();
+void pswaker_toggle_text_size();
 // PS4 PADRead uses the same authoritative sample and pause gate as the port UI.
 extern "C" u32 pswaker_read_gamepad(PADStatus* status);

@@ -1,0 +1,9 @@
+{
+  "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+  "build_id": "9ac6fb9b2da43e02d642",
+  "aurora_atomic_commit_calls_port_commit": true,
+  "port_commit_calls_fsync_and_rename": true,
+  "aurora_atomic_commit_disassembly_sha256": "6f1935a62d00c431f637333f8b3e116e111de69bd5abef2c69a95a2b3ea7ebb1",
+  "port_commit_disassembly_sha256": "3559e28fc246a90644fe563092dbcad9606b7f1d07ebec7abb0ee782e1463de0",
+  "limit": "Emitted call association only; no dynamic ordering, console filesystem or power-loss result"
+}

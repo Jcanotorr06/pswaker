@@ -106,6 +106,9 @@ void pswaker_poll_controls() {
         } else if (cross && action == PortAction::CheckFailedRead) {
             checkAfterResume = true;
             destination = PortScreen::Game;
+        } else if (cross && action == PortAction::ToggleText) {
+            pswaker_toggle_text_size();
+            armed = false;
         } else if (cross && action == PortAction::Quit) destination = PortScreen::Quit;
         break;
     case PortScreen::Quit:

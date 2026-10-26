@@ -1,5 +1,6 @@
 // Only the external console service boundary is simulated. No game data or GPU.
 #include "controls.hpp"
+#include "storage.hpp"
 #include "native/platform.h"
 #include <cassert>
 #include <cstdint>
@@ -11,6 +12,8 @@ uint32_t buttons = 0;
 uint8_t lx = 128, ly = 128, rx = 128, ry = 128, lt = 0, rt = 0;
 bool connected = true;
 bool fail = false;
+unsigned textChanges = 0;
+PortSettings* settings = nullptr;
 double clockValue = 1000;
 PADStatus gamepads[PAD_CHANMAX];
 
@@ -72,8 +75,12 @@ int scePadReadState(int32_t, void* output) {
     return fail ? -1 : 0;
 }
 }
+void pswaker_toggle_text_size() {
+    ++textChanges;
+    assert(settings && settings->setLargeText(!settings->largeText()));
+}
 int main(int argc, char** argv) {
-    assert(argc == 2);
+    assert(argc == 3);
     if (std::strcmp(argv[1], "boot-loss") == 0) {
         assert(pad_open());
         sample(); sample(PAD_CROSS); sample(); // Preparation screens cannot dismiss the legend.
@@ -91,6 +98,28 @@ int main(int argc, char** argv) {
         return 0;
     }
     start();
+    if (std::strcmp(argv[1], "text-setting") == 0) {
+        PortSettings profile(argv[2]);
+        assert(profile.check() && profile.largeText());
+        settings = &profile;
+        sample(PAD_TOUCH_PAD); sample();
+        for (int i = 0; i < 3; ++i) { sample(PAD_DOWN); sample(); }
+        sample(PAD_CROSS);
+        assert(textChanges == 1);
+        assert(!profile.largeText());
+        PortSettings reloaded(argv[2]);
+        assert(reloaded.check() && !reloaded.largeText());
+        sample(PAD_CROSS); sample(PAD_CROSS);
+        assert(textChanges == 1); // A held confirm must not issue repeated writes.
+        neutralGame();
+        assert(pswaker_port_view().screen == PortScreen::Settings);
+        sample(); sample(PAD_CROSS);
+        assert(textChanges == 2);
+        assert(profile.largeText());
+        sample(); sample(PAD_CIRCLE); sample();
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        return 0;
+    }
     if (std::strcmp(argv[1], "fault-check") == 0) {
         sample(PAD_TOUCH_PAD); sample();
         sample(PAD_DOWN); sample(); sample(PAD_DOWN); sample();
@@ -118,7 +147,7 @@ int main(int argc, char** argv) {
         sample(PAD_CIRCLE); neutralGame(); sample();
         assert(pswaker_port_view().screen == PortScreen::Game);
         sample(PAD_TOUCH_PAD); sample();
-        for (int i = 0; i < 3; ++i) { sample(PAD_DOWN); sample(); }
+        for (int i = 0; i < 4; ++i) { sample(PAD_DOWN); sample(); }
         sample(PAD_CROSS); sample();
         assert(pswaker_port_view().screen == PortScreen::Quit);
         sample(PAD_CIRCLE); sample(); // Cancel exit, never quit from Circle.
