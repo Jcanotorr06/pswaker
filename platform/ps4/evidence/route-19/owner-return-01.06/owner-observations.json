@@ -13,7 +13,7 @@
     "requested_scenes_and_actions_title_through_end_of_outset": "Owner-confirmed passed",
     "visible_or_audible_glitches_or_anomalies": "None reported",
     "per_scene_timestamps_and_captures": "Not supplied",
-    "cold_and_warm_run_attribution": "Not supplied"
+    "cold_and_warm_run_attribution": "Owner confirms both empty-cache and retained-cache runs; no per-launch logs supplied"
   },
   "completed_save_relaunch": "Owner confirms relaunching a completed save works as expected",
   "logs": {
@@ -22,7 +22,18 @@
     "software_audio_counter_review": "Unavailable for this return",
     "runtime_build_cache_and_stage_corroboration": "Unavailable for this return"
   },
-  "normal_port_quit_and_pending_write_observation": "Not separately confirmed in this statement",
+  "follow_up_confirmations": [
+    {
+      "question": "Did you close the game using Touchpad → Quit → Cross, and did it close without hanging or lingering audio?",
+      "answer": "Yes, normal Quit completed cleanly"
+    },
+    {
+      "question": "Was the route checked with both an empty cache and a retained cache, or was the cache state unspecified?",
+      "answer": "Both empty-cache and retained-cache runs"
+    }
+  ],
+  "normal_port_quit": "Owner confirms Touchpad → Quit → Cross completed without hanging or lingering audio",
+  "quit_during_pending_write": "Not separately confirmed; clean normal Quit does not establish that a write was pending",
   "hardware_environment": "Earlier confirmed PS4 Slim / firmware 9.00 / GoldHEN v2.4b18 baseline; not separately reconfirmed in this statement",
-  "limits": "Owner-observed route/audio and completed-save relaunch evidence only. No independently verified installed binary identity, cache-separated runs, hardware underrun counter, normal Quit ordering, settings persistence, package-update preservation, controlled storage recovery or numerical frame-pacing acceptance."
+  "limits": "Owner-observed route/audio in empty-cache and retained-cache runs, completed-save relaunch and clean normal port Quit. No independently verified installed binary identity, per-launch cache records, software audio counter review, hardware underrun counter, internal shutdown-stage ordering, pending-write overlap, settings persistence, package-update preservation, controlled storage recovery or numerical frame-pacing acceptance."
 }

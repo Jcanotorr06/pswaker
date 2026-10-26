@@ -6,9 +6,12 @@ glitches or anomalies. This follows the [route checklist](../../../Route-audio-c
 which includes name entry/prologue, Outset, interiors, the forest and relevant
 transitions/actions. The owner also confirms that relaunching a completed save
 works as expected. These are direct owner observations; no route-blocking,
-visual or audible defect is reported in this return.
+visual or audible defect is reported in this return. In a follow-up, the owner
+confirms **both empty-cache and retained-cache route runs**, and confirms
+**Touchpad → Quit → Cross completed cleanly without hanging or lingering audio**.
 
-[owner-observations.json](owner-observations.json) preserves the exact statement
+[owner-observations.json](owner-observations.json) preserves the original statement
+and follow-up questions/answers
 and separates it from facts that were not returned. The response directly
 follows handoff of PSWaker-route-audio-01.06.pkg, expected build
 be1a11cf3fcabee4911d and package SHA-256
@@ -26,15 +29,18 @@ identities and are not substituted for this candidate. Build-time UNTESTED
 labels in immutable manifests/audits remain historical; this return supplies
 the subsequent bounded owner observations above.
 
-Cold/warm run attribution, per-scene times/captures and normal port Quit were
-not separately confirmed in the initial return. Successful save relaunch does
-not establish the close method, pending-write handling, audio/GPU completion or
-absence of automatic saving of unsaved gameplay. The earlier hardware baseline
-was not separately reconfirmed here.
+The follow-up resolves the initial missing cache-state and normal Quit
+observations. Cache states and clean application closure are owner-confirmed;
+there are no per-launch cache records or shutdown stages to corroborate them.
+Per-scene times/captures and an actual pending-write overlap were not supplied.
+Clean normal Quit does not independently establish internal audio/GPU ordering
+or absence of automatic saving of unsaved gameplay. The earlier hardware
+baseline was not separately reconfirmed here.
 
-The route's requested visual/audible behavior and completed-save relaunch are
-owner-confirmed. Log/candidate/cache corroboration and actual normal Quit
-evidence remain outstanding for #19. No specific visual/audio uncertainty was
+The route's requested visual/audible behavior in both cache states, completed-save
+relaunch and clean normal port Quit are owner-confirmed. Log/candidate/cache
+corroboration and internal shutdown-stage evidence remain outstanding for #19.
+No specific visual/audio uncertainty was
 reported that would require an original-game discrepancy investigation.
 No clean software counters or hardware-underrun absence are inferred from the
 audible report. This does not complete settings/update/recovery persistence

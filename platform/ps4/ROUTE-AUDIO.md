@@ -11,8 +11,10 @@ renderer changes. The [candidate report](evidence/route-19/REPORT.md) distinguis
 prepared artifacts from installed-console observations. The
 [owner follow-up to the 01.06 handoff](evidence/route-19/owner-return-01.06/REPORT.md)
 confirms the requested title-through-Outset scenes/actions without visual or
-audible anomalies and confirms completed-save relaunch. No logs were available;
-candidate/cache corroboration and actual normal port Quit remain outstanding.
+audible anomalies in both empty-cache and retained-cache runs, completed-save
+relaunch and clean normal port Quit without hanging or lingering audio. No logs
+were available; candidate/cache corroboration and internal shutdown-stage evidence
+remain outstanding.
 
 ## Retained renderer behavior
 

@@ -5,11 +5,13 @@ It preserves the owner-tested route baseline and adds repeated audio-failure
 counters and normal card/audio/GPU shutdown coordination. The
 [owner return](owner-return-01.06/REPORT.md) now confirms the requested title-to-
 end-of-Outset scenes/actions without visual or audible anomalies, and confirms
-relaunching a completed save works. **Logs could not be retrieved.** Association
+relaunching a completed save works. The owner further confirms both empty-cache
+and retained-cache runs and clean Touchpad → Quit → Cross closure without hanging
+or lingering audio. **Logs could not be retrieved.** Association
 with 01.06 is contextual to the handoff; installed binary identity, cache state,
 audio counters and shutdown stages are not independently corroborated. #19
-remains open for its outstanding evidence; save relaunch does not establish
-normal port Quit or pending-write/audio/GPU completion.
+remains open for its outstanding log/candidate corroboration and internal
+shutdown-stage evidence. No pending-write overlap is claimed.
 
 Use [ROUTE-AUDIO.md](../../ROUTE-AUDIO.md) for the source review, behavior and
 limitations, and the [owner checklist](../../Route-audio-checklist.md) for the
@@ -67,8 +69,9 @@ Imported JKR thread-registration/heap services are inert in that harness; no
 GCI data, game assets or durable writes are exercised.
 
 Existing controls tests verify deliberate menu Quit; the complete application's
-card → SDK/audio → GPU → Aurora sequence is source-reviewed and still needs
-actual console Quit evidence. The [emitted-link audit](route-link-audit.json)
+card → SDK/audio → GPU → Aurora sequence is source-reviewed. Clean normal console
+Quit is now owner-confirmed, but internal completion stages were not returned.
+The [emitted-link audit](route-link-audit.json)
 ties card observation, SDK shutdown, producer join/stream teardown and both
 selected SDL backend output/drain calls to this ELF. It establishes emitted
 calls, not dynamic ordering or console results. Python byte-compilation and
@@ -96,9 +99,10 @@ module/stub rights and combined distribution terms remain unresolved under
 data, save, ELF or package is committed.
 
 Requested route scenes/actions and absence of visual/audible anomalies are now
-owner-confirmed, together with completed-save relaunch. Cold/warm attribution,
-actual normal port Quit and per-launch log/candidate corroboration remain
-outstanding; no console log was available for this return. Keep these limits
+owner-confirmed in both empty-cache and retained-cache runs, together with
+completed-save relaunch and clean normal port Quit. Per-launch log/candidate/cache
+corroboration and internal shutdown-stage evidence remain outstanding; no console
+log was available for this return. Keep these limits
 alongside the [original owner statement](owner-return-01.06/owner-observations.json).
 The selected backend exposes no documented hardware underrun count. Repeated
 software queue drops, DMA skips, stream/backend errors or audible defects require
