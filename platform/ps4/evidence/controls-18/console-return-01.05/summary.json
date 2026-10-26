@@ -1,0 +1,345 @@
+{
+  "platform.log": {
+    "begin_records": [
+      {
+        "line": 2,
+        "record": "BEGIN build=d532217ac6a319ff6ad3 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/d532217ac6a319ff6ad3"
+      }
+    ],
+    "app_version": "01.05",
+    "candidate_manifest_matches": {
+      "version": true,
+      "content_id": true,
+      "program": true,
+      "image": true
+    },
+    "events": [
+      {
+        "line": 501,
+        "record": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+      },
+      {
+        "line": 502,
+        "record": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+      },
+      {
+        "line": 1985,
+        "record": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+      }
+    ],
+    "stages": [
+      {
+        "line": 172,
+        "record": "STAGE completed=platform-initialized ms=681.2 build=d532217ac6a319ff6ad3 errors=0"
+      },
+      {
+        "line": 175,
+        "record": "STAGE completed=PS4-runtime-crash-logger-selected ms=690.8 build=d532217ac6a319ff6ad3 errors=0"
+      },
+      {
+        "line": 177,
+        "record": "STAGE completed=aurora-initialize ms=701.8 build=d532217ac6a319ff6ad3 errors=0"
+      },
+      {
+        "line": 295,
+        "record": "STAGE completed=graphics-initialized ms=1624.3 build=d532217ac6a319ff6ad3 errors=0"
+      },
+      {
+        "line": 461,
+        "record": "STAGE completed=installed-image-validated ms=40561.2 build=d532217ac6a319ff6ad3 errors=0"
+      },
+      {
+        "line": 462,
+        "record": "STAGE completed=writable-storage-checked ms=40574.4 build=d532217ac6a319ff6ad3 errors=0"
+      },
+      {
+        "line": 466,
+        "record": "STAGE completed=known-shaders-prepared ms=40605.1 build=d532217ac6a319ff6ad3 errors=0"
+      },
+      {
+        "line": 469,
+        "record": "STAGE completed=runtime-assets-validated ms=40763.8 build=d532217ac6a319ff6ad3 errors=0"
+      }
+    ],
+    "cache_before_init": [
+      "CACHE identity=d532217ac6a319ff6ad3 files-before-init=0; owner labels cold/warm"
+    ],
+    "heartbeat_count": 146,
+    "last_heartbeat": {
+      "line": 1974,
+      "record": "HEARTBEAT ms=780460.7 shaders-created=299 queued=0 checked-errors=0"
+    },
+    "highest_checked_errors": 0,
+    "samples": {
+      "total": 749,
+      "by_screen": {
+        "legend": 12,
+        "game": 718,
+        "input-lost": 19
+      },
+      "paused_samples": 31,
+      "paused_neutral_samples": 31,
+      "nonneutral_paused_lines": [],
+      "mapping": {
+        "Cross/A": {
+          "pressed_samples": 4,
+          "mismatch_lines": [],
+          "first_pressed_line": 623
+        },
+        "Circle/B": {
+          "pressed_samples": 3,
+          "mismatch_lines": [],
+          "first_pressed_line": 869
+        },
+        "Square/X": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "Triangle/Y": {
+          "pressed_samples": 2,
+          "mismatch_lines": [],
+          "first_pressed_line": 870
+        },
+        "R1/Z": {
+          "pressed_samples": 1,
+          "mismatch_lines": [],
+          "first_pressed_line": 1485
+        },
+        "Options/Start": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "D-pad Up": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "D-pad Down": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "D-pad Left": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "D-pad Right": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        }
+      },
+      "triggers": {
+        "L2/L": {
+          "partial_samples": 6,
+          "terminal_samples": 2,
+          "analog_range": [
+            0,
+            236
+          ],
+          "first_partial_line": 1465,
+          "first_terminal_line": 1957,
+          "terminal_bit_mismatch_lines": []
+        },
+        "R2/R": {
+          "partial_samples": 12,
+          "terminal_samples": 11,
+          "analog_range": [
+            0,
+            255
+          ],
+          "first_partial_line": 1432,
+          "first_terminal_line": 1494,
+          "terminal_bit_mismatch_lines": []
+        }
+      },
+      "game_axis_ranges": [
+        [
+          -127,
+          127
+        ],
+        [
+          -127,
+          127
+        ],
+        [
+          -127,
+          127
+        ],
+        [
+          0,
+          127
+        ]
+      ]
+    },
+    "evidence_limits": "Sampled state is not a visible action or continuous frame timing. Old-version records are not candidate runs."
+  },
+  "platform.prev.log": {
+    "begin_records": [
+      {
+        "line": 2,
+        "record": "BEGIN build=6ebc07987fe3b6c6064a platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6ebc07987fe3b6c6064a"
+      }
+    ],
+    "app_version": "01.04",
+    "candidate_manifest_matches": {
+      "version": false,
+      "content_id": true,
+      "program": false,
+      "image": true
+    },
+    "events": [],
+    "stages": [
+      {
+        "line": 176,
+        "record": "STAGE completed=platform-initialized ms=1950.4 build=6ebc07987fe3b6c6064a errors=0"
+      },
+      {
+        "line": 179,
+        "record": "STAGE completed=PS4-runtime-crash-logger-selected ms=1961.7 build=6ebc07987fe3b6c6064a errors=0"
+      },
+      {
+        "line": 181,
+        "record": "STAGE completed=aurora-initialize ms=2104.0 build=6ebc07987fe3b6c6064a errors=0"
+      },
+      {
+        "line": 299,
+        "record": "STAGE completed=graphics-initialized ms=2833.3 build=6ebc07987fe3b6c6064a errors=0"
+      },
+      {
+        "line": 496,
+        "record": "STAGE completed=installed-image-validated ms=47916.8 build=6ebc07987fe3b6c6064a errors=0"
+      },
+      {
+        "line": 497,
+        "record": "STAGE completed=writable-storage-checked ms=47962.9 build=6ebc07987fe3b6c6064a errors=0"
+      },
+      {
+        "line": 501,
+        "record": "STAGE completed=known-shaders-prepared ms=47994.0 build=6ebc07987fe3b6c6064a errors=0"
+      },
+      {
+        "line": 504,
+        "record": "STAGE completed=runtime-assets-validated ms=48183.3 build=6ebc07987fe3b6c6064a errors=0"
+      }
+    ],
+    "cache_before_init": [
+      "CACHE before-init name=dawn_cache.db bytes=17305600 sha1=ff435b2ee2ca3763aa3d90c1ef4d3c3d421c8b89 readable=1",
+      "CACHE before-init name=dawn_cache.db-wal bytes=4144752 sha1=36bce3f764a5d8d205d7880446e6592795a58422 readable=1",
+      "CACHE before-init name=pipeline_cache.db bytes=4083712 sha1=7d008c6807b39e847728090c930481c6602853b0 readable=1",
+      "CACHE before-init name=pipeline_cache.db-wal bytes=4136512 sha1=474714f89f1626a4433cf7944a3a28650109f866 readable=1",
+      "CACHE identity=6ebc07987fe3b6c6064a files-before-init=4; owner labels cold/warm"
+    ],
+    "heartbeat_count": 8,
+    "last_heartbeat": {
+      "line": 593,
+      "record": "HEARTBEAT ms=85919.5 shaders-created=1138 queued=0 checked-errors=0"
+    },
+    "highest_checked_errors": 0,
+    "samples": {
+      "total": 0,
+      "by_screen": {},
+      "paused_samples": 0,
+      "paused_neutral_samples": 0,
+      "nonneutral_paused_lines": [],
+      "mapping": {
+        "Cross/A": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "Circle/B": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "Square/X": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "Triangle/Y": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "R1/Z": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "Options/Start": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "D-pad Up": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "D-pad Down": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "D-pad Left": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        },
+        "D-pad Right": {
+          "pressed_samples": 0,
+          "mismatch_lines": [],
+          "first_pressed_line": null
+        }
+      },
+      "triggers": {
+        "L2/L": {
+          "partial_samples": 0,
+          "terminal_samples": 0,
+          "analog_range": [
+            null,
+            null
+          ],
+          "first_partial_line": null,
+          "first_terminal_line": null,
+          "terminal_bit_mismatch_lines": []
+        },
+        "R2/R": {
+          "partial_samples": 0,
+          "terminal_samples": 0,
+          "analog_range": [
+            null,
+            null
+          ],
+          "first_partial_line": null,
+          "first_terminal_line": null,
+          "terminal_bit_mismatch_lines": []
+        }
+      },
+      "game_axis_ranges": [
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ]
+      ]
+    },
+    "evidence_limits": "Sampled state is not a visible action or continuous frame timing. Old-version records are not candidate runs."
+  }
+}

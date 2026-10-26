@@ -28,6 +28,16 @@ confirms error stops, repaired startup and owner-confirmed matching seeded
 save/settings comparisons. The bounded #17 startup evidence review is complete;
 full-route, save-durability and performance acceptance remain later work.
 
+The [DualShock 4 controls checkpoint](CONTROLS.md) adds the fixed mappings,
+PlayStation port menus and deliberate input-loss recovery for #18. Its
+[owner checklist](Controls-checklist.md) requires focused observations tied to
+the new complete package, including a delayed installed-game failed-read check.
+The [returned 01.05 controls review](evidence/controls-18/console-return-01.05/REPORT.md)
+records matching candidate logs and owner-confirmed passes for mapped buttons,
+partial/full triggers, settings/legend conventions, held-input reconnect/resume
+and the delayed failed-read check. Capture and shutdown-evidence limits remain
+explicit in that review.
+
 ## Reproduce on Linux / WSL2
 
 Use the recorded Ubuntu 24.04 x86-64 environment in `host.lock.json`. It identifies

@@ -1,0 +1,30 @@
+{
+  "elf_sha256": "7614549b1f2e5b0aa636f8858daef6d90c56e967fd86095aa6d941ba5d3743f8",
+  "checks": {
+    "PADRead": {
+      "expected_target": "pswaker_read_gamepad",
+      "emitted_calls": [
+        "f33972: e8 e9 ce 8a ff               \tcallq\t0x7e0860 <pswaker_read_gamepad>"
+      ],
+      "passed": true
+    },
+    "ps5_input_poll": {
+      "expected_target": "_Z21pswaker_poll_controlsv",
+      "emitted_calls": [
+        "103d924: e8 57 2b 7a ff               \tcallq\t0x7e0480 <_Z21pswaker_poll_controlsv>"
+      ],
+      "passed": true
+    },
+    "pad_poll": {
+      "expected_target": "__wrap_scePadReadState",
+      "emitted_calls": [
+        "7e175b: e8 80 ec ff ff               \tcallq\t0x7e03e0 <__wrap_scePadReadState>",
+        "7e183f: e8 9c eb ff ff               \tcallq\t0x7e03e0 <__wrap_scePadReadState>",
+        "7e191a: e8 c1 ea ff ff               \tcallq\t0x7e03e0 <__wrap_scePadReadState>",
+        "7e19f5: e8 e6 e9 ff ff               \tcallq\t0x7e03e0 <__wrap_scePadReadState>"
+      ],
+      "passed": true
+    }
+  },
+  "limits": "Emitted linkage only; not a console observation or gameplay acceptance"
+}

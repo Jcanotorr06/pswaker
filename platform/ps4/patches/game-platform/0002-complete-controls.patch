@@ -1,0 +1,72 @@
+--- a/platform/input.cpp
++++ b/platform/input.cpp
+@@ -3,6 +3,7 @@
+ #include <SDL3/SDL.h>
+ #include "native/platform.h"
+ #include <algorithm>
++void pswaker_poll_controls();
+ 
+ namespace {
+ struct Player { int slot; SDL_JoystickID id = 0; SDL_Joystick* joystick = nullptr; };
+@@ -15,10 +16,7 @@
+     pad_player_light_bar(static_cast<Player*>(data)->slot, r, g, b);
+     return true;
+ }
+-// SDL's buttons in their physical places (Cross south, Circle east), for a DualShock 4: Dusklight
+-// names them Cross, Circle, Square and Triangle. Which is A and which is B is aurora's PS4 mapping
+-// (Circle confirms as A, Cross goes back as B, as on Nintendo's pads), so the game and its menus
+-// agree; the PlayStation button textures match (tools/make-ps-buttons.py).
++// Physical DS4 positions for Aurora UI events. Game PADRead uses the fixed PS4 controls bridge.
+ constexpr unsigned buttons[] = {PAD_CROSS, PAD_CIRCLE, PAD_SQUARE, PAD_TRIANGLE,
+     PAD_TOUCH_PAD, 0, PAD_OPTIONS, PAD_L3, PAD_R3, PAD_L1, PAD_R1,
+     PAD_UP, PAD_DOWN, PAD_LEFT, PAD_RIGHT};
+@@ -35,7 +33,7 @@
+ extern "C" void ps5_input_initialize() { pad_open(); }
+ extern "C" void ps5_input_shutdown() { for (auto& p : players) detach(p); }
+ extern "C" void ps5_input_poll() {
+-    pad first{}; pad_poll(&first);
++    pswaker_poll_controls();
+     for (auto& p : players) {
+         pad state{};
+         if (!pad_player(p.slot, &state)) { if (p.id) detach(p); continue; }
+--- a/aurora/lib/dolphin/pad/pad.cpp
++++ b/aurora/lib/dolphin/pad/pad.cpp
+@@ -710,10 +710,24 @@
+   status.analogB = std::max(status.analogB, virtualStatus.analogB);
+ }
+ 
++#if defined(__ORBIS__)
++extern "C" u32 pswaker_read_gamepad(PADStatus* status);
++#endif
++
+ u32 PADRead(PADStatus* status) {
+   if (!g_initialized) {
+     Log.fatal("PADRead called before PADInit()!");
+   }
++
++#if defined(__ORBIS__)
++  // One native sample drives both port pause state and fixed GameCube mappings.
++  // Do not let stale SDL events or saved desktop mappings bypass the pause gate.
++  const u32 support = pswaker_read_gamepad(status);
++  if (g_blockPAD) {
++    for (unsigned i = 0; i < PAD_CHANMAX; ++i) neutralize_status(status[i]);
++  }
++  return support;
++#endif
+ 
+   int numKeys = 0;
+   const bool* kbState = SDL_GetKeyboardState(&numKeys);
+--- a/platform/native/platform.c
++++ b/platform/native/platform.c
+@@ -306,7 +306,10 @@
+          continue;
+       struct pad_sample sample;
+       memset(&sample, 0, sizeof(sample));
+-      if (scePadReadState(state->handle, &sample) < 0 || !sample.connected) {
++      const int result = scePadReadState(state->handle, &sample);
++      if (result < 0 || !sample.connected) {
++         if (state->last.connected)
++            say("INPUT native-loss player=%d result=%#x connected=%d; clearing held input", player, (unsigned)result, sample.connected);
+          const int32_t user = state->user, handle = state->handle;
+          pad_rest(state);
+          state->user = user;
