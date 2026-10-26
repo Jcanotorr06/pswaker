@@ -30,10 +30,13 @@ class JKRHeap;
 #endif
 extern "C" int aurora_main(int argc, char** argv);
 extern "C" void pswaker_log_game_state();
+extern "C" int pswaker_card_shutdown_status();
+void pswaker_log_audio_output();
 extern "C" uint64_t ps4_disc_busy_until_ns() { return 0; }
 namespace {
 const auto launch = std::chrono::steady_clock::now();
 bool graphics = false;
+bool quitting = false;
 std::atomic<unsigned> checkedErrors{0};
 struct PipelineCounts { uint32_t created, queued; };
 PipelineCounts pipelines() {
@@ -46,7 +49,7 @@ double milliseconds() {
 }
 void events() {
     for (const auto* event = aurora_update(); event && event->type != AURORA_NONE; ++event)
-        if (event->type == AURORA_EXIT) pswaker_exit(0);
+        if (event->type == AURORA_EXIT && !quitting) pswaker_exit(0);
 }
 enum class Symbol { Cross, Circle, Square, Triangle };
 void symbolLine(Symbol symbol, const char* text) {
@@ -281,21 +284,47 @@ void pswaker_frame_boundary() {
         COSAIGetOutputStats(&frames, &squares);
         say("AUDIO dma-frames=%llu sum-squares=%llu; audible output needs owner confirmation",
             (unsigned long long)frames, (unsigned long long)squares);
+        pswaker_log_audio_output();
         pswaker_log_game_state();
     }
 }
 [[noreturn]] void pswaker_exit(int code) {
     JKRPcHostAllocScope hostAlloc;
     say("EXIT code=%d ms=%.1f checked-errors=%u", code, milliseconds(), unsigned(checkedErrors));
+    quitting = true;
     if (graphics) {
-        aurora::gfx::synchronize();
         // Fatal paths may originate inside an SDK lock. Leave process cleanup to
         // the console there, without destroying a stream under its producer.
         if (code == 0) {
+            pswaker_stage("shutdown-waiting-for-card");
+            for (;;) {
+                const auto deadline = milliseconds() + 30000;
+                int status;
+                while ((status = pswaker_card_shutdown_status()) == 0 && milliseconds() < deadline) {
+                    screen("Finishing pending card work", "Waiting for an already requested card operation. Quitting does not save current gameplay.");
+                    usleep(16000);
+                }
+                say("SHUTDOWN card-status=%d (0=busy 1=idle -1=last-store-failed)", status);
+                if (status == 1) break;
+                ++checkedErrors;
+                if (!confirmScreen("Card work did not complete successfully",
+                    "A previous save failed or card work is still pending. Retry waits again; Exit closes without claiming that progress was saved.", true)) {
+                    code = 3;
+                    break;
+                }
+            }
+            pswaker_log_game_state();
             COSSdkRequestShutdown();
             const bool stopped = COSAIShutdownOutput() != 0;
             say("SHUTDOWN audio-producer-joined=%d", stopped);
-            if (stopped) aurora_shutdown();
+            pswaker_log_audio_output();
+            aurora::gfx::synchronize();
+            say("SHUTDOWN gpu-synchronized=1");
+            if (stopped) {
+                aurora_shutdown();
+                pswaker_log_audio_output(); // Includes the backend's final drain call.
+                pswaker_stage(code == 0 ? "shutdown-complete" : "shutdown-with-card-error");
+            }
             else { ++checkedErrors; say("ERROR audio producer could not be joined; retaining SDL until process exit"); }
         }
     }

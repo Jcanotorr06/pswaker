@@ -1,5 +1,9 @@
 # Installed-game startup checkpoint (#17)
 
+The follow-up [route/audio checkpoint](ROUTE-AUDIO.md) adds repeated audio defect
+counters and card/audio/GPU shutdown coordination. Its candidate and owner
+checklist supersede the startup-only shutdown limits below for new builds.
+
 This integrates pinned SwitchWaker with the maintained PS4 platform. Acceptance
 requires owner observations of title, name entry, prologue and access to Outset
 on PS4 Slim / 9.00 / GoldHEN v2.4b18. Building a package does not establish that
