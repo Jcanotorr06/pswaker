@@ -8,7 +8,11 @@ Neither return contains orderly shutdown evidence or the full focused route
 review. No route-blocking defect has been identified from that return; this
 checkpoint adds observability and a precise follow-up instead of speculative
 renderer changes. The [candidate report](evidence/route-19/REPORT.md) distinguishes
-prepared artifacts from pending installed-console observations.
+prepared artifacts from installed-console observations. The
+[owner follow-up to the 01.06 handoff](evidence/route-19/owner-return-01.06/REPORT.md)
+confirms the requested title-through-Outset scenes/actions without visual or
+audible anomalies and confirms completed-save relaunch. No logs were available;
+candidate/cache corroboration and actual normal port Quit remain outstanding.
 
 ## Retained renderer behavior
 

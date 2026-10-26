@@ -2,9 +2,14 @@
 
 The 01.06 private complete package is built and independently extracted/inspected.
 It preserves the owner-tested route baseline and adds repeated audio-failure
-counters and normal card/audio/GPU shutdown coordination. **This candidate is
-not yet hardware-tested.** #19 remains pending its focused owner return; build
-success does not satisfy installed route, audible output or shutdown acceptance.
+counters and normal card/audio/GPU shutdown coordination. The
+[owner return](owner-return-01.06/REPORT.md) now confirms the requested title-to-
+end-of-Outset scenes/actions without visual or audible anomalies, and confirms
+relaunching a completed save works. **Logs could not be retrieved.** Association
+with 01.06 is contextual to the handoff; installed binary identity, cache state,
+audio counters and shutdown stages are not independently corroborated. #19
+remains open for its outstanding evidence; save relaunch does not establish
+normal port Quit or pending-write/audio/GPU completion.
 
 Use [ROUTE-AUDIO.md](../../ROUTE-AUDIO.md) for the source review, behavior and
 limitations, and the [owner checklist](../../Route-audio-checklist.md) for the
@@ -34,7 +39,8 @@ one for any uncertainty in this candidate's return.
 [artifacts.json](artifacts.json), [fresh inspection](inspection-01.06.json) and
 [provenance](provenance.json) preserve exact associations. Stable update identity,
 stock textures, original 30 Hz logic and 1280×720 internal rendering remain.
-The owner must reconfirm PS4 Slim / firmware 9.00 / GoldHEN v2.4b18 for the return.
+The owner return uses the earlier PS4 Slim / firmware 9.00 / GoldHEN v2.4b18
+baseline; this follow-up did not separately reconfirm the environment.
 
 ## Host checks and review
 
@@ -89,8 +95,11 @@ module/stub rights and combined distribution terms remain unresolved under
 [LICENSING.md](../../LICENSING.md). Artifacts stay private; no disc, extracted
 data, save, ELF or package is committed.
 
-Return cold/warm scene/action observations, music/effect continuity and alignment,
-actual normal Quit behavior and per-launch FTP logs using the checklist.
+Requested route scenes/actions and absence of visual/audible anomalies are now
+owner-confirmed, together with completed-save relaunch. Cold/warm attribution,
+actual normal port Quit and per-launch log/candidate corroboration remain
+outstanding; no console log was available for this return. Keep these limits
+alongside the [original owner statement](owner-return-01.06/owner-observations.json).
 The selected backend exposes no documented hardware underrun count. Repeated
 software queue drops, DMA skips, stream/backend errors or audible defects require
 investigation; clean counters cannot prove hardware underrun absence. A failed
