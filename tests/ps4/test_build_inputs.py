@@ -31,6 +31,18 @@ EXCLUDED_RECORDS = [
 
 
 class BuildInputTests(unittest.TestCase):
+    def assert_inputs_change_identity(self, checkout, names, baseline, identity):
+        for name in names:
+            with self.subTest(input=name):
+                path = checkout / name
+                original = path.read_bytes()
+                try:
+                    path.write_bytes(original + b'\n')
+                    self.assertNotEqual(baseline, identity())
+                finally:
+                    path.write_bytes(original)
+                self.assertEqual(baseline, identity())
+
     def test_inventory_preserves_maintained_coverage_and_excludes_records(self):
         spec = importlib.util.spec_from_file_location(
             'build_inputs', REPOSITORY / 'tools/pswaker/build_inputs.py')
@@ -69,14 +81,9 @@ class BuildInputTests(unittest.TestCase):
                 return result.stdout.strip()
             before = identity()
             patches = next((root / 'platform/ps4/patches').rglob('*.patch'))
-            for name in REPRESENTATIVE_INPUTS + [patches.relative_to(root).as_posix()]:
-                with self.subTest(input=name):
-                    path = root / name
-                    original = path.read_bytes()
-                    path.write_bytes(original + b'\n')
-                    self.assertNotEqual(before, identity())
-                    path.write_bytes(original)
-                    self.assertEqual(before, identity())
+            self.assert_inputs_change_identity(
+                root, REPRESENTATIVE_INPUTS + [patches.relative_to(root).as_posix()],
+                before, identity)
             shared = root / 'tools/pswaker/build_inputs.py'
             shared.write_text(shared.read_text() + '\n# changed maintained implementation\n')
             after_shared = identity()
@@ -142,14 +149,9 @@ class BuildInputTests(unittest.TestCase):
             self.assertIn('tools/pswaker/ownership.json', recorded['port_inputs'])
             self.assertIn('platform/ps4/game/storage.cpp', recorded['port_inputs'])
             patches = next((checkout / 'platform/ps4/patches').rglob('*.patch'))
-            for name in REPRESENTATIVE_INPUTS + [patches.relative_to(checkout).as_posix()]:
-                with self.subTest(input=name):
-                    path = checkout / name
-                    original = path.read_bytes()
-                    path.write_bytes(original + b'\n')
-                    self.assertNotEqual(before, identity())
-                    path.write_bytes(original)
-                    self.assertEqual(before, identity())
+            self.assert_inputs_change_identity(
+                checkout, REPRESENTATIVE_INPUTS + [patches.relative_to(checkout).as_posix()],
+                before, identity)
             for name in EXCLUDED_RECORDS:
                 excluded = checkout / name
                 excluded.parent.mkdir(parents=True, exist_ok=True)

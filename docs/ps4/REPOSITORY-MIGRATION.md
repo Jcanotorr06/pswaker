@@ -72,6 +72,13 @@ old `platform/ps4/*.sh` syntax loop had no matches after command relocation.
 The find-based scan landed in #58 and checks the final tooling/platform roots.
 This was a fixed intermediate regression, not a baseline failure.
 
+Final review found zero hard standards violations and zero spec findings. One
+standards judgment about duplicated identity assertions was resolved with a
+shared test helper that restores changed files in `finally`. The seven focused
+tests passed again in 10.678 seconds; Python syntax and diff checks passed.
+The recorded 144-input inventory is unchanged. This review-only refactoring did
+not rerun the full 93-test suite reported above.
+
 ## Identity and validation limits
 
 Repository-relative names, owner code and declaration participate in new build
