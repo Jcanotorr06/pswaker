@@ -4,14 +4,19 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import sys
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
+PLATFORM = LOCATIONS.platform
 GAME = os.environ.get('PSWAKER_GAME_ROOT')
-PLATFORM = os.environ.get('PSWAKER_REFERENCE_BUILD')
+REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
 
 
-@unittest.skipUnless(GAME and PLATFORM and shutil.which('clang++-21'),
+@unittest.skipUnless(GAME and REFERENCE and shutil.which('clang++-21'),
                      'Prepared game/platform and Linux compiler required')
 class RouteAudioTests(unittest.TestCase):
     @classmethod
@@ -21,7 +26,7 @@ class RouteAudioTests(unittest.TestCase):
         cls.binary = Path(cls.directory.name) / 'audio'
         game = Path(GAME)
         sdk = game / 'src/switchwaker/native/sdk'
-        platform = Path(PLATFORM)
+        platform = Path(REFERENCE)
         sources = [sdk / 'src/audio/AI.cpp', sdk / 'src/os/OSThread.cpp',
                    sdk / 'src/os/OSMutex.cpp', sdk / 'src/os/OSInterrupt.cpp',
                    sdk / 'src/os/OSAlarm.cpp',
@@ -30,9 +35,9 @@ class RouteAudioTests(unittest.TestCase):
             'clang++-21', '-std=c++23', '-D__ORBIS__', '-DTARGET_PC', '-pthread',
             '-ffunction-sections', '-fdata-sections', '-Wl,--gc-sections',
             '-I', str(sdk / 'include'), '-I', str(game / 'src/aurora/include'),
-            '-I', str(platform / 'src/sdl3/include'), '-I', str(HERE / 'game'),
+            '-I', str(platform / 'src/sdl3/include'), '-I', str(PLATFORM / 'game'),
             '-I', str(next((platform / 'src/fetch/fmt').glob('*/include'))),
-            *map(str, sources), str(HERE / 'tests/route-audio.cpp'), '-o', str(cls.binary)
+            *map(str, sources), str(LOCATIONS.tests / 'route-audio.cpp'), '-o', str(cls.binary)
         ], capture_output=True, text=True)
         if result.returncode:
             raise AssertionError(result.stdout + result.stderr)

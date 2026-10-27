@@ -10,22 +10,22 @@ import tarfile
 import io
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'tools/pswaker'))
-import build_inputs
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations, maintained_inputs
 
-LOCATIONS = build_inputs.Locations()
-HERE = LOCATIONS.platform
+LOCATIONS = Locations()
+PLATFORM = LOCATIONS.platform
 
 
 class GamePreparationTests(unittest.TestCase):
     def test_prepared_source_edits_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            for name, path in build_inputs.maintained_inputs().items():
+            for name, path in maintained_inputs().items():
                 target = root / 'repo' / name
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(path, target)
-            locations = build_inputs.Locations(root / 'repo')
+            locations = Locations(root / 'repo')
             cli = locations.command('prepare-game.py')
             shutil.rmtree(locations.platform / 'patches/game')
             (root / 'downloads').mkdir()
@@ -110,7 +110,7 @@ class InstalledApplicationTests(unittest.TestCase):
                 f'constexpr const char* image_sha1[] = {{"{hashlib.sha1(data).hexdigest()}"}};\n')
             binary = root / 'content-check'
             build = subprocess.run(['clang++-21', '-std=c++20', '-DPSWAKER_HOST_CONTENT_CHECK',
-                                    '-I', str(root), str(HERE / 'game/installed-content.cpp'),
+                                    '-I', str(root), str(PLATFORM / 'game/installed-content.cpp'),
                                     '-o', str(binary)], capture_output=True, text=True)
             self.assertEqual(build.returncode, 0, build.stderr)
             image = root / 'game.iso'

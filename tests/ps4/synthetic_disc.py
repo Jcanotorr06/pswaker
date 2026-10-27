@@ -15,9 +15,8 @@ def literal_yaz0(data):
         b'\xff' + data[i:i + 8] for i in range(0, len(data), 8))
 
 
-def generate(root, source):
+def generate(root, repository):
     import sys
-    repository = source.parents[1]
     sys.path.insert(0, str(repository / 'tools/pswaker'))
     import build_inputs
     for name, path in build_inputs.maintained_inputs(repository).items():

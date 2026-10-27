@@ -13,11 +13,10 @@ import unittest
 
 from synthetic_disc import generate
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'tools/pswaker'))
-import build_inputs
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
 
-LOCATIONS = build_inputs.Locations()
-HERE = LOCATIONS.platform
+LOCATIONS = Locations()
 REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
 
 
@@ -26,7 +25,7 @@ class PreparationCliTestCase(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory(prefix='pswaker-content-test-')
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
-        self.cli, self.image = generate(self.root, HERE)
+        self.cli, self.image = generate(self.root, LOCATIONS.repository)
 
     def run_cli(self, *args, cli=None):
         return subprocess.run([sys.executable, str(cli or self.cli), *map(str, args)],
@@ -55,7 +54,7 @@ class PrivateOutputTests(PreparationCliTestCase):
         repository = self.root / 'repo'
         relocated = self.root / 'relocated-checkout'
         repository.rename(relocated)
-        locations = build_inputs.Locations(relocated)
+        locations = Locations(relocated)
         output = relocated / 'private-output'
         for command, arguments in [
             ('complete-package.py', ['assemble', '--image', self.image,
@@ -75,7 +74,7 @@ class PrivateOutputTests(PreparationCliTestCase):
 
 class ImageValidationTests(PreparationCliTestCase):
     def test_catalogued_dump_acceptance_keeps_required_content_checks(self):
-        contract_file = build_inputs.Locations(self.root / 'repo').platform / 'content-contract.json'
+        contract_file = Locations(self.root / 'repo').platform / 'content-contract.json'
         contract = json.loads(contract_file.read_text())
         contract['additional_images'] = [{'sha1': contract['image_sha1'],
                                           'source': 'https://example.invalid/synthetic-catalogue'}]

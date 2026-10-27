@@ -92,7 +92,7 @@ game-facing PADStatus, including failed reads that still contain stale bytes.
 They do not render the port UI, run game logic, or establish physical actions:
 
     export PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-18"
-    python3 -m unittest discover -s platform/ps4/tests -p test_controls.py -v
+    python3 -m unittest discover -s tests/ps4 -p test_controls.py -v
 
 Use PSWAKER_REFERENCE_BUILD pointing to maintained-15-a for the full suite's
 real packaging checks. Run the owner checklist on the actual installed package

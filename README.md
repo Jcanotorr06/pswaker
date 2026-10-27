@@ -46,7 +46,7 @@ shutdown and evidence return. **Final integrated console acceptance remains pend
 | --- | --- |
 | [tools/pswaker](tools/pswaker/) | Maintained host commands and build-input ownership |
 | [platform/ps4](platform/ps4/) | PS4 runtime, CMake/toolchain definitions, locks, patches, provenance and target notices |
-| [platform/ps4/tests](platform/ps4/tests/) | Python tests, native harnesses and synthetic fixtures |
+| [tests/ps4](tests/ps4/) | Python tests, native harnesses and synthetic fixtures |
 | [docs/ps4](docs/ps4/README.md) | Maintained PS4 build instructions and owner checklists |
 | [evidence/ps4](evidence/ps4/) | Retained checkpoint groups and their original records |
 

@@ -7,11 +7,10 @@ import sys
 import tempfile
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'tools/pswaker'))
-import build_inputs
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
 
-LOCATIONS = build_inputs.Locations()
-HERE = LOCATIONS.platform
+LOCATIONS = Locations()
 
 
 class StorageCaseTests(unittest.TestCase):
