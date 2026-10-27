@@ -92,6 +92,7 @@ def build_package(executable, image, parent, env):
             time.sleep(0.5)
             click(user.GetDlgItem(dialog, 1))
             wait(lambda: not user.IsWindow(dialog))
+            time.sleep(0.5)  # Allow Tk's modal return to commit the selection and enable actions.
             return
         edits = []
         for handle, _, _ in windows(dialog):
@@ -112,6 +113,7 @@ def build_package(executable, image, parent, env):
             click(user.GetDlgItem(dialog, 1))
             time.sleep(0.3)
         wait(lambda: not user.IsWindow(dialog))
+        time.sleep(0.5)
 
     top = None
     try:

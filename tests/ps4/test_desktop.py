@@ -346,6 +346,10 @@ for mode in ['before', 'after']:
     @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
     def test_desktop_creates_verified_package_and_offers_manual_installation(self):
         self.run_desktop('''
+fixed_path = bundle / 'desktop-release.json'
+fixed = json.loads(fixed_path.read_text())
+fixed['app_version'] = '0.46.1.0'
+fixed_path.write_text(json.dumps(fixed))
 app.image_button.invoke()
 app.output_button.invoke()
 app.validate_button.invoke()
@@ -369,6 +373,13 @@ with patch('os.startfile') as opened:
     opened.assert_called_once_with(str(package.parent.resolve()))
 assert app.create_button.instate(['disabled'])
 assert not list(folder.glob('.complete-*'))
+diagnostic_path = folder / 'successful-update.json'
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(diagnostic_path)), \\
+     patch('tkinter.messagebox.showinfo'):
+    app.export_button.invoke()
+diagnostic = json.loads(diagnostic_path.read_text())
+assert diagnostic['app']['version'] == '0.46.1.0', diagnostic
+assert diagnostic['program']['app_version'] == '01.23', diagnostic
 ''', packaging=True)
 
     @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')

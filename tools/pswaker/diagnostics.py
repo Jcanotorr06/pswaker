@@ -106,7 +106,7 @@ class Diagnostics:
         try:
             info = json.loads((bundle / 'program/stage/build-info.json').read_text())
             self.program.update(select_fields(info, {'app_version': VERSION}))
-            if 'app_version' not in self.app:
+            if 'app_version' not in self.app and 'version' not in self.app:
                 self.app.update(select_fields(info, {'app_version': VERSION}))
         except (OSError, ValueError, TypeError, AttributeError):
             pass

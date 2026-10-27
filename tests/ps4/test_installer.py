@@ -39,10 +39,13 @@ class InstalledApplicationTests(unittest.TestCase):
                 'import sys; make_bundle(Path(sys.argv[1]), Path(sys.argv[2]))',
                 str(root / 'bundle'), str(TOOLS)], env=env)
             install = root / 'installed'
+            uninstalled = False
             def uninstall():
+                nonlocal uninstalled
                 uninstaller = install / 'unins000.exe'
-                if uninstaller.exists():
+                if not uninstalled and uninstaller.exists():
                     self.run_command([str(uninstaller), '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART'])
+                    uninstalled = True
             cleanup.callback(uninstall)
             image_before = image.read_bytes()
             # This is the agreed packaging seam in an isolated, data-free app copy.
@@ -99,6 +102,7 @@ class InstalledApplicationTests(unittest.TestCase):
             self.assertEqual(image.read_bytes(), image_before)
             uninstall()
             self.assertTrue(all(not app.exists() for app in installed_versions))
+            self.assertFalse((install / 'releases').exists())
             self.assertEqual((install / 'owner.txt').read_text(), 'preserve this owner file')
             self.assertEqual(image.read_bytes(), image_before)
             self.assertTrue(all(path.read_bytes() == content for path, content in packages))
