@@ -13,7 +13,11 @@ import unittest
 
 from synthetic_disc import generate
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'tools/pswaker'))
+import build_inputs
+
+LOCATIONS = build_inputs.Locations()
+HERE = LOCATIONS.platform
 REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
 
 
@@ -45,9 +49,33 @@ class PreparationCliTestCase(unittest.TestCase):
         return db
 
 
+@unittest.skipUnless(sys.platform == 'linux', 'Linux assembly interface required')
+class PrivateOutputTests(PreparationCliTestCase):
+    def test_relocated_commands_reject_repository_outputs_from_another_directory(self):
+        repository = self.root / 'repo'
+        relocated = self.root / 'relocated-checkout'
+        repository.rename(relocated)
+        locations = build_inputs.Locations(relocated)
+        output = relocated / 'private-output'
+        for command, arguments in [
+            ('complete-package.py', ['assemble', '--image', self.image,
+             '--program-stage', self.root / 'stage', '--elf', self.root / 'program.elf',
+             '--platform-root', self.root / 'platform', '--kind', 'game', '--app-version', '01.00']),
+            ('content-failure-package.py', [self.root / 'complete', '--platform-root', self.root / 'platform',
+             '--variant', 'missing', '--app-version', '01.01']),
+        ]:
+            with self.subTest(command=command):
+                result = subprocess.run([sys.executable, str(locations.command(command)),
+                                         *map(str, arguments), '--output', str(output)],
+                                        cwd='/', capture_output=True, text=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('outside the repository', result.stderr)
+                self.assertFalse(output.exists())
+
+
 class ImageValidationTests(PreparationCliTestCase):
     def test_catalogued_dump_acceptance_keeps_required_content_checks(self):
-        contract_file = self.cli.with_name('content-contract.json')
+        contract_file = build_inputs.Locations(self.root / 'repo').platform / 'content-contract.json'
         contract = json.loads(contract_file.read_text())
         contract['additional_images'] = [{'sha1': contract['image_sha1'],
                                           'source': 'https://example.invalid/synthetic-catalogue'}]
@@ -72,7 +100,7 @@ class ImageValidationTests(PreparationCliTestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_synthetic_image_never_passes_the_production_contract(self):
-        result = self.run_cli('validate', self.image, cli=HERE / 'complete-package.py')
+        result = self.run_cli('validate', self.image, cli=LOCATIONS.command('complete-package.py'))
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('full raw dump', result.stderr)
 
@@ -126,7 +154,7 @@ class ImageValidationTests(PreparationCliTestCase):
         with tempfile.TemporaryDirectory() as folder:
             image = Path(folder) / 'compressed.iso'
             image.write_bytes(b'RVZ\x01' + bytes(60))
-            result = subprocess.run([sys.executable, str(HERE / 'complete-package.py'), 'validate', str(image)],
+            result = subprocess.run([sys.executable, str(LOCATIONS.command('complete-package.py')), 'validate', str(image)],
                                     capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('Unsupported/compressed image', result.stderr)

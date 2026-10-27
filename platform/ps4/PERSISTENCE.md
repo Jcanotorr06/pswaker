@@ -65,7 +65,7 @@ progress; the historical #20 evidence does not validate the newer binary.
 Use the selected WSL2/Linux host and unchanged verified #15 platform archives:
 
 ```bash
-bash platform/ps4/build-game.sh "$HOME/.cache/pswaker/game-20-final" \
+bash tools/pswaker/build-game.sh "$HOME/.cache/pswaker/game-20-final" \
   "$HOME/.cache/pswaker/maintained-15-a" 01.07
 
 export PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-20-final"

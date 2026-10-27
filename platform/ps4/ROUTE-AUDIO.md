@@ -84,7 +84,7 @@ failure/recovery guarantees, settings writes, backups or durable-save acceptance
 
 Use the locked WSL2/Linux host, a fresh game root, and the verified #15 platform:
 
-    bash platform/ps4/build-game.sh "$HOME/.cache/pswaker/game-19" \
+    bash tools/pswaker/build-game.sh "$HOME/.cache/pswaker/game-19" \
       "$HOME/.cache/pswaker/maintained-15-a" 01.06
 
 Assemble and independently inspect through [COMPLETE-PACKAGES.md](COMPLETE-PACKAGES.md)

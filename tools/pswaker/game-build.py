@@ -14,8 +14,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 import build_inputs
 
-HERE = Path(__file__).resolve().parent
-spec = importlib.util.spec_from_file_location('game_preparation', HERE / 'prepare-game.py')
+spec = importlib.util.spec_from_file_location('game_preparation', build_inputs.Locations().command('prepare-game.py'))
 preparation = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(preparation)
 

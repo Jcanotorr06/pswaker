@@ -20,8 +20,8 @@ import build_inputs
 from disc_image import require, validate
 
 
-HERE = Path(__file__).resolve().parent
-REPOSITORY = build_inputs.Locations().repository
+LOCATIONS = build_inputs.Locations()
+REPOSITORY = LOCATIONS.repository
 INSTALLED_IMAGE = '/app0/game.iso'
 IDENTITIES = {
     'diagnostic': {'title_id': 'PSWK00010', 'label': 'PSWAKERPROBE',
@@ -164,7 +164,7 @@ class Tools:
                  self.root / 'refs/DolphinPS4/toolchain/ps4-love-style.cmake',
                  self.root / 'refs/DolphinPS4/toolchain/check-oelf.cmake']
         sources = json.loads((self.root / 'evidence/source-archives.json').read_text())
-        locks = json.loads((HERE / 'sources.lock.json').read_text())
+        locks = json.loads((LOCATIONS.platform / 'sources.lock.json').read_text())
         for name in ['src/liborbispkg', 'refs/DolphinPS4']:
             pinned = next(row for row in locks if row['path'] == name)
             require(pinned in sources, f'Platform source closure does not match selected {name}')
@@ -368,7 +368,7 @@ def assemble(args):
                   'inputs': {'image': str(args.image.resolve()), 'elf': str(args.elf.resolve()),
                              'program_stage': str(args.program_stage.resolve()),
                              'platform_root': str(args.platform_root.resolve())},
-                  'assembly_argv': [sys.executable, str(HERE / 'complete-package.py'), *sys.argv[1:]]}
+                  'assembly_argv': [sys.executable, str(LOCATIONS.command('complete-package.py')), *sys.argv[1:]]}
         write_json(work / 'assembly.json', report)
         inspect_package(work, tools)
         # Only the inspected package is retained; staging/extraction copies contain private data.

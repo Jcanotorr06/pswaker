@@ -7,7 +7,11 @@ import sys
 import tempfile
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'tools/pswaker'))
+import build_inputs
+
+LOCATIONS = build_inputs.Locations()
+HERE = LOCATIONS.platform
 
 
 class StorageCaseTests(unittest.TestCase):
@@ -34,7 +38,7 @@ class StorageCaseTests(unittest.TestCase):
                                               'program': {'build_id': 'synthetic'},
                                               'package': {'sha256': 'a'*64}}))
             output = root / 'cases'
-            command = [sys.executable, str(HERE / 'storage-cases.py'), '--seed', str(seed),
+            command = [sys.executable, str(LOCATIONS.command('storage-cases.py')), '--seed', str(seed),
                        '--inspection', str(inspection), '--output', str(output)]
             result = subprocess.run(command, text=True, capture_output=True)
             self.assertEqual(result.returncode, 0, result.stderr)
@@ -50,6 +54,12 @@ class StorageCaseTests(unittest.TestCase):
             repeated = subprocess.run(command, text=True, capture_output=True)
             self.assertNotEqual(repeated.returncode, 0)
             self.assertEqual((output / 'corrupt-with-backup' / gci).read_bytes(), corrupt)
+            private_output = LOCATIONS.repository / 'private-storage-case-test'
+            forbidden = subprocess.run(command[:-1] + [str(private_output)], cwd=root,
+                                       text=True, capture_output=True)
+            self.assertNotEqual(forbidden.returncode, 0)
+            self.assertIn('outside the Git repository', forbidden.stderr)
+            self.assertFalse(private_output.exists())
             seed.write_bytes(corrupt)
             rejected = subprocess.run(command[:-1] + [str(root / 'invalid')], text=True, capture_output=True)
             self.assertNotEqual(rejected.returncode, 0)
