@@ -14,6 +14,12 @@ _Avoid_: Full-game validation, release candidate
 An installation package containing the native game program without the owner's
 game data.
 
+**Program release**:
+A relocatable, data-free copy of a verified native program, with its matching
+ELF and verification manifest. It is used to assemble packages away from the
+developer build that produced it.
+_Avoid_: Program package, which is an installation package
+
 **Complete package**:
 An owner-built installation package combining the native game program with game
 data from the owner's disc image, ready to install and play on the PS4.

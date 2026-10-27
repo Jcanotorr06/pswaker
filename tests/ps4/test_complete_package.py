@@ -3,6 +3,7 @@ import json
 import hashlib
 import os
 from pathlib import Path
+import re
 import shutil
 import sqlite3
 import struct
@@ -60,15 +61,53 @@ class PrivateOutputTests(PreparationCliTestCase):
             ('complete-package.py', ['assemble', '--image', self.image,
              '--program-stage', self.root / 'stage', '--elf', self.root / 'program.elf',
              '--platform-root', self.root / 'platform', '--kind', 'game', '--app-version', '01.00']),
+            ('complete-package.py', ['release-program', '--program-stage', self.root / 'stage',
+             '--elf', self.root / 'program.elf', '--platform-root', self.root / 'platform', '--kind', 'game']),
             ('content-failure-package.py', [self.root / 'complete', '--platform-root', self.root / 'platform',
              '--variant', 'missing', '--app-version', '01.01']),
         ]:
-            with self.subTest(command=command):
+            with self.subTest(command=command, operation=str(arguments[0])):
                 result = subprocess.run([sys.executable, str(locations.command(command)),
                                          *map(str, arguments), '--output', str(output)],
                                         cwd='/', capture_output=True, text=True)
                 self.assertNotEqual(result.returncode, 0)
                 self.assertIn('outside the repository', result.stderr)
+                self.assertFalse(output.exists())
+
+    def assemble_args(self, output, *program):
+        return ['assemble', '--image', self.image, *program, '--platform-root', self.root / 'platform',
+                '--kind', 'game', '--app-version', '01.00', '--output', output, '--progress']
+
+    def test_rejected_image_is_reported_by_the_validation_stage(self):
+        self.change(0x1100, b'BAD')
+        output = self.root / 'private-output'
+        result = self.run_cli(*self.assemble_args(output, '--program', self.root / 'release'))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual([(event['stage'], event['event']) for event in events(result)],
+                         [('validate', 'started'), ('validate', 'failed')])
+        self.assertIn('sys/main.dol: content SHA-1 mismatch', events(result)[-1]['error'])
+        self.assertIn('content SHA-1 mismatch', result.stderr.splitlines()[-1])
+        self.assertNotIn('Traceback', result.stderr)
+        self.assertFalse(output.exists())
+
+    def test_existing_completed_output_is_preserved(self):
+        output = self.root / 'completed'
+        (output / 'out').mkdir(parents=True)
+        (output / 'out/previous.pkg').write_text('previous successful package')
+        result = self.run_cli(*self.assemble_args(output, '--program', self.root / 'release'))
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Output already exists', result.stderr)
+        self.assertEqual((output / 'out/previous.pkg').read_text(), 'previous successful package')
+        self.assertEqual([path.name for path in self.root.iterdir() if path.name.startswith('.complete-')], [])
+
+    def test_program_is_either_a_release_or_an_explicit_developer_build(self):
+        output = self.root / 'private-output'
+        for program in [[], ['--program-stage', self.root / 'stage'],
+                        ['--program', self.root / 'release', '--elf', self.root / 'program.elf']]:
+            with self.subTest(program=program):
+                result = self.run_cli(*self.assemble_args(output, *program))
+                self.assertEqual(result.returncode, 2)
+                self.assertIn('--program', result.stderr)
                 self.assertFalse(output.exists())
 
 
@@ -327,6 +366,160 @@ class CompletePackageRoundtripTests(PreparationCliTestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('unexpected.key', result.stderr)
         self.assertFalse(self.output.exists())
+
+
+@unittest.skipUnless(REFERENCE, 'Set PSWAKER_REFERENCE_BUILD to exercise real packaging tools')
+class RelocatableProgramTests(PreparationCliTestCase):
+    def setUp(self):
+        super().setUp()
+        self.reference = Path(REFERENCE)
+        self.output = self.root / 'private-complete'
+        self.build = self.root / 'developer-build'
+
+    def developer_build(self):
+        """Convert the reference diagnostic ELF at a temporary build path, as a developer build would."""
+        stage, elf = self.build / 'probe-stage', self.build / 'platform_diagnostic'
+        shutil.copytree(self.reference / 'build/probe-stage', stage)
+        shutil.copyfile(self.reference / 'build/probe/platform_diagnostic', elf)
+        sdk = self.reference / 'sdk/opt/pacbrew/ps4/openorbis'
+        toolchain = (self.reference / 'refs/DolphinPS4/toolchain/ps4-love-style.cmake').read_text()
+        authority = re.search(r'set\(PS4_AUTH_INFO "([0-9A-Fa-f]+)"\)', toolchain)[1]
+        subprocess.run([str(sdk / 'bin/create-fself'), '-in=' + str(elf), '-out=' + str(self.build / 'program.oelf'),
+                        '--eboot', str(stage / 'eboot.bin'), '--paid', '0x3800000000000035', '--authinfo', authority],
+                       env=dict(os.environ, OO_PS4_TOOLCHAIN=str(sdk)), check=True, stdout=subprocess.DEVNULL)
+        info = json.loads((stage / 'build-info.json').read_text())
+        info['eboot_sha256'] = sha256(stage / 'eboot.bin')
+        (stage / 'build-info.json').write_text(json.dumps(info, indent=2) + '\n')
+        return stage, elf
+
+    def release(self, kind='diagnostic'):
+        stage, elf = self.developer_build()
+        release = self.root / 'release'
+        return release, self.run_cli('release-program', '--program-stage', stage, '--elf', elf,
+                                     '--platform-root', self.reference, '--kind', kind, '--output', release)
+
+    def assemble(self, program, kind='diagnostic', *extra):
+        return self.run_cli('assemble', '--image', self.image, '--program', program,
+                            '--platform-root', self.reference, '--kind', kind,
+                            '--app-version', '01.05', '--output', self.output, *extra)
+
+    def test_relocated_release_packages_without_its_developer_build(self):
+        release, result = self.release()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        shutil.rmtree(self.build)
+        bundled = self.root / 'installed-app' / 'program'
+        bundled.parent.mkdir()
+        release.rename(bundled)
+        self.assertNotIn(str(self.build).encode(), (bundled / 'stage/eboot.bin').read_bytes())
+        image = self.image.read_bytes()
+        result = self.assemble(bundled, 'diagnostic', '--progress')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual([(event['stage'], event['event']) for event in events(result)],
+                         [(stage, event) for stage in ['validate', 'verify-program', 'assemble', 'inspect', 'publish']
+                          for event in ['started', 'passed']])
+        self.assertEqual([row['stage'] for row in json.loads((self.output / 'stages.json').read_text())],
+                         ['validate', 'verify-program', 'assemble', 'inspect'])
+        self.assertEqual(self.image.read_bytes(), image)
+        self.assertNotIn(str(self.build), (self.output / 'assembly.json').read_text())
+        inspected = self.run_cli('inspect', self.output, '--platform-root', self.reference)
+        self.assertEqual(inspected.returncode, 0, inspected.stderr)
+        report = json.loads(inspected.stdout)
+        self.assertEqual(report['payload_sha256']['eboot.bin'], sha256(bundled / 'stage/eboot.bin'))
+        self.assertEqual(report['sfo']['CONTENT_ID'], 'IV0000-PSWK00010_00-PSWAKERPROBE0000')
+        self.assertIn('NONPLAYABLE', report['scope'])
+
+    def rehash(self, release):
+        """Rewrite the release manifest consistently, as a deliberate tamperer would."""
+        manifest = json.loads((release / 'program-release.json').read_text())
+        manifest['elf_sha256'] = sha256(release / 'elf' / manifest['elf_filename'])
+        manifest['payload_sha256'] = {path.relative_to(release / 'stage').as_posix(): sha256(path)
+                                      for path in (release / 'stage').rglob('*') if path.is_file()}
+        (release / 'program-release.json').write_text(json.dumps(manifest))
+
+    def test_tampered_release_program_leaves_no_complete_package(self):
+        release, result = self.release()
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+        def append(path):
+            with path.open('ab') as stream:
+                stream.write(b'tampered')
+
+        def change_code(path, rehash):
+            binary = bytearray(path.read_bytes())
+            phoff, (phsize, phnum) = struct.unpack_from('<Q', binary, 32)[0], struct.unpack_from('<HH', binary, 54)
+            headers = [struct.unpack_from('<IIQQQQ', binary, phoff + i * phsize) for i in range(phnum)]
+            *_, offset, _, _, size = next(h for h in headers if h[0] == 1 and h[1] & 1)  # executable PT_LOAD
+            binary[offset + size // 2] ^= 0xff
+            path.write_bytes(binary)
+            if rehash:
+                self.rehash(path.parents[1])
+
+        def malform(release):
+            manifest = json.loads((release / 'program-release.json').read_text())
+            manifest['converter'] = 'create-fself'
+            (release / 'program-release.json').write_text(json.dumps(manifest))
+
+        for case, tamper, message in [
+                ('malformed', malform, 'Unsupported program release manifest'),
+                ('executable',lambda r: append(r / 'stage/eboot.bin'), 'differs from its release manifest: eboot.bin'),
+                ('elf', lambda r: change_code(r / 'elf/platform_diagnostic', False), 'ELF differs from its release'),
+                ('rehashed-elf', lambda r: change_code(r / 'elf/platform_diagnostic', True), 'does not reproduce')]:
+            with self.subTest(case=case):
+                tampered = self.root / case
+                shutil.copytree(release, tampered)
+                tamper(tampered)
+                result = self.assemble(tampered)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(message, result.stderr)
+                self.assertNotIn('Traceback', result.stderr)
+                self.assertFalse(self.output.exists())
+
+    def test_developer_executable_is_not_accepted_as_the_release_executable(self):
+        release, result = self.release()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        # A genuine SELF of the same ELF, but converted at its developer build path.
+        shutil.copyfile(self.build / 'probe-stage/eboot.bin', release / 'stage/eboot.bin')
+        info = json.loads((release / 'stage/build-info.json').read_text())
+        info['eboot_sha256'] = sha256(release / 'stage/eboot.bin')
+        (release / 'stage/build-info.json').write_text(json.dumps(info))
+        self.rehash(release)
+        result = self.assemble(release)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Release ELF does not reproduce its program SELF', result.stderr)
+        self.assertFalse(self.output.exists())
+
+    def test_diagnostic_release_cannot_be_relabelled_as_a_game(self):
+        release, result = self.release()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        game = self.root / 'game-release'
+        result = self.run_cli('release-program', '--program-stage', self.build / 'probe-stage',
+                              '--elf', self.build / 'platform_diagnostic', '--platform-root', self.reference,
+                              '--kind', 'game', '--output', game)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('NONPLAYABLE', result.stderr)
+        self.assertFalse(game.exists())
+        result = self.assemble(release, 'game', '--progress')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('NONPLAYABLE', result.stderr)
+        self.assertEqual(events(result)[-1]['stage'], 'verify-program')
+        self.assertEqual(events(result)[-1]['event'], 'failed')
+        self.assertFalse(self.output.exists())
+        manifest = json.loads((release / 'program-release.json').read_text())
+        manifest['kind'] = 'game'
+        (release / 'program-release.json').write_text(json.dumps(manifest))
+        result = self.assemble(release, 'game')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('NONPLAYABLE', result.stderr)
+        self.assertFalse(self.output.exists())
+
+
+def sha256(path):
+    with path.open('rb') as stream:
+        return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def events(result):
+    return [json.loads(line) for line in result.stderr.splitlines() if line.startswith('{')]
 
 
 if __name__ == '__main__':
