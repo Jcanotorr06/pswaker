@@ -1,0 +1,137 @@
+{
+    "purpose":  "Exact preferred source candidates and relevant recipes, with original project license and notices retained at each revision; binary correspondence evidence is in module-source-inspection.json",
+    "files":  [
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/b6c1869489a42bdcea7f6607308a9e1368532814/LICENSE",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/b6c1869489a42bdcea7f6607308a9e1368532814/LICENSE",
+                      "blob_sha":  "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+                      "sha256":  "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/b6c1869489a42bdcea7f6607308a9e1368532814/README.md",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/b6c1869489a42bdcea7f6607308a9e1368532814/README.md",
+                      "blob_sha":  "4019deac8b5aa92e6b5711d350d1af1cf0b27258",
+                      "sha256":  "12f1bd74052b269efb1a1d5ec6d141aa63cd2d3556e08d3d2fc6d0f39ae64720"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/b6c1869489a42bdcea7f6607308a9e1368532814/samples/library_example/library_example/lib.cpp",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/b6c1869489a42bdcea7f6607308a9e1368532814/samples/library_example/library_example/lib.cpp",
+                      "blob_sha":  "4d54b7372387c5d253699e7816e19b671e055a6c",
+                      "sha256":  "b3dedbc2402da28a17e01cadc6f06dd52c23d5c239956dcb7945686d8f8856f4"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/b6c1869489a42bdcea7f6607308a9e1368532814/samples/library_example/library_example/build.bat",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/b6c1869489a42bdcea7f6607308a9e1368532814/samples/library_example/library_example/build.bat",
+                      "blob_sha":  "55206affca55e5acfd87964d921303a69c8dbed0",
+                      "sha256":  "c31a1cef245bccea2372887a27f3bafd3712d617857fa05ab26bea53d03cffdd"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/b6c1869489a42bdcea7f6607308a9e1368532814/samples/library_example/Makefile",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/b6c1869489a42bdcea7f6607308a9e1368532814/samples/library_example/Makefile",
+                      "blob_sha":  "8e588acb7751876a403046f51dad8a40622ab28f",
+                      "sha256":  "ca021134f0adf93cd1cabb43cc2bf3953b3005c92207ed4ab55e5d849ae65839"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/39414b5d40c20026466fee6dc3f29cf6c05eebee/LICENSE",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/39414b5d40c20026466fee6dc3f29cf6c05eebee/LICENSE",
+                      "blob_sha":  "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+                      "sha256":  "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/39414b5d40c20026466fee6dc3f29cf6c05eebee/README.md",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/39414b5d40c20026466fee6dc3f29cf6c05eebee/README.md",
+                      "blob_sha":  "4019deac8b5aa92e6b5711d350d1af1cf0b27258",
+                      "sha256":  "12f1bd74052b269efb1a1d5ec6d141aa63cd2d3556e08d3d2fc6d0f39ae64720"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/right/lib.c",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/right/lib.c",
+                      "blob_sha":  "7f42377596f0460c0f027d5c55b334c314fd295b",
+                      "sha256":  "8e9c0ed0d16e0efddbb156d1cf162a33e20d73cc94a90513398cb3c4ff5e5852"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/right/string_data.h",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/right/string_data.h",
+                      "blob_sha":  "f13f6c26c3e8a0d12530eaf07675b5d4b8c3fedc",
+                      "sha256":  "1571e78a965bf8df43f8cdb95a69c6268388230c2e56ecfa8dbddd0541d0e25a"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/right/logo_data.h",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/right/logo_data.h",
+                      "blob_sha":  "03473de14fce65a24c50fb598c39f0b6ed912af7",
+                      "sha256":  "bfee0a85a57b5e0a29699449174b4fb20188ef34b444b623b7d96037412d4391"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/right/right.version",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/right/right.version",
+                      "blob_sha":  "a0c534a550450e57c1215c26a7470bddb14e2ae2",
+                      "sha256":  "1729b5d36dc35dd29b6e316a98c3e52152284ce65e8813b02deb4e50e1ca4eb0"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/README.md",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/README.md",
+                      "blob_sha":  "ce75c7acec62cdd996b2464a72dccb97f03bc8b9",
+                      "sha256":  "0ffd4a667270cb1244802cd87416911f48c89dcfa7a9c7e969d0174075377e91"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/Makefile",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/39414b5d40c20026466fee6dc3f29cf6c05eebee/src/modules/right/Makefile",
+                      "blob_sha":  "78f062c717bce91ce1ee015c1e43a506e00652ba",
+                      "sha256":  "bd637c3bf1836990a963eea08015c1b2d87414e94a4b9fa79227739b67b9da60"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/cd480230b946239f758333ef0dff40d67c5f0c20/LICENSE",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/LICENSE",
+                      "blob_sha":  "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+                      "sha256":  "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/cd480230b946239f758333ef0dff40d67c5f0c20/README.md",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/README.md",
+                      "blob_sha":  "4759af20e92491224023106d8447329c55376c7a",
+                      "sha256":  "b9831a03a974d34f5f0e3a610c370121278b81c0a33f7dbb4c1099d413479fd8"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/cd480230b946239f758333ef0dff40d67c5f0c20/src/templates/PS4 SPRX Project/PS4 SPRX Project/lib.cpp",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/src/templates/PS4%20SPRX%20Project/PS4%20SPRX%20Project/lib.cpp",
+                      "blob_sha":  "4966f4db3631a92b4ffb1a354310444dfc58367e",
+                      "sha256":  "05bb48fd8014aa5cbe72ce637f3a61075ee8ee9281940a4e70677eb5a7803d37"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/cd480230b946239f758333ef0dff40d67c5f0c20/src/templates/PS4 SPRX Project/PS4 SPRX Project/lib.h",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/src/templates/PS4%20SPRX%20Project/PS4%20SPRX%20Project/lib.h",
+                      "blob_sha":  "34e1276136bfb49ce4e4257b9ab6fd599ceadacc",
+                      "sha256":  "7b26e012defd626faae27586ef846782d181d3523093439f3beb10e64c94b368"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/cd480230b946239f758333ef0dff40d67c5f0c20/src/crt/crtlib.S",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/src/crt/crtlib.S",
+                      "blob_sha":  "54cc3661ee84820316b8d20e7dcaff2ea9fb4abb",
+                      "sha256":  "f3d799268480d13d7d53aab166cebc7cd83278507ffda97d4bb0dcfac887ca90"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/cd480230b946239f758333ef0dff40d67c5f0c20/src/crt/crtlib.c",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/src/crt/crtlib.c",
+                      "blob_sha":  "b8e460f904c7dd39f426f3893b2739ac722e6070",
+                      "sha256":  "f61b856cb9ec85c740e9b57acb3b5a39a1713aa61caee9444d9fb8c38e4e01bb"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/cd480230b946239f758333ef0dff40d67c5f0c20/src/crt/build.sh",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/src/crt/build.sh",
+                      "blob_sha":  "68cadb0f116e0b2546f0ea14951d4039243004e2",
+                      "sha256":  "c01a0a6516fa1be5285ffe0da344030c47dda506f9fbeb9ad58a6cf5fa1e48bc"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/cd480230b946239f758333ef0dff40d67c5f0c20/link.x",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/link.x",
+                      "blob_sha":  "5d56621dd45def805f46014ef2256bf0a6dd08bc",
+                      "sha256":  "e52b4bf39ecf6db66c861d130fe89a67aec6e34c5af394faf60331a1655769c1"
+                  },
+                  {
+                      "path":  "evidence/ps4/redistribution-47/module-source-candidates/b6c1869489a42bdcea7f6607308a9e1368532814/src/crt/crtlib.S",
+                      "upstream_url":  "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/b6c1869489a42bdcea7f6607308a9e1368532814/src/crt/crtlib.S",
+                      "blob_sha":  "2db1eec43e976202f3adb5f4532a804c49e8db2b",
+                      "sha256":  "1a73bd1fe502287279d76d578d52524295c99d89c140a64f3db3db0b5afa09ef"
+                  }
+              ]
+}

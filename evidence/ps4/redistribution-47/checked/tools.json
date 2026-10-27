@@ -1,0 +1,14 @@
+{
+  "python3": {
+    "executable_sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+    "version": "Python 3.12.3"
+  },
+  "llvm-readelf-21": {
+    "executable_sha256": "49064949d83ebd3a12af62a05239b5c2397634da35c35f0630072d611d9f25dd",
+    "version": "Ubuntu LLVM version 21.1.8"
+  },
+  "ninja": {
+    "executable_sha256": "5965527e09fe2b3787772aa4f711d6a36b393e7f2fcaa744a7a96c5a4ddf59cb",
+    "version": "1.11.1"
+  }
+}
