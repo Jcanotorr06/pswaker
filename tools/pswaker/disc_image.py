@@ -3,9 +3,14 @@ import hashlib
 import json
 from pathlib import Path
 import struct
+import sys
 
 
-CONTRACT = Path(__file__).with_name('content-contract.json')
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+import build_inputs
+
+PLATFORM = build_inputs.Locations().platform
+CONTRACT = PLATFORM / 'content-contract.json'
 MAX_CONTAINER = 64 << 20
 
 

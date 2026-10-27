@@ -19,16 +19,16 @@ diagnostic tree is preserved.
 
     PLATFORM_ROOT="$HOME/.cache/pswaker/maintained-15-a"
     GAME_ROOT="$HOME/.cache/pswaker/game-17"
-    bash platform/ps4/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.00
+    bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.00
 
-    python3 platform/ps4/complete-package.py assemble \
+    python3 tools/pswaker/complete-package.py assemble \
       --image "/absolute/path/to/your/USA-revision-0.iso" \
       --program-stage "$GAME_ROOT/build/program-stage" \
       --elf "$GAME_ROOT/build/switchwaker" \
       --platform-root "$PLATFORM_ROOT" --kind game --app-version 01.00 \
       --output "$HOME/.local/share/pswaker-private/startup-17-01.00"
 
-    python3 platform/ps4/complete-package.py inspect \
+    python3 tools/pswaker/complete-package.py inspect \
       "$HOME/.local/share/pswaker-private/startup-17-01.00" \
       --platform-root "$PLATFORM_ROOT"
 
@@ -123,7 +123,7 @@ textures are selected.
 
 ## Controlled content failures
 
-    python3 platform/ps4/content-failure-package.py \
+    python3 tools/pswaker/content-failure-package.py \
       "$HOME/.local/share/pswaker-private/startup-17-01.00" \
       --platform-root "$PLATFORM_ROOT" --variant missing --app-version 01.01 \
       --output "$HOME/.local/share/pswaker-private/startup-17-missing-01.01"

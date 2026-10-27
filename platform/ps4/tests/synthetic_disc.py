@@ -24,7 +24,7 @@ def generate(root, source):
         target = root / 'repo' / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(path, target)
-    cli = root / 'repo/platform/ps4'
+    locations = build_inputs.Locations(root / 'repo')
 
     # A small DOL with one synthetic section.
     dol = bytearray(0x120)
@@ -75,5 +75,5 @@ def generate(root, source):
                     {'path': 'RELS.arc', 'member': 'rels/mmem/first.rel', 'sha1': hashlib.sha1(first).hexdigest()},
                     {'path': 'RELS.arc', 'member': 'rels/mmem/second.rel', 'sha1': hashlib.sha1(second).hexdigest()},
                     {'path': 'rels/direct.rel', 'member': '', 'sha1': hashlib.sha1(direct).hexdigest()}]}
-    (cli / 'content-contract.json').write_text(json.dumps(contract))
-    return cli / 'complete-package.py', path
+    (locations.platform / 'content-contract.json').write_text(json.dumps(contract))
+    return locations.command('complete-package.py'), path

@@ -9,7 +9,11 @@ import sys
 import tempfile
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'tools/pswaker'))
+import build_inputs
+
+LOCATIONS = build_inputs.Locations()
+HERE = LOCATIONS.platform
 
 
 class SummaryTests(unittest.TestCase):
@@ -62,7 +66,7 @@ class SummaryTests(unittest.TestCase):
                 writer = csv.writer(stream)
                 writer.writerow(header.split(','))
                 writer.writerows(rows)
-        result = subprocess.run([sys.executable, str(HERE / 'frame-pacing.py'), str(self.run),
+        result = subprocess.run([sys.executable, str(LOCATIONS.command('frame-pacing.py')), str(self.run),
                                  '--inspection', str(self.run / 'inspection.json'),
                                  '--owner', str(self.run / 'owner.json'), '--output', str(self.root / 'analysis')],
                                 capture_output=True, text=True)

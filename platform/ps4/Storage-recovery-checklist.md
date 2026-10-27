@@ -30,7 +30,7 @@ binary or attribute its hardware results to this candidate.
    cases in WSL2 using the freshly inspected candidate:
 
    ```bash
-   python3 platform/ps4/storage-cases.py \
+   python3 tools/pswaker/storage-cases.py \
      --seed /private/disposable-seed.gci \
      --inspection "$HOME/.local/share/pswaker-private/storage-21-01.09/inspection.json" \
      --output "$HOME/.local/share/pswaker-private/storage-21-cases"

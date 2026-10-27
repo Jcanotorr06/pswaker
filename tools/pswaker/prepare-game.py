@@ -11,7 +11,10 @@ import tarfile
 import tempfile
 import urllib.request
 
-HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+import build_inputs
+
+PLATFORM = build_inputs.Locations().platform
 
 
 def digest(path):
@@ -39,7 +42,7 @@ def retain_verified_source(expected, target):
 
 
 def prepare(root, platform_root=None):
-    lock = json.loads((HERE / 'game.lock.json').read_text())
+    lock = json.loads((PLATFORM / 'game.lock.json').read_text())
     (root / 'downloads').mkdir(parents=True, exist_ok=True)
     (root / 'evidence').mkdir(exist_ok=True)
     records = []
@@ -64,7 +67,7 @@ def prepare(root, platform_root=None):
                         member.name = str(Path(*parts))
                         source.extract(member, expected, filter='data')
             if name == 'switchwaker':
-                apply_patches(expected, HERE / 'patches/game')
+                apply_patches(expected, PLATFORM / 'patches/game')
             retain_verified_source(expected, root / 'src' / name)
         records.append(dict(row, archive_url=url))
     game = root / 'src/switchwaker'
@@ -74,14 +77,14 @@ def prepare(root, platform_root=None):
         shutil.copytree(root / 'src/decomp/assets/GZLE01/res', assets / 'res')
     subprocess.run([sys.executable, str(game / 'native/tools/gen_asset_stubs.py'),
                     '--decomp', str(root / 'src/decomp'), '--out', str(assets)], check=True)
-    contract = json.loads((HERE / 'content-contract.json').read_text())
+    contract = json.loads((PLATFORM / 'content-contract.json').read_text())
     hashes = [contract['image_sha1']] + [row['sha1'] for row in contract['additional_images']]
     (assets / 'image-contract.hpp').write_text(
         '#pragma once\n#include <cstdint>\n'
         f"constexpr uint64_t image_size = {contract['image_size']};\n"
         'constexpr const char* image_sha1[] = {' + ','.join(json.dumps(h) for h in hashes) + '};\n')
     result = {'sources': records,
-              'patches': inventory(HERE / 'patches/game'),
+              'patches': inventory(PLATFORM / 'patches/game'),
               'prepared_sources': {row['name']: inventory(root / 'src' / row['name'])
                                    for row in lock['sources']},
               'stub_headers': inventory(assets)}
@@ -91,12 +94,12 @@ def prepare(root, platform_root=None):
             expected = Path(directory)
             shutil.copytree(platform_root / 'src/aurora', expected / 'aurora')
             shutil.copytree(platform_root / 'src/native-platform/ps4', expected / 'platform')
-            apply_patches(expected, HERE / 'patches/game-platform')
+            apply_patches(expected, PLATFORM / 'patches/game-platform')
             for name in ['aurora', 'platform']:
                 retain_verified_source(expected / name, root / 'src' / name)
                 result[name] = inventory(root / 'src' / name)
         result['platform_root'] = str(platform_root)
-        result['platform_patches'] = inventory(HERE / 'patches/game-platform')
+        result['platform_patches'] = inventory(PLATFORM / 'patches/game-platform')
         result['platform_evidence'] = {
             name: digest(platform_root / 'evidence' / name) for name in [
                 'artifacts.json', 'inspection.json', 'input-closure.json',
