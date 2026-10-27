@@ -101,9 +101,9 @@ bash platform/ps4/build-game.sh "$HOME/.cache/pswaker/game-21" \
 export PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-21"
 export PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/maintained-15-a"
 export PSWAKER_HOST_ROOT="$HOME/.cache/pswaker/aurora-host-20261022"
-python3 -m unittest discover -s platform/ps4/tests -p test_gci_persistence.py -v
-python3 -m unittest discover -s platform/ps4/tests -p test_route_card.py -v
-python3 -m unittest discover -s platform/ps4/tests -v
+python3 -m unittest discover -s tests/ps4 -p test_gci_persistence.py -v
+python3 -m unittest discover -s tests/ps4 -p test_route_card.py -v
+python3 -m unittest discover -s tests/ps4 -v
 python3 -m compileall -q platform/ps4
 ```
 

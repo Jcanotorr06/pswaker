@@ -13,7 +13,10 @@ import unittest
 
 from synthetic_disc import generate
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
 REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
 
 
@@ -22,7 +25,7 @@ class PreparationCliTestCase(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory(prefix='pswaker-content-test-')
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
-        self.cli, self.image = generate(self.root, HERE)
+        self.cli, self.image = generate(self.root, LOCATIONS.repository)
 
     def run_cli(self, *args, cli=None):
         return subprocess.run([sys.executable, str(cli or self.cli), *map(str, args)],
@@ -47,7 +50,7 @@ class PreparationCliTestCase(unittest.TestCase):
 
 class ImageValidationTests(PreparationCliTestCase):
     def test_catalogued_dump_acceptance_keeps_required_content_checks(self):
-        contract_file = self.cli.with_name('content-contract.json')
+        contract_file = Locations(self.root / 'repo').platform / 'content-contract.json'
         contract = json.loads(contract_file.read_text())
         contract['additional_images'] = [{'sha1': contract['image_sha1'],
                                           'source': 'https://example.invalid/synthetic-catalogue'}]
@@ -72,7 +75,7 @@ class ImageValidationTests(PreparationCliTestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_synthetic_image_never_passes_the_production_contract(self):
-        result = self.run_cli('validate', self.image, cli=HERE / 'complete-package.py')
+        result = self.run_cli('validate', self.image, cli=LOCATIONS.command('complete-package.py'))
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('full raw dump', result.stderr)
 
@@ -126,7 +129,7 @@ class ImageValidationTests(PreparationCliTestCase):
         with tempfile.TemporaryDirectory() as folder:
             image = Path(folder) / 'compressed.iso'
             image.write_bytes(b'RVZ\x01' + bytes(60))
-            result = subprocess.run([sys.executable, str(HERE / 'complete-package.py'), 'validate', str(image)],
+            result = subprocess.run([sys.executable, str(LOCATIONS.command('complete-package.py')), 'validate', str(image)],
                                     capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('Unsupported/compressed image', result.stderr)

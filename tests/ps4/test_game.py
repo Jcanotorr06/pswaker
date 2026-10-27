@@ -10,23 +10,31 @@ import tarfile
 import io
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations, maintained_inputs
+
+LOCATIONS = Locations()
+PLATFORM = LOCATIONS.platform
 
 
 class GamePreparationTests(unittest.TestCase):
     def test_prepared_source_edits_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            cli = root / 'tools/prepare-game.py'
-            cli.parent.mkdir()
-            shutil.copyfile(HERE / 'prepare-game.py', cli)
+            for name, path in maintained_inputs().items():
+                target = root / 'repo' / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(path, target)
+            locations = Locations(root / 'repo')
+            cli = locations.command('prepare-game.py')
+            shutil.rmtree(locations.platform / 'patches/game')
             (root / 'downloads').mkdir()
             archive = root / 'downloads/switchwaker.tar.gz'
             with tarfile.open(archive, 'w:gz') as bundle:
                 row = tarfile.TarInfo('source/README')
                 row.size = 8
                 bundle.addfile(row, io.BytesIO(b'original'))
-            (cli.parent / 'game.lock.json').write_text(json.dumps({'sources': [{
+            (locations.platform / 'game.lock.json').write_text(json.dumps({'sources': [{
                 'name': 'switchwaker', 'repository': 'example/fixture', 'revision': 'a'*40,
                 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest()}]}))
             prepared = root / 'src/switchwaker'
@@ -42,7 +50,7 @@ class GamePreparationTests(unittest.TestCase):
             root = Path(directory)
             (root / 'downloads').mkdir()
             (root / 'downloads/switchwaker.tar.gz').write_bytes(b'changed archive')
-            result = subprocess.run([sys.executable, str(HERE / 'prepare-game.py'), str(root)],
+            result = subprocess.run([sys.executable, str(LOCATIONS.command('prepare-game.py')), str(root)],
                                     capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('switchwaker: source archive SHA-256 mismatch', result.stderr)
@@ -75,7 +83,7 @@ class InstalledApplicationTests(unittest.TestCase):
             header = platform / 'build/dawn/gen/include/webgpu/webgpu_cpp.h'
             header.parent.mkdir(parents=True)
             header.write_bytes(b'original header')
-            cli = [sys.executable, str(HERE / 'game-build.py')]
+            cli = [sys.executable, str(LOCATIONS.command('game-build.py'))]
             configured = subprocess.run(cli + ['identity', str(root), str(platform)],
                                         capture_output=True, text=True)
             self.assertEqual(configured.returncode, 0, configured.stderr)
@@ -102,7 +110,7 @@ class InstalledApplicationTests(unittest.TestCase):
                 f'constexpr const char* image_sha1[] = {{"{hashlib.sha1(data).hexdigest()}"}};\n')
             binary = root / 'content-check'
             build = subprocess.run(['clang++-21', '-std=c++20', '-DPSWAKER_HOST_CONTENT_CHECK',
-                                    '-I', str(root), str(HERE / 'game/installed-content.cpp'),
+                                    '-I', str(root), str(PLATFORM / 'game/installed-content.cpp'),
                                     '-o', str(binary)], capture_output=True, text=True)
             self.assertEqual(build.returncode, 0, build.stderr)
             image = root / 'game.iso'

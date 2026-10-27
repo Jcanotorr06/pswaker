@@ -3,9 +3,14 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import sys
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
+PLATFORM = LOCATIONS.platform
 
 
 @unittest.skipUnless(shutil.which('clang++-21'), 'Linux compiler required')
@@ -17,8 +22,8 @@ class PersistenceTests(unittest.TestCase):
         cls.binary = Path(cls.directory.name) / 'storage'
         result = subprocess.run([
             'clang++-21', '-std=c++23', '-Wall', '-Wextra', '-Werror',
-            '-I', str(HERE / 'game'), str(HERE / 'game/storage.cpp'),
-            str(HERE / 'tests/storage.cpp'), '-Wl,--wrap=fsync',
+            '-I', str(PLATFORM / 'game'), str(PLATFORM / 'game/storage.cpp'),
+            str(LOCATIONS.tests / 'storage.cpp'), '-Wl,--wrap=fsync',
             '-Wl,--wrap=rename', '-Wl,--wrap=close', '-o', str(cls.binary)],
             capture_output=True, text=True)
         if result.returncode:

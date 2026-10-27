@@ -15,16 +15,15 @@ def literal_yaz0(data):
         b'\xff' + data[i:i + 8] for i in range(0, len(data), 8))
 
 
-def generate(root, source):
+def generate(root, repository):
     import sys
-    repository = source.parents[1]
     sys.path.insert(0, str(repository / 'tools/pswaker'))
     import build_inputs
     for name, path in build_inputs.maintained_inputs(repository).items():
         target = root / 'repo' / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(path, target)
-    cli = root / 'repo/platform/ps4'
+    locations = build_inputs.Locations(root / 'repo')
 
     # A small DOL with one synthetic section.
     dol = bytearray(0x120)
@@ -75,5 +74,5 @@ def generate(root, source):
                     {'path': 'RELS.arc', 'member': 'rels/mmem/first.rel', 'sha1': hashlib.sha1(first).hexdigest()},
                     {'path': 'RELS.arc', 'member': 'rels/mmem/second.rel', 'sha1': hashlib.sha1(second).hexdigest()},
                     {'path': 'rels/direct.rel', 'member': '', 'sha1': hashlib.sha1(direct).hexdigest()}]}
-    (cli / 'content-contract.json').write_text(json.dumps(contract))
-    return cli / 'complete-package.py', path
+    (locations.platform / 'content-contract.json').write_text(json.dumps(contract))
+    return locations.command('complete-package.py'), path

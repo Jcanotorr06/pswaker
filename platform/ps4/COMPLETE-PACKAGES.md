@@ -209,9 +209,9 @@ assembly is neither licensing clearance nor first-playable acceptance.
 Tests stay at the existing preparation and artifact-inspection CLI boundaries:
 
 ```bash
-python3 -m unittest discover -s platform/ps4/tests -p test_complete_package.py -v
+python3 -m unittest discover -s tests/ps4 -p test_complete_package.py -v
 PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/maintained-15-a" \
-  python3 -m unittest discover -s platform/ps4/tests -p test_complete_package.py -v
+  python3 -m unittest discover -s tests/ps4 -p test_complete_package.py -v
 python3 -m compileall -q platform/ps4
 ```
 

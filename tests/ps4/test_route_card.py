@@ -4,9 +4,13 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import sys
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
 GAME = os.environ.get('PSWAKER_GAME_ROOT')
 
 
@@ -38,7 +42,7 @@ class RouteCardTests(unittest.TestCase):
                    sdk / 'src/os/OSInterrupt.cpp', sdk / 'src/os/OSAlarm.cpp',
                    sdk / 'src/os/OSContext.cpp', sdk / 'src/os/OSMessage.cpp',
                    sdk / 'src/os/OSReport.cpp', sdk / 'src/gba/GBA.cpp',
-                   HERE / 'tests/route-card.cpp']
+                   LOCATIONS.tests / 'route-card.cpp']
         result = subprocess.run(flags + list(map(str, sources)) + ['-o', str(cls.binary)],
                                 capture_output=True, text=True)
         if result.returncode:

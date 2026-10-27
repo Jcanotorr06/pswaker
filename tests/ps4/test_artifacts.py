@@ -6,7 +6,10 @@ import sys
 import tempfile
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
 
 
 class ArtifactTests(unittest.TestCase):
@@ -19,7 +22,7 @@ class ArtifactTests(unittest.TestCase):
             (root / 'evidence/artifacts.json').write_text(json.dumps({'package': {
                 'filename': 'diagnostic.pkg',
                 'sha256': 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'}}))
-            result = subprocess.run([sys.executable, str(HERE / 'inspect-artifacts.py'), str(root)],
+            result = subprocess.run([sys.executable, str(LOCATIONS.command('inspect-artifacts.py')), str(root)],
                                     capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('Package SHA-256 mismatch', result.stderr)

@@ -9,7 +9,7 @@ import shutil
 import tempfile
 import unittest
 
-REPOSITORY = Path(__file__).resolve().parents[3]
+REPOSITORY = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY / 'tools/pswaker'))
 import build_inputs
 
@@ -56,7 +56,7 @@ class BuildInputTests(unittest.TestCase):
             shared.write_text(shared.read_text() + '\n# changed maintained implementation\n')
             after_shared = identity()
             self.assertNotEqual(before, after_shared)
-            for name in ['platform/ps4/README.md', 'platform/ps4/tests/fixture.cpp',
+            for name in ['platform/ps4/README.md', 'tests/ps4/fixture.cpp',
                          'platform/ps4/evidence/log.json', 'tools/pswaker/__pycache__/fixture.pyc']:
                 excluded = root / name
                 excluded.parent.mkdir(parents=True, exist_ok=True)
@@ -164,7 +164,8 @@ class BuildInputTests(unittest.TestCase):
                 old_directory = root / group['directory']
                 group['directory'] = 'tools/pswaker'
                 for name in group['files']:
-                    (old_directory / name).rename(root / 'tools/pswaker' / name)
+                    if old_directory != root / 'tools/pswaker':
+                        (old_directory / name).rename(root / 'tools/pswaker' / name)
                 declaration_path.write_text(json.dumps(declaration))
                 locations = build_inputs.Locations(root)
                 inputs = locations.maintained_inputs()

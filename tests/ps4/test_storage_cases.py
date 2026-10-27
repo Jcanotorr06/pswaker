@@ -7,7 +7,10 @@ import sys
 import tempfile
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
 
 
 class StorageCaseTests(unittest.TestCase):
@@ -34,7 +37,7 @@ class StorageCaseTests(unittest.TestCase):
                                               'program': {'build_id': 'synthetic'},
                                               'package': {'sha256': 'a'*64}}))
             output = root / 'cases'
-            command = [sys.executable, str(HERE / 'storage-cases.py'), '--seed', str(seed),
+            command = [sys.executable, str(LOCATIONS.command('storage-cases.py')), '--seed', str(seed),
                        '--inspection', str(inspection), '--output', str(output)]
             result = subprocess.run(command, text=True, capture_output=True)
             self.assertEqual(result.returncode, 0, result.stderr)

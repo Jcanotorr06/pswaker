@@ -9,7 +9,11 @@ import sys
 import tempfile
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
+PLATFORM = LOCATIONS.platform
 
 
 class SummaryTests(unittest.TestCase):
@@ -62,7 +66,7 @@ class SummaryTests(unittest.TestCase):
                 writer = csv.writer(stream)
                 writer.writerow(header.split(','))
                 writer.writerows(rows)
-        result = subprocess.run([sys.executable, str(HERE / 'frame-pacing.py'), str(self.run),
+        result = subprocess.run([sys.executable, str(LOCATIONS.command('frame-pacing.py')), str(self.run),
                                  '--inspection', str(self.run / 'inspection.json'),
                                  '--owner', str(self.run / 'owner.json'), '--output', str(self.root / 'analysis')],
                                 capture_output=True, text=True)
@@ -234,8 +238,8 @@ class RecorderTests(unittest.TestCase):
         cls.addClassCleanup(cls.directory.cleanup)
         cls.binary = Path(cls.directory.name) / 'recorder'
         result = subprocess.run(['clang++-21', '-std=c++23', '-pthread', '-Wall', '-Wextra', '-Werror',
-                                 '-I', str(HERE / 'game'), str(HERE / 'game/frame-pacing.cpp'),
-                                 str(HERE / 'tests/frame-pacing.cpp'), '-Wl,--wrap=fflush', '-o', str(cls.binary)],
+                                 '-I', str(PLATFORM / 'game'), str(PLATFORM / 'game/frame-pacing.cpp'),
+                                 str(LOCATIONS.tests / 'frame-pacing.cpp'), '-Wl,--wrap=fflush', '-o', str(cls.binary)],
                                 capture_output=True, text=True)
         if result.returncode:
             raise AssertionError(result.stderr)
@@ -327,8 +331,8 @@ class RecorderTests(unittest.TestCase):
                 capture_output=True, text=True)
             self.assertEqual(compiled.returncode, 0, compiled.stderr)
             linked = subprocess.run(['clang++-21', '-std=c++23', '-pthread', '-Wall', '-Wextra', '-Werror',
-                '-DPSWAKER_TEST_PLATFORM_LOGGER', '-Wl,--gc-sections', '-I', str(HERE / 'game'),
-                str(HERE / 'game/frame-pacing.cpp'), str(HERE / 'tests/frame-pacing.cpp'),
+                '-DPSWAKER_TEST_PLATFORM_LOGGER', '-Wl,--gc-sections', '-I', str(PLATFORM / 'game'),
+                str(PLATFORM / 'game/frame-pacing.cpp'), str(LOCATIONS.tests / 'frame-pacing.cpp'),
                 str(root / 'platform.o'), '-Wl,--wrap=fflush', '-o', str(root / 'recorder')], capture_output=True, text=True)
             self.assertEqual(linked.returncode, 0, linked.stderr)
             result = subprocess.run([str(root / 'recorder'), directory, 'diagnostics'],
