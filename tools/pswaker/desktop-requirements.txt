@@ -1,0 +1,3 @@
+# Maintainer build/check tools only; the installed desktop app never runs pip.
+pyinstaller==6.22.3
+pyright==1.1.414

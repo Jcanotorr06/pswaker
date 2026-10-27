@@ -19,6 +19,8 @@ import time
 import build_inputs
 
 from disc_image import require, validate
+from package_validation import validate_selection
+from program_payload import PROGRAM_FILES
 
 
 LOCATIONS = build_inputs.Locations()
@@ -31,8 +33,6 @@ IDENTITIES = {
     'game': {'title_id': 'PSWK00001', 'label': 'PSWAKERGAME', 'title': 'PSWaker',
              'acceptance': 'Unverified game program; package assembly does not establish playable acceptance'},
 }
-PROGRAM_FILES = {'eboot.bin', 'build-info.json', 'sce_sys/icon0.png', 'sce_sys/param.sfo',
-                 'sce_sys/about/right.sprx', 'sce_module/libSceFios2.prx', 'sce_module/libc.prx'}
 PIPELINE_SEED = 'initial_pipeline_cache.db'
 # Selected game.lock.json Aurora ABI: clear.hpp v5 (8 bytes), gx/pipeline.hpp
 # v13 (2772 bytes), little-endian x86-64. Renew this contract on renderer changes.
@@ -467,12 +467,9 @@ def create_package(request, observe=None):
     stages = Stages(observe)
     destination = request.output.resolve()
     with stages('validate'):
-        require(not destination.exists(), 'Output already exists; choose a new private assembly directory')
-        require(not destination.is_relative_to(REPOSITORY), 'Complete packages must be assembled outside the repository')
         require(re.fullmatch(r'[0-9]{2}\.[0-9]{2}', request.app_version), '--app-version must be NN.NN')
         # Fail unsupported images before invoking tools or creating an output package.
-        original_image = validate(request.image)
-        require(destination.parent.is_dir(), 'Output parent directory must already exist')
+        original_image = validate_selection(request.image, destination)
         workspace = tempfile.TemporaryDirectory(prefix='.complete-', dir=destination.parent)
     with workspace as folder:
         work = Path(folder)

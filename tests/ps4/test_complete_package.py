@@ -1,4 +1,5 @@
 """Observable preparation/package CLI behavior; fixtures contain synthetic bytes only."""
+from contextlib import closing
 import json
 import hashlib
 import os
@@ -210,10 +211,10 @@ class PipelineSeedTests(PreparationCliTestCase):
         output = self.root / 'seed'
         result = self.run_cli('pipeline-seed', source, '--output', output)
         self.assertEqual(result.returncode, 0, result.stderr)
-        with sqlite3.connect(output / 'initial_pipeline_cache.db') as seed:
+        with closing(sqlite3.connect(output / 'initial_pipeline_cache.db')) as seed:
             self.assertEqual(seed.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").fetchall(),
                              [('aurora_schema',), ('pipeline_cache',)])
-        with sqlite3.connect(source) as original:
+        with closing(sqlite3.connect(source)) as original:
             self.assertEqual(original.execute('SELECT identity FROM aurora_seed').fetchall(), [('old-seed-identity',)])
 
     def test_wal_rows_are_snapshotted_without_modifying_original_files(self):
@@ -232,7 +233,7 @@ class PipelineSeedTests(PreparationCliTestCase):
             self.assertEqual(report['rows'], 1)
             seed = output / 'initial_pipeline_cache.db'
             self.assertEqual(report['sha256'], hashlib.sha256(seed.read_bytes()).hexdigest())
-            with sqlite3.connect(seed) as snapshot:
+            with closing(sqlite3.connect(seed)) as snapshot:
                 self.assertEqual(snapshot.execute('SELECT hash FROM pipeline_cache').fetchall(), [(42,)])
                 self.assertEqual(snapshot.execute('PRAGMA journal_mode').fetchone(), ('delete',))
             self.assertEqual({p.name for p in output.iterdir()}, {'initial_pipeline_cache.db', 'pipeline-seed.json'})

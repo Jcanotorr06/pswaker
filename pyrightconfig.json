@@ -1,0 +1,13 @@
+{
+  "include": [
+    "tools/pswaker/desktop_app.py",
+    "tools/pswaker/package_validation.py",
+    "tools/pswaker/program_payload.py",
+    "tools/pswaker/disc_image.py",
+    "tools/pswaker/build-desktop.py",
+    "tests/ps4/test_desktop.py"
+  ],
+  "extraPaths": ["tools/pswaker"],
+  "pythonVersion": "3.12",
+  "pythonPlatform": "Windows"
+}
