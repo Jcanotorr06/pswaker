@@ -36,7 +36,7 @@ events = []
 ''' + scenario + '''
 assert image.read_bytes() == original
 '''
-        env = dict(os.environ, PYTHONPATH=os.pathsep.join([
+        env = dict(os.environ, LOCALAPPDATA=str(self.root / 'local-state'), PYTHONPATH=os.pathsep.join([
             str(self.root / 'repo/tools/pswaker'), str(REPOSITORY / 'tests/ps4')]))
         result = subprocess.run([sys.executable, '-c', script, str(self.root), str(TOOLS)],
                                 env=env, capture_output=True, text=True, timeout=120)
@@ -56,10 +56,108 @@ assert report['program']['build_id'] == 'synthetic-program'
 assert report['payload_sha256']['eboot.bin'] == hashlib.sha256(
     (bundle / 'program/stage/eboot.bin').read_bytes()).hexdigest()
 assert [e['stage'] for e in events if e['event'] == 'passed'] == [
-    'validate', 'verify-program', 'assemble', 'inspect', 'publish']
+    'validate', 'prepare', 'verify-program', 'assemble', 'inspect', 'publish']
 assert not (output / 'stage').exists()
 assert not list(root.glob('.complete-*'))
 assert (output / 'out' / report['package']['filename']).is_file()
+''')
+
+    def test_preflight_budgets_tool_snapshot_and_retry_preserves_prior_package(self):
+        self.run_scenario('''
+from unittest.mock import patch
+from collections import namedtuple
+from package_artifact import StageFailure
+prior = root / 'previous.pkg'
+prior.write_bytes(b'previous verified package')
+prior_hash = hashlib.sha256(prior.read_bytes()).hexdigest()
+usage = namedtuple('usage', 'total used free')
+# Enough for the tiny image and package, but not the real tool snapshot plus reserve.
+with patch('shutil.disk_usage', return_value=usage(1024**3, 504 * 1024**2, 520 * 1024**2)):
+    try:
+        create_package(image, output, bundle, observe=events.append)
+    except StageFailure as error:
+        assert error.stage == 'validate'
+        assert 'Insufficient free space' in str(error), str(error)
+        assert str(root.resolve()) in str(error), str(error)
+        assert 'retry' in str(error).lower()
+    else:
+        raise AssertionError('Tool snapshot capacity was not budgeted')
+assert not output.exists()
+assert not list(root.glob('.complete-*'))
+assert hashlib.sha256(prior.read_bytes()).hexdigest() == prior_hash
+result = create_package(image, output, bundle)
+assert (output / 'inspection.json').is_file()
+assert (output / 'out' / result['package']['filename']).is_file()
+assert hashlib.sha256(prior.read_bytes()).hexdigest() == prior_hash
+''')
+
+    def test_workspace_creation_failure_reports_stage_and_allows_retry(self):
+        self.run_scenario('''
+import errno
+from unittest.mock import patch
+from package_artifact import StageFailure
+with patch('tempfile.mkdtemp', side_effect=OSError(errno.ENOSPC, 'Controlled disk exhaustion', str(root))):
+    try:
+        create_package(image, output, bundle)
+    except StageFailure as error:
+        assert error.stage == 'prepare', error.stage
+        assert 'Controlled disk exhaustion' in str(error)
+        assert 'retry' in str(error).lower(), str(error)
+    else:
+        raise AssertionError('Workspace creation unexpectedly succeeded')
+assert not output.exists()
+assert not list(root.glob('.complete-*'))
+create_package(image, output, bundle)
+assert (output / 'inspection.json').is_file()
+''')
+
+    def test_packager_scratch_is_isolated_on_the_destination_drive(self):
+        self.run_scenario('''
+import os
+import subprocess
+from unittest.mock import patch
+run = subprocess.run
+def check_scratch(command, **kwargs):
+    environment = kwargs['env']
+    scratch = Path(environment['TEMP'])
+    assert scratch == Path(environment['TMP'])
+    assert scratch.is_dir() and scratch.is_relative_to(Path(kwargs['cwd'])), scratch
+    return run(command, **kwargs)
+with patch('subprocess.run', side_effect=check_scratch):
+    create_package(image, output, bundle)
+assert (output / 'inspection.json').is_file()
+assert not list(root.glob('.complete-*'))
+assert not (output / 'scratch').exists()
+''')
+
+    def test_real_packager_error_keeps_local_details_and_can_retry(self):
+        self.run_scenario('''
+import subprocess
+from unittest.mock import patch
+from package_artifact import StageFailure
+run = subprocess.run
+def malformed_project(command, **kwargs):
+    if command[1] == 'pkg_build':
+        Path(command[2]).write_text('<deliberately-invalid-project>')
+    return run(command, **kwargs)
+with patch('subprocess.run', side_effect=malformed_project):
+    try:
+        create_package(image, output, bundle)
+    except StageFailure as error:
+        assert error.stage == 'assemble'
+        assert 'pkg_build' in str(error), str(error)
+        assert 'exit code' in str(error), str(error)
+        assert len(str(error)) < 1500, 'Tool failure overwhelms the desktop guidance'
+        log = Path(str(error).split('Local diagnostic log: ')[-1])
+        assert log.is_file()
+        assert 'pkg_build' in log.read_text()
+        assert 'Tool output:' in log.read_text()
+    else:
+        raise AssertionError('Malformed project was accepted')
+assert not output.exists()
+assert not list(root.glob('.complete-*'))
+create_package(image, output, bundle)
+assert (output / 'inspection.json').is_file()
 ''')
 
     def test_reinspection_rejects_changed_package_even_with_rehashed_assembly(self):

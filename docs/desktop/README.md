@@ -1,8 +1,9 @@
 # Windows complete-package creation
 
-Issues [#41](https://github.com/Jcanotorr06/pswaker/issues/41) and
-[#42](https://github.com/Jcanotorr06/pswaker/issues/42) provide the local desktop
-selection, validation, assembly and verified-result flow from
+Issues [#41](https://github.com/Jcanotorr06/pswaker/issues/41),
+[#42](https://github.com/Jcanotorr06/pswaker/issues/42) and
+[#43](https://github.com/Jcanotorr06/pswaker/issues/43) provide the local desktop
+selection, validation, assembly, failure handling and verified-result flow from
 [#39](https://github.com/Jcanotorr06/pswaker/issues/39). This is a private
 development bundle. Installer delivery, clean Windows acceptance, console
 acceptance and redistribution clearance remain separate work.
@@ -34,11 +35,17 @@ baseline. No program, SDK, build root or package-identity selection is required.
 An existing destination is preserved, including one that appears during
 creation. Only a verified output is renamed into the requested final directory.
 Failure removes the application-owned temporary workspace and enables validation
-and retry. Tool failures retain a local log under `%LOCALAPPDATA%\PSWaker\logs`.
+and retry. Errors identify the failed stage, affected path or tool operation and
+an action to take. Local logs under `%LOCALAPPDATA%\PSWaker\logs` retain failure
+details and full failed-tool output when that location is writable. A log-write
+failure does not hide the original error. If lost access prevents cleanup, the
+error identifies the exact unfinished workspace; restore access before removing
+that workspace and retrying. Existing owner files and completed packages are
+preserved. Choose another parent folder when the proposed output already exists.
 Images and completed packages remain private; there are no accounts, uploads,
 telemetry, runtime downloads, WSL, Docker, shell scripts or source compilation
-in this consumer workflow. The installer belongs to #46; broader storage,
-cancellation, interruption recovery and diagnostics work belongs to #43–45.
+in this consumer workflow. The installer belongs to #46; cancellation,
+interruption recovery and broader diagnostics work belongs to #44–45.
 
 ## Content and release integrity
 
@@ -53,8 +60,17 @@ whole-image SHA-1 fingerprints:
 
 There is no alternate-contract or synthetic-mode switch. A changed source must
 match both the accepted validation report and the newly validated staged copy.
-The image is opened for reading only. Space checks budget for staging, package,
-fresh extraction and tool overhead in the destination filesystem.
+The image is opened for reading only. Before creation, the app checks image
+readability and probes destination access using only an app-owned file. Space
+checks budget for the image/program copies, matching ELF, self-contained tool
+snapshot, final package, fresh extraction, packager scratch and a 512 MiB reserve.
+All bulk writes, including the packager's `TEMP`/`TMP` scratch, stay under a new
+app-owned workspace beside the final output, so the budget applies to their
+actual destination filesystem even when the image, app and system temporary
+folder are on other drives. The final rename needs no additional package copy.
+Optional local failure logs use the local application-data location and may fail
+independently. Free-space estimates cannot reserve capacity against other apps;
+runtime write/access failures still fail safely and permit correction and retry.
 
 The maintainer supplies a verified, relocatable #40 **game program release**,
 never a diagnostic. Its exact data-free file inventory, ELF/SELF hashes,
@@ -116,12 +132,19 @@ python -m unittest discover -s tests/ps4 -p test_windows_package.py -v
 ```
 
 Windows CI builds the real tool closure and exercises actual Tk controls/workers
-and data-free synthetic package round trips. Only OS dialogs/folder-opening are
-substituted in desktop tests; validation, assembly and fresh extraction are real.
+and data-free synthetic package round trips. OS dialogs/folder-opening are
+substituted in desktop tests; storage fault tests also inject OS write/access,
+capacity and subprocess-boundary conditions. Validation, assembly and fresh
+extraction are real. Malformed GP4 input provokes a real packager failure, and an
+altered PKG is rejected by production inspection before publication.
 Synthetic contracts/programs exist only in isolated temporary test copies. The
 shipping validator rejects these images. Coverage includes changed images,
 tampered release files, altered package headers, unexpected freshly extracted
-files, existing/racing output directories and desktop failure/retry.
+files, existing/racing output directories, partial image writes, lost destination
+and publication access, failed workspace setup/cleanup, unavailable diagnostic
+storage, and desktop failure/retry. Failure scenarios compare the source image
+and a real prior verified package before/after, reject newly completed output,
+and successfully create and inspect a package after correction.
 
 Private production-image observations are recorded in
 [Windows #42 evidence](../../evidence/ps4/windows-42/README.md). They do not

@@ -89,6 +89,156 @@ wait_for('Package verified')
 assert (output / 'inspection.json').is_file()
 ''', packaging=True)
 
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_rejects_insufficient_capacity_and_retries(self):
+        self.run_storage_failure('capacity', 'validate', 'Insufficient free space')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_handles_partial_image_write_and_retries(self):
+        self.run_storage_failure('disk-full', 'assemble', 'Controlled disk exhaustion')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_handles_lost_access_and_retries(self):
+        self.run_storage_failure('lost-access', 'assemble', 'Controlled lost access')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_rejects_destination_access_failure_and_retries(self):
+        self.run_storage_failure('destination-access', 'validate', 'Controlled destination access loss')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_reports_lost_publish_access_without_exposing_package(self):
+        self.run_storage_failure('publish-access', 'publish', 'Controlled publish access loss')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_handles_real_packager_failure_and_retries(self):
+        self.run_storage_failure('packager', 'assemble', 'exit code')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_rejects_corrupted_package_before_publication_and_retries(self):
+        self.run_storage_failure('inspection', 'inspect', 'Package header content ID mismatch')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_preserves_racing_destination_and_retries_in_another_folder(self):
+        self.run_storage_failure('collision', 'publish', 'Output appeared')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_retains_original_error_when_cleanup_loses_access(self):
+        self.run_storage_failure('cleanup', 'assemble', 'Cleanup also failed')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_retains_disk_error_when_local_diagnostics_are_unwritable(self):
+        self.run_storage_failure('no-log', 'assemble', 'Controlled disk exhaustion')
+
+    def run_storage_failure(self, fault, stage, message):
+        self.run_desktop('''
+import errno
+import shutil
+from contextlib import ExitStack
+from windows_package import create_package
+fault, expected_stage, expected_message = ''' + repr((fault, stage, message)) + '''
+prior = folder / 'prior-complete'
+prior_result = create_package(image, prior, bundle)
+prior_package = prior / 'out' / prior_result['package']['filename']
+prior_hash = hashlib.sha256(prior_package.read_bytes()).hexdigest()
+copyfile, run, rmtree = shutil.copyfile, subprocess.run, shutil.rmtree
+rename = Path.rename
+def fail_copy(source, target, *args, **kwargs):
+    if Path(target).name == 'game.iso':
+        if fault == 'lost-access':
+            raise PermissionError(errno.EACCES, 'Controlled lost access', str(target))
+        # A real partial artifact exists before the OS reports the failed write.
+        Path(target).write_bytes(Path(source).read_bytes()[:1024])
+        raise OSError(errno.ENOSPC, 'Controlled disk exhaustion', str(target))
+    return copyfile(source, target, *args, **kwargs)
+def fail_tool(command, **kwargs):
+    if fault == 'packager' and command[1] == 'pkg_build':
+        Path(command[2]).write_text('<deliberately-invalid-project>')
+    result = run(command, **kwargs)
+    if command[1] == 'pkg_build' and fault == 'collision':
+        output.mkdir()
+        shutil.copyfile(prior_package, output / 'previous.pkg')
+    if command[1] == 'pkg_extract' and fault == 'inspection':
+        # Alter the actual PKG after metadata extraction. Assembly records its
+        # changed hash; final inspection must still reject its wrong identity.
+        with Path(command[2]).open('r+b') as stream:
+            stream.seek(0x40)
+            stream.write(b'IV0000-FAIL00000')
+    return result
+def fail_cleanup(path, *args, **kwargs):
+    if Path(path).name.startswith('.complete-'):
+        raise PermissionError(errno.EACCES, 'Controlled cleanup access loss', str(path))
+    return rmtree(path, *args, **kwargs)
+def fail_publish(path, target):
+    if path.name.startswith('.complete-'):
+        raise PermissionError(errno.EACCES, 'Controlled publish access loss', str(target))
+    return rename(path, target)
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Supported image')
+with ExitStack() as faults:
+    if fault == 'capacity':
+        from collections import namedtuple
+        usage = namedtuple('usage', 'total used free')
+        faults.enter_context(patch('shutil.disk_usage', return_value=usage(1024, 1024, 0)))
+    if fault in {'disk-full', 'lost-access', 'cleanup', 'no-log'}:
+        faults.enter_context(patch('shutil.copyfile', side_effect=fail_copy))
+    if fault == 'destination-access':
+        faults.enter_context(patch('tempfile.TemporaryFile', side_effect=PermissionError(
+            errno.EACCES, 'Controlled destination access loss', str(folder))))
+    if fault == 'publish-access':
+        faults.enter_context(patch('pathlib.Path.rename', new=fail_publish))
+    if fault in {'packager', 'inspection', 'collision'}:
+        faults.enter_context(patch('subprocess.run', side_effect=fail_tool))
+    if fault == 'cleanup':
+        faults.enter_context(patch('shutil.rmtree', side_effect=fail_cleanup))
+    if fault == 'no-log':
+        faults.enter_context(patch('tempfile.NamedTemporaryFile', side_effect=PermissionError(
+            errno.EACCES, 'Controlled diagnostic access loss')))
+    app.create_button.invoke()
+    wait_for('Package creation failed')
+assert expected_stage + ':' in app.details.get(), app.details.get()
+assert expected_message in app.details.get(), app.details.get()
+assert 'retry' in app.details.get().lower()
+assert app.package is None
+assert not app.instructions.get()
+assert app.open_button.instate(['disabled'])
+assert app.install_button.instate(['disabled'])
+assert app.create_button.instate(['disabled'])
+assert not app.validate_button.instate(['disabled'])
+assert not app.image_button.instate(['disabled'])
+assert not app.output_button.instate(['disabled'])
+assert hashlib.sha256(image.read_bytes()).hexdigest() == original
+assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
+if fault == 'collision':
+    assert hashlib.sha256((output / 'previous.pkg').read_bytes()).hexdigest() == prior_hash
+    assert not (output / 'inspection.json').exists()
+    retry_folder = folder / 'retry'
+    retry_folder.mkdir()
+    with patch('tkinter.filedialog.askdirectory', return_value=str(retry_folder)):
+        app.output_button.invoke()
+    output = retry_folder / 'PSWaker-01.23'
+else:
+    assert not output.exists()
+if fault == 'cleanup':
+    unfinished = list(folder.glob('.complete-*'))
+    assert len(unfinished) == 1
+    assert str(unfinished[0].resolve()) in app.details.get(), app.details.get()
+    assert 'Controlled disk exhaustion' in app.details.get()
+    shutil.rmtree(unfinished[0])
+else:
+    assert not list(folder.glob('.complete-*'))
+app.validate_button.invoke()
+wait_for('Supported image')
+app.create_button.invoke()
+wait_for('Package verified')
+report = json.loads((output / 'inspection.json').read_text())
+assert report['image']['sha256'] == original
+assert hashlib.sha256(app.package.read_bytes()).hexdigest() == report['package']['sha256']
+assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
+assert not list(folder.glob('.complete-*'))
+''', packaging=True)
+
     @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
     def test_desktop_selection_shows_supported_image_and_program_identity(self):
         self.run_desktop('''
@@ -214,6 +364,7 @@ wait_for('Supported image')
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import sys
 import time
 import tkinter as tk
@@ -246,7 +397,8 @@ root.destroy()
 '''
         result = subprocess.run([sys.executable, '-c', script, str(self.image), str(self.root),
                                  str(bundle.parent)], cwd=tools, capture_output=True, text=True, timeout=90,
-                                env=dict(os.environ, PYTHONPATH=str(REPOSITORY / 'tests/ps4')))
+                                env=dict(os.environ, PYTHONPATH=str(REPOSITORY / 'tests/ps4'),
+                                         LOCALAPPDATA=str(self.root / 'local-state')))
         self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
 
 
