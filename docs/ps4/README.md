@@ -78,6 +78,8 @@ can invalidate prepared-tree/cache records. Use fresh preparation/build roots
 when an existing record no longer matches. Existing packages and console evidence
 remain associated with their original identities; host checks of this layout do
 not establish console acceptance for a newly built package.
+The [repository migration verification](REPOSITORY-MIGRATION.md) records final
+input coverage, preserved evidence, test results and validation limits.
 
 Use the recorded Ubuntu 24.04 x86-64 environment in
 [host.lock.json](../../platform/ps4/host.lock.json). It identifies

@@ -1,5 +1,6 @@
 {
   "platform": "platform/ps4",
+  "tools": "tools/pswaker",
   "tests": "tests/ps4",
   "required_target_directories": [
     "game", "probe", "host-renderer", "runtime-preflight", "patches", "provenance"
@@ -13,7 +14,6 @@
   ],
   "command_groups": {
     "diagnostic": {
-      "directory": "tools/pswaker",
       "files": [
         "adapt-platform.py", "apply-patches.py", "audit-inputs.py",
         "build-graphics.sh", "build-probe.sh", "build-runtime.sh",
@@ -24,7 +24,6 @@
       ]
     },
     "game": {
-      "directory": "tools/pswaker",
       "files": [
         "build-game.sh", "complete-package.py", "content-failure-package.py",
         "disc_image.py", "frame-pacing.py", "game-build.py",
