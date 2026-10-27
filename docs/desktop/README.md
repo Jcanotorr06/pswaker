@@ -2,7 +2,8 @@
 
 Issues [#41](https://github.com/Jcanotorr06/pswaker/issues/41),
 [#42](https://github.com/Jcanotorr06/pswaker/issues/42) and
-[#43](https://github.com/Jcanotorr06/pswaker/issues/43) provide the local desktop
+[#43](https://github.com/Jcanotorr06/pswaker/issues/43) and
+[#44](https://github.com/Jcanotorr06/pswaker/issues/44) provide the local desktop
 selection, validation, assembly, failure handling and verified-result flow from
 [#39](https://github.com/Jcanotorr06/pswaker/issues/39). This is a private
 development bundle. Installer delivery, clean Windows acceptance, console
@@ -22,7 +23,10 @@ baseline. No program, SDK, build root or package-identity selection is required.
 4. Select **Create package**. The worker validates again, checks the bundled
    release, copies and revalidates the image, assembles a native Windows package,
    then extracts and inspects the actual output. The screen reports each stage
-   with an activity indicator. Selections are locked during creation.
+   with measured byte counts during reads, hashing and copies, and an activity
+   indicator during tools that do not provide measurable progress. Selections
+   are locked during creation. These are per-operation counts, not estimated
+   overall percentages or duration promises.
 5. **Package verified** shows the actual `.pkg` location, SHA-256 and measured
    elapsed time. **Open folder** opens its containing directory.
    **Installation instructions** and the retained `INSTALL.txt` explain manual
@@ -31,6 +35,23 @@ baseline. No program, SDK, build root or package-identity selection is required.
    Settings → GoldHEN → Debug Settings → Package Installer. Launch PSWaker from
    the home screen. Remove USB after installation; gameplay uses the installed
    image and needs no external image or USB drive.
+
+Select **Cancel** during validation or creation to stop the current attempt.
+The screen stays active while owned work stops and temporary files are removed;
+retry is enabled only after that finishes. Closing the window requests the same
+cancellation and waits for cleanup. A cancelled attempt requires **Validate
+image** again and starts from the beginning. Cancellation immediately before
+publication prevents publication; if the verified final rename has already
+won that race, the result is a completed verified package.
+
+On launch, PSWaker checks its local ownership records for interrupted work.
+It skips attempts still running in another app, and removes only the recorded
+temporary directory with its matching directory identity and ownership marker.
+It preserves unrelated `.complete-*` directories, replaced directories, the
+source image and final packages. Changed ownership or unavailable storage is
+reported on screen; restore access and reopen the app to retry recovery. No
+unfinished validation or inspection is reused. Native tools run in a Windows
+job that stops their descendants on cancellation and when the app process exits.
 
 An existing destination is preserved, including one that appears during
 creation. Only a verified output is renamed into the requested final directory.
@@ -44,8 +65,8 @@ that workspace and retrying. Existing owner files and completed packages are
 preserved. Choose another parent folder when the proposed output already exists.
 Images and completed packages remain private; there are no accounts, uploads,
 telemetry, runtime downloads, WSL, Docker, shell scripts or source compilation
-in this consumer workflow. The installer belongs to #46; cancellation,
-interruption recovery and broader diagnostics work belongs to #44–45.
+in this consumer workflow. The installer belongs to #46; diagnostic export
+belongs to #45.
 
 ## Content and release integrity
 
@@ -95,6 +116,14 @@ integrity. It does not trust a packager exit code or staging hashes alone.
 `stages.json` remain beside the private package. Staged image/tool copies are
 removed before publication. `windows_package.inspect_output` can independently
 repeat inspection of a retained artifact using the same fixed tool bundle.
+Stage starts and measured elapsed times are also retained locally under
+`%LOCALAPPDATA%\PSWaker\logs`, including completed, failed, cancelled and interrupted
+attempts, for later Windows benchmarking. These records contain stage and error
+metadata, not game bytes, and are never uploaded. Ownership leases live under
+`%LOCALAPPDATA%\PSWaker\work`; successful cleanup removes the lease record. If
+that storage is unavailable, creation fails before copying image data into a
+workspace that could not be recovered safely. Optional log failures continue to
+leave the original result/error visible.
 
 The fixed game identity remains `PSWK00001` /
 `IV0000-PSWK00001_00-PSWAKERGAME00000`, with `/app0/game.iso` installed content.
@@ -145,6 +174,11 @@ and publication access, failed workspace setup/cleanup, unavailable diagnostic
 storage, and desktop failure/retry. Failure scenarios compare the source image
 and a real prior verified package before/after, reject newly completed output,
 and successfully create and inspect a package after correction.
+
+Cancellation coverage includes desktop validation, assembly and inspection;
+artifact publication races; owned tool descendants; forced worker termination;
+live-session leases; cold-start cleanup; replaced-directory ownership; and a
+freshly verified retry. All cancellation/interruption fixtures are data-free.
 
 Private production-image observations are recorded in
 [Windows #42 evidence](../../evidence/ps4/windows-42/README.md). They do not

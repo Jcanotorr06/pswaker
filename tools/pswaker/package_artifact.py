@@ -10,6 +10,7 @@ import tempfile
 import time
 
 from disc_image import require, validate
+from build_operation import BuildCancelled, checkpoint, progress
 
 INSTALLED_IMAGE = '/app0/game.iso'
 
@@ -32,7 +33,15 @@ FAILURES = (OSError, ValueError, KeyError, TypeError, StopIteration, struct.erro
 
 def digest(path):
     with path.open('rb') as stream:
-        return hashlib.file_digest(stream, 'sha256').hexdigest()
+        sha = hashlib.sha256()
+        total, completed = path.stat().st_size, 0
+        progress('Checking ' + path.name, 0, total)
+        while chunk := stream.read(8 << 20):
+            checkpoint()
+            sha.update(chunk)
+            completed += len(chunk)
+            progress('Checking ' + path.name, completed, total)
+        return sha.hexdigest()
 
 def write_json(path, value):
     path.write_text(json.dumps(value, indent=2) + '\n', encoding='utf-8')
@@ -197,7 +206,12 @@ class Stages:
         self.observe({'stage': stage, 'event': 'started'})
         start = time.monotonic()
         try:
+            checkpoint()
             yield
+            checkpoint()
+        except BuildCancelled:
+            self.observe({'stage': stage, 'event': 'cancelled', 'seconds': round(time.monotonic() - start, 3)})
+            raise
         except FAILURES as error:
             self.observe({'stage': stage, 'event': 'failed', 'seconds': round(time.monotonic() - start, 3),
                           'error': str(error)})

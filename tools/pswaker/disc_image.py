@@ -5,6 +5,8 @@ from pathlib import Path
 import struct
 import sys
 
+from build_operation import checkpoint, progress
+
 if getattr(sys, 'frozen', False):
     PLATFORM = Path(getattr(sys, '_MEIPASS')) / 'platform/ps4'
 else:
@@ -49,6 +51,7 @@ def expand(data):
     out = bytearray()
     pos = 16
     while len(out) < size:
+        checkpoint()
         require(pos < len(data), 'Truncated Yaz0 control byte in required game content')
         code = data[pos]
         pos += 1
@@ -143,6 +146,7 @@ class DiscImage:
         directories = [(count, '', 0)]
         files, paths = {}, set()
         for i in range(1, count):
+            checkpoint()
             while i >= directories[-1][0]:
                 directories.pop()
             kind_name, position, length = struct.unpack_from('>III', fst, i * 12)
@@ -178,6 +182,7 @@ class DiscImage:
 
 
 def validate(path):
+    checkpoint()
     contract = json.loads(CONTRACT.read_text())
     require(path.suffix.lower() in {'.iso', '.gcm'},
             'Unsupported image format: supply your raw, uncompressed USA GZLE01 revision-0 .iso or .gcm')
@@ -199,6 +204,7 @@ def validate(path):
         files = disc.files(header)
         containers, checked = {}, []
         for row in contract['required_content']:
+            checkpoint()
             name, member = row['path'], row['member']
             label = name + (':' + member if member else '')
             if name == 'sys/main.dol':
@@ -222,9 +228,14 @@ def validate(path):
             checked.append({'path': name, 'member': member, 'sha1': actual, 'size': len(data)})
         stream.seek(0)
         sha1, sha256 = hashlib.sha1(), hashlib.sha256()
+        completed = 0
+        progress('Reading image', 0, disc.size)
         while chunk := stream.read(8 << 20):
+            checkpoint()
             sha1.update(chunk)
             sha256.update(chunk)
+            completed += len(chunk)
+            progress('Reading image', completed, disc.size)
         accepted_images = [contract['image_sha1']] + [row['sha1'] for row in contract.get('additional_images', [])]
         require(sha1.hexdigest() in accepted_images,
                 'Full image SHA-1 mismatch against pinned GZLE01 revision 0; use the unmodified full raw dump')
