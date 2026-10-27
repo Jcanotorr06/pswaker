@@ -7,7 +7,9 @@ from pathlib import Path
 import re
 import shutil
 
-HERE = Path(__file__).resolve().parent
+import build_inputs
+
+PLATFORM = build_inputs.Locations().platform
 
 
 def digest(path):
@@ -19,9 +21,9 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('root', type=Path)
 root = parser.parse_args().root.resolve()
 records = []
-for item in json.loads((HERE / 'provenance/sdk-recipes.json').read_text()):
-    recipe = HERE / item['recipe']
-    package = next(record for record in json.loads((HERE / 'sdk.lock.json').read_text())['packages'] if record['name'] == item['package'])
+for item in json.loads((PLATFORM / 'provenance/sdk-recipes.json').read_text()):
+    recipe = PLATFORM / item['recipe']
+    package = next(record for record in json.loads((PLATFORM / 'sdk.lock.json').read_text())['packages'] if record['name'] == item['package'])
     metadata = root / 'downloads/pacbrew' / (package['filename'] + '.BUILDINFO')
     expected = re.search(r'^pkgbuild_sha256sum = (.+)$', metadata.read_text(), re.M).group(1)
     if digest(recipe) != expected:

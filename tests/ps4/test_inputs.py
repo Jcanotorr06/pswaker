@@ -1,5 +1,6 @@
 """Preparation CLI contracts, using real files at the download boundary."""
 import json
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -16,6 +17,27 @@ LOCATIONS = Locations()
 
 
 class InputTests(unittest.TestCase):
+    def test_relocated_source_preparation_rejects_changed_locked_archive(self):
+        with tempfile.TemporaryDirectory(prefix='pswaker checkout ') as folder:
+            repository = Path(folder) / 'relocated repository'
+            for name in ['platform/ps4', 'tools/pswaker']:
+                shutil.copytree(LOCATIONS.repository / name, repository / name,
+                                ignore=shutil.ignore_patterns('tests', 'evidence', '__pycache__'))
+            root = Path(folder) / 'build'
+            (root / 'downloads').mkdir(parents=True)
+            sources = json.loads((repository / 'platform/ps4/sources.lock.json').read_text())
+            for source in sources:
+                name = ('llvm-project-21.1.6.src.tar.xz' if source['path'] ==
+                        'src/llvm-project-21.1.6.src' else
+                        source['path'].replace('/', '-') + '.tar.gz')
+                (root / 'downloads' / name).write_bytes(b'changed archive')
+            command = repository / 'tools/pswaker/prepare-sources.py'
+            result = subprocess.run([sys.executable, str(command), str(root)],
+                                    cwd='/', capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('Source archive digest mismatch', result.stderr)
+            self.assertFalse((root / 'refs/dusklight').exists())
+
     def test_sdk_preparation_preserves_ps4_setjmp_directory_link(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

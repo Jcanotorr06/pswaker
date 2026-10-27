@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 HERE=$(cd -- "$(dirname -- "$0")" && pwd)
+PLATFORM=$(python3 "$HERE/build_inputs.py" platform)
 ROOT=$(realpath "${1:?Pass the Linux build root}")
 mkdir -p "$ROOT/src" "$ROOT/evidence" "$ROOT/toolchain"
-cp "$HERE/ps4.cmake" "$ROOT/toolchain/ps4.cmake"
+cp "$PLATFORM/ps4.cmake" "$ROOT/toolchain/ps4.cmake"
 if [[ ! -d "$ROOT/tools" ]]; then cp -a "$ROOT/refs/dusklight/tools" "$ROOT/tools"; fi
 python3 "$HERE/inputs.py" verify "$ROOT"
 python3 -m venv "$ROOT/mesa-venv"

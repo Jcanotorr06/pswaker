@@ -12,9 +12,11 @@ from pathlib import Path
 import subprocess
 import tarfile
 
+import build_inputs
+
 BASE = "https://pacman.mydedibox.fr/pacbrew/packages"
 PACKAGES = "clang headers musl libcxx vars create-fself create-gp4 pkgtools orbis-lib-gen readoelf pkg-config zlib libpng bzip2".split()
-HERE = Path(__file__).resolve().parent
+PLATFORM = build_inputs.Locations().platform
 
 
 def download(url, path):
@@ -108,10 +110,10 @@ if __name__ == "__main__":
     sub = parser.add_subparsers(dest="action", required=True)
     freeze_parser = sub.add_parser("freeze")
     freeze_parser.add_argument("database", type=Path)
-    freeze_parser.add_argument("--output", type=Path, default=HERE / "sdk.lock.json")
+    freeze_parser.add_argument("--output", type=Path, default=PLATFORM / "sdk.lock.json")
     fetch_parser = sub.add_parser("fetch")
     fetch_parser.add_argument("root", type=Path)
-    fetch_parser.add_argument("--lock", type=Path, default=HERE / "sdk.lock.json")
+    fetch_parser.add_argument("--lock", type=Path, default=PLATFORM / "sdk.lock.json")
     args = parser.parse_args()
     if args.action == "freeze":
         freeze(args.database, args.output)

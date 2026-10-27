@@ -6,14 +6,16 @@ import json
 from pathlib import Path
 import subprocess
 
-HERE = Path(__file__).resolve().parent
+import build_inputs
+
+PLATFORM = build_inputs.Locations().platform
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('root', type=Path)
 parser.add_argument('phase', choices=['runtime', 'graphics', 'aurora', 'packager'])
 args = parser.parse_args()
 root = args.root.resolve()
 records = []
-for item in json.loads((HERE / 'patch-series.json').read_text()):
+for item in json.loads((PLATFORM / 'patch-series.json').read_text()):
     if item['phase'] != args.phase:
         continue
     patch = root / 'refs/dusklight/patches' / item['patch']
