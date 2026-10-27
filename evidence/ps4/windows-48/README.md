@@ -53,8 +53,9 @@ Automated synthetic fixtures do not establish production-image acceptance.
 ## Private handoff preparation
 
 Both retained installer files were rehashed against their matching audit records
-and copied with those audits into an ignored local handoff folder. The folder
-also contains this checklist, two blank OS records, a verified supported-image
+and copied with those audits into the ignored local folder
+`local-research/clean-windows-48/handoff` (`START-HERE.txt` is its entry point).
+The folder also contains this checklist, two blank OS records, a verified supported-image
 copy and five labelled negative copies. The unchanged production validator
 rejected all five: region header, revision header, invalid container magic,
 truncated size and modified required DOL content. The original image's before/
@@ -63,6 +64,41 @@ after SHA-256 matched
 Exact fixture mutations and hashes remain in the private preparation record.
 Nothing from that folder is committed or uploaded. These are maintainer
 preparation observations, not installed-app or clean-system acceptance.
+
+## Developer verification
+
+- Pyright: **0 errors, 0 warnings**.
+- Native Windows desktop suite: **26 tests passed** with the retained native
+  packaging tools and an interactive desktop.
+- Native Windows package suite: **15 tests passed**, including real package
+  creation/inspection, cancellation/interruption and preservation/retry checks.
+- Full Linux/WSL suite: **143 tests passed, 42 environment-dependent skips**;
+  retained reference/game/host fixtures were enabled.
+- **19 local documentation links** resolve; whitespace checks passed.
+
+These regressions and the private fixture preparation do not fill the clean
+Windows acceptance matrix. No installer lifecycle is rerun over the owner's
+existing application, and no clean standard-account/offline run is claimed.
+
+## Standards
+
+No Standards findings. The documentation follows the repository's domain
+vocabulary, triage rules and desktop checklist/evidence conventions. Preparation
+and development-host observations are distinguished from acceptance; private
+artifacts remain private. No applicable baseline code smells in this prose-only
+change.
+
+## Spec
+
+No spec findings. The checklist, blank evidence record and handoff status cover
+the requested environments, offline workflow, fault/recovery cases,
+diagnostics/privacy, lifecycle, exact identities and measured timings. Packaging
+faults target the temporary tool snapshot; the inspection fault targets the
+matching ELF read before publication. Actual clean-system acceptance remains
+pending under the issue's explicit human-handoff allowance.
+
+Standards: **0 findings**. Spec: **0 findings**. Neither axis establishes the
+missing Windows 10/11 execution evidence.
 
 ## Next required action
 
