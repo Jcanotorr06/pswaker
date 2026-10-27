@@ -228,7 +228,7 @@ The agreed test boundaries are the preparation and artifact-inspection CLIs:
 ```bash
 python3 -m unittest discover -s platform/ps4/tests
 python3 -m compileall -q platform/ps4 tools/pswaker
-for script in platform/ps4/*.sh tools/pswaker/*.sh; do bash -n "$script"; done
+for script in tools/pswaker/*.sh; do bash -n "$script"; done
 # After a build, also exercise the actual packaging tools and payload rejection:
 PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/diagnostic-01.04" \
   python3 -m unittest discover -s platform/ps4/tests

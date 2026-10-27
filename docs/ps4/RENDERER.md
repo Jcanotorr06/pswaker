@@ -115,7 +115,8 @@ The new package needs #15's two clean builds and renewed owner console gate.
 The host harness consumes an explicitly supplied host-built Dawn/SDL3 pair and
 host zlib/libpng source directories; it does not build the PS4 libraries as host
 libraries. The recorded host archive/header/source hashes and environment are in
-`evidence/renderer-14/host-renderer.json`. With those recorded local inputs:
+[`host-renderer.json`](../../evidence/ps4/renderer-14/host-renderer.json).
+With those recorded local inputs:
 
 ```bash
 cmake -S platform/ps4/host-renderer -B /tmp/pswaker-renderer-host -G Ninja \

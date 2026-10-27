@@ -54,6 +54,11 @@ Project planning, research, domain vocabulary and agent guidance remain at their
 project-level locations. Start with the [diagnostic workflow](docs/ps4/README.md)
 or [installed-game workflow](docs/ps4/GAME-STARTUP.md).
 
+The compiled [host renderer reference](platform/ps4/host-renderer/) and its CMake
+recipe remain target inputs, separate from the regression harnesses. The
+[frame-pacing owner example](platform/ps4/frame-pacing-owner.example.json) also
+remains target-associated maintained data.
+
 ## Standing on the shoulders of others
 
 This repository draws inspiration from several community projects.
