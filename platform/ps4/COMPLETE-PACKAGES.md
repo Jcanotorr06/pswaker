@@ -2,8 +2,9 @@
 
 Issue [#16](https://github.com/Jcanotorr06/pswaker/issues/16) adds Linux/WSL2
 preparation of an owner-built complete package. The game image installs at the
-approved fixed path **`/app0/game.iso`**. This tool changes no console runtime,
-save path or graphics/runtime input and introduces no console checkpoint.
+approved fixed path **`/app0/game.iso`**. Runtime and save locations stay fixed.
+Optional pipeline-description seeds are preparation assets described below;
+assembly introduces no console checkpoint.
 Game startup and installed-content failure handling belong to #17.
 
 The program build remains [disc-free](README.md). Do not give a disc image to

@@ -4,6 +4,8 @@ Latest return: [01.12 cold/warm evidence](console-return-01.12/REPORT.md).
 Both warm samples meet the numerical limits; cold shader stalls remain.
 Physical timing verification and internal shutdown evidence remain pending.
 The return identifies the pipeline-cache files needed for the next correction.
+Those files are now supplied and validated; the [01.13 seeded preparation
+candidate](candidate-01.13/REPORT.md) is ready for renewed console measurements.
 
 The [01.10 owner return](console-return-01.10/REPORT.md) now records independent
 cold/warm measurements with numerical shortfalls, an early cold Outset pause,

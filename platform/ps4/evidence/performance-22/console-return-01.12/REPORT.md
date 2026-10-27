@@ -1,5 +1,10 @@
 # Owner return: 01.12 cold and warm performance
 
+The requested database/WAL were subsequently supplied and validated. The
+[01.13 candidate](../candidate-01.13/REPORT.md) bundles their 287 descriptions
+for startup preparation. The return and request below remain historical evidence;
+new cold/warm results for the changed package are still required.
+
 The returned identities, inspections and runtime manifests identify build
 `bc90c33b639295f36912`, complete package SHA-256
 `d60c319ac16f3e17a5de9357a9f12a897f8209873f42fe6b25715190785af534`.

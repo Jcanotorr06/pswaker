@@ -1,0 +1,38 @@
+{
+  "source_build_id": "bc90c33b639295f36912",
+  "source_package_sha256": "d60c319ac16f3e17a5de9357a9f12a897f8209873f42fe6b25715190785af534",
+  "source_directory": "local-research/performance-22-artifacts/candidate-01.12/evidence/cache-after-warm",
+  "originals_unchanged": true,
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      }
+    },
+    "rows": 287,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 286
+      }
+    ],
+    "sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1"
+  },
+  "private_database_bytes_committed": false,
+  "coverage": "Returned 01.12 Outset/forest route only; no universal coverage or console performance guarantee"
+}
