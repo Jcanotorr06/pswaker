@@ -53,10 +53,17 @@ def inventory(root):
     return files
 
 
-def validate_pipeline_seed(db):
+def validate_pipeline_seed(db, *, allow_merge_metadata=False):
     require(db.execute('PRAGMA integrity_check').fetchall() == [('ok',)], 'Pipeline database integrity check failed')
-    objects = db.execute("SELECT name FROM sqlite_master WHERE type != 'index'").fetchall()
-    require(set(objects) == {('aurora_schema',), ('pipeline_cache',)}, 'Pipeline database has unexpected schema objects')
+    objects = set(db.execute("SELECT name FROM sqlite_master WHERE type != 'index'").fetchall())
+    if allow_merge_metadata and ('aurora_seed',) in objects:
+        columns = [(row[1], row[2], row[5]) for row in db.execute('PRAGMA table_info(aurora_seed)')]
+        identities = db.execute('SELECT identity FROM aurora_seed').fetchall()
+        require(columns == [('identity', 'TEXT', 1)] and len(identities) <= 1
+                and all(isinstance(value, str) and value for (value,) in identities),
+                'Pipeline seed merge metadata differs from the selected renderer')
+        objects.remove(('aurora_seed',))
+    require(objects == {('aurora_schema',), ('pipeline_cache',)}, 'Pipeline database has unexpected schema objects')
     require(db.execute('SELECT value FROM aurora_schema').fetchall() == [(1,)], 'Pipeline database schema must be 1')
     rows = db.execute('SELECT type, hash, config_version, config_size, config, first_frame_used '
                       'FROM pipeline_cache ORDER BY type, hash').fetchall()
@@ -95,8 +102,10 @@ def snapshot_pipeline_seed(source, target):
         with closing(sqlite3.connect(copied.as_uri() + '?mode=ro', uri=True)) as db, \
                 closing(sqlite3.connect(target)) as snapshot:
             db.execute('PRAGMA trusted_schema=OFF')
-            validate_pipeline_seed(db)
+            validate_pipeline_seed(db, allow_merge_metadata=True)
             db.backup(snapshot)
+            snapshot.execute('DROP TABLE IF EXISTS aurora_seed')
+            snapshot.commit()
             snapshot.execute('PRAGMA journal_mode=DELETE')
             details = validate_pipeline_seed(snapshot)
         require({p.name for p in [source, wal] if p.exists()} == set(originals)

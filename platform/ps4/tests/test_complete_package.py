@@ -33,6 +33,17 @@ class PreparationCliTestCase(unittest.TestCase):
             stream.seek(offset)
             stream.write(data)
 
+    def pipeline_database(self, path, wal=False):
+        db = sqlite3.connect(path)
+        self.addCleanup(db.close)
+        if wal:
+            db.execute('PRAGMA journal_mode=WAL')
+        db.execute('CREATE TABLE aurora_schema(value INTEGER)')
+        db.execute('INSERT INTO aurora_schema VALUES (1)')
+        db.execute('CREATE TABLE pipeline_cache(type INTEGER, hash INTEGER, config_version INTEGER, '
+                   'config_size INTEGER, config BLOB, first_frame_used INTEGER, PRIMARY KEY(type,hash))')
+        return db
+
 
 class ImageValidationTests(PreparationCliTestCase):
     def test_catalogued_dump_acceptance_keeps_required_content_checks(self):
@@ -124,14 +135,24 @@ class ImageValidationTests(PreparationCliTestCase):
 
 
 class PipelineSeedTests(PreparationCliTestCase):
+    def test_runtime_seed_merge_metadata_is_not_bundled_again(self):
+        source = self.root / 'merged.db'
+        with self.pipeline_database(source) as db:
+            db.execute('CREATE TABLE aurora_seed(identity TEXT PRIMARY KEY)')
+            db.execute("INSERT INTO aurora_seed VALUES ('old-seed-identity')")
+            db.execute('INSERT INTO pipeline_cache VALUES (0,42,5,8,?,10)', (struct.pack('<I4B', 5, 1, 1, 1, 0),))
+        output = self.root / 'seed'
+        result = self.run_cli('pipeline-seed', source, '--output', output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        with sqlite3.connect(output / 'initial_pipeline_cache.db') as seed:
+            self.assertEqual(seed.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").fetchall(),
+                             [('aurora_schema',), ('pipeline_cache',)])
+        with sqlite3.connect(source) as original:
+            self.assertEqual(original.execute('SELECT identity FROM aurora_seed').fetchall(), [('old-seed-identity',)])
+
     def test_wal_rows_are_snapshotted_without_modifying_original_files(self):
         source = self.root / 'pipeline_cache.db'
-        with sqlite3.connect(source) as db:
-            db.execute('PRAGMA journal_mode=WAL')
-            db.execute('CREATE TABLE aurora_schema(value INTEGER)')
-            db.execute('INSERT INTO aurora_schema VALUES (1)')
-            db.execute('CREATE TABLE pipeline_cache(type INTEGER, hash INTEGER, config_version INTEGER, '
-                       'config_size INTEGER, config BLOB, first_frame_used INTEGER, PRIMARY KEY(type,hash))')
+        with self.pipeline_database(source, wal=True) as db:
             db.commit()
             db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
             db.execute('INSERT INTO pipeline_cache VALUES (0,42,5,8,?,10)',
@@ -156,11 +177,9 @@ class PipelineSeedTests(PreparationCliTestCase):
         for case in ('schema', 'type', 'version', 'size', 'embedded-version', 'frame', 'empty', 'extra-table'):
             with self.subTest(case=case):
                 source = self.root / (case + '.db')
-                with sqlite3.connect(source) as db:
-                    db.execute('CREATE TABLE aurora_schema(value INTEGER)')
-                    db.execute('INSERT INTO aurora_schema VALUES (?)', (2 if case == 'schema' else 1,))
-                    db.execute('CREATE TABLE pipeline_cache(type INTEGER, hash INTEGER, config_version INTEGER, '
-                               'config_size INTEGER, config BLOB, first_frame_used INTEGER, PRIMARY KEY(type,hash))')
+                with self.pipeline_database(source) as db:
+                    if case == 'schema':
+                        db.execute('UPDATE aurora_schema SET value=2')
                     if case != 'empty':
                         db.execute('INSERT INTO pipeline_cache VALUES (?,?,?,?,?,?)',
                             (2 if case == 'type' else 0, 42, 4 if case == 'version' else 5,
@@ -239,11 +258,7 @@ class CompletePackageRoundtripTests(PreparationCliTestCase):
 
     def test_pipeline_seed_is_bound_to_manifest_and_freshly_inspected_payload(self):
         source = self.root / 'pipeline_cache.db'
-        with sqlite3.connect(source) as db:
-            db.execute('CREATE TABLE aurora_schema(value INTEGER)')
-            db.execute('INSERT INTO aurora_schema VALUES (1)')
-            db.execute('CREATE TABLE pipeline_cache(type INTEGER, hash INTEGER, config_version INTEGER, '
-                       'config_size INTEGER, config BLOB, first_frame_used INTEGER, PRIMARY KEY(type,hash))')
+        with self.pipeline_database(source) as db:
             db.execute('INSERT INTO pipeline_cache VALUES (0,42,5,8,?,10)', (struct.pack('<I4B', 5, 1, 1, 1, 0),))
         result = self.run_cli(*self.assembly_args(), '--pipeline-cache', source)
         self.assertEqual(result.returncode, 0, result.stderr)
