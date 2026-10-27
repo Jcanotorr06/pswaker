@@ -1,0 +1,18 @@
+{
+  "returncode": 0,
+  "elapsed_seconds": 108.844,
+  "working_directory": "/tmp",
+  "reference_build": "/home/joseph_cano/.cache/pswaker/maintained-15-a",
+  "prepared_game": "/home/joseph_cano/.cache/pswaker/game-23-a",
+  "host_root": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022",
+  "log": "/tmp/pswaker-60-tests.log",
+  "tests": 93,
+  "test_seconds": 108.167,
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "baseline_unique_tests": 84,
+  "regressions": 0,
+  "references": "Read-only inputs; all generated outputs and mutations in temporary work areas",
+  "validation_limits": "No host provisioning, full target rebuild or new console acceptance"
+}

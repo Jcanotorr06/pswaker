@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Resolved repository ownership and deterministic maintained build inputs.
 
-Command groups have exactly one canonical directory. During the ownership
-migration those directories may differ; consumers never search fallback paths.
+Host commands have one canonical tooling directory. Target recipes and runtime
+inputs remain with the platform; consumers never search fallback paths.
 """
 import hashlib
 import json
@@ -18,6 +18,7 @@ class Locations:
         self.repository = Path(repository or REPOSITORY).resolve()
         self.declaration = json.loads((self.repository / DECLARATION).read_text())
         self.platform = self.repository / self.declaration['platform']
+        self.tools = self.repository / self.declaration['tools']
         self.tests = self.repository / self.declaration['tests']
 
     def command(self, name):
@@ -25,20 +26,18 @@ class Locations:
                   if name in group['files']]
         if len(groups) != 1:
             raise ValueError(f'Command must have exactly one owner: {name}')
-        return self.repository / groups[0]['directory'] / name
+        return self.tools / name
 
     def maintained_inputs(self):
-        roots = {self.platform, self.repository / 'tools/pswaker'}
+        roots = {self.platform, self.tools}
         for name in ['diagnostic', 'game']:
             group = self.declaration['command_groups'].get(name)
             if not group or not group.get('files'):
                 raise ValueError(f'Missing required command input group: {name}')
         for name, group in self.declaration['command_groups'].items():
-            directory = self.repository / group['directory']
-            roots.add(directory)
             for filename in group['files']:
-                if not (directory / filename).is_file():
-                    raise ValueError(f'Missing required {name} input: {directory / filename}')
+                if not (self.tools / filename).is_file():
+                    raise ValueError(f'Missing required {name} input: {self.tools / filename}')
         for name in self.declaration['required_target_directories']:
             if (not (self.platform / name).is_dir() or not any(
                     path.is_file() and path.suffix not in {'.md', '.pyc'}
@@ -48,7 +47,7 @@ class Locations:
             if not (self.platform / name).is_file():
                 raise ValueError(f'Missing required target input: {name}')
         for name in ['build_inputs.py', 'ownership.json']:
-            if not (self.repository / 'tools/pswaker' / name).is_file():
+            if not (self.tools / name).is_file():
                 raise ValueError(f'Missing required ownership input: {name}')
         paths = {}
         for root in sorted(roots):

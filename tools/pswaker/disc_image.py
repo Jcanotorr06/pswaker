@@ -3,10 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import struct
-import sys
 
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 import build_inputs
 
 PLATFORM = build_inputs.Locations().platform

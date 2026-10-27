@@ -10,7 +10,6 @@ import json
 from pathlib import Path
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 import build_inputs
 
 GCI = Path('saves/USA/Card A/01-GZLE-gczelda.gci')

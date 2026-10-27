@@ -109,7 +109,7 @@ sizes/hashes; matching sizes do not establish matching contents.
 | SELF | `f62940819abeb92ea4af228442f8fb83c00a33199861b1e38b78e9b20e9ffd7a` | `cb8241d20550de0a4d6ef70170359c0e3d5355c5d570cf4c9a8f105dcd3b4497` |
 | PKG | `30c91dd26524bcc5535380c57b1c9066a3fc3539e93ec5a8051c9853224744e5` | `e565ef5b75399735fe0bd90361f4986bc838950480efef94bf7f9ec886877ba9` |
 
-Shared [build A](../../../platform/ps4/evidence/verification-15/build-a) and [build B](../../../platform/ps4/evidence/verification-15/build-b) records include source/host/runtime
+Shared [build A](build-a) and [build B](build-b) records include source/host/runtime
 closures, patch records, exact tool identities, ordered stage logs, ELF headers,
 package/SELF inspection, command audits and complete local-evidence inventories.
 The full build logs, commands, decoded unwind records, source/download trees,

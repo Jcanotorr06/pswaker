@@ -1,0 +1,10 @@
+{
+    "base_commit":  "85ace99de7ef89f0ec4eb0808fae26c891c93d03",
+    "integration_branch":  "feature/54-repository-ownership",
+    "baseline_suite":  "84 tests OK; 11 GCI skips rerun separately with host root: 11 passed; all 84 unique cases exercised",
+    "reference_build":  "/home/joseph_cano/.cache/pswaker/maintained-15-a",
+    "prepared_game":  "/home/joseph_cano/.cache/pswaker/game-23-a",
+    "host_root":  "/home/joseph_cano/.cache/pswaker/aurora-host-20261022",
+    "suite_log":  "/tmp/pswaker-54-baseline-tests.log",
+    "gci_log":  "/tmp/pswaker-54-baseline-gci.log"
+}

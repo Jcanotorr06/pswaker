@@ -11,7 +11,6 @@ import shutil
 import subprocess
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 import build_inputs
 
 spec = importlib.util.spec_from_file_location('game_preparation', build_inputs.Locations().command('prepare-game.py'))

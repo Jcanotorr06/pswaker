@@ -11,7 +11,6 @@ import struct
 import sys
 import tempfile
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 import build_inputs
 spec = importlib.util.spec_from_file_location('complete_package', build_inputs.Locations().command('complete-package.py'))
 complete = importlib.util.module_from_spec(spec)
