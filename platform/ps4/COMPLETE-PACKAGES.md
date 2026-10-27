@@ -19,7 +19,7 @@ containing spaces. The validator uses Python 3.11+ and its standard library;
 the maintained host provides Python 3.12.
 
 ```bash
-python3 platform/ps4/complete-package.py validate '/path/to/owner/GZLE01.iso'
+python3 tools/pswaker/complete-package.py validate '/path/to/owner/GZLE01.iso'
 # A raw .gcm is also accepted, including uppercase extensions.
 ```
 
@@ -49,7 +49,7 @@ the contract from its four checksum-locked public source files (network and
 PyYAML required only for this maintenance command):
 
 ```bash
-python3 platform/ps4/prepare-content-contract.py /tmp/pswaker-content-contract.json
+python3 tools/pswaker/prepare-content-contract.py /tmp/pswaker-content-contract.json
 diff -u platform/ps4/content-contract.json /tmp/pswaker-content-contract.json
 ```
 
@@ -78,7 +78,7 @@ PLATFORM_ROOT="$HOME/.cache/pswaker/maintained-15-a"
 PRIVATE_ROOT="$HOME/.local/share/pswaker-private"
 mkdir -p "$PRIVATE_ROOT"
 
-python3 platform/ps4/complete-package.py assemble \
+python3 tools/pswaker/complete-package.py assemble \
   --platform-root "$PLATFORM_ROOT" \
   --program-stage "$PLATFORM_ROOT/build/probe-stage" \
   --elf "$PLATFORM_ROOT/build/probe/platform_diagnostic" \
@@ -87,7 +87,7 @@ python3 platform/ps4/complete-package.py assemble \
   --output "$PRIVATE_ROOT/diagnostic-complete-01.05"
 
 # Fresh extraction and validation; does not need the original source image.
-python3 platform/ps4/complete-package.py inspect \
+python3 tools/pswaker/complete-package.py inspect \
   "$PRIVATE_ROOT/diagnostic-complete-01.05" --platform-root "$PLATFORM_ROOT"
 ```
 
@@ -145,7 +145,7 @@ assertions guard the clear/GX ABI declared by the preparation tool.
 To prepare and inspect that snapshot without assembling a complete package:
 
 ```bash
-python3 platform/ps4/complete-package.py pipeline-seed /private/pipeline_cache.db \
+python3 tools/pswaker/complete-package.py pipeline-seed /private/pipeline_cache.db \
   --output /private/new-seed-directory
 ```
 

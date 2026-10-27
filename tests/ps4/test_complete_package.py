@@ -48,6 +48,30 @@ class PreparationCliTestCase(unittest.TestCase):
         return db
 
 
+@unittest.skipUnless(sys.platform == 'linux', 'Linux assembly interface required')
+class PrivateOutputTests(PreparationCliTestCase):
+    def test_relocated_commands_reject_repository_outputs_from_another_directory(self):
+        repository = self.root / 'repo'
+        relocated = self.root / 'relocated-checkout'
+        repository.rename(relocated)
+        locations = Locations(relocated)
+        output = relocated / 'private-output'
+        for command, arguments in [
+            ('complete-package.py', ['assemble', '--image', self.image,
+             '--program-stage', self.root / 'stage', '--elf', self.root / 'program.elf',
+             '--platform-root', self.root / 'platform', '--kind', 'game', '--app-version', '01.00']),
+            ('content-failure-package.py', [self.root / 'complete', '--platform-root', self.root / 'platform',
+             '--variant', 'missing', '--app-version', '01.01']),
+        ]:
+            with self.subTest(command=command):
+                result = subprocess.run([sys.executable, str(locations.command(command)),
+                                         *map(str, arguments), '--output', str(output)],
+                                        cwd='/', capture_output=True, text=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('outside the repository', result.stderr)
+                self.assertFalse(output.exists())
+
+
 class ImageValidationTests(PreparationCliTestCase):
     def test_catalogued_dump_acceptance_keeps_required_content_checks(self):
         contract_file = Locations(self.root / 'repo').platform / 'content-contract.json'
