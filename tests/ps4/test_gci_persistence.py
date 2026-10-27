@@ -4,9 +4,14 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import sys
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
+PLATFORM = LOCATIONS.platform
 GAME = os.environ.get('PSWAKER_GAME_ROOT')
 REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
 HOST = os.environ.get('PSWAKER_HOST_ROOT')
@@ -22,7 +27,7 @@ class GciPersistenceTests(unittest.TestCase):
         cls.binary = Path(cls.directory.name) / 'gci'
         aurora = Path(GAME) / 'src/aurora'
         platform = Path(REFERENCE)
-        includes = [aurora / 'include', aurora / 'lib', HERE / 'game',
+        includes = [aurora / 'include', aurora / 'lib', PLATFORM / 'game',
                     platform / 'src/sdl3/include',
                     platform / 'src/fetch/fmt/fmt-12.1.0/include']
         flags = ['clang++-21', '-std=c++23', '-D__ORBIS__', '-DFMT_HEADER_ONLY',
@@ -33,7 +38,7 @@ class GciPersistenceTests(unittest.TestCase):
             'io.cpp', 'card/CardGciFolder.cpp', 'card/FileIO.cpp',
             'card/File.cpp', 'card/Util.cpp']]
         result = subprocess.run(flags + list(map(str, sources)) + [
-            str(HERE / 'game/storage.cpp'), str(HERE / 'tests/gci-persistence.cpp'),
+            str(PLATFORM / 'game/storage.cpp'), str(LOCATIONS.tests / 'gci-persistence.cpp'),
             str(Path(HOST) / 'sdl/libSDL3.a'), '-pthread', '-ldl', '-lm',
             '-Wl,--wrap=fsync', '-Wl,--wrap=rename', '-o', str(cls.binary)],
             capture_output=True, text=True)

@@ -8,10 +8,10 @@ import tarfile
 import tempfile
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(HERE.parents[1] / 'tools/pswaker'))
-import build_inputs
-LOCATIONS = build_inputs.Locations()
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
 REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
 
 

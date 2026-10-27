@@ -107,7 +107,7 @@ Aurora process order remains source-reviewed and requires console evidence.
 
     export PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-19"
     export PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/maintained-15-a"
-    python3 -m unittest discover -s platform/ps4/tests -p 'test_route_*.py' -v
+    python3 -m unittest discover -s tests/ps4 -p 'test_route_*.py' -v
 
 The [owner checklist](Route-audio-checklist.md) defines cold/warm route, focused
 rendering/audio and normal Quit observations and FTP collection. The six-sample

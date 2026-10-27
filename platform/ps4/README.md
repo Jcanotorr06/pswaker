@@ -212,12 +212,12 @@ host FPS cannot establish the game's performance targets.
 The agreed test boundaries are the preparation and artifact-inspection CLIs:
 
 ```bash
-python3 -m unittest discover -s platform/ps4/tests
-python3 -m compileall -q platform/ps4 tools/pswaker
-for script in platform/ps4/*.sh tools/pswaker/*.sh; do bash -n "$script"; done
+python3 -m unittest discover -s tests/ps4
+python3 -m compileall -q platform/ps4 tools/pswaker tests/ps4
+while IFS= read -r -d '' script; do bash -n "$script"; done < <(find platform/ps4 tools/pswaker -maxdepth 1 -name '*.sh' -print0)
 # After a build, also exercise the actual packaging tools and payload rejection:
 PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/diagnostic-01.04" \
-  python3 -m unittest discover -s platform/ps4/tests
+  python3 -m unittest discover -s tests/ps4
 ```
 
 The target build itself typechecks the C/C++ interfaces against the selected

@@ -1,6 +1,6 @@
 {
   "platform": "platform/ps4",
-  "tests": "platform/ps4/tests",
+  "tests": "tests/ps4",
   "required_target_directories": [
     "game", "probe", "host-renderer", "runtime-preflight", "patches", "provenance"
   ],

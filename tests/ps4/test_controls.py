@@ -4,9 +4,14 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import sys
 import unittest
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+from build_inputs import Locations
+
+LOCATIONS = Locations()
+PLATFORM = LOCATIONS.platform
 GAME = os.environ.get('PSWAKER_GAME_ROOT')
 
 
@@ -20,7 +25,7 @@ class InstalledControlsTests(unittest.TestCase):
         root = Path(cls.directory.name)
         cls.binary = root / 'controls'
         game = Path(GAME)
-        includes = ['-I', str(HERE / 'game'), '-I', str(game / 'src/platform'),
+        includes = ['-I', str(PLATFORM / 'game'), '-I', str(game / 'src/platform'),
                     '-I', str(game / 'src/aurora/include'), '-DTARGET_PC']
         native = subprocess.run(['clang-21', '-std=c11', '-D_POSIX_C_SOURCE=200809L',
                                  *includes, '-c', str(game / 'src/platform/native/platform.c'),
@@ -28,9 +33,9 @@ class InstalledControlsTests(unittest.TestCase):
         if native.returncode:
             raise AssertionError(native.stderr)
         build = subprocess.run(['clang++-21', '-std=c++23', '-Wall', '-Wextra', '-Werror',
-                                *includes, str(HERE / 'game/controls.cpp'),
-                                str(HERE / 'game/storage.cpp'),
-                                str(HERE / 'tests/controls-console.cpp'), str(root / 'platform.o'),
+                                *includes, str(PLATFORM / 'game/controls.cpp'),
+                                str(PLATFORM / 'game/storage.cpp'),
+                                str(LOCATIONS.tests / 'controls-console.cpp'), str(root / 'platform.o'),
                                 '-Wl,--wrap=scePadReadState', '-o', str(cls.binary)],
                                capture_output=True, text=True)
         if build.returncode:
