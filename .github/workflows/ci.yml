@@ -20,10 +20,19 @@ jobs:
           python-version: '3.12'
           architecture: x64
       - run: python -m pip install -r tools/pswaker/desktop-requirements.txt
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.427'
+      - name: Build native Windows tool closure (maintainer preparation only)
+        shell: pwsh
+        run: |
+          python tools/pswaker/prepare-windows-tools.py --dotnet (Get-Command dotnet).Source --output "$env:RUNNER_TEMP/pswaker-tools"
+          "PSWAKER_WINDOWS_TOOLS=$env:RUNNER_TEMP/pswaker-tools" >> $env:GITHUB_ENV
       - run: python -m pyright --pythonpath python
       - run: python -m compileall -q tools/pswaker tests/ps4
       - run: python -m unittest discover -s tests/ps4 -p test_desktop.py -v
       - run: python -m unittest discover -s tests/ps4 -p test_complete_package.py -v
+      - run: python -m unittest discover -s tests/ps4 -p test_windows_package.py -v
 
   diagnostic-host-checks:
     runs-on: ubuntu-latest

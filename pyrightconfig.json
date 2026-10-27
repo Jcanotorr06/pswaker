@@ -3,9 +3,14 @@
     "tools/pswaker/desktop_app.py",
     "tools/pswaker/package_validation.py",
     "tools/pswaker/program_payload.py",
+    "tools/pswaker/package_artifact.py",
+    "tools/pswaker/windows_package.py",
+    "tools/pswaker/prepare-windows-tools.py",
     "tools/pswaker/disc_image.py",
     "tools/pswaker/build-desktop.py",
-    "tests/ps4/test_desktop.py"
+    "tests/ps4/test_desktop.py",
+    "tests/ps4/test_windows_package.py",
+    "tests/ps4/synthetic_program.py"
   ],
   "extraPaths": ["tools/pswaker"],
   "pythonVersion": "3.12",

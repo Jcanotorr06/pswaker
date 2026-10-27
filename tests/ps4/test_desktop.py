@@ -15,6 +15,7 @@ REPOSITORY = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY / 'tools/pswaker'))
 DESKTOP_AVAILABLE = sys.platform == 'win32' or (
     bool(os.environ.get('DISPLAY')) and importlib.util.find_spec('tkinter') is not None)
+WINDOWS_TOOLS = os.environ.get('PSWAKER_WINDOWS_TOOLS')
 
 
 class DesktopValidationTests(unittest.TestCase):
@@ -32,6 +33,61 @@ class DesktopValidationTests(unittest.TestCase):
             validate_selection(self.image, output)
         self.assertFalse(output.exists())
         self.assertEqual(hashlib.sha256(self.image.read_bytes()).hexdigest(), original)
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_creates_verified_package_and_offers_manual_installation(self):
+        self.run_desktop('''
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Supported image')
+assert not app.create_button.instate(['disabled'])
+app.create_button.invoke()
+assert app.image_button.instate(['disabled'])
+assert app.output_button.instate(['disabled'])
+wait_for('Package verified')
+report = json.loads((output / 'inspection.json').read_text())
+package = output / 'out' / report['package']['filename']
+assert package.is_file()
+assert str(package.resolve()) in app.details.get(), app.details.get()
+assert 'USB' in app.instructions.get()
+assert '9.00' in app.instructions.get()
+assert 'GoldHEN v2.4b18' in app.instructions.get()
+assert 'remove the USB' in app.instructions.get()
+assert not app.open_button.instate(['disabled'])
+with patch('os.startfile') as opened:
+    app.open_button.invoke()
+    opened.assert_called_once_with(str(package.parent.resolve()))
+assert app.create_button.instate(['disabled'])
+assert not list(folder.glob('.complete-*'))
+''', packaging=True)
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_reports_packaging_failure_and_can_retry_from_validation(self):
+        self.run_desktop('''
+program = bundle / 'program/stage/eboot.bin'
+saved = program.read_bytes()
+program.write_bytes(saved + b'changed')
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Supported image')
+app.create_button.invoke()
+wait_for('Package creation failed')
+assert 'verify-program' in app.details.get(), app.details.get()
+assert 'reinstall' in app.details.get().lower()
+assert not output.exists()
+assert app.open_button.instate(['disabled'])
+assert not app.validate_button.instate(['disabled'])
+assert app.create_button.instate(['disabled'])
+assert not list(folder.glob('.complete-*'))
+program.write_bytes(saved)
+app.validate_button.invoke()
+wait_for('Supported image')
+app.create_button.invoke()
+wait_for('Package verified')
+assert (output / 'inspection.json').is_file()
+''', packaging=True)
 
     @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
     def test_desktop_selection_shows_supported_image_and_program_identity(self):
@@ -146,7 +202,7 @@ app.validate_button.invoke()
 wait_for('Supported image')
 ''')
 
-    def run_desktop(self, scenario, *, production=False):
+    def run_desktop(self, scenario, *, production=False, packaging=False):
         bundle = self.root / 'bundle/program'
         (bundle / 'stage').mkdir(parents=True)
         (bundle / 'program-release.json').write_text(json.dumps(
@@ -156,6 +212,7 @@ wait_for('Supported image')
         tools = (REPOSITORY if production else self.root / 'repo') / 'tools/pswaker'
         script = '''
 import hashlib
+import json
 from pathlib import Path
 import sys
 import time
@@ -163,6 +220,11 @@ import tkinter as tk
 from unittest.mock import patch
 from desktop_app import DesktopApp
 image, folder, bundle = map(Path, sys.argv[1:])
+if ''' + repr(packaging) + ''':
+    from synthetic_program import make_bundle
+    import shutil
+    shutil.rmtree(bundle)
+    make_bundle(bundle, Path(''' + repr(WINDOWS_TOOLS or '') + '''))
 output = folder / 'PSWaker-01.23'
 original = hashlib.sha256(image.read_bytes()).hexdigest()
 root = tk.Tk()
@@ -170,7 +232,7 @@ app = DesktopApp(root, bundle)
 def wait_for(text):
     wait_until(lambda: text in app.status.get())
 def wait_until(predicate):
-    deadline = time.monotonic() + 10
+    deadline = time.monotonic() + 30
     while not predicate():
         root.update()
         if time.monotonic() > deadline:
@@ -183,7 +245,8 @@ assert hashlib.sha256(image.read_bytes()).hexdigest() == original
 root.destroy()
 '''
         result = subprocess.run([sys.executable, '-c', script, str(self.image), str(self.root),
-                                 str(bundle.parent)], cwd=tools, capture_output=True, text=True, timeout=30)
+                                 str(bundle.parent)], cwd=tools, capture_output=True, text=True, timeout=90,
+                                env=dict(os.environ, PYTHONPATH=str(REPOSITORY / 'tests/ps4')))
         self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
 
 
