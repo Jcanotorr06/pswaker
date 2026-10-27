@@ -1,6 +1,7 @@
 // Only the external console service boundary is simulated. No game data or GPU.
 #include "controls.hpp"
 #include "storage.hpp"
+#include "frame-pacing.hpp"
 #include "native/platform.h"
 #include <cassert>
 #include <cstdint>
@@ -79,6 +80,11 @@ void pswaker_toggle_text_size() {
     ++textChanges;
     assert(settings && settings->setLargeText(!settings->largeText()));
 }
+// Performance actions are outside the existing controls scenarios.
+void pswaker_perf_arm(const char*) {}
+void pswaker_perf_phase(const char*) {}
+extern "C" uint64_t pswaker_perf_now() { return 0; }
+void pswaker_perf_diagnostic(PswakerDiagnostic, uint64_t) {}
 int main(int argc, char** argv) {
     assert(argc == 3);
     if (std::strcmp(argv[1], "boot-loss") == 0) {

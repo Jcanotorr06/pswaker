@@ -1,0 +1,26 @@
+{
+  "build": "bc90c33b639295f36912",
+  "package_sha256": "d60c319ac16f3e17a5de9357a9f12a897f8209873f42fe6b25715190785af534",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "cache_state": "warm",
+  "timing_method_verified": false,
+  "timing_verification_notes": "",
+  "samples": {
+    "1": {
+      "scene": "outset",
+      "actions": "Ran from the watch tower's base to the island and rand across the bridge to grandma's house and back. Used sword to cut grass, shrubs and trees, swam and rolled.",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    },
+    "2": {
+      "scene": "forest",
+      "actions": "Ran laps in the two first sections of the forest. Used sword to cut grass and trees, and rolled around",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "build": "5f4977765953663bf3f3",
+  "package_sha256": "b50cbdaf3e996faba3529a399891e397d3d1ff568a777ec628260762e1f8205c",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "cache_state": "cold",
+  "timing_method_verified": false,
+  "timing_verification_notes": "Owner clarified: retrieved after normal port Quit; no video comparison. No Home/Quick Menu, suspend/resume, FTP or other interruption during warm Outset-to-forest interval. Returned files lack recorder shutdown and ordinary terminal Quit markers; retain this evidence gap without inferring owner actions. Physical presentation timing verification remains pending.",
+  "samples": {
+    "1": {
+      "scene": "outset",
+      "actions": "Ran from the watch tower's base to the island and rand across the bridge to grandma's house and back. Used sword to cut grass, shrubs and trees, swam and rolled.",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    },
+    "2": {
+      "scene": "forest",
+      "actions": "Ran laps in the two first sections of the forest. Used sword to cut grass and trees, and rolled around",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    }
+  }
+}

@@ -2,8 +2,9 @@
 
 Issue [#16](https://github.com/Jcanotorr06/pswaker/issues/16) adds Linux/WSL2
 preparation of an owner-built complete package. The game image installs at the
-approved fixed path **`/app0/game.iso`**. This tool changes no console runtime,
-save path or graphics/runtime input and introduces no console checkpoint.
+approved fixed path **`/app0/game.iso`**. Runtime and save locations stay fixed.
+Optional pipeline-description seeds are preparation assets described below;
+assembly introduces no console checkpoint.
 Game startup and installed-content failure handling belong to #17.
 
 The program build remains [disc-free](README.md). Do not give a disc image to
@@ -127,6 +128,42 @@ The separate game identity prevents a diagnostic from replacing the game.
 The [startup game build](GAME-STARTUP.md) supplies an integrated program for #17.
 `--kind game` identifies an explicitly supplied program; it grants no game,
 hardware or performance acceptance.
+
+## Optional pipeline-description seed
+
+For a performance candidate, `assemble --pipeline-cache /private/pipeline_cache.db`
+adds a validated, standalone `/app0/initial_pipeline_cache.db`. Supply the adjacent
+`pipeline_cache.db-wal` if present and keep the application closed during retrieval.
+The CLI copies the database/WAL before opening SQLite, checks integrity and the
+selected renderer's schema/version/size contract, and backs up their committed
+view into a DELETE-journal database. It checks the originals stayed unchanged.
+The runtime's optional `aurora_seed` merge identity is validated and omitted from
+the output. Unsupported configurations, unrelated schema objects and empty seeds
+are rejected rather than silently discarding records. Renderer-target compile-time
+assertions guard the clear/GX ABI declared by the preparation tool.
+
+To prepare and inspect that snapshot without assembling a complete package:
+
+```bash
+python3 platform/ps4/complete-package.py pipeline-seed /private/pipeline_cache.db \
+  --output /private/new-seed-directory
+```
+
+The new private directory contains `initial_pipeline_cache.db` and
+`pipeline-seed.json` with source hashes, configuration counts and seed SHA-256.
+Assembly performs the same snapshot itself; pass the original database/WAL pair
+to preserve its provenance in the package manifest. The seed is a separate asset;
+the data-free program staging allowlist above stays unchanged. Fresh package
+inspection validates the extracted seed's bytes and configuration counts against
+`complete-package.json`. Package/seed hashes distinguish different preparation
+assets even when executable code is identical. Never transfer a previous package's
+performance verdict to a different seed or cache state.
+
+The seed contains pipeline descriptions, not driver shader binaries. The existing
+renderer compiles known pipelines before gameplay. Cold disposable caches still
+start empty; preparation and its duration remain visible startup work. This does
+not guarantee coverage of every future draw/effect or a console performance pass.
+Keep actual seeds and complete packages private.
 
 ## Inspection and retained private evidence
 

@@ -1,0 +1,57 @@
+{
+  "unittest_runner": "OK",
+  "tests": 84,
+  "skips": 0,
+  "capture_note": "Direct subprocess capture returned exit 0; the complete runner output ends Ran 84 tests / OK with zero failures or skips. Original capture retained privately and unchanged UTF-8 text retained here.",
+  "unittest_exit_code": 0,
+  "python_compileall_exit": 0,
+  "shell_syntax": [
+    {
+      "script": "build-game.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-graphics.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-probe.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-runtime.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-sdk-support.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "clean-build.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "install-host.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "prepare-graphics.sh",
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "mesa_flip_calls_wrapper": true,
+  "defined_hooks": [
+    "pswaker_perf_capture",
+    "pswaker_perf_present",
+    "pswaker_perf_shader_wait",
+    "__wrap_sceVideoOutSubmitFlip"
+  ]
+}

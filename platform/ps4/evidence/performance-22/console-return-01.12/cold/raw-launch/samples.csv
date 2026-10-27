@@ -1,0 +1,3 @@
+sample,scene,outcome,seconds,intervals,average_fps,p95_ms,p99_ms,maximum_ms,shader_correlated_hitches,target_met
+1,outset,complete,120.021617,3451,28.753154,33.407429,66.765600,1234.577616,68,0
+2,forest,complete,120.021611,3597,29.969603,33.397178,33.432956,150.151814,2,0

@@ -1,0 +1,284 @@
+[
+  {
+    "sample": 1,
+    "long_interval_count": 1,
+    "long_with_shader": 1,
+    "excess_ms": 1431.1936841189445,
+    "shader_ms": 150.958116,
+    "largest": [
+      {
+        "frame": 5872,
+        "ms": 100.09723339419047,
+        "observed_s": 267.033916114,
+        "submit_s": 267.013783059,
+        "submit_delta_ms": 90.490696,
+        "shader_ms": 58.204802,
+        "shader_calls": 1,
+        "begin_ns": 732339061594049,
+        "end_ns": 732339162561804
+      },
+      {
+        "frame": 5863,
+        "ms": 83.41994509830657,
+        "observed_s": 266.682905502,
+        "submit_s": 266.678332418,
+        "submit_delta_ms": 83.894533,
+        "shader_ms": 50.354673,
+        "shader_calls": 1,
+        "begin_ns": 732338727592624,
+        "end_ns": 732338811551192
+      },
+      {
+        "frame": 3404,
+        "ms": 83.41783214443772,
+        "observed_s": 184.099927412,
+        "submit_s": 184.082669766,
+        "submit_delta_ms": 84.621709,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732256145578871,
+        "end_ns": 732256228573102
+      },
+      {
+        "frame": 2807,
+        "ms": 83.41775121479132,
+        "observed_s": 164.045979814,
+        "submit_s": 164.024938094,
+        "submit_delta_ms": 67.362906,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732236091583477,
+        "end_ns": 732236174625504
+      },
+      {
+        "frame": 3851,
+        "ms": 66.78529731565234,
+        "observed_s": 199.098953193,
+        "submit_s": 199.086631136,
+        "submit_delta_ms": 67.41648,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732271159564013,
+        "end_ns": 732271227598883
+      },
+      {
+        "frame": 5341,
+        "ms": 66.74371829824989,
+        "observed_s": 249.132916138,
+        "submit_s": 249.117481781,
+        "submit_delta_ms": 68.31569,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732321193610699,
+        "end_ns": 732321261561828
+      },
+      {
+        "frame": 5639,
+        "ms": 66.73987131691861,
+        "observed_s": 259.124952999,
+        "submit_s": 259.11656719,
+        "submit_delta_ms": 67.339657,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732331186581616,
+        "end_ns": 732331253598689
+      },
+      {
+        "frame": 5181,
+        "ms": 66.73782172657137,
+        "observed_s": 243.743938067,
+        "submit_s": 243.73797596,
+        "submit_delta_ms": 75.908686,
+        "shader_ms": 41.981231,
+        "shader_calls": 1,
+        "begin_ns": 732315805595210,
+        "end_ns": 732315872583757
+      },
+      {
+        "frame": 4596,
+        "ms": 66.73604943005134,
+        "observed_s": 224.105917946,
+        "submit_s": 224.093486228,
+        "submit_delta_ms": 68.85147,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732296167619902,
+        "end_ns": 732296234563636
+      },
+      {
+        "frame": 2509,
+        "ms": 66.73580915055852,
+        "observed_s": 154.035926488,
+        "submit_s": 154.026158045,
+        "submit_delta_ms": 69.275287,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732226096648869,
+        "end_ns": 732226164572178
+      },
+      {
+        "frame": 5192,
+        "ms": 66.73572382938093,
+        "observed_s": 244.126955506,
+        "submit_s": 244.114951642,
+        "submit_delta_ms": 68.366282,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732316188593296,
+        "end_ns": 732316255601196
+      },
+      {
+        "frame": 5043,
+        "ms": 66.73506760914731,
+        "observed_s": 239.105923856,
+        "submit_s": 239.096107619,
+        "submit_delta_ms": 68.16691,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732311166583254,
+        "end_ns": 732311234569546
+      }
+    ]
+  },
+  {
+    "sample": 2,
+    "long_interval_count": 2,
+    "long_with_shader": 0,
+    "excess_ms": 1231.302216456803,
+    "shader_ms": 0,
+    "largest": [
+      {
+        "frame": 9424,
+        "ms": 133.47104928414583,
+        "observed_s": 497.866952272,
+        "submit_s": 497.849644481,
+        "submit_delta_ms": 130.940297,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732569862535864,
+        "end_ns": 732569995597962
+      },
+      {
+        "frame": 11276,
+        "ms": 116.76290107115732,
+        "observed_s": 560.063904563,
+        "submit_s": 560.042959441,
+        "submit_delta_ms": 102.787906,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732632075530341,
+        "end_ns": 732632192550253
+      },
+      {
+        "frame": 11941,
+        "ms": 83.41540111823767,
+        "observed_s": 582.403922014,
+        "submit_s": 582.386477521,
+        "submit_delta_ms": 82.778134,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732654448567454,
+        "end_ns": 732654532567704
+      },
+      {
+        "frame": 10000,
+        "ms": 83.41511504134807,
+        "observed_s": 517.202897921,
+        "submit_s": 517.182896709,
+        "submit_delta_ms": 67.523554,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732589248587132,
+        "end_ns": 732589331543611
+      },
+      {
+        "frame": 9404,
+        "ms": 66.78757965715319,
+        "observed_s": 497.099909154,
+        "submit_s": 497.087686012,
+        "submit_delta_ms": 67.031975,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732569162566090,
+        "end_ns": 732569228554844
+      },
+      {
+        "frame": 9701,
+        "ms": 66.73841395592179,
+        "observed_s": 507.160912326,
+        "submit_s": 507.144977361,
+        "submit_delta_ms": 65.434684,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732579221576800,
+        "end_ns": 732579289558016
+      },
+      {
+        "frame": 12241,
+        "ms": 66.73815422821937,
+        "observed_s": 592.463919431,
+        "submit_s": 592.450372761,
+        "submit_delta_ms": 65.470781,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732664524575046,
+        "end_ns": 732664592565121
+      },
+      {
+        "frame": 10300,
+        "ms": 66.73622634602253,
+        "observed_s": 527.247887068,
+        "submit_s": 527.238435238,
+        "submit_delta_ms": 64.510055,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732599309548713,
+        "end_ns": 732599376532758
+      },
+      {
+        "frame": 10898,
+        "ms": 66.73530475183212,
+        "observed_s": 547.317905846,
+        "submit_s": 547.307503937,
+        "submit_delta_ms": 66.688405,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732619378573546,
+        "end_ns": 732619446551536
+      },
+      {
+        "frame": 11197,
+        "ms": 66.7343624547089,
+        "observed_s": 557.343930809,
+        "submit_s": 557.339582382,
+        "submit_delta_ms": 67.307884,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732629406554369,
+        "end_ns": 732629472576499
+      },
+      {
+        "frame": 11643,
+        "ms": 66.7343329687137,
+        "observed_s": 572.391914571,
+        "submit_s": 572.37517549,
+        "submit_delta_ms": 67.146477,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732644454551503,
+        "end_ns": 732644520560261
+      },
+      {
+        "frame": 12091,
+        "ms": 66.7341497791265,
+        "observed_s": 587.423909829,
+        "submit_s": 587.416873307,
+        "submit_delta_ms": 64.975946,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "begin_ns": 732659486539690,
+        "end_ns": 732659552555519
+      }
+    ]
+  }
+]

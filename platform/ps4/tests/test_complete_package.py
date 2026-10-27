@@ -4,6 +4,7 @@ import hashlib
 import os
 from pathlib import Path
 import shutil
+import sqlite3
 import struct
 import subprocess
 import sys
@@ -31,6 +32,17 @@ class PreparationCliTestCase(unittest.TestCase):
         with self.image.open('r+b') as stream:
             stream.seek(offset)
             stream.write(data)
+
+    def pipeline_database(self, path, wal=False):
+        db = sqlite3.connect(path)
+        self.addCleanup(db.close)
+        if wal:
+            db.execute('PRAGMA journal_mode=WAL')
+        db.execute('CREATE TABLE aurora_schema(value INTEGER)')
+        db.execute('INSERT INTO aurora_schema VALUES (1)')
+        db.execute('CREATE TABLE pipeline_cache(type INTEGER, hash INTEGER, config_version INTEGER, '
+                   'config_size INTEGER, config BLOB, first_frame_used INTEGER, PRIMARY KEY(type,hash))')
+        return db
 
 
 class ImageValidationTests(PreparationCliTestCase):
@@ -119,7 +131,69 @@ class ImageValidationTests(PreparationCliTestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('Unsupported/compressed image', result.stderr)
             self.assertIn('raw ISO/GCM', result.stderr)
-            self.assertNotIn('Traceback', result.stderr)
+        self.assertNotIn('Traceback', result.stderr)
+
+
+class PipelineSeedTests(PreparationCliTestCase):
+    def test_runtime_seed_merge_metadata_is_not_bundled_again(self):
+        source = self.root / 'merged.db'
+        with self.pipeline_database(source) as db:
+            db.execute('CREATE TABLE aurora_seed(identity TEXT PRIMARY KEY)')
+            db.execute("INSERT INTO aurora_seed VALUES ('old-seed-identity')")
+            db.execute('INSERT INTO pipeline_cache VALUES (0,42,5,8,?,10)', (struct.pack('<I4B', 5, 1, 1, 1, 0),))
+        output = self.root / 'seed'
+        result = self.run_cli('pipeline-seed', source, '--output', output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        with sqlite3.connect(output / 'initial_pipeline_cache.db') as seed:
+            self.assertEqual(seed.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").fetchall(),
+                             [('aurora_schema',), ('pipeline_cache',)])
+        with sqlite3.connect(source) as original:
+            self.assertEqual(original.execute('SELECT identity FROM aurora_seed').fetchall(), [('old-seed-identity',)])
+
+    def test_wal_rows_are_snapshotted_without_modifying_original_files(self):
+        source = self.root / 'pipeline_cache.db'
+        with self.pipeline_database(source, wal=True) as db:
+            db.commit()
+            db.execute('PRAGMA wal_checkpoint(TRUNCATE)')
+            db.execute('INSERT INTO pipeline_cache VALUES (0,42,5,8,?,10)',
+                       (struct.pack('<I4B', 5, 1, 1, 1, 0),))
+            db.commit()
+            originals = {p: p.read_bytes() for p in [source, source.with_name(source.name + '-wal')]}
+            output = self.root / 'seed'
+            result = self.run_cli('pipeline-seed', source, '--output', output)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            report = json.loads(result.stdout)
+            self.assertEqual(report['rows'], 1)
+            seed = output / 'initial_pipeline_cache.db'
+            self.assertEqual(report['sha256'], hashlib.sha256(seed.read_bytes()).hexdigest())
+            with sqlite3.connect(seed) as snapshot:
+                self.assertEqual(snapshot.execute('SELECT hash FROM pipeline_cache').fetchall(), [(42,)])
+                self.assertEqual(snapshot.execute('PRAGMA journal_mode').fetchone(), ('delete',))
+            self.assertEqual({p.name for p in output.iterdir()}, {'initial_pipeline_cache.db', 'pipeline-seed.json'})
+            for path, original in originals.items():
+                self.assertEqual(path.read_bytes(), original)
+
+    def test_invalid_or_incompatible_seed_leaves_no_output(self):
+        for case in ('schema', 'type', 'version', 'size', 'embedded-version', 'frame', 'empty', 'extra-table'):
+            with self.subTest(case=case):
+                source = self.root / (case + '.db')
+                with self.pipeline_database(source) as db:
+                    if case == 'schema':
+                        db.execute('UPDATE aurora_schema SET value=2')
+                    if case != 'empty':
+                        db.execute('INSERT INTO pipeline_cache VALUES (?,?,?,?,?,?)',
+                            (2 if case == 'type' else 0, 42, 4 if case == 'version' else 5,
+                             7 if case == 'size' else 8,
+                             struct.pack('<I4B', 4 if case == 'embedded-version' else 5, 1, 1, 1, 0),
+                             -1 if case == 'frame' else 10))
+                    if case == 'extra-table':
+                        db.execute('CREATE TABLE unrelated(data BLOB)')
+                output = self.root / (case + '-seed')
+                result = self.run_cli('pipeline-seed', source, '--output', output)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('Pipeline', result.stderr)
+                self.assertNotIn('Traceback', result.stderr)
+                self.assertFalse(output.exists())
 
 
 @unittest.skipUnless(REFERENCE, 'Set PSWAKER_REFERENCE_BUILD to exercise real packaging tools')
@@ -181,6 +255,22 @@ class CompletePackageRoundtripTests(PreparationCliTestCase):
         self.assertEqual(reports[0]['sfo']['TITLE_ID'], reports[1]['sfo']['TITLE_ID'])
         self.assertEqual(reports[0]['sfo']['CONTENT_ID'], reports[1]['sfo']['CONTENT_ID'])
         self.assertEqual(reports[0]['image'], reports[1]['image'])
+
+    def test_pipeline_seed_is_bound_to_manifest_and_freshly_inspected_payload(self):
+        source = self.root / 'pipeline_cache.db'
+        with self.pipeline_database(source) as db:
+            db.execute('INSERT INTO pipeline_cache VALUES (0,42,5,8,?,10)', (struct.pack('<I4B', 5, 1, 1, 1, 0),))
+        result = self.run_cli(*self.assembly_args(), '--pipeline-cache', source)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        assembly = json.loads((self.output / 'assembly.json').read_text())
+        seed = assembly['manifest']['pipeline_seed']
+        self.assertEqual((seed['rows'], seed['installed_path']), (1, '/app0/initial_pipeline_cache.db'))
+        inspected = self.run_cli('inspect', self.output, '--platform-root', self.reference)
+        self.assertEqual(inspected.returncode, 0, inspected.stderr)
+        report = json.loads(inspected.stdout)
+        self.assertEqual(report['pipeline_seed'], seed)
+        self.assertEqual(report['payload_sha256']['initial_pipeline_cache.db'], seed['sha256'])
+        self.assertNotIn('initial_pipeline_cache.db-wal', report['payload_sha256'])
 
     def test_mismatched_elf_leaves_no_complete_package(self):
         other_elf = self.root / 'wrong.elf'

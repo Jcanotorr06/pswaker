@@ -1,0 +1,12 @@
+--- a/platform/native/platform.c
++++ b/platform/native/platform.c
+@@ -106,7 +106,9 @@
+    line[n + 1] = '\0';
+    fputs(line, stderr);
+    fflush(stderr);
++#if !defined(PS4_DEV_TOOLS) || PS4_DEV_TOOLS
+    sceKernelDebugOutText(0, line);
++#endif
+ }
+ 
+ double

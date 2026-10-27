@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "identity": {
+    "schema": 1,
+    "build": "bc90c33b639295f36912",
+    "tsc_frequency": 1593977062,
+    "method": "VideoOut-completed-flip-tsc",
+    "platform": "owner-confirm-required",
+    "cache": "/data/pswaker/cache/bc90c33b639295f36912",
+    "internal": [
+      1280,
+      720
+    ],
+    "logic_hz": 30,
+    "textures": "stock"
+  },
+  "installed_program": {
+    "build_id": "bc90c33b639295f36912",
+    "elf_filename": "switchwaker",
+    "elf_sha256": "57094078764f1e5d0d3ebbdff4b5650752794f248c6227b67a3f5abe0fc2ae01",
+    "eboot_sha256": "39bc4a637cc3bb126c495ddda75acd15ca701018e8795aafc6400061fc234e8b",
+    "payload_sha256": {
+      "build-info.json": "14cbe21f5794bd5f702e2d9df287e3219308c0b657ed7f9ae81de2cf30416cf2",
+      "eboot.bin": "39bc4a637cc3bb126c495ddda75acd15ca701018e8795aafc6400061fc234e8b",
+      "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+      "sce_sys/param.sfo": "ba86abfa9cff0a6b4680959d90dbcf8942867dc3116ed0e3b34346a44fc79e53"
+    }
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "d60c319ac16f3e17a5de9357a9f12a897f8209873f42fe6b25715190785af534"
+  },
+  "owner": {
+    "build": "bc90c33b639295f36912",
+    "package_sha256": "d60c319ac16f3e17a5de9357a9f12a897f8209873f42fe6b25715190785af534",
+    "platform": {
+      "model": "PS4 Slim",
+      "firmware": "9.00",
+      "goldhen": "v2.4b18"
+    },
+    "cache_state": "warm",
+    "timing_method_verified": false,
+    "timing_verification_notes": "",
+    "samples": {
+      "1": {
+        "scene": "outset",
+        "actions": "Ran from the watch tower's base to the island and rand across the bridge to grandma's house and back. Used sword to cut grass, shrubs and trees, swam and rolled.",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "2": {
+        "scene": "forest",
+        "actions": "Ran laps in the two first sections of the forest. Used sword to cut grass and trees, and rolled around",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      }
+    }
+  },
+  "samples": [
+    {
+      "sample": 1,
+      "scene": "outset",
+      "owner": {
+        "scene": "outset",
+        "actions": "Ran from the watch tower's base to the island and rand across the bridge to grandma's house and back. Used sword to cut grass, shrubs and trees, swam and rolled.",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "metrics": {
+        "seconds": 120.00493852652441,
+        "intervals": 3600,
+        "average_fps": 29.998765419177314,
+        "p95_ms": 33.397942962368674,
+        "p99_ms": 33.44859111906091,
+        "maximum_ms": 50.060029031961065,
+        "shader_wait_ms": 0.0,
+        "shader_wait_calls": 0,
+        "active_shader_waits_over_35ms": 0,
+        "active_shader_wait_total_ms": 0.0,
+        "resume_to_first_observation_ms": 29.649374,
+        "shader_correlated_hitches": 0
+      },
+      "outside_boundary_presentations": 0,
+      "invalid_reasons": [
+        "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+        "launch has no completed recorder shutdown"
+      ],
+      "shortfalls": [],
+      "target_met": false
+    },
+    {
+      "sample": 2,
+      "scene": "forest",
+      "owner": {
+        "scene": "forest",
+        "actions": "Ran laps in the two first sections of the forest. Used sword to cut grass and trees, and rolled around",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "metrics": {
+        "seconds": 120.02161719313374,
+        "intervals": 3601,
+        "average_fps": 30.002928507498964,
+        "p95_ms": 33.396784852855056,
+        "p99_ms": 33.428237626671695,
+        "maximum_ms": 50.08582990512319,
+        "shader_wait_ms": 0.0,
+        "shader_wait_calls": 0,
+        "active_shader_waits_over_35ms": 0,
+        "active_shader_wait_total_ms": 0.0,
+        "resume_to_first_observation_ms": 40.479032,
+        "shader_correlated_hitches": 0
+      },
+      "outside_boundary_presentations": 0,
+      "invalid_reasons": [
+        "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+        "launch has no completed recorder shutdown"
+      ],
+      "shortfalls": [],
+      "target_met": false
+    }
+  ],
+  "phases": [
+    {
+      "phase": "startup",
+      "start_ns": 743592020747476,
+      "duration_ms": 1838.554763
+    },
+    {
+      "phase": "content-validation",
+      "start_ns": 743593859302239,
+      "duration_ms": 45122.379357
+    },
+    {
+      "phase": "storage-check",
+      "start_ns": 743638981681596,
+      "duration_ms": 51.840373
+    },
+    {
+      "phase": "shader-preparation",
+      "start_ns": 743639033521969,
+      "duration_ms": 2.074346
+    },
+    {
+      "phase": "loading",
+      "start_ns": 743639035596315,
+      "duration_ms": 27314.990109
+    },
+    {
+      "phase": "gameplay",
+      "start_ns": 743666350586424,
+      "duration_ms": 7899.062887
+    },
+    {
+      "phase": "gameplay",
+      "start_ns": 743674249649311,
+      "duration_ms": 258902.935167
+    },
+    {
+      "phase": "transition",
+      "start_ns": 743933152584478,
+      "duration_ms": 7956.001338
+    }
+  ],
+  "missing_scenes": [],
+  "acceptance": "Individual measured candidates only; final integrated acceptance belongs to issue #23",
+  "evidence_sha256": {
+    "inspection.json": "ed427fcbed928623284af16f2f44bdef0954edb81098a2aaa8074e3065946112",
+    "owner.json": "9597a61870eca659f03339adba1d8fcc4de25ecb8b9132b5e4c0a087a5975f3f",
+    "raw-launch/events.csv": "57226e85e21b2f09bf3cf366e829012a8cb0a8cca198b213d60391cbe744b391",
+    "raw-launch/frames.csv": "fd46bfc4cdcf1aff53c6e8b4b89a81f9989a0ff10a230b3a6e186a77211d682d",
+    "raw-launch/identity.json": "96a006aec50700392692bacb095b35edaea8a0d098fb17f192c1abd6958cd764",
+    "raw-launch/samples.csv": "6b372c9670e603e1bee014e4d49cc91d946b3886024f6de4319f450b7d596c85"
+  }
+}

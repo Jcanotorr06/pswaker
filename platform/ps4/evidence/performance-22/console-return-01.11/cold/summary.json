@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "identity": {
+    "schema": 1,
+    "build": "5f4977765953663bf3f3",
+    "tsc_frequency": 1593977062,
+    "method": "VideoOut-completed-flip-tsc",
+    "platform": "owner-confirm-required",
+    "cache": "/data/pswaker/cache/5f4977765953663bf3f3",
+    "internal": [
+      1280,
+      720
+    ],
+    "logic_hz": 30,
+    "textures": "stock"
+  },
+  "installed_program": {
+    "build_id": "5f4977765953663bf3f3",
+    "elf_filename": "switchwaker",
+    "elf_sha256": "3b4ba738bed2a9485c6710585d15d3326092876ff8d01ff2d2a9c56c0b4c2ad8",
+    "eboot_sha256": "c8a6d4872866cf0d71429388622b13111d610816e2f087f51f75932df77f2740",
+    "payload_sha256": {
+      "build-info.json": "6469bda2071738eeaa9503910760e2a03482a723cd13fab8e8b6d09901ae4aa7",
+      "eboot.bin": "c8a6d4872866cf0d71429388622b13111d610816e2f087f51f75932df77f2740",
+      "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+      "sce_sys/param.sfo": "0b009804df5f3aa8e14a3cf3ab217a41bf308d7072254482159732440c0ba2c1"
+    }
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "b50cbdaf3e996faba3529a399891e397d3d1ff568a777ec628260762e1f8205c"
+  },
+  "owner": {
+    "build": "5f4977765953663bf3f3",
+    "package_sha256": "b50cbdaf3e996faba3529a399891e397d3d1ff568a777ec628260762e1f8205c",
+    "platform": {
+      "model": "PS4 Slim",
+      "firmware": "9.00",
+      "goldhen": "v2.4b18"
+    },
+    "cache_state": "cold",
+    "timing_method_verified": false,
+    "timing_verification_notes": "Owner clarified: retrieved after normal port Quit; no video comparison. No Home/Quick Menu, suspend/resume, FTP or other interruption during warm Outset-to-forest interval. Returned files lack recorder shutdown and ordinary terminal Quit markers; retain this evidence gap without inferring owner actions. Physical presentation timing verification remains pending.",
+    "samples": {
+      "1": {
+        "scene": "outset",
+        "actions": "Ran from the watch tower's base to the island and rand across the bridge to grandma's house and back. Used sword to cut grass, shrubs and trees, swam and rolled.",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "2": {
+        "scene": "forest",
+        "actions": "Ran laps in the two first sections of the forest. Used sword to cut grass and trees, and rolled around",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      }
+    }
+  },
+  "samples": [
+    {
+      "sample": 1,
+      "scene": "outset",
+      "owner": {
+        "scene": "outset",
+        "actions": "Ran from the watch tower's base to the island and rand across the bridge to grandma's house and back. Used sword to cut grass, shrubs and trees, swam and rolled.",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "metrics": {
+        "seconds": 120.02161492835836,
+        "intervals": 3452,
+        "average_fps": 28.761486021168103,
+        "p95_ms": 33.40641422605365,
+        "p99_ms": 66.73637754016814,
+        "maximum_ms": 950.9616694848022,
+        "shader_wait_ms": 6237.287177,
+        "shader_wait_calls": 87,
+        "active_shader_waits_over_35ms": 81,
+        "active_shader_wait_total_ms": 6237.287177,
+        "resume_to_first_observation_ms": 29.97691,
+        "shader_correlated_hitches": 63
+      },
+      "outside_boundary_presentations": 0,
+      "invalid_reasons": [
+        "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+        "launch has no completed recorder shutdown"
+      ],
+      "shortfalls": [
+        {
+          "metric": "average_fps",
+          "measured": 28.761486021168103,
+          "limit": 29.5
+        },
+        {
+          "metric": "p99_ms",
+          "measured": 66.73637754016814,
+          "limit": 50
+        },
+        {
+          "metric": "maximum_ms",
+          "measured": 950.9616694848022,
+          "limit": 100
+        }
+      ],
+      "target_met": false
+    },
+    {
+      "sample": 2,
+      "scene": "forest",
+      "owner": {
+        "scene": "forest",
+        "actions": "Ran laps in the two first sections of the forest. Used sword to cut grass and trees, and rolled around",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "metrics": {
+        "seconds": 120.0216170369207,
+        "intervals": 3601,
+        "average_fps": 30.002928546549,
+        "p95_ms": 33.39664934274945,
+        "p99_ms": 33.42551424996604,
+        "maximum_ms": 66.67973745283419,
+        "shader_wait_ms": 0.423718,
+        "shader_wait_calls": 1,
+        "active_shader_waits_over_35ms": 0,
+        "active_shader_wait_total_ms": 0.423718,
+        "resume_to_first_observation_ms": 42.350613,
+        "shader_correlated_hitches": 0
+      },
+      "outside_boundary_presentations": 0,
+      "invalid_reasons": [
+        "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+        "launch has no completed recorder shutdown"
+      ],
+      "shortfalls": [],
+      "target_met": false
+    }
+  ],
+  "phases": [
+    {
+      "phase": "startup",
+      "start_ns": 737457311896956,
+      "duration_ms": 895.933772
+    },
+    {
+      "phase": "content-validation",
+      "start_ns": 737458207830728,
+      "duration_ms": 38745.206333
+    },
+    {
+      "phase": "storage-check",
+      "start_ns": 737496953037061,
+      "duration_ms": 141.222227
+    },
+    {
+      "phase": "shader-preparation",
+      "start_ns": 737497094259288,
+      "duration_ms": 1.458285
+    },
+    {
+      "phase": "loading",
+      "start_ns": 737497095717573,
+      "duration_ms": 47949.892252
+    },
+    {
+      "phase": "gameplay",
+      "start_ns": 737545045609825,
+      "duration_ms": 6165.006807
+    },
+    {
+      "phase": "gameplay",
+      "start_ns": 737551210616632,
+      "duration_ms": 319157.97618
+    },
+    {
+      "phase": "transition",
+      "start_ns": 737870368592812,
+      "duration_ms": 23126.013576
+    }
+  ],
+  "missing_scenes": [],
+  "acceptance": "Individual measured candidates only; final integrated acceptance belongs to issue #23",
+  "evidence_sha256": {
+    "inspection.json": "805eaa627e09fa36d15f306bd6c5060e3a107d432a40591b5aca94a2c7818b07",
+    "owner.json": "4babcc804ea046d36c161f211f04e9d2ac7f01cfc806a5752c4c2abc7cef4dc9",
+    "raw-launch/events.csv": "f8d36f0d29d5f6acd897580151e48a17482e7ae9fed6a4801fc4086b14bbe5d1",
+    "raw-launch/frames.csv": "15cdb925cc920edf2f7796e294cd220c09bb431fe809355fb82314ffd764cc35",
+    "raw-launch/identity.json": "68e84efaa3fa9955c2297aca1f12bcc6e41a01d45b1d6cb14eea42dd4c8f0ada",
+    "raw-launch/samples.csv": "524d94d06f9d6d4a812575e8b8356ed7d65054da071605e4ebb5afecc1552a52"
+  }
+}

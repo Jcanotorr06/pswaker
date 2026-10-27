@@ -1,0 +1,30 @@
+--- a/native/src/pc/runtime/pc_frame.cpp
++++ b/native/src/pc/runtime/pc_frame.cpp
+@@ -31,6 +31,9 @@
+ // the same spin); no frame-usage statistics, interpolation, turbo mode or settings; a refused
+ // aurora_begin_frame waits and retries instead of skipping the game frame.
+ #include "pc_internal.h"
++#if defined(__ORBIS__)
++#include "frame-pacing.hpp"
++#endif
+ #if defined(__ORBIS__)
+ #include "game-platform.hpp"
+ #endif
+@@ -1594,6 +1597,7 @@
+     pumpEvents();
+ #if defined(__ORBIS__)
+     pswaker_frame_boundary();
++    pswaker_perf_game_frame(pc_frame_count() + 1);
+ #endif
+     sEventsDoneNs = monotonicNs();
+     // COS_GPU_GROUPS / COS_DRAW_CENSUS (pc_gpu_opts.h): before Aurora starts recording the frame.
+@@ -1791,6 +1795,9 @@
+ 
+ void pc_stage_created(const char* stageName, int roomNo, int stageFiles, int hasDzs) {
+     const char* name = stageName != nullptr ? stageName : "(null)";
++#if defined(__ORBIS__)
++    pswaker_perf_stage(name, roomNo);
++#endif
+     writef(STDERR_FILENO, "[cos] stage: %s room %d created at frame %u; Stage archive %d files, "
+                           "stage.dzs %s\n",
+            name, roomNo, pc_frame_count(), stageFiles, hasDzs ? "found" : "missing");

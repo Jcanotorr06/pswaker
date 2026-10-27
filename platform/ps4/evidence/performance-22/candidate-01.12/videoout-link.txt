@@ -1,0 +1,99 @@
+
+/home/joseph_cano/.cache/pswaker/game-22-logfile/build/switchwaker:	file format elf64-x86-64
+
+Disassembly of section .text:
+
+00000000007f5620 <videoout_flip_thread>:
+  7f5620: 55                           	pushq	%rbp
+  7f5621: 48 89 e5                     	movq	%rsp, %rbp
+  7f5624: 41 57                        	pushq	%r15
+  7f5626: 41 56                        	pushq	%r14
+  7f5628: 41 55                        	pushq	%r13
+  7f562a: 41 54                        	pushq	%r12
+  7f562c: 53                           	pushq	%rbx
+  7f562d: 48 83 ec 28                  	subq	$0x28, %rsp
+  7f5631: 48 8d 1d 98 de 96 02         	leaq	0x296de98(%rip), %rbx   # 0x31634d0 <videoout_output>
+  7f5638: 48 89 df                     	movq	%rbx, %rdi
+  7f563b: e8 40 44 74 00               	callq	0xf39a80 <mtx_lock>
+  7f5640: 48 8d 05 f9 ea 91 02         	leaq	0x291eaf9(%rip), %rax   # 0x3114140 <stderr>
+  7f5647: 4c 8d 25 aa de 96 02         	leaq	0x296deaa(%rip), %r12   # 0x31634f8 <videoout_output+0x28>
+  7f564e: 48 8b 00                     	movq	(%rax), %rax
+  7f5651: 48 89 45 b8                  	movq	%rax, -0x48(%rbp)
+  7f5655: 83 3d a8 e0 96 02 00         	cmpl	$0x0, 0x296e0a8(%rip)   # 0x3163704 <videoout_output+0x234>
+  7f565c: 75 16                        	jne	0x7f5674 <videoout_flip_thread+0x54>
+  7f565e: 66 90                        	nop
+  7f5660: 4c 89 e7                     	movq	%r12, %rdi
+  7f5663: 48 89 de                     	movq	%rbx, %rsi
+  7f5666: e8 75 43 74 00               	callq	0xf399e0 <cnd_wait>
+  7f566b: 83 3d 92 e0 96 02 00         	cmpl	$0x0, 0x296e092(%rip)   # 0x3163704 <videoout_output+0x234>
+  7f5672: 74 ec                        	je	0x7f5660 <videoout_flip_thread+0x40>
+  7f5674: 8b 05 86 e0 96 02            	movl	0x296e086(%rip), %eax   # 0x3163700 <videoout_output+0x230>
+  7f567a: 48 89 df                     	movq	%rbx, %rdi
+  7f567d: 48 8d 04 40                  	leaq	(%rax,%rax,2), %rax
+  7f5681: c5 f8 10 84 c3 a0 01 00 00   	vmovups	0x1a0(%rbx,%rax,8), %xmm0
+  7f568a: 48 8b 84 c3 b0 01 00 00      	movq	0x1b0(%rbx,%rax,8), %rax
+  7f5692: 48 89 45 d0                  	movq	%rax, -0x30(%rbp)
+  7f5696: c5 f8 29 45 c0               	vmovaps	%xmm0, -0x40(%rbp)
+  7f569b: e8 40 44 74 00               	callq	0xf39ae0 <mtx_unlock>
+  7f56a0: 4c 8b 75 c0                  	movq	-0x40(%rbp), %r14
+  7f56a4: 48 8d 3d 30 c3 71 01         	leaq	0x171c330(%rip), %rdi   # 0x1f119db <_ZZN10daNpc_Tc_c9setTexAnmEvE21a_tex_pattern_num_tbl+0x22772>
+  7f56ab: 4d 8b 7e 40                  	movq	0x40(%r14), %r15
+  7f56af: e8 4c 96 29 00               	callq	0xa8ed00 <ps4prof_thread_busy>
+  7f56b4: 48 8d 3d cd 09 e3 02         	leaq	0x2e309cd(%rip), %rdi   # 0x3626088 <videoout_flip_thread.fence_site>
+  7f56bb: 48 8d 35 d9 d8 60 01         	leaq	0x160d8d9(%rip), %rsi   # 0x1e02f9b <_ZN7cSAngle4_270E+0xd363>
+  7f56c2: e8 19 96 29 00               	callq	0xa8ece0 <ps4prof_enter>
+  7f56c7: 49 8b 7e 50                  	movq	0x50(%r14), %rdi
+  7f56cb: be 01 00 00 00               	movl	$0x1, %esi
+  7f56d0: 48 8d 55 d0                  	leaq	-0x30(%rbp), %rdx
+  7f56d4: b9 01 00 00 00               	movl	$0x1, %ecx
+  7f56d9: 49 c7 c0 ff ff ff ff         	movq	$-0x1, %r8
+  7f56e0: 49 89 c5                     	movq	%rax, %r13
+  7f56e3: 41 ff 97 50 04 00 00         	callq	*0x450(%r15)
+  7f56ea: 4c 89 ef                     	movq	%r13, %rdi
+  7f56ed: e8 fe 95 29 00               	callq	0xa8ecf0 <ps4prof_leave>
+  7f56f2: 48 89 df                     	movq	%rbx, %rdi
+  7f56f5: e8 86 43 74 00               	callq	0xf39a80 <mtx_lock>
+  7f56fa: 4c 8b 2d 5f de 96 02         	movq	0x296de5f(%rip), %r13   # 0x3163560 <videoout_output+0x90>
+  7f5701: 8b 3d 25 de 96 02            	movl	0x296de25(%rip), %edi   # 0x316352c <videoout_output+0x5c>
+  7f5707: 8b 75 c8                     	movl	-0x38(%rbp), %esi
+  7f570a: ba 01 00 00 00               	movl	$0x1, %edx
+  7f570f: 49 ff c5                     	incq	%r13
+  7f5712: 4c 89 e9                     	movq	%r13, %rcx
+  7f5715: e8 06 3e ff ff               	callq	0x7e9520 <__wrap_sceVideoOutSubmitFlip>
+  7f571a: 85 c0                        	testl	%eax, %eax
+  7f571c: 75 74                        	jne	0x7f5792 <videoout_flip_thread+0x172>
+  7f571e: 8b 45 c8                     	movl	-0x38(%rbp), %eax
+  7f5721: 4c 89 2d 38 de 96 02         	movq	%r13, 0x296de38(%rip)   # 0x3163560 <videoout_output+0x90>
+  7f5728: 48 89 c1                     	movq	%rax, %rcx
+  7f572b: 48 c1 e1 04                  	shlq	$0x4, %rcx
+  7f572f: 4c 89 ac 19 98 00 00 00      	movq	%r13, 0x98(%rcx,%rbx)
+  7f5737: 48 c1 e0 04                  	shlq	$0x4, %rax
+  7f573b: ba ab aa aa aa               	movl	$0xaaaaaaab, %edx       # imm = 0xAAAAAAAB
+  7f5740: 4c 89 e7                     	movq	%r12, %rdi
+  7f5743: c6 84 18 a1 00 00 00 00      	movb	$0x0, 0xa1(%rax,%rbx)
+  7f574b: 8b 05 af df 96 02            	movl	0x296dfaf(%rip), %eax   # 0x3163700 <videoout_output+0x230>
+  7f5751: 89 c1                        	movl	%eax, %ecx
+  7f5753: ff c1                        	incl	%ecx
+  7f5755: 48 0f af ca                  	imulq	%rdx, %rcx
+  7f5759: 48 c1 e9 22                  	shrq	$0x22, %rcx
+  7f575d: 01 c9                        	addl	%ecx, %ecx
+  7f575f: 8d 0c 49                     	leal	(%rcx,%rcx,2), %ecx
+  7f5762: f7 d9                        	negl	%ecx
+  7f5764: 8d 44 08 01                  	leal	0x1(%rax,%rcx), %eax
+  7f5768: 89 05 92 df 96 02            	movl	%eax, 0x296df92(%rip)   # 0x3163700 <videoout_output+0x230>
+  7f576e: ff 0d 90 df 96 02            	decl	0x296df90(%rip)         # 0x3163704 <videoout_output+0x234>
+  7f5774: 41 ff 8e 54 02 00 00         	decl	0x254(%r14)
+  7f577b: e8 d0 41 74 00               	callq	0xf39950 <cnd_broadcast>
+  7f5780: 83 3d 7d df 96 02 00         	cmpl	$0x0, 0x296df7d(%rip)   # 0x3163704 <videoout_output+0x234>
+  7f5787: 0f 84 d3 fe ff ff            	je	0x7f5660 <videoout_flip_thread+0x40>
+  7f578d: e9 e2 fe ff ff               	jmp	0x7f5674 <videoout_flip_thread+0x54>
+  7f5792: 8b 55 c8                     	movl	-0x38(%rbp), %edx
+  7f5795: 48 8b 7d b8                  	movq	-0x48(%rbp), %rdi
+  7f5799: 89 c1                        	movl	%eax, %ecx
+  7f579b: 48 8d 35 b6 2d 75 01         	leaq	0x1752db6(%rip), %rsi   # 0x1f48558 <sqlite3_str_vappendf.zOrd+0x274b0>
+  7f57a2: 31 c0                        	xorl	%eax, %eax
+  7f57a4: e8 b7 c5 3b 01               	callq	0x1bb1d60 <fprintf>
+  7f57a9: 8b 45 c8                     	movl	-0x38(%rbp), %eax
+  7f57ac: eb 89                        	jmp	0x7f5737 <videoout_flip_thread+0x117>
+  7f57ae: cc                           	int3
+  7f57af: cc                           	int3

@@ -98,7 +98,7 @@ def stage(root, platform, version):
                 'eboot_sha256': preparation.digest(executable),
                 'elf_sha256': preparation.digest(elf),
                 'hardware_status': 'UNTESTED installed-game candidate; owner evidence required for this exact binary',
-                'scope': 'Storage recovery candidate; installed-console corruption, failed-write, pending-Quit and relaunch evidence required for this exact binary; performance acceptance remains separate',
+                'scope': 'Frame-pacing candidate; independent installed-console Outset/forest samples and timing-method validation required for this exact binary; final integrated acceptance remains separate',
                 'installed_image': '/app0/game.iso', 'user_data': '/data/pswaker/',
                 'cache': '/data/pswaker/cache/' + build_id,
                 'sources': prepared['sources'], 'patches': prepared['patches'],

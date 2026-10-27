@@ -1,0 +1,56 @@
+{
+  "unittest_runner": "OK",
+  "tests": 70,
+  "skips": 0,
+  "capture_note": "PowerShell captured native unittest stderr as NativeCommandError and its wrapper returned 1; the complete runner output ends Ran 70 tests / OK, with no test failures or skips. Original capture bytes retained privately; public UTF-8 view normalizes trailing whitespace.",
+  "python_compileall_exit": 0,
+  "shell_syntax": [
+    {
+      "script": "build-game.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-graphics.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-probe.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-runtime.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-sdk-support.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "clean-build.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "install-host.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "prepare-graphics.sh",
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "mesa_flip_calls_wrapper": true,
+  "defined_hooks": [
+    "pswaker_perf_capture",
+    "pswaker_perf_present",
+    "pswaker_perf_shader_wait",
+    "__wrap_sceVideoOutSubmitFlip"
+  ]
+}

@@ -1,0 +1,63 @@
+--- a/aurora/lib/aurora.cpp
++++ b/aurora/lib/aurora.cpp
+@@ -1,4 +1,5 @@
+ #include <aurora/aurora.h>
++#include "frame-pacing.hpp"
+ #include <aurora/time.hpp>
+ 
+ #ifdef AURORA_ENABLE_GX
+@@ -302,7 +303,8 @@
+   }
+ #endif
+ 
+-  gfx::end_frame([rmlBindGroup = std::move(rmlBindGroup), rmlOverlay, viewport,
++  const auto pswakerTag = pswaker_perf_capture();
++  gfx::end_frame([pswakerTag, rmlBindGroup = std::move(rmlBindGroup), rmlOverlay, viewport,
+                   imguiDrawData = std::move(imguiDrawData)](
+                      wgpu::CommandEncoder& encoder, std::vector<gfx::AfterSubmitCallback> afterSubmitCallbacks) {
+     wgpu::Texture currentTexture;
+@@ -397,6 +399,7 @@
+       {
+         window::SurfaceLock surfaceLock;
+         if (window::is_presentable()) {
++          pswaker_perf_present(pswakerTag);
+           status = g_surface.Present();
+         }
+       }
+@@ -416,6 +419,7 @@
+ #endif
+         gfx::after_present();
+       } else {
++        pswaker_perf_present_failed();
+         Log.warn("Surface present failed");
+         webgpu::release_surface();
+       }
+--- a/aurora/lib/gfx/pipeline_cache.cpp
++++ b/aurora/lib/gfx/pipeline_cache.cpp
+@@ -1,4 +1,5 @@
+ #include "pipeline_cache.hpp"
++#include "frame-pacing.hpp"
+ 
+ #include "clear.hpp"
+ #include "frame_packet.hpp"
+@@ -456,6 +457,7 @@
+   ZoneScoped;
+ 
+   const bool blocking = priority == PipelinePriority::Blocking;
++  const uint64_t pswakerStart = pswaker_perf_now();
+   bool notifyWorker = false;
+   bool pipelineReady = false;
+   bool createdPipeline = false;
+@@ -519,10 +521,12 @@
+     g_pipelineQueueCv.notify_one();
+   }
+ 
++  const bool pswakerWaited = blocking && !pipelineReady;
+   if (blocking && !pipelineReady) {
+     std::unique_lock lock{g_pipelineMutex};
+     g_pipelineReadyCv.wait(lock, [=] { return g_pipelines.contains(runtimeKey) || g_pipelineThreadEnd; });
+   }
++  if (blocking && (createdPipeline || pswakerWaited)) pswaker_perf_shader_wait(pswakerStart);
+   return runtimeKey;
+ }
+ 

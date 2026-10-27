@@ -1,0 +1,424 @@
+{
+  "cold": {
+    "costs": {
+      "diagnostic-input-ns": {
+        "count": 590,
+        "median_ms": 0.055496,
+        "max_ms": 117.424155
+      },
+      "diagnostic-heartbeat-ns": {
+        "count": 90,
+        "median_ms": 1.62251,
+        "max_ms": 16.429114
+      },
+      "diagnostic-recorder-flush-ns": {
+        "count": 330,
+        "median_ms": 0.054935,
+        "max_ms": 160.55839
+      }
+    },
+    "invalid": [],
+    "around_invalid": [],
+    "samples": [
+      {
+        "sample": 1,
+        "shader_ms": 6237.287177,
+        "shader_waits_over_35ms": 81,
+        "largest": [
+          {
+            "frame": 1373,
+            "ms": 950.9616694848022,
+            "shader_ms": 940.284334,
+            "shader_calls": 10,
+            "observed_ns": 737571598566286,
+            "submit_delta_ms": 957.427841
+          },
+          {
+            "frame": 3191,
+            "ms": 500.5145958618569,
+            "shader_ms": 485.712775,
+            "shader_calls": 1,
+            "observed_ns": 737633943622187,
+            "submit_delta_ms": 495.25575
+          },
+          {
+            "frame": 1164,
+            "ms": 433.7749278100967,
+            "shader_ms": 403.957398,
+            "shader_calls": 4,
+            "observed_ns": 737563522610680,
+            "submit_delta_ms": 439.470462
+          },
+          {
+            "frame": 1375,
+            "ms": 350.3561408213037,
+            "shader_ms": 317.936907,
+            "shader_calls": 3,
+            "observed_ns": 737571965578068,
+            "submit_delta_ms": 356.84275
+          },
+          {
+            "frame": 1084,
+            "ms": 333.6745488248438,
+            "shader_ms": 300.512528,
+            "shader_calls": 3,
+            "observed_ns": 737560370611359,
+            "submit_delta_ms": 336.260121
+          },
+          {
+            "frame": 2930,
+            "ms": 200.24374604206193,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737624385562052,
+            "submit_delta_ms": 33.370591
+          },
+          {
+            "frame": 3181,
+            "ms": 183.5209288601419,
+            "shader_ms": 158.212382,
+            "shader_calls": 2,
+            "observed_ns": 737632859579543,
+            "submit_delta_ms": 193.0477
+          },
+          {
+            "frame": 1912,
+            "ms": 166.83240514536337,
+            "shader_ms": 126.742289,
+            "shader_calls": 1,
+            "observed_ns": 737590267564620,
+            "submit_delta_ms": 160.86881
+          }
+        ],
+        "max_clock_error_ms": 2.2245506930339616
+      },
+      {
+        "sample": 2,
+        "shader_ms": 0.423718,
+        "shader_waits_over_35ms": 0,
+        "largest": [
+          {
+            "frame": 9247,
+            "ms": 66.67973745283419,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737933313549011,
+            "submit_delta_ms": 65.774148
+          },
+          {
+            "frame": 8782,
+            "ms": 50.08798865638883,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737917799540215,
+            "submit_delta_ms": 33.438912
+          },
+          {
+            "frame": 8064,
+            "ms": 50.066615074038,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737893873589835,
+            "submit_delta_ms": 33.515309
+          },
+          {
+            "frame": 11000,
+            "ms": 50.05499320039776,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737991739570215,
+            "submit_delta_ms": 33.476825
+          },
+          {
+            "frame": 9202,
+            "ms": 50.053660684359336,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737931795566063,
+            "submit_delta_ms": 33.407241
+          },
+          {
+            "frame": 9213,
+            "ms": 50.05343922571453,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737932162567375,
+            "submit_delta_ms": 33.587757
+          },
+          {
+            "frame": 9008,
+            "ms": 50.05307598334812,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737925338613734,
+            "submit_delta_ms": 34.248837
+          },
+          {
+            "frame": 8080,
+            "ms": 50.05228989926331,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 737894408593608,
+            "submit_delta_ms": 33.712272
+          }
+        ],
+        "max_clock_error_ms": 2.3137642052024603
+      }
+    ],
+    "max_clock_error_ms": 2.5977832776115974,
+    "worst_frame": {
+      "flip_count": 1116,
+      "process_time": 72641363,
+      "tsc": 1175606870661136,
+      "observed_ns": 737527738579750,
+      "flip_argument": 1116,
+      "game_frame": 735,
+      "sample": 0,
+      "stage": "sea",
+      "room": 44,
+      "submit_ns": 737527730610511,
+      "shader_ns": 6699852657,
+      "shader_calls": 133,
+      "clock_offset_ms": 2.5977832776115974
+    }
+  },
+  "warm": {
+    "costs": {
+      "diagnostic-input-ns": {
+        "count": 485,
+        "median_ms": 0.055513,
+        "max_ms": 30.5087
+      },
+      "diagnostic-heartbeat-ns": {
+        "count": 79,
+        "median_ms": 1.594331,
+        "max_ms": 48.986396
+      },
+      "diagnostic-recorder-flush-ns": {
+        "count": 273,
+        "median_ms": 0.053863,
+        "max_ms": 0.230196
+      }
+    },
+    "invalid": [
+      {
+        "monotonic_ns": "738397893602870",
+        "kind": "invalid",
+        "detail": "unverified-flip-clock-domain",
+        "sample": "0"
+      }
+    ],
+    "around_invalid": [
+      {
+        "flip_count": 7860,
+        "process_time": 259781869,
+        "tsc": 1176993521494378,
+        "observed_ns": 738397668576144,
+        "flip_argument": 7860,
+        "game_frame": 0,
+        "sample": 0,
+        "stage": "sea",
+        "room": 44,
+        "submit_ns": 738397664335632,
+        "shader_ns": 59981430,
+        "shader_calls": 1,
+        "clock_offset_ms": 1.0799866230227053
+      },
+      {
+        "flip_count": 7861,
+        "process_time": 259815237,
+        "tsc": 1176993574682040,
+        "observed_ns": 738397700597099,
+        "flip_argument": 7861,
+        "game_frame": 0,
+        "sample": 0,
+        "stage": "sea",
+        "room": 44,
+        "submit_ns": 738397681380911,
+        "shader_ns": 59981430,
+        "shader_calls": 1,
+        "clock_offset_ms": -0.26695511024445295
+      },
+      {
+        "flip_count": 7862,
+        "process_time": 259831922,
+        "tsc": 1176993601276883,
+        "observed_ns": 738397718584587,
+        "flip_argument": 7862,
+        "game_frame": 0,
+        "sample": 0,
+        "stage": "sea",
+        "room": 44,
+        "submit_ns": 738397698344137,
+        "shader_ns": 59981430,
+        "shader_calls": 1,
+        "clock_offset_ms": 1.0359496331948321
+      },
+      {
+        "flip_count": 7863,
+        "process_time": 259848606,
+        "tsc": 1176993627871563,
+        "observed_ns": 738397893601883,
+        "flip_argument": 7863,
+        "game_frame": 0,
+        "sample": 0,
+        "stage": "sea",
+        "room": 44,
+        "submit_ns": 738397715356395,
+        "shader_ns": 59981430,
+        "shader_calls": 1,
+        "clock_offset_ms": 159.36876463657245
+      },
+      {
+        "flip_count": 7864,
+        "process_time": 260015446,
+        "tsc": 1176993893810682,
+        "observed_ns": 738397901579479,
+        "flip_argument": 7864,
+        "game_frame": 0,
+        "sample": 0,
+        "stage": "sea",
+        "room": 44,
+        "submit_ns": 738397892671212,
+        "shader_ns": 59981430,
+        "shader_calls": 1,
+        "clock_offset_ms": 0.5063694347336423
+      },
+      {
+        "flip_count": 7865,
+        "process_time": 260032124,
+        "tsc": 1176993920394863,
+        "observed_ns": 738397918611698,
+        "flip_argument": 7865,
+        "game_frame": 0,
+        "sample": 0,
+        "stage": "sea",
+        "room": 44,
+        "submit_ns": 738397909385441,
+        "shader_ns": 59981430,
+        "shader_calls": 1,
+        "clock_offset_ms": 0.8606941075413488
+      },
+      {
+        "flip_count": 7866,
+        "process_time": 260048808,
+        "tsc": 1176993946987923,
+        "observed_ns": 738397935562588,
+        "flip_argument": 7866,
+        "game_frame": 0,
+        "sample": 0,
+        "stage": "sea",
+        "room": 44,
+        "submit_ns": 738397926383588,
+        "shader_ns": 59981430,
+        "shader_calls": 1,
+        "clock_offset_ms": 1.128119436732959
+      },
+      {
+        "flip_count": 7867,
+        "process_time": 260065492,
+        "tsc": 1176993973581911,
+        "observed_ns": 738397952586446,
+        "flip_argument": 7867,
+        "game_frame": 0,
+        "sample": 0,
+        "stage": "sea",
+        "room": 44,
+        "submit_ns": 738397943419528,
+        "shader_ns": 59981430,
+        "shader_calls": 1,
+        "clock_offset_ms": 1.4679305743193254
+      }
+    ],
+    "samples": [
+      {
+        "sample": 1,
+        "shader_ms": 59.98143,
+        "shader_waits_over_35ms": 1,
+        "largest": [
+          {
+            "frame": 4282,
+            "ms": 100.10175039771056,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 738335871616246,
+            "submit_delta_ms": 86.937326
+          },
+          {
+            "frame": 2919,
+            "ms": 83.41979202207617,
+            "shader_ms": 59.98143,
+            "shader_calls": 1,
+            "observed_ns": 738290393607085,
+            "submit_delta_ms": 93.412117
+          },
+          {
+            "frame": 2423,
+            "ms": 66.70207591732584,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 738273809624939,
+            "submit_delta_ms": 57.464626
+          },
+          {
+            "frame": 1928,
+            "ms": 50.08407141055835,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 738257293582070,
+            "submit_delta_ms": 33.415875
+          },
+          {
+            "frame": 2496,
+            "ms": 50.05584578481218,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 738276261577365,
+            "submit_delta_ms": 33.657639
+          },
+          {
+            "frame": 1528,
+            "ms": 50.05571090206818,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 738243962583056,
+            "submit_delta_ms": 33.501376
+          },
+          {
+            "frame": 1403,
+            "ms": 50.05490286032736,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 738239790630788,
+            "submit_delta_ms": 35.666793
+          },
+          {
+            "frame": 2141,
+            "ms": 50.054593571058554,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 738264399609924,
+            "submit_delta_ms": 39.277352
+          }
+        ],
+        "max_clock_error_ms": 1.6742277074372396
+      }
+    ],
+    "max_clock_error_ms": 159.36876463657245,
+    "worst_frame": {
+      "flip_count": 7863,
+      "process_time": 259848606,
+      "tsc": 1176993627871563,
+      "observed_ns": 738397893601883,
+      "flip_argument": 7863,
+      "game_frame": 0,
+      "sample": 0,
+      "stage": "sea",
+      "room": 44,
+      "submit_ns": 738397715356395,
+      "shader_ns": 59981430,
+      "shader_calls": 1,
+      "clock_offset_ms": 159.36876463657245
+    }
+  }
+}

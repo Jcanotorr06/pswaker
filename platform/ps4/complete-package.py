@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Validate raw game images; assemble and inspect private complete PS4 packages."""
 import argparse
+from contextlib import closing
 import hashlib
 import json
 import os
 from pathlib import Path
 import re
 import shutil
+import sqlite3
 import struct
 import subprocess
 import sys
@@ -27,6 +29,10 @@ IDENTITIES = {
 }
 PROGRAM_FILES = {'eboot.bin', 'build-info.json', 'sce_sys/icon0.png', 'sce_sys/param.sfo',
                  'sce_sys/about/right.sprx', 'sce_module/libSceFios2.prx', 'sce_module/libc.prx'}
+PIPELINE_SEED = 'initial_pipeline_cache.db'
+# Selected game.lock.json Aurora ABI: clear.hpp v5 (8 bytes), gx/pipeline.hpp
+# v13 (2772 bytes), little-endian x86-64. Renew this contract on renderer changes.
+PIPELINE_CONFIGS = {0: (5, 8), 1: (13, 2772)}
 
 
 def digest(path):
@@ -45,6 +51,80 @@ def inventory(root):
         if path.is_file():
             files[path.relative_to(root).as_posix()] = digest(path)
     return files
+
+
+def validate_pipeline_seed(db, *, allow_merge_metadata=False):
+    require(db.execute('PRAGMA integrity_check').fetchall() == [('ok',)], 'Pipeline database integrity check failed')
+    objects = set(db.execute("SELECT name FROM sqlite_master WHERE type != 'index'").fetchall())
+    if allow_merge_metadata and ('aurora_seed',) in objects:
+        columns = [(row[1], row[2], row[5]) for row in db.execute('PRAGMA table_info(aurora_seed)')]
+        identities = db.execute('SELECT identity FROM aurora_seed').fetchall()
+        require(columns == [('identity', 'TEXT', 1)] and len(identities) <= 1
+                and all(isinstance(value, str) and value for (value,) in identities),
+                'Pipeline seed merge metadata differs from the selected renderer')
+        objects.remove(('aurora_seed',))
+    require(objects == {('aurora_schema',), ('pipeline_cache',)}, 'Pipeline database has unexpected schema objects')
+    require(db.execute('SELECT value FROM aurora_schema').fetchall() == [(1,)], 'Pipeline database schema must be 1')
+    rows = db.execute('SELECT type, hash, config_version, config_size, config, first_frame_used '
+                      'FROM pipeline_cache ORDER BY type, hash').fetchall()
+    require(rows, 'Pipeline database contains no pipeline descriptions')
+    seen, groups = set(), {}
+    for kind, key, version, size, config, first_frame in rows:
+        require(isinstance(kind, int) and kind in PIPELINE_CONFIGS and isinstance(key, int)
+                and isinstance(first_frame, int) and 0 <= first_frame <= 0xffffffff,
+                'Pipeline record has invalid type/hash/frame')
+        require((version, size) == PIPELINE_CONFIGS[kind] and isinstance(config, bytes)
+                and len(config) == size and int.from_bytes(config[:4], 'little') == version,
+                'Pipeline configuration version/size differs from the selected renderer')
+        require((kind, key) not in seen, 'Pipeline database contains duplicate pipeline descriptions')
+        seen.add((kind, key))
+        groups[kind] = groups.get(kind, 0) + 1
+    return {'rows': len(rows), 'configurations': [
+        {'type': kind, 'version': PIPELINE_CONFIGS[kind][0], 'bytes': PIPELINE_CONFIGS[kind][1], 'rows': count}
+        for kind, count in sorted(groups.items())]}
+
+
+def snapshot_pipeline_seed(source, target):
+    require(source.is_file(), 'Pipeline database is missing')
+    paths = [source]
+    wal = source.with_name(source.name + '-wal')
+    if wal.exists():
+        paths.append(wal)
+    originals = {p.name: {'bytes': p.stat().st_size, 'sha256': digest(p)} for p in paths}
+    # SQLite may create/checkpoint sidecars even for reads. Work only on private
+    # copies, replay their WAL, then emit one standalone DELETE-journal database.
+    with tempfile.TemporaryDirectory(prefix='pipeline-snapshot-', dir=target.parent) as folder:
+        copied = Path(folder) / source.name
+        for path in paths:
+            shutil.copyfile(path, copied.with_name(path.name))
+            require(digest(path) == originals[path.name]['sha256'] == digest(copied.with_name(path.name)),
+                    'Pipeline database/WAL changed while copying; close the application and retry')
+        with closing(sqlite3.connect(copied.as_uri() + '?mode=ro', uri=True)) as db, \
+                closing(sqlite3.connect(target)) as snapshot:
+            db.execute('PRAGMA trusted_schema=OFF')
+            validate_pipeline_seed(db, allow_merge_metadata=True)
+            db.backup(snapshot)
+            snapshot.execute('DROP TABLE IF EXISTS aurora_seed')
+            snapshot.commit()
+            snapshot.execute('PRAGMA journal_mode=DELETE')
+            details = validate_pipeline_seed(snapshot)
+        require({p.name for p in [source, wal] if p.exists()} == set(originals)
+                and all(digest(path) == originals[path.name]['sha256'] for path in paths),
+                'Pipeline database/WAL changed during snapshot; close the application and retry')
+    return {'schema': 1, 'installed_path': '/app0/' + PIPELINE_SEED,
+            'source_files': originals, **details, 'sha256': digest(target)}
+
+
+def prepare_pipeline_seed(source, output):
+    destination = output.resolve()
+    require(not destination.exists(), 'Output already exists; retain it and choose a new seed directory')
+    require(not destination.is_relative_to(REPOSITORY), 'Pipeline seeds must remain outside the repository')
+    with tempfile.TemporaryDirectory(prefix='.pipeline-seed-', dir=destination.parent) as folder:
+        work = Path(folder)
+        report = snapshot_pipeline_seed(source.resolve(), work / PIPELINE_SEED)
+        write_json(work / 'pipeline-seed.json', report)
+        work.rename(destination)
+    return report
 
 
 def content_id(identity):
@@ -160,6 +240,14 @@ def inspect_package(work, tools):
             require(fields.get(key) == value, f'Package SFO identity/metadata mismatch: {key}')
         require(json.loads((payload / 'complete-package.json').read_text()) == report['manifest'],
                 'Packaged complete-package manifest mismatch')
+        seed = report['manifest'].get('pipeline_seed')
+        if seed is not None:
+            require(seed['installed_path'] == '/app0/' + PIPELINE_SEED
+                    and digest(payload / PIPELINE_SEED) == seed['sha256'], 'Packaged pipeline seed identity mismatch')
+            with closing(sqlite3.connect((payload / PIPELINE_SEED).as_uri() + '?mode=ro', uri=True)) as db:
+                details = validate_pipeline_seed(db)
+                require(details['rows'] == seed['rows'] and details['configurations'] == seed['configurations'],
+                        'Packaged pipeline seed records differ from manifest')
         image = validate(payload / 'game.iso')
         require(image == report['manifest']['image'], 'Packaged image validation/hash mismatch')
         result = {'scope': identity['acceptance'], 'installed_image': INSTALLED_IMAGE,
@@ -168,6 +256,8 @@ def inspect_package(work, tools):
                                      'size': package.stat().st_size},
                   'image': image, 'program': report['program'], 'distribution_cleared': False,
                   'hardware_status': 'Untested; no console checkpoint in issue #16'}
+        if seed is not None:
+            result['pipeline_seed'] = seed
         write_json(work / 'inspection.json', result)
     return result
 
@@ -240,6 +330,8 @@ def assemble(args):
                     'image': image, 'program': program, 'distribution_cleared': False,
                     'licensing': 'Private artifact. Review actual combined licenses, notices and provenance '
                                  'before any distribution; assembly is not licensing clearance.'}
+        if args.pipeline_cache is not None:
+            manifest['pipeline_seed'] = snapshot_pipeline_seed(args.pipeline_cache.resolve(), stage / PIPELINE_SEED)
         write_json(stage / 'complete-package.json', manifest)
         tools.run(['bash', tools.root / 'refs/DolphinPS4/scripts/make-pkg.sh', stage,
                    identity['title_id'], identity['title'], args.app_version, identity['label'], work / 'out'])
@@ -288,6 +380,9 @@ def main():
     commands = parser.add_subparsers(dest='command', required=True)
     image = commands.add_parser('validate', help='Read-only supported-image validation; outputs hashes, never game bytes')
     image.add_argument('image', type=Path)
+    seed = commands.add_parser('pipeline-seed', help='Snapshot a private pipeline database and its adjacent WAL')
+    seed.add_argument('database', type=Path)
+    seed.add_argument('--output', type=Path, required=True)
     assembly = commands.add_parser('assemble', help='Assemble privately outside this repository')
     assembly.add_argument('--image', type=Path, required=True)
     assembly.add_argument('--program-stage', type=Path, required=True)
@@ -296,6 +391,8 @@ def main():
     assembly.add_argument('--kind', choices=IDENTITIES, required=True)
     assembly.add_argument('--app-version', required=True)
     assembly.add_argument('--output', type=Path, required=True)
+    assembly.add_argument('--pipeline-cache', type=Path,
+                          help='Optional private pipeline database; snapshot with its adjacent WAL into the package')
     inspection = commands.add_parser('inspect', help='Freshly extract and inspect an assembled private package')
     inspection.add_argument('output', type=Path)
     inspection.add_argument('--platform-root', type=Path, required=True)
@@ -303,6 +400,9 @@ def main():
     try:
         if args.command == 'validate':
             result = validate(args.image)
+        elif args.command == 'pipeline-seed':
+            os.umask(0o077)
+            result = prepare_pipeline_seed(args.database, args.output)
         elif args.command == 'assemble':
             require(sys.platform == 'linux', 'Assembly requires the selected Linux/WSL2 toolchain')
             os.umask(0o077)
@@ -311,7 +411,7 @@ def main():
             output = args.output.resolve()
             result = inspect_package(output, Tools(args.platform_root.resolve(), output))
         print(json.dumps(result, indent=2))
-    except (OSError, ValueError, KeyError, StopIteration, struct.error, subprocess.CalledProcessError) as error:
+    except (OSError, ValueError, KeyError, StopIteration, struct.error, sqlite3.Error, subprocess.CalledProcessError) as error:
         print(f'complete-package: {error}', file=sys.stderr)
         return 1
     return 0

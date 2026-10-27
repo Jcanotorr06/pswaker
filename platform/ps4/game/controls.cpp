@@ -1,5 +1,6 @@
 #include "controls.hpp"
 #include "native/platform.h"
+#include "frame-pacing.hpp"
 #include <algorithm>
 #include <cmath>
 
@@ -110,6 +111,13 @@ void pswaker_poll_controls() {
             pswaker_toggle_text_size();
             armed = false;
         } else if (cross && action == PortAction::Quit) destination = PortScreen::Quit;
+        else if (cross && (action == PortAction::SampleOutset || action == PortAction::SampleForest)) {
+            pswaker_perf_arm(action == PortAction::SampleOutset ? "outset" : "forest");
+            destination = PortScreen::Game;
+        } else if (cross && (action == PortAction::Transition || action == PortAction::Gameplay)) {
+            pswaker_perf_phase(action == PortAction::Transition ? "transition" : "gameplay");
+            destination = PortScreen::Game;
+        }
         break;
     case PortScreen::Quit:
         if (circle) destination = PortScreen::Settings;
@@ -157,6 +165,7 @@ void pswaker_log_controls() {
     static double next = 0;
     const double now = now_seconds();
     if (now < next) return;
+    const auto diagnosticStart = pswaker_perf_now();
     next = now + 1;
     PADStatus status[PAD_CHANMAX];
     pswaker_read_gamepad(status);
@@ -165,4 +174,5 @@ void pswaker_log_controls() {
         view.connected, screenName(view.screen), view.releasing, current.held,
         current.left_x, current.left_y, current.right_x, current.right_y, current.l2, current.r2,
         p.button, p.stickX, p.stickY, p.substickX, p.substickY, p.triggerLeft, p.triggerRight);
+    pswaker_perf_diagnostic(PswakerDiagnostic::Input, diagnosticStart);
 }

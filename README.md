@@ -27,6 +27,16 @@ for the captured GBA shutdown panic. Its [controlled owner checklist](platform/p
 isolates genuine progress and exercises failure/pending-write behavior. Installed
 console acceptance remains pending for that exact binary.
 
+The [frame-pacing candidate](platform/ps4/FRAME-PACING.md) records completed PS4
+game-frame flips, separate Outset/forest samples, shader waits and startup/loading
+phases. Its [owner sampling checklist](platform/ps4/Frame-pacing-checklist.md)
+and [01.10 owner return](platform/ps4/evidence/performance-22/console-return-01.10/REPORT.md)
+retain all four measured scene shortfalls. The
+[01.11 follow-up candidate](platform/ps4/evidence/performance-22/candidate-01.11/REPORT.md)
+removes release debugger-output duplication and records diagnostic costs.
+Verified timing, passing console samples and remaining bottleneck corrections
+are still required.
+
 ## Standing on the shoulders of others
 
 This repository draws inspiration from several community projects.
