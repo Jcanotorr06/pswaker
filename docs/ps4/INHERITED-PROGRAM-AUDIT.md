@@ -138,7 +138,8 @@ today's relocated checkout produces different identities.
 
 No owner disc image, extracted game data, save, key, pipeline-cache database or
 private complete package is an audit input or a public evidence output. Only
-metadata, research and verified notice text are retained here. Existing private
+metadata, research, published upstream source candidates and verified notice
+text are retained here. Existing private
 archives/trees must remain available until a permitted source-delivery bundle
 is established; they do not fill the unresolved source/grant gaps by themselves.
 

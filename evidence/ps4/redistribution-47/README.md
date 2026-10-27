@@ -53,6 +53,8 @@ than a maintained build command.
 | `inspect_module_sources.py` | Reproduces bounded SELF inspection with Linux `objdump`: `python3 inspect_module_sources.py PLATFORM_ROOT OUTPUT_JSON`. Extracted segment bytes exist only in temporary scratch directories. |
 | `module-source-candidates.json`, `module-source-candidates/` | 22 exact source/notice files at immutable revisions, including the historical libc example, right text/logo source, SPRX template and CRT metadata. Original license text remains with each source revision. |
 | `upstream.json` | Selected read-only GitHub API facts: tag, release, file histories, commits and tree/license inventory. Immutable source links and interpretations live in the upstream report. |
+| `source-validation.json` | All 22 exact source/notice files rehashed, bounded module inspection independently reproduced, and all 160 maintained inputs unchanged. |
+| `REVIEW.md` | Independent standards/spec review, corrected wording finding and the two unresolved acceptance requirements. |
 
 The public bundle excludes the private archive/tree bytes. Preserve existing
 private source archives, prepared trees, Git dependency commits, generated local
