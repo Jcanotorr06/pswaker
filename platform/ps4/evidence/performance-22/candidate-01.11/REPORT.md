@@ -1,5 +1,10 @@
 # Follow-up performance candidate 01.11
 
+The [01.11 owner return](../console-return-01.11/REPORT.md) now records its
+independent cold/warm results and unavailable warm forest sample. The report
+below describes the historical handoff. Use [01.12](../candidate-01.12/REPORT.md)
+for the recorder follow-up; no performance pass is inherited.
+
 This candidate follows the [failed/partial 01.10 return](../console-return-01.10/REPORT.md).
 It removes synchronous debugger-output duplication from the release native
 logger while retaining the FTP log, adds input/heartbeat/recorder-flush duration
