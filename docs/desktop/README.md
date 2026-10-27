@@ -294,8 +294,12 @@ installation on both clean Windows versions and record the actual account token.
 Private production-image observations are recorded in
 [Windows #42 evidence](../../evidence/ps4/windows-42/README.md) and
 [installed-app #46 evidence](../../evidence/ps4/windows-46/README.md). Use the
-[offline installer checklist](Installer-checklist.md) for the outstanding
-account, network and OS matrix. These observations do not
+[clean Windows checklist](Clean-windows-checklist.md) and
+[result template](Clean-windows-results.example.md) for the complete #48 workflow,
+failure/recovery, diagnostics, timing and lifecycle matrix. The
+[handoff record](../../evidence/ps4/windows-48/README.md) retains pending status and
+reference candidate identities; the [installer checklist](Installer-checklist.md)
+also covers the narrower #46 lifecycle. These observations do not
 establish clean Windows 10/11 offline acceptance (#48), installed-console and
 update/save acceptance (#49), or public release readiness (#47/#50). Run those
 checklists using the exact candidate bundle and package identities.
