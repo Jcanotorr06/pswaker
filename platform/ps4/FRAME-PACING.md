@@ -75,8 +75,17 @@ remain available for smaller stalls. A presentation interval >35 ms with >=1 ms
 of shader wait is also counted as **shader-correlated**. Correlation does not
 prove the entire pause was shader compilation: scheduling, GPU work, resource
 loading and I/O can overlap. Prepared shaders never excuse active-gameplay
-freezes. There is no speculative optimization or quality reduction in this
-candidate; returned timings determine the next bottleneck investigation.
+freezes. The 01.13 candidate uses the selected renderer's existing bundled
+pipeline-description seed path to prepare the 287 configurations recorded on
+the returned 01.12 route. Seed bytes, source database/WAL hashes and counts are
+bound to the complete-package manifest and fresh inspection. Driver shader
+binaries are not bundled; a cold disposable cache still starts empty. Known
+pipelines can compile during renderer startup, overlapping other startup work,
+before the existing preparation screen drains the remaining queue. Its final
+wait is not the total compilation time. Record startup/preparation separately
+and preserve the ordinary log's seed merge/count observations. New state/effect
+combinations may remain uncovered; their gameplay stalls still count. No quality,
+target, synchronous missing-pipeline policy or selected driver stack is changed.
 
 Startup, installed-content validation, storage checks, shader preparation and
 initial loading have separate monotonic phase markers. The owner can mark

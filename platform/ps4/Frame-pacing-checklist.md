@@ -1,18 +1,18 @@
 # Owner sampling checklist (#22)
 
-Status: **01.12 warm samples meet numerical limits; cold samples still fail.**
-Physical timing and internal shutdown evidence remain incomplete. Use the exact
-package/build hashes in [the 01.12 candidate report](evidence/performance-22/candidate-01.12/REPORT.md).
+Status: **01.13 is untested on PS4.** The 01.12 warm samples met numerical limits;
+cold samples failed. Physical timing and internal shutdown evidence remain
+incomplete. Use the exact package/build/seed hashes in
+[the 01.13 candidate report](evidence/performance-22/candidate-01.13/REPORT.md).
 Retain previous failures and save/settings backups. No new test data or cache
 operation should touch your genuine profile.
 
 The [01.12 return](evidence/performance-22/console-return-01.12/REPORT.md)
-identifies cold pipeline compilation as the next measured bottleneck. Before
-another candidate, copy this build's `pipeline_cache.db` and any `-wal`/`-shm`
-sidecars together after the application closes, as specified in that report.
-The owner confirms clean normal Quit, while logs stop after the SDK-stop request.
-Retain that internal evidence gap. For subsequent sampling, record visible
-timing corroboration, Quit normally and retrieve afterward.
+identifies cold pipeline compilation as the next measured bottleneck. Its returned
+database/WAL now supplies a bundled description seed for startup preparation.
+The owner confirms clean normal Quit, while 01.12 logs stop after the SDK-stop
+request. Retain that gap. For this changed package, record visible timing
+corroboration, Quit normally and retrieve afterward.
 
 1. Confirm PS4 Slim / firmware 9.00 / GoldHEN v2.4b18, USA GZLE01 revision 0,
    the installed candidate version/build and package SHA-256. Install through
@@ -24,6 +24,10 @@ timing corroboration, Quit normally and retrieve afterward.
    Do not rename/delete `/data/pswaker`, `saves`, settings, recovery data, or logs.
    Label the run cold. Warm runs keep this same binary's cache unchanged.
    Preserve the startup cache listing/hashes from the ordinary log for each run.
+   For 01.13, this means an empty disposable runtime/driver cache with the bundled
+   description seed installed. Confirm the log merges 287 seed records and
+   prepares them before gameplay. Record any mismatch or pipeline/cache error;
+   do not add an unmeasured gameplay warmup to hide missing coverage.
 3. Keep the unique `performance-XXXXXX` directory for each full launch. Record
    elapsed startup, validation, shader preparation and loading independently.
    Confirm the logged **allocated** internal size is 1280x720 (the 1080p display
