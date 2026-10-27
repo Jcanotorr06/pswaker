@@ -3,9 +3,9 @@ name: ci
 on:
   workflow_dispatch:
   push:
-    paths: ['platform/ps4/**', '.github/workflows/ci.yml']
+    paths: ['platform/ps4/**', 'tools/pswaker/**', '.github/workflows/ci.yml']
   pull_request:
-    paths: ['platform/ps4/**', '.github/workflows/ci.yml']
+    paths: ['platform/ps4/**', 'tools/pswaker/**', '.github/workflows/ci.yml']
 
 permissions:
   contents: read
@@ -19,6 +19,6 @@ jobs:
 
       - name: Check maintained diagnostic tools
         run: |
-          python3 -m compileall -q platform/ps4
+          python3 -m compileall -q platform/ps4 tools/pswaker
           for script in platform/ps4/*.sh; do bash -n "$script"; done
           python3 -m unittest discover -s platform/ps4/tests

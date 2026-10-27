@@ -1,0 +1,35 @@
+{
+  "platform": "platform/ps4",
+  "tests": "platform/ps4/tests",
+  "required_target_directories": [
+    "game", "probe", "host-renderer", "runtime-preflight", "patches", "provenance"
+  ],
+  "required_target_files": [
+    "content-contract.json", "dependencies.lock.json", "game.lock.json",
+    "host.lock.json", "LICENSE", "patch-series.json", "ps4.cmake",
+    "renderer.lock.json", "sdk.lock.json", "sources.lock.json",
+    "game/CMakeLists.txt", "probe/CMakeLists.txt",
+    "host-renderer/CMakeLists.txt", "runtime-preflight/CMakeLists.txt"
+  ],
+  "command_groups": {
+    "diagnostic": {
+      "directory": "platform/ps4",
+      "files": [
+        "adapt-platform.py", "apply-patches.py", "audit-inputs.py",
+        "build-graphics.sh", "build-probe.sh", "build-runtime.sh",
+        "build-sdk-support.sh", "capture-inputs.py", "clean-build.sh",
+        "inputs.py", "inspect-artifacts.py", "install-host.sh", "lock-sdk.py",
+        "package-probe.py", "prepare-graphics.sh", "prepare-sdk-sources.py",
+        "prepare-sources.py", "reconcile-renderer.py"
+      ]
+    },
+    "game": {
+      "directory": "platform/ps4",
+      "files": [
+        "build-game.sh", "complete-package.py", "content-failure-package.py",
+        "disc_image.py", "frame-pacing.py", "game-build.py",
+        "prepare-content-contract.py", "prepare-game.py", "storage-cases.py"
+      ]
+    }
+  }
+}

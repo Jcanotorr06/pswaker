@@ -8,6 +8,10 @@ import re
 from pathlib import Path
 import shutil
 import subprocess
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+import build_inputs
 
 HERE = Path(__file__).resolve().parent
 
@@ -23,10 +27,8 @@ def digest(path):
 
 def identity():
     value = hashlib.sha256()
-    for path in sorted(HERE.rglob("*")):
-        if not path.is_file() or "__pycache__" in path.parts or path.suffix in {".pyc", ".md"} or any(part in {'evidence', 'tests'} for part in path.relative_to(HERE).parts):
-            continue
-        value.update(path.relative_to(HERE).as_posix().encode() + b"\0" + path.read_bytes())
+    for name, path in build_inputs.maintained_inputs().items():
+        value.update(name.encode() + b"\0" + path.read_bytes())
     for command in (["clang-21", "--version"], ["cmake", "--version"], ["ninja", "--version"], ["dotnet", "--version"]):
         value.update(subprocess.check_output(command))
     return value.hexdigest()[:20]

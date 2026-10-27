@@ -16,10 +16,15 @@ def literal_yaz0(data):
 
 
 def generate(root, source):
+    import sys
+    repository = source.parents[1]
+    sys.path.insert(0, str(repository / 'tools/pswaker'))
+    import build_inputs
+    for name, path in build_inputs.maintained_inputs(repository).items():
+        target = root / 'repo' / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, target)
     cli = root / 'repo/platform/ps4'
-    cli.mkdir(parents=True)
-    for name in ['complete-package.py', 'disc_image.py', 'sources.lock.json']:
-        shutil.copyfile(source / name, cli / name)
 
     # A small DOL with one synthetic section.
     dol = bytearray(0x120)
