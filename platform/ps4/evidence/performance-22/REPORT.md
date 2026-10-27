@@ -1,8 +1,9 @@
 # Frame-pacing candidate (#22)
 
-Current follow-up: [01.11 returned evidence](console-return-01.11/REPORT.md)
-and [01.12 candidate](candidate-01.12/REPORT.md). The later recorder correction
-requires renewed console evidence; physical timing verification remains pending.
+Latest return: [01.12 cold/warm evidence](console-return-01.12/REPORT.md).
+Both warm samples meet the numerical limits; cold shader stalls remain.
+Physical timing verification and internal shutdown evidence remain pending.
+The return identifies the pipeline-cache files needed for the next correction.
 
 The [01.10 owner return](console-return-01.10/REPORT.md) now records independent
 cold/warm measurements with numerical shortfalls, an early cold Outset pause,

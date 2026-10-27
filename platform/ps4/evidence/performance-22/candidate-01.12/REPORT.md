@@ -1,5 +1,10 @@
 # Follow-up performance candidate 01.12
 
+The [01.12 owner return](../console-return-01.12/REPORT.md) now records two
+numerically successful warm samples and two failed cold samples. Timing and
+internal shutdown verification remain incomplete. The report below describes
+the historical handoff; its untested status is not the current returned status.
+
 This follows the [01.11 return](../console-return-01.11/REPORT.md). A delayed
 UI completion incorrectly disabled later warm forest sampling. Synchronous
 recorder I/O also shared the frame/submission lock, and a cold flush took

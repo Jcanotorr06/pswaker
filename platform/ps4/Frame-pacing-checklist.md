@@ -1,15 +1,18 @@
 # Owner sampling checklist (#22)
 
-Status: **no console performance pass yet for this candidate**. Use the exact
+Status: **01.12 warm samples meet numerical limits; cold samples still fail.**
+Physical timing and internal shutdown evidence remain incomplete. Use the exact
 package/build hashes in [the 01.12 candidate report](evidence/performance-22/candidate-01.12/REPORT.md).
 Retain previous failures and save/settings backups. No new test data or cache
 operation should touch your genuine profile.
 
-The [01.11 return](evidence/performance-22/console-return-01.11/REPORT.md)
-contains cold-Outset and warm-Outset shortfalls. A delayed UI observation
-disabled warm forest sampling. The owner retrieved after Quit, but the returned
-logs lack terminal markers; timing was not compared with video. For this retry,
-record visible timing corroboration, Quit normally and retrieve afterward.
+The [01.12 return](evidence/performance-22/console-return-01.12/REPORT.md)
+identifies cold pipeline compilation as the next measured bottleneck. Before
+another candidate, copy this build's `pipeline_cache.db` and any `-wal`/`-shm`
+sidecars together after the application closes, as specified in that report.
+The owner confirms clean normal Quit, while logs stop after the SDK-stop request.
+Retain that internal evidence gap. For subsequent sampling, record visible
+timing corroboration, Quit normally and retrieve afterward.
 
 1. Confirm PS4 Slim / firmware 9.00 / GoldHEN v2.4b18, USA GZLE01 revision 0,
    the installed candidate version/build and package SHA-256. Install through

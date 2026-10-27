@@ -1,0 +1,1595 @@
+PSWaker starts
+BEGIN build=bc90c33b639295f36912 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/bc90c33b639295f36912
+PACKAGE_MANIFEST {
+
+PACKAGE_MANIFEST   "schema": 1,
+
+PACKAGE_MANIFEST   "kind": "game",
+
+PACKAGE_MANIFEST   "acceptance": "Unverified game program; package assembly does not establish playable acceptance",
+
+PACKAGE_MANIFEST   "title_id": "PSWK00001",
+
+PACKAGE_MANIFEST   "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+
+PACKAGE_MANIFEST   "app_version": "01.12",
+
+PACKAGE_MANIFEST   "installed_image": "/app0/game.iso",
+
+PACKAGE_MANIFEST   "image": {
+
+PACKAGE_MANIFEST     "game_id": "GZLE01",
+
+PACKAGE_MANIFEST     "revision": 0,
+
+PACKAGE_MANIFEST     "size": 1459978240,
+
+PACKAGE_MANIFEST     "sha1": "6b5f06c10d50ebb4099cded88217eb71e5bfbb4a",
+
+PACKAGE_MANIFEST     "sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+
+PACKAGE_MANIFEST     "contract_sha256": "309ab1c521a53945760b01d3592721b041206745207515ddaca54d29139eda1c",
+
+PACKAGE_MANIFEST     "required_content": [
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "sys/main.dol",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "8d28bab68bb5078c38e43f29206f0bd01f7e7a67",
+
+PACKAGE_MANIFEST         "size": 3822272
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "RELS.arc",
+
+PACKAGE_MANIFEST         "member": "rels/mmem/d_a_majuu_flag.rel",
+
+PACKAGE_MANIFEST         "sha1": "9844a606bcebcceaeff329256665eea72d5aa970",
+
+PACKAGE_MANIFEST         "size": 15208
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "RELS.arc",
+
+PACKAGE_MANIFEST         "member": "rels/mmem/d_a_pirate_flag.rel",
+
+PACKAGE_MANIFEST         "sha1": "ad8581d91ce176c711a4db6a7862e2be510c0645",
+
+PACKAGE_MANIFEST         "size": 11888
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_bwdg.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "7cef0d0967ffbdae93dfc4a28ef0b8a672b052c9",
+
+PACKAGE_MANIFEST         "size": 154876
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_goal_flag.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "360285b55c8d8d9353c8c027bcfcc90c368f86b4",
+
+PACKAGE_MANIFEST         "size": 26820
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_mant.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "a565cdff34a1346c7db964d795179b81ece22ef8",
+
+PACKAGE_MANIFEST         "size": 58364
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_obj_buoyflag.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "a4db26857f985f6a3c963e183e6be28bf37e46c3",
+
+PACKAGE_MANIFEST         "size": 25120
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_sail.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "36cd36d17a50769045c087cbb56b26f4ad3a2b6e",
+
+PACKAGE_MANIFEST         "size": 18992
+
+PACKAGE_MANIFEST       }
+
+PACKAGE_MANIFEST     ]
+
+PACKAGE_MANIFEST   },
+
+PACKAGE_MANIFEST   "program": {
+
+PACKAGE_MANIFEST     "build_id": "bc90c33b639295f36912",
+
+PACKAGE_MANIFEST     "elf_filename": "switchwaker",
+
+PACKAGE_MANIFEST     "elf_sha256": "57094078764f1e5d0d3ebbdff4b5650752794f248c6227b67a3f5abe0fc2ae01",
+
+PACKAGE_MANIFEST     "eboot_sha256": "39bc4a637cc3bb126c495ddda75acd15ca701018e8795aafc6400061fc234e8b",
+
+PACKAGE_MANIFEST     "payload_sha256": {
+
+PACKAGE_MANIFEST       "build-info.json": "14cbe21f5794bd5f702e2d9df287e3219308c0b657ed7f9ae81de2cf30416cf2",
+
+PACKAGE_MANIFEST       "eboot.bin": "39bc4a637cc3bb126c495ddda75acd15ca701018e8795aafc6400061fc234e8b",
+
+PACKAGE_MANIFEST       "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+
+PACKAGE_MANIFEST       "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+
+PACKAGE_MANIFEST       "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+
+PACKAGE_MANIFEST       "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+
+PACKAGE_MANIFEST       "sce_sys/param.sfo": "ba86abfa9cff0a6b4680959d90dbcf8942867dc3116ed0e3b34346a44fc79e53"
+
+PACKAGE_MANIFEST     }
+
+PACKAGE_MANIFEST   },
+
+PACKAGE_MANIFEST   "distribution_cleared": false,
+
+PACKAGE_MANIFEST   "licensing": "Private artifact. Review actual combined licenses, notices and provenance before any distribution; assembly is not licensing clearance."
+
+PACKAGE_MANIFEST }
+
+CACHE before-init name=dawn_cache.db bytes=3948544 sha1=505105bd97abcad4a9d172b319b0a59d1e4f5ae4 readable=1
+CACHE before-init name=dawn_cache.db-wal bytes=4132392 sha1=7398c687ef2ce4679fb845740bb826605154c4e4 readable=1
+CACHE before-init name=pipeline_cache.db bytes=835584 sha1=92fd1ced3e517e262019bf428003050726c140b5 readable=1
+CACHE before-init name=pipeline_cache.db-wal bytes=4128272 sha1=236eb537c2df7b6526f44182fc1624e87dbef6ed readable=1
+CACHE identity=bc90c33b639295f36912 files-before-init=4; owner labels cold/warm
+STAGE completed=platform-initialized ms=1264.7 build=bc90c33b639295f36912 errors=0
+[cos] aspect: 16:9 (widescreen, t=1.0000)
+[cos] harness: smoke=- milestone=- timeout=0s stall=0s frames=0 trace=- uncapped=0 audio=on input=- boot_stage=- disc=/app0/game.iso
+STAGE completed=PS4-runtime-crash-logger-selected ms=1266.4 build=bc90c33b639295f36912 errors=0
+[cos] disc: /app0/game.iso GZLE01 revision 0, 1459978240 bytes
+STAGE completed=aurora-initialize ms=1268.7 build=bc90c33b639295f36912 errors=0
+AURORA level=1 aurora Aurora initializing
+AURORA level=1 aurora::system_info CPU model: Unknown
+AURORA level=1 aurora::system_info Memory: 0 MiB
+AURORA level=1 aurora::system_info Architecture: x86_64
+AURORA level=1 aurora::system_info OS: Unknown
+AURORA level=1 aurora::gpu Creating WebGPU instance
+AURORA level=1 aurora::gpu Attempting to initialize Vulkan
+[Aurora] Surface requested: 1920 x 1080
+AURORA level=1 aurora::gpu Requesting adapter
+  Feature level: Compatibility
+  Power preference: HighPerformance
+  Backend: Vulkan
+  Compatible surface: true
+radv: try_create
+radv: vk_physical_device_init = 0
+radv: winsys_create
+radv/ps4: GPU address windows 0x4000000000 (16 GiB), 0x4400000000 (32-bit)
+radv/ps4: virtual query check ok (0: [0x200004000, 0x200014000) offset 0x10000 direct 1, expected [0x200004000, +0x10000) offset 0x10000)
+radv/ps4: EOP event queue 0, sceGnmAddEqEvent 0
+radv/ps4: SceGnmGpuInfo area 0 ('')
+radv/ps4: fault capture: core dump handler 0xffffffff, GPU exception event 0, stop info -/-
+radv/ps4: device initialized
+radv: ac_query_gpu_info = 0
+AURORA level=1 aurora::gpu Graphics adapter information
+  API: Vulkan
+  Device: AMD Liverpool (PS4) (RADV BONAIRE) (IntegratedGPU)
+  Driver: radv: Mesa 26.0.8 (git-60e95b7878)
+AURORA level=1 aurora::gpu Using limits:
+  maxTextureDimension1D: 16384
+  maxTextureDimension2D: 16384
+  maxTextureDimension3D: 2048
+  maxTextureArrayLayers: 2048
+  maxStorageBuffersPerShaderStage: 2
+  minUniformBufferOffsetAlignment: 64
+  minStorageBufferOffsetAlignment: 16
+  maxImmediateSize: 64
+AURORA level=1 aurora::gpu Enabling features: 
+  CoreFeaturesAndLimits
+  TextureCompressionBC
+  DualSourceBlending
+  TextureComponentSwizzle
+radv/ps4: va 0x43fffec000 + 0x14000 (flags 0x2)
+radv/ps4: bo 1: 16384 bytes, heap 0x2, flags 0x81, align 0x4000, phys 0x2c000
+radv/ps4: map bo 1 +0 at 0x43fffec000 (0x4000 bytes)
+radv/ps4: va 0x43fffc8000 + 0x24000 (flags 0x2)
+radv/ps4: bo 2: 81920 bytes, heap 0x2, flags 0x81, align 0x4000, phys 0x40000
+radv/ps4: bo 2 mapped GPU read-only at 0x43fffc8000
+radv/ps4: map bo 2 +0 at 0x43fffc8000 (0x14000 bytes)
+radv/ps4: va 0x44fffec000 + 0x14000 (flags 0x3)
+radv/ps4: bo 3: 16384 bytes, heap 0x6, flags 0x8a, align 0x4000, phys 0x64000
+radv/ps4: bo 3 mapped GPU read-only at 0x44fffec000
+radv/ps4: map bo 3 +0 at 0x44fffec000 (0x4000 bytes)
+radv/ps4: va 0x43fffa4000 + 0x24000 (flags 0x2)
+radv/ps4: bo 4: 81920 bytes, heap 0x2, flags 0x81, align 0x4000, phys 0x78000
+radv/ps4: bo 4 mapped GPU read-only at 0x43fffa4000
+radv/ps4: map bo 4 +0 at 0x43fffa4000 (0x14000 bytes)
+radv/ps4: va 0x43fff90000 + 0x14000 (flags 0x2)
+radv/ps4: bo 5: 16384 bytes, heap 0x2, flags 0x85, align 0x4000, phys 0x9c000
+radv/ps4: map bo 5 +0 at 0x43fff90000 (0x4000 bytes)
+radv/ps4: va 0x43fffa4000 + 0x24000 (flags 0x2)
+radv/ps4: bo 6: 81920 bytes, heap 0x2, flags 0x81, align 0x4000, phys 0x78000
+radv/ps4: map bo 6 +0 at 0x43fffa4000 (0x14000 bytes)
+[Dawn] Display mode: 1920 x 1080, 59940 mHz
+AURORA level=1 aurora::gpu Using surface format RGBA8Unorm, present mode Fifo
+radv/ps4: va 0x44fff9c000 + 0x50000 (flags 0x3)
+radv/ps4: bo 7: 262144 bytes, heap 0x6, flags 0x80, align 0x4000, phys 0xb0000
+radv/ps4: map bo 7 +0 at 0x44fff9c000 (0x40000 bytes)
+radv/ps4: va 0x43ff760000 + 0x814000 (flags 0x2)
+radv/ps4: bo 8: 8388608 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x100000
+radv/ps4: map bo 8 +0 at 0x43ff760000 (0x800000 bytes)
+[Dawn] Display mode: 1920 x 1080, 59940 mHz
+[Dawn] swapchain 1920x1080: 2 images, present mode 2, needsBlit 0 (usage 0x10 of 0x9f)
+radv/ps4: va 0x43fed60000 + 0x9fc000 (flags 0x2)
+radv/ps4: bo 9: 10403840 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0x920000
+radv/ps4: map bo 9 +0 at 0x43fed60000 (0x9ec000 bytes)
+radv/ps4: va 0x43fe360000 + 0x9fc000 (flags 0x2)
+radv/ps4: bo 10: 10403840 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0x1320000
+radv/ps4: map bo 10 +0 at 0x43fe360000 (0x9ec000 bytes)
+radv/ps4: va 0x43fd960000 + 0x9fc000 (flags 0x2)
+radv/ps4: bo 11: 10403840 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0x1d20000
+radv/ps4: map bo 11 +0 at 0x43fd960000 (0x9ec000 bytes)
+wsi/videoout: 1920x1080 swapchain, buffers 0-2 (set 0), pitch 1920
+radv/ps4: va 0x43fd140000 + 0x810000 (flags 0x2)
+radv/ps4: bo 12: 8388608 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x2720000
+radv/ps4: map bo 12 +0 at 0x43fd140000 (0x800000 bytes)
+radv/ps4: va 0x43fc920000 + 0x810000 (flags 0x2)
+radv/ps4: bo 13: 8388608 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x2f40000
+radv/ps4: map bo 13 +0 at 0x43fc920000 (0x800000 bytes)
+radv/ps4: va 0x43fbfc0000 + 0x944000 (flags 0x2)
+radv/ps4: bo 14: 9650176 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x3760000
+radv/ps4: map bo 14 +0 at 0x43fbfc0000 (0x934000 bytes)
+radv/ps4: va 0x44fff84000 + 0x18000 (flags 0x3)
+radv/ps4: bo 15: 32768 bytes, heap 0x6, flags 0x80, align 0x4000, phys 0x40a4000
+radv/ps4: map bo 15 +0 at 0x44fff84000 (0x8000 bytes)
+radv/ps4: va 0x43fa7a0000 + 0x1814000 (flags 0x2)
+radv/ps4: bo 16: 25165824 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x40c0000
+radv/ps4: map bo 16 +0 at 0x43fa7a0000 (0x1800000 bytes)
+radv/ps4: va 0x43fa280000 + 0x514000 (flags 0x2)
+radv/ps4: bo 17: 5259264 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x58e0000
+radv/ps4: map bo 17 +0 at 0x43fa280000 (0x504000 bytes)
+radv/ps4: va 0x43f9a60000 + 0x814000 (flags 0x2)
+radv/ps4: bo 18: 8388608 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x5e00000
+radv/ps4: map bo 18 +0 at 0x43f9a60000 (0x800000 bytes)
+radv/ps4: va 0x43f5b40000 + 0x3f14000 (flags 0x2)
+radv/ps4: bo 19: 66060288 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0x6620000
+radv/ps4: map bo 19 +0 at 0x43f5b40000 (0x3f00000 bytes)
+radv/ps4: va 0x43f1c20000 + 0x3f14000 (flags 0x2)
+radv/ps4: bo 20: 66060288 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0xa540000
+radv/ps4: map bo 20 +0 at 0x43f1c20000 (0x3f00000 bytes)
+radv/ps4: va 0x43edd00000 + 0x3f14000 (flags 0x2)
+radv/ps4: bo 21: 66060288 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0xe460000
+radv/ps4: map bo 21 +0 at 0x43edd00000 (0x3f00000 bytes)
+radv/ps4: va 0x43e9de0000 + 0x3f14000 (flags 0x2)
+AURORA level=1 aurora::gfx::pipeline_cache No bundled initial pipeline cache found at '/app0/initial_pipeline_cache.db'
+AURORA level=1 aurora Using framebuffer size 1920x1080 scale 1
+[cos] fb scale: 1.5 (EFB about 1280x720)
+[cos] aurora: backend=vulkan window=1920x1080 framebuffer=1920x1080 vsync=1 pipelines=sync user=/data/pswaker
+STAGE completed=graphics-initialized ms=1941.9 build=bc90c33b639295f36912 errors=0
+CONTENT validation bytes=0/1459978240 ms=1943.3
+pad: player 0 opened for user 384877797
+[Dawn] swapchain 1920x1080: 2 images, present mode 2, needsBlit 0 (usage 0x10 of 0x9f)
+wsi/videoout: 1920x1080 swapchain, buffers 3-5 (set 1), pitch 1920
+AURORA level=1 aurora::input Added controller 'DUALSHOCK 4' (instance 3, vid 054c, pid 09cc, type 5)
+radv/ps4: submissions go to the GPU from their own thread
+radv/ps4: submit 1: 5 IBs (first 0x20001a020, 32 bytes) = 0, GPU completed 0, 0 memory writes checked, 0 disabled
+splash dismissed: 0
+radv/ps4: submit 2: 5 IBs (first 0x20001a040, 32 bytes) = 0, GPU completed 1, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=8388608/1459978240 ms=2297.7
+radv/ps4: submit 3: 5 IBs (first 0x20001a060, 32 bytes) = 0, GPU completed 2, 0 memory writes checked, 0 disabled
+radv/ps4: submit 4: 5 IBs (first 0x20001a080, 32 bytes) = 0, GPU completed 3, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=20971520/1459978240 ms=2627.7
+radv/ps4: submit 5: 5 IBs (first 0x20001a0a0, 32 bytes) = 0, GPU completed 4, 0 memory writes checked, 0 disabled
+radv/ps4: submit 6: 5 IBs (first 0x20001a0c0, 32 bytes) = 0, GPU completed 5, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=29360128/1459978240 ms=2910.6
+radv/ps4: submit 7: 5 IBs (first 0x20001a0e0, 32 bytes) = 0, GPU completed 6, 0 memory writes checked, 0 disabled
+radv/ps4: submit 8: 5 IBs (first 0x20001a100, 32 bytes) = 0, GPU completed 7, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=41943040/1459978240 ms=3238.8
+radv/ps4: submit 9: 5 IBs (first 0x20001a120, 32 bytes) = 0, GPU completed 8, 0 memory writes checked, 0 disabled
+radv/ps4: submit 10: 5 IBs (first 0x20001a140, 32 bytes) = 0, GPU completed 9, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=50331648/1459978240 ms=3490.4
+radv/ps4: submit 11: 5 IBs (first 0x20001a160, 32 bytes) = 0, GPU completed 10, 0 memory writes checked, 0 disabled
+radv/ps4: submit 12: 5 IBs (first 0x20001a180, 32 bytes) = 0, GPU completed 11, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=62914560/1459978240 ms=3879.9
+radv/ps4: submit 13: 5 IBs (first 0x20001a1a0, 32 bytes) = 0, GPU completed 12, 0 memory writes checked, 0 disabled
+radv/ps4: submit 14: 5 IBs (first 0x20001a1c0, 32 bytes) = 0, GPU completed 13, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=71303168/1459978240 ms=4137.7
+radv/ps4: submit 15: 5 IBs (first 0x20001a1e0, 32 bytes) = 0, GPU completed 14, 0 memory writes checked, 0 disabled
+radv/ps4: submit 16: 5 IBs (first 0x20001a200, 32 bytes) = 0, GPU completed 15, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=79691776/1459978240 ms=4388.2
+radv/ps4: submit 17: 5 IBs (first 0x20001a220, 32 bytes) = 0, GPU completed 16, 0 memory writes checked, 0 disabled
+radv/ps4: submit 18: 5 IBs (first 0x20001a240, 32 bytes) = 0, GPU completed 17, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=88080384/1459978240 ms=4647.3
+radv/ps4: submit 19: 5 IBs (first 0x20001a260, 32 bytes) = 0, GPU completed 18, 0 memory writes checked, 0 disabled
+radv/ps4: submit 20: 5 IBs (first 0x20001a280, 32 bytes) = 0, GPU completed 19, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=96468992/1459978240 ms=4899.8
+radv/ps4: submit 21: 5 IBs (first 0x20001a2a0, 32 bytes) = 0, GPU completed 20, 0 memory writes checked, 0 disabled
+radv/ps4: submit 22: 5 IBs (first 0x20001a2c0, 32 bytes) = 0, GPU completed 21, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=104857600/1459978240 ms=5159.6
+radv/ps4: submit 23: 5 IBs (first 0x20001a2e0, 32 bytes) = 0, GPU completed 22, 0 memory writes checked, 0 disabled
+radv/ps4: submit 24: 5 IBs (first 0x20001a300, 32 bytes) = 0, GPU completed 23, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=113246208/1459978240 ms=5420.2
+radv/ps4: submit 25: 5 IBs (first 0x20001a320, 32 bytes) = 0, GPU completed 24, 0 memory writes checked, 0 disabled
+radv/ps4: submit 26: 5 IBs (first 0x20001a340, 32 bytes) = 0, GPU completed 25, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=121634816/1459978240 ms=5672.3
+radv/ps4: submit 27: 5 IBs (first 0x20001a360, 32 bytes) = 0, GPU completed 26, 0 memory writes checked, 0 disabled
+radv/ps4: submit 28: 5 IBs (first 0x20001a380, 32 bytes) = 0, GPU completed 27, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=130023424/1459978240 ms=5923.7
+radv/ps4: submit 29: 5 IBs (first 0x20001a3a0, 32 bytes) = 0, GPU completed 28, 0 memory writes checked, 0 disabled
+radv/ps4: submit 30: 5 IBs (first 0x20001a3c0, 32 bytes) = 0, GPU completed 29, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=138412032/1459978240 ms=6177.2
+radv/ps4: submit 31: 5 IBs (first 0x20001a3e0, 32 bytes) = 0, GPU completed 30, 0 memory writes checked, 0 disabled
+radv/ps4: submit 32: 5 IBs (first 0x20001a400, 32 bytes) = 0, GPU completed 31, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=150994944/1459978240 ms=6542.0
+radv/ps4: submit 33: 5 IBs (first 0x20001a420, 32 bytes) = 0, GPU completed 32, 0 memory writes checked, 0 disabled
+radv/ps4: submit 34: 5 IBs (first 0x20001a440, 32 bytes) = 0, GPU completed 33, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=159383552/1459978240 ms=6803.0
+radv/ps4: submit 35: 5 IBs (first 0x20001a460, 32 bytes) = 0, GPU completed 34, 0 memory writes checked, 0 disabled
+radv/ps4: submit 36: 5 IBs (first 0x20001a480, 32 bytes) = 0, GPU completed 35, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=167772160/1459978240 ms=7060.7
+radv/ps4: submit 37: 5 IBs (first 0x20001a4a0, 32 bytes) = 0, GPU completed 36, 0 memory writes checked, 0 disabled
+radv/ps4: submit 38: 5 IBs (first 0x20001a4c0, 32 bytes) = 0, GPU completed 37, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=176160768/1459978240 ms=7316.0
+radv/ps4: submit 39: 5 IBs (first 0x20001a4e0, 32 bytes) = 0, GPU completed 38, 0 memory writes checked, 0 disabled
+radv/ps4: submit 40: 5 IBs (first 0x20001a500, 32 bytes) = 0, GPU completed 39, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=184549376/1459978240 ms=7576.2
+CONTENT validation bytes=192937984/1459978240 ms=7828.5
+CONTENT validation bytes=201326592/1459978240 ms=8093.1
+CONTENT validation bytes=209715200/1459978240 ms=8355.7
+CONTENT validation bytes=218103808/1459978240 ms=8617.7
+CONTENT validation bytes=226492416/1459978240 ms=8877.5
+CONTENT validation bytes=234881024/1459978240 ms=9130.8
+CONTENT validation bytes=243269632/1459978240 ms=9390.0
+CONTENT validation bytes=251658240/1459978240 ms=9652.3
+CONTENT validation bytes=260046848/1459978240 ms=9907.1
+CONTENT validation bytes=272629760/1459978240 ms=10259.3
+CONTENT validation bytes=285212672/1459978240 ms=10617.2
+CONTENT validation bytes=293601280/1459978240 ms=10892.1
+CONTENT validation bytes=301989888/1459978240 ms=11155.9
+CONTENT validation bytes=310378496/1459978240 ms=11417.0
+CONTENT validation bytes=318767104/1459978240 ms=11668.1
+CONTENT validation bytes=327155712/1459978240 ms=11926.0
+CONTENT validation bytes=335544320/1459978240 ms=12187.0
+CONTENT validation bytes=343932928/1459978240 ms=12439.0
+CONTENT validation bytes=356515840/1459978240 ms=12832.0
+CONTENT validation bytes=364904448/1459978240 ms=13087.0
+CONTENT validation bytes=373293056/1459978240 ms=13347.8
+CONTENT validation bytes=381681664/1459978240 ms=13608.3
+CONTENT validation bytes=390070272/1459978240 ms=13861.3
+CONTENT validation bytes=398458880/1459978240 ms=14122.5
+CONTENT validation bytes=411041792/1459978240 ms=14523.4
+CONTENT validation bytes=419430400/1459978240 ms=14790.7
+CONTENT validation bytes=432013312/1459978240 ms=15145.1
+CONTENT validation bytes=440401920/1459978240 ms=15405.7
+CONTENT validation bytes=448790528/1459978240 ms=15658.3
+CONTENT validation bytes=452984832/1459978240 ms=15961.7
+CONTENT validation bytes=465567744/1459978240 ms=16293.2
+CONTENT validation bytes=469762048/1459978240 ms=16567.0
+CONTENT validation bytes=482344960/1459978240 ms=16894.8
+CONTENT validation bytes=486539264/1459978240 ms=17168.5
+CONTENT validation bytes=499122176/1459978240 ms=17495.5
+CONTENT validation bytes=503316480/1459978240 ms=17759.2
+CONTENT validation bytes=515899392/1459978240 ms=18251.7
+CONTENT validation bytes=528482304/1459978240 ms=18578.5
+CONTENT validation bytes=532676608/1459978240 ms=18845.3
+CONTENT validation bytes=545259520/1459978240 ms=19182.4
+CONTENT validation bytes=549453824/1459978240 ms=19476.1
+CONTENT validation bytes=562036736/1459978240 ms=19803.0
+CONTENT validation bytes=566231040/1459978240 ms=20077.4
+CONTENT validation bytes=578813952/1459978240 ms=20592.8
+CONTENT validation bytes=591396864/1459978240 ms=20919.4
+CONTENT validation bytes=595591168/1459978240 ms=21194.4
+CONTENT validation bytes=608174080/1459978240 ms=21521.8
+CONTENT validation bytes=612368384/1459978240 ms=21796.0
+CONTENT validation bytes=624951296/1459978240 ms=22124.2
+CONTENT validation bytes=637534208/1459978240 ms=22463.9
+CONTENT validation bytes=645922816/1459978240 ms=22852.7
+CONTENT validation bytes=658505728/1459978240 ms=23343.0
+CONTENT validation bytes=671088640/1459978240 ms=23670.4
+CONTENT validation bytes=675282944/1459978240 ms=23963.7
+CONTENT validation bytes=687865856/1459978240 ms=24291.3
+CONTENT validation bytes=700448768/1459978240 ms=24634.8
+CONTENT validation bytes=713031680/1459978240 ms=24961.7
+CONTENT validation bytes=725614592/1459978240 ms=25290.8
+CONTENT validation bytes=738197504/1459978240 ms=25618.2
+CONTENT validation bytes=750780416/1459978240 ms=25945.4
+CONTENT validation bytes=763363328/1459978240 ms=26272.3
+CONTENT validation bytes=775946240/1459978240 ms=26630.5
+CONTENT validation bytes=788529152/1459978240 ms=27016.7
+CONTENT validation bytes=801112064/1459978240 ms=27344.3
+CONTENT validation bytes=813694976/1459978240 ms=27671.8
+CONTENT validation bytes=826277888/1459978240 ms=28000.4
+CONTENT validation bytes=838860800/1459978240 ms=28331.5
+CONTENT validation bytes=851443712/1459978240 ms=28661.8
+CONTENT validation bytes=864026624/1459978240 ms=28989.7
+CONTENT validation bytes=876609536/1459978240 ms=29316.4
+CONTENT validation bytes=889192448/1459978240 ms=29674.6
+CONTENT validation bytes=897581056/1459978240 ms=29929.2
+CONTENT validation bytes=905969664/1459978240 ms=30190.4
+CONTENT validation bytes=914358272/1459978240 ms=30444.8
+CONTENT validation bytes=926941184/1459978240 ms=30802.3
+CONTENT validation bytes=935329792/1459978240 ms=31060.4
+CONTENT validation bytes=943718400/1459978240 ms=31324.4
+CONTENT validation bytes=956301312/1459978240 ms=31706.0
+CONTENT validation bytes=968884224/1459978240 ms=32093.6
+CONTENT validation bytes=977272832/1459978240 ms=32345.3
+CONTENT validation bytes=985661440/1459978240 ms=32602.6
+CONTENT validation bytes=994050048/1459978240 ms=32865.5
+CONTENT validation bytes=1002438656/1459978240 ms=33116.5
+CONTENT validation bytes=1010827264/1459978240 ms=33368.0
+CONTENT validation bytes=1019215872/1459978240 ms=33630.0
+CONTENT validation bytes=1027604480/1459978240 ms=33892.4
+CONTENT validation bytes=1035993088/1459978240 ms=34144.1
+CONTENT validation bytes=1044381696/1459978240 ms=34406.0
+CONTENT validation bytes=1052770304/1459978240 ms=34657.7
+CONTENT validation bytes=1061158912/1459978240 ms=34916.0
+CONTENT validation bytes=1069547520/1459978240 ms=35226.3
+CONTENT validation bytes=1077936128/1459978240 ms=35480.7
+CONTENT validation bytes=1090519040/1459978240 ms=35806.9
+CONTENT validation bytes=1103101952/1459978240 ms=36163.5
+CONTENT validation bytes=1111490560/1459978240 ms=36415.1
+CONTENT validation bytes=1119879168/1459978240 ms=36679.7
+CONTENT validation bytes=1128267776/1459978240 ms=36939.6
+CONTENT validation bytes=1136656384/1459978240 ms=37202.4
+CONTENT validation bytes=1145044992/1459978240 ms=37467.0
+CONTENT validation bytes=1153433600/1459978240 ms=37719.6
+CONTENT validation bytes=1161822208/1459978240 ms=37974.1
+CONTENT validation bytes=1170210816/1459978240 ms=38228.5
+CONTENT validation bytes=1178599424/1459978240 ms=38515.0
+CONTENT validation bytes=1186988032/1459978240 ms=38773.7
+CONTENT validation bytes=1199570944/1459978240 ms=39113.0
+CONTENT validation bytes=1207959552/1459978240 ms=39374.2
+CONTENT validation bytes=1216348160/1459978240 ms=39627.2
+CONTENT validation bytes=1224736768/1459978240 ms=39884.3
+CONTENT validation bytes=1233125376/1459978240 ms=40147.4
+CONTENT validation bytes=1241513984/1459978240 ms=40398.8
+CONTENT validation bytes=1249902592/1459978240 ms=40651.1
+CONTENT validation bytes=1262485504/1459978240 ms=41042.6
+CONTENT validation bytes=1275068416/1459978240 ms=41400.2
+CONTENT validation bytes=1287651328/1459978240 ms=41738.1
+CONTENT validation bytes=1296039936/1459978240 ms=41991.7
+CONTENT validation bytes=1304428544/1459978240 ms=42246.4
+CONTENT validation bytes=1317011456/1459978240 ms=42605.0
+CONTENT validation bytes=1325400064/1459978240 ms=42907.1
+CONTENT validation bytes=1333788672/1459978240 ms=43184.7
+CONTENT validation bytes=1342177280/1459978240 ms=43442.3
+CONTENT validation bytes=1350565888/1459978240 ms=43703.0
+CONTENT validation bytes=1358954496/1459978240 ms=43965.2
+CONTENT validation bytes=1367343104/1459978240 ms=44223.9
+CONTENT validation bytes=1375731712/1459978240 ms=44486.2
+CONTENT validation bytes=1384120320/1459978240 ms=44738.8
+CONTENT validation bytes=1392508928/1459978240 ms=45000.3
+CONTENT validation bytes=1400897536/1459978240 ms=45251.4
+CONTENT validation bytes=1409286144/1459978240 ms=45510.4
+CONTENT validation bytes=1417674752/1459978240 ms=45765.1
+CONTENT validation bytes=1426063360/1459978240 ms=46023.9
+CONTENT validation bytes=1434451968/1459978240 ms=46282.9
+CONTENT validation bytes=1442840576/1459978240 ms=46537.0
+CONTENT validation bytes=1455423488/1459978240 ms=46935.3
+CONTENT validation bytes=1459978240/1459978240 ms=47053.3
+STAGE completed=installed-image-validated ms=47053.7 build=bc90c33b639295f36912 errors=0
+STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+STAGE completed=writable-storage-checked ms=47095.2 build=bc90c33b639295f36912 errors=0
+STAGE completed=save-recovery-checked ms=47113.9 build=bc90c33b639295f36912 errors=0
+DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=47117.5
+SHADERS created=287 queued=0 ms=47117.5
+TIMING shader-preparation_ms=0.2 startup_to_preparation_complete_ms=47117.7
+STAGE completed=known-shaders-prepared ms=47117.8 build=bc90c33b639295f36912 errors=0
+[cos] dvd: GZLE01 version 0 disc 0
+[cos] assets: 163 arrays read from the disc (main.dol and RELs checked), 158 filled at start-up, the rest on their function's first call
+STAGE completed=runtime-assets-validated ms=47246.2 build=bc90c33b639295f36912 errors=0
+[cos] MILESTONE aurora-up frame=0 retrace=0 ms=46043
+[cos_sdk] VISetBlack(TRUE): recorded (COSSdkVIIsBlack), but Aurora keeps presenting frames; the screen is not blanked
+[cos_sdk] OSSetErrorHandler: handlers are recorded, but no host fault reaches them yet (the game glue calls them through COSSdkGetErrorHandler)
+[cos_sdk] OSSetSwitchThreadCallback: host threads never switch, so the callback is not called; per-thread state goes through COSSdkSetThreadLaunchHook/COSSdkSetThreadStartHook (cos_sdk/hooks.h)
+AURORA level=1 aurora::card CARD API Initialized BUILT <Oct 26 2026 18:01:12>
+AURORA level=1 aurora::card Loaded GC Card Image: /data/pswaker/saves/USA/Card A
+AURORA level=1 aurora::card Loaded GC Card Image: /data/pswaker/saves/USA/Card B
+[cos] heaps: root     0x10015e3600 size 0x0e7fbec0 free 0x07b35620 check ok
+[cos] heaps: system   0x10015e3720 size 0x01ffff00 free 0x0000ffbc check ok
+[cos] heaps: main     0x100169a990 size 0x01f38c90 free 0x01f338b8 check ok
+[cos] heaps: game     0x1004a87f80 size 0x03821f00 free 0x03821ee0 check ok
+[cos] heaps: archive  0x10035e5760 size 0x014a2700 free 0x014a26e0 check ok
+[cos] heaps: command  0x10035e3740 size 0x00001f00 free 0x00001ee0 check ok
+[cos] MILESTONE heaps frame=0 retrace=0 ms=46052
+[cos_sdk] GBAInit: the GBA link is not emulated; every GBA port reports GBA_NOT_READY (nothing connected)
+[cos] frame loop: start, paced by JFWDisplay
+[cos] gfx-create: LOAD_COPYDATE status 1, COPYDATE "03/02/19 11:43:53"
+[cos] MILESTONE gfx-create frame=0 retrace=0 ms=46054
+INPUT sample connected=1 screen=legend releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=legend releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+INPUT screen=legend->game connected=1; gameplay neutral outside Game
+HEARTBEAT ms=48782.5 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=0 sum-squares=0; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=0 queued-source-bytes=0 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=0 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=unknown(-1) frame=0 last_resource= resources=0 ms=47516
+RESOURCE ms=48782.7 garlic=439156736 onion=835584 buffers=43 main-mspace-allocated=307940816 flexible-available=372244480 query-result=0
+[cos_sdk] GXSetMisc(GX_MT_DL_SAVE_CONTEXT, 0): recorded, but Aurora keeps saving and restoring the GX state around display list recording
+[cos_sdk] DSP: Dolphin's DSPHLE created (ARAM 0x1000000 bytes, MEM1 0x10000000 bytes)
+[dsp-log] /home/joseph_cano/.cache/pswaker/game-22-logfile/src/recompcore/Source/Core/Core/HW/DSPHLE/UCodes/Zelda.cpp:479 CMD0D: 002a5a80
+[cos_sdk] AI: audio output over SDL3 (driver ps5), 16-bit stereo, 32000 Hz
+SCENE create-request ms=47551 previous_request_interval_ms=47551 name=LOGO_SCENE id=5 frame=1; visible completion needs owner observation
+[cos] audio: mDoAud_Create done at frame 2; DSP handshake done
+[cos] logo-scene: Logo archive 12 entries; the logo BTI 376x104 format 3, 0 colours, image at 0x20 (78208 bytes) in 78240 bytes
+[cos] logo-scene: created at frame 2; 159744 texture bytes uploaded since (0 before), up to 2 draw calls in a frame
+[cos] MILESTONE logo-scene frame=6 retrace=6 ms=47618
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] frame-loop: 120 frames, 120 retraces, up to 3 draw calls in a frame
+[cos] pacing: frames=120 wall=3463.4 ms requested=2000.0 ms; after frame 1: wall=1983.6 ms requested=1983.4 ms ratio=1.0001; uncapped=0 retraces=120
+[cos] gfx high-water: verts=0 KiB/5120 uniforms=8 KiB/24576 indices=0 KiB/2048 storage=0 KiB/8192 draws=3
+[cos] MILESTONE frame-loop frame=120 retrace=120 ms=49518
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] logo-res: System.arc 2 files, 2 converted
+[cos] logo-res: Logo.arc 7 files, 7 converted
+[cos] logo-res: Always.arc 113 files, 113 converted
+[cos] logo-res: Link.arc 91 files, 91 converted
+[cos] logo-res: Agb.arc 2 files, 2 converted
+[cos] logo-res: all commands synced at frame 243: 26 archives mounted, 4 files in main RAM, 0 empty
+[cos] logo-res: dComIfG_changeOpeningScene called
+[cos] MILESTONE logo-res frame=243 retrace=244 ms=51588
+radv/ps4: submit 1000: 5 IBs (first 0x20001dd00, 32 bytes) = 0, GPU completed 999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 1024, avg 845 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 927 us max 2855 us
+SCENE create-request ms=52084 previous_request_interval_ms=4533 name=OPENING_SCENE id=8 frame=273; visible completion needs owner observation
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] stage: sea_T room 44 created at frame 281; Stage archive 23 files, stage.dzs found
+[cos] MILESTONE opening frame=281 retrace=282 ms=52218
+SCENE create-request ms=52251 previous_request_interval_ms=167 name=ROOM_SCENE id=20 frame=282; visible completion needs owner observation
+[cos] title: d_a_title created at frame 286
+[cos] title-stage: room 44 ready at frame 287: Room44 mounted, BG collision registered, 51 actor(s) created
+HEARTBEAT ms=53784.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=159328 sum-squares=0; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=580 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=934 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=291 last_resource=/res/Object/knob.arc resources=54 ms=52518
+RESOURCE ms=53784.8 garlic=439222272 onion=835584 buffers=45 main-mspace-allocated=308474896 flexible-available=363855872 query-result=0
+SCENE create-request ms=52955 previous_request_interval_ms=704 name=ROOM_SCENE id=20 frame=303; visible completion needs owner observation
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+SCENE create-request ms=56251 previous_request_interval_ms=3296 name=NAME_SCENE id=12 frame=402; visible completion needs owner observation
+[cos] name-scene: frame 407: main MemCardCheckMain, memory card MemCardStatCheck, draw FileErrorDraw
+[cos] file-select: name scene first drawn at frame 408
+[cos] name-scene: frame 427: main MemCardCheckMain, memory card MemCardLoadWait, draw FileErrorDraw
+[cos] name-scene: frame 428: main NoteOpen, memory card MemCardLoadWait, draw NoneDraw
+[cos] name-scene: frame 429: main NoteOpenWait, memory card MemCardLoadWait, draw NoneDraw
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=58785.4 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=319296 sum-squares=1382050875389; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=752 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=1872 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=NAME_SCENE(12) frame=441 last_resource=/res/Stage/Name/Stage.arc resources=56 ms=57519
+RESOURCE ms=58785.5 garlic=447709184 onion=4603904 buffers=52 main-mspace-allocated=310766240 flexible-available=363855872 query-result=0
+[cos] name-scene: frame 445: main FileSelectOpen, memory card MemCardLoadWait, draw FileSelectDraw
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] name-scene: frame 465: main FileSelectMain, memory card MemCardLoadWait, draw FileSelectDraw
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] file-select: name scene drew 60 frames in a row with FileSelectDraw; main proc 4, memory card check proc 1, at frame 505
+[cos] MILESTONE file-select frame=505 retrace=727 ms=59656
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] name-scene: frame 567: main changeGameScene, memory card MemCardLoadWait, draw FileSelectDraw
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] title-stage: 300 frames since room 44 was ready
+[cos] MILESTONE title-stage frame=587 retrace=891 ms=62389
+HEARTBEAT ms=63788.8 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=479456 sum-squares=3920259089091; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=368 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=2810 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=NAME_SCENE(12) frame=591 last_resource=/res/Stage/Name/Stage.arc resources=56 ms=62522
+RESOURCE ms=63788.9 garlic=447709184 onion=4603904 buffers=52 main-mspace-allocated=312729104 flexible-available=363855872 query-result=0
+SCENE create-request ms=62784 previous_request_interval_ms=6533 name=PLAY_SCENE id=7 frame=598; visible completion needs owner observation
+[cos] stage: sea room 44 created at frame 605; Stage archive 23 files, stage.dzs found
+SCENE create-request ms=63052 previous_request_interval_ms=268 name=ROOM_SCENE id=20 frame=606; visible completion needs owner observation
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+SCENE create-request ms=63363 previous_request_interval_ms=311 name=ROOM_SCENE id=20 frame=615; visible completion needs owner observation
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT screen=game->settings connected=1; gameplay neutral outside Game
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 2000: 5 IBs (first 0x20001da00, 32 bytes) = 0, GPU completed 1999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 628, avg 438 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1959 us max 2955 us
+radv/ps4: large submissions: 396, avg 19293 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 23 us max 107 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.642,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0x10 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+INPUT screen=settings->game connected=1; gameplay neutral outside Game
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=74638.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=826656 sum-squares=10049216167485; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=624 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=4844 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=723 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=73372
+RESOURCE ms=74638.7 garlic=456196096 onion=5505024 buffers=54 main-mspace-allocated=312769264 flexible-available=363855872 query-result=0
+INPUT screen=game->settings connected=1; gameplay neutral outside Game
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0x100000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 3000: 5 IBs (first 0x20001d700, 32 bytes) = 0, GPU completed 2999, 0 memory writes checked, 0 disabled
+radv/ps4: small submissions: 993, avg 822 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1253 us max 2988 us
+radv/ps4: large submissions: 31, avg 39161 dwords in 5.1 IBs, sceGnmSubmitCommandBuffers avg 24 us max 37 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+INPUT screen=settings->game connected=1; gameplay neutral outside Game
+HEARTBEAT ms=82418.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=1075616 sum-squares=14344977952169; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=452 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=6303 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=754 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=81152
+RESOURCE ms=82418.7 garlic=456228864 onion=5996544 buffers=54 main-mspace-allocated=312773280 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.007,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-1,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.168,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-21,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.239,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-30,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=87430.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=1235968 sum-squares=16311640812808; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=836 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=7243 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=905 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=86164
+RESOURCE ms=87430.5 garlic=456228864 onion=5996544 buffers=54 main-mspace-allocated=314499872 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.052,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-7,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.803,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,102,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 4000: 5 IBs (first 0x20001d400, 32 bytes) = 0, GPU completed 3999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 751, avg 578 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1934 us max 4039 us
+radv/ps4: large submissions: 273, avg 37325 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 80 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=92433.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=1396032 sum-squares=19001108567791; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=752 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=8181 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=1055 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=91167
+RESOURCE ms=92433.4 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315585664 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-0.821,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-104,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=97463.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=1557024 sum-squares=21530413943995; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=284 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=9124 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=1206 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=96197
+RESOURCE ms=97464.1 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315910464 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.016,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-2,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=102496.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=1718080 sum-squares=24533063965567; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=752 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=10067 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=1357 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=101230
+RESOURCE ms=102496.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315926240 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.633,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=80,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.857,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=109,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.472,-1.009,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=60,127,-127,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 5000: 5 IBs (first 0x20001d100, 32 bytes) = 0, GPU completed 4999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=107499.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=1878144 sum-squares=27805727680662; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=668 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=11005 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=1507 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=106232
+RESOURCE ms=107499.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315574192 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3408 us max 3946 us
+radv/ps4: large submissions: 512, avg 32803 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 90 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.884,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,112,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.257,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-33,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.311,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-40,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.472,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=60,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=112528.2 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=2039072 sum-squares=31756201365350; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=624 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=11948 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=1658 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=111262
+RESOURCE ms=112528.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315440192 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.499,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=63,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.204,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=26,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.069,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=9,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=117531.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=2199200 sum-squares=35602935527599; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=796 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=12887 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=1808 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=116265
+RESOURCE ms=117532.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315578912 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.714,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=91,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.069,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-9,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.427,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-54,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=122563.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=2360224 sum-squares=39873149276599; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=452 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=13830 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=1959 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=121297
+RESOURCE ms=122563.4 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315559008 flexible-available=363855872 query-result=0
+radv/ps4: submit 6000: 5 IBs (first 0x20001ce00, 32 bytes) = 0, GPU completed 5999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.213,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-27,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.544,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-69,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.114,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-15,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3288 us max 4150 us
+radv/ps4: large submissions: 512, avg 31930 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 86 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.266,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-34,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.302,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-38,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=127595.4 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=2521216 sum-squares=42411695942186; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=668 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=14773 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=2110 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=126329
+RESOURCE ms=127595.5 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315596480 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.284,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-36,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.293,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-37,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.239,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-30,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.159,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-20,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.159,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-20,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=132628.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=2682336 sum-squares=45474431761328; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=708 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=15717 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=2261 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=131362
+RESOURCE ms=132628.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316253552 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.866,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-110,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.696,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-88,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.758,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-96,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.168,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-21,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.749,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-95,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=137629.0 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=2842304 sum-squares=47574604307393; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=924 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=16655 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=2411 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=136362
+RESOURCE ms=137629.1 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316263280 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.159,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,-20,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 7000: 5 IBs (first 0x20001cb00, 32 bytes) = 0, GPU completed 6999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.687,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-87,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.150,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=19,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.508,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,65,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=142662.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=3003392 sum-squares=49884985902855; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=836 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=17598 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=2562 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=141396
+RESOURCE ms=142662.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315853168 flexible-available=363855872 query-result=0
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3526 us max 4386 us
+radv/ps4: large submissions: 512, avg 27490 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 90 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=147663.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=3163424 sum-squares=52319538767159; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=624 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=18536 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=2712 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=146397
+RESOURCE ms=147663.9 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316150640 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.669,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,85,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=152694.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=3324416 sum-squares=54299235128924; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=836 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=19479 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=2863 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=151428
+RESOURCE ms=152694.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315835760 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 8000: 5 IBs (first 0x20001c800, 32 bytes) = 0, GPU completed 7999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=157702.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=3484704 sum-squares=57869930823885; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=20418 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=3013 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=156436
+RESOURCE ms=157702.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315859984 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x100 sticks=0.000,0.000,0.000,0.000 triggers=0.976,0.000 game-buttons=0x40 game-sticks=0,0,0,0 game-triggers=249,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3576 us max 4190 us
+radv/ps4: large submissions: 512, avg 35277 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 92 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-0.857,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,109,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.579,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,74,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.392,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-50,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=162728.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=3645504 sum-squares=63416832974275; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=540 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=21361 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=3164 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=161462
+RESOURCE ms=162728.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315575536 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.714,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-91,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-0.266,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,34,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.105,-0.132,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=13,17,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.884,-0.329,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=112,42,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=167734.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=3805664 sum-squares=69180242250800; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=708 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=22299 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=3314 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=166467
+RESOURCE ms=167734.2 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315863280 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.606,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-77,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.651,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,83,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=172734.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=3965696 sum-squares=73685508122547; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=624 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=23237 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=3464 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=171468
+RESOURCE ms=172734.9 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316487936 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 9000: 5 IBs (first 0x20001c500, 32 bytes) = 0, GPU completed 8999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.821,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=104,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3454 us max 4472 us
+radv/ps4: large submissions: 512, avg 38348 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 75 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.186,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=24,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=177765.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=4126720 sum-squares=77137598218136; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=836 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=24180 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=3615 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=176499
+RESOURCE ms=177766.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316796768 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.562,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,71,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.222,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,28,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-1.009,-0.150,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-127,19,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=182798.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=4287776 sum-squares=80575366920005; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=624 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=25124 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=3766 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=181532
+RESOURCE ms=182798.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316763440 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=187829.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=4448704 sum-squares=84237852075905; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=580 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=26067 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=3917 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=186562
+RESOURCE ms=187829.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315617664 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.723,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,92,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-1.009,-0.803,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-127,102,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 10000: 5 IBs (first 0x20001c200, 32 bytes) = 0, GPU completed 9999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.168,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,21,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=1.000,0.043,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=127,-5,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=192862.2 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=4609792 sum-squares=89102789729907; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=496 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=27011 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=4068 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=191596
+RESOURCE ms=192862.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315689808 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=1.000,0.123,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=127,-16,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3767 us max 5143 us
+radv/ps4: large submissions: 512, avg 33514 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 79 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.230,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,-29,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.526,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-67,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.114,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,15,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=197864.2 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=4769824 sum-squares=93328069309722; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=27949 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=4218 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=196597
+RESOURCE ms=197864.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315754704 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.266,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=34,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.114,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-15,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.374,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-47,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=202896.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=4930912 sum-squares=96690358067403; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=880 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=28892 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=4369 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=201630
+RESOURCE ms=202897.1 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315668304 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 11000: 5 IBs (first 0x20001bf00, 32 bytes) = 0, GPU completed 10999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=207930.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=5091936 sum-squares=99983624078360; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=668 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=29836 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=4520 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=206663
+RESOURCE ms=207930.2 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315997584 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.293,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=37,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.186,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=24,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3471 us max 4366 us
+radv/ps4: large submissions: 512, avg 33111 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 89 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.016,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=2,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=212930.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=5252000 sum-squares=103472733994695; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=580 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=30774 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=4670 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=211664
+RESOURCE ms=212930.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316347056 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-1.009,-0.919,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-127,117,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=217964.0 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=5413056 sum-squares=111436629082505; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=924 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=31717 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=4821 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=216697
+RESOURCE ms=217964.1 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316336064 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-1.009,-0.069,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-127,9,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-0.472,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,60,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.025,-0.803,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-3,102,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.776,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-99,-127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=222996.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=5574048 sum-squares=118968846390205; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=580 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=32661 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=4972 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=221730
+RESOURCE ms=222996.4 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316317728 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.230,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-29,-127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 12000: 5 IBs (first 0x20001bc00, 32 bytes) = 0, GPU completed 11999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.114,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-15,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.034,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-4,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.060,-0.937,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-8,119,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=227996.8 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=5734080 sum-squares=126824111159633; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=924 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=33598 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=5122 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=226730
+RESOURCE ms=227997.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315639648 flexible-available=363855872 query-result=0
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3835 us max 4831 us
+radv/ps4: large submissions: 512, avg 30456 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 116 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.123,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,16,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=233000.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=5894208 sum-squares=130670946363262; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1092 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=34537 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=5272 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=231734
+RESOURCE ms=233000.4 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315749312 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.472,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=60,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.633,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,80,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.141,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-18,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.365,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,46,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=238029.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=6055104 sum-squares=134128994499429; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=924 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=35479 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=5423 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=236762
+RESOURCE ms=238029.2 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315898768 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT screen=game->settings connected=1; gameplay neutral outside Game
+radv/ps4: submit 13000: 5 IBs (first 0x20001b900, 32 bytes) = 0, GPU completed 12999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 699, avg 504 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 2201 us max 3908 us
+radv/ps4: large submissions: 325, avg 32678 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 62 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 14000: 5 IBs (first 0x20001b600, 32 bytes) = 0, GPU completed 13999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 844 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1207 us max 2888 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 15000: 5 IBs (first 0x20001b300, 32 bytes) = 0, GPU completed 14999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 844 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1220 us max 2828 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 16000: 5 IBs (first 0x20001b000, 32 bytes) = 0, GPU completed 15999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 844 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1217 us max 2827 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 17000: 5 IBs (first 0x20001ad00, 32 bytes) = 0, GPU completed 16999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 844 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1218 us max 2834 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+INPUT sample connected=1 screen=settings releasing=1 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT screen=settings->game connected=1; gameplay neutral outside Game
+HEARTBEAT ms=279718.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=7389184 sum-squares=158504817364230; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=836 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=43296 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=5448 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=278452
+RESOURCE ms=279718.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=314459632 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-0.973,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,124,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.186,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=24,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.025,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=3,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.821,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,104,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 18000: 5 IBs (first 0x20001aa00, 32 bytes) = 0, GPU completed 17999, 0 memory writes checked, 0 disabled
+HEARTBEAT ms=284727.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=7549472 sum-squares=161157800620493; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=44235 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=5599 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=283461
+RESOURCE ms=284727.4 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315612944 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.356,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,45,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.463,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-59,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.732,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-93,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.293,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-37,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=289727.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=7709440 sum-squares=164076551492139; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1180 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=45173 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=5749 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=288461
+RESOURCE ms=289727.4 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315607952 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 680, avg 474 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 2254 us max 3743 us
+radv/ps4: large submissions: 344, avg 17532 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 85 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.186,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=24,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.338,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=43,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=294728.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=7869472 sum-squares=166123928207005; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=46110 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=5899 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=293461
+RESOURCE ms=294728.2 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315661616 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.812,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=103,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.436,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=55,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.615,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=78,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.132,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=17,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.669,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=85,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=299732.8 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=8029664 sum-squares=168540838751478; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=708 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=47049 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=6049 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=298466
+RESOURCE ms=299732.9 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316249184 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 19000: 5 IBs (first 0x20001a700, 32 bytes) = 0, GPU completed 18999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.902,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,115,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.839,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,107,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.096,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-12,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-1.009,-0.562,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-127,71,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=304762.2 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=8190560 sum-squares=172433833294595; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1220 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=47992 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=6200 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=303495
+RESOURCE ms=304762.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315711520 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.320,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-41,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4000 sticks=0.096,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=12,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3420 us max 4479 us
+radv/ps4: large submissions: 512, avg 26866 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 23 us max 104 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.875,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=111,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=309794.4 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=8351584 sum-squares=174194811495571; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=880 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=48935 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=6351 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=308528
+RESOURCE ms=309794.5 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315625344 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.257,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=33,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.946,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,120,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.195,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=25,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.499,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=63,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.248,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=32,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=314795.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=8511648 sum-squares=174692496068319; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=796 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=49873 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=6501 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=313529
+RESOURCE ms=314795.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315694624 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.821,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=104,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.660,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=84,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 20000: 5 IBs (first 0x20001a400, 32 bytes) = 0, GPU completed 19999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.526,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=67,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=319800.3 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=8671776 sum-squares=174870829214756; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=50811 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=6651 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=318534
+RESOURCE ms=319800.4 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316171120 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.025,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-3,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.248,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,32,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.007,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=1,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=324830.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=8832768 sum-squares=175168441679619; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1180 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=51755 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=6802 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=323564
+RESOURCE ms=324830.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315771664 flexible-available=363855872 query-result=0
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3372 us max 4028 us
+radv/ps4: large submissions: 512, avg 31877 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 94 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.222,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=28,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.141,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=18,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.052,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-7,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.034,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-4,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=329862.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=8993824 sum-squares=175853425069763; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=52698 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=6953 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=328596
+RESOURCE ms=329862.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315728032 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.204,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-26,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.311,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=40,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 21000: 5 IBs (first 0x20001a100, 32 bytes) = 0, GPU completed 20999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=334863.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=9153824 sum-squares=176513822768726; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1308 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=53636 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=7103 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=333596
+RESOURCE ms=334863.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=315714528 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT screen=game->settings connected=1; gameplay neutral outside Game
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 707, avg 516 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 2154 us max 3868 us
+radv/ps4: large submissions: 317, avg 29296 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 92 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+INPUT screen=settings->game connected=1; gameplay neutral outside Game
+HEARTBEAT ms=341457.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=9364832 sum-squares=176862115144107; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=880 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=54872 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=7133 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=340191
+RESOURCE ms=341457.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=314459632 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+SCENE create-request ms=342726 previous_request_interval_ms=279363 name=PLAY_SCENE id=7 frame=7209; visible completion needs owner observation
+[cos] stage: A_mori room 0 created at frame 7217; Stage archive 23 files, stage.dzs found
+SCENE create-request ms=343026 previous_request_interval_ms=300 name=ROOM_SCENE id=20 frame=7218; visible completion needs owner observation
+[cos] COS_MIST_LOWRES=4: forest mist drawn at 1/4 resolution
+[cos] mist target 320x180 for a 1280x720 EFB (frame 7226)
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT screen=game->settings connected=1; gameplay neutral outside Game
+radv/ps4: submit 22000: 5 IBs (first 0x20001de00, 32 bytes) = 0, GPU completed 21999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+INPUT screen=settings->game connected=1; gameplay neutral outside Game
+HEARTBEAT ms=349311.5 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=9616128 sum-squares=176993748924392; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=752 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=56345 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=7241 last_resource=/res/Object/P1.arc resources=108 ms=348045
+RESOURCE ms=349311.6 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=314755504 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-0.481,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,61,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 913, avg 763 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1456 us max 3992 us
+radv/ps4: large submissions: 111, avg 30663 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 86 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.982,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-125,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.078,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-10,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.105,-0.911,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=13,116,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.168,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=21,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=354322.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=9776480 sum-squares=177081579328029; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=880 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=57284 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=7392 last_resource=/res/Object/P1.arc resources=108 ms=353055
+RESOURCE ms=354322.2 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316533952 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.132,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,17,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 23000: 5 IBs (first 0x20001db00, 32 bytes) = 0, GPU completed 22999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.937,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-119,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=359352.4 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=9937440 sum-squares=177603396428205; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=58227 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=7543 last_resource=/res/Object/P1.arc resources=108 ms=358086
+RESOURCE ms=359352.6 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316338928 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,1.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-0.177,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-22,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=364385.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=10098528 sum-squares=177821459261750; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=880 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=59171 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=7694 last_resource=/res/Object/P1.arc resources=108 ms=363119
+RESOURCE ms=364385.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316551056 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3534 us max 4149 us
+radv/ps4: large submissions: 512, avg 33053 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 68 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=369386.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=10258560 sum-squares=177992623711889; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1348 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=60109 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=7844 last_resource=/res/Object/P1.arc resources=108 ms=368119
+RESOURCE ms=369386.2 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316555776 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,-1.009,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,-127,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.007,-0.678,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-1,86,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.490,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-62,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=374419.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=10419616 sum-squares=178249973706850; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1136 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=61052 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=7995 last_resource=/res/Object/P1.arc resources=108 ms=373152
+RESOURCE ms=374419.2 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316358688 flexible-available=363855872 query-result=0
+radv/ps4: submit 24000: 5 IBs (first 0x20001d800, 32 bytes) = 0, GPU completed 23999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.499,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-63,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x100 sticks=0.000,0.000,0.000,0.000 triggers=1.000,0.000 game-buttons=0x40 game-sticks=0,0,0,0 game-triggers=255,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.069,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-9,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=379422.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=10579712 sum-squares=178541834022199; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1180 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=61990 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=8145 last_resource=/res/Object/P1.arc resources=108 ms=378156
+RESOURCE ms=379422.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316523360 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.544,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,69,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.785,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-100,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3541 us max 4166 us
+radv/ps4: large submissions: 512, avg 27929 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 23 us max 82 us
+HEARTBEAT ms=384452.8 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=10740704 sum-squares=179312379203460; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1392 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=62934 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=8296 last_resource=/res/Object/P1.arc resources=108 ms=383186
+RESOURCE ms=384452.9 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316367344 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-0.866,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,110,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.239,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,30,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.007,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,1,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.696,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-88,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=389485.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=10901728 sum-squares=179560177251813; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1052 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=63877 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=8447 last_resource=/res/Object/P1.arc resources=108 ms=388219
+RESOURCE ms=389485.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316359216 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 25000: 5 IBs (first 0x20001d500, 32 bytes) = 0, GPU completed 24999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.320,0.356,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=41,-45,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.025,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=3,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.114,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=15,-127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=394486.5 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=11061728 sum-squares=180312138662613; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=64815 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=8597 last_resource=/res/Object/P1.arc resources=108 ms=393220
+RESOURCE ms=394486.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316391888 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.016,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,-2,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.848,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,108,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.043,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,5,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.114,-0.937,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-15,119,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.347,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,-44,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=399487.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=11221824 sum-squares=181516817916572; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1564 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=65753 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=8747 last_resource=/res/Object/P1.arc resources=108 ms=398221
+RESOURCE ms=399488.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316457296 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.678,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,-86,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.025,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,-3,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3603 us max 4244 us
+radv/ps4: large submissions: 512, avg 23847 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 90 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-0.919,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,117,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.374,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-47,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=404520.2 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=11382848 sum-squares=181888598098700; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1092 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=66696 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=8898 last_resource=/res/Object/P1.arc resources=108 ms=403253
+RESOURCE ms=404520.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316375120 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.329,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,42,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.588,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=75,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 26000: 5 IBs (first 0x20001d200, 32 bytes) = 0, GPU completed 25999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.025,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-3,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=409521.4 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=11542880 sum-squares=182192174020877; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=880 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=67634 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=9048 last_resource=/res/Object/P1.arc resources=108 ms=408255
+RESOURCE ms=409521.5 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316432704 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.114,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=15,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.946,-0.034,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=120,4,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.177,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-22,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.562,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=71,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=414552.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=11703872 sum-squares=182994649728366; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1092 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=68577 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=9199 last_resource=/res/Object/P1.arc resources=108 ms=413286
+RESOURCE ms=414553.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316301376 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.445,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,57,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.508,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-65,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.991,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-126,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3583 us max 4239 us
+radv/ps4: large submissions: 512, avg 28395 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 107 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.311,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-40,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=419553.2 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=11863872 sum-squares=185649659563009; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1436 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=69515 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=9349 last_resource=/res/Object/P1.arc resources=108 ms=418286
+RESOURCE ms=419553.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316317968 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.588,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-75,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.016,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-2,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.186,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-24,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-1.009,-0.517,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-127,66,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 27000: 5 IBs (first 0x20001cf00, 32 bytes) = 0, GPU completed 26999, 0 memory writes checked, 0 disabled
+HEARTBEAT ms=424553.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=12023904 sum-squares=187755218111508; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1220 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=70452 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=9499 last_resource=/res/Object/P1.arc resources=108 ms=423287
+RESOURCE ms=424553.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316680288 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.919,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=117,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.767,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,97,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.141,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-18,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=429585.8 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=12184928 sum-squares=189522822893818; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=880 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=71396 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=9650 last_resource=/res/Object/P1.arc resources=108 ms=428319
+RESOURCE ms=429585.9 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316282688 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.732,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=93,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.606,-0.579,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-77,74,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.159,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-20,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=434586.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=12344960 sum-squares=190525296092085; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1348 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=72333 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=9800 last_resource=/res/Object/P1.arc resources=108 ms=433319
+RESOURCE ms=434586.2 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316630560 flexible-available=363855872 query-result=0
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3627 us max 4161 us
+radv/ps4: large submissions: 512, avg 22858 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 23 us max 86 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.875,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=111,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=439618.8 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=12505984 sum-squares=191650952108293; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1008 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=73277 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=9951 last_resource=/res/Object/P1.arc resources=108 ms=438352
+RESOURCE ms=439618.9 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316274528 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.078,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,-10,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 28000: 5 IBs (first 0x20001cc00, 32 bytes) = 0, GPU completed 27999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.016,-0.696,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=2,88,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.436,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=55,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.356,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-45,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.544,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=69,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=444619.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=12666048 sum-squares=195050171209710; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=924 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=74215 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=10101 last_resource=/res/Object/P1.arc resources=108 ms=443353
+RESOURCE ms=444619.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316301456 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,-0.579,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,74,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.633,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,80,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,-0.248,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,32,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=449652.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=12827072 sum-squares=198496957229280; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1264 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=75158 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=10252 last_resource=/res/Object/P1.arc resources=108 ms=448386
+RESOURCE ms=449652.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316284704 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3574 us max 4105 us
+radv/ps4: large submissions: 512, avg 20833 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 92 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.069,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=9,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.553,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-70,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=454655.0 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=12987168 sum-squares=200849591958019; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1308 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=76096 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=10402 last_resource=/res/Object/P1.arc resources=108 ms=453388
+RESOURCE ms=454655.1 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316444320 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.508,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=65,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.839,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-107,-127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 29000: 5 IBs (first 0x20001c900, 32 bytes) = 0, GPU completed 28999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.812,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=103,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=459685.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=13148128 sum-squares=202331731407423; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1392 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=77039 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=10553 last_resource=/res/Object/P1.arc resources=108 ms=458419
+RESOURCE ms=459685.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316292352 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.553,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=70,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.875,-0.374,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=111,47,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=464688.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=13308256 sum-squares=205351135554571; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1692 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=77978 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=10703 last_resource=/res/Object/P1.arc resources=108 ms=463422
+RESOURCE ms=464689.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316484288 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.239,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=30,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=1.000,-0.741,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=127,94,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3424 us max 4003 us
+radv/ps4: large submissions: 512, avg 26120 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 110 us
+HEARTBEAT ms=469719.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=13469216 sum-squares=206688855866839; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=964 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=78921 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=10854 last_resource=/res/Object/P1.arc resources=108 ms=468453
+RESOURCE ms=469719.8 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316338464 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.248,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-32,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.615,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,-78,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 30000: 5 IBs (first 0x20001c600, 32 bytes) = 0, GPU completed 29999, 0 memory writes checked, 0 disabled
+HEARTBEAT ms=474752.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=13630304 sum-squares=209806185923547; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1564 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=79865 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=11005 last_resource=/res/Object/P1.arc resources=108 ms=473486
+RESOURCE ms=474753.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316288096 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=479753.5 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=13790336 sum-squares=213357835797664; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1348 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=80802 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=11155 last_resource=/res/Object/P1.arc resources=108 ms=478487
+RESOURCE ms=479753.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316634624 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.177,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-22,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=484753.6 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=13950304 sum-squares=214819923749731; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1596 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=81740 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=11305 last_resource=/res/Object/P1.arc resources=108 ms=483487
+RESOURCE ms=484753.7 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316667008 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3328 us max 3954 us
+radv/ps4: large submissions: 512, avg 22142 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 23 us max 68 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x100 sticks=0.000,0.000,0.000,0.000 triggers=1.000,0.000 game-buttons=0x40 game-sticks=0,0,0,0 game-triggers=255,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x100 sticks=0.000,0.000,0.000,0.000 triggers=1.000,0.000 game-buttons=0x40 game-sticks=0,0,0,0 game-triggers=255,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2100 sticks=0.000,0.000,0.000,0.000 triggers=1.000,0.000 game-buttons=0x240 game-sticks=0,0,0,0 game-triggers=255,0 threshold=90%
+HEARTBEAT ms=489785.7 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=14111360 sum-squares=216687918904269; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1348 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=82683 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=11456 last_resource=/res/Object/P1.arc resources=108 ms=488519
+RESOURCE ms=489785.9 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316258432 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2100 sticks=0.000,0.000,0.000,0.000 triggers=1.000,0.000 game-buttons=0x240 game-sticks=0,0,0,0 game-triggers=255,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 31000: 5 IBs (first 0x20001c300, 32 bytes) = 0, GPU completed 30999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.651,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,-83,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=494785.9 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=14271360 sum-squares=219671479266172; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1008 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=83621 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=11606 last_resource=/res/Object/P1.arc resources=108 ms=493519
+RESOURCE ms=494786.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316241584 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.436,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-55,127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.562,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=71,-127,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=499819.1 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=14432416 sum-squares=223189614900806; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1476 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=84564 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=11757 last_resource=/res/Object/P1.arc resources=108 ms=498552
+RESOURCE ms=499819.3 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316256432 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.266,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=34,-127,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=1.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=127,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-0.248,0.025,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-32,-3,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=-1.009,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=-127,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 512, avg 112 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 3406 us max 3896 us
+radv/ps4: large submissions: 512, avg 20061 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 23 us max 96 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=504820.8 shaders-created=287 queued=0 checked-errors=0
+AUDIO dma-frames=14592480 sum-squares=223456804193056; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=1392 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=85502 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=11907 last_resource=/res/Object/P1.arc resources=108 ms=503554
+RESOURCE ms=504821.0 garlic=456327168 onion=5996544 buffers=57 main-mspace-allocated=316386128 flexible-available=363855872 query-result=0
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT screen=game->settings connected=1; gameplay neutral outside Game
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 32000: 5 IBs (first 0x20001c000, 32 bytes) = 0, GPU completed 31999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 965, avg 800 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1352 us max 4014 us
+radv/ps4: large submissions: 59, avg 27634 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 32 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 33000: 5 IBs (first 0x20001bd00, 32 bytes) = 0, GPU completed 32999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 844 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1220 us max 2826 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 34000: 5 IBs (first 0x20001ba00, 32 bytes) = 0, GPU completed 33999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 844 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1218 us max 2828 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=settings destination=quit; waiting for neutral release
+INPUT screen=settings->quit connected=1; gameplay neutral outside Game
+radv/ps4: submit 35000: 5 IBs (first 0x20001b700, 32 bytes) = 0, GPU completed 34999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=quit releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=quit releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=quit destination=exit; waiting for neutral release
+INPUT sample connected=1 screen=quit releasing=1 raw-buttons=0x4000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT screen=quit->exit connected=1; gameplay neutral outside Game
+EXIT code=0 ms=534563.6 checked-errors=0
+STAGE completed=shutdown-waiting-for-card ms=534563.6 build=bc90c33b639295f36912 errors=0
+SHUTDOWN card-status=1 (0=busy 1=idle -1=last-store-failed)
+STAGE completed=shutdown-card-finished ms=534566.2 build=bc90c33b639295f36912 errors=0
+scene=ROOM_SCENE(20) frame=11929 last_resource=/res/Object/P1.arc resources=108 ms=533301
+STAGE completed=shutdown-requesting-sdk-stop ms=534567.7 build=bc90c33b639295f36912 errors=0
+STAGE completed=shutdown-sdk-stop-requested ms=534568.9 build=bc90c33b639295f36912 errors=0
