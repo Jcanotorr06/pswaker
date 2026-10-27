@@ -199,6 +199,7 @@ class DesktopApp:
             if event == 'stage':
                 if result['event'] == 'started':
                     self.status.set({'validate': 'Validating image again…', 'verify-program': 'Checking bundled game and tools…',
+                                     'prepare': 'Preparing private workspace…', 'cleanup': 'Removing unfinished workspace…',
                                      'assemble': 'Creating private package…', 'inspect': 'Verifying freshly extracted package…',
                                      'publish': 'Publishing verified package…'}[result['stage']])
                 continue
