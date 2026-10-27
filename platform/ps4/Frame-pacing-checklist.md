@@ -1,5 +1,15 @@
 # Owner sampling checklist (#22)
 
+**Further optimization is deferred by owner decision.** Current performance is
+accepted as sufficient to proceed with the initial release candidate. This
+checklist is retained for future improvements and diagnostic/regression checks;
+it is not a request for another performance run before moving forward.
+See the [decision and evidence limits](evidence/performance-22/OWNER-DECISION.md).
+
+The candidate status and strict-target procedure below describe the previous
+performance-validation workflow. The owner decision controls the initial
+release-candidate performance gate.
+
 Status: **01.13 is untested on PS4.** The 01.12 warm samples met numerical limits;
 cold samples failed. Physical timing and internal shutdown evidence remain
 incomplete. Use the exact package/build/seed hashes in

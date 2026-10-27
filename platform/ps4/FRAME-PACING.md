@@ -1,5 +1,11 @@
 # Console frame pacing (#22)
 
+The [owner accepts current performance for the initial release candidate](evidence/performance-22/OWNER-DECISION.md)
+and defers further optimization to a future version. The numerical targets and
+sampling procedure below remain reference goals and diagnostic tools. More
+optimization runs are not required before proceeding with the initial release
+candidate; existing measurements and verification limits remain recorded.
+
 This instruments the existing playable baseline. A built candidate is **untested
 on the console** until its owner return identifies the installed package and
 binary. Outset and forest are independent samples; extended play to Dragon

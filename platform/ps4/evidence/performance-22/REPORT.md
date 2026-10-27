@@ -1,5 +1,12 @@
 # Frame-pacing candidate (#22)
 
+**Owner decision: current performance is sufficient to proceed with the initial
+release candidate; further optimization is deferred to a future version.**
+[OWNER-DECISION.md](OWNER-DECISION.md) records the revised performance gate,
+preserved shortfalls and handoff to integrated release-candidate work (#23).
+The preparation reports and requests for more optimization runs below are
+historical; they do not override this decision.
+
 Latest return: [01.12 cold/warm evidence](console-return-01.12/REPORT.md).
 Both warm samples meet the numerical limits; cold shader stalls remain.
 Physical timing verification and internal shutdown evidence remain pending.

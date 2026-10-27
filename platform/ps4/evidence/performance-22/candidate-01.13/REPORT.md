@@ -1,5 +1,10 @@
 # Seeded cold-preparation candidate 01.13
 
+The owner subsequently [accepted current performance as sufficient for the
+initial release candidate](../OWNER-DECISION.md) and deferred further optimization.
+The requests for renewed performance sampling below are historical. This decision
+does not supply a 01.13 console result or alter this package's recorded identity.
+
 This follows the [01.12 return](../console-return-01.12/REPORT.md). Both warm
 samples met every numerical limit with zero recorded shader waits. Cold Outset
 had 6,607.918540 ms of waits, and cold forest's 150.151814 ms maximum included
