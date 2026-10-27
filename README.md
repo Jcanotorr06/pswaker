@@ -14,10 +14,11 @@ The canonical planning map is [Plan the first playable Wind Waker port for PS4 S
 
 This repository and the releases contain no game data and no keys. You need your own disc, dumped yourself.
 
-The first [Windows desktop workflow](docs/desktop/README.md) selects and validates
-owner images through the production packaging boundary. Private Windows builds
-bundle the game-program identity and runtime; package creation and the per-user
-installer remain separate work.
+The [Windows desktop workflow](docs/desktop/README.md) selects and validates owner
+images, then creates complete packages with a bundled game program and native
+Windows packaging tools. Success requires fresh output extraction and inspection.
+Private builds include both runtimes; the per-user installer, clean-system and
+console acceptance remain separate work.
 
 The [returned save/settings checkpoint](evidence/ps4/persistence-20/console-return-2026-10-26/REPORT.md)
 confirms persistence after full relaunch, a separate complete-package update,
