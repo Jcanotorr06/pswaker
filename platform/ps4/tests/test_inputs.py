@@ -1,5 +1,6 @@
 """Preparation CLI contracts, using real files at the download boundary."""
 import json
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -10,9 +11,33 @@ import unittest
 import zipfile
 
 HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(HERE.parents[1] / 'tools/pswaker'))
+import build_inputs
+LOCATIONS = build_inputs.Locations()
 
 
 class InputTests(unittest.TestCase):
+    def test_relocated_source_preparation_rejects_changed_locked_archive(self):
+        with tempfile.TemporaryDirectory(prefix='pswaker checkout ') as folder:
+            repository = Path(folder) / 'relocated repository'
+            for name in ['platform/ps4', 'tools/pswaker']:
+                shutil.copytree(LOCATIONS.repository / name, repository / name,
+                                ignore=shutil.ignore_patterns('tests', 'evidence', '__pycache__'))
+            root = Path(folder) / 'build'
+            (root / 'downloads').mkdir(parents=True)
+            sources = json.loads((repository / 'platform/ps4/sources.lock.json').read_text())
+            for source in sources:
+                name = ('llvm-project-21.1.6.src.tar.xz' if source['path'] ==
+                        'src/llvm-project-21.1.6.src' else
+                        source['path'].replace('/', '-') + '.tar.gz')
+                (root / 'downloads' / name).write_bytes(b'changed archive')
+            command = repository / 'tools/pswaker/prepare-sources.py'
+            result = subprocess.run([sys.executable, str(command), str(root)],
+                                    cwd='/', capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('Source archive digest mismatch', result.stderr)
+            self.assertFalse((root / 'refs/dusklight').exists())
+
     def test_sdk_preparation_preserves_ps4_setjmp_directory_link(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
@@ -31,7 +56,7 @@ class InputTests(unittest.TestCase):
                                    ('libpng.tar.xz', 'w:xz'), ('bzip2.tar.bz2', 'w:bz2')]:
                 with tarfile.open(downloads / filename, mode):
                     pass
-            result = subprocess.run([sys.executable, str(HERE / 'prepare-sdk-sources.py'), str(root)],
+            result = subprocess.run([sys.executable, str(LOCATIONS.command('prepare-sdk-sources.py')), str(root)],
                                      capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             prepared = root / 'src/sdk-source/musl' / prefix / 'src/setjmp/ps4'
@@ -47,7 +72,7 @@ class InputTests(unittest.TestCase):
             lock.write_text(json.dumps({'archives': [{
                 'path': 'source.tar', 'url': 'https://example.invalid/source.tar',
                 'sha256': 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'}]}))
-            result = subprocess.run([sys.executable, str(HERE / 'inputs.py'), 'verify', str(root),
+            result = subprocess.run([sys.executable, str(LOCATIONS.command('inputs.py')), 'verify', str(root),
                                      '--lock', str(lock)], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
 
@@ -60,7 +85,7 @@ class InputTests(unittest.TestCase):
             lock.write_text(json.dumps({'archives': [{
                 'path': 'source.tar', 'url': 'https://example.invalid/source.tar',
                 'sha256': 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'}]}))
-            result = subprocess.run([sys.executable, str(HERE / 'inputs.py'), 'verify', str(root),
+            result = subprocess.run([sys.executable, str(LOCATIONS.command('inputs.py')), 'verify', str(root),
                                      '--lock', str(lock)], capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('SHA-256 mismatch: source.tar', result.stderr)

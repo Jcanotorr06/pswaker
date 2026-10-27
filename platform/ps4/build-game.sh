@@ -2,13 +2,14 @@
 # Build against an explicit maintained platform; never modify its diagnostic inputs.
 set -euo pipefail
 HERE=$(cd -- "$(dirname -- "$0")" && pwd)
+OWNERSHIP="$HERE/../../tools/pswaker/build_inputs.py"
 ROOT=$(realpath -m "${1:?Pass an absolute Linux game build-root path}")
 PLATFORM=$(realpath "${2:?Pass the verified maintained PS4 platform root}")
 VERSION=${3:-01.00}
 [[ "$ROOT" != "$PLATFORM" && "$ROOT" != *' '* ]] || { echo 'Use a separate game root without spaces' >&2; exit 1; }
 source "$PLATFORM/tools/env.sh"
 unset CC CXX CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
-python3 "$HERE/inputs.py" host "$PLATFORM"
+python3 "$(python3 "$OWNERSHIP" command inputs.py)" host "$PLATFORM"
 python3 "$HERE/prepare-game.py" "$ROOT" --platform-root "$PLATFORM"
 BUILD_ID=$(python3 "$HERE/game-build.py" identity "$ROOT" "$PLATFORM")
 cmake -S "$HERE/game" -B "$ROOT/build" -G Ninja \

@@ -81,19 +81,19 @@ Run from the repository root, with the **build directory on the Linux filesystem
 
 ```bash
 # Optional first-time provisioning, on a matching Ubuntu installation, as root:
-bash platform/ps4/install-host.sh
+bash tools/pswaker/install-host.sh
 
-python3 platform/ps4/inputs.py host /tmp
+python3 tools/pswaker/inputs.py host /tmp
 # Destination must not exist. Fetches recorded inputs without the live SDK database.
-bash platform/ps4/clean-build.sh "$HOME/.cache/pswaker/diagnostic-01.04"
+bash tools/pswaker/clean-build.sh "$HOME/.cache/pswaker/diagnostic-01.04"
 
 # Alternatively, reuse downloads from a previous root. No source/build libraries
 # are copied; every locked download is checked again before use.
-bash platform/ps4/clean-build.sh "$HOME/.cache/pswaker/diagnostic-01.04-new" \
+bash tools/pswaker/clean-build.sh "$HOME/.cache/pswaker/diagnostic-01.04-new" \
   "$HOME/.cache/pswaker/diagnostic-01.04"
 
 # Repeat inspection without rebuilding; extraction is always fresh:
-python3 platform/ps4/inspect-artifacts.py "$HOME/.cache/pswaker/diagnostic-01.04"
+python3 tools/pswaker/inspect-artifacts.py "$HOME/.cache/pswaker/diagnostic-01.04"
 ```
 
 `JOBS=5` is the default. Build paths must not contain spaces because the inherited
@@ -213,8 +213,8 @@ The agreed test boundaries are the preparation and artifact-inspection CLIs:
 
 ```bash
 python3 -m unittest discover -s platform/ps4/tests
-python3 -m compileall -q platform/ps4
-for script in platform/ps4/*.sh; do bash -n "$script"; done
+python3 -m compileall -q platform/ps4 tools/pswaker
+for script in platform/ps4/*.sh tools/pswaker/*.sh; do bash -n "$script"; done
 # After a build, also exercise the actual packaging tools and payload rejection:
 PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/diagnostic-01.04" \
   python3 -m unittest discover -s platform/ps4/tests

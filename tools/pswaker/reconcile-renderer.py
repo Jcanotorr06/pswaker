@@ -7,7 +7,9 @@ from pathlib import Path
 import subprocess
 import sys
 
-HERE = Path(__file__).resolve().parent
+import build_inputs
+
+PLATFORM = build_inputs.Locations().platform
 
 
 def digest(path):
@@ -15,7 +17,7 @@ def digest(path):
 
 
 def reconcile(root):
-    lock = json.loads((HERE / 'renderer.lock.json').read_text())
+    lock = json.loads((PLATFORM / 'renderer.lock.json').read_text())
     tree = root / 'src/aurora'
     # Check the whole input boundary before mutating any source file.
     for relative, expected in lock['initial_files'].items():
@@ -27,13 +29,13 @@ def reconcile(root):
             raise ValueError('Renderer source already exists: ' + relative)
     for item in lock['patches'] + lock['platform_reference_patches']:
         for path_key, sha_key in [('original', 'original_sha256'), ('patch', 'sha256')]:
-            if path_key in item and digest(HERE / item[path_key]) != item[sha_key]:
+            if path_key in item and digest(PLATFORM / item[path_key]) != item[sha_key]:
                 raise ValueError('Renderer patch SHA-256 mismatch: ' + item[path_key])
     applied = []
     for item in lock['patches']:
         if 'patch' not in item:
             continue
-        patch = HERE / item['patch']
+        patch = PLATFORM / item['patch']
         subprocess.run(['git', 'apply', '--check', str(patch)], cwd=tree, check=True)
         subprocess.run(['git', 'apply', str(patch)], cwd=tree, check=True)
         applied.append(item['name'])

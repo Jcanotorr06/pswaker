@@ -164,7 +164,8 @@ class BuildInputTests(unittest.TestCase):
                 old_directory = root / group['directory']
                 group['directory'] = 'tools/pswaker'
                 for name in group['files']:
-                    (old_directory / name).rename(root / 'tools/pswaker' / name)
+                    if old_directory != root / 'tools/pswaker':
+                        (old_directory / name).rename(root / 'tools/pswaker' / name)
                 declaration_path.write_text(json.dumps(declaration))
                 locations = build_inputs.Locations(root)
                 inputs = locations.maintained_inputs()

@@ -11,7 +11,9 @@ import sys
 import tarfile
 import zipfile
 
-HERE = Path(__file__).resolve().parent
+import build_inputs
+
+PLATFORM = build_inputs.Locations().platform
 
 
 def digest(path):
@@ -37,7 +39,7 @@ def archive(root, item, fetch):
 
 
 def check_host():
-    lock = json.loads((HERE / 'host.lock.json').read_text())
+    lock = json.loads((PLATFORM / 'host.lock.json').read_text())
     if Path('/etc/os-release').read_text() != lock['os_release']:
         raise ValueError('Host OS differs from host.lock.json')
     if subprocess.check_output(['uname', '-m'], text=True).strip() != lock['architecture']:
@@ -97,7 +99,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['fetch', 'verify', 'host', 'dependencies'])
     parser.add_argument('root', type=Path)
-    parser.add_argument('--lock', type=Path, default=HERE / 'dependencies.lock.json')
+    parser.add_argument('--lock', type=Path, default=PLATFORM / 'dependencies.lock.json')
     args = parser.parse_args()
     if args.action == 'host':
         check_host()

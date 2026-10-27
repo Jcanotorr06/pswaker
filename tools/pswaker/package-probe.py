@@ -10,10 +10,9 @@ import shutil
 import subprocess
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 import build_inputs
 
-HERE = Path(__file__).resolve().parent
+PLATFORM = build_inputs.Locations().platform
 
 
 def run(command, **kwargs):
@@ -55,12 +54,12 @@ if __name__ == "__main__":
     (tool_source / "global.json").write_text(json.dumps({"sdk": {"version": sdk_version, "rollForward": "disable"}}))
     for project in ['LibOrbisPkg.Core', 'PkgTool.Core']:
         lock = 'PkgTool.Core.packages.lock.json' if project == 'PkgTool.Core' else 'packages.lock.json'
-        shutil.copyfile(HERE / 'provenance/nuget' / lock, tool_source / project / 'packages.lock.json')
+        shutil.copyfile(PLATFORM / 'provenance/nuget' / lock, tool_source / project / 'packages.lock.json')
     with (root / "evidence/pkgtool-build.log").open("w") as log:
         run(["dotnet", "publish", "PkgTool.Core/PkgTool.Core.csproj", "-c", "Release",
              "--self-contained", "false", "-p:RestoreLockedMode=true", "-p:RestorePackagesWithLockFile=true",
              "-o", str(root / "build/pkgtool")], cwd=tool_source, env=env, stdout=log, stderr=subprocess.STDOUT)
-    run(["python3", str(HERE / "capture-inputs.py"), str(root)])
+    run(["python3", str(build_inputs.Locations().command("capture-inputs.py")), str(root)])
     output = root / "out"
     stage = root / "build/probe-stage"
     (stage / "sce_sys").mkdir(parents=True, exist_ok=True)
@@ -71,12 +70,12 @@ if __name__ == "__main__":
                 "hardware_status": "Not tested on a console; historical 01.02 results do not validate this artifact",
                 "diagnostic_scope": "Disc-free platform evidence only; not game correctness or performance",
                 "sources": json.loads((root / "evidence/source-archives.json").read_text()),
-                "sdk": json.loads((HERE / "sdk.lock.json").read_text()),
+                "sdk": json.loads((PLATFORM / "sdk.lock.json").read_text()),
                 "local_adaptations": json.loads((root / "evidence/local-adaptations.json").read_text()),
                 "input_closure": json.loads((root / "evidence/input-closure.json").read_text()),
-                "patch_series": json.loads((HERE / "patch-series.json").read_text()),
+                "patch_series": json.loads((PLATFORM / "patch-series.json").read_text()),
                 "renderer_reconciliation": json.loads((root / "evidence/renderer-reconciliation.json").read_text()),
-                "dependency_lock": json.loads((HERE / "dependencies.lock.json").read_text()),
+                "dependency_lock": json.loads((PLATFORM / "dependencies.lock.json").read_text()),
                 "dotnet_sdk": sdk_version, "eboot_sha256": digest(executable),
                 "owner_reported_baseline": {"console": "PS4 Slim", "firmware": "9.00", "homebrew": "GoldHEN v2.4b18", "status": "Confirm for each hardware run; not queried by the app"}}
     manifest_file = stage / "build-info.json"
