@@ -66,7 +66,7 @@ required owner check. The check never alters installed content or save files.
 Use the locked WSL2/Linux host and verified #15 platform. A fresh game root
 preserves the earlier owner-tested build:
 
-    bash platform/ps4/build-game.sh "$HOME/.cache/pswaker/game-18" \
+    bash tools/pswaker/build-game.sh "$HOME/.cache/pswaker/game-18" \
       "$HOME/.cache/pswaker/maintained-15-a" 01.05
 
 Assemble and freshly inspect using the normal

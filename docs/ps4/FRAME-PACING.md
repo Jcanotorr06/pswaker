@@ -143,7 +143,7 @@ the private returned launch, fill in actual package/build/platform/cache and
 sample observations, then run on Linux/WSL2:
 
 ```bash
-python3 platform/ps4/frame-pacing.py /path/to/returned-launch \
+python3 tools/pswaker/frame-pacing.py /path/to/returned-launch \
   --inspection /path/to/inspection.json \
   --owner /path/to/owner.json \
   --output /path/to/new-analysis-directory

@@ -140,7 +140,7 @@ profile must remain held; use only a completed **disposable** GCI from this
 candidate. Prepare cases on WSL2 with a new absent private output directory:
 
 ```bash
-python3 platform/ps4/storage-cases.py \
+python3 tools/pswaker/storage-cases.py \
   --seed /absolute/private/disposable-seed.gci \
   --inspection "$HOME/.local/share/pswaker-private/performance-22-01.13-final/inspection.json" \
   --output "$HOME/.local/share/pswaker-private/integrated-23-storage-cases"

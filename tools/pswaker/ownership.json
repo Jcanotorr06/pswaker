@@ -24,7 +24,7 @@
       ]
     },
     "game": {
-      "directory": "platform/ps4",
+      "directory": "tools/pswaker",
       "files": [
         "build-game.sh", "complete-package.py", "content-failure-package.py",
         "disc_image.py", "frame-pacing.py", "game-build.py",

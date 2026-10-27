@@ -96,7 +96,7 @@ outside the Git repository. It never connects to or modifies the console.
 Use the unchanged verified #15 platform inputs and a separate Linux/WSL2 root:
 
 ```bash
-bash platform/ps4/build-game.sh "$HOME/.cache/pswaker/game-21" \
+bash tools/pswaker/build-game.sh "$HOME/.cache/pswaker/game-21" \
   "$HOME/.cache/pswaker/maintained-15-a" 01.09
 export PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-21"
 export PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/maintained-15-a"
