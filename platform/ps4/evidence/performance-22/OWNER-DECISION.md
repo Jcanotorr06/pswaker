@@ -11,6 +11,10 @@ remaining cold shader stalls are deferred to a future version. Additional
 optimization candidates or strict numerical-target passes are not prerequisites
 for moving forward with this initial release candidate.
 
+Deferred improvements are tracked separately in
+[issue #51: Improve cold-cache frame pacing in a future release](https://github.com/Jcanotorr06/pswaker/issues/51).
+That follow-up does not block the initial release candidate.
+
 The original average >=29.5 FPS, p95 <=35 ms, p99 <=50 ms and maximum <=100 ms
 targets remain recorded as reference goals for future improvements. The owner's
 decision changes the initial release-candidate performance gate; it does not
