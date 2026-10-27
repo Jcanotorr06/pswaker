@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 
 from disc_image import CONTRACT, require, validate
 from package_artifact import (IDENTITIES, INSTALLED_IMAGE, Stages, content_id, digest,
-                              inspect_package, inventory, sfo_fields, write_json)
+                              expected_sfo_fields, inspect_package, inventory, sfo_fields, write_json)
 from package_validation import validate_selection
 from program_payload import PROGRAM_FILES, bundled_program
 
@@ -68,10 +68,8 @@ def checked_program(bundle):
             'Bundled game ELF/build identity mismatch')
     fields = sfo_fields((root / 'stage/sce_sys/param.sfo').read_bytes())
     identity = IDENTITIES['game']
-    require(all(fields.get(key) == value for key, value in {
-        'TITLE_ID': identity['title_id'], 'CONTENT_ID': content_id(identity), 'TITLE': identity['title'],
-        'APP_VER': version, 'VERSION': version, 'CATEGORY': 'gd', 'APP_TYPE': 1,
-        'ATTRIBUTE': 0, 'SYSTEM_VER': 0}.items()), 'Bundled game SFO identity mismatch')
+    require(all(fields.get(key) == value for key, value in expected_sfo_fields(identity, version).items()),
+            'Bundled game SFO identity mismatch')
     return version, release
 
 

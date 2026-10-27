@@ -1,5 +1,4 @@
 """Real native Windows package round trips through the application boundary."""
-import json
 import os
 from pathlib import Path
 import subprocess

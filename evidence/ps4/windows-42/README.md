@@ -30,12 +30,39 @@ The retained private reports contain exact payload hashes, metadata, program and
 tool identities, measured timings and installation instructions. Completed
 outputs stayed outside the checkout and were never uploaded.
 
+## Final frozen-executable run
+
+After the review follow-up, the final PyInstaller `PSWaker.exe` completed the
+actual native image/destination dialogs, validation, creation and verified result.
+It ran outside the checkout, with `PATH` restricted to Windows system directories
+and `DOTNET_ROOT` pointing to an absent directory. Native dialog controls were
+automated through Windows messages/pointer actions; no production validation or
+packaging function was substituted. This tests bundled runtime use on this
+development host, not clean-machine or network-disabled acceptance.
+
+- Desktop executable SHA-256:
+  `df8f90d2b28f52f5105c6e74fbd74c58096b79cb4c0cfffc3791f7bae2fbb9f5`.
+- Bundled `desktop-release.json` SHA-256:
+  `9c7d2a4207f48fd7cdb5b7935ef22e19eea8a87f79ca8797f31bd79e2bb33475`.
+- Complete package SHA-256:
+  `54d5f130b354b4f0d196aebb4394e22da23b45eb77251b147167aba4a1080e9c`.
+- Package size: **1,516,634,112 bytes**. Application/program/image identities
+  matched the production-image run above, and a subsequent source-image hash
+  confirmed the original remained unchanged.
+- Measured validation / bundled-input checks / assembly / fresh inspection:
+  **1.703 / 2.047 / 20.985 / 14.031 seconds**.
+
 ## Reproducible automated coverage
 
 Final host checks passed: **8 desktop tests**, **6 native Windows package
 tests**, and **114 tests** in the full Linux suite with real reference packaging
 tools (**41 environment-dependent skips**). Pyright reported **0 errors and
 0 warnings**; Python compilation checks passed.
+
+The Windows test files and the real Linux diagnostic package round trip passed
+again after consolidating the shared SFO metadata policy during review.
+Standards review: **0 outstanding findings** (one optional duplication was
+resolved). Spec review: **0 findings**.
 
 Use `PSWAKER_WINDOWS_TOOLS` to select the maintainer-prepared closure, then run
 the desktop and Windows package test files described in

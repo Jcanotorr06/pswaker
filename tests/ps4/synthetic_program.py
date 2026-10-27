@@ -1,6 +1,4 @@
 """Data-free program fixture, used only in isolated copies of the production app."""
-import json
-from pathlib import Path
 import shutil
 import struct
 import subprocess

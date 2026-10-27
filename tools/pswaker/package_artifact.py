@@ -78,6 +78,13 @@ def validate_pipeline_seed(db, *, allow_merge_metadata=False):
 def content_id(identity):
     return f'IV0000-{identity["title_id"]}_00-{identity["label"].ljust(16, "0")}'
 
+
+def expected_sfo_fields(identity, version):
+    return {'TITLE_ID': identity['title_id'], 'CONTENT_ID': content_id(identity),
+            'TITLE': identity['title'], 'APP_VER': version, 'VERSION': version,
+            'CATEGORY': 'gd', 'APP_TYPE': 1, 'ATTRIBUTE': 0, 'SYSTEM_VER': 0}
+
+
 def sfo_fields(data):
     require(data[:4] == b'\0PSF' and len(data) >= 20, 'Invalid packaged SFO')
     keys, values, count = struct.unpack_from('<III', data, 8)
@@ -138,10 +145,7 @@ def inspect_package(work, tools):
             tools.run([tools.pkgtool, 'pkg_extractentry', package, rows[0][3], target])
             require(digest(target) == expected['sce_sys/' + name], f'Packaged {name} SHA-256 mismatch')
         fields = sfo_fields((metadata / 'param.sfo').read_bytes())
-        for key, value in {'TITLE_ID': identity['title_id'], 'CONTENT_ID': content_id(identity),
-                           'TITLE': identity['title'], 'APP_VER': report['app_version'],
-                           'VERSION': report['app_version'], 'CATEGORY': 'gd',
-                           'APP_TYPE': 1, 'ATTRIBUTE': 0, 'SYSTEM_VER': 0}.items():
+        for key, value in expected_sfo_fields(identity, report['app_version']).items():
             require(fields.get(key) == value, f'Package SFO identity/metadata mismatch: {key}')
         require(json.loads((payload / 'complete-package.json').read_text()) == report['manifest'],
                 'Packaged complete-package manifest mismatch')
