@@ -27,15 +27,18 @@ for the captured GBA shutdown panic. Its [controlled owner checklist](platform/p
 isolates genuine progress and exercises failure/pending-write behavior. Installed
 console acceptance remains pending for that exact binary.
 
-The [frame-pacing candidate](platform/ps4/FRAME-PACING.md) records completed PS4
-game-frame flips, separate Outset/forest samples, shader waits and startup/loading
-phases. Its [owner sampling checklist](platform/ps4/Frame-pacing-checklist.md)
-and [01.10 owner return](platform/ps4/evidence/performance-22/console-return-01.10/REPORT.md)
-retain all four measured scene shortfalls. The
-[01.11 follow-up candidate](platform/ps4/evidence/performance-22/candidate-01.11/REPORT.md)
-removes release debugger-output duplication and records diagnostic costs.
-Verified timing, passing console samples and remaining bottleneck corrections
-are still required.
+The [frame-pacing instrumentation](platform/ps4/FRAME-PACING.md) records completed
+PS4 game-frame flips, independent Outset/forest samples, shader waits and separate
+startup/loading phases. The [01.12 return](platform/ps4/evidence/performance-22/console-return-01.12/REPORT.md)
+preserves warm numerical successes, cold shortfalls and unverified physical timing.
+The owner [accepts current performance for the initial release candidate](platform/ps4/evidence/performance-22/OWNER-DECISION.md)
+and defers further optimization to [#51](https://github.com/Jcanotorr06/pswaker/issues/51).
+
+The [integrated first-playable review](platform/ps4/evidence/integrated-23/REPORT.md)
+uses the existing **01.13** complete package, retaining its exact identity and
+the performance exception. The [consolidated owner checklist](platform/ps4/Integrated-checklist.md)
+covers the 01.12-to-01.13 update, repeated route, controls/audio, save/recovery,
+shutdown and evidence return. **Final integrated console acceptance remains pending.**
 
 ## Standing on the shoulders of others
 

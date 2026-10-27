@@ -1,0 +1,10 @@
+{
+  "source_commit": "91909bfadf14ac6d69ab7fccd61d32103208d907",
+  "source_archive_sha256": "5466bc3386525f93658f54156f15d1490270311dd8ad1d5f3faab63bd5da7016",
+  "compiled_build_id": "f236a035ac406940e76a",
+  "current_matches_compiled": true,
+  "compiled_inputs_sha256": "296bbf56b37cced89c1a9dd5a0dbf6796e9d613841262d511ea7daa16da39c53",
+  "platform_input_count": 10989,
+  "port_input_count": 142,
+  "console_runs_created": 0
+}

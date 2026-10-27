@@ -1,0 +1,79 @@
+{
+  "scope": "String multiset and symbol-target comparison; ordering/offsets and unexamined DWARF records are not semantic-equivalence proof",
+  "string_multisets": {
+    ".rodata": {
+      "normalized_all_NUL_segment_multisets_equal": false,
+      "excess_segment_counts": [
+        117,
+        118
+      ],
+      "excess_printable_strings": [
+        [
+          {
+            "string": "21:43:44",
+            "count": 1
+          }
+        ],
+        [
+          {
+            "string": "21:43:56",
+            "count": 1
+          }
+        ]
+      ],
+      "excess_nonprintable_segment_counts": [
+        116,
+        117
+      ]
+    },
+    ".debug_str": {
+      "normalized_all_NUL_segment_multisets_equal": true,
+      "excess_segment_counts": [
+        0,
+        0
+      ],
+      "excess_printable_strings": [
+        [],
+        []
+      ],
+      "excess_nonprintable_segment_counts": [
+        0,
+        0
+      ]
+    }
+  },
+  "changed_symbols": [
+    {
+      "symbol": "_ZZN13dFile_error_c10setMessageEPcE3txt",
+      "same_except_value": true,
+      "value_a": 31599389,
+      "value_b": 31599359,
+      "declared_bytes": 6,
+      "declared_extent_target_bytes_equal": true
+    },
+    {
+      "symbol": "_ZZN10daNpc_Tc_c9setTexAnmEvE21a_tex_pattern_num_tbl",
+      "same_except_value": true,
+      "value_a": 32434170,
+      "value_b": 32431867,
+      "declared_bytes": 2,
+      "declared_extent_target_bytes_equal": true
+    },
+    {
+      "symbol": "png_formatted_warning.valid_parameters",
+      "same_except_value": true,
+      "value_a": 31576429,
+      "value_b": 31576585,
+      "declared_bytes": 10,
+      "declared_extent_target_bytes_equal": true
+    },
+    {
+      "symbol": "sqlite3_str_vappendf.zOrd",
+      "same_except_value": true,
+      "value_a": 32637724,
+      "value_b": 32636973,
+      "declared_bytes": 9,
+      "declared_extent_target_bytes_equal": true
+    }
+  ]
+}
