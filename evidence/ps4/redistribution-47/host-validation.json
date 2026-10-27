@@ -1,0 +1,10 @@
+{
+  "notice_records_rehashed": 126,
+  "json_parse": "passed",
+  "checkpoint_python_syntax": "passed",
+  "new_document_local_links": "passed",
+  "pyright_returncode": 0,
+  "pyright_result": "0 errors, 0 warnings, 0 informations",
+  "native_inputs_changed": false,
+  "tdd": "No product behavior or maintained implementation changed; existing public-boundary tests reused."
+}

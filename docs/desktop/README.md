@@ -299,3 +299,7 @@ account, network and OS matrix. These observations do not
 establish clean Windows 10/11 offline acceptance (#48), installed-console and
 update/save acceptance (#49), or public release readiness (#47/#50). Run those
 checklists using the exact candidate bundle and package identities.
+
+The [#47 inherited-program audit](../ps4/INHERITED-PROGRAM-AUDIT.md) records the
+actual retained module/stub inputs, upstream source findings and concrete
+remaining distribution blockers. It does not clear the eventual installer.

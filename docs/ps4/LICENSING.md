@@ -6,6 +6,12 @@ for a combined distribution. No game data, disc images or private keys are input
 The packager's generated fake-PKG keystone is packaging metadata, not an owner's
 game/decryption/signing key.
 
+The [#47 inherited-program audit](INHERITED-PROGRAM-AUDIT.md) adds a rechecked
+game/module/stub inventory, retained notice texts and primary-source research.
+It finds published source candidates for all three sample modules and narrows
+the remaining binary/source and grant questions. Distribution remains blocked;
+the issue stays open. Earlier evidence files retain their historical conclusions.
+
 ## Verified provenance
 
 All 14 committed PacBrew `PKGBUILD` files match the `pkgbuild_sha256sum` in the
@@ -42,7 +48,7 @@ The exact payload allowlist rejects additional private modules or other files.
 | Dawn, Abseil, SDL3, Aurora and fetched dependencies | Retain their exact source trees, licenses and third-party notices; the notice inventory includes nested fetched sources. |
 | LLVM 12 / LLVM 21 | Preserve Apache-2.0 with LLVM exception and all relevant runtime/third-party notices from the pinned trees. |
 | LibOrbisPkg | Preserve its source license and the provenance of the selected PS4 patch; a source-built host packager is separate from target runtime code. |
-| SDK sample libSceFios2.prx, libc.prx, right.sprx | Exact binary provenance is verified. Per-file redistribution grants and any corresponding-source obligations are unresolved. Presence in the SDK/source archive is not clearance. |
+| SDK sample libSceFios2.prx, libc.prx, right.sprx | Exact binary provenance is verified. OpenOrbis publishes module source candidates and GPLv3 project/build-script evidence; reconcile the exact prebuilts, CRT and embedded assets with that source and applicable terms. See the #47 audit. Presence in the SDK/source archive alone is not clearance. |
 | SDK import stubs | The matching orbis-lib-gen recipe names a checksummed release binary pool and a separately checksummed libSceLibcInternal.so. Preserve that provenance; do not claim these are rebuilt implementation libraries or that a database version supplies their missing source. |
 
 Before distribution, resolve the outstanding per-file/module/stub rights and

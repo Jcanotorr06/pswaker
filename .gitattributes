@@ -22,3 +22,8 @@
 /evidence/ps4/verification-15/**/*.log whitespace=-trailing-space,-blank-at-eof
 /evidence/ps4/verification-15/**/elf-*.txt whitespace=-trailing-space,-blank-at-eof
 /evidence/ps4/verification-15/console/** whitespace=-trailing-space,-blank-at-eof
+# Preserve the original upstream notices and inspection output for the #47 audit.
+/evidence/ps4/redistribution-47/checked/notices/** whitespace=-trailing-space,-blank-at-eof,cr-at-eol
+/evidence/ps4/redistribution-47/checked/elf-dynamic.txt whitespace=-trailing-space
+/evidence/ps4/redistribution-47/checked/link-rule.txt whitespace=-blank-at-eof
+/evidence/ps4/redistribution-47/module-source-candidates/** whitespace=-trailing-space,-blank-at-eof,cr-at-eol
