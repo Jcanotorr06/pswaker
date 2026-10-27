@@ -27,7 +27,8 @@
       "files": [
         "build-game.sh", "complete-package.py", "content-failure-package.py",
         "disc_image.py", "frame-pacing.py", "game-build.py",
-        "prepare-content-contract.py", "prepare-game.py", "storage-cases.py"
+        "prepare-content-contract.py", "prepare-game.py", "storage-cases.py",
+        "package_validation.py", "desktop_app.py", "PSWaker.pyw", "build-desktop.py", "program_payload.py"
       ]
     }
   }

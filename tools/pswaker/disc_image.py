@@ -3,10 +3,13 @@ import hashlib
 import json
 from pathlib import Path
 import struct
+import sys
 
-import build_inputs
-
-PLATFORM = build_inputs.Locations().platform
+if getattr(sys, 'frozen', False):
+    PLATFORM = Path(getattr(sys, '_MEIPASS')) / 'platform/ps4'
+else:
+    import build_inputs
+    PLATFORM = build_inputs.Locations().platform
 CONTRACT = PLATFORM / 'content-contract.json'
 MAX_CONTAINER = 64 << 20
 
