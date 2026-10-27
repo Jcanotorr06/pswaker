@@ -10,6 +10,7 @@
     "tools/pswaker/build-desktop.py",
     "tests/ps4/test_desktop.py",
     "tests/ps4/test_windows_package.py",
+    "tests/ps4/test_windows_tools.py",
     "tests/ps4/synthetic_program.py"
   ],
   "extraPaths": ["tools/pswaker"],

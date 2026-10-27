@@ -18,8 +18,6 @@ from windows_package import TOOL_REVISION as REVISION, TOOL_ARCHIVE as ARCHIVE_S
 def prepare(dotnet, output):
     output = output.resolve()
     require(not output.exists(), 'Tool output must not already exist')
-    version = subprocess.check_output([str(dotnet), '--version'], text=True).strip()
-    require(version == SDK_VERSION, f'Use the pinned .NET SDK {SDK_VERSION} for this maintainer build')
     url = f'https://api.github.com/repos/OpenOrbis/LibOrbisPkg/tarball/{REVISION}'
     with urllib.request.urlopen(url) as response:
         archive = response.read()
@@ -30,6 +28,9 @@ def prepare(dotnet, output):
             source.extractall(work, filter='data')
         source_root, = [p for p in work.iterdir() if p.is_dir()]
         write_json(source_root / 'global.json', {'sdk': {'version': SDK_VERSION, 'rollForward': 'disable'}})
+        # SDK resolution starts at cwd, even when publish receives an absolute project path.
+        version = subprocess.check_output([str(dotnet), '--version'], cwd=source_root, text=True).strip()
+        require(version == SDK_VERSION, f'Use the pinned .NET SDK {SDK_VERSION} for this maintainer build')
         # The established host adaptation, now published with its Windows runtime.
         for project in ['LibOrbisPkg.Core', 'PkgTool.Core']:
             path = source_root / project / (project + '.csproj')
@@ -38,7 +39,7 @@ def prepare(dotnet, output):
         subprocess.run([str(dotnet), 'publish', str(source_root / 'PkgTool.Core/PkgTool.Core.csproj'),
                         '-c', 'Release', '-r', 'win-x64', '--self-contained', 'true',
                         '-p:PublishTrimmed=false', '-p:DebugType=None', '-p:DebugSymbols=false',
-                        '-o', str(publish)], check=True)
+                        '-o', str(publish)], cwd=source_root, check=True)
         write_json(publish / 'tool-release.json', {
             'schema': 1, 'platform': 'win-x64', 'source_revision': REVISION,
             'source_archive_sha256': ARCHIVE_SHA256, 'sdk': SDK_VERSION,
