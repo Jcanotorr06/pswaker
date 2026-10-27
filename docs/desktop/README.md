@@ -2,9 +2,10 @@
 
 Issues [#41](https://github.com/Jcanotorr06/pswaker/issues/41),
 [#42](https://github.com/Jcanotorr06/pswaker/issues/42) and
-[#43](https://github.com/Jcanotorr06/pswaker/issues/43) and
-[#44](https://github.com/Jcanotorr06/pswaker/issues/44) provide the local desktop
-selection, validation, assembly, failure handling and verified-result flow from
+[#43](https://github.com/Jcanotorr06/pswaker/issues/43),
+[#44](https://github.com/Jcanotorr06/pswaker/issues/44) and
+[#45](https://github.com/Jcanotorr06/pswaker/issues/45) provide the local desktop
+selection, validation, assembly, failure handling, private reports and verified-result flow from
 [#39](https://github.com/Jcanotorr06/pswaker/issues/39). This is a private
 development bundle. Installer delivery, clean Windows acceptance, console
 acceptance and redistribution clearance remain separate work.
@@ -65,8 +66,41 @@ that workspace and retrying. Existing owner files and completed packages are
 preserved. Choose another parent folder when the proposed output already exists.
 Images and completed packages remain private; there are no accounts, uploads,
 telemetry, runtime downloads, WSL, Docker, shell scripts or source compilation
-in this consumer workflow. The installer belongs to #46; diagnostic export
-belongs to #45.
+in this consumer workflow. The installer belongs to #46.
+
+## Private troubleshooting reports
+
+After validation or package creation finishes, fails or is cancelled, select
+**Export troubleshooting report…** and choose a new `.json` filename. Export is
+explicit, works offline and never replaces an existing file. If saving fails,
+the app explains how to retry while preserving the original failure on screen
+and retaining its report in memory. Selecting a different image or destination
+does not change that report; starting another operation replaces it. Export the
+report before retrying or closing the app if you want to keep that attempt.
+
+The report contains a unique operation ID, UTC start time, app/program versions
+and manifest fingerprints, supported program build identities, packaging-tool
+revision/SDK and manifest fingerprint, measured stage outcomes/timings, tool
+operation names/exit codes, and validated image/package hashes when available.
+It distinguishes declared bundle metadata from the verified snapshots actually
+used. Unavailable identities remain empty, including a package hash when failure
+occurs before a package exists. A failed inspection never implies verification.
+
+Reports use an allowlist of structured fields. Personal paths and filenames,
+command arguments, raw exception messages (including nested errors/notes), tool
+output and arbitrary manifest fields are omitted altogether. Failure categories,
+OS error codes and stage-specific recovery guidance provide context without
+copying that sensitive text. No log directories, file attachments, disc bytes,
+extracted game files, keys or credentials are collected. Temporary export files
+contain only this sanitized JSON and are removed after saving or a failed write.
+
+Only the exported JSON is intended for sharing. Local developer logs and the
+private package folder can contain personal paths and raw tool output; do not
+bundle them with the report. Reports stay on your computer until you choose to
+share them. There is no upload, telemetry, sign-in or automatic tool download.
+Diagnostic evidence establishes neither console acceptance nor redistribution
+clearance. This implements [#45](https://github.com/Jcanotorr06/pswaker/issues/45);
+the public Windows/console acceptance gates below remain separate.
 
 ## Content and release integrity
 

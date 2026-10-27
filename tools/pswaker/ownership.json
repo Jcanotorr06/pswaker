@@ -30,7 +30,7 @@
         "prepare-content-contract.py", "prepare-game.py", "storage-cases.py",
         "package_validation.py", "desktop_app.py", "PSWaker.pyw", "build-desktop.py", "program_payload.py",
         "package_artifact.py", "windows_package.py", "prepare-windows-tools.py",
-        "build_operation.py", "owned_work.py", "windows_process.py"
+        "build_operation.py", "owned_work.py", "windows_process.py", "diagnostics.py"
       ]
     }
   }

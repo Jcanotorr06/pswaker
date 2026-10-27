@@ -15,6 +15,7 @@ from package_artifact import StageFailure, Stages
 from windows_package import create_package, INSTALL_INSTRUCTIONS
 from build_operation import BuildCancelled, BuildOperation
 from owned_work import recover_abandoned, save_evidence
+from diagnostics import DiagnosticExportError
 
 
 def file_identity(path):
@@ -89,6 +90,9 @@ class DesktopApp:
         self.progress.grid(sticky='ew', pady=(16, 8))
         ttk.Label(frame, textvariable=self.status, wraplength=680, font=('Segoe UI', 10, 'bold')).grid(sticky='w')
         ttk.Label(frame, textvariable=self.details, wraplength=680, justify='left').grid(sticky='w', pady=(8, 16))
+        self.export_button = ttk.Button(frame, text='Export troubleshooting report…',
+                                        command=self.export_diagnostics, state='disabled')
+        self.export_button.grid(sticky='w', pady=(0, 12))
         ttk.Separator(frame).grid(sticky='ew')
         ttk.Label(frame, text='Validation runs locally. Your image is only read; nothing is uploaded.\n'
                   'Create a private complete package, then install it manually from USB. Play without USB after installation.',
@@ -132,6 +136,8 @@ class DesktopApp:
         self.refresh_actions()
 
     def refresh_actions(self):
+        self.export_button.configure(state='normal' if self.operation and not self.busy
+                                     and self.operation.diagnostics.outcome != 'running' else 'disabled')
         self.cancel_button.configure(state='normal' if self.busy and self.operation
                                      and not self.operation.cancelled.is_set() else 'disabled')
         self.validate_button.configure(state='normal' if self.image and self.output and not self.busy else 'disabled')
@@ -178,28 +184,53 @@ class DesktopApp:
     def validate(self, generation, image, output):
         start = time.monotonic()
         report, identity, error = None, None, None
+        operation = self.operation
+        assert operation is not None
         try:
-            identity = (file_identity(image), file_identity(CONTRACT))
-            assert self.operation is not None
-            with self.operation.bind(), Stages(self.operation.emit)('validate'):
+            operation.diagnostics.capture_bundle(self.bundle)
+            with operation.bind(), Stages(operation.emit)('validate'):
+                identity = (file_identity(image), file_identity(CONTRACT))
                 report = validate_selection(image, output)
-            require(identity == (file_identity(image), file_identity(CONTRACT)),
-                    'The image or validation contract changed during validation. Select a stable local file and retry.')
+                require(identity == (file_identity(image), file_identity(CONTRACT)),
+                        'The image or validation contract changed during validation. Select a stable local file and retry.')
         except BuildCancelled:
             error = 'cancelled'
+            operation.diagnostics.finish('cancelled')
         except (OSError, ValueError, KeyError, TypeError) as failure:
+            operation.diagnostics.finish('failed', 'validate', failure)
             cause = failure.__cause__ if isinstance(failure, StageFailure) else failure
             if isinstance(cause, OSError):
                 error = f'Cannot access the image or destination: {cause.strerror or str(cause)}. '
                 error += 'Choose readable local files and a writable private folder, then retry.'
             else:
                 error = str(failure) + '\nReview your selections and validate again.'
-        except Exception:
+        except Exception as failure:
+            operation.diagnostics.finish('failed', 'validate', failure)
             error = 'Validation could not finish. Reopen the application and retry with a stable local image.'
-        if self.operation:
-            save_evidence(self.operation.events, 'cancelled' if error == 'cancelled' else
-                          'failed' if error else 'complete', error)
+        if not error:
+            operation.diagnostics.record_image(report)
+            operation.diagnostics.finish('complete')
+        save_evidence(operation.events, 'cancelled' if error == 'cancelled' else
+                      'failed' if error else 'complete', error)
         self.results.put((generation, report, identity, error, time.monotonic() - start))
+
+    def export_diagnostics(self):
+        if self.busy or self.operation is None or self.operation.diagnostics.outcome == 'running':
+            return
+        selected = filedialog.asksaveasfilename(parent=self.root, title='Export private troubleshooting report',
+            initialfile='PSWaker-troubleshooting.json', defaultextension='.json',
+            filetypes=[('Troubleshooting report', '*.json')])
+        if not selected:
+            return
+        try:
+            self.operation.diagnostics.export(Path(selected))
+        except DiagnosticExportError as error:
+            messagebox.showerror('Could not export report', str(error), parent=self.root)
+        else:
+            messagebox.showinfo('Report saved locally',
+                'The report omits personal paths, raw logs, game data, keys and credentials. '
+                'It stays here until you choose to share it. It does not establish console acceptance '
+                'or redistribution clearance.', parent=self.root)
 
     def start_package(self):
         if self.busy or not self.accepted or self.image is None or self.output is None:
