@@ -62,6 +62,7 @@ def select_fields(source, patterns):
 
 HASH = r'[0-9a-f]{64}'
 VERSION = r'[0-9]{2}\.[0-9]{2}'
+DESKTOP_VERSION = VERSION + r'|[0-9]{1,5}(?:\.[0-9]{1,5}){3}'
 
 
 class DiagnosticExportError(ValueError):
@@ -85,7 +86,7 @@ class Diagnostics:
     def capture_bundle(self, bundle):
         # Snapshot metadata at the start, never re-read a different bundle on export.
         for name, target, patterns in [
-            ('desktop-release.json', self.app, {'app_version': VERSION}),
+            ('desktop-release.json', self.app, {'app_version': DESKTOP_VERSION}),
             ('program/program-release.json', self.program,
              {'build_id': r'[0-9a-f]{20}|' + HASH, 'elf_sha256': HASH, 'eboot_sha256': HASH}),
             ('packaging/tool-release.json', self.tools,

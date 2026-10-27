@@ -25,6 +25,23 @@ class DesktopValidationTests(unittest.TestCase):
         self.root = Path(temporary.name)
         _, self.image = generate(self.root, REPOSITORY)
 
+    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
+    def test_export_distinguishes_desktop_update_from_unchanged_console_program(self):
+        self.run_desktop('''
+(app.bundle / 'desktop-release.json').write_text(json.dumps({'app_version': '0.46.1.0'}))
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Supported image')
+report_path = folder / 'updated-app.json'
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(report_path)), \\
+     patch('tkinter.messagebox.showinfo'):
+    app.export_button.invoke()
+report = json.loads(report_path.read_text())
+assert report['app']['version'] == '0.46.1.0', report
+assert report['program']['app_version'] == '01.23', report
+''')
+
     def test_synthetic_image_cannot_pass_shipping_desktop_validation(self):
         from package_validation import validate_selection
         original = hashlib.sha256(self.image.read_bytes()).hexdigest()

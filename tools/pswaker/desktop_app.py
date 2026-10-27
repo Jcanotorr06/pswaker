@@ -1,5 +1,6 @@
 """Local Windows desktop adapter for the production packaging validation boundary."""
 from pathlib import Path
+import json
 import os
 import queue
 import sys
@@ -16,6 +17,7 @@ from windows_package import create_package, INSTALL_INSTRUCTIONS
 from build_operation import BuildCancelled, BuildOperation
 from owned_work import recover_abandoned, save_evidence
 from diagnostics import DiagnosticExportError
+from installed_release import check_installation, installation_in_use
 
 
 def file_identity(path):
@@ -50,6 +52,11 @@ class DesktopApp:
         try:
             self.version, build_id = bundled_program(self.bundle)
             self.program_text.set(f'Bundled game program {self.version} · build {build_id}')
+            if getattr(sys, 'frozen', False):
+                fixed = json.loads((self.bundle / 'desktop-release.json').read_text())
+                tools = json.loads((self.bundle / 'packaging/tool-release.json').read_text())
+                self.program_text.set(f"PSWaker {fixed['app_version']} · game program {self.version} · build {build_id}\n"
+                                      f"Packaging tools {tools['source_revision'][:12]} · .NET {tools['sdk']}")
         except (OSError, ValueError, KeyError, TypeError):
             self.program_text.set('Bundled game program unavailable — use a complete application build.')
 
@@ -366,14 +373,28 @@ class DesktopApp:
 
 
 def main():
-    root = tk.Tk()
-    try:
-        DesktopApp(root)
-        root.mainloop()
-    except Exception:
-        messagebox.showerror('PSWaker could not start', 'Reopen a complete application build. '
-                             'If the problem continues, reinstall the application.', parent=root)
-        root.destroy()
+    with installation_in_use():
+        if len(sys.argv) == 3 and sys.argv[1] == '--check-installation':
+            # Read-only installed acceptance probe; never changes validation policy.
+            try:
+                report = check_installation(Path(sys.executable).parent)
+                with Path(sys.argv[2]).open('x', encoding='utf-8') as saved:
+                    json.dump(report, saved, indent=2)
+            except Exception:
+                raise SystemExit(1) from None
+            return
+        root = tk.Tk()
+        root.withdraw()
+        try:
+            if getattr(sys, 'frozen', False):
+                check_installation(Path(sys.executable).parent)
+            DesktopApp(root)
+            root.deiconify()
+            root.mainloop()
+        except Exception:
+            messagebox.showerror('PSWaker could not start', 'Reopen a complete application build. '
+                                 'If the problem continues, reinstall the application.', parent=root)
+            root.destroy()
 
 
 if __name__ == '__main__':

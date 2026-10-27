@@ -29,12 +29,23 @@ jobs:
           python tools/pswaker/prepare-windows-tools.py --dotnet (Get-Command dotnet).Source --output "$env:RUNNER_TEMP/pswaker-tools"
           "PSWAKER_WINDOWS_TOOLS=$env:RUNNER_TEMP/pswaker-tools" >> $env:GITHUB_ENV
           "PSWAKER_WINDOWS_DOTNET=$((Get-Command dotnet).Source)" >> $env:GITHUB_ENV
+      - name: Prepare pinned installer compiler (maintainer preparation only)
+        shell: pwsh
+        run: |
+          $compilerSetup = "$env:RUNNER_TEMP/innosetup-6.7.3.exe"
+          Invoke-WebRequest 'https://github.com/jrsoftware/issrc/releases/download/is-6_7_3/innosetup-6.7.3.exe' -OutFile $compilerSetup
+          if ((Get-FileHash $compilerSetup -Algorithm SHA256).Hash -ne '9C73C3BAE7ED48D44112A0F48E66742C00090BDB5BEF71D9D3C056C66E97B732') { throw 'Installer compiler download changed' }
+          $compilerRoot = "$env:RUNNER_TEMP/pswaker-inno"
+          $setup = Start-Process -FilePath $compilerSetup -ArgumentList '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-', '/CURRENTUSER', "/DIR=`"$compilerRoot`"" -WindowStyle Hidden -PassThru -Wait
+          if ($setup.ExitCode -ne 0) { throw "Compiler setup failed: $($setup.ExitCode)" }
+          "PSWAKER_ISCC=$compilerRoot/ISCC.exe" >> $env:GITHUB_ENV
       - run: python -m pyright --pythonpath python
       - run: python -m compileall -q tools/pswaker tests/ps4
       - run: python -m unittest discover -s tests/ps4 -p test_desktop.py -v
       - run: python -m unittest discover -s tests/ps4 -p test_complete_package.py -v
       - run: python -m unittest discover -s tests/ps4 -p test_windows_package.py -v
       - run: python -m unittest discover -s tests/ps4 -p test_windows_tools.py -v
+      - run: python -m unittest discover -s tests/ps4 -p test_installer.py -v
 
   diagnostic-host-checks:
     runs-on: ubuntu-latest
