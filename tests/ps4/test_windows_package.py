@@ -62,6 +62,249 @@ assert not list(root.glob('.complete-*'))
 assert (output / 'out' / report['package']['filename']).is_file()
 ''')
 
+    def test_cancellation_at_each_stage_preserves_packages_and_allows_fresh_retry(self):
+        self.run_scenario('''
+from build_operation import BuildCancelled, BuildOperation
+prior = root / 'prior-complete'
+prior_result = create_package(image, prior, bundle)
+prior_package = prior / 'out' / prior_result['package']['filename']
+prior_hash = hashlib.sha256(prior_package.read_bytes()).hexdigest()
+for stage in ['validate', 'verify-program', 'assemble', 'inspect', 'publish']:
+    events = []
+    def cancel_at_stage(event):
+        events.append(event)
+        if event['stage'] == stage and event['event'] == ('started' if stage == 'publish' else 'progress'):
+            operation.cancel()
+    operation = BuildOperation(cancel_at_stage)
+    try:
+        create_package(image, output, bundle, operation=operation)
+    except BuildCancelled:
+        pass
+    else:
+        raise AssertionError('Cancellation published a result: ' + stage)
+    assert not output.exists()
+    assert not list(root.glob('.complete-*'))
+    assert image.read_bytes() == original
+    assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
+def cancel_after_publication(event):
+    if event['stage'] == 'publish' and event['event'] == 'passed':
+        assert not operation.cancel(), 'Late cancellation changed a completed publication'
+operation = BuildOperation(cancel_after_publication)
+result = create_package(image, output, bundle, operation=operation)
+assert (output / 'inspection.json').is_file()
+assert (output / 'out' / result['package']['filename']).is_file()
+''')
+
+    def test_cancel_preserves_a_replaced_workspace_and_can_recover_the_original(self):
+        self.run_scenario('''
+import shutil
+from build_operation import BuildCancelled, BuildOperation
+from owned_work import recover_abandoned
+held = root / 'held-workspace'
+def replace_and_cancel(event):
+    if event['stage'] == 'assemble' and event['event'] == 'started':
+        work, = root.glob('.complete-*')
+        marker = (work / '.pswaker-owner').read_text()
+        work.rename(held)
+        work.mkdir()
+        (work / '.pswaker-owner').write_text(marker)
+        (work / 'owner.txt').write_text('replacement owner files')
+        operation.cancel()
+operation = BuildOperation(replace_and_cancel)
+try:
+    create_package(image, output, bundle, operation=operation)
+except BuildCancelled as error:
+    assert 'ownership changed' in str(error), str(error)
+else:
+    raise AssertionError('Cancellation completed a package')
+work, = root.glob('.complete-*')
+assert (work / 'owner.txt').read_text() == 'replacement owner files'
+assert held.exists()
+assert not output.exists()
+shutil.rmtree(work)
+held.rename(work)
+assert all(item['event'] == 'passed' for item in recover_abandoned())
+assert not work.exists()
+create_package(image, output, bundle)
+assert (output / 'inspection.json').is_file()
+''')
+
+    def test_initialization_failure_preserves_a_replaced_workspace(self):
+        self.run_scenario('''
+import errno
+import shutil
+from unittest.mock import patch
+from package_artifact import StageFailure
+from owned_work import recover_abandoned
+held = root / 'held-initialization'
+write_text = Path.write_text
+def replace_marker_directory(path, *args, **kwargs):
+    if path.name == '.pswaker-owner':
+        path.parent.rename(held)
+        path.parent.mkdir()
+        (path.parent / 'owner.txt').write_bytes(b'owner files')
+        raise OSError(errno.ENOSPC, 'Controlled initialization failure', str(path))
+    return write_text(path, *args, **kwargs)
+with patch('pathlib.Path.write_text', new=replace_marker_directory):
+    try:
+        create_package(image, output, bundle)
+    except StageFailure as error:
+        assert error.stage == 'prepare'
+        assert 'Controlled initialization failure' in str(error), str(error)
+        assert 'ownership changed' in str(error), str(error)
+    else:
+        raise AssertionError('Initialization failure was ignored')
+work, = root.glob('.complete-*')
+assert (work / 'owner.txt').read_bytes() == b'owner files'
+assert held.exists()
+shutil.rmtree(work)
+held.rename(work)
+assert all(item['event'] == 'passed' for item in recover_abandoned())
+assert not work.exists()
+create_package(image, output, bundle)
+assert (output / 'inspection.json').is_file()
+''')
+
+    def test_interrupted_build_is_recovered_without_touching_live_or_unowned_work(self):
+        self.run_scenario('''
+import subprocess
+import time
+from owned_work import recover_abandoned
+prior = root / 'prior-complete'
+prior_result = create_package(image, prior, bundle)
+prior_package = prior / 'out' / prior_result['package']['filename']
+prior_hash = hashlib.sha256(prior_package.read_bytes()).hexdigest()
+unowned = root / '.complete-owner-files'
+unowned.mkdir()
+(unowned / 'keep.txt').write_text('owner files')
+script = """
+from pathlib import Path
+import sys
+import time
+from windows_package import create_package
+root = Path(sys.argv[1])
+def observe(event):
+    if event['stage'] == 'assemble' and event['event'] == 'progress':
+        (root / 'paused').touch()
+        time.sleep(90)
+create_package(root / 'synthetic.iso', root / 'private-complete', root / 'bundle', observe=observe)
+"""
+with subprocess.Popen([sys.executable, '-c', script, str(root)]) as worker:
+    try:
+        deadline = time.monotonic() + 20
+        while not (root / 'paused').exists():
+            assert worker.poll() is None
+            assert time.monotonic() < deadline
+            time.sleep(0.01)
+        assert recover_abandoned() == []  # Another app still owns this lease.
+        assert list(root.glob('.complete-*'))
+        worker.kill()
+        worker.wait(timeout=10)
+    finally:
+        if worker.poll() is None:
+            worker.kill()
+            worker.wait()
+results = recover_abandoned()
+assert len(results) == 1 and results[0]['event'] == 'passed', results
+assert (unowned / 'keep.txt').read_text() == 'owner files'
+assert list(root.glob('.complete-*')) == [unowned]
+assert not output.exists()
+assert image.read_bytes() == original
+assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
+result = create_package(image, output, bundle)
+assert (output / 'inspection.json').is_file()
+assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
+''')
+
+    def test_cancellation_and_app_interruption_stop_owned_tool_descendants(self):
+        self.run_scenario('''
+import subprocess
+import time
+import ctypes
+from ctypes import wintypes
+from owned_work import recover_abandoned
+kernel = ctypes.WinDLL('kernel32', use_last_error=True)
+kernel.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+kernel.OpenProcess.restype = wintypes.HANDLE
+kernel.WaitForSingleObject.argtypes = [wintypes.HANDLE, wintypes.DWORD]
+kernel.CloseHandle.argtypes = [wintypes.HANDLE]
+script = """
+from pathlib import Path
+import sys
+import time
+import threading
+from build_operation import BuildOperation, BuildCancelled
+from owned_work import workspace
+from windows_package import WindowsTools
+import subprocess
+root, mode = Path(sys.argv[1]), sys.argv[2]
+operation = BuildOperation()
+def cancel_on_request():
+    while not (root / 'cancel').exists():
+        time.sleep(0.01)
+    operation.cancel()
+if mode == 'cancel':
+    threading.Thread(target=cancel_on_request, daemon=True).start()
+if mode == 'interrupt-before-assignment':
+    class PausedSpawn(subprocess.Popen):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            (root / 'child').write_text(str(self.pid))
+            time.sleep(90)
+    subprocess.Popen = PausedSpawn
+with workspace(root) as owned:
+    work = owned.path
+    scratch = work / 'scratch'
+    scratch.mkdir()
+    child = 'import os,sys,time; from pathlib import Path; Path(sys.argv[1]).write_text(str(os.getpid())); time.sleep(90)'
+    source = ('import os,subprocess,sys,time; from pathlib import Path; '
+              'subprocess.Popen([sys.executable, "-c", ' + repr(child) + ', ' + repr(str(root / 'grandchild')) + ']); '
+              'Path(' + repr(str(root / 'child')) + ').write_text(str(os.getpid())); time.sleep(90)')
+    try:
+        with operation.bind():
+            WindowsTools(root, work, scratch).capture([sys.executable, '-c', source])
+    except BuildCancelled:
+        (root / 'cancelled').touch()
+"""
+for mode in ['cancel', 'interrupt', 'interrupt-before-assignment']:
+    handles = []
+    with subprocess.Popen([sys.executable, '-c', script, str(root), mode]) as worker:
+        try:
+            deadline = time.monotonic() + 15
+            names = ['child'] if mode == 'interrupt-before-assignment' else ['child', 'grandchild']
+            while not all((root / name).exists() for name in names):
+                assert worker.poll() is None
+                assert time.monotonic() < deadline
+                time.sleep(0.01)
+            for name in names:
+                pid = int((root / name).read_text())
+                handle = kernel.OpenProcess(0x100000, False, pid)
+                assert handle
+                handles.append(handle)
+            if mode == 'cancel':
+                (root / 'cancel').touch()
+            else:
+                worker.kill()
+            worker.wait(timeout=15)
+            if mode == 'cancel':
+                assert worker.returncode == 0
+                assert (root / 'cancelled').exists()
+            for handle in handles:
+                assert kernel.WaitForSingleObject(handle, 10000) == 0, 'Owned descendant survived'
+        finally:
+            if worker.poll() is None:
+                worker.kill()
+                worker.wait()
+            for handle in handles:
+                kernel.CloseHandle(handle)
+    assert all(item['event'] == 'passed' for item in recover_abandoned())
+    assert not list(root.glob('.complete-*'))
+    for name in ['child', 'grandchild', 'cancel', 'cancelled']:
+        (root / name).unlink(missing_ok=True)
+create_package(image, output, bundle)
+assert (output / 'inspection.json').is_file()
+''')
+
     def test_preflight_budgets_tool_snapshot_and_retry_preserves_prior_package(self):
         self.run_scenario('''
 from unittest.mock import patch
@@ -96,7 +339,12 @@ assert hashlib.sha256(prior.read_bytes()).hexdigest() == prior_hash
 import errno
 from unittest.mock import patch
 from package_artifact import StageFailure
-with patch('tempfile.mkdtemp', side_effect=OSError(errno.ENOSPC, 'Controlled disk exhaustion', str(root))):
+mkdir = Path.mkdir
+def fail_workspace(path, *args, **kwargs):
+    if path.name.startswith('.complete-'):
+        raise OSError(errno.ENOSPC, 'Controlled disk exhaustion', str(path))
+    return mkdir(path, *args, **kwargs)
+with patch('pathlib.Path.mkdir', new=fail_workspace):
     try:
         create_package(image, output, bundle)
     except StageFailure as error:
@@ -116,14 +364,14 @@ assert (output / 'inspection.json').is_file()
 import os
 import subprocess
 from unittest.mock import patch
-run = subprocess.run
+run = subprocess.Popen
 def check_scratch(command, **kwargs):
     environment = kwargs['env']
     scratch = Path(environment['TEMP'])
     assert scratch == Path(environment['TMP'])
     assert scratch.is_dir() and scratch.is_relative_to(Path(kwargs['cwd'])), scratch
     return run(command, **kwargs)
-with patch('subprocess.run', side_effect=check_scratch):
+with patch('subprocess.Popen', side_effect=check_scratch):
     create_package(image, output, bundle)
 assert (output / 'inspection.json').is_file()
 assert not list(root.glob('.complete-*'))
@@ -135,12 +383,12 @@ assert not (output / 'scratch').exists()
 import subprocess
 from unittest.mock import patch
 from package_artifact import StageFailure
-run = subprocess.run
+run = subprocess.Popen
 def malformed_project(command, **kwargs):
     if command[1] == 'pkg_build':
         Path(command[2]).write_text('<deliberately-invalid-project>')
     return run(command, **kwargs)
-with patch('subprocess.run', side_effect=malformed_project):
+with patch('subprocess.Popen', side_effect=malformed_project):
     try:
         create_package(image, output, bundle)
     except StageFailure as error:

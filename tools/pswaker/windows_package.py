@@ -1,12 +1,11 @@
 """Offline Windows adapter: bundled inputs to a freshly inspected private package."""
 from datetime import datetime, timezone
-from contextlib import contextmanager
+from contextlib import contextmanager, ExitStack
 import json
 import os
 from pathlib import Path
 import shutil
 import struct
-import subprocess
 import sys
 import tempfile
 import traceback
@@ -17,6 +16,9 @@ from package_artifact import (IDENTITIES, INSTALLED_IMAGE, StageFailure, Stages,
                               expected_sfo_fields, inspect_package, inventory, sfo_fields, write_json)
 from package_validation import validate_selection
 from program_payload import PROGRAM_FILES, bundled_program
+from build_operation import BuildCancelled, BuildOperation, CURRENT, copy_file
+from owned_work import save_evidence, workspace
+from windows_process import capture_owned
 
 TOOL_REVISION = '594021fdc435409f755a6ae0781b65ec6cec846c'
 TOOL_ARCHIVE = 'c4b918b404e486784717a415cc5a50d866bc56099ed027b4d6bd443cf7f90ee6'
@@ -109,11 +111,14 @@ class WindowsTools:
         self.commands = []
 
     def capture(self, command):
+        operation = CURRENT.get()
+        if operation:
+            operation.emit({'stage': operation.stage, 'event': 'activity',
+                            'activity': 'Running packaging tool: ' + str(command[1])})
         self.commands.append({'argv': list(map(str, command))})
         write_json(self.work / 'commands.json', self.commands)
-        result = subprocess.run(list(map(str, command)), cwd=self.work, env=self.env,
-                                capture_output=True, text=True, encoding='utf-8', errors='replace',
-                                creationflags=subprocess.CREATE_NO_WINDOW)
+        result = capture_owned(list(map(str, command)), cwd=self.work, env=self.env,
+                               text=True, encoding='utf-8', errors='replace')
         if result.returncode:
             # Preserve tool details even when the workspace log cannot be written.
             failure = ValueError(f'Windows packaging tool {command[1]} failed (exit code {result.returncode}). '
@@ -157,30 +162,50 @@ def write_project(stage, target):
 
 @contextmanager
 def private_workspace(destination, stages):
-    with stages('prepare'):
-        work = Path(tempfile.mkdtemp(prefix='.complete-', dir=destination.parent))
-    try:
-        yield work
-    except Exception as error:
+    with ExitStack() as resources:
+        work = None
+        owned = None
         try:
-            shutil.rmtree(work)
-        except OSError as cleanup:
-            raise StageFailure(getattr(error, 'stage', 'cleanup'),
-                               f'{error}\nCleanup also failed: {cleanup}\n'
-                               f'Private unfinished workspace remains at {work}. '
-                               'Restore folder access before removing this workspace and retrying.') from error
-        raise
-    else:
-        if work.exists():
-            with stages('cleanup'):
-                shutil.rmtree(work)
+            with stages('prepare'):
+                owned = resources.enter_context(workspace(destination.parent))
+                work = owned.path
+            yield work
+        except Exception as error:
+            try:
+                if owned is not None:
+                    owned.cleanup()
+            except (OSError, ValueError) as cleanup:
+                if isinstance(error, BuildCancelled):
+                    raise BuildCancelled(f'{error}\nCleanup also failed: {cleanup}\n'
+                                         f'Private unfinished workspace remains at {work}. '
+                                         'Restore access and reopen the application to retry cleanup.') from error
+                raise StageFailure(getattr(error, 'stage', 'cleanup'),
+                                   f'{error}\nCleanup also failed: {cleanup}\n'
+                                   f'Private unfinished workspace remains at {work}. '
+                                   'Restore folder access before removing this workspace and retrying.') from error
+            raise
+        else:
+            if work.exists():
+                with stages('cleanup'):
+                    owned.cleanup()
 
 
-def create_package(image, output, bundle, *, accepted_image=None, observe=None):
+def create_package(image, output, bundle, *, accepted_image=None, observe=None, operation=None):
     """Report actionable local failures without exposing an unfinished package."""
+    operation = operation or BuildOperation(observe)
     try:
-        return _create_package(image, output, bundle, accepted_image=accepted_image, observe=observe)
-    except StageFailure as error:
+        with operation.bind():
+            result = _create_package(image, output, bundle, accepted_image=accepted_image, observe=operation.emit,
+                                     operation=operation)
+        save_evidence(operation.events, 'complete')
+        return result
+    except BuildCancelled as error:
+        save_evidence(operation.events, 'cancelled', error)
+        raise
+    except Exception as error:
+        if not isinstance(error, StageFailure):
+            error = StageFailure(operation.stage, error)
+        save_evidence(operation.events, 'failed', error)
         message = (f'{error}\nCheck that the image is readable and the destination drive is connected, '
                    'writable and has enough free space. Correct the problem or choose another folder, '
                    'then validate again and retry.')
@@ -196,7 +221,7 @@ def create_package(image, output, bundle, *, accepted_image=None, observe=None):
         raise StageFailure(error.stage, message) from error
 
 
-def _create_package(image, output, bundle, *, accepted_image=None, observe=None):
+def _create_package(image, output, bundle, *, accepted_image=None, observe=None, operation):
     """Create only with bundled game/tools; publish only after fresh artifact inspection."""
     stages = Stages(observe)
     with stages('validate'):
@@ -224,8 +249,8 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None)
             version, release = checked_program(bundle)
             require(version == fixed['app_version'] and release['build_id'] == fixed['program_build_id'],
                     'Bundled program version/build differs from the application release')
-            shutil.copytree(bundle / 'packaging', work / 'packaging')
-            shutil.copytree(bundle / 'program', work / 'program')
+            shutil.copytree(bundle / 'packaging', work / 'packaging', copy_function=copy_file)
+            shutil.copytree(bundle / 'program', work / 'program', copy_function=copy_file)
             # Verify the snapshot used below, independent of later bundle changes.
             version, release = checked_program(work)
             for directory in ['program', 'packaging']:
@@ -242,7 +267,7 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None)
             program = {key: release[key] for key in [
                 'build_id', 'elf_filename', 'elf_sha256', 'eboot_sha256', 'payload_sha256']}
         with stages('assemble'):
-            shutil.copyfile(image, stage / 'game.iso')
+            copy_file(image, stage / 'game.iso')
             copied = validate(stage / 'game.iso')
             require(copied == original, 'Image changed during assembly; validate a stable local image and retry')
             identity = IDENTITIES['game']
@@ -288,5 +313,5 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None)
                 shutil.rmtree(directory)
             require(not destination.exists(), 'Output appeared during assembly; choose a new destination')
             # Windows rename refuses an existing destination, including a racing empty folder.
-            work.rename(destination)
+            operation.publish(work, destination)
     return {'output': str(destination), 'package': report['package'], 'acceptance': identity['acceptance']}

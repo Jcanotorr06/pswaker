@@ -34,6 +34,219 @@ class DesktopValidationTests(unittest.TestCase):
         self.assertFalse(output.exists())
         self.assertEqual(hashlib.sha256(self.image.read_bytes()).hexdigest(), original)
 
+    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
+    def test_cancel_validation_keeps_desktop_responsive_and_allows_fresh_retry(self):
+        self.run_desktop('''
+import threading
+from build_operation import BuildOperation
+entered, release = threading.Event(), threading.Event()
+progress = BuildOperation.progress
+def pause_read(operation, *args):
+    progress(operation, *args)
+    entered.set()
+    assert release.wait(10)
+with patch.object(BuildOperation, 'progress', new=pause_read):
+    app.image_button.invoke()
+    app.output_button.invoke()
+    app.validate_button.invoke()
+    wait_until(entered.is_set)
+    assert app.busy
+    assert not app.cancel_button.instate(['disabled'])
+    app.cancel_button.invoke()
+    assert app.busy  # Wait for owned work to stop before enabling retry.
+    release.set()
+    wait_for('Validation cancelled')
+assert app.accepted is None
+assert app.create_button.instate(['disabled'])
+assert not app.validate_button.instate(['disabled'])
+assert not output.exists()
+app.validate_button.invoke()
+wait_for('Supported image')
+''')
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_cancels_each_build_stage_and_retries_from_the_beginning(self):
+        self.run_desktop('''
+import threading
+from build_operation import BuildOperation
+progress = BuildOperation.progress
+app.image_button.invoke()
+app.output_button.invoke()
+for target in ['validate', 'assemble', 'inspect']:
+    app.validate_button.invoke()
+    wait_for('Supported image')
+    entered, release = threading.Event(), threading.Event()
+    def pause_stage(operation, *args):
+        progress(operation, *args)
+        if operation.stage == target and not entered.is_set():
+            entered.set()
+            assert release.wait(10)
+    with patch.object(BuildOperation, 'progress', new=pause_stage):
+        app.create_button.invoke()
+        wait_until(entered.is_set)
+        wait_until(lambda: 'bytes' in app.details.get())
+        assert app.busy
+        assert not app.cancel_button.instate(['disabled'])
+        assert app.image_button.instate(['disabled'])
+        assert 'bytes' in app.details.get(), app.details.get()
+        app.cancel_button.invoke()
+        assert app.busy
+        release.set()
+        wait_for('Package creation cancelled')
+    assert not output.exists()
+    assert not list(folder.glob('.complete-*'))
+    assert app.accepted is None
+    assert app.package is None
+    assert not app.instructions.get()
+    assert app.create_button.instate(['disabled'])
+    assert app.open_button.instate(['disabled'])
+    assert not app.validate_button.instate(['disabled'])
+app.validate_button.invoke()
+wait_for('Supported image')
+app.create_button.invoke()
+wait_for('Package verified')
+assert (output / 'inspection.json').is_file()
+evidence = list((folder / 'local-state/PSWaker/logs').glob('attempt-*.json'))
+attempts = [json.loads(path.read_text()) for path in evidence]
+assert any(item['outcome'] == 'cancelled' for item in attempts)
+completed = [item for item in attempts if item['outcome'] == 'complete']
+assert any({'validate', 'assemble', 'inspect'}.issubset(
+    {e['stage'] for e in item['events'] if e['event'] == 'passed'}) for item in completed)
+''', packaging=True)
+
+    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
+    def test_closing_desktop_waits_for_cancellation_before_destroying_window(self):
+        self.run_desktop('''
+import threading
+from build_operation import BuildOperation
+entered, release = threading.Event(), threading.Event()
+progress = BuildOperation.progress
+def pause_read(operation, *args):
+    progress(operation, *args)
+    entered.set()
+    assert release.wait(10)
+with patch.object(BuildOperation, 'progress', new=pause_read), patch.object(root, 'destroy') as destroy:
+    app.image_button.invoke()
+    app.output_button.invoke()
+    app.validate_button.invoke()
+    wait_until(entered.is_set)
+    app.close()
+    assert app.busy
+    destroy.assert_not_called()
+    release.set()
+    wait_until(lambda: destroy.called)
+assert not app.busy
+assert app.accepted is None
+assert not output.exists()
+''')
+
+    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
+    def test_startup_recovers_abandoned_work_and_preserves_replaced_owner_files(self):
+        self.run_desktop('''
+import shutil
+import textwrap
+unowned = folder / '.complete-owner-files'
+unowned.mkdir()
+(unowned / 'keep.txt').write_text('owner files')
+script = """
+from pathlib import Path
+import sys
+import time
+from owned_work import workspace
+root = Path(sys.argv[1])
+with workspace(root) as owned:
+    work = owned.path
+    (work / 'scratch').mkdir()
+    (work / 'scratch/partial').write_bytes(b'synthetic unfinished work')
+    (root / 'paused').touch()
+    time.sleep(90)
+"""
+with subprocess.Popen([sys.executable, '-c', textwrap.dedent(script), str(folder)]) as worker:
+    try:
+        wait_until(lambda: (folder / 'paused').exists())
+    finally:
+        worker.kill()
+        worker.wait(timeout=10)
+record_path, = (folder / 'local-state/PSWaker/work').glob('*.jsonl')
+record = json.loads(record_path.read_text().splitlines()[-1])
+work = Path(record['workspace'])
+held = folder / 'held-original-work'
+work.rename(held)
+work.mkdir()
+(work / '.pswaker-owner').write_text(record['id'])
+(work / 'owner.txt').write_text('replacement must survive')
+root.destroy()
+root = tk.Tk()
+app = DesktopApp(root, bundle)
+wait_until(lambda: not app.busy)
+assert 'Interrupted work needs attention' in app.status.get(), app.status.get()
+assert 'ownership changed' in app.details.get(), app.details.get()
+assert (work / 'owner.txt').read_text() == 'replacement must survive'
+assert (held / 'scratch/partial').exists()
+shutil.rmtree(work)
+held.rename(work)
+root.destroy()
+root = tk.Tk()
+app = DesktopApp(root, bundle)
+wait_until(lambda: not app.busy)
+assert 'removed' in app.details.get(), app.details.get()
+assert not work.exists()
+assert not record_path.exists()
+assert (unowned / 'keep.txt').read_text() == 'owner files'
+assert app.accepted is None
+assert app.create_button.instate(['disabled'])
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Supported image')
+''')
+
+    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
+    def test_startup_recovers_interruption_before_and_after_the_ownership_marker(self):
+        self.run_desktop('''
+import textwrap
+script = """
+from pathlib import Path
+import sys
+import time
+from owned_work import workspace
+root, mode = Path(sys.argv[1]), sys.argv[2]
+write_text = Path.write_text
+def paused_marker(path, *args, **kwargs):
+    if path.name == '.pswaker-owner' and mode == 'before':
+        (root / 'paused').touch()
+        time.sleep(90)
+    result = write_text(path, *args, **kwargs)
+    if path.name == '.pswaker-owner' and mode == 'after':
+        (root / 'paused').touch()
+        time.sleep(90)
+    return result
+Path.write_text = paused_marker
+with workspace(root):
+    raise AssertionError('Initialization was not interrupted')
+"""
+for mode in ['before', 'after']:
+    with subprocess.Popen([sys.executable, '-c', textwrap.dedent(script), str(folder), mode]) as worker:
+        try:
+            wait_until(lambda: (folder / 'paused').exists())
+        finally:
+            worker.kill()
+            worker.wait(timeout=10)
+    record, = (folder / 'local-state/PSWaker/work').glob('*.jsonl')
+    # A partially appended newest update cannot hide the durable allocated record.
+    with record.open('ab') as stream:
+        stream.write(b'{"incomplete":')
+    root.destroy()
+    root = tk.Tk()
+    app = DesktopApp(root, bundle)
+    wait_until(lambda: not app.busy)
+    assert 'removed' in app.details.get(), app.details.get()
+    assert not list(folder.glob('.complete-*'))
+    assert not record.exists()
+    assert app.accepted is None
+    (folder / 'paused').unlink()
+''')
+
     @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
     def test_desktop_creates_verified_package_and_offers_manual_installation(self):
         self.run_desktop('''
@@ -140,30 +353,48 @@ prior = folder / 'prior-complete'
 prior_result = create_package(image, prior, bundle)
 prior_package = prior / 'out' / prior_result['package']['filename']
 prior_hash = hashlib.sha256(prior_package.read_bytes()).hexdigest()
-copyfile, run, rmtree = shutil.copyfile, subprocess.run, shutil.rmtree
+open_file, run, rmtree = Path.open, subprocess.Popen, shutil.rmtree
 rename = Path.rename
-def fail_copy(source, target, *args, **kwargs):
-    if Path(target).name == 'game.iso':
-        if fault == 'lost-access':
-            raise PermissionError(errno.EACCES, 'Controlled lost access', str(target))
+class FailedWrite:
+    def __init__(self, stream):
+        self.stream = stream
+    def __enter__(self):
+        self.stream.__enter__()
+        return self
+    def __exit__(self, *args):
+        return self.stream.__exit__(*args)
+    def write(self, data):
         # A real partial artifact exists before the OS reports the failed write.
-        Path(target).write_bytes(Path(source).read_bytes()[:1024])
-        raise OSError(errno.ENOSPC, 'Controlled disk exhaustion', str(target))
-    return copyfile(source, target, *args, **kwargs)
-def fail_tool(command, **kwargs):
-    if fault == 'packager' and command[1] == 'pkg_build':
-        Path(command[2]).write_text('<deliberately-invalid-project>')
-    result = run(command, **kwargs)
-    if command[1] == 'pkg_build' and fault == 'collision':
-        output.mkdir()
-        shutil.copyfile(prior_package, output / 'previous.pkg')
-    if command[1] == 'pkg_extract' and fault == 'inspection':
-        # Alter the actual PKG after metadata extraction. Assembly records its
-        # changed hash; final inspection must still reject its wrong identity.
-        with Path(command[2]).open('r+b') as stream:
-            stream.seek(0x40)
-            stream.write(b'IV0000-FAIL00000')
-    return result
+        self.stream.write(data[:1024])
+        raise OSError(errno.ENOSPC, 'Controlled disk exhaustion', self.stream.name)
+
+def fail_open(path, mode='r', *args, **kwargs):
+    if path.name == 'game.iso' and mode == 'wb':
+        if fault == 'lost-access':
+            raise PermissionError(errno.EACCES, 'Controlled lost access', str(path))
+        return FailedWrite(open_file(path, mode, *args, **kwargs))
+    return open_file(path, mode, *args, **kwargs)
+
+class FaultTool(run):
+    def __init__(self, command, **kwargs):
+        if fault == 'packager' and command[1] == 'pkg_build':
+            Path(command[2]).write_text('<deliberately-invalid-project>')
+        self.command, self.injected = command, False
+        super().__init__(command, **kwargs)
+    def communicate(self, *args, **kwargs):
+        result = super().communicate(*args, **kwargs)
+        if not self.injected:
+            self.injected = True
+            command = self.command
+            if command[1] == 'pkg_build' and fault == 'collision':
+                output.mkdir()
+                shutil.copyfile(prior_package, output / 'previous.pkg')
+            if command[1] == 'pkg_extract' and fault == 'inspection':
+                with Path(command[2]).open('r+b') as stream:
+                    stream.seek(0x40)
+                    stream.write(b'IV0000-FAIL00000')
+        return result
+
 def fail_cleanup(path, *args, **kwargs):
     if Path(path).name.startswith('.complete-'):
         raise PermissionError(errno.EACCES, 'Controlled cleanup access loss', str(path))
@@ -182,14 +413,14 @@ with ExitStack() as faults:
         usage = namedtuple('usage', 'total used free')
         faults.enter_context(patch('shutil.disk_usage', return_value=usage(1024, 1024, 0)))
     if fault in {'disk-full', 'lost-access', 'cleanup', 'no-log'}:
-        faults.enter_context(patch('shutil.copyfile', side_effect=fail_copy))
+        faults.enter_context(patch('pathlib.Path.open', new=fail_open))
     if fault == 'destination-access':
         faults.enter_context(patch('tempfile.TemporaryFile', side_effect=PermissionError(
             errno.EACCES, 'Controlled destination access loss', str(folder))))
     if fault == 'publish-access':
         faults.enter_context(patch('pathlib.Path.rename', new=fail_publish))
     if fault in {'packager', 'inspection', 'collision'}:
-        faults.enter_context(patch('subprocess.run', side_effect=fail_tool))
+        faults.enter_context(patch('subprocess.Popen', new=FaultTool))
     if fault == 'cleanup':
         faults.enter_context(patch('shutil.rmtree', side_effect=fail_cleanup))
     if fault == 'no-log':
@@ -389,6 +620,7 @@ def wait_until(predicate):
         if time.monotonic() > deadline:
             raise AssertionError(app.status.get())
         time.sleep(0.01)
+wait_until(lambda: not app.busy)
 with patch('tkinter.filedialog.askopenfilename', return_value=str(image)), \\
      patch('tkinter.filedialog.askdirectory', return_value=str(folder)):
 ''' + '\n'.join('    ' + line for line in scenario.strip().splitlines()) + '''
