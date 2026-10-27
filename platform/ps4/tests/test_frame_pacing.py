@@ -116,6 +116,18 @@ class SummaryTests(unittest.TestCase):
         self.assertEqual(result.returncode, 2, result.stderr)
         self.assertIn('flip timestamp is later than kernel clock read', report['samples'][0]['invalid_reasons'])
 
+    def test_backward_kernel_clock_read_cannot_pass_with_calibrated_records(self):
+        self.sample(1, 'outset')
+        self.calibrated = True
+        for frame in self.frames:
+            frame.append(frame[2] + 30)
+        # A late read followed by a backward read remains within the rate-check
+        # tolerance and after both completions, but is not a monotonic clock.
+        self.frames[100][-1] += 2000
+        result, report = self.analyze()
+        self.assertEqual(result.returncode, 2)
+        self.assertIn('nonmonotonic kernel clock read', report['samples'][0]['invalid_reasons'])
+
     def test_a_presentation_arriving_after_pause_stays_in_launch_but_outside_sample(self):
         self.sample(1, 'outset')
         self.samples[0][2] = self.events[-1][2] = 'paused'

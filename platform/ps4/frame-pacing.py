@@ -67,6 +67,8 @@ def analyze(run, inspection, owner):
                 errors.append('missing or duplicated present argument')
             if frame['tsc'] <= previous['tsc'] or frame['observed_ns'] <= previous['observed_ns']:
                 errors.append('nonmonotonic presentation/observation time')
+            if 'read_tsc' in frame and frame['read_tsc'] <= previous['read_tsc']:
+                errors.append('nonmonotonic kernel clock read')
         previous = frame
     if frames[0]['flip_count'] != 1:
         errors.append('missing initial flip evidence')
