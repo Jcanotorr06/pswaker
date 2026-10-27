@@ -25,6 +25,23 @@ class DesktopValidationTests(unittest.TestCase):
         self.root = Path(temporary.name)
         _, self.image = generate(self.root, REPOSITORY)
 
+    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
+    def test_export_distinguishes_desktop_update_from_unchanged_console_program(self):
+        self.run_desktop('''
+(app.bundle / 'desktop-release.json').write_text(json.dumps({'app_version': '0.46.1.0'}))
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Supported image')
+report_path = folder / 'updated-app.json'
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(report_path)), \\
+     patch('tkinter.messagebox.showinfo'):
+    app.export_button.invoke()
+report = json.loads(report_path.read_text())
+assert report['app']['version'] == '0.46.1.0', report
+assert report['program']['app_version'] == '01.23', report
+''')
+
     def test_synthetic_image_cannot_pass_shipping_desktop_validation(self):
         from package_validation import validate_selection
         original = hashlib.sha256(self.image.read_bytes()).hexdigest()
@@ -329,6 +346,10 @@ for mode in ['before', 'after']:
     @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
     def test_desktop_creates_verified_package_and_offers_manual_installation(self):
         self.run_desktop('''
+fixed_path = bundle / 'desktop-release.json'
+fixed = json.loads(fixed_path.read_text())
+fixed['app_version'] = '0.46.1.0'
+fixed_path.write_text(json.dumps(fixed))
 app.image_button.invoke()
 app.output_button.invoke()
 app.validate_button.invoke()
@@ -352,6 +373,13 @@ with patch('os.startfile') as opened:
     opened.assert_called_once_with(str(package.parent.resolve()))
 assert app.create_button.instate(['disabled'])
 assert not list(folder.glob('.complete-*'))
+diagnostic_path = folder / 'successful-update.json'
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(diagnostic_path)), \\
+     patch('tkinter.messagebox.showinfo'):
+    app.export_button.invoke()
+diagnostic = json.loads(diagnostic_path.read_text())
+assert diagnostic['app']['version'] == '0.46.1.0', diagnostic
+assert diagnostic['program']['app_version'] == '01.23', diagnostic
 ''', packaging=True)
 
     @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')

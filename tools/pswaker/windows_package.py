@@ -82,11 +82,12 @@ def bundle_inventory(bundle):
             for name, sha in inventory(bundle / directory).items()}
 
 
-def seal_bundle(bundle):
+def seal_bundle(bundle, app_version=None):
     """Maintainer operation; record the fixed release inputs shipped beside the app."""
     version, release = checked_program(bundle)
     checked_tools(bundle / 'packaging')
-    write_json(bundle / 'desktop-release.json', {'schema': 1, 'app_version': version,
+    write_json(bundle / 'desktop-release.json', {'schema': 1, 'app_version': app_version or version,
+               'program_version': version,
                'program_build_id': release['build_id'], 'files': bundle_inventory(bundle)})
 
 
@@ -254,7 +255,8 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
             require(digest(CONTRACT) == fixed['files']['platform/ps4/content-contract.json'],
                     'Bundled validation contract changed. Reinstall the application.')
             version, release = checked_program(bundle)
-            require(version == fixed['app_version'] and release['build_id'] == fixed['program_build_id'],
+            require(version == fixed.get('program_version', fixed['app_version'])
+                    and release['build_id'] == fixed['program_build_id'],
                     'Bundled program version/build differs from the application release')
             shutil.copytree(bundle / 'packaging', work / 'packaging', copy_function=copy_file)
             shutil.copytree(bundle / 'program', work / 'program', copy_function=copy_file)
