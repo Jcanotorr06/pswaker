@@ -51,7 +51,10 @@ class SummaryTests(unittest.TestCase):
         for name, value in [('identity.json', self.identity), ('inspection.json', self.inspection),
                             ('owner.json', self.owner)]:
             (self.run / name).write_text(json.dumps(value))
-        tables = [('frames.csv', 'flip_count,process_time,tsc,observed_ns,flip_argument,game_frame,sample,stage,room,submit_ns,shader_ns,shader_calls', self.frames),
+        frame_header = 'flip_count,process_time,tsc,observed_ns,flip_argument,game_frame,sample,stage,room,submit_ns,shader_ns,shader_calls'
+        if getattr(self, 'calibrated', False):
+            frame_header += ',read_tsc'
+        tables = [('frames.csv', frame_header, self.frames),
                   ('events.csv', 'monotonic_ns,kind,detail,sample', self.events + [[self.tick * 1000000000 // 30000 + 3000000, 'shutdown', 'complete', 0]]),
                   ('samples.csv', 'sample,scene,outcome,seconds,intervals', self.samples)]
         for name, header, rows in tables:
@@ -73,6 +76,45 @@ class SummaryTests(unittest.TestCase):
         result, report = self.analyze()
         self.assertEqual(result.returncode, 2, result.stderr)
         self.assertTrue(all(not sample['target_met'] for sample in report['samples']))
+
+    def test_delayed_ui_observation_uses_read_clock_without_changing_frame_intervals(self):
+        self.sample(1, 'outset')
+        self.tick += 1000
+        count = len(self.frames) + 1
+        ns = self.tick * 1000000000 // 30000
+        self.frames.append([count, ns // 1000, self.tick, ns + 161000000,
+                            count, 0, 0, 'sea', 44, ns - 1000000, 0, 0])
+        self.tick += 6000
+        self.sample(2, 'forest')
+        self.calibrated = True
+        for frame in self.frames:
+            frame.append(frame[3] * 30000 // 1000000000)
+        result, report = self.analyze()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue(all(sample['target_met'] for sample in report['samples']))
+        self.assertEqual(report['samples'][0]['metrics']['maximum_ms'], 1000 / 30)
+
+    def test_kernel_clock_disagreement_cannot_pass_with_calibrated_records(self):
+        self.sample(1, 'outset')
+        self.sample(2, 'forest')
+        self.calibrated = True
+        for frame in self.frames:
+            frame.append(frame[2] + 30)
+        self.frames[100][-1] += 6000
+        result, report = self.analyze()
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertIn('flip timestamp rate differs from monotonic observation clock',
+                      report['samples'][0]['invalid_reasons'])
+
+    def test_future_flip_timestamp_cannot_pass_with_calibrated_records(self):
+        self.sample(1, 'outset')
+        self.calibrated = True
+        for frame in self.frames:
+            frame.append(frame[2] + 30)
+        self.frames[100][-1] = self.frames[100][2] - 1
+        result, report = self.analyze()
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertIn('flip timestamp is later than kernel clock read', report['samples'][0]['invalid_reasons'])
 
     def test_a_presentation_arriving_after_pause_stays_in_launch_but_outside_sample(self):
         self.sample(1, 'outset')
@@ -181,7 +223,7 @@ class RecorderTests(unittest.TestCase):
         cls.binary = Path(cls.directory.name) / 'recorder'
         result = subprocess.run(['clang++-21', '-std=c++23', '-pthread', '-Wall', '-Wextra', '-Werror',
                                  '-I', str(HERE / 'game'), str(HERE / 'game/frame-pacing.cpp'),
-                                 str(HERE / 'tests/frame-pacing.cpp'), '-o', str(cls.binary)],
+                                 str(HERE / 'tests/frame-pacing.cpp'), '-Wl,--wrap=fflush', '-o', str(cls.binary)],
                                 capture_output=True, text=True)
         if result.returncode:
             raise AssertionError(result.stderr)
@@ -222,6 +264,34 @@ class RecorderTests(unittest.TestCase):
             self.assertEqual(samples[0]['outcome'], 'invalid')
             self.assertIn('missed-flip-completion', (run / 'events.csv').read_text())
 
+    def test_late_ui_observation_does_not_disable_later_forest_sampling(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = subprocess.run([str(self.binary), directory, 'late-observation'], capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            run = next(Path(directory).glob('performance-*'))
+            with (run / 'samples.csv').open() as stream:
+                samples = list(csv.DictReader(stream))
+            self.assertEqual([(s['scene'], s['outcome']) for s in samples], [('outset', 'complete'), ('forest', 'complete')])
+            self.assertIn('observer-delay-ns', (run / 'events.csv').read_text())
+
+    def test_slow_storage_does_not_block_recording_and_shutdown_drains_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = subprocess.run([str(self.binary), directory, 'slow-storage'], capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            run = next(Path(directory).glob('performance-*'))
+            with (run / 'frames.csv').open() as stream:
+                frames = list(csv.DictReader(stream))
+            self.assertEqual([row['game_frame'] for row in frames], ['1', '2'])
+            self.assertIn('shutdown,complete', (run / 'events.csv').read_text())
+
+    def test_storage_failure_and_queue_exhaustion_export_invalid_evidence(self):
+        for scenario in ('storage-error', 'queue-overflow'):
+            with self.subTest(scenario=scenario), tempfile.TemporaryDirectory() as directory:
+                result = subprocess.run([str(self.binary), directory, scenario], capture_output=True, text=True, timeout=10)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                run = next(Path(directory).glob('performance-*'))
+                self.assertIn('invalid,evidence-writer', (run / 'events.csv').read_text())
+
     def test_arming_excludes_ui_but_retains_first_game_frame_shader_wait(self):
         with tempfile.TemporaryDirectory() as directory:
             result = subprocess.run([str(self.binary), directory, 'ui'], capture_output=True, text=True, timeout=10)
@@ -247,7 +317,7 @@ class RecorderTests(unittest.TestCase):
             linked = subprocess.run(['clang++-21', '-std=c++23', '-pthread', '-Wall', '-Wextra', '-Werror',
                 '-DPSWAKER_TEST_PLATFORM_LOGGER', '-Wl,--gc-sections', '-I', str(HERE / 'game'),
                 str(HERE / 'game/frame-pacing.cpp'), str(HERE / 'tests/frame-pacing.cpp'),
-                str(root / 'platform.o'), '-o', str(root / 'recorder')], capture_output=True, text=True)
+                str(root / 'platform.o'), '-Wl,--wrap=fflush', '-o', str(root / 'recorder')], capture_output=True, text=True)
             self.assertEqual(linked.returncode, 0, linked.stderr)
             result = subprocess.run([str(root / 'recorder'), directory, 'diagnostics'],
                                     capture_output=True, text=True, timeout=10)
@@ -266,7 +336,7 @@ class RecorderTests(unittest.TestCase):
             run = next(Path(directory).glob('performance-*'))
             with (run / 'events.csv').open() as stream:
                 events = list(csv.DictReader(stream))
-            costs = [e for e in events if e['kind'].startswith('diagnostic-')]
+            costs = [e for e in events if e['kind'] in ('diagnostic-heartbeat-ns', 'diagnostic-input-ns')]
             self.assertEqual([(e['kind'], e['sample']) for e in costs],
                              [('diagnostic-heartbeat-ns', '1'), ('diagnostic-input-ns', '1')])
             self.assertGreaterEqual(int(costs[0]['detail']), 44000000)

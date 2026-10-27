@@ -4,6 +4,7 @@
 #include <atomic>
 #include <chrono>
 #include <cmath>
+#include <condition_variable>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -40,6 +41,74 @@ std::thread observer;
 std::atomic<uint64_t> gameFrame{0}, shaderNs{0}, shaderCalls{0};
 unsigned activeSample = 0, sequence = 0;
 FILE *frames = nullptr, *events = nullptr, *summaries = nullptr;
+// Only this worker touches the evidence streams during gameplay. Producers
+// copy bounded rows; a slow disk cannot hold the frame/submission state lock.
+class EvidenceWriter {
+    struct Row {
+        FILE* file = nullptr;
+        char text[512]{};
+        bool durable = false;
+        unsigned sample = 0;
+    };
+    std::array<Row, 1024> rows{};
+    std::mutex queueMutex;
+    std::condition_variable ready;
+    std::thread worker;
+    size_t head = 0, size = 0;
+    bool closing = false;
+    std::atomic<bool> failed{false};
+    void run() {
+        bool reported = false;
+        for (;;) {
+            Row row;
+            {
+                std::unique_lock lock(queueMutex);
+                ready.wait(lock, [&] { return size || closing; });
+                if (!size) break;
+                row = rows[head]; head = (head + 1) % rows.size(); --size;
+            }
+            if (row.file) {
+                if (fputs(row.text, row.file) < 0) failed = true;
+            } else {
+                const auto start = pswaker_perf_now();
+                for (auto* file : {frames, events, summaries}) {
+                    if (fflush(file)) failed = true;
+                    if (row.durable && fsync(fileno(file))) failed = true;
+                }
+                if (fprintf(events, "%llu,diagnostic-recorder-flush-ns,%llu,%u\n",
+                    (unsigned long long)pswaker_perf_now(),
+                    (unsigned long long)(pswaker_perf_now() - start), row.sample) < 0) failed = true;
+            }
+            if (failed && !reported) {
+                fprintf(events, "%llu,invalid,evidence-writer,0\n", (unsigned long long)pswaker_perf_now());
+                reported = true;
+            }
+        }
+    }
+    bool enqueue(const Row& row) {
+        std::lock_guard lock(queueMutex);
+        if (size == rows.size() || closing) { failed = true; return false; }
+        rows[(head + size) % rows.size()] = row;
+        ++size; ready.notify_one(); return true;
+    }
+public:
+    void start() { worker = std::thread([this] { run(); }); }
+    bool bad() const { return failed; }
+    template <typename... Args> bool append(FILE* file, const char* format, Args... args) {
+        Row row; row.file = file;
+        const int length = snprintf(row.text, sizeof row.text, format, args...);
+        if (length < 0 || size_t(length) >= sizeof row.text) { failed = true; return false; }
+        return enqueue(row);
+    }
+    bool flush(bool durable, unsigned sampleId) {
+        Row row; row.durable = durable; row.sample = sampleId;
+        return enqueue(row);
+    }
+    void drain() {
+        { std::lock_guard lock(queueMutex); closing = true; ready.notify_one(); }
+        if (worker.joinable()) worker.join();
+    }
+} writer;
 char directory[256]{}, statusText[256] = "No performance sample requested.";
 char stageName[64] = "unknown";
 int roomNumber = -1, videoHandle = -1;
@@ -62,9 +131,10 @@ struct Sample {
     std::vector<double> intervals;
 } sample;
 
+void fail(const char* reason);
 void event(const char* kind, const char* detail, unsigned sampleId = ~0u) {
-    if (events && fprintf(events, "%llu,%s,%s,%u\n", (unsigned long long)pswaker_perf_now(),
-                          kind, detail, sampleId == ~0u ? activeSample : sampleId) < 0) broken = true;
+    if (events && !writer.append(events, "%llu,%s,%s,%u\n", (unsigned long long)pswaker_perf_now(),
+                          kind, detail, sampleId == ~0u ? activeSample : sampleId)) fail("evidence-writer");
 }
 void fail(const char* reason) {
     if (broken) return;
@@ -91,17 +161,16 @@ void finish(const char* outcome) {
     const bool complete = !strcmp(outcome, "complete") && !broken;
     const bool target = complete && seconds >= 120 && fps >= 29.5 && p95 <= 35 && p99 <= 50 && maximum <= 100;
     if (summaries) {
-        if (fprintf(summaries, "%u,%s,%s,%.6f,%zu,%.6f,%.6f,%.6f,%.6f,%u,%d\n", sample.id,
+        if (!writer.append(summaries, "%u,%s,%s,%.6f,%zu,%.6f,%.6f,%.6f,%.6f,%u,%d\n", sample.id,
             sample.scene, broken ? "invalid" : outcome, seconds, sorted.size(), fps, p95, p99, maximum,
-            sample.shaderHitches, target) < 0 || fflush(summaries) || fsync(fileno(summaries))) fail("summary-write");
+            sample.shaderHitches, target)) fail("summary-write");
     }
     snprintf(statusText, sizeof statusText, "Sample %u (%s): %s; %.2f FPS, p95 %.2f, p99 %.2f, max %.2f ms. Retrieve logs.",
         sample.id, sample.scene, broken ? "invalid" : outcome, fps, p95, p99, maximum);
     event("sample-end", broken ? "invalid" : outcome);
     activeSample = 0;
     sample = {};
-    if (frames && (fflush(frames) || fsync(fileno(frames)))) fail("frames-write");
-    if (events && (fflush(events) || fsync(fileno(events)))) fail("events-write");
+    if (!writer.flush(true, 0)) fail("evidence-writer");
 }
 void observe(const FlipStatus& flip, uint64_t observed, uint64_t readTick) {
     if (haveStatus && flip.count == lastCount) {
@@ -111,8 +180,13 @@ void observe(const FlipStatus& flip, uint64_t observed, uint64_t readTick) {
     if (haveStatus && flip.count != lastCount + 1) fail("missed-flip-completion");
     if (!haveStatus && flip.count != 1) fail("missed-initial-flip");
     if (!flip.tsc || (haveStatus && flip.tsc <= lastTick)) fail("nonmonotonic-flip-clock");
-    if (!frequency || readTick < flip.tsc || double(readTick - flip.tsc) / frequency > .100)
+    if (!frequency || readTick < flip.tsc)
         fail("unverified-flip-clock-domain");
+    else if (double(readTick - flip.tsc) / frequency > .100) {
+        char text[32];
+        snprintf(text, sizeof text, "%llu", (unsigned long long)(1e9 * double(readTick - flip.tsc) / frequency));
+        event("observer-delay-ns", text);
+    }
     haveStatus = true; lastCount = flip.count; lastTick = flip.tsc;
     while (!submitted.empty() && submitted.front().argument < flip.argument) {
         fail("unobserved-submitted-frame"); submitted.pop_front();
@@ -121,11 +195,12 @@ void observe(const FlipStatus& flip, uint64_t observed, uint64_t readTick) {
         fail("unmapped-flip-completion"); return;
     }
     const auto present = submitted.front(); submitted.pop_front();
-    if (frames && fprintf(frames, "%llu,%llu,%llu,%llu,%lld,%llu,%u,%s,%d,%llu,%llu,%llu\n",
+    if (frames && !writer.append(frames, "%llu,%llu,%llu,%llu,%lld,%llu,%u,%s,%d,%llu,%llu,%llu,%llu\n",
         (unsigned long long)flip.count, (unsigned long long)flip.processTime, (unsigned long long)flip.tsc,
         (unsigned long long)observed, (long long)flip.argument, (unsigned long long)present.tag.frame,
         present.tag.sample, present.stage, present.room, (unsigned long long)present.submitNs,
-        (unsigned long long)present.shaderNs, (unsigned long long)present.shaderCalls) < 0) fail("frames-write");
+        (unsigned long long)present.shaderNs, (unsigned long long)present.shaderCalls,
+        (unsigned long long)readTick)) fail("frames-write");
     if (!sample.id || present.tag.sample != sample.id) return;
     if (!present.tag.frame || (sample.lastFrame && present.tag.frame != sample.lastFrame + 1)) fail("nonconsecutive-game-frame");
     if (sample.firstTick) {
@@ -145,18 +220,14 @@ void poll() {
     while (!stopping) {
         {
             std::lock_guard lock(mutex);
+            if (writer.bad()) fail("evidence-writer");
             if (videoHandle >= 0) {
                 FlipStatus flip{};
                 if (sceVideoOutGetFlipStatus(videoHandle, &flip)) fail("flip-status-unavailable");
                 else if (flip.count) observe(flip, pswaker_perf_now(), sceKernelReadTsc());
             }
             if (++polls % 1000 == 0) {
-                const auto start = pswaker_perf_now();
-                if (frames && fflush(frames)) fail("frames-flush");
-                if (events && fflush(events)) fail("events-flush");
-                char text[32];
-                snprintf(text, sizeof text, "%llu", (unsigned long long)(pswaker_perf_now() - start));
-                event("diagnostic-recorder-flush-ns", text);
+                if (!writer.flush(false, activeSample)) fail("evidence-writer");
             }
         }
         usleep(1000);
@@ -183,7 +254,7 @@ void pswaker_perf_initialize(const char* build, const char* logsRoot) {
     frames = open("frames.csv"); events = open("events.csv"); summaries = open("samples.csv");
     frequency = sceKernelGetTscFrequency();
     if (!frames || !events || !summaries || !frequency) { fail("open-evidence-or-frequency"); return; }
-    fprintf(frames, "flip_count,process_time,tsc,observed_ns,flip_argument,game_frame,sample,stage,room,submit_ns,shader_ns,shader_calls\n");
+    fprintf(frames, "flip_count,process_time,tsc,observed_ns,flip_argument,game_frame,sample,stage,room,submit_ns,shader_ns,shader_calls,read_tsc\n");
     fprintf(events, "monotonic_ns,kind,detail,sample\n");
     fprintf(summaries, "sample,scene,outcome,seconds,intervals,average_fps,p95_ms,p99_ms,maximum_ms,shader_correlated_hitches,target_met\n");
     if (FILE* identity = open("identity.json")) {
@@ -193,14 +264,19 @@ void pswaker_perf_initialize(const char* build, const char* logsRoot) {
         if (fclose(identity)) good = false;
         if (!good) fail("identity-write");
     } else fail("identity-open");
+    writer.start();
     event("phase", "startup");
     observer = std::thread(poll);
 }
 void pswaker_perf_shutdown() {
     stopping = true;
     if (observer.joinable()) observer.join();
-    std::lock_guard lock(mutex);
-    finish("interrupted"); event("shutdown", "complete");
+    {
+        std::lock_guard lock(mutex);
+        if (writer.bad()) fail("evidence-writer");
+        finish("interrupted"); event("shutdown", "complete");
+    }
+    writer.drain();
     for (auto* file : {frames, events, summaries}) if (file) {
         bool good = fflush(file) == 0;
         if (fsync(fileno(file))) good = false;
@@ -246,6 +322,7 @@ void pswaker_perf_scene_request(const char* scene) { std::lock_guard lock(mutex)
 const char* pswaker_perf_status() {
     static thread_local char copy[256];
     std::lock_guard lock(mutex);
+    if (writer.bad()) fail("evidence-writer");
     snprintf(copy, sizeof copy, "%s", statusText); return copy;
 }
 extern "C" PswakerFrameTag pswaker_perf_capture() {

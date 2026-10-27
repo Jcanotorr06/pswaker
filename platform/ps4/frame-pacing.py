@@ -70,12 +70,17 @@ def analyze(run, inspection, owner):
         previous = frame
     if frames[0]['flip_count'] != 1:
         errors.append('missing initial flip evidence')
-    # Across the launch, completed-flip time must track an independent monotonic
-    # observation clock. Poll latency may vary, but cannot change the clock rate.
-    elapsed = (frames[-1]['tsc'] - frames[0]['tsc']) / frequency
-    observed = (frames[-1]['observed_ns'] - frames[0]['observed_ns']) / 1e9
-    if abs(elapsed - observed) > .100 or any(abs(
-            (f['tsc'] - frames[0]['tsc']) / frequency -
+    # Calibrate simultaneous kernel/monotonic reads, not the age of the last
+    # completion. A delayed observer can read a valid older completion. Legacy
+    # captures lack this independent read and retain their conservative check.
+    clock_field = 'read_tsc' if 'read_tsc' in frames[0] else 'tsc'
+    if clock_field == 'read_tsc' and any(f['read_tsc'] < f['tsc'] for f in frames):
+        errors.append('flip timestamp is later than kernel clock read')
+    if clock_field == 'read_tsc' and any(
+            (f['read_tsc'] - f['tsc']) / frequency > .100 for f in (frames[0], frames[-1])):
+        errors.append('launch clock calibration lacks timely endpoint observations')
+    if any(abs(
+            (f[clock_field] - frames[0][clock_field]) / frequency -
             (f['observed_ns'] - frames[0]['observed_ns']) / 1e9) > .100 for f in frames):
         errors.append('flip timestamp rate differs from monotonic observation clock')
     armed = {int(e['sample']): e['detail'] for e in events if e['kind'] == 'sample-arm'}

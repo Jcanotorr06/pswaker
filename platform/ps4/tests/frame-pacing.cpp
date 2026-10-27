@@ -5,6 +5,7 @@
 #include <chrono>
 #include <cstdint>
 #include <cstring>
+#include <cstdio>
 #include <mutex>
 #include <thread>
 
@@ -12,6 +13,9 @@ namespace {
 std::mutex serviceMutex;
 uint64_t count = 0, tick = 0;
 std::atomic<uint64_t> seen{0}, polls{0};
+std::atomic<int64_t> observationDelay{0};
+std::atomic<bool> blockFlush{false}, flushEntered{false}, releaseFlush{false};
+std::atomic<bool> failFlush{false};
 void complete(uint64_t number, uint64_t time) {
     {
         std::lock_guard lock(serviceMutex);
@@ -30,6 +34,15 @@ void present(uint64_t frame, uint64_t argument, uint64_t time) {
     complete(argument, time);
 }
 }
+extern "C" int __real_fflush(FILE*);
+extern "C" int __wrap_fflush(FILE* stream) {
+    if (failFlush.exchange(false)) return EOF;
+    if (blockFlush.exchange(false)) {
+        flushEntered = true;
+        while (!releaseFlush) std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    }
+    return __real_fflush(stream);
+}
 extern "C" int __wrap_sceVideoOutSubmitFlip(int, int, uint32_t, int64_t);
 namespace { int submit(uint64_t arg) { return __wrap_sceVideoOutSubmitFlip(1, 0, 1, arg); } }
 #if defined(PSWAKER_TEST_PLATFORM_LOGGER)
@@ -43,7 +56,7 @@ extern "C" int sceKernelDebugOutText(int, const char*) {
 }
 #endif
 extern "C" uint64_t sceKernelGetTscFrequency() { return 1000; }
-extern "C" uint64_t sceKernelReadTsc() { std::lock_guard lock(serviceMutex); return tick + 1; }
+extern "C" uint64_t sceKernelReadTsc() { std::lock_guard lock(serviceMutex); return tick + 1 + observationDelay; }
 extern "C" int __real_sceVideoOutSubmitFlip(int, int, uint32_t, int64_t) { return 0; }
 extern "C" int sceVideoOutGetFlipStatus(int, void* output) {
     std::lock_guard lock(serviceMutex);
@@ -83,6 +96,53 @@ int main(int argc, char** argv) {
         return 0;
     }
     present(1, 1, 1000);
+    if (!strcmp(argv[2], "storage-error")) {
+        failFlush = true;
+        present(2, 2, 121000);
+        const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(3);
+        while (!strstr(pswaker_perf_status(), "Timing unavailable") && std::chrono::steady_clock::now() < deadline)
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        assert(strstr(pswaker_perf_status(), "Timing unavailable"));
+        pswaker_perf_shutdown();
+        return 0;
+    }
+    if (!strcmp(argv[2], "slow-storage") || !strcmp(argv[2], "queue-overflow")) {
+        blockFlush = true;
+        const auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(3);
+        while (!flushEntered && std::chrono::steady_clock::now() < deadline)
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        assert(flushEntered);
+        if (!strcmp(argv[2], "queue-overflow")) {
+            for (int i = 0; i < 2048; ++i) pswaker_perf_scene_request("outset");
+            assert(strstr(pswaker_perf_status(), "Timing unavailable"));
+            releaseFlush = true;
+            pswaker_perf_shutdown();
+            return 0;
+        }
+        std::atomic<bool> completed{false};
+        std::thread producer([&] { present(2, 2, 121000); completed = true; });
+        const auto limit = std::chrono::steady_clock::now() + std::chrono::milliseconds(250);
+        while (!completed && std::chrono::steady_clock::now() < limit)
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        const bool continued = completed;
+        releaseFlush = true;
+        producer.join();
+        pswaker_perf_shutdown();
+        assert(continued && "Evidence file flushing blocked frame recording/submission");
+        return 0;
+    }
+    if (!strcmp(argv[2], "late-observation")) {
+        present(2, 2, 121000);
+        observationDelay = 160;
+        present(0, 3, 121033); // UI completion observed late, with no lost flip.
+        observationDelay = 0;
+        pswaker_perf_stage("A_mori", 0);
+        pswaker_perf_arm("forest");
+        present(3, 4, 122000);
+        present(4, 5, 242000);
+        pswaker_perf_shutdown();
+        return 0;
+    }
     if (!strcmp(argv[2], "diagnostic-cost")) {
         pswaker_perf_diagnostic(PswakerDiagnostic::Heartbeat, pswaker_perf_now() - 44000000);
         pswaker_perf_diagnostic(PswakerDiagnostic::Input, pswaker_perf_now() - 10000000);
