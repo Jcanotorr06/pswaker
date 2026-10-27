@@ -10,6 +10,9 @@ import json
 from pathlib import Path
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+import build_inputs
+
 HERE = Path(__file__).resolve().parent
 GCI = Path('saves/USA/Card A/01-GZLE-gczelda.gci')
 
@@ -40,7 +43,7 @@ def prepare(seed, output, inspection):
     if not valid_save(data):
         raise ValueError('Seed must be a completed, valid USA GCI from disposable in-game progress')
     output = output.resolve()
-    if output.is_relative_to(HERE.parents[1]):
+    if output.is_relative_to(build_inputs.Locations().repository):
         raise ValueError('Private case output must be outside the Git repository')
     identity = json.loads(inspection.read_text())
     if (identity.get('sfo', {}).get('TITLE_ID') != 'PSWK00001' or

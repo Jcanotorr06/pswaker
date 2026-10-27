@@ -213,6 +213,10 @@ class CompletePackageRoundtripTests(PreparationCliTestCase):
     def test_explicit_diagnostic_roundtrip_and_changed_package_rejection(self):
         result = self.run_cli(*self.assembly_args())
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        preparation = json.loads((self.output / 'assembly.json').read_text())['preparation_inputs_sha256']
+        self.assertIn('tools/pswaker/build_inputs.py', preparation)
+        self.assertIn('tools/pswaker/ownership.json', preparation)
+        self.assertIn('platform/ps4/game/storage.cpp', preparation)
         original_commands = json.loads((self.output / 'commands.json').read_text())
         inspected = self.run_cli('inspect', self.output, '--platform-root', self.reference)
         self.assertEqual(inspected.returncode, 0, inspected.stderr)

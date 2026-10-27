@@ -14,11 +14,14 @@ import subprocess
 import sys
 import tempfile
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+import build_inputs
+
 from disc_image import require, validate
 
 
 HERE = Path(__file__).resolve().parent
-REPOSITORY = HERE.parents[1]
+REPOSITORY = build_inputs.Locations().repository
 INSTALLED_IMAGE = '/app0/game.iso'
 IDENTITIES = {
     'diagnostic': {'title_id': 'PSWK00010', 'label': 'PSWAKERPROBE',
@@ -359,8 +362,7 @@ def assemble(args):
             files['sce_sys/param.sfo'] = digest(packaged_sfo)
         report = {'schema': 1, 'kind': args.kind, 'app_version': args.app_version, 'manifest': manifest,
                   'program': program, 'tools': provenance, 'payload_sha256': files,
-                  'preparation_inputs_sha256': {name: digest(HERE / name) for name in [
-                      'complete-package.py', 'disc_image.py', 'content-contract.json', 'sources.lock.json']},
+                  'preparation_inputs_sha256': build_inputs.maintained_inventory(),
                   'packager_sfo_fields': {key: fields[key] for key in generated},
                   'package': {'filename': package.name, 'sha256': digest(package)},
                   'inputs': {'image': str(args.image.resolve()), 'elf': str(args.elf.resolve()),

@@ -7,6 +7,9 @@ from pathlib import Path
 import subprocess
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+import build_inputs
+
 root = Path(sys.argv[1]).resolve()
 
 
@@ -53,12 +56,9 @@ for path in sorted((root / "build/probe/_deps").rglob("*")):
 for path in sorted((root / "src/liborbispkg").rglob("packages.lock.json")):
     closure["nuget_locks"].append({"path": path.relative_to(root).as_posix(), "sha256": digest(path), "text": path.read_text()})
 closure["dawn_deps"].sort(key=lambda item: item["path"])
-here = Path(__file__).resolve().parent
 closure['maintained_inputs'] = [
-    {'path': path.relative_to(here).as_posix(), 'sha256': digest(path)}
-    for path in sorted(here.rglob('*')) if path.is_file()
-    and path.suffix not in {'.md', '.pyc'}
-    and not any(part in {'__pycache__', 'tests', 'evidence'} for part in path.relative_to(here).parts)]
+    {'path': name, 'sha256': sha}
+    for name, sha in build_inputs.maintained_inventory().items()]
 closure['rebuilt_sdk_archives'] = (root / 'evidence/sdk-rebuilt-archives.sha256').read_text()
 (root / "evidence/input-closure.json").write_text(json.dumps(closure, indent=2) + "\n")
 print("Recorded actual host, SDK metadata, Dawn DEPS, CMake archives and NuGet closure.")

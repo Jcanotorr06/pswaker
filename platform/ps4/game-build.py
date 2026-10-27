@@ -11,6 +11,9 @@ import shutil
 import subprocess
 import sys
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
+import build_inputs
+
 HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location('game_preparation', HERE / 'prepare-game.py')
 preparation = importlib.util.module_from_spec(spec)
@@ -43,10 +46,7 @@ def inputs(root, platform):
                       'sysroot', 'sdk/opt/pacbrew/ps4/openorbis']:
         records.update({directory + '/' + name: sha for name, sha in
                         preparation.inventory(platform / directory).items()})
-    code = {p.relative_to(HERE).as_posix(): preparation.digest(p) for p in sorted(HERE.rglob('*'))
-            if p.is_file() and '__pycache__' not in p.parts and
-            not any(part in {'evidence', 'tests'} for part in p.relative_to(HERE).parts) and
-            p.suffix not in {'.pyc', '.md'}}
+    code = build_inputs.maintained_inventory()
     return {'preparation_sha256': preparation.digest(root / 'evidence/game-inputs.json'),
             'platform_inputs': records, 'port_inputs': code,
             'compiler': subprocess.check_output(['clang++-21', '--version'], text=True),
