@@ -212,7 +212,7 @@ class Stages:
         except BuildCancelled:
             self.observe({'stage': stage, 'event': 'cancelled', 'seconds': round(time.monotonic() - start, 3)})
             raise
-        except FAILURES as error:
+        except Exception as error:
             self.observe({'stage': stage, 'event': 'failed', 'seconds': round(time.monotonic() - start, 3),
                           'error': str(error)})
             raise StageFailure(stage, error) from error

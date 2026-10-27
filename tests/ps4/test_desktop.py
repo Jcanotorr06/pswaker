@@ -35,6 +35,85 @@ class DesktopValidationTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(self.image.read_bytes()).hexdigest(), original)
 
     @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
+    def test_failed_validation_exports_private_report_and_preserves_failure_on_export_error(self):
+        self.run_desktop('''
+assert app.export_button.instate(['disabled'])
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Validation failed')
+failure = app.details.get()
+assert not app.export_button.instate(['disabled'])
+report_path = folder / 'diagnostic.json'
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(report_path)), \\
+     patch('tkinter.messagebox.showinfo'):
+    app.export_button.invoke()
+report = json.loads(report_path.read_text())
+assert report['outcome'] == 'failed'
+assert report['failure']['stage'] == 'validate'
+assert report['failure']['category'] == 'invalid-input'
+assert report['app']['version'] == '01.23'
+assert report['program']['build_id_sha256'] == hashlib.sha256(b'synthetic-program').hexdigest()
+assert any(e['stage'] == 'validate' and e['event'] == 'failed' and e['seconds'] >= 0
+           for e in report['stages'])
+assert str(folder) not in report_path.read_text()
+assert image.name not in report_path.read_text()
+assert app.details.get() == failure
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(image)), \\
+     patch('tkinter.messagebox.showerror') as explained:
+    app.export_button.invoke()
+    explained.assert_called_once()
+    assert 'another' in str(explained.call_args).lower()
+assert app.details.get() == failure
+assert app.status.get() == 'Validation failed'
+assert not app.export_button.instate(['disabled'])
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(folder / 'failed-export.json')), \\
+     patch('os.fsync', side_effect=OSError('PRIVATE-EXPORT-ERROR-SENTINEL')), \\
+     patch('tkinter.messagebox.showerror') as explained:
+    app.export_button.invoke()
+    explained.assert_called_once()
+    assert 'PRIVATE-EXPORT-ERROR-SENTINEL' not in str(explained.call_args)
+assert not (folder / 'failed-export.json').exists()
+assert app.details.get() == failure
+assert not list(folder.glob('.diagnostic-*'))
+saved = report_path.read_bytes()
+with patch('tkinter.filedialog.asksaveasfilename', return_value=''):
+    app.export_button.invoke()
+assert report_path.read_bytes() == saved
+''', production=True)
+
+    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
+    def test_unexpected_validation_failure_exports_measured_stage_and_safe_failure_class(self):
+        self.run_desktop('''
+app.image_button.invoke()
+app.output_button.invoke()
+stat = Path.stat
+def unreadable(path, *args, **kwargs):
+    if path == image:
+        error = RuntimeError(r'C:\\Users\\PRIVATE-VALIDATION-ACCOUNT\\image.iso --password=PRIVATE-SECRET')
+        error.add_note('GAME-BYTES-SENTINEL')
+        raise error
+    return stat(path, *args, **kwargs)
+with patch('pathlib.Path.stat', new=unreadable):
+    app.validate_button.invoke()
+    wait_for('Validation failed')
+report_path = folder / 'unexpected-validation.json'
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(report_path)), \\
+     patch('tkinter.messagebox.showinfo'):
+    app.export_button.invoke()
+exported = report_path.read_text()
+report = json.loads(exported)
+assert report['failure']['stage'] == 'validate'
+assert report['failure']['category'] == 'unexpected-error'
+assert any(e['stage'] == 'validate' and e['event'] == 'failed' and e['seconds'] >= 0
+           for e in report['stages']), report
+for sentinel in ['PRIVATE-VALIDATION-ACCOUNT', 'PRIVATE-SECRET', 'GAME-BYTES-SENTINEL', str(folder)]:
+    assert sentinel not in exported
+assert 'validate again' in app.details.get().lower() or 'retry' in app.details.get().lower()
+assert 'Traceback' not in app.details.get()
+''')
+
+    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
     def test_cancel_validation_keeps_desktop_responsive_and_allows_fresh_retry(self):
         self.run_desktop('''
 import threading
@@ -366,7 +445,9 @@ class FailedWrite:
     def write(self, data):
         # A real partial artifact exists before the OS reports the failed write.
         self.stream.write(data[:1024])
-        raise OSError(errno.ENOSPC, 'Controlled disk exhaustion', self.stream.name)
+        failure = OSError(errno.ENOSPC, 'Controlled disk exhaustion ' + private_text, self.stream.name)
+        failure.add_note('Nested raw error: ' + private_text)
+        raise failure
 
 def fail_open(path, mode='r', *args, **kwargs):
     if path.name == 'game.iso' and mode == 'wb':
@@ -393,6 +474,8 @@ class FaultTool(run):
                 with Path(command[2]).open('r+b') as stream:
                     stream.seek(0x40)
                     stream.write(b'IV0000-FAIL00000')
+        if fault == 'packager' and self.command[1] == 'pkg_build':
+            return result[0] + private_text, result[1] + private_text
         return result
 
 def fail_cleanup(path, *args, **kwargs):
@@ -403,6 +486,11 @@ def fail_publish(path, target):
     if path.name.startswith('.complete-'):
         raise PermissionError(errno.EACCES, 'Controlled publish access loss', str(target))
     return rename(path, target)
+private_text = (r'--input="C:\\Users\\PRIVATE-ACCOUNT-SENTINEL\\My Secret Folder\\source.iso" '
+                r'--output=\\\\private-server\\PRIVATE-SHARE-SENTINEL\\game.pkg '
+                '--key=KEY-SENTINEL --password=CREDENTIAL-SENTINEL '
+                '/home/PRIVATE-POSIX-SENTINEL/game.iso relative/PRIVATE-RELATIVE-SENTINEL/game '
+                'GAME-CONTENT-SENTINEL')
 app.image_button.invoke()
 app.output_button.invoke()
 app.validate_button.invoke()
@@ -415,8 +503,9 @@ with ExitStack() as faults:
     if fault in {'disk-full', 'lost-access', 'cleanup', 'no-log'}:
         faults.enter_context(patch('pathlib.Path.open', new=fail_open))
     if fault == 'destination-access':
-        faults.enter_context(patch('tempfile.TemporaryFile', side_effect=PermissionError(
-            errno.EACCES, 'Controlled destination access loss', str(folder))))
+        failure = PermissionError(errno.EACCES, 'Controlled destination access loss ' + private_text, str(folder))
+        failure.__cause__ = ValueError('Nested validation failure ' + private_text)
+        faults.enter_context(patch('tempfile.TemporaryFile', side_effect=failure))
     if fault == 'publish-access':
         faults.enter_context(patch('pathlib.Path.rename', new=fail_publish))
     if fault in {'packager', 'inspection', 'collision'}:
@@ -439,6 +528,58 @@ assert app.create_button.instate(['disabled'])
 assert not app.validate_button.instate(['disabled'])
 assert not app.image_button.instate(['disabled'])
 assert not app.output_button.instate(['disabled'])
+failure_text = app.details.get()
+report_path = folder / 'private-diagnostics.json'
+assert not report_path.exists(), 'No automatic export'
+logs = folder / 'local-state/PSWaker/logs'
+(logs / 'private.key').write_text(private_text)
+(logs / 'credentials.json').write_text(json.dumps({'password': private_text}))
+assert not app.export_button.instate(['disabled'])
+with patch('tkinter.filedialog.asksaveasfilename', return_value=str(report_path)), \\
+     patch('socket.socket', side_effect=AssertionError('Export must stay offline')), \\
+     patch('tkinter.messagebox.showinfo'):
+    app.export_button.invoke()
+exported = report_path.read_text()
+diagnostic = json.loads(exported)
+assert diagnostic['outcome'] == 'failed'
+assert diagnostic['failure']['stage'] == expected_stage
+assert diagnostic['failure']['next_action']
+assert diagnostic['app']['version'] == '01.23'
+assert len(diagnostic['app']['manifest_sha256']) == 64
+assert diagnostic['program']['build_id_sha256'] == hashlib.sha256(b'synthetic-program').hexdigest()
+assert diagnostic['tools']['source_revision'] == '594021fdc435409f755a6ae0781b65ec6cec846c'
+assert diagnostic['tools']['sdk'] == '8.0.427'
+if fault == 'destination-access':
+    assert not diagnostic['image'], 'No fresh validation identity when selection access fails'
+else:
+    assert diagnostic['image']['sha256'] == original
+assert any(e['stage'] == expected_stage and e['event'] == 'failed' and e['seconds'] >= 0
+           for e in diagnostic['stages'])
+assert not diagnostic['console_acceptance']
+assert not diagnostic['distribution_cleared']
+for sentinel in ['PRIVATE-ACCOUNT-SENTINEL', 'PRIVATE-SHARE-SENTINEL', 'PRIVATE-POSIX-SENTINEL',
+                 'PRIVATE-RELATIVE-SENTINEL', 'KEY-SENTINEL', 'CREDENTIAL-SENTINEL',
+                 'GAME-CONTENT-SENTINEL', str(folder), image.name, 'Synthetic DOL section',
+                 'Synthetic second REL', 'Tool output:', 'Traceback']:
+    assert sentinel not in exported, (sentinel, exported)
+assert app.details.get() == failure_text
+# Export remains tied to this attempt even after on-disk metadata changes.
+release_path = bundle / 'desktop-release.json'
+release_bytes = release_path.read_bytes()
+release_path.write_text(json.dumps({'app_version': '99.99', 'password': private_text}))
+second_report = folder / 'same-attempt.json'
+try:
+    with patch('tkinter.filedialog.asksaveasfilename', return_value=str(second_report)), \\
+         patch('tkinter.messagebox.showinfo'):
+        app.export_button.invoke()
+    assert second_report.read_bytes() == report_path.read_bytes()
+finally:
+    release_path.write_bytes(release_bytes)
+if fault == 'packager':
+    assert any(t['operation'] == 'pkg_build' and t['exit_code'] != 0 for t in diagnostic['tool_runs'])
+if fault == 'inspection':
+    assert len(diagnostic['package']['sha256']) == 64
+    assert diagnostic['package']['title_id'] == 'PSWK00001'
 assert hashlib.sha256(image.read_bytes()).hexdigest() == original
 assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
 if fault == 'collision':
@@ -468,6 +609,7 @@ assert report['image']['sha256'] == original
 assert hashlib.sha256(app.package.read_bytes()).hexdigest() == report['package']['sha256']
 assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
 assert not list(folder.glob('.complete-*'))
+assert app.operation.diagnostics.operation_id != diagnostic['operation_id']
 ''', packaging=True)
 
     @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')

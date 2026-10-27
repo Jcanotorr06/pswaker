@@ -119,6 +119,8 @@ class WindowsTools:
         write_json(self.work / 'commands.json', self.commands)
         result = capture_owned(list(map(str, command)), cwd=self.work, env=self.env,
                                text=True, encoding='utf-8', errors='replace')
+        if operation:
+            operation.diagnostics.record_tool(command[1], result.returncode)
         if result.returncode:
             # Preserve tool details even when the workspace log cannot be written.
             failure = ValueError(f'Windows packaging tool {command[1]} failed (exit code {result.returncode}). '
@@ -193,16 +195,20 @@ def private_workspace(destination, stages):
 def create_package(image, output, bundle, *, accepted_image=None, observe=None, operation=None):
     """Report actionable local failures without exposing an unfinished package."""
     operation = operation or BuildOperation(observe)
+    operation.diagnostics.capture_bundle(bundle)
     try:
         with operation.bind():
             result = _create_package(image, output, bundle, accepted_image=accepted_image, observe=operation.emit,
                                      operation=operation)
         save_evidence(operation.events, 'complete')
+        operation.diagnostics.finish('complete')
         return result
     except BuildCancelled as error:
+        operation.diagnostics.finish('cancelled')
         save_evidence(operation.events, 'cancelled', error)
         raise
     except Exception as error:
+        operation.diagnostics.finish('failed', getattr(error, 'stage', operation.stage), error)
         if not isinstance(error, StageFailure):
             error = StageFailure(operation.stage, error)
         save_evidence(operation.events, 'failed', error)
@@ -228,6 +234,7 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
         destination = output.resolve()
         require(sys.platform == 'win32', 'Complete desktop packaging requires Windows x64')
         original = validate_selection(image, destination)
+        operation.diagnostics.record_image(original)
         require(accepted_image is None or original == accepted_image,
                 'The image changed after validation. Validate the selected image again.')
         # Stage, PKG, fresh extraction and packager scratch can coexist. Also
@@ -261,6 +268,7 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
             scratch.mkdir()
             tools = WindowsTools(work / 'packaging', work, scratch)
             provenance = tools.provenance()
+            operation.diagnostics.verified_bundle(work)
             stage = work / 'stage'
             (work / 'program/stage').rename(stage)
             (work / 'program/elf').rename(work / 'elf')
@@ -303,6 +311,7 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
                       'desktop_release_sha256': digest(bundle / 'desktop-release.json'),
                       'package': {'filename': package.name, 'sha256': digest(package)}}
             write_json(work / 'assembly.json', report)
+            operation.diagnostics.record_package(report['package'])
         with stages('inspect'):
             inspect_package(work, tools)
         with stages('publish'):

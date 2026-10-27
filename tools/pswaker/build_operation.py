@@ -7,6 +7,7 @@ import json
 import uuid
 
 from owned_work import state_root
+from diagnostics import Diagnostics
 
 
 class BuildCancelled(Exception):
@@ -25,6 +26,7 @@ class BuildOperation:
         self.stage = 'validate'
         self.events = []
         self.log = None
+        self.diagnostics = Diagnostics()
 
     def cancel(self):
         # Publication and cancellation have one ordering. After the verified
@@ -45,6 +47,7 @@ class BuildOperation:
 
     def emit(self, event):
         self.stage = event['stage']
+        self.diagnostics.stage_event(event)
         if event['event'] != 'progress':
             self.events.append(event)
             try:

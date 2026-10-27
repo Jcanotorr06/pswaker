@@ -6,6 +6,7 @@
     "tools/pswaker/package_artifact.py",
     "tools/pswaker/windows_package.py",
     "tools/pswaker/build_operation.py",
+    "tools/pswaker/diagnostics.py",
     "tools/pswaker/owned_work.py",
     "tools/pswaker/windows_process.py",
     "tools/pswaker/prepare-windows-tools.py",
