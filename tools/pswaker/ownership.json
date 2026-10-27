@@ -13,7 +13,7 @@
   ],
   "command_groups": {
     "diagnostic": {
-      "directory": "platform/ps4",
+      "directory": "tools/pswaker",
       "files": [
         "adapt-platform.py", "apply-patches.py", "audit-inputs.py",
         "build-graphics.sh", "build-probe.sh", "build-runtime.sh",

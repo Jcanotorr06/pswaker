@@ -10,6 +10,9 @@ import tempfile
 import unittest
 
 HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(HERE.parents[1] / 'tools/pswaker'))
+import build_inputs
+LOCATIONS = build_inputs.Locations()
 REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
 
 
@@ -29,7 +32,7 @@ class PackageRoundtripTests(unittest.TestCase):
         self.environment = dict(os.environ, DOTNET_SYSTEM_GLOBALIZATION_INVARIANT='1')
 
     def inspect(self):
-        return subprocess.run([sys.executable, str(HERE / 'inspect-artifacts.py'), str(self.root)],
+        return subprocess.run([sys.executable, str(LOCATIONS.command('inspect-artifacts.py')), str(self.root)],
                               capture_output=True, text=True, env=self.environment)
 
     def test_real_package_is_accepted(self):

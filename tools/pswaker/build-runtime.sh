@@ -2,6 +2,7 @@
 # First build stage only; not a substitute for the agreed platform diagnostic.
 set -euo pipefail
 HERE=$(cd -- "$(dirname -- "$0")" && pwd)
+PLATFORM=$(python3 "$HERE/build_inputs.py" platform)
 ROOT=${1:?Pass the absolute Linux build-root path}
 export PSB=$(realpath "$ROOT")
 export PS4_BUILD_ROOT=$PSB
@@ -17,7 +18,7 @@ mkdir -p "$PSB/evidence"
 test -f "$PSB/src/llvm-project-21.1.6.src/.pswaker-libcxx-ps4-atomic-wait.patch"
 chmod +x "$DOLPHINPS4/toolchain/prepare-sysroot.sh"
 bash "$DOLPHINPS4/toolchain/build-libcxx.sh" 2>&1 | tee "$PSB/evidence/libcxx-build.log"
-cmake -S "$HERE/runtime-preflight" -B "$PSB/build/runtime-preflight" -G Ninja \
+cmake -S "$PLATFORM/runtime-preflight" -B "$PSB/build/runtime-preflight" -G Ninja \
   -DCMAKE_TOOLCHAIN_FILE="$DOLPHINPS4/toolchain/ps4-love-modern.cmake" \
   -DCMAKE_BUILD_TYPE=Release -DDOLPHINPS4="$DOLPHINPS4" \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \

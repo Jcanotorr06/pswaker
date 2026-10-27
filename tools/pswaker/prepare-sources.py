@@ -8,9 +8,10 @@ import shutil
 import subprocess
 import sys
 
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build_inputs
 import importlib.util
-spec = importlib.util.spec_from_file_location("sdk", Path(__file__).with_name("lock-sdk.py"))
+spec = importlib.util.spec_from_file_location("sdk", build_inputs.Locations().command("lock-sdk.py"))
 sdk = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sdk)
 
@@ -32,7 +33,7 @@ def source(root, relative, repository, revision):
     if not cache.exists():
         sdk.download(url, cache.with_suffix(".part"))
         cache.with_suffix(".part").replace(cache)
-    lockfile = Path(__file__).with_name("sources.lock.json")
+    lockfile = build_inputs.Locations().platform / "sources.lock.json"
     if lockfile.exists():
         wanted = {item["revision"]: item["archive_sha256"] for item in json.loads(lockfile.read_text())}
         if sdk.sha256(cache) != wanted[revision]:
@@ -79,7 +80,7 @@ if __name__ == "__main__":
         futures.append(pool.submit(llvm, root))
         records = [f.result() for f in futures]
     (root / "evidence/source-archives.json").write_text(json.dumps(records, indent=2) + "\n")
-    subprocess.run([sys.executable, str(Path(__file__).with_name('apply-patches.py')), str(root), 'runtime'], check=True)
+    subprocess.run([sys.executable, str(build_inputs.Locations().command('apply-patches.py')), str(root), 'runtime'], check=True)
     shutil.copyfile(root / "refs/dusklight/tools/ac_ps4_drm.c", root / "refs/DolphinPS4/port/mesa/ac_ps4_drm.c")
     (root / "src/llvm-project-21.1.6.src/.pswaker-libcxx-ps4-atomic-wait.patch").touch()
     native = root / "src/native-platform"

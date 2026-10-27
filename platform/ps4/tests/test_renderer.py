@@ -9,6 +9,9 @@ import tempfile
 import unittest
 
 HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(HERE.parents[1] / 'tools/pswaker'))
+import build_inputs
+LOCATIONS = build_inputs.Locations()
 REFERENCE = os.environ.get('PSWAKER_REFERENCE_BUILD')
 
 
@@ -32,7 +35,7 @@ class RendererPreparationTests(unittest.TestCase):
                        cwd=tree, check=True)
 
     def test_matched_platform_accepts_ordered_renderer_reconciliation(self):
-        result = subprocess.run([sys.executable, str(HERE / 'reconcile-renderer.py'), str(self.root)],
+        result = subprocess.run([sys.executable, str(LOCATIONS.command('reconcile-renderer.py')), str(self.root)],
                                 capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         report = json.loads((self.root / 'evidence/renderer-reconciliation.json').read_text())
@@ -43,7 +46,7 @@ class RendererPreparationTests(unittest.TestCase):
     def test_changed_source_is_rejected_before_any_renderer_patch_is_applied(self):
         path = self.root / 'src/aurora/lib/gx/shader.cpp'
         path.write_text(path.read_text() + '\n// changed source\n')
-        result = subprocess.run([sys.executable, str(HERE / 'reconcile-renderer.py'), str(self.root)],
+        result = subprocess.run([sys.executable, str(LOCATIONS.command('reconcile-renderer.py')), str(self.root)],
                                 capture_output=True, text=True)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('Renderer source context mismatch: lib/gx/shader.cpp', result.stderr)

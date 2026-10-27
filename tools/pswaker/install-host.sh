@@ -13,7 +13,8 @@ install -m 0644 "$stage/key.gpg" /usr/share/keyrings/pswaker-llvm-21.gpg
 printf '%s\n' 'deb [arch=amd64 signed-by=/usr/share/keyrings/pswaker-llvm-21.gpg] https://apt.llvm.org/noble/ llvm-toolchain-noble-21 main' > /etc/apt/sources.list.d/pswaker-llvm-21.list
 apt-get update
 HERE=$(cd -- "$(dirname -- "$0")" && pwd)
-mapfile -t packages < <(python3 - "$HERE/host.lock.json" <<'PY'
+PLATFORM=$(python3 "$HERE/build_inputs.py" platform)
+mapfile -t packages < <(python3 - "$PLATFORM/host.lock.json" <<'PY'
 import json
 import sys
 for name, version in json.load(open(sys.argv[1]))['required_packages'].items():

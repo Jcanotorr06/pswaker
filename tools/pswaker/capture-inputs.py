@@ -7,7 +7,6 @@ from pathlib import Path
 import subprocess
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 import build_inputs
 
 root = Path(sys.argv[1]).resolve()
