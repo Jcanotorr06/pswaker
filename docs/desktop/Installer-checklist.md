@@ -1,7 +1,11 @@
 # Offline installer acceptance
 
 Use this checklist for #46 development-host observations and the separate #48
-clean-system matrix. Do not mark a clean-system row from a development host.
+clean-system matrix. For #48, follow the full
+[clean Windows checklist](Clean-windows-checklist.md) and
+[result template](Clean-windows-results.example.md), which add failure/recovery,
+diagnostics, timing and precise return requirements to this lifecycle checklist.
+Do not mark a clean-system row from a development host.
 Keep installers and all complete packages private until #47/#50 release gates
 pass. Never attach an owner image, extracted content or complete package to a
 public ticket.
@@ -18,7 +22,8 @@ The audit records include every bundled program/tool/runtime file identity,
 program build/ELF/SELF hashes, content-contract hash and compiler recipe/closure.
 
 1. Start with a standard Windows account and no PSWaker, Python, development
-   runtime, .NET installation, SDK, repository, WSL, Docker or VM. Obtain the
+   runtime, external .NET installation, SDK, repository, WSL or Docker. A clean
+   Windows guest may be the test OS; no VM is a consumer prerequisite. Obtain the
    candidate installers and a supported image privately before disconnecting.
    Disable networking before installation and leave it disabled throughout.
 2. Run candidate A normally. Confirm no administrator prompt, download, sign-in
@@ -31,15 +36,17 @@ program build/ELF/SELF hashes, content-contract hash and compiler recipe/closure
 4. Record source-image SHA-256, select that image and a private custom output
    parent through the actual installed app, validate and create a complete
    package. Record the verified result, package SHA-256, SFO/content identity,
-   inspection report and measured stage durations. Independently reinspect the
-   retained package. Check the source-image hash is unchanged.
+   inspection report and measured stage durations. Require the installed app's
+   fresh inspection of the actual package; optional later maintainer reinspection
+   is recorded separately without adding developer tools to the clean system.
+   Check the source-image hash is unchanged.
 5. While the app remains open, attempt to install candidate B or uninstall. It
    must ask to close PSWaker or fail the silent operation, without killing active
    work. Complete/cancel work and close the app normally.
 6. Run candidate B manually, still offline. Confirm one per-user application
    registration and the shortcut opening the new app version with its matching
    bundled program/tools. Repeat package creation at another custom destination
-   and fresh independent inspection. Check candidate A's completed output and
+   and fresh actual-output inspection. Check candidate A's completed output and
    source image remain unchanged; app versions must not create a new console
    title/content identity. A desktop-only update can retain the same program
    version; test a program update separately in #49.
