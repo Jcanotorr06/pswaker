@@ -1,13 +1,14 @@
 # Owner sampling checklist (#22)
 
 Status: **no console performance pass yet for this candidate**. Use the exact
-package/build hashes in [the 01.11 candidate report](evidence/performance-22/candidate-01.11/REPORT.md).
+package/build hashes in [the 01.12 candidate report](evidence/performance-22/candidate-01.12/REPORT.md).
 Retain previous failures and save/settings backups. No new test data or cache
 operation should touch your genuine profile.
 
-The [01.10 return](evidence/performance-22/console-return-01.10/REPORT.md)
-contains real shortfalls and an early cold-Outset pause. It was copied before
-Quit without a video comparison. For this retry, finish each complete sample,
+The [01.11 return](evidence/performance-22/console-return-01.11/REPORT.md)
+contains cold-Outset and warm-Outset shortfalls. A delayed UI observation
+disabled warm forest sampling. The owner retrieved after Quit, but the returned
+logs lack terminal markers; timing was not compared with video. For this retry,
 record visible timing corroboration, Quit normally and retrieve afterward.
 
 1. Confirm PS4 Slim / firmware 9.00 / GoldHEN v2.4b18, USA GZLE01 revision 0,
@@ -59,6 +60,8 @@ record visible timing corroboration, Quit normally and retrieve afterward.
    directory and ordinary logs by FTP immediately. Retain video/notes and fill
    in the owner JSON with a row for **every** requested sample. Check logs for
    shader waits, resource trends, errors and ordered shutdown, not just FPS.
+   Confirm `events.csv` contains `shutdown,complete`; if absent, retain and
+   report that gap with the visible Quit outcome. Do not edit raw files to add it.
 10. Fully close/relaunch for warm-cache comparisons with the same actions and
     repeat both scenes. Return the cold and warm launches separately, plus any
     failed launch or sample. The final integrated #23 checkpoint owns its full

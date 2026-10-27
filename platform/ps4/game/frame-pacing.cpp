@@ -277,6 +277,7 @@ void pswaker_perf_shutdown() {
         finish("interrupted"); event("shutdown", "complete");
     }
     writer.drain();
+    std::lock_guard lock(mutex);
     for (auto* file : {frames, events, summaries}) if (file) {
         bool good = fflush(file) == 0;
         if (fsync(fileno(file))) good = false;

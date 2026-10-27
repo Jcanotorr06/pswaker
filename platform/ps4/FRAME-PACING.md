@@ -31,8 +31,13 @@ display timing. ABI source: the unchanged selected Mesa
 `include/orbis/_types/video.h`. Their 64-byte layouts agree. The recorder checks
 timestamps against `sceKernelReadTsc`, rejects timestamps changing without a
 completion, rejects skipped counts/arguments, and retains both raw clock fields.
-The analyzer compares the TSC span against monotonic observations (100 ms
-tolerance across the launch, allowing observer scheduling latency). Every
+New captures also export `read_tsc`, the kernel clock at observation time.
+The analyzer compares that clock with monotonic observations (100 ms tolerance)
+and requires timely completion observations at both launch endpoints. A late
+observation with consecutive completions records `observer-delay-ns`; age alone
+does not disable later samples. Future/nonmonotonic timestamps and missing
+completions remain invalid. Legacy captures without `read_tsc` retain the
+conservative completed-flip versus observation-clock check. Every
 completion must remain mapped, ordered and monotonic; it never interpolates
 missing timing. Driver clock semantics and the tagged output still need owner
 verification against what the console actually displays. If unavailable or
@@ -110,6 +115,13 @@ Follow-up builds record `diagnostic-input-ns`, `diagnostic-heartbeat-ns` and
 They are elapsed CPU/operation durations, not proof of GPU cost or sole stall
 causality. The selected release game keeps FTP log output but omits duplicate
 `sceKernelDebugOutText` output when `PS4_DEV_TOOLS=0`; developer builds retain it.
+Evidence rows use a bounded 1024-row writer queue. Only its worker writes or
+flushes the CSV streams during gameplay; storage cannot hold the recorder's
+frame/submission lock. Queue exhaustion and write/flush errors invalidate the
+launch rather than silently dropping evidence. Sample-end durability is queued;
+normal Quit drains the queue before final flush/fsync/close. A crash can still
+lose queued or buffered rows. Writer-flush duration events describe storage
+work, which can overlap gameplay, rather than a synchronous frame-thread stall.
 
 Copy [frame-pacing-owner.example.json](frame-pacing-owner.example.json) into
 the private returned launch, fill in actual package/build/platform/cache and
