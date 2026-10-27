@@ -17,6 +17,8 @@ class JKRHeap;
 #include <imgui.h>
 #include "webgpu/gpu.hpp"
 #include "window.hpp"
+#include "gfx/clear.hpp"
+#include "gx/pipeline.hpp"
 #include <atomic>
 #include <chrono>
 #include <cerrno>
@@ -30,6 +32,10 @@ class JKRHeap;
 #ifndef PSWAKER_BUILD_ID
 #define PSWAKER_BUILD_ID "unrecorded"
 #endif
+// Keep complete-package.py's pipeline-description ABI contract tied to the
+// actual selected renderer. The private seed contains these structures only.
+static_assert(aurora::gfx::clear::ClearPipelineConfigVersion == 5 && sizeof(aurora::gfx::clear::PipelineConfig) == 8);
+static_assert(aurora::gx::GXPipelineConfigVersion == 13 && sizeof(aurora::gx::PipelineConfig) == 2772);
 extern "C" int aurora_main(int argc, char** argv);
 extern "C" void pswaker_log_game_state();
 extern "C" int pswaker_card_shutdown_status();
