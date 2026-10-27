@@ -1,0 +1,26 @@
+{
+  "scope": "Explains differing operands/relocations with normalized string targets; no formal semantic equivalence or console evidence",
+  "text_differing_bytes": 158258,
+  "text_instruction_counts": {
+    "same_instruction_equal_normalized_ASCII_target": 76648,
+    "same_instruction_equal_NUL_prefix_only_TARGET_EXTENT_UNCHECKED": 1621,
+    "same_CARDInit_instruction_distinct_compile_time_log_string": 1
+  },
+  "compile_timestamp_references": [
+    {
+      "address": "0xf5474a",
+      "values": [
+        "21:43:44",
+        "21:43:56"
+      ],
+      "source": "src/aurora/lib/dolphin/card.cpp:299 (__DATE__/__TIME__)"
+    }
+  ],
+  "unexplained_instruction_examples": [],
+  "relocation_counts": {
+    "identical": 49292,
+    "same_location_and_type_equal_normalized_ASCII_addend_target": 15485,
+    "same_location_and_type_equal_NUL_prefix_only_TARGET_EXTENT_UNCHECKED": 458
+  },
+  "unexplained_relocation_examples": []
+}

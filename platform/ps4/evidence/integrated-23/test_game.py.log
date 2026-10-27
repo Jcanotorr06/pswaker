@@ -1,0 +1,9 @@
+test_changed_cached_source_is_rejected_before_extraction (test_game.GamePreparationTests.test_changed_cached_source_is_rejected_before_extraction) ... ok
+test_prepared_source_edits_are_rejected (test_game.GamePreparationTests.test_prepared_source_edits_are_rejected) ... ok
+test_build_staging_rejects_changed_dsp_reader_and_platform_headers (test_game.InstalledApplicationTests.test_build_staging_rejects_changed_dsp_reader_and_platform_headers) ... ok
+test_installed_content_failures_stop_and_preserve_user_files (test_game.InstalledApplicationTests.test_installed_content_failures_stop_and_preserve_user_files) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 10.206s
+
+OK

@@ -1,0 +1,88 @@
+{
+  "scope": "Bounded A/B ELF section and payload comparison, not semantic equivalence or console evidence",
+  "compiled_build_id": "f236a035ac406940e76a",
+  "sections_checked": 996,
+  "raw_equal_sections": 989,
+  "path_normalized_equal_sections": 989,
+  "differing_sections": [
+    {
+      "section": ".text",
+      "bytes_a": 29761910,
+      "bytes_b": 29761910,
+      "layout_equal": true,
+      "raw_equal": false,
+      "path_normalized_equal": false,
+      "sha256_a": "d37767de4910c9e748b4edd8a28642cd38de101b81e3c83deb79e6d62b29573b",
+      "sha256_b": "6c8b88468b5e0ba456432f80f57e9853a0a186d65fc56a79cb31a0071200f3d9"
+    },
+    {
+      "section": ".rela.dyn",
+      "bytes_a": 1565640,
+      "bytes_b": 1565640,
+      "layout_equal": true,
+      "raw_equal": false,
+      "path_normalized_equal": false,
+      "sha256_a": "6d66ddf407b1ec37e7623a0972df3300c303e34c59bd4fbef517a1690ad45dfe",
+      "sha256_b": "30047503fb75cb1f40245ad5858e980bb0c6b2f044f2173539a6c5d82a567744"
+    },
+    {
+      "section": ".rodata",
+      "bytes_a": 15418804,
+      "bytes_b": 15418804,
+      "layout_equal": true,
+      "raw_equal": false,
+      "path_normalized_equal": false,
+      "sha256_a": "cf19fd382719da1b111b316edd93bb646decdffee87de87fa990a359c84a7daf",
+      "sha256_b": "91014019b0dd9494d9f945f6c438411056ddab9c7528b795c8477c851ae0c2d7"
+    },
+    {
+      "section": ".debug_info",
+      "bytes_a": 8559750,
+      "bytes_b": 8559750,
+      "layout_equal": true,
+      "raw_equal": false,
+      "path_normalized_equal": false,
+      "sha256_a": "f90766bc4b0a7db438346ba97dbb4dc7800b7cd432918a2fbff9f6d502fece9b",
+      "sha256_b": "76e07b0cadf8694b3983e2e6159e20760e66a357946e80a969f630d61074812f"
+    },
+    {
+      "section": ".debug_str",
+      "bytes_a": 1331021,
+      "bytes_b": 1331021,
+      "layout_equal": true,
+      "raw_equal": false,
+      "path_normalized_equal": false,
+      "sha256_a": "d6a74dbf3c52004ffd3c61947c65cadd37bf027f05b523023d9ef81db978417c",
+      "sha256_b": "a58acefc640dc2c759bfd0237b36b467ae932047e7af13a7b8beb7a9bca18b9b"
+    },
+    {
+      "section": ".debug_line",
+      "bytes_a": 9390381,
+      "bytes_b": 9390381,
+      "layout_equal": true,
+      "raw_equal": false,
+      "path_normalized_equal": false,
+      "sha256_a": "1c765a7c7f2a1024c73fb53619fce15970fa65d7418f6ef5340e084e70cfe5f2",
+      "sha256_b": "4c6b6a760f2df457e5b4cdd9032ac8990773f1f23b7f8bf2604554a7fb7667fb"
+    },
+    {
+      "section": ".symtab",
+      "bytes_a": 2667336,
+      "bytes_b": 2667336,
+      "layout_equal": true,
+      "raw_equal": false,
+      "path_normalized_equal": false,
+      "sha256_a": "2a72a7bcce4840d93e994bc0a4e20c36d1285aa8ff0b429abb884517e0f1c484",
+      "sha256_b": "eefaf28d0f0c5a95d66f3c4e1bc488e9d7a17f5c330b72fbb43590385ac910c8"
+    }
+  ],
+  "all_section_layouts_equal": true,
+  "all_section_bytes_equal_after_path_normalization": false,
+  "payload_differences": [
+    "build-info.json",
+    "complete-package.json",
+    "eboot.bin"
+  ],
+  "candidate_hashes_replaced": false,
+  "console_runs_created": 0
+}

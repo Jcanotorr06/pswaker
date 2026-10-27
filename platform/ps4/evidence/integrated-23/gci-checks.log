@@ -1,0 +1,16 @@
+test_bad_test_marker_cannot_offer_restore_or_roll_back_healthy_progress (test_gci_persistence.GciPersistenceTests.test_bad_test_marker_cannot_offer_restore_or_roll_back_healthy_progress) ... ok
+test_corrupt_progress_is_preserved_before_explicit_backup_restore (test_gci_persistence.GciPersistenceTests.test_corrupt_progress_is_preserved_before_explicit_backup_restore) ... ok
+test_corrupt_progress_without_backup_cannot_be_reset_or_restored (test_gci_persistence.GciPersistenceTests.test_corrupt_progress_without_backup_cannot_be_reset_or_restored) ... ok
+test_gci_data_and_metadata_survive_close_and_reopen (test_gci_persistence.GciPersistenceTests.test_gci_data_and_metadata_survive_close_and_reopen) ... ok
+test_interrupted_multiblock_save_preserves_completed_save_until_explicit_restore (test_gci_persistence.GciPersistenceTests.test_interrupted_multiblock_save_preserves_completed_save_until_explicit_restore) ... ok
+test_invalid_game_metadata_is_detected_before_loading_or_backup (test_gci_persistence.GciPersistenceTests.test_invalid_game_metadata_is_detected_before_loading_or_backup) ... ok
+test_missing_primary_with_retained_backup_requires_explicit_recovery (test_gci_persistence.GciPersistenceTests.test_missing_primary_with_retained_backup_requires_explicit_recovery) ... ok
+test_owner_controlled_write_failure_reaches_real_gci_ioerror (test_gci_persistence.GciPersistenceTests.test_owner_controlled_write_failure_reaches_real_gci_ioerror) ... ok
+test_rename_failure_returns_ioerror_and_preserves_previous_gci (test_gci_persistence.GciPersistenceTests.test_rename_failure_returns_ioerror_and_preserves_previous_gci) ... ok
+test_sync_failure_returns_ioerror_and_preserves_previous_gci (test_gci_persistence.GciPersistenceTests.test_sync_failure_returns_ioerror_and_preserves_previous_gci) ... ok
+test_wrong_size_save_can_be_restored_without_losing_original_evidence (test_gci_persistence.GciPersistenceTests.test_wrong_size_save_can_be_restored_without_losing_original_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 30.138s
+
+OK

@@ -1,0 +1,16 @@
+{
+  "owner_confirmed_installed_version": "01.12",
+  "private_source": "local-research/performance-22-artifacts/candidate-01.12/evidence/",
+  "files": 37,
+  "bytes": 19184657,
+  "inventory_sha256": "62d20409d4be2584ace5bca353d0c88cb86b871cc6d665c292d411a62f137027",
+  "has_logs_cold": true,
+  "has_logs_warm": true,
+  "save_files": [
+    {
+      "bytes": 98368,
+      "sha256": "d3b2474bdabc8d01596520fcf652aa76d8b364d21fe0b04f40923f412a2efb33"
+    }
+  ],
+  "scope": "Read-only inventory; preserves original bytes. No new console run or save/load assertion."
+}

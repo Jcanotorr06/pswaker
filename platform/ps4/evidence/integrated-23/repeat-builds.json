@@ -1,0 +1,61 @@
+{
+  "candidate_identity_preserved": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "b3a3f46b8d4b7704b90881b74c7b980543184488cd7e7729f8823706d61a405c"
+  },
+  "scope": "Two fresh game/source/Aurora builds using unchanged verified platform archives",
+  "platform_rebuilt": false,
+  "builds": [
+    {
+      "label": "a",
+      "start_utc": "2026-10-27T02:35:03.614272+00:00",
+      "end_utc": "2026-10-27T02:46:58.530930+00:00",
+      "source_root": "/home/joseph_cano/.cache/pswaker/source-23-a",
+      "build_root": "/home/joseph_cano/.cache/pswaker/game-23-a",
+      "compiled_build_id": "f236a035ac406940e76a",
+      "inputs_match_candidate": true,
+      "elf_sha256": "03e59e17a5a11265c9d307a47c43b28de9b91811fcdfa8e8a09fbd91f0f2237a",
+      "self_sha256": "64e75636d2a8ad31ef5f875b5439f1e05c5c1d004c9ae98ed650043aeda4c89c",
+      "package_sha256": "e1f7ad7f83ebacc8cb2255a7d2740e25debff0a7ee2a4fcde5e7fb420a61966e",
+      "pipeline_seed_sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1",
+      "abi_audit": {
+        "elf_sha256": "03e59e17a5a11265c9d307a47c43b28de9b91811fcdfa8e8a09fbd91f0f2237a",
+        "compiled_build_id": "f236a035ac406940e76a",
+        "compile_commands_checked": 1393,
+        "cpu": "btver2/Jaguar",
+        "unresolved_tls_initializers": [],
+        "unstripped": true,
+        "debug_lines": true,
+        "signal_handling": "Selected PS4 DolphinPS4 logger; no PS5 context, division table or recovery handler",
+        "hardware_status": "Untested for this game binary"
+      },
+      "hardware_status": "No console runs; provenance evidence only"
+    },
+    {
+      "label": "b",
+      "start_utc": "2026-10-27T02:35:03.614142+00:00",
+      "end_utc": "2026-10-27T02:46:59.737261+00:00",
+      "source_root": "/home/joseph_cano/.cache/pswaker/source-23-b",
+      "build_root": "/home/joseph_cano/.cache/pswaker/game-23-b",
+      "compiled_build_id": "f236a035ac406940e76a",
+      "inputs_match_candidate": true,
+      "elf_sha256": "55166c1e419d48aaa059cec766a6cccc257c5ba3caa98bda87bcb16ed20b4434",
+      "self_sha256": "82a043d71066ee46bd352d544902ba5f157575b8089b54410bd9afac2d1315e7",
+      "package_sha256": "61ad1c8133349948e8af15feae073b85cbe05a053089f67035e4ebdb9f1c0e07",
+      "pipeline_seed_sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1",
+      "abi_audit": {
+        "elf_sha256": "55166c1e419d48aaa059cec766a6cccc257c5ba3caa98bda87bcb16ed20b4434",
+        "compiled_build_id": "f236a035ac406940e76a",
+        "compile_commands_checked": 1393,
+        "cpu": "btver2/Jaguar",
+        "unresolved_tls_initializers": [],
+        "unstripped": true,
+        "debug_lines": true,
+        "signal_handling": "Selected PS4 DolphinPS4 logger; no PS5 context, division table or recovery handler",
+        "hardware_status": "Untested for this game binary"
+      },
+      "hardware_status": "No console runs; provenance evidence only"
+    }
+  ],
+  "console_runs_created": 0
+}

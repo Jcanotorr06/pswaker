@@ -7,6 +7,11 @@ from pathlib import Path
 import struct
 
 
+def normalize_paths(data, record):
+    return data.replace(record['source_root'].encode(), b'<SOURCE>').replace(
+        record['build_root'].encode(), b'<BUILD>')
+
+
 def sections(path):
     data = path.read_bytes()
     if data[:6] != b'\x7fELF\x02\x01':
@@ -17,7 +22,7 @@ def sections(path):
     names = data[headers[names_id][4]:][:headers[names_id][5]]
     return {names[h[0]:].split(b'\0', 1)[0].decode(): {
         'address': h[3], 'bytes': h[5], 'type': h[1], 'flags': h[2],
-        'data': b'' if h[1] == 8 else data[h[4]:][:h[5]]} for h in headers}
+        'data': b'' if h[1] == 8 else data[h[4]:h[4] + h[5]]} for h in headers}
 
 
 def main():
@@ -31,11 +36,6 @@ def main():
     if elves[0].keys() != elves[1].keys():
         raise ValueError('ELF section sets differ; inspect manually')
 
-    def normalize(data, index):
-        record = records[index]
-        return data.replace(record['source_root'].encode(), b'<SOURCE>').replace(
-            record['build_root'].encode(), b'<BUILD>')
-
     rows = []
     for name in elves[0]:
         first, second = elves[0][name], elves[1][name]
@@ -43,7 +43,8 @@ def main():
                'layout_equal': {k: v for k, v in first.items() if k != 'data'} ==
                                {k: v for k, v in second.items() if k != 'data'},
                'raw_equal': first['data'] == second['data'],
-               'path_normalized_equal': normalize(first['data'], 0) == normalize(second['data'], 1),
+               'path_normalized_equal': normalize_paths(first['data'], records[0]) ==
+                                        normalize_paths(second['data'], records[1]),
                'sha256_a': hashlib.sha256(first['data']).hexdigest(),
                'sha256_b': hashlib.sha256(second['data']).hexdigest()}
         rows.append(row)
@@ -51,7 +52,10 @@ def main():
                    for label in ['a', 'b']]
     payloads = [r['payload_sha256'] for r in inspections]
     result = {'scope': 'Bounded A/B ELF section and payload comparison, not semantic equivalence or console evidence',
-              'compiled_build_id': records[0]['compiled_build_id'], 'sections': rows,
+              'compiled_build_id': records[0]['compiled_build_id'],
+              'sections_checked': len(rows), 'raw_equal_sections': sum(r['raw_equal'] for r in rows),
+              'path_normalized_equal_sections': sum(r['path_normalized_equal'] for r in rows),
+              'differing_sections': [r for r in rows if not r['raw_equal']],
               'all_section_layouts_equal': all(r['layout_equal'] for r in rows),
               'all_section_bytes_equal_after_path_normalization': all(r['path_normalized_equal'] for r in rows),
               'payload_differences': [name for name in sorted(set(payloads[0]) | set(payloads[1]))
