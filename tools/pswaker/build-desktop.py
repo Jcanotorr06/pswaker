@@ -34,6 +34,7 @@ def build(program, packaging, output, app_version=None):
         shutil.copyfile(CONTRACT, bundle / 'platform/ps4/content-contract.json')
         seal_bundle(bundle, app_version)
         subprocess.run([sys.executable, '-m', 'PyInstaller', '--windowed', '--onedir', '--name', 'PSWaker',
+                        '--icon', str(Path(__file__).with_name('waker.ico')),
                         '--distpath', str(output), '--workpath', str(work / 'work'), '--specpath', str(work),
                         '--add-data', str(bundle) + ':.',
                         str(Path(__file__).with_name('PSWaker.pyw'))], check=True)
