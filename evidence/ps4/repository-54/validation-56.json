@@ -1,0 +1,19 @@
+{
+  "ticket": 56,
+  "branch": "feature/56-diagnostic-tooling",
+  "commit": "ddb84c03d9e9b6ca8eef2d17bf66d461cd5430b2",
+  "integration_tip_merged": "e7793c5",
+  "suite": "91 tests passed, no skips, 147.417 seconds",
+  "suite_log": "/tmp/pswaker-56-all-tests.log",
+  "environment": {
+    "PSWAKER_REFERENCE_BUILD": "/home/joseph_cano/.cache/pswaker/maintained-15-a",
+    "PSWAKER_GAME_ROOT": "/home/joseph_cano/.cache/pswaker/game-23-a",
+    "PSWAKER_HOST_ROOT": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022"
+  },
+  "focused_cli_test": "Relocated checkout with spaces rejects changed locked archives before extraction: red before migration; green after. Final version runs the CLI, not an internal helper; focused 4-case input suite passed after final test revision.",
+  "inventory": "144 maintained inputs; exact baseline membership after 18 diagnostic renames plus shared module/declaration; no lost inputs or extra inputs",
+  "protected": "All 474 baseline evidence/patch/provenance files byte-identical",
+  "location_checks": "18 canonical moved commands, zero forwarders; synthetic CMake invocation verifies real probe/runtime-preflight source and toolchain resolution from relocated checkout with spaces and cwd /; graphics preparation copies target ps4.cmake then rejects missing locked downloads before environment setup",
+  "syntax": "compileall platform/ps4 tools/pswaker; bash -n all shell scripts; git diff --check passed",
+  "limits": "No host package provisioning, full target rebuild, new package creation, or console acceptance performed. Existing reference roots remained read-only; extraction/mutation/assembly checks used disposable work areas."
+}

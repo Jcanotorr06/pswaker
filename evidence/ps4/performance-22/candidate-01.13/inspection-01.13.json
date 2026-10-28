@@ -1,0 +1,145 @@
+{
+  "scope": "Unverified game program; package assembly does not establish playable acceptance",
+  "installed_image": "/app0/game.iso",
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "b3a3f46b8d4b7704b90881b74c7b980543184488cd7e7729f8823706d61a405c"
+  },
+  "sfo": {
+    "APP_TYPE": 1,
+    "APP_VER": "01.13",
+    "ATTRIBUTE": 0,
+    "CATEGORY": "gd",
+    "CONTENT_ID": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+    "DOWNLOAD_DATA_SIZE": 0,
+    "PUBTOOLINFO": "c_date=20261027,img0_l0_size=1448,img0_l1_size=0,img0_sc_ksize=512,img0_pc_ksize=832",
+    "PUBTOOLVER": 42532864,
+    "SYSTEM_VER": 0,
+    "TITLE": "PSWaker",
+    "TITLE_ID": "PSWK00001",
+    "VERSION": "01.13"
+  },
+  "payload_sha256": {
+    "build-info.json": "bdd2f20dbdf3ca8f8ab50c8a41c21caffd1bbe873292cd4c9ae1a8a0edcc308b",
+    "complete-package.json": "01f13138f9430c344abb7fd3bce67941deef8f88f696108e22818d682f6e8a12",
+    "eboot.bin": "ce00c04b039bf7a54bd4f547f77e4b06fd59c11de162c277045ec67caca195d8",
+    "game.iso": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+    "initial_pipeline_cache.db": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1",
+    "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+    "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+    "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+    "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+    "sce_sys/param.sfo": "1ca825be9fec21a80093940f86db8a8524fe5f942be119a320d4f081bd2d5f1b",
+    "sce_sys/keystone": "d09eb8ab5f3b700164fc8ad85c54c2acbad71244e942aeedf7e3e7eb56408aac"
+  },
+  "package_header": {
+    "magic": "7f434e54",
+    "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+    "size": 1517879296
+  },
+  "image": {
+    "game_id": "GZLE01",
+    "revision": 0,
+    "size": 1459978240,
+    "sha1": "6b5f06c10d50ebb4099cded88217eb71e5bfbb4a",
+    "sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+    "contract_sha256": "309ab1c521a53945760b01d3592721b041206745207515ddaca54d29139eda1c",
+    "required_content": [
+      {
+        "path": "sys/main.dol",
+        "member": "",
+        "sha1": "8d28bab68bb5078c38e43f29206f0bd01f7e7a67",
+        "size": 3822272
+      },
+      {
+        "path": "RELS.arc",
+        "member": "rels/mmem/d_a_majuu_flag.rel",
+        "sha1": "9844a606bcebcceaeff329256665eea72d5aa970",
+        "size": 15208
+      },
+      {
+        "path": "RELS.arc",
+        "member": "rels/mmem/d_a_pirate_flag.rel",
+        "sha1": "ad8581d91ce176c711a4db6a7862e2be510c0645",
+        "size": 11888
+      },
+      {
+        "path": "rels/d_a_bwdg.rel",
+        "member": "",
+        "sha1": "7cef0d0967ffbdae93dfc4a28ef0b8a672b052c9",
+        "size": 154876
+      },
+      {
+        "path": "rels/d_a_goal_flag.rel",
+        "member": "",
+        "sha1": "360285b55c8d8d9353c8c027bcfcc90c368f86b4",
+        "size": 26820
+      },
+      {
+        "path": "rels/d_a_mant.rel",
+        "member": "",
+        "sha1": "a565cdff34a1346c7db964d795179b81ece22ef8",
+        "size": 58364
+      },
+      {
+        "path": "rels/d_a_obj_buoyflag.rel",
+        "member": "",
+        "sha1": "a4db26857f985f6a3c963e183e6be28bf37e46c3",
+        "size": 25120
+      },
+      {
+        "path": "rels/d_a_sail.rel",
+        "member": "",
+        "sha1": "36cd36d17a50769045c087cbb56b26f4ad3a2b6e",
+        "size": 18992
+      }
+    ]
+  },
+  "program": {
+    "build_id": "f236a035ac406940e76a",
+    "elf_filename": "switchwaker",
+    "elf_sha256": "a99bcca89c4c0a54d808400ddffbfdca6d8df620d601b814386bf2fcd38e9ebb",
+    "eboot_sha256": "ce00c04b039bf7a54bd4f547f77e4b06fd59c11de162c277045ec67caca195d8",
+    "payload_sha256": {
+      "build-info.json": "bdd2f20dbdf3ca8f8ab50c8a41c21caffd1bbe873292cd4c9ae1a8a0edcc308b",
+      "eboot.bin": "ce00c04b039bf7a54bd4f547f77e4b06fd59c11de162c277045ec67caca195d8",
+      "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+      "sce_sys/param.sfo": "ec2a1c74ae5fb1586bd187ea42f41df1a5f5dea079a94aba9c03c5656e0c0dfd"
+    }
+  },
+  "distribution_cleared": false,
+  "hardware_status": "Untested; no console checkpoint in issue #16",
+  "pipeline_seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      }
+    },
+    "rows": 287,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 286
+      }
+    ],
+    "sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1"
+  }
+}

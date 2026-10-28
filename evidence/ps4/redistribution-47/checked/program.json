@@ -1,0 +1,48 @@
+{
+  "build_id": "f236a035ac406940e76a",
+  "version": "01.13",
+  "elf": {
+    "path": "build/switchwaker",
+    "bytes": 85484248,
+    "sha256": "03e59e17a5a11265c9d307a47c43b28de9b91811fcdfa8e8a09fbd91f0f2237a"
+  },
+  "stage": [
+    {
+      "path": "build-info.json",
+      "bytes": 4426,
+      "sha256": "9b124ad4a3b3c088bcf0185d3d9615ec30ee41a77e30684493d92d8bc200745d"
+    },
+    {
+      "path": "eboot.bin",
+      "bytes": 53570768,
+      "sha256": "64e75636d2a8ad31ef5f875b5439f1e05c5c1d004c9ae98ed650043aeda4c89c"
+    },
+    {
+      "path": "sce_module/libSceFios2.prx",
+      "bytes": 3200,
+      "sha256": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745"
+    },
+    {
+      "path": "sce_module/libc.prx",
+      "bytes": 3424,
+      "sha256": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3"
+    },
+    {
+      "path": "sce_sys/about/right.sprx",
+      "bytes": 28800,
+      "sha256": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed"
+    },
+    {
+      "path": "sce_sys/icon0.png",
+      "bytes": 25941,
+      "sha256": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7"
+    },
+    {
+      "path": "sce_sys/param.sfo",
+      "bytes": 504,
+      "sha256": "ec2a1c74ae5fb1586bd187ea42f41df1a5f5dea079a94aba9c03c5656e0c0dfd"
+    }
+  ],
+  "distribution_cleared": false,
+  "scope": "Retained #23 data-free stage; no complete package read or exported"
+}

@@ -1,0 +1,33 @@
+{
+  "elf_sha256": "b14c5f12212d9835bb3793869bcf6f79131fb2353fcc6a7087cbbfae86ce936f",
+  "checks": {
+    "_Z12pswaker_exiti -> pswaker_card_shutdown_status": [
+      "7ded80: e8 8b e4 8c ff               \tcallq\t0xad210 <pswaker_card_shutdown_status>"
+    ],
+    "_Z12pswaker_exiti -> COSSdkRequestShutdown": [
+      "7dee85: e8 c6 d2 ff ff               \tcallq\t0x7dc150 <COSSdkRequestShutdown>"
+    ],
+    "_Z12pswaker_exiti -> COSAIShutdownOutput": [
+      "7dee8a: e8 21 39 ff ff               \tcallq\t0x7d27b0 <COSAIShutdownOutput>"
+    ],
+    "_Z12pswaker_exiti -> aurora_shutdown": [
+      "7deec5: e8 e6 dc 85 00               \tcallq\t0x103cbb0 <aurora_shutdown>"
+    ],
+    "COSAIShutdownOutput -> pthread_join@plt": [
+      "7d280d: e8 be 6e 48 01               \tcallq\t0x1c596d0 <pthread_join@plt>"
+    ],
+    "COSAIShutdownOutput -> SDL_FlushAudioStream": [
+      "7d282a: e8 11 64 ad 00               \tcallq\t0x12a8c40 <SDL_FlushAudioStream>"
+    ],
+    "COSAIShutdownOutput -> SDL_DestroyAudioStream": [
+      "7d28a1: e8 9a 60 ad 00               \tcallq\t0x12a8940 <SDL_DestroyAudioStream>"
+    ],
+    "PS5AUDIO_CloseDevice -> __wrap_sceAudioOutOutput": [
+      "13e558d: e8 ce ba 3f ff               \tcallq\t0x7e1060 <__wrap_sceAudioOutOutput>"
+    ],
+    "PS5AUDIO_PlayDevice -> __wrap_sceAudioOutOutput": [
+      "13e5542: e8 19 bb 3f ff               \tcallq\t0x7e1060 <__wrap_sceAudioOutOutput>"
+    ]
+  },
+  "limits": "Emitted calls only; not proof of dynamic ordering, console shutdown, audible output or hardware underrun absence"
+}

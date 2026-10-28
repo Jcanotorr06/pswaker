@@ -1,0 +1,21 @@
+{
+  "root_absent_before_command": true,
+  "source_archive_sha256": "5adbf0b576d7ac4c84308618d79c61a3348cddbbdd6d8eab0b1003ea29304967",
+  "source_directory": "/home/joseph_cano/.cache/pswaker/maintained-source-15-b",
+  "build_directory": "/home/joseph_cano/.cache/pswaker/maintained-15-b",
+  "command": [
+    "bash",
+    "/home/joseph_cano/.cache/pswaker/maintained-source-15-b/platform/ps4/clean-build.sh",
+    "/home/joseph_cano/.cache/pswaker/maintained-15-b",
+    "/home/joseph_cano/.cache/pswaker/maintained-14"
+  ],
+  "environment_overrides": {
+    "JOBS": "6",
+    "CCACHE_DISABLE": "1"
+  },
+  "cache_policy": "Only downloads copied from maintained-14; every locked archive rehashed; no src/build/sdk tree copied",
+  "shared_host": "Same Ubuntu WSL2 instance and recorded host lock; concurrent roots with separate source/build/SDK/packager trees",
+  "initial_host_check": "Rejected before root creation: zlib1g:amd64 1:1.3.dfsg-3.1ubuntu2.3 differs from required 1:1.3.dfsg-3.1ubuntu2.2",
+  "host_recovery": "Temporary restoration of locked zlib from signature/hash-verified Ubuntu snapshot; current version retained for restoration",
+  "host_kernel": "Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 GNU/Linux"
+}

@@ -1,0 +1,57 @@
+--- a/aurora/lib/dolphin/pad/pad.cpp
++++ b/aurora/lib/dolphin/pad/pad.cpp
+@@ -82,19 +82,12 @@
+ }};
+ 
+ std::array<PADButtonMapping, PAD_BUTTON_COUNT> g_defaultButtonsPS4{{
+-#if defined(__ORBIS__)
+-    // The PS4 build uses Nintendo's positions: Circle confirms (A), Cross goes back (B), Triangle
+-    // is X and Square is Y (as Twilight HD's PlayStation layout labels them).
+-    {SDL_GAMEPAD_BUTTON_EAST, PAD_BUTTON_A},
+-    {SDL_GAMEPAD_BUTTON_SOUTH, PAD_BUTTON_B},
+-    {SDL_GAMEPAD_BUTTON_NORTH, PAD_BUTTON_X},
+-    {SDL_GAMEPAD_BUTTON_WEST, PAD_BUTTON_Y},
+-#else
++
+     {SDL_GAMEPAD_BUTTON_SOUTH, PAD_BUTTON_A},
+     {SDL_GAMEPAD_BUTTON_EAST, PAD_BUTTON_B},
+     {SDL_GAMEPAD_BUTTON_WEST, PAD_BUTTON_X},
+     {SDL_GAMEPAD_BUTTON_NORTH, PAD_BUTTON_Y},
+-#endif
++
+     {SDL_GAMEPAD_BUTTON_START, PAD_BUTTON_START},
+     {SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER, PAD_TRIGGER_Z},
+     {PAD_NATIVE_BUTTON_INVALID, PAD_TRIGGER_L},
+@@ -910,10 +903,10 @@
+       Sint16 tr = std::max(static_cast<Sint16>(0), _get_axis_value(controller, PAD_AXIS_TRIGGER_R));
+ 
+       if (controller->m_deadZones.emulateTriggers) {
+-        if (!leftTriggerSet && tl > controller->m_deadZones.leftTriggerActivationZone) {
++        if (!leftTriggerSet && tl >= 29490) {
+           status[i].button |= PAD_TRIGGER_L;
+         }
+-        if (!rightTriggerSet && tr > controller->m_deadZones.rightTriggerActivationZone) {
++        if (!rightTriggerSet && tr >= 29490) {
+           status[i].button |= PAD_TRIGGER_R;
+         }
+       }
+--- a/platform/native/platform.c
++++ b/platform/native/platform.c
+@@ -39,7 +39,7 @@
+ int sceKernelUsleep(unsigned int microseconds);
+ int sceKernelDebugOutText(int channel, const char *text);
+ 
+-#define LOG_DIR "/data/pswaker-diagnostic-prototype"
++#define LOG_DIR "/data/pswaker/logs"
+ 
+ /* Calling into a system library whose module isn't loaded kills the title
+  * (PRX_NOT_RESOLVED_FUNCTION); DolphinPS4 loads these first. */
+@@ -337,7 +337,7 @@
+       return false;
+    }
+    pad_fill(state, pad);
+-   return true;
++   return state->last.connected != 0;
+ }
+ 
+ void

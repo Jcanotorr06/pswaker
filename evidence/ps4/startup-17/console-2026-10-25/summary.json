@@ -1,0 +1,456 @@
+{
+  "candidate_package_sha256": "0b619d1b85d51f6c2bebae12369c170f88446c543747bf0d1c24c1fe97643ac1",
+  "scope": "Two supplied logs; no measured frame-time replay, no controlled content failure evidence, no orderly shutdown record. Main and game timestamps have separate origins.",
+  "runs": [
+    {
+      "file": "platform.log",
+      "line_count": 7561,
+      "begin_line": 2,
+      "manifest_matches_retained_candidate": true,
+      "build_id": "6ebc07987fe3b6c6064a",
+      "logged_app_version": "01.00",
+      "logged_eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+      "cache": [
+        "CACHE before-init name=dawn_cache.db bytes=7843840 sha1=16a1d04676b16b37f2a574150c840f343e88ff39 readable=1",
+        "CACHE before-init name=dawn_cache.db-wal bytes=4136512 sha1=74a5a1f52abd091df162098014e00233d7ab5ff0 readable=1",
+        "CACHE before-init name=pipeline_cache.db bytes=1671168 sha1=fe14078c2e46b254c2bdddf7064db609768a71fb readable=1",
+        "CACHE before-init name=pipeline_cache.db-wal bytes=4136512 sha1=15db221ee458e51facfffe9af28dcff4659f989e readable=1",
+        "CACHE identity=6ebc07987fe3b6c6064a files-before-init=4; owner labels cold/warm"
+      ],
+      "stages": [
+        {
+          "line": 176,
+          "stage": "platform-initialized",
+          "main_ms": 2781.5,
+          "errors": 0
+        },
+        {
+          "line": 179,
+          "stage": "PS4-runtime-crash-logger-selected",
+          "main_ms": 2945.3,
+          "errors": 0
+        },
+        {
+          "line": 181,
+          "stage": "aurora-initialize",
+          "main_ms": 2956.8,
+          "errors": 0
+        },
+        {
+          "line": 299,
+          "stage": "graphics-initialized",
+          "main_ms": 3722.0,
+          "errors": 0
+        },
+        {
+          "line": 500,
+          "stage": "installed-image-validated",
+          "main_ms": 48710.7,
+          "errors": 0
+        },
+        {
+          "line": 501,
+          "stage": "writable-storage-checked",
+          "main_ms": 48748.7,
+          "errors": 0
+        },
+        {
+          "line": 505,
+          "stage": "known-shaders-prepared",
+          "main_ms": 48779.9,
+          "errors": 0
+        },
+        {
+          "line": 508,
+          "stage": "runtime-assets-validated",
+          "main_ms": 48919.7,
+          "errors": 0
+        }
+      ],
+      "content_progress_first": {
+        "line": 300,
+        "bytes": 0,
+        "total": 1459978240,
+        "main_ms": 3946.5
+      },
+      "content_progress_last": {
+        "line": 499,
+        "bytes": 1459978240,
+        "total": 1459978240,
+        "main_ms": 48704.8
+      },
+      "content_progress_span_ms": 44758.3,
+      "dimensions": "DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=48760.2",
+      "shader_startup": [
+        "SHADERS created=566 queued=0 ms=48768.5",
+        "TIMING shader-preparation_ms=4.1 startup_to_preparation_complete_ms=48772.6"
+      ],
+      "milestones": [
+        {
+          "line": 509,
+          "milestone": "aurora-up",
+          "frame": 0,
+          "retrace": 0,
+          "game_ms": 46046
+        },
+        {
+          "line": 521,
+          "milestone": "heaps",
+          "frame": 0,
+          "retrace": 0,
+          "game_ms": 46103
+        },
+        {
+          "line": 525,
+          "milestone": "gfx-create",
+          "frame": 0,
+          "retrace": 0,
+          "game_ms": 46105
+        },
+        {
+          "line": 537,
+          "milestone": "logo-scene",
+          "frame": 6,
+          "retrace": 6,
+          "game_ms": 48345
+        },
+        {
+          "line": 541,
+          "milestone": "frame-loop",
+          "frame": 120,
+          "retrace": 120,
+          "game_ms": 50245
+        },
+        {
+          "line": 551,
+          "milestone": "logo-res",
+          "frame": 243,
+          "retrace": 244,
+          "game_ms": 52315
+        },
+        {
+          "line": 554,
+          "milestone": "opening",
+          "frame": 281,
+          "retrace": 282,
+          "game_ms": 52945
+        },
+        {
+          "line": 573,
+          "milestone": "title-stage",
+          "frame": 587,
+          "retrace": 891,
+          "game_ms": 63116
+        },
+        {
+          "line": 579,
+          "milestone": "file-select",
+          "frame": 635,
+          "retrace": 987,
+          "game_ms": 64715
+        },
+        {
+          "line": 7542,
+          "milestone": "opening",
+          "frame": 255479,
+          "retrace": 510677,
+          "game_ms": 8588609
+        }
+      ],
+      "heartbeat_count": 1704,
+      "first_heartbeat": {
+        "line": 526,
+        "main_ms": 51176.1,
+        "pipelines": 566,
+        "queued": 0,
+        "errors": 0
+      },
+      "last_heartbeat": {
+        "line": 7549,
+        "main_ms": 8598761.8,
+        "pipelines": 1138,
+        "queued": 0,
+        "errors": 0
+      },
+      "max_checked_errors": 0,
+      "max_pipelines": 1138,
+      "first_audio": {
+        "line": 527,
+        "frames": 0,
+        "sum_squares": 0
+      },
+      "last_audio": {
+        "line": 7550,
+        "frames": 273521816,
+        "sum_squares": 6782197583396944
+      },
+      "reported_error_records": [],
+      "input_records": [
+        {
+          "line": 1829,
+          "text": "INPUT disconnected or failed read; paused at game-frame boundary ms=1619103.6"
+        },
+        {
+          "line": 1832,
+          "text": "INPUT deliberate resume ms=1624378.0"
+        }
+      ],
+      "orderly_shutdown_recorded": false,
+      "stage_archive_names": [
+        "sea_T",
+        "MajyuE",
+        "majroom",
+        "Mjtower",
+        "sea",
+        "Obombh",
+        "Pnezumi",
+        "Pdrgsh",
+        "Orichh",
+        "Opub",
+        "Ocmera",
+        "Nitiyou",
+        "Kaisen",
+        "Obshop",
+        "Atorizk",
+        "Comori",
+        "Adanmae",
+        "M_NewD2",
+        "M_Dra09"
+      ]
+    },
+    {
+      "file": "platform.prev.log",
+      "line_count": 3723,
+      "begin_line": 2,
+      "manifest_matches_retained_candidate": true,
+      "build_id": "6ebc07987fe3b6c6064a",
+      "logged_app_version": "01.00",
+      "logged_eboot_sha256": "bf3bdd961ab9e652c72996b5038f8a95d371ad4b6b6d7923f8d8620988b51bd2",
+      "cache": [
+        "CACHE identity=6ebc07987fe3b6c6064a files-before-init=0; owner labels cold/warm"
+      ],
+      "stages": [
+        {
+          "line": 172,
+          "stage": "platform-initialized",
+          "main_ms": 993.0,
+          "errors": 0
+        },
+        {
+          "line": 175,
+          "stage": "PS4-runtime-crash-logger-selected",
+          "main_ms": 1008.1,
+          "errors": 0
+        },
+        {
+          "line": 177,
+          "stage": "aurora-initialize",
+          "main_ms": 1019.5,
+          "errors": 0
+        },
+        {
+          "line": 295,
+          "stage": "graphics-initialized",
+          "main_ms": 2522.7,
+          "errors": 0
+        },
+        {
+          "line": 490,
+          "stage": "installed-image-validated",
+          "main_ms": 48509.5,
+          "errors": 0
+        },
+        {
+          "line": 491,
+          "stage": "writable-storage-checked",
+          "main_ms": 48578.1,
+          "errors": 0
+        },
+        {
+          "line": 495,
+          "stage": "known-shaders-prepared",
+          "main_ms": 48608.9,
+          "errors": 0
+        },
+        {
+          "line": 498,
+          "stage": "runtime-assets-validated",
+          "main_ms": 48757.8,
+          "errors": 0
+        }
+      ],
+      "content_progress_first": {
+        "line": 296,
+        "bytes": 0,
+        "total": 1459978240,
+        "main_ms": 2533.5
+      },
+      "content_progress_last": {
+        "line": 489,
+        "bytes": 1459978240,
+        "total": 1459978240,
+        "main_ms": 48503.6
+      },
+      "content_progress_span_ms": 45970.1,
+      "dimensions": "DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=48589.3",
+      "shader_startup": [
+        "SHADERS created=0 queued=0 ms=48597.8",
+        "TIMING shader-preparation_ms=3.9 startup_to_preparation_complete_ms=48601.7"
+      ],
+      "milestones": [
+        {
+          "line": 499,
+          "milestone": "aurora-up",
+          "frame": 0,
+          "retrace": 0,
+          "game_ms": 47993
+        },
+        {
+          "line": 510,
+          "milestone": "heaps",
+          "frame": 0,
+          "retrace": 0,
+          "game_ms": 48010
+        },
+        {
+          "line": 513,
+          "milestone": "gfx-create",
+          "frame": 0,
+          "retrace": 0,
+          "game_ms": 48012
+        },
+        {
+          "line": 531,
+          "milestone": "logo-scene",
+          "frame": 7,
+          "retrace": 7,
+          "game_ms": 66244
+        },
+        {
+          "line": 535,
+          "milestone": "frame-loop",
+          "frame": 120,
+          "retrace": 120,
+          "game_ms": 68166
+        },
+        {
+          "line": 543,
+          "milestone": "logo-res",
+          "frame": 244,
+          "retrace": 245,
+          "game_ms": 70288
+        },
+        {
+          "line": 546,
+          "milestone": "opening",
+          "frame": 282,
+          "retrace": 283,
+          "game_ms": 70924
+        },
+        {
+          "line": 564,
+          "milestone": "title",
+          "frame": 561,
+          "retrace": 838,
+          "game_ms": 84901
+        },
+        {
+          "line": 566,
+          "milestone": "title-stage",
+          "frame": 588,
+          "retrace": 892,
+          "game_ms": 85801
+        },
+        {
+          "line": 584,
+          "milestone": "file-select",
+          "frame": 904,
+          "retrace": 1524,
+          "game_ms": 96399
+        },
+        {
+          "line": 629,
+          "milestone": "new-game",
+          "frame": 2032,
+          "retrace": 3780,
+          "game_ms": 134276
+        },
+        {
+          "line": 1070,
+          "milestone": "outset-real",
+          "frame": 14509,
+          "retrace": 28734,
+          "game_ms": 561733
+        },
+        {
+          "line": 3705,
+          "milestone": "opening",
+          "frame": 111275,
+          "retrace": 222268,
+          "game_ms": 3800204
+        }
+      ],
+      "heartbeat_count": 746,
+      "first_heartbeat": {
+        "line": 519,
+        "main_ms": 67041.3,
+        "pipelines": 0,
+        "queued": 0,
+        "errors": 0
+      },
+      "last_heartbeat": {
+        "line": 3718,
+        "main_ms": 3813642.7,
+        "pipelines": 566,
+        "queued": 0,
+        "errors": 1
+      },
+      "max_checked_errors": 1,
+      "max_pipelines": 566,
+      "first_audio": {
+        "line": 520,
+        "frames": 0,
+        "sum_squares": 0
+      },
+      "last_audio": {
+        "line": 3719,
+        "frames": 119888928,
+        "sum_squares": 1730042744387105
+      },
+      "reported_error_records": [
+        {
+          "line": 528,
+          "text": "AURORA level=3 aurora::card Failed to open file: gczelda"
+        }
+      ],
+      "input_records": [
+        {
+          "line": 3713,
+          "text": "INPUT disconnected or failed read; paused at game-frame boundary ms=3808395.0"
+        },
+        {
+          "line": 3717,
+          "text": "INPUT deliberate resume ms=3813639.1"
+        },
+        {
+          "line": 3722,
+          "text": "INPUT disconnected or failed read; paused at game-frame boundary ms=3815179.4"
+        }
+      ],
+      "orderly_shutdown_recorded": false,
+      "stage_archive_names": [
+        "sea_T",
+        "sea",
+        "Obshop",
+        "Ojhous2",
+        "LinkRM",
+        "Ojhous",
+        "A_mori",
+        "LinkUG",
+        "A_umikz",
+        "Asoko",
+        "MajyuE"
+      ]
+    }
+  ]
+}

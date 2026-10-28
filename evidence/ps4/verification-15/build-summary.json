@@ -1,0 +1,176 @@
+{
+  "scope": "Two clean builds plus the separately identified, previously owner-tested installed candidate",
+  "records": [
+    {
+      "role": "owner-confirmed installed candidate",
+      "root": "/home/joseph_cano/.cache/pswaker/maintained-14",
+      "artifacts": {
+        "package": {
+          "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+          "sha256": "edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522"
+        },
+        "eboot_sha256": "5d3438436d381fef0facd0cd2397461e9d3f9741b52f996b88c8e7b89952c036",
+        "elf_sha256": "1cb796480f3961447158d6658c56e7bb309f3fc2a290ef2195b38d4b1c6e40e6",
+        "build_id": "60975dcf4480aa914369",
+        "app_version": "01.04"
+      },
+      "outputs": [
+        {
+          "path": "build/probe/platform_diagnostic",
+          "bytes": 47494376,
+          "sha256": "1cb796480f3961447158d6658c56e7bb309f3fc2a290ef2195b38d4b1c6e40e6"
+        },
+        {
+          "path": "out/IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+          "bytes": 43909120,
+          "sha256": "edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522"
+        },
+        {
+          "path": "build/probe/platform_diagnostic_eboot/eboot.bin",
+          "bytes": 41763824,
+          "sha256": "5d3438436d381fef0facd0cd2397461e9d3f9741b52f996b88c8e7b89952c036"
+        }
+      ]
+    },
+    {
+      "role": "independent clean rebuild; not installed or console-tested",
+      "root": "/home/joseph_cano/.cache/pswaker/maintained-15-a",
+      "artifacts": {
+        "package": {
+          "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+          "sha256": "30c91dd26524bcc5535380c57b1c9066a3fc3539e93ec5a8051c9853224744e5"
+        },
+        "eboot_sha256": "f62940819abeb92ea4af228442f8fb83c00a33199861b1e38b78e9b20e9ffd7a",
+        "elf_sha256": "f97123d555dfef871de7483140aa84b738696b397afdc9a54cd95fd20e6d0d84",
+        "build_id": "60975dcf4480aa914369",
+        "app_version": "01.04"
+      },
+      "outputs": [
+        {
+          "path": "build/probe/platform_diagnostic",
+          "bytes": 47494376,
+          "sha256": "f97123d555dfef871de7483140aa84b738696b397afdc9a54cd95fd20e6d0d84"
+        },
+        {
+          "path": "out/IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+          "bytes": 43909120,
+          "sha256": "30c91dd26524bcc5535380c57b1c9066a3fc3539e93ec5a8051c9853224744e5"
+        },
+        {
+          "path": "build/probe/platform_diagnostic_eboot/eboot.bin",
+          "bytes": 41763824,
+          "sha256": "f62940819abeb92ea4af228442f8fb83c00a33199861b1e38b78e9b20e9ffd7a"
+        }
+      ]
+    },
+    {
+      "role": "independent clean rebuild; not installed or console-tested",
+      "root": "/home/joseph_cano/.cache/pswaker/maintained-15-b",
+      "artifacts": {
+        "package": {
+          "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+          "sha256": "e565ef5b75399735fe0bd90361f4986bc838950480efef94bf7f9ec886877ba9"
+        },
+        "eboot_sha256": "cb8241d20550de0a4d6ef70170359c0e3d5355c5d570cf4c9a8f105dcd3b4497",
+        "elf_sha256": "9f61eb8410011683652bf2856d79d7e68bc1f82ce79d550b385640d4f755f634",
+        "build_id": "60975dcf4480aa914369",
+        "app_version": "01.04"
+      },
+      "outputs": [
+        {
+          "path": "build/probe/platform_diagnostic",
+          "bytes": 47494376,
+          "sha256": "9f61eb8410011683652bf2856d79d7e68bc1f82ce79d550b385640d4f755f634"
+        },
+        {
+          "path": "out/IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+          "bytes": 43909120,
+          "sha256": "e565ef5b75399735fe0bd90361f4986bc838950480efef94bf7f9ec886877ba9"
+        },
+        {
+          "path": "build/probe/platform_diagnostic_eboot/eboot.bin",
+          "bytes": 41763824,
+          "sha256": "cb8241d20550de0a4d6ef70170359c0e3d5355c5d570cf4c9a8f105dcd3b4497"
+        }
+      ]
+    }
+  ],
+  "rebuilt_archive_output_hashes": {
+    "build/musl/lib/libc.a": [
+      "f82cf6561864b1f3b1f1f13f2764702f8f957c4141426a8d034724e3eff0593a",
+      "f82cf6561864b1f3b1f1f13f2764702f8f957c4141426a8d034724e3eff0593a",
+      "f82cf6561864b1f3b1f1f13f2764702f8f957c4141426a8d034724e3eff0593a"
+    ],
+    "build/musl/lib/libpthread.a": [
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5"
+    ],
+    "build/musl/lib/libutil.a": [
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5"
+    ],
+    "build/musl/lib/libresolv.a": [
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5"
+    ],
+    "build/musl/lib/librt.a": [
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5"
+    ],
+    "build/musl/lib/libm.a": [
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5"
+    ],
+    "build/musl/lib/libdl.a": [
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5"
+    ],
+    "build/musl/lib/libcrypt.a": [
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5"
+    ],
+    "build/musl/lib/libxnet.a": [
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5"
+    ],
+    "build/builtins/lib/freebsd/libclang_rt.builtins-x86_64.a": [
+      "f405b4664f1d7b298429419fa463467c2b6cf67e733db694df537e8a00188f0a",
+      "163d45b41f6fe24842a4ecff999eb467caa406b3c8e07a6602fd5fcf9cab82bd",
+      "a48d15ca733df75a58f4756e03ee2eebb4b5e5f848f93ff2d7cb74b5a9cb158a"
+    ],
+    "build/libunwind/lib/libunwind.a": [
+      "4e14ad9b2b1b1f3f36798efc857cfab37e07d3724bc44cd509649c28bc39aabc",
+      "5105fda869be89a15783ed17c806a8dc1d8b3dd37a47728ecc46effc8033f0c7",
+      "5a4cb9a56ec92a5c68092110806f973a01ede09fd00cc00195defc049eecc9c3"
+    ],
+    "build/zlib/libz.a": [
+      "e3d8c011d1e5bb4cce205afb08c49a1b5bb3eb14cb80fbe205fe4bba215fcca1",
+      "e3d8c011d1e5bb4cce205afb08c49a1b5bb3eb14cb80fbe205fe4bba215fcca1",
+      "e3d8c011d1e5bb4cce205afb08c49a1b5bb3eb14cb80fbe205fe4bba215fcca1"
+    ],
+    "build/libpng/libpng16.a": [
+      "165b83f70109b72fff4cda28a766f446bfc08885fff6f774402b9c6514158822",
+      "165b83f70109b72fff4cda28a766f446bfc08885fff6f774402b9c6514158822",
+      "165b83f70109b72fff4cda28a766f446bfc08885fff6f774402b9c6514158822"
+    ],
+    "build/libpng/libpng.a": [
+      "165b83f70109b72fff4cda28a766f446bfc08885fff6f774402b9c6514158822",
+      "165b83f70109b72fff4cda28a766f446bfc08885fff6f774402b9c6514158822",
+      "165b83f70109b72fff4cda28a766f446bfc08885fff6f774402b9c6514158822"
+    ],
+    "src/bzip2-1.0.6/libbz2.a": [
+      "26d653157f838b6aec889f927735cc8319a7f4c5996c90783f988b8162c02549",
+      "26d653157f838b6aec889f927735cc8319a7f4c5996c90783f988b8162c02549",
+      "26d653157f838b6aec889f927735cc8319a7f4c5996c90783f988b8162c02549"
+    ]
+  },
+  "notes": "Rebuilt archive hashes describe outputs, not a changed source/dependency lock. Roots contain full logs and retained binaries; no byte-identity or semantic-equivalence claim."
+}

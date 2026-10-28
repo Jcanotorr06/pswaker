@@ -1,0 +1,697 @@
+PSWaker starts
+BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642
+PACKAGE_MANIFEST {
+
+PACKAGE_MANIFEST   "schema": 1,
+
+PACKAGE_MANIFEST   "kind": "game",
+
+PACKAGE_MANIFEST   "acceptance": "Unverified game program; package assembly does not establish playable acceptance",
+
+PACKAGE_MANIFEST   "title_id": "PSWK00001",
+
+PACKAGE_MANIFEST   "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+
+PACKAGE_MANIFEST   "app_version": "01.08",
+
+PACKAGE_MANIFEST   "installed_image": "/app0/game.iso",
+
+PACKAGE_MANIFEST   "image": {
+
+PACKAGE_MANIFEST     "game_id": "GZLE01",
+
+PACKAGE_MANIFEST     "revision": 0,
+
+PACKAGE_MANIFEST     "size": 1459978240,
+
+PACKAGE_MANIFEST     "sha1": "6b5f06c10d50ebb4099cded88217eb71e5bfbb4a",
+
+PACKAGE_MANIFEST     "sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+
+PACKAGE_MANIFEST     "contract_sha256": "309ab1c521a53945760b01d3592721b041206745207515ddaca54d29139eda1c",
+
+PACKAGE_MANIFEST     "required_content": [
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "sys/main.dol",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "8d28bab68bb5078c38e43f29206f0bd01f7e7a67",
+
+PACKAGE_MANIFEST         "size": 3822272
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "RELS.arc",
+
+PACKAGE_MANIFEST         "member": "rels/mmem/d_a_majuu_flag.rel",
+
+PACKAGE_MANIFEST         "sha1": "9844a606bcebcceaeff329256665eea72d5aa970",
+
+PACKAGE_MANIFEST         "size": 15208
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "RELS.arc",
+
+PACKAGE_MANIFEST         "member": "rels/mmem/d_a_pirate_flag.rel",
+
+PACKAGE_MANIFEST         "sha1": "ad8581d91ce176c711a4db6a7862e2be510c0645",
+
+PACKAGE_MANIFEST         "size": 11888
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_bwdg.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "7cef0d0967ffbdae93dfc4a28ef0b8a672b052c9",
+
+PACKAGE_MANIFEST         "size": 154876
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_goal_flag.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "360285b55c8d8d9353c8c027bcfcc90c368f86b4",
+
+PACKAGE_MANIFEST         "size": 26820
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_mant.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "a565cdff34a1346c7db964d795179b81ece22ef8",
+
+PACKAGE_MANIFEST         "size": 58364
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_obj_buoyflag.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "a4db26857f985f6a3c963e183e6be28bf37e46c3",
+
+PACKAGE_MANIFEST         "size": 25120
+
+PACKAGE_MANIFEST       },
+
+PACKAGE_MANIFEST       {
+
+PACKAGE_MANIFEST         "path": "rels/d_a_sail.rel",
+
+PACKAGE_MANIFEST         "member": "",
+
+PACKAGE_MANIFEST         "sha1": "36cd36d17a50769045c087cbb56b26f4ad3a2b6e",
+
+PACKAGE_MANIFEST         "size": 18992
+
+PACKAGE_MANIFEST       }
+
+PACKAGE_MANIFEST     ]
+
+PACKAGE_MANIFEST   },
+
+PACKAGE_MANIFEST   "program": {
+
+PACKAGE_MANIFEST     "build_id": "9ac6fb9b2da43e02d642",
+
+PACKAGE_MANIFEST     "elf_filename": "switchwaker",
+
+PACKAGE_MANIFEST     "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+
+PACKAGE_MANIFEST     "eboot_sha256": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2",
+
+PACKAGE_MANIFEST     "payload_sha256": {
+
+PACKAGE_MANIFEST       "build-info.json": "8f95c53bc22cbf4b9aa2d47df38dd87d8d477e5da23ad8c10bcb6109b38acb27",
+
+PACKAGE_MANIFEST       "eboot.bin": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2",
+
+PACKAGE_MANIFEST       "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+
+PACKAGE_MANIFEST       "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+
+PACKAGE_MANIFEST       "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+
+PACKAGE_MANIFEST       "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+
+PACKAGE_MANIFEST       "sce_sys/param.sfo": "2f19325f5b9a2853a6d91e444f6a17dc692c9c650a123812c46c23db46b8ab60"
+
+PACKAGE_MANIFEST     }
+
+PACKAGE_MANIFEST   },
+
+PACKAGE_MANIFEST   "distribution_cleared": false,
+
+PACKAGE_MANIFEST   "licensing": "Private artifact. Review actual combined licenses, notices and provenance before any distribution; assembly is not licensing clearance."
+
+PACKAGE_MANIFEST }
+
+CACHE before-init name=dawn_cache.db bytes=3977216 sha1=677ffd39b6f7be939654b1639f8a4a491d13134b readable=1
+CACHE before-init name=dawn_cache.db-wal bytes=4140632 sha1=2157eccf5770b5c94ad1b48506f34545606ded61 readable=1
+CACHE before-init name=pipeline_cache.db bytes=835584 sha1=8e313a50cdc5e7fc5453161952048676c5f8fa47 readable=1
+CACHE before-init name=pipeline_cache.db-wal bytes=4128272 sha1=1eea4df6576cf47fad51e78e1564d7850bdb0249 readable=1
+CACHE identity=9ac6fb9b2da43e02d642 files-before-init=4; owner labels cold/warm
+STAGE completed=platform-initialized ms=1125.9 build=9ac6fb9b2da43e02d642 errors=0
+[cos] aspect: 16:9 (widescreen, t=1.0000)
+[cos] harness: smoke=- milestone=- timeout=0s stall=0s frames=0 trace=- uncapped=0 audio=on input=- boot_stage=- disc=/app0/game.iso
+STAGE completed=PS4-runtime-crash-logger-selected ms=1135.4 build=9ac6fb9b2da43e02d642 errors=0
+[cos] disc: /app0/game.iso GZLE01 revision 0, 1459978240 bytes
+STAGE completed=aurora-initialize ms=1146.7 build=9ac6fb9b2da43e02d642 errors=0
+AURORA level=1 aurora Aurora initializing
+AURORA level=1 aurora::system_info CPU model: Unknown
+AURORA level=1 aurora::system_info Memory: 0 MiB
+AURORA level=1 aurora::system_info Architecture: x86_64
+AURORA level=1 aurora::system_info OS: Unknown
+AURORA level=1 aurora::gpu Creating WebGPU instance
+AURORA level=1 aurora::gpu Attempting to initialize Vulkan
+[Aurora] Surface requested: 1920 x 1080
+AURORA level=1 aurora::gpu Requesting adapter
+  Feature level: Compatibility
+  Power preference: HighPerformance
+  Backend: Vulkan
+  Compatible surface: true
+radv: try_create
+radv: vk_physical_device_init = 0
+radv: winsys_create
+radv/ps4: GPU address windows 0x4000000000 (16 GiB), 0x4400000000 (32-bit)
+radv/ps4: virtual query check ok (0: [0x200004000, 0x200014000) offset 0x10000 direct 1, expected [0x200004000, +0x10000) offset 0x10000)
+radv/ps4: EOP event queue 0, sceGnmAddEqEvent 0
+radv/ps4: SceGnmGpuInfo area 0 ('')
+radv/ps4: fault capture: core dump handler 0xffffffff, GPU exception event 0, stop info -/-
+radv/ps4: device initialized
+radv: ac_query_gpu_info = 0
+AURORA level=1 aurora::gpu Graphics adapter information
+  API: Vulkan
+  Device: AMD Liverpool (PS4) (RADV BONAIRE) (IntegratedGPU)
+  Driver: radv: Mesa 26.0.8 (git-60e95b7878)
+AURORA level=1 aurora::gpu Using limits:
+  maxTextureDimension1D: 16384
+  maxTextureDimension2D: 16384
+  maxTextureDimension3D: 2048
+  maxTextureArrayLayers: 2048
+  maxStorageBuffersPerShaderStage: 2
+  minUniformBufferOffsetAlignment: 64
+  minStorageBufferOffsetAlignment: 16
+  maxImmediateSize: 64
+AURORA level=1 aurora::gpu Enabling features: 
+  CoreFeaturesAndLimits
+  TextureCompressionBC
+  DualSourceBlending
+  TextureComponentSwizzle
+radv/ps4: va 0x43fffec000 + 0x14000 (flags 0x2)
+radv/ps4: bo 1: 16384 bytes, heap 0x2, flags 0x81, align 0x4000, phys 0x2c000
+radv/ps4: map bo 1 +0 at 0x43fffec000 (0x4000 bytes)
+radv/ps4: va 0x43fffc8000 + 0x24000 (flags 0x2)
+radv/ps4: bo 2: 81920 bytes, heap 0x2, flags 0x81, align 0x4000, phys 0x40000
+radv/ps4: bo 2 mapped GPU read-only at 0x43fffc8000
+radv/ps4: map bo 2 +0 at 0x43fffc8000 (0x14000 bytes)
+radv/ps4: va 0x44fffec000 + 0x14000 (flags 0x3)
+radv/ps4: bo 3: 16384 bytes, heap 0x6, flags 0x8a, align 0x4000, phys 0x64000
+radv/ps4: bo 3 mapped GPU read-only at 0x44fffec000
+radv/ps4: map bo 3 +0 at 0x44fffec000 (0x4000 bytes)
+radv/ps4: va 0x43fffa4000 + 0x24000 (flags 0x2)
+radv/ps4: bo 4: 81920 bytes, heap 0x2, flags 0x81, align 0x4000, phys 0x78000
+radv/ps4: bo 4 mapped GPU read-only at 0x43fffa4000
+radv/ps4: map bo 4 +0 at 0x43fffa4000 (0x14000 bytes)
+radv/ps4: va 0x43fff90000 + 0x14000 (flags 0x2)
+radv/ps4: bo 5: 16384 bytes, heap 0x2, flags 0x85, align 0x4000, phys 0x9c000
+radv/ps4: map bo 5 +0 at 0x43fff90000 (0x4000 bytes)
+radv/ps4: va 0x43fffa4000 + 0x24000 (flags 0x2)
+radv/ps4: bo 6: 81920 bytes, heap 0x2, flags 0x81, align 0x4000, phys 0x78000
+radv/ps4: map bo 6 +0 at 0x43fffa4000 (0x14000 bytes)
+[Dawn] Display mode: 1920 x 1080, 59940 mHz
+AURORA level=1 aurora::gpu Using surface format RGBA8Unorm, present mode Fifo
+radv/ps4: va 0x44fff9c000 + 0x50000 (flags 0x3)
+radv/ps4: bo 7: 262144 bytes, heap 0x6, flags 0x80, align 0x4000, phys 0xb0000
+radv/ps4: map bo 7 +0 at 0x44fff9c000 (0x40000 bytes)
+radv/ps4: va 0x43ff760000 + 0x814000 (flags 0x2)
+radv/ps4: bo 8: 8388608 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x100000
+radv/ps4: map bo 8 +0 at 0x43ff760000 (0x800000 bytes)
+[Dawn] Display mode: 1920 x 1080, 59940 mHz
+[Dawn] swapchain 1920x1080: 2 images, present mode 2, needsBlit 0 (usage 0x10 of 0x9f)
+radv/ps4: va 0x43fed60000 + 0x9fc000 (flags 0x2)
+radv/ps4: bo 9: 10403840 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0x920000
+radv/ps4: map bo 9 +0 at 0x43fed60000 (0x9ec000 bytes)
+radv/ps4: va 0x43fe360000 + 0x9fc000 (flags 0x2)
+radv/ps4: bo 10: 10403840 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0x1320000
+radv/ps4: map bo 10 +0 at 0x43fe360000 (0x9ec000 bytes)
+radv/ps4: va 0x43fd960000 + 0x9fc000 (flags 0x2)
+radv/ps4: bo 11: 10403840 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0x1d20000
+radv/ps4: map bo 11 +0 at 0x43fd960000 (0x9ec000 bytes)
+wsi/videoout: 1920x1080 swapchain, buffers 0-2 (set 0), pitch 1920
+radv/ps4: va 0x43fd140000 + 0x810000 (flags 0x2)
+radv/ps4: bo 12: 8388608 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x2720000
+radv/ps4: map bo 12 +0 at 0x43fd140000 (0x800000 bytes)
+radv/ps4: va 0x43fc920000 + 0x810000 (flags 0x2)
+radv/ps4: bo 13: 8388608 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x2f40000
+radv/ps4: map bo 13 +0 at 0x43fc920000 (0x800000 bytes)
+radv/ps4: va 0x43fbfc0000 + 0x944000 (flags 0x2)
+radv/ps4: bo 14: 9650176 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x3760000
+radv/ps4: map bo 14 +0 at 0x43fbfc0000 (0x934000 bytes)
+radv/ps4: va 0x44fff84000 + 0x18000 (flags 0x3)
+radv/ps4: bo 15: 32768 bytes, heap 0x6, flags 0x80, align 0x4000, phys 0x40a4000
+radv/ps4: map bo 15 +0 at 0x44fff84000 (0x8000 bytes)
+radv/ps4: va 0x43fa7a0000 + 0x1814000 (flags 0x2)
+radv/ps4: bo 16: 25165824 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x40c0000
+radv/ps4: map bo 16 +0 at 0x43fa7a0000 (0x1800000 bytes)
+radv/ps4: va 0x43fa280000 + 0x514000 (flags 0x2)
+radv/ps4: bo 17: 5259264 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x58e0000
+radv/ps4: map bo 17 +0 at 0x43fa280000 (0x504000 bytes)
+radv/ps4: va 0x43f9a60000 + 0x814000 (flags 0x2)
+radv/ps4: bo 18: 8388608 bytes, heap 0x6, flags 0xc2, align 0x20000, phys 0x5e00000
+radv/ps4: map bo 18 +0 at 0x43f9a60000 (0x800000 bytes)
+radv/ps4: va 0x43f5b40000 + 0x3f14000 (flags 0x2)
+radv/ps4: bo 19: 66060288 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0x6620000
+radv/ps4: map bo 19 +0 at 0x43f5b40000 (0x3f00000 bytes)
+radv/ps4: va 0x43f1c20000 + 0x3f14000 (flags 0x2)
+radv/ps4: bo 20: 66060288 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0xa540000
+radv/ps4: map bo 20 +0 at 0x43f1c20000 (0x3f00000 bytes)
+radv/ps4: va 0x43edd00000 + 0x3f14000 (flags 0x2)
+radv/ps4: bo 21: 66060288 bytes, heap 0x6, flags 0xc1, align 0x20000, phys 0xe460000
+radv/ps4: map bo 21 +0 at 0x43edd00000 (0x3f00000 bytes)
+radv/ps4: va 0x43e9de0000 + 0x3f14000 (flags 0x2)
+AURORA level=1 aurora::gfx::pipeline_cache No bundled initial pipeline cache found at '/app0/initial_pipeline_cache.db'
+AURORA level=1 aurora Using framebuffer size 1920x1080 scale 1
+[cos] fb scale: 1.5 (EFB about 1280x720)
+[cos] aurora: backend=vulkan window=1920x1080 framebuffer=1920x1080 vsync=1 pipelines=sync user=/data/pswaker
+STAGE completed=graphics-initialized ms=1984.9 build=9ac6fb9b2da43e02d642 errors=0
+CONTENT validation bytes=0/1459978240 ms=1994.6
+pad: player 0 opened for user 384877797
+[Dawn] swapchain 1920x1080: 2 images, present mode 2, needsBlit 0 (usage 0x10 of 0x9f)
+wsi/videoout: 1920x1080 swapchain, buffers 3-5 (set 1), pitch 1920
+AURORA level=1 aurora::input Added controller 'DUALSHOCK 4' (instance 3, vid 054c, pid 09cc, type 5)
+radv/ps4: submissions go to the GPU from their own thread
+radv/ps4: submit 1: 5 IBs (first 0x20001a020, 32 bytes) = 0, GPU completed 0, 0 memory writes checked, 0 disabled
+splash dismissed: 0
+radv/ps4: submit 2: 5 IBs (first 0x20001a040, 32 bytes) = 0, GPU completed 1, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=8388608/1459978240 ms=2414.3
+radv/ps4: submit 3: 5 IBs (first 0x20001a060, 32 bytes) = 0, GPU completed 2, 0 memory writes checked, 0 disabled
+radv/ps4: submit 4: 5 IBs (first 0x20001a080, 32 bytes) = 0, GPU completed 3, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=16777216/1459978240 ms=2688.7
+radv/ps4: submit 5: 5 IBs (first 0x20001a0a0, 32 bytes) = 0, GPU completed 4, 0 memory writes checked, 0 disabled
+radv/ps4: submit 6: 5 IBs (first 0x20001a0c0, 32 bytes) = 0, GPU completed 5, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=29360128/1459978240 ms=3049.7
+radv/ps4: submit 7: 5 IBs (first 0x20001a0e0, 32 bytes) = 0, GPU completed 6, 0 memory writes checked, 0 disabled
+radv/ps4: submit 8: 5 IBs (first 0x20001a100, 32 bytes) = 0, GPU completed 7, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=37748736/1459978240 ms=3357.6
+radv/ps4: submit 9: 5 IBs (first 0x20001a120, 32 bytes) = 0, GPU completed 8, 0 memory writes checked, 0 disabled
+radv/ps4: submit 10: 5 IBs (first 0x20001a140, 32 bytes) = 0, GPU completed 9, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=50331648/1459978240 ms=3693.3
+radv/ps4: submit 11: 5 IBs (first 0x20001a160, 32 bytes) = 0, GPU completed 10, 0 memory writes checked, 0 disabled
+radv/ps4: submit 12: 5 IBs (first 0x20001a180, 32 bytes) = 0, GPU completed 11, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=62914560/1459978240 ms=4029.0
+radv/ps4: submit 13: 5 IBs (first 0x20001a1a0, 32 bytes) = 0, GPU completed 12, 0 memory writes checked, 0 disabled
+radv/ps4: submit 14: 5 IBs (first 0x20001a1c0, 32 bytes) = 0, GPU completed 13, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=71303168/1459978240 ms=4295.8
+radv/ps4: submit 15: 5 IBs (first 0x20001a1e0, 32 bytes) = 0, GPU completed 14, 0 memory writes checked, 0 disabled
+radv/ps4: submit 16: 5 IBs (first 0x20001a200, 32 bytes) = 0, GPU completed 15, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=83886080/1459978240 ms=4632.0
+radv/ps4: submit 17: 5 IBs (first 0x20001a220, 32 bytes) = 0, GPU completed 16, 0 memory writes checked, 0 disabled
+radv/ps4: submit 18: 5 IBs (first 0x20001a240, 32 bytes) = 0, GPU completed 17, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=96468992/1459978240 ms=4967.1
+radv/ps4: submit 19: 5 IBs (first 0x20001a260, 32 bytes) = 0, GPU completed 18, 0 memory writes checked, 0 disabled
+radv/ps4: submit 20: 5 IBs (first 0x20001a280, 32 bytes) = 0, GPU completed 19, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=109051904/1459978240 ms=5325.5
+radv/ps4: submit 21: 5 IBs (first 0x20001a2a0, 32 bytes) = 0, GPU completed 20, 0 memory writes checked, 0 disabled
+radv/ps4: submit 22: 5 IBs (first 0x20001a2c0, 32 bytes) = 0, GPU completed 21, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=121634816/1459978240 ms=5661.0
+radv/ps4: submit 23: 5 IBs (first 0x20001a2e0, 32 bytes) = 0, GPU completed 22, 0 memory writes checked, 0 disabled
+radv/ps4: submit 24: 5 IBs (first 0x20001a300, 32 bytes) = 0, GPU completed 23, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=134217728/1459978240 ms=5996.8
+radv/ps4: submit 25: 5 IBs (first 0x20001a320, 32 bytes) = 0, GPU completed 24, 0 memory writes checked, 0 disabled
+radv/ps4: submit 26: 5 IBs (first 0x20001a340, 32 bytes) = 0, GPU completed 25, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=142606336/1459978240 ms=6255.5
+radv/ps4: submit 27: 5 IBs (first 0x20001a360, 32 bytes) = 0, GPU completed 26, 0 memory writes checked, 0 disabled
+radv/ps4: submit 28: 5 IBs (first 0x20001a380, 32 bytes) = 0, GPU completed 27, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=155189248/1459978240 ms=6591.5
+radv/ps4: submit 29: 5 IBs (first 0x20001a3a0, 32 bytes) = 0, GPU completed 28, 0 memory writes checked, 0 disabled
+radv/ps4: submit 30: 5 IBs (first 0x20001a3c0, 32 bytes) = 0, GPU completed 29, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=167772160/1459978240 ms=6927.6
+radv/ps4: submit 31: 5 IBs (first 0x20001a3e0, 32 bytes) = 0, GPU completed 30, 0 memory writes checked, 0 disabled
+radv/ps4: submit 32: 5 IBs (first 0x20001a400, 32 bytes) = 0, GPU completed 31, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=180355072/1459978240 ms=7263.0
+radv/ps4: submit 33: 5 IBs (first 0x20001a420, 32 bytes) = 0, GPU completed 32, 0 memory writes checked, 0 disabled
+radv/ps4: submit 34: 5 IBs (first 0x20001a440, 32 bytes) = 0, GPU completed 33, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=192937984/1459978240 ms=7638.2
+radv/ps4: submit 35: 5 IBs (first 0x20001a460, 32 bytes) = 0, GPU completed 34, 0 memory writes checked, 0 disabled
+radv/ps4: submit 36: 5 IBs (first 0x20001a480, 32 bytes) = 0, GPU completed 35, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=205520896/1459978240 ms=7977.5
+radv/ps4: submit 37: 5 IBs (first 0x20001a4a0, 32 bytes) = 0, GPU completed 36, 0 memory writes checked, 0 disabled
+radv/ps4: submit 38: 5 IBs (first 0x20001a4c0, 32 bytes) = 0, GPU completed 37, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=218103808/1459978240 ms=8313.7
+radv/ps4: submit 39: 5 IBs (first 0x20001a4e0, 32 bytes) = 0, GPU completed 38, 0 memory writes checked, 0 disabled
+radv/ps4: submit 40: 5 IBs (first 0x20001a500, 32 bytes) = 0, GPU completed 39, 0 memory writes checked, 0 disabled
+CONTENT validation bytes=230686720/1459978240 ms=8649.8
+CONTENT validation bytes=243269632/1459978240 ms=8986.2
+CONTENT validation bytes=255852544/1459978240 ms=9324.2
+CONTENT validation bytes=268435456/1459978240 ms=9660.1
+CONTENT validation bytes=281018368/1459978240 ms=9996.3
+CONTENT validation bytes=293601280/1459978240 ms=10332.5
+CONTENT validation bytes=306184192/1459978240 ms=10669.2
+CONTENT validation bytes=318767104/1459978240 ms=11005.5
+CONTENT validation bytes=331350016/1459978240 ms=11341.7
+CONTENT validation bytes=343932928/1459978240 ms=11678.1
+CONTENT validation bytes=356515840/1459978240 ms=12013.9
+CONTENT validation bytes=369098752/1459978240 ms=12351.1
+CONTENT validation bytes=381681664/1459978240 ms=12687.1
+CONTENT validation bytes=394264576/1459978240 ms=13023.5
+CONTENT validation bytes=406847488/1459978240 ms=13360.1
+CONTENT validation bytes=419430400/1459978240 ms=13696.6
+CONTENT validation bytes=432013312/1459978240 ms=14031.7
+CONTENT validation bytes=444596224/1459978240 ms=14367.5
+CONTENT validation bytes=457179136/1459978240 ms=14726.0
+CONTENT validation bytes=469762048/1459978240 ms=15061.5
+CONTENT validation bytes=482344960/1459978240 ms=15397.0
+CONTENT validation bytes=494927872/1459978240 ms=15732.4
+CONTENT validation bytes=507510784/1459978240 ms=16067.6
+CONTENT validation bytes=520093696/1459978240 ms=16403.1
+CONTENT validation bytes=532676608/1459978240 ms=16739.0
+CONTENT validation bytes=545259520/1459978240 ms=17074.8
+CONTENT validation bytes=557842432/1459978240 ms=17413.4
+CONTENT validation bytes=570425344/1459978240 ms=17748.5
+CONTENT validation bytes=583008256/1459978240 ms=18083.8
+CONTENT validation bytes=595591168/1459978240 ms=18419.3
+CONTENT validation bytes=608174080/1459978240 ms=18754.2
+CONTENT validation bytes=620756992/1459978240 ms=19093.3
+CONTENT validation bytes=633339904/1459978240 ms=19429.7
+CONTENT validation bytes=645922816/1459978240 ms=19765.6
+CONTENT validation bytes=658505728/1459978240 ms=20100.8
+CONTENT validation bytes=671088640/1459978240 ms=20436.3
+CONTENT validation bytes=683671552/1459978240 ms=20772.3
+CONTENT validation bytes=696254464/1459978240 ms=21108.1
+CONTENT validation bytes=708837376/1459978240 ms=21443.9
+CONTENT validation bytes=721420288/1459978240 ms=21779.4
+CONTENT validation bytes=734003200/1459978240 ms=22115.2
+CONTENT validation bytes=746586112/1459978240 ms=22450.4
+CONTENT validation bytes=759169024/1459978240 ms=22786.3
+CONTENT validation bytes=771751936/1459978240 ms=23122.2
+CONTENT validation bytes=784334848/1459978240 ms=23457.5
+CONTENT validation bytes=796917760/1459978240 ms=23793.1
+CONTENT validation bytes=809500672/1459978240 ms=24128.1
+CONTENT validation bytes=822083584/1459978240 ms=24463.3
+CONTENT validation bytes=834666496/1459978240 ms=24800.1
+CONTENT validation bytes=847249408/1459978240 ms=25135.9
+CONTENT validation bytes=859832320/1459978240 ms=25471.4
+CONTENT validation bytes=872415232/1459978240 ms=25807.8
+CONTENT validation bytes=884998144/1459978240 ms=26143.6
+CONTENT validation bytes=897581056/1459978240 ms=26479.0
+CONTENT validation bytes=910163968/1459978240 ms=26815.0
+CONTENT validation bytes=922746880/1459978240 ms=27170.0
+CONTENT validation bytes=935329792/1459978240 ms=27505.9
+CONTENT validation bytes=947912704/1459978240 ms=27842.4
+CONTENT validation bytes=960495616/1459978240 ms=28178.4
+CONTENT validation bytes=973078528/1459978240 ms=28514.2
+CONTENT validation bytes=985661440/1459978240 ms=28850.3
+CONTENT validation bytes=998244352/1459978240 ms=29186.4
+CONTENT validation bytes=1010827264/1459978240 ms=29521.9
+CONTENT validation bytes=1023410176/1459978240 ms=29857.9
+CONTENT validation bytes=1035993088/1459978240 ms=30194.1
+CONTENT validation bytes=1048576000/1459978240 ms=30530.3
+CONTENT validation bytes=1061158912/1459978240 ms=30866.1
+CONTENT validation bytes=1073741824/1459978240 ms=31201.9
+CONTENT validation bytes=1086324736/1459978240 ms=31541.2
+CONTENT validation bytes=1098907648/1459978240 ms=31877.3
+CONTENT validation bytes=1111490560/1459978240 ms=32213.6
+CONTENT validation bytes=1124073472/1459978240 ms=32549.8
+CONTENT validation bytes=1136656384/1459978240 ms=32885.9
+CONTENT validation bytes=1149239296/1459978240 ms=33221.6
+CONTENT validation bytes=1161822208/1459978240 ms=33557.5
+CONTENT validation bytes=1174405120/1459978240 ms=33893.6
+CONTENT validation bytes=1186988032/1459978240 ms=34230.1
+CONTENT validation bytes=1199570944/1459978240 ms=34566.3
+CONTENT validation bytes=1212153856/1459978240 ms=34901.7
+CONTENT validation bytes=1224736768/1459978240 ms=35237.5
+CONTENT validation bytes=1237319680/1459978240 ms=35573.6
+CONTENT validation bytes=1249902592/1459978240 ms=35910.8
+CONTENT validation bytes=1262485504/1459978240 ms=36247.2
+CONTENT validation bytes=1275068416/1459978240 ms=36583.3
+CONTENT validation bytes=1287651328/1459978240 ms=36919.6
+CONTENT validation bytes=1300234240/1459978240 ms=37254.9
+CONTENT validation bytes=1312817152/1459978240 ms=37590.6
+CONTENT validation bytes=1325400064/1459978240 ms=37926.9
+CONTENT validation bytes=1337982976/1459978240 ms=38265.6
+CONTENT validation bytes=1350565888/1459978240 ms=38600.8
+CONTENT validation bytes=1363148800/1459978240 ms=38937.0
+CONTENT validation bytes=1375731712/1459978240 ms=39273.1
+CONTENT validation bytes=1388314624/1459978240 ms=39608.4
+CONTENT validation bytes=1400897536/1459978240 ms=39944.1
+CONTENT validation bytes=1413480448/1459978240 ms=40279.8
+CONTENT validation bytes=1426063360/1459978240 ms=40615.4
+CONTENT validation bytes=1438646272/1459978240 ms=40951.3
+CONTENT validation bytes=1451229184/1459978240 ms=41287.8
+CONTENT validation bytes=1459978240/1459978240 ms=41523.1
+STAGE completed=installed-image-validated ms=41529.0 build=9ac6fb9b2da43e02d642 errors=0
+STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+STAGE completed=writable-storage-checked ms=41581.8 build=9ac6fb9b2da43e02d642 errors=0
+DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=41593.6
+SHADERS created=221 queued=0 ms=41602.0
+TIMING shader-preparation_ms=4.1 startup_to_preparation_complete_ms=41606.1
+STAGE completed=known-shaders-prepared ms=41613.4 build=9ac6fb9b2da43e02d642 errors=0
+[cos] dvd: GZLE01 version 0 disc 0
+[cos] assets: 163 arrays read from the disc (main.dol and RELs checked), 158 filled at start-up, the rest on their function's first call
+STAGE completed=runtime-assets-validated ms=41766.3 build=9ac6fb9b2da43e02d642 errors=0
+[cos] MILESTONE aurora-up frame=0 retrace=0 ms=40727
+[cos_sdk] VISetBlack(TRUE): recorded (COSSdkVIIsBlack), but Aurora keeps presenting frames; the screen is not blanked
+[cos_sdk] OSSetErrorHandler: handlers are recorded, but no host fault reaches them yet (the game glue calls them through COSSdkGetErrorHandler)
+[cos_sdk] OSSetSwitchThreadCallback: host threads never switch, so the callback is not called; per-thread state goes through COSSdkSetThreadLaunchHook/COSSdkSetThreadStartHook (cos_sdk/hooks.h)
+AURORA level=1 aurora::card CARD API Initialized BUILT <Oct 26 2026 00:15:38>
+AURORA level=1 aurora::card Loaded GC Card Image: /data/pswaker/saves/USA/Card A
+AURORA level=1 aurora::card Loaded GC Card Image: /data/pswaker/saves/USA/Card B
+[cos] heaps: root     0x1001391320 size 0x0e7fbec0 free 0x07b35620 check ok
+[cos] heaps: system   0x1001391440 size 0x01ffff00 free 0x0000ffbc check ok
+[cos] heaps: main     0x10014486b0 size 0x01f38c90 free 0x01f338b8 check ok
+[cos] heaps: game     0x1004835ca0 size 0x03821f00 free 0x03821ee0 check ok
+[cos] heaps: archive  0x1003393480 size 0x014a2700 free 0x014a26e0 check ok
+[cos] heaps: command  0x1003391460 size 0x00001f00 free 0x00001ee0 check ok
+[cos] MILESTONE heaps frame=0 retrace=0 ms=40759
+[cos_sdk] GBAInit: the GBA link is not emulated; every GBA port reports GBA_NOT_READY (nothing connected)
+[cos] frame loop: start, paced by JFWDisplay
+[cos] gfx-create: LOAD_COPYDATE status 1, COPYDATE "03/02/19 11:43:53"
+[cos] MILESTONE gfx-create frame=0 retrace=0 ms=40761
+INPUT sample connected=1 screen=legend releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=legend releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+INPUT screen=legend->game connected=1; gameplay neutral outside Game
+HEARTBEAT ms=43730.4 shaders-created=221 queued=0 checked-errors=0
+AUDIO dma-frames=0 sum-squares=0; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=0 queued-source-bytes=0 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=0 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=unknown(-1) frame=0 last_resource= resources=0 ms=42636
+[cos_sdk] GXSetMisc(GX_MT_DL_SAVE_CONTEXT, 0): recorded, but Aurora keeps saving and restoring the GX state around display list recording
+[cos_sdk] DSP: Dolphin's DSPHLE created (ARAM 0x1000000 bytes, MEM1 0x10000000 bytes)
+[dsp-log] /home/joseph_cano/.cache/pswaker/game-20-final/src/recompcore/Source/Core/Core/HW/DSPHLE/UCodes/Zelda.cpp:479 CMD0D: 002a5a80
+[cos_sdk] AI: audio output over SDL3 (driver ps5), 16-bit stereo, 32000 Hz
+SCENE create-request ms=42670 previous_request_interval_ms=42670 name=LOGO_SCENE id=5 frame=1; visible completion needs owner observation
+[cos] audio: mDoAud_Create done at frame 2; DSP handshake done
+[cos] logo-scene: Logo archive 12 entries; the logo BTI 376x104 format 3, 0 colours, image at 0x20 (78208 bytes) in 78240 bytes
+[cos] logo-scene: created at frame 2; 159744 texture bytes uploaded since (0 before), up to 2 draw calls in a frame
+[cos] MILESTONE logo-scene frame=6 retrace=6 ms=42736
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] frame-loop: 120 frames, 120 retraces, up to 3 draw calls in a frame
+[cos] pacing: frames=120 wall=3878.2 ms requested=2000.0 ms; after frame 1: wall=1986.3 ms requested=1983.4 ms ratio=1.0015; uncapped=0 retraces=120
+[cos] gfx high-water: verts=0 KiB/5120 uniforms=8 KiB/24576 indices=0 KiB/2048 storage=0 KiB/8192 draws=3
+[cos] MILESTONE frame-loop frame=120 retrace=120 ms=44639
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] logo-res: System.arc 2 files, 2 converted
+[cos] logo-res: Logo.arc 7 files, 7 converted
+[cos] logo-res: Always.arc 113 files, 113 converted
+[cos] logo-res: Link.arc 91 files, 91 converted
+[cos] logo-res: Agb.arc 2 files, 2 converted
+[cos] logo-res: all commands synced at frame 243: 26 archives mounted, 4 files in main RAM, 0 empty
+[cos] logo-res: dComIfG_changeOpeningScene called
+[cos] MILESTONE logo-res frame=243 retrace=244 ms=46711
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 1000: 5 IBs (first 0x20001dd00, 32 bytes) = 0, GPU completed 999, 0 memory writes checked, 0 disabled
+SCENE create-request ms=47209 previous_request_interval_ms=4539 name=OPENING_SCENE id=8 frame=273; visible completion needs owner observation
+[cos] stage: sea_T room 44 created at frame 281; Stage archive 23 files, stage.dzs found
+[cos] MILESTONE opening frame=281 retrace=282 ms=47343
+SCENE create-request ms=47376 previous_request_interval_ms=167 name=ROOM_SCENE id=20 frame=282; visible completion needs owner observation
+radv/ps4: small submissions: 1024, avg 844 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 898 us max 2886 us
+[cos] title: d_a_title created at frame 286
+[cos] title-stage: room 44 ready at frame 287: Room44 mounted, BG collision registered, 51 actor(s) created
+HEARTBEAT ms=48745.3 shaders-created=221 queued=0 checked-errors=0
+AUDIO dma-frames=158592 sum-squares=0; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=112 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=932 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=290 last_resource=/res/Object/knob.arc resources=54 ms=47652
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+SCENE create-request ms=48090 previous_request_interval_ms=714 name=ROOM_SCENE id=20 frame=303; visible completion needs owner observation
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=53759.7 shaders-created=221 queued=0 checked-errors=0
+AUDIO dma-frames=319072 sum-squares=122804378841; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=580 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=1872 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=440 last_resource=/res/Stage/sea_T/Room0.arc resources=55 ms=52668
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] title: 60 frames drawn with the logo at alpha 255, 25 title smoke particle(s), sparkle emitter set; enter mode 1 at frame 560
+[cos] MILESTONE title frame=560 retrace=837 ms=56798
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=58767.3 shaders-created=224 queued=0 checked-errors=0
+AUDIO dma-frames=479296 sum-squares=1462443200642; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=324 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=2811 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=585 last_resource=/res/Stage/sea_T/Room0.arc resources=55 ms=57675
+[cos] title-stage: 300 frames since room 44 was ready
+[cos] MILESTONE title-stage frame=587 retrace=891 ms=57721
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+SCENE create-request ms=59576 previous_request_interval_ms=11486 name=NAME_SCENE id=12 frame=642; visible completion needs owner observation
+[cos] name-scene: frame 647: main MemCardCheckMain, memory card MemCardStatCheck, draw FileErrorDraw
+[cos] file-select: name scene first drawn at frame 648
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] name-scene: frame 667: main MemCardCheckMain, memory card MemCardLoadWait, draw FileErrorDraw
+[cos] name-scene: frame 668: main NoteOpen, memory card MemCardLoadWait, draw NoneDraw
+[cos] name-scene: frame 669: main NoteOpenWait, memory card MemCardLoadWait, draw NoneDraw
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] name-scene: frame 685: main FileSelectOpen, memory card MemCardLoadWait, draw FileSelectDraw
+[cos] name-scene: frame 705: main FileSelectMain, memory card MemCardLoadWait, draw FileSelectDraw
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=63782.9 shaders-created=224 queued=0 checked-errors=0
+AUDIO dma-frames=639808 sum-squares=3905272686648; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=668 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=3751 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=NAME_SCENE(12) frame=735 last_resource=/res/Stage/Name/Stage.arc resources=56 ms=62691
+[cos] file-select: name scene drew 60 frames in a row with FileSelectDraw; main proc 4, memory card check proc 1, at frame 745
+[cos] MILESTONE file-select frame=745 retrace=1207 ms=62996
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,-127,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 2000: 5 IBs (first 0x20001da00, 32 bytes) = 0, GPU completed 1999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 536, avg 230 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 2201 us max 3030 us
+radv/ps4: large submissions: 488, avg 20981 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 23 us max 63 us
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+[cos] name-scene: frame 842: main changeGameScene, memory card MemCardLoadWait, draw FileSelectDraw
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+SCENE create-request ms=67292 previous_request_interval_ms=7716 name=PLAY_SCENE id=7 frame=873; visible completion needs owner observation
+[cos] stage: sea room 44 created at frame 880; Stage archive 23 files, stage.dzs found
+SCENE create-request ms=67559 previous_request_interval_ms=267 name=ROOM_SCENE id=20 frame=881; visible completion needs owner observation
+HEARTBEAT ms=68802.4 shaders-created=224 queued=0 checked-errors=0
+AUDIO dma-frames=800448 sum-squares=6915434761692; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=284 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=4693 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=885 last_resource=/res/Object/Kaji.arc resources=87 ms=67710
+SCENE create-request ms=67879 previous_request_interval_ms=320 name=ROOM_SCENE id=20 frame=890; visible completion needs owner observation
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+HEARTBEAT ms=73824.6 shaders-created=224 queued=0 checked-errors=0
+AUDIO dma-frames=961120 sum-squares=9623600796427; audible output needs owner confirmation
+AUDIO_OUTPUT source-hz=32000 queued-source-bytes=580 queue-drops=0 dropped-frames=0 clock-skips=0 skipped-frames=0 stream-errors=0 backend-calls=5634 backend-errors=0 backend-drain-errors=0 last-backend-error=0x00000000 hardware-underruns=unsupported; software counters do not prove audible correctness
+scene=ROOM_SCENE(20) frame=1035 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=72733
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=game releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT screen=game->settings connected=1; gameplay neutral outside Game
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 3000: 5 IBs (first 0x20001d700, 32 bytes) = 0, GPU completed 2999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 674, avg 477 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1966 us max 3007 us
+radv/ps4: large submissions: 350, avg 33034 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 24 us max 77 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 4000: 5 IBs (first 0x20001d400, 32 bytes) = 0, GPU completed 3999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 849 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1215 us max 2836 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 5000: 5 IBs (first 0x20001d100, 32 bytes) = 0, GPU completed 4999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 849 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1222 us max 2840 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 6000: 5 IBs (first 0x20001ce00, 32 bytes) = 0, GPU completed 5999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 849 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1224 us max 2845 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 7000: 5 IBs (first 0x20001cb00, 32 bytes) = 0, GPU completed 6999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 849 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1223 us max 2838 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 8000: 5 IBs (first 0x20001c800, 32 bytes) = 0, GPU completed 7999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 849 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1222 us max 2846 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,1.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: submit 9000: 5 IBs (first 0x20001c500, 32 bytes) = 0, GPU completed 8999, 0 memory writes checked, 0 disabled
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0x40 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+radv/ps4: small submissions: 1024, avg 849 dwords in 5.0 IBs, sceGnmSubmitCommandBuffers avg 1224 us max 2854 us
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0x40 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT sample connected=1 screen=settings releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=settings destination=quit; waiting for neutral release
+INPUT screen=settings->quit connected=1; gameplay neutral outside Game
+INPUT sample connected=1 screen=quit releasing=0 raw-buttons=0 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+INPUT explicit-confirm screen=quit destination=exit; waiting for neutral release
+INPUT screen=quit->exit connected=1; gameplay neutral outside Game
+EXIT code=0 ms=137878.4 checked-errors=0
+STAGE completed=shutdown-waiting-for-card ms=137882.4 build=9ac6fb9b2da43e02d642 errors=0
+SHUTDOWN card-status=1 (0=busy 1=idle -1=last-store-failed)
+scene=ROOM_SCENE(20) frame=1165 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=136766
+PANIC /home/joseph_cano/.cache/pswaker/game-20-final/src/switchwaker/game/src/JSystem/JUtility/JUTGba.cpp:623
+scene=ROOM_SCENE(20) frame=1165 last_resource=/res/Stage/sea/Room0.arc resources=95 ms=136766
+EXIT code=12 ms=137901.8 checked-errors=0

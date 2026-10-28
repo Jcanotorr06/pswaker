@@ -1,0 +1,10 @@
+{
+  "locked_deb_sha256": "84b9cf5752b29c9f92c27cd4c4ba9bbcc70b5ccf9b1b515421a28ae23212e273",
+  "restoration_deb_sha256": "376249c8de139568221dbb242318cc8cb8f02299e3a62b7432948e1754fbddf9",
+  "build_version": "1:1.3.dfsg-3.1ubuntu2.2",
+  "restored_version": "1:1.3.dfsg-3.1ubuntu2.3",
+  "recovery": "Same hash-checked retained packages and locked host procedure as #15/#22; no host guard bypass",
+  "first_attempt": "Collector KeyError program_build_id before compilation; original output directory retained and host restored on EXIT",
+  "final_attempt": "Both final game builds, assembly and fresh inspections passed; EXIT trap restored the pre-task host version",
+  "private_record_directory": "/home/joseph_cano/.local/share/pswaker-private/integrated-23-builds-final"
+}

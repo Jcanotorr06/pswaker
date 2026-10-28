@@ -1,0 +1,9 @@
+$ ['python3', '-m', 'unittest', 'discover', '-v', '-s', 'platform/ps4/tests', '-p', 'test_renderer.py']
+test_changed_source_is_rejected_before_any_renderer_patch_is_applied (test_renderer.RendererPreparationTests.test_changed_source_is_rejected_before_any_renderer_patch_is_applied) ... ok
+test_matched_platform_accepts_ordered_renderer_reconciliation (test_renderer.RendererPreparationTests.test_matched_platform_accepts_ordered_renderer_reconciliation) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.433s
+
+OK
+$ ['python3', '-m', 'compileall', '-q', 'platform/ps4']

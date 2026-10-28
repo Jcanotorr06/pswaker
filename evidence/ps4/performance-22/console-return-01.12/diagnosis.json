@@ -1,0 +1,388 @@
+{
+  "cold": {
+    "costs": {
+      "diagnostic-input-ns": {
+        "count": 437,
+        "median_ms": 0.055356,
+        "max_ms": 66.57585
+      },
+      "diagnostic-heartbeat-ns": {
+        "count": 71,
+        "median_ms": 1.610937,
+        "max_ms": 86.435376
+      },
+      "diagnostic-recorder-flush-ns": {
+        "count": 256,
+        "median_ms": 0.056044,
+        "max_ms": 2291.283536
+      }
+    },
+    "invalid": [],
+    "around_invalid": [],
+    "samples": [
+      {
+        "sample": 1,
+        "shader_ms": 6607.91854,
+        "shader_waits_over_35ms": 89,
+        "largest": [
+          {
+            "frame": 991,
+            "ms": 1234.5776158979634,
+            "shader_ms": 1195.708258,
+            "shader_calls": 14,
+            "observed_ns": 742964895587333,
+            "submit_delta_ms": 1237.417239
+          },
+          {
+            "frame": 988,
+            "ms": 517.1630374440106,
+            "shader_ms": 515.330237,
+            "shader_calls": 5,
+            "observed_ns": 742963611616441,
+            "submit_delta_ms": 527.258903
+          },
+          {
+            "frame": 993,
+            "ms": 333.6723706253685,
+            "shader_ms": 315.338074,
+            "shader_calls": 4,
+            "observed_ns": 742965397559712,
+            "submit_delta_ms": 336.203249
+          },
+          {
+            "frame": 2546,
+            "ms": 233.57019362176996,
+            "shader_ms": 195.192987,
+            "shader_calls": 2,
+            "observed_ns": 743017666558797,
+            "submit_delta_ms": 227.827616
+          },
+          {
+            "frame": 2582,
+            "ms": 200.19854526614262,
+            "shader_ms": 158.356636,
+            "shader_calls": 3,
+            "observed_ns": 743019100573192,
+            "submit_delta_ms": 193.347873
+          },
+          {
+            "frame": 2681,
+            "ms": 166.83629980617627,
+            "shader_ms": 129.41543,
+            "shader_calls": 1,
+            "observed_ns": 743022537594089,
+            "submit_delta_ms": 163.571475
+          },
+          {
+            "frame": 992,
+            "ms": 166.8340758093042,
+            "shader_ms": 156.795731,
+            "shader_calls": 2,
+            "observed_ns": 742965063608045,
+            "submit_delta_ms": 168.448468
+          },
+          {
+            "frame": 986,
+            "ms": 166.8330218418162,
+            "shader_ms": 127.328444,
+            "shader_calls": 1,
+            "observed_ns": 742962960599158,
+            "submit_delta_ms": 160.558537
+          }
+        ],
+        "max_clock_error_ms": 1.8652337979292497
+      },
+      {
+        "sample": 2,
+        "shader_ms": 173.91384299999999,
+        "shader_waits_over_35ms": 2,
+        "largest": [
+          {
+            "frame": 9149,
+            "ms": 150.151814418017,
+            "shader_ms": 122.379947,
+            "shader_calls": 1,
+            "observed_ns": 743285387603199,
+            "submit_delta_ms": 156.581948
+          },
+          {
+            "frame": 7185,
+            "ms": 83.41987671589216,
+            "shader_ms": 51.533896,
+            "shader_calls": 1,
+            "observed_ns": 743219820597152,
+            "submit_delta_ms": 85.346216
+          },
+          {
+            "frame": 6294,
+            "ms": 50.10321472242114,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743190074594177,
+            "submit_delta_ms": 33.440038
+          },
+          {
+            "frame": 6096,
+            "ms": 50.07950108130226,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743183484550688,
+            "submit_delta_ms": 33.509451
+          },
+          {
+            "frame": 7591,
+            "ms": 50.05555217958337,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743233352559453,
+            "submit_delta_ms": 33.379922
+          },
+          {
+            "frame": 6367,
+            "ms": 50.05469269419135,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743192510577935,
+            "submit_delta_ms": 33.786082
+          },
+          {
+            "frame": 8763,
+            "ms": 50.05366319380573,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743272407608982,
+            "submit_delta_ms": 33.646606
+          },
+          {
+            "frame": 6807,
+            "ms": 50.052173837367306,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743207192541578,
+            "submit_delta_ms": 34.836675
+          }
+        ],
+        "max_clock_error_ms": 1.864002917369362
+      }
+    ],
+    "maximum_read_clock_error_ms": 0.0009989627287723124,
+    "largest_flush_overlap": {
+      "duration_ms": 2291.283536,
+      "completed_intervals": 5,
+      "maximum_interval_ms": 517.1926031141344,
+      "start_ns": 742856388602398,
+      "end_ns": 742858679885934
+    },
+    "max_clock_error_ms": 1.8739391291164793,
+    "worst_frame": {
+      "flip_count": 10065,
+      "process_time": 321640556,
+      "tsc": 1184606791348372,
+      "observed_ns": 743173940629057,
+      "flip_argument": 10065,
+      "game_frame": 0,
+      "sample": 0,
+      "stage": "sea",
+      "room": 44,
+      "submit_ns": 743173928403268,
+      "shader_ns": 14084638554,
+      "shader_calls": 279,
+      "read_tsc": 1184606791380561,
+      "clock_offset_ms": -1.8739391291164793,
+      "read_clock_offset_ms": 0.000318080245051533
+    }
+  },
+  "warm": {
+    "costs": {
+      "diagnostic-input-ns": {
+        "count": 480,
+        "median_ms": 0.056187,
+        "max_ms": 42.054647
+      },
+      "diagnostic-heartbeat-ns": {
+        "count": 82,
+        "median_ms": 1.570905,
+        "max_ms": 1.771468
+      },
+      "diagnostic-recorder-flush-ns": {
+        "count": 276,
+        "median_ms": 0.055658,
+        "max_ms": 1306.203344
+      }
+    },
+    "invalid": [],
+    "around_invalid": [],
+    "samples": [
+      {
+        "sample": 1,
+        "shader_ms": 0,
+        "shader_waits_over_35ms": 0,
+        "largest": [
+          {
+            "frame": 1333,
+            "ms": 50.060029031961065,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743693634605089,
+            "submit_delta_ms": 34.227518
+          },
+          {
+            "frame": 2878,
+            "ms": 50.05602897439938,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743745136599238,
+            "submit_delta_ms": 34.528657
+          },
+          {
+            "frame": 2974,
+            "ms": 50.05446621665375,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743748340553123,
+            "submit_delta_ms": 33.742119
+          },
+          {
+            "frame": 2697,
+            "ms": 50.05418578601854,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743739114571566,
+            "submit_delta_ms": 37.502435
+          },
+          {
+            "frame": 1959,
+            "ms": 50.05394299707934,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743714505590280,
+            "submit_delta_ms": 35.311843
+          },
+          {
+            "frame": 1165,
+            "ms": 50.05368703354653,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743688045622114,
+            "submit_delta_ms": 35.419562
+          },
+          {
+            "frame": 1049,
+            "ms": 50.05351011757533,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743684175553809,
+            "submit_delta_ms": 36.949532
+          },
+          {
+            "frame": 1961,
+            "ms": 50.053087903218525,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743714573577421,
+            "submit_delta_ms": 34.156352
+          }
+        ],
+        "max_clock_error_ms": 1.5271095763309859
+      },
+      {
+        "sample": 2,
+        "shader_ms": 0,
+        "shader_waits_over_35ms": 0,
+        "largest": [
+          {
+            "frame": 8469,
+            "ms": 50.08582990512319,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743982160589908,
+            "submit_delta_ms": 33.467916
+          },
+          {
+            "frame": 8658,
+            "ms": 50.0569436676122,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743988466582127,
+            "submit_delta_ms": 33.266554
+          },
+          {
+            "frame": 7995,
+            "ms": 50.05572219457697,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743966360611866,
+            "submit_delta_ms": 34.52372
+          },
+          {
+            "frame": 7666,
+            "ms": 50.05512996522656,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743955399600558,
+            "submit_delta_ms": 34.909619
+          },
+          {
+            "frame": 7736,
+            "ms": 50.05363621725693,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743957735559506,
+            "submit_delta_ms": 34.596116
+          },
+          {
+            "frame": 9533,
+            "ms": 50.05248438135931,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 744017630538446,
+            "submit_delta_ms": 33.376079
+          },
+          {
+            "frame": 10467,
+            "ms": 50.05246744259611,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 744048760590861,
+            "submit_delta_ms": 33.306983
+          },
+          {
+            "frame": 8466,
+            "ms": 50.050870807324074,
+            "shader_ms": 0.0,
+            "shader_calls": 0,
+            "observed_ns": 743982059550591,
+            "submit_delta_ms": 33.494481
+          }
+        ],
+        "max_clock_error_ms": 1.4559799988637678
+      }
+    ],
+    "maximum_read_clock_error_ms": 0.0013134037144482136,
+    "largest_flush_overlap": {
+      "duration_ms": 1306.203344,
+      "completed_intervals": 3,
+      "maximum_interval_ms": 400.40408498676373,
+      "start_ns": 743605366618980,
+      "end_ns": 743606672822324
+    },
+    "max_clock_error_ms": 1.5546089139243122,
+    "worst_frame": {
+      "flip_count": 5651,
+      "process_time": 213914107,
+      "tsc": 1185610340047041,
+      "observed_ns": 743803531582178,
+      "flip_argument": 5651,
+      "game_frame": 4630,
+      "sample": 0,
+      "stage": "sea",
+      "room": 44,
+      "submit_ns": 743803520252249,
+      "shader_ns": 0,
+      "shader_calls": 0,
+      "read_tsc": 1185610344849215,
+      "clock_offset_ms": 1.5546089139243122,
+      "read_clock_offset_ms": -0.0003331609186716378
+    }
+  }
+}

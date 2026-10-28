@@ -1,0 +1,84 @@
+{
+  "reference_build": "/home/joseph_cano/.cache/pswaker/maintained-14",
+  "results": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "compileall",
+        "-q",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/build-graphics.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/build-probe.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/build-runtime.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/build-sdk-support.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/clean-build.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/install-host.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/prepare-graphics.sh"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-v",
+        "-s",
+        "/mnt/c/Users/Joseph Cano/Code/pswaker/platform/ps4/tests"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "scope": "Preparation and artifact-inspection CLI boundaries; no console execution"
+}

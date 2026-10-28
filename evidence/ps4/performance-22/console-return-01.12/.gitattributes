@@ -1,0 +1,4 @@
+* -text
+# Original captures are evidence bytes, including CRLF and trailing spaces.
+logs-*/* -whitespace
+owner-*-original.json -whitespace

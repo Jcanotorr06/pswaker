@@ -1,0 +1,362 @@
+{
+  "format_source": "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/scripts/make_fself.py",
+  "symbols_source": "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/blob/cd480230b946239f758333ef0dff40d67c5f0c20/scripts/symbol_entries.py",
+  "nid_source": "https://github.com/OpenOrbis/create-fself/blob/30d2e10507f55124cf21e85e19825482e4f93c87/pkg/oelf/OELFGenDynlibData.go",
+  "limits": [
+    "Body/data/export correspondence is not a full reconstruction of the inherited build.",
+    "Disassembly uses exported function st_value/st_size, not whole segments.",
+    "No source/build/staged input is modified; scratch segment bytes are temporary."
+  ],
+  "objdump_version": "GNU objdump (GNU Binutils for Ubuntu) 2.42",
+  "candidate_nids": {
+    "_Z5dummyv": "AS45QoYHjc4",
+    "_Z19testLibraryFunctionv": "peyA1QBswPc",
+    "printf": "hcuQgD53UxM",
+    "__dummy__sce_fios2_func": "FHP-vAls78M",
+    "_Z23__dummy__sce_fios2_funcv": "Tj6QsynzDns",
+    "sceGameRightGetVersion": "1NQwUyfrF6E",
+    "sceGameRightGetString": "9ks8OZX2tYs",
+    "sceGameRightGetStringSizeInBytes": "-nIt6B72SLA",
+    "sceGameRightGetLogoPngImage": "6MTe9GADvZs",
+    "sceGameRightGetLogoPngImageSizeInBytes": "pVK4++v04ac"
+  },
+  "source_candidates": [
+    {
+      "path": "src/modules/libc/libc/lib.c",
+      "sha256": "52e5b73b3ea5f7e157a475fb65319bb6939eec430edd8accd225cede2817d4cc"
+    },
+    {
+      "path": "src/modules/libSceFios2/libSceFios2/lib.c",
+      "sha256": "cc014d782a8882e910bfbce532ad55db8f0fa73c664faceade9689c627caeeda"
+    },
+    {
+      "path": "src/templates/PS4 SPRX Project/PS4 SPRX Project/lib.cpp",
+      "sha256": "05bb48fd8014aa5cbe72ce637f3a61075ee8ee9281940a4e70677eb5a7803d37"
+    },
+    {
+      "path": "src/modules/right/right/lib.c",
+      "sha256": "0896a1dcc0932abddc3a88209fe71c7ab4be6223e9bc5b6218b0e80450c44cec"
+    },
+    {
+      "path": "src/modules/right/right/string_data.h",
+      "sha256": "224834c4ea443787d369dbc1add899522100ab7603fa8ba2df7c4e16e4c3913a"
+    },
+    {
+      "path": "src/modules/right/right/logo_data.h",
+      "sha256": "0d7bfe7d52361360a9d9731942e7afcacf757dfc8a517cff3482780b45c3834d"
+    }
+  ],
+  "modules": [
+    {
+      "name": "libSceFios2.prx",
+      "sha256": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "elf_header_self_offset": 288,
+      "segments": [
+        {
+          "program_header_index": 0,
+          "self_offset": 1984,
+          "elf_offset": 16384,
+          "virtual_address": 0,
+          "bytes": 216,
+          "sha256": "23e0f0e32e1ede2b0a21533eda9556cd0bb3037659c37b86c08450f0013a14d4"
+        },
+        {
+          "program_header_index": 1,
+          "self_offset": 2240,
+          "elf_offset": 32768,
+          "virtual_address": 16384,
+          "bytes": 24,
+          "sha256": "c0cd09e683eaf92d8a5a1cd7d106b050ff8133cb21887628d5aec938371ef4a5"
+        },
+        {
+          "program_header_index": 2,
+          "self_offset": 2304,
+          "elf_offset": 49152,
+          "virtual_address": 32768,
+          "bytes": 24,
+          "sha256": "1b46b8342da99f985d8d8cdc9e900f6d85a626db1a229c270cbf44e28cd6fa71"
+        },
+        {
+          "program_header_index": 7,
+          "self_offset": 2368,
+          "elf_offset": 50672,
+          "virtual_address": 0,
+          "bytes": 832,
+          "sha256": "e2b843f1e051d02b683c0b35b36643a6466246409e6cc55d1fad42e4dc4a971a"
+        }
+      ],
+      "symbols": [
+        {
+          "name": "",
+          "value": 0,
+          "size": 0,
+          "info": 0,
+          "section_index": 0
+        },
+        {
+          "name": "",
+          "value": 0,
+          "size": 0,
+          "info": 3,
+          "section_index": 0
+        },
+        {
+          "name": "AS45QoYHjc4#A#A",
+          "value": 32,
+          "size": 1,
+          "info": 18,
+          "section_index": 1,
+          "function_sha256": "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e",
+          "disassembly": "0000000000000020 <.data+0x20>:\n  20:\tret"
+        },
+        {
+          "name": "module_stop",
+          "value": 0,
+          "size": 0,
+          "info": 32,
+          "section_index": 0
+        },
+        {
+          "name": "module_start",
+          "value": 0,
+          "size": 0,
+          "info": 32,
+          "section_index": 0
+        }
+      ],
+      "module_parameter_comparison": {
+        "source": "src/crt/crtlib.S",
+        "values": [
+          24,
+          5302908095,
+          72384769
+        ],
+        "matches_assembly_size_magic_sdk_version": false
+      }
+    },
+    {
+      "name": "libc.prx",
+      "sha256": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "elf_header_self_offset": 288,
+      "segments": [
+        {
+          "program_header_index": 0,
+          "self_offset": 1984,
+          "elf_offset": 16384,
+          "virtual_address": 0,
+          "bytes": 392,
+          "sha256": "34349855190894267ae833b95c2b8d6cd5d8ef11cbaca61b7224cb748816ee94"
+        },
+        {
+          "program_header_index": 1,
+          "self_offset": 2416,
+          "elf_offset": 32768,
+          "virtual_address": 16384,
+          "bytes": 32,
+          "sha256": "1fd72ee586c54b3cc15dcd04751d75b26a595aae13514a05ac72f8e04185d229"
+        },
+        {
+          "program_header_index": 2,
+          "self_offset": 2480,
+          "elf_offset": 49152,
+          "virtual_address": 32768,
+          "bytes": 24,
+          "sha256": "1b46b8342da99f985d8d8cdc9e900f6d85a626db1a229c270cbf44e28cd6fa71"
+        },
+        {
+          "program_header_index": 7,
+          "self_offset": 2544,
+          "elf_offset": 50936,
+          "virtual_address": 0,
+          "bytes": 880,
+          "sha256": "539c9980b0428fea965dabea9cb9fda373aa84c52f4e3989dc669b7a02cd02fc"
+        }
+      ],
+      "symbols": [
+        {
+          "name": "",
+          "value": 0,
+          "size": 0,
+          "info": 0,
+          "section_index": 0
+        },
+        {
+          "name": "",
+          "value": 0,
+          "size": 0,
+          "info": 3,
+          "section_index": 0
+        },
+        {
+          "name": "hcuQgD53UxM#C#C",
+          "value": 0,
+          "size": 0,
+          "info": 18,
+          "section_index": 0
+        },
+        {
+          "name": "peyA1QBswPc#A#A",
+          "value": 32,
+          "size": 28,
+          "info": 18,
+          "section_index": 1,
+          "function_sha256": "b3515da1eacbf9727c896c2951af9cd7f4c290c58b188186010f9b6b2454f651",
+          "disassembly": "0000000000000020 <.data+0x20>:\n  20:\tpush   %rax\n  21:\tlea    0xe8(%rip),%rdi        # 0x110\n  28:\tmov    $0x0,%al\n  2a:\tcall   0x50\n  2f:\tmov    $0x1337,%ecx\n  34:\tmov    %eax,0x4(%rsp)\n  38:\tmov    %ecx,%eax\n  3a:\tpop    %rcx\n  3b:\tret"
+        },
+        {
+          "name": "module_stop",
+          "value": 0,
+          "size": 0,
+          "info": 32,
+          "section_index": 0
+        },
+        {
+          "name": "module_start",
+          "value": 0,
+          "size": 0,
+          "info": 32,
+          "section_index": 0
+        }
+      ],
+      "module_parameter_comparison": {
+        "source": "src/crt/crtlib.S",
+        "values": [
+          24,
+          5302908095,
+          72384769
+        ],
+        "matches_assembly_size_magic_sdk_version": false
+      }
+    },
+    {
+      "name": "right.sprx",
+      "sha256": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "elf_header_self_offset": 288,
+      "segments": [
+        {
+          "program_header_index": 0,
+          "self_offset": 1984,
+          "elf_offset": 16384,
+          "virtual_address": 0,
+          "bytes": 488,
+          "sha256": "48f71d2f82c745a12e6493a0dc939db22d91082aec215da45516429f499e4a09"
+        },
+        {
+          "program_header_index": 1,
+          "self_offset": 2512,
+          "elf_offset": 32768,
+          "virtual_address": 16384,
+          "bytes": 24,
+          "sha256": "9e8afaa34f401e782fca6e306d13246ca7561c9043801ea931f24e639dadc707"
+        },
+        {
+          "program_header_index": 2,
+          "self_offset": 2608,
+          "elf_offset": 49152,
+          "virtual_address": 32768,
+          "bytes": 25255,
+          "sha256": "7051fa736ed1b39c8fdb076ae89c7cdc5b73c7f31e29b28c79c29dff09854452"
+        },
+        {
+          "program_header_index": 7,
+          "self_offset": 27904,
+          "elf_offset": 76432,
+          "virtual_address": 0,
+          "bytes": 896,
+          "sha256": "ecb58fe854a39259dc13abcd392e2c08585c47fca8032854c558a658d10bf99d"
+        }
+      ],
+      "symbols": [
+        {
+          "name": "",
+          "value": 0,
+          "size": 0,
+          "info": 0,
+          "section_index": 0
+        },
+        {
+          "name": "",
+          "value": 0,
+          "size": 0,
+          "info": 3,
+          "section_index": 0
+        },
+        {
+          "name": "6MTe9GADvZs#A#A",
+          "value": 80,
+          "size": 8,
+          "info": 18,
+          "section_index": 1,
+          "function_sha256": "758330b62369e40576499e162b5361b885576b26497d3629362f7870f8426942",
+          "disassembly": "0000000000000050 <.data+0x50>:\n  50:\tlea    0x8039(%rip),%rax        # 0x8090\n  57:\tret"
+        },
+        {
+          "name": "pVK4++v04ac#A#A",
+          "value": 96,
+          "size": 6,
+          "info": 18,
+          "section_index": 1,
+          "function_sha256": "df11484aab9515d6f1479463e5d5479a1877f339af1f34893a4908fcbdc16dfc",
+          "disassembly": "0000000000000060 <.data+0x60>:\n  60:\tmov    $0x6207,%eax\n  65:\tret"
+        },
+        {
+          "name": "9ks8OZX2tYs#A#A",
+          "value": 48,
+          "size": 8,
+          "info": 18,
+          "section_index": 1,
+          "function_sha256": "b5aab98231bf214340f903ddecf7229f80c30bc071afbff3491786c81ac501b1",
+          "disassembly": "0000000000000030 <.data+0x30>:\n  30:\tlea    0x7fe9(%rip),%rax        # 0x8020\n  37:\tret"
+        },
+        {
+          "name": "-nIt6B72SLA#A#A",
+          "value": 64,
+          "size": 6,
+          "info": 18,
+          "section_index": 1,
+          "function_sha256": "5aadf98608a6ab72ea726b185d99174b481a567ec682a8137d4974283c69c46d",
+          "disassembly": "0000000000000040 <.data+0x40>:\n  40:\tmov    $0x6c,%eax\n  45:\tret"
+        },
+        {
+          "name": "1NQwUyfrF6E#A#A",
+          "value": 32,
+          "size": 6,
+          "info": 18,
+          "section_index": 1,
+          "function_sha256": "2db31f4e09597946e56e859813bfdad7046d457c32332c3a882654d1e3ffdf67",
+          "disassembly": "0000000000000020 <.data+0x20>:\n  20:\tmov    $0x1,%eax\n  25:\tret"
+        },
+        {
+          "name": "module_stop",
+          "value": 0,
+          "size": 0,
+          "info": 32,
+          "section_index": 0
+        },
+        {
+          "name": "module_start",
+          "value": 0,
+          "size": 0,
+          "info": 32,
+          "section_index": 0
+        }
+      ],
+      "module_parameter_comparison": {
+        "source": "src/crt/crtlib.S",
+        "values": [
+          24,
+          5302908095,
+          72384769
+        ],
+        "matches_assembly_size_magic_sdk_version": false
+      },
+      "right_data_comparison": {
+        "source_logo_bytes": 25095,
+        "source_logo_sha256": "2a5d128e93bc08858787b40b7942100ebb8756114a9356298d8aa3ab13d6e087",
+        "source_logo_found_self_offset": 2752,
+        "pinned_lf_string_found_self_offset": -1,
+        "historical_crlf_string_found_self_offset": 2640
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "comparison": "Owner-labelled before/after GCI snapshots",
+  "files": [
+    {
+      "path": "saves-before/USA/Card A/01-GZLE-gczelda.gci",
+      "size": 98368,
+      "sha256": "8ac1391a71ed6891c9c1265fdf29ec536d322425e16ebd52762277a79e554621"
+    },
+    {
+      "path": "saves-after/USA/Card A/01-GZLE-gczelda.gci",
+      "size": 98368,
+      "sha256": "8ac1391a71ed6891c9c1265fdf29ec536d322425e16ebd52762277a79e554621"
+    }
+  ],
+  "bytes_identical": true,
+  "scope": "Independent endpoint snapshot comparison; per-step save/settings results remain owner-confirmed. Settings snapshots and per-step hash lists not supplied."
+}

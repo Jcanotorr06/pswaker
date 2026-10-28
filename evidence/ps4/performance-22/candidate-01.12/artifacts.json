@@ -1,0 +1,18 @@
+{
+  "build_id": "bc90c33b639295f36912",
+  "version": "01.12",
+  "package": {
+    "path": "local-research/performance-22-artifacts/candidate-01.12/PSWaker-performance-01.12.pkg",
+    "bytes": 1516634112,
+    "sha256": "d60c319ac16f3e17a5de9357a9f12a897f8209873f42fe6b25715190785af534"
+  },
+  "elf": {
+    "path": "local-research/performance-22-artifacts/candidate-01.12/switchwaker.elf",
+    "sha256": "57094078764f1e5d0d3ebbdff4b5650752794f248c6227b67a3f5abe0fc2ae01"
+  },
+  "eboot_sha256": "39bc4a637cc3bb126c495ddda75acd15ca701018e8795aafc6400061fc234e8b",
+  "inspection_sha256": "ed427fcbed928623284af16f2f44bdef0954edb81098a2aaa8074e3065946112",
+  "private_assembly": "/home/joseph_cano/.local/share/pswaker-private/performance-22-01.12-final",
+  "console_samples": [],
+  "hardware_status": "UNTESTED installed candidate; no FPS pass"
+}

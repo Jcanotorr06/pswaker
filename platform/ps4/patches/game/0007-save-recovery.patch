@@ -1,0 +1,31 @@
+--- a/game/src/m_Do/m_Do_MemCard.cpp
++++ b/game/src/m_Do/m_Do_MemCard.cpp
+@@ -24,6 +24,8 @@
+ #if defined(__ORBIS__)
+ static bool pswakerCardInitialized = false;
+ static bool pswakerStoreFailed = false; // protected by the card manager's mMutex
++extern "C" bool pswaker_save_begin(int slot);
++extern "C" bool pswaker_save_finish(bool completed);
+ #endif
+ 
+ #if TARGET_PC
+@@ -109,8 +111,18 @@
+             restore();
+             break;
+         case CARD_STORE:
+-            store();
+ #if defined(__ORBIS__)
++            // Preserve the whole previous save, rather than individual blocks.
++            // After any failure, require relaunch/recovery before another store.
++            if (pswakerStoreFailed || !pswaker_save_begin(mCardSlot)) {
++                field_0x1660 = 12;
++                pswakerStoreFailed = true;
++                break;
++            }
++#endif
++            store();
++#if defined(__ORBIS__)
++            if (!pswaker_save_finish(field_0x1660 == 4)) field_0x1660 = 12;
+             pswakerStoreFailed = field_0x1660 != 4;
+ #endif
+             break;

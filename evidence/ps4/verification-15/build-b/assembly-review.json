@@ -1,0 +1,55 @@
+{
+  "objects": [
+    {
+      "path": "build/builtins/lib/builtins/CMakeFiles/clang_rt.builtins-x86_64.dir/x86_64/floatundidf.S.o",
+      "bytes": 912,
+      "sha256": "2b455978574eea0fc14a855ebb598e03c4eeffc73f5d77d1b8b418d90a60a7c4"
+    },
+    {
+      "path": "build/builtins/lib/builtins/CMakeFiles/clang_rt.builtins-x86_64.dir/x86_64/floatundisf.S.o",
+      "bytes": 760,
+      "sha256": "cf047bb751c256cf21e87699e3587654784cc70549b52404a5c8e3db0fb6b387"
+    },
+    {
+      "path": "build/builtins/lib/builtins/CMakeFiles/clang_rt.builtins-x86_64.dir/x86_64/floatundixf.S.o",
+      "bytes": 752,
+      "sha256": "49f94ea9b0bf1c41f97fcba4cb57df134f3b5726e265100018659e301c1d0761"
+    },
+    {
+      "path": "build/libunwind/src/CMakeFiles/unwind_static.dir/UnwindRegistersRestore.S.o",
+      "bytes": 608,
+      "sha256": "e08bc00a148a433f2bc16956a55c53edf37fd2102e7e691a83ad7fe93cafeb58"
+    },
+    {
+      "path": "build/libunwind/src/CMakeFiles/unwind_static.dir/UnwindRegistersSave.S.o",
+      "bytes": 600,
+      "sha256": "21bcda2907889b168ebd7e31ffd6423173f2ec19eb963a4e56d5c9622b904e93"
+    },
+    {
+      "path": "build/mesa/src/util/blake3/libblake3.a.p/blake3_avx2_x86-64_unix.S.o",
+      "bytes": 11984,
+      "sha256": "5224198eae02e985a201998604beb53d5eadd659f6208626a76347889da5dc04"
+    },
+    {
+      "path": "build/mesa/src/util/blake3/libblake3.a.p/blake3_avx512_x86-64_unix.S.o",
+      "bytes": 30928,
+      "sha256": "d939cd773febac09d794db43c9c6ac4035b3733e76108b5ffe099a95db252b4c"
+    },
+    {
+      "path": "build/mesa/src/util/blake3/libblake3.a.p/blake3_sse2_x86-64_unix.S.o",
+      "bytes": 14192,
+      "sha256": "e831a167963cf989cfa6495b879536c5e7c96c8f75757a49511c795c13fd5bef"
+    },
+    {
+      "path": "build/mesa/src/util/blake3/libblake3.a.p/blake3_sse41_x86-64_unix.S.o",
+      "bytes": 13232,
+      "sha256": "5040da3d469a6e7ccc6d45dc4b97907f5a5a0a2da25ba62ca581b024f12af02b"
+    }
+  ],
+  "blake3_dispatch_source": {
+    "path": "src/mesa/src/util/blake3/blake3_dispatch.c",
+    "bytes": 9165,
+    "sha256": "a6cef5c497d95c8f7fcde6e1a8e140637f3260b31e911319e69cf5069459b635"
+  },
+  "method": "Disassembled all nine assembly objects. Five LLVM routines use fixed x86-64/x87/SSE instructions without a march flag. Four Mesa BLAKE3 SIMD variants carry btver2 but include explicit SSE/AVX2/AVX512 assembly; the pinned dispatcher checks CPUID and XGETBV before selecting a variant. No claim that march restricts handwritten ISA."
+}

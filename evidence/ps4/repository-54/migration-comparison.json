@@ -1,0 +1,32 @@
+{
+  "baseline_input_count": 142,
+  "migrated_input_count": 144,
+  "missing_baseline_members": [],
+  "added_inputs": [
+    "tools/pswaker/build_inputs.py",
+    "tools/pswaker/ownership.json"
+  ],
+  "protected_file_count": 474,
+  "navigation_only_changes": [
+    "evidence/ps4/controls-18/REPORT.md",
+    "evidence/ps4/controls-18/console-return-01.05/REPORT.md",
+    "evidence/ps4/integrated-23/REPORT.md",
+    "evidence/ps4/maintained-13/REPORT.md",
+    "evidence/ps4/performance-22/REPORT.md",
+    "evidence/ps4/performance-22/candidate-01.11/REPORT.md",
+    "evidence/ps4/performance-22/candidate-01.12/REPORT.md",
+    "evidence/ps4/performance-22/candidate-01.13/REPORT.md",
+    "evidence/ps4/persistence-20/REPORT.md",
+    "evidence/ps4/private-package-16/OWNER-USA.md",
+    "evidence/ps4/private-package-16/REPORT.md",
+    "evidence/ps4/renderer-14/REPORT.md",
+    "evidence/ps4/route-19/REPORT.md",
+    "evidence/ps4/route-19/owner-return-01.06/REPORT.md",
+    "evidence/ps4/startup-17/REPORT.md",
+    "evidence/ps4/startup-17/console-2026-10-25/REPORT.md",
+    "evidence/ps4/startup-17/content-checks-2026-10-25/REPORT.md",
+    "evidence/ps4/storage-21/REPORT.md",
+    "evidence/ps4/verification-15/REPORT.md"
+  ],
+  "protected_errors": []
+}

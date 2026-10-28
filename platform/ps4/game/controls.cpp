@@ -1,0 +1,178 @@
+#include "controls.hpp"
+#include "native/platform.h"
+#include "frame-pacing.hpp"
+#include <algorithm>
+#include <cmath>
+
+namespace {
+bool checkAfterResume = false;
+double failReadAt = -1;
+bool enabled = false;
+PortView view{PortScreen::Legend, 0, false, false};
+pad current{};
+bool armed = false;
+PortScreen destination = PortScreen::Game;
+PortScreen beforeLoss = PortScreen::Legend;
+PortScreen afterLegend = PortScreen::Game;
+
+const char* screenName(PortScreen screen) {
+    constexpr const char* names[] = {"legend", "game", "settings", "quit", "input-lost", "exit"};
+    return names[static_cast<unsigned>(screen)];
+}
+
+void enter(PortScreen screen) {
+    if (view.screen == screen) return;
+    say("INPUT screen=%s->%s connected=%d; gameplay neutral outside Game", screenName(view.screen), screenName(screen), view.connected);
+    if (screen != PortScreen::Game) pad_player_vibrate(0, 0, 0);
+    view.screen = screen;
+    armed = false;
+}
+
+extern "C" int __real_scePadReadState(int32_t handle, void* data);
+extern "C" int __wrap_scePadReadState(int32_t handle, void* data) {
+    if (failReadAt >= 0 && now_seconds() >= failReadAt) {
+        failReadAt = -1;
+        say("INPUT CHECK injected scePadReadState failure; native reader must neutralize and pause");
+        return -1;
+    }
+    return __real_scePadReadState(handle, data);
+}
+
+bool neutral() {
+    return current.held == 0 && current.left_x == 0 && current.left_y == 0 &&
+           current.right_x == 0 && current.right_y == 0 && current.l2 == 0 && current.r2 == 0;
+}
+}
+
+PortView pswaker_port_view() { return view; }
+void pswaker_enable_controls() { enabled = true; }
+
+void pswaker_poll_controls() {
+    pad first{};
+    pad_poll(&first);
+    view.connected = pad_player(0, &current);
+    if (!enabled) return;
+    if (!view.connected) {
+        if (view.screen != PortScreen::InputLost)
+            beforeLoss = view.releasing ? destination : view.screen;
+        enter(PortScreen::InputLost);
+        view.releasing = false;
+        armed = false;
+        return;
+    }
+    if (view.releasing) {
+        if (neutral()) {
+            enter(destination);
+            if (checkAfterResume && destination == PortScreen::Game) {
+                checkAfterResume = false;
+                failReadAt = now_seconds() + 5;
+                say("INPUT CHECK resumed; one native read will fail in 5 seconds; hold inputs now");
+            }
+            view.releasing = false;
+            armed = true; // This fresh neutral sample also releases the destination screen.
+        }
+        return;
+    }
+    if (view.screen == PortScreen::Game) {
+        if (current.held & PAD_TOUCH_PAD) {
+            view.selection = 0;
+            enter(PortScreen::Settings);
+        }
+        return;
+    }
+    if (neutral()) armed = true;
+    if (!armed) return;
+    const bool cross = current.held & PAD_CROSS;
+    const bool circle = current.held & PAD_CIRCLE;
+    if (view.screen == PortScreen::Settings && (current.held & (PAD_UP | PAD_DOWN))) {
+        const unsigned count = portMenuItems.size();
+        view.selection = (view.selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
+        armed = false;
+        return;
+    }
+    destination = view.screen;
+    const auto action = portMenuItems[view.selection].action;
+    switch (view.screen) {
+    case PortScreen::Legend:
+        if (cross || (circle && afterLegend == PortScreen::Settings)) destination = afterLegend;
+        break;
+    case PortScreen::InputLost:
+        if (cross) destination = beforeLoss;
+        break;
+    case PortScreen::Settings:
+        if (circle || (cross && action == PortAction::Resume)) destination = PortScreen::Game;
+        else if (cross && action == PortAction::ShowLegend) {
+            afterLegend = PortScreen::Settings;
+            destination = PortScreen::Legend;
+        } else if (cross && action == PortAction::CheckFailedRead) {
+            checkAfterResume = true;
+            destination = PortScreen::Game;
+        } else if (cross && action == PortAction::ToggleText) {
+            pswaker_toggle_text_size();
+            armed = false;
+        } else if (cross && action == PortAction::Quit) destination = PortScreen::Quit;
+        else if (cross && (action == PortAction::SampleOutset || action == PortAction::SampleForest)) {
+            pswaker_perf_arm(action == PortAction::SampleOutset ? "outset" : "forest");
+            destination = PortScreen::Game;
+        } else if (cross && (action == PortAction::Transition || action == PortAction::Gameplay)) {
+            pswaker_perf_phase(action == PortAction::Transition ? "transition" : "gameplay");
+            destination = PortScreen::Game;
+        }
+        break;
+    case PortScreen::Quit:
+        if (circle) destination = PortScreen::Settings;
+        else if (cross) destination = PortScreen::Exit;
+        break;
+    default: break;
+    }
+    if (destination != view.screen) {
+        say("INPUT explicit-confirm screen=%s destination=%s; waiting for neutral release", screenName(view.screen), screenName(destination));
+        view.releasing = true;
+        armed = false;
+    }
+}
+
+extern "C" u32 pswaker_read_gamepad(PADStatus* status) {
+    for (unsigned i = 0; i < PAD_CHANMAX; ++i) {
+        status[i] = {};
+        status[i].err = i == 0 && view.connected ? PAD_ERR_NONE : PAD_ERR_NO_CONTROLLER;
+    }
+    if (!view.connected || view.screen != PortScreen::Game || view.releasing) return 0;
+    auto& p = status[0];
+    constexpr struct { uint32_t ds4; uint16_t gc; } mapping[] = {
+        {PAD_CROSS, PAD_BUTTON_A}, {PAD_CIRCLE, PAD_BUTTON_B},
+        {PAD_SQUARE, PAD_BUTTON_X}, {PAD_TRIANGLE, PAD_BUTTON_Y},
+        {PAD_R1, PAD_TRIGGER_Z}, {PAD_OPTIONS, PAD_BUTTON_START},
+        {PAD_UP, PAD_BUTTON_UP}, {PAD_DOWN, PAD_BUTTON_DOWN},
+        {PAD_LEFT, PAD_BUTTON_LEFT}, {PAD_RIGHT, PAD_BUTTON_RIGHT},
+    };
+    for (const auto& button : mapping)
+        if (current.held & button.ds4) p.button |= button.gc;
+    const auto stick = [](float value) { return static_cast<s8>(std::lround(std::clamp(value, -1.f, 1.f) * 127)); };
+    p.stickX = stick(current.left_x); p.stickY = stick(-current.left_y);
+    p.substickX = stick(current.right_x); p.substickY = stick(-current.right_y);
+    p.triggerLeft = static_cast<u8>(std::lround(current.l2 * 255));
+    p.triggerRight = static_cast<u8>(std::lround(current.r2 * 255));
+    // First representable sample at/above 90% is 230/255. Keep analog travel intact.
+    if (current.l2 >= .9f) p.button |= PAD_TRIGGER_L;
+    if (current.r2 >= .9f) p.button |= PAD_TRIGGER_R;
+    p.analogA = (p.button & PAD_BUTTON_A) ? 255 : 0;
+    p.analogB = (p.button & PAD_BUTTON_B) ? 255 : 0;
+    return PAD_CHAN0_BIT;
+}
+
+void pswaker_log_controls() {
+    static double next = 0;
+    const double now = now_seconds();
+    if (now < next) return;
+    const auto diagnosticStart = pswaker_perf_now();
+    next = now + 1;
+    PADStatus status[PAD_CHANMAX];
+    pswaker_read_gamepad(status);
+    const auto& p = status[0];
+    say("INPUT sample connected=%d screen=%s releasing=%d raw-buttons=%#x sticks=%.3f,%.3f,%.3f,%.3f triggers=%.3f,%.3f game-buttons=%#x game-sticks=%d,%d,%d,%d game-triggers=%u,%u threshold=90%%",
+        view.connected, screenName(view.screen), view.releasing, current.held,
+        current.left_x, current.left_y, current.right_x, current.right_y, current.l2, current.r2,
+        p.button, p.stickX, p.stickY, p.substickX, p.substickY, p.triggerLeft, p.triggerRight);
+    pswaker_perf_diagnostic(PswakerDiagnostic::Input, diagnosticStart);
+}

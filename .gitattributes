@@ -1,0 +1,29 @@
+*.sh text eol=lf
+*.py text eol=lf
+*.cpp text eol=lf
+*.hpp text eol=lf
+*.cmake text eol=lf
+*.patch text eol=lf
+/platform/ps4/** text eol=lf
+/tools/pswaker/** text eol=lf
+/tests/ps4/** text eol=lf
+/docs/ps4/** text eol=lf
+# Unified-diff context prefixes on blank lines are part of the patch format.
+/platform/ps4/patches/game/** whitespace=-trailing-space,-blank-at-eof
+/platform/ps4/patches/game-platform/** whitespace=-trailing-space,-blank-at-eof
+# Preserve byte-identical upstream recipes, including their original whitespace.
+/platform/ps4/provenance/pacbrew-*/** -text whitespace=-trailing-space,-blank-at-eof
+# Retain archived checkpoint bytes without line-ending conversion.
+/evidence/ps4/** -text
+# Migration baseline records preserve the original Windows-generated newlines.
+/evidence/ps4/repository-54/** whitespace=cr-at-eol
+# Keep diagnostic captures and tool output byte-identical, including whitespace.
+/evidence/ps4/startup-17/*.log whitespace=-trailing-space,-blank-at-eof
+/evidence/ps4/verification-15/**/*.log whitespace=-trailing-space,-blank-at-eof
+/evidence/ps4/verification-15/**/elf-*.txt whitespace=-trailing-space,-blank-at-eof
+/evidence/ps4/verification-15/console/** whitespace=-trailing-space,-blank-at-eof
+# Preserve the original upstream notices and inspection output for the #47 audit.
+/evidence/ps4/redistribution-47/checked/notices/** whitespace=-trailing-space,-blank-at-eof,cr-at-eol
+/evidence/ps4/redistribution-47/checked/elf-dynamic.txt whitespace=-trailing-space
+/evidence/ps4/redistribution-47/checked/link-rule.txt whitespace=-blank-at-eof
+/evidence/ps4/redistribution-47/module-source-candidates/** whitespace=-trailing-space,-blank-at-eof,cr-at-eol

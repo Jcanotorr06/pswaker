@@ -1,0 +1,10 @@
+{
+  "package": {
+    "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+    "sha256": "30c91dd26524bcc5535380c57b1c9066a3fc3539e93ec5a8051c9853224744e5"
+  },
+  "eboot_sha256": "f62940819abeb92ea4af228442f8fb83c00a33199861b1e38b78e9b20e9ffd7a",
+  "elf_sha256": "f97123d555dfef871de7483140aa84b738696b397afdc9a54cd95fd20e6d0d84",
+  "build_id": "60975dcf4480aa914369",
+  "app_version": "01.04"
+}

@@ -1,0 +1,26 @@
+{
+  "build": "COPY_COMPILED_BUILD_ID",
+  "package_sha256": "COPY_INSTALLED_PACKAGE_SHA256",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "cache_state": "cold",
+  "timing_method_verified": false,
+  "timing_verification_notes": "Describe returned display/clock/mapping evidence; leave false until reviewed.",
+  "samples": {
+    "1": {
+      "scene": "outset",
+      "actions": "Replace with actual route, equipment, camera/movement/effect actions and any pauses.",
+      "active_gameplay": false,
+      "graphics_audio_correct": false
+    },
+    "2": {
+      "scene": "forest",
+      "actions": "Replace with actual comparable actions and any pauses.",
+      "active_gameplay": false,
+      "graphics_audio_correct": false
+    }
+  }
+}

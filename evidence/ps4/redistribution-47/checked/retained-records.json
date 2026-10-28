@@ -1,0 +1,80 @@
+[
+  {
+    "path": "evidence/input-closure.json",
+    "bytes": 90905,
+    "sha256": "8c4dfb704ef6067b7b43caa284f08555c9893e1083cf0d6d43ee5dbdb6efa196",
+    "root": "platform"
+  },
+  {
+    "path": "evidence/license-audit.json",
+    "bytes": 24336,
+    "sha256": "8a2d411aebb2682c2efa36a6b6edc54c0d3f36afaff5f7c7d16540866a283e37",
+    "root": "platform"
+  },
+  {
+    "path": "evidence/local-adaptations.json",
+    "bytes": 1516,
+    "sha256": "07f2812fb773bc7bcac3e9b5adee348f8700b56e35089db7820606bc89098d82",
+    "root": "platform"
+  },
+  {
+    "path": "evidence/renderer-reconciliation.json",
+    "bytes": 27373,
+    "sha256": "8ef2bb33a4ac8676c9c5752d43ed9769352e89b4f7f93a6636867da04b2643cc",
+    "root": "platform"
+  },
+  {
+    "path": "evidence/patches-runtime.json",
+    "bytes": 626,
+    "sha256": "8e14ae1b673f49678a48d1e35b99e6d93ad0ae9efb69cf6d55ffefef10d2f79b",
+    "root": "platform"
+  },
+  {
+    "path": "evidence/patches-graphics.json",
+    "bytes": 1138,
+    "sha256": "85746656987dae50f6d5d6916187c30640c198e3e78d8994b77b7ddcc4c85979",
+    "root": "platform"
+  },
+  {
+    "path": "evidence/patches-aurora.json",
+    "bytes": 286,
+    "sha256": "ef1163e004fe982b4eae7caf5fdcc4b7dd6a368960e226695ad558ad527607ca",
+    "root": "platform"
+  },
+  {
+    "path": "evidence/patches-packager.json",
+    "bytes": 308,
+    "sha256": "f38cb257b362020477bebe5aa28fc1d83a7758c686ba363482873fc9a97aac33",
+    "root": "platform"
+  },
+  {
+    "path": "evidence/game-inputs.json",
+    "bytes": 2282667,
+    "sha256": "3382204fa3e4b0191758c725d3f5315d82d45bbfcda1201286d14b8b3189163e",
+    "root": "game"
+  },
+  {
+    "path": "evidence/game-build-inputs.json",
+    "bytes": 1509806,
+    "sha256": "296bbf56b37cced89c1a9dd5a0dbf6796e9d613841262d511ea7daa16da39c53",
+    "root": "game"
+  },
+  {
+    "path": "evidence/game-license-review.json",
+    "bytes": 7658,
+    "sha256": "14e929a4daa6125d04baf5dd7f4fd8074ce4d92510144e3e74ececefbfc85f66",
+    "root": "game"
+  },
+  {
+    "path": "build/compile_commands.json",
+    "bytes": 3723906,
+    "sha256": "aef0902d14fc62712c366eb3b9000bef78babf8b57470878839feb79779d4dc8",
+    "root": "game"
+  },
+  {
+    "path": "build/cos_exe/objects.rsp",
+    "bytes": 162055,
+    "sha256": "81b6596fed6ec9e012afb105c0066ad1ebc99f26ce41f353eb883d9747f24b87",
+    "root": "game"
+  }
+]

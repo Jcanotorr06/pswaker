@@ -1,0 +1,1147 @@
+{
+  "review_date": "2026-10-24",
+  "scope": "Returned owner console evidence for the installed renderer diagnostic; no game validation or clean-build-pair result",
+  "build_id": "60975dcf4480aa914369",
+  "app_version": "01.04",
+  "expected_pkg_sha256": "edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522",
+  "matching_local_pkg_hash_verified": true,
+  "matching_local_elf_sha256": "1cb796480f3961447158d6658c56e7bb309f3fc2a290ef2195b38d4b1c6e40e6",
+  "owner_baseline": {
+    "console": "PS4 Slim",
+    "firmware": "9.00",
+    "homebrew": "GoldHEN v2.4b18"
+  },
+  "package_confirmation": "Owner confirmed in this conversation: Yes, that exact package — PSWaker-Platform-Diagnostic-01.04.pkg with the expected SHA-256",
+  "installed_pkg_sha256_owner_confirmed": "edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522",
+  "behavior_status": "PASS: all three supplied runs pass the instrumented bounded checks and owner visual/audio/input observations, tied to the owner-confirmed installed PKG",
+  "original_evidence_directory": "local-research/diagnostic-artifacts/renderer-14/console-01.04-evidence",
+  "owner_notes": [
+    "Starting the prototype flashed a dark blue screen, followed by a flash of a white screen with a black rectangle in the upper left quarter, followed by the prototype as expected.",
+    "Every 12 checks (every minute), the screen flashed dark blue."
+  ],
+  "runs": [
+    {
+      "folder": "run-1-cold",
+      "launch": 13,
+      "cache_entries_at_start": 0,
+      "diagnostic_lines": [
+        42494,
+        50238
+      ],
+      "build_id": "60975dcf4480aa914369",
+      "manifest_app_version": "01.04",
+      "manifest_eboot_sha256": "5d3438436d381fef0facd0cd2397461e9d3f9741b52f996b88c8e7b89952c036",
+      "end": "END frames=36696 checks=120 failures=0; owner observations/resource review required",
+      "ten_minute_timed_check": "pass",
+      "renderer_sweeps": 10,
+      "renderer_samples": 180,
+      "known_white_efb_samples": 120,
+      "known_white_offscreen_samples": 120,
+      "purple_depth_blend_copy_samples": 120,
+      "successful_map_callbacks": 540,
+      "map_failures": 0,
+      "failed_checks": 0,
+      "pixel_mismatches": 0,
+      "pixel_sample_counts": {
+        "GX-alpha-R8-GT": 10,
+        "GX-alpha-R8-EQ": 10,
+        "GX-alpha-GR16-GT": 10,
+        "GX-alpha-GR16-EQ": 10,
+        "GX-alpha-BGR24-GT": 10,
+        "GX-alpha-BGR24-EQ": 10,
+        "GX-alpha-R8-GT-false": 10,
+        "GX-alpha-R8-EQ-false": 10,
+        "GX-alpha-GR16-GT-false": 10,
+        "GX-alpha-GR16-EQ-false": 10,
+        "GX-alpha-BGR24-GT-false": 10,
+        "GX-alpha-BGR24-EQ-false": 10,
+        "GX-lit-SRTG": 10,
+        "GX-three-vertex-quad": 10,
+        "GX-zero-brightness-attenuation": 10,
+        "GX-EFB-copy-to-texture-known-white": 10,
+        "GX-content-scale-upper-left": 10,
+        "GX-content-scale-lower-right": 10,
+        "Aurora-EFB-known-white-readback": 120,
+        "Aurora-offscreen-known-white-readback": 120
+      },
+      "efb_target_counts": {
+        "TARGET EFB=1280x720 format=22": 120
+      },
+      "display_mode": {
+        "width": 1920,
+        "height": 1080,
+        "millihertz": 59940
+      },
+      "prep_milliseconds": 138.8,
+      "pad_transitions": [
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0"
+      ],
+      "runtime": [
+        "BEGIN runtime build preflight; incomplete diagnostic",
+        "STAGE constructors",
+        "PASS static-constructor",
+        "STAGE tls-and-once",
+        "PASS thread-local-isolation",
+        "PASS thread-local-destructors",
+        "PASS pthread-once",
+        "STAGE mutex-condition-variable",
+        "PASS condition-variable",
+        "STAGE atomic-wait-notify",
+        "PASS atomic-wait-notify",
+        "STAGE file-replacement",
+        "PASS previous-launch-state",
+        "PASS state-read-close",
+        "PASS state-write-flush-sync-close",
+        "PASS state-rename",
+        "END failures=0 launch=13; hardware gate remains incomplete"
+      ],
+      "shutdown": [
+        "MAP Aurora-offscreen-known-white-readback status=1 message=",
+        "PIXEL Aurora-offscreen-known-white-readback origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024",
+        "PASS Aurora-offscreen-known-white-readback",
+        "PASS flexible-memory-query",
+        "RESOURCE seconds=600.3 garlic=438697984 onion=835584 buffers=44 heap-capacity=536870912 main-mspace-allocated=4689024 flexible-available=396361728 audio-frames=28816384 audio-errors=0",
+        "STAGE shutdown",
+        "PASS synthetic-audio-API-errors",
+        "PASS controller-disconnect-reconnect-resume",
+        "PASS ten-minute-loop",
+        "STAGE drain-GPU-before-resource-and-device-destruction",
+        "PASS GPU-queue-drained",
+        "STAGE Aurora-shutdown-begin",
+        "AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.",
+        "AURORA level=2 module=aurora::window Error enabling screensaver: That operation is not supported",
+        "STAGE Aurora-shutdown-complete",
+        "END frames=36696 checks=120 failures=0; owner observations/resource review required"
+      ],
+      "resources": [
+        {
+          "seconds": 0.0,
+          "garlic": 438632448,
+          "onion": 688128,
+          "buffers": 40,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 3945696,
+          "flexible-available": 396361728,
+          "audio-frames": 3840,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 30.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4686352,
+          "flexible-available": 396361728,
+          "audio-frames": 1444096,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 60.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4679568,
+          "flexible-available": 396361728,
+          "audio-frames": 2884864,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 90.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680320,
+          "flexible-available": 396361728,
+          "audio-frames": 4325376,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 120.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680496,
+          "flexible-available": 396361728,
+          "audio-frames": 5766144,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 150.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680464,
+          "flexible-available": 396361728,
+          "audio-frames": 7206656,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 180.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680704,
+          "flexible-available": 396361728,
+          "audio-frames": 8647424,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 210.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680480,
+          "flexible-available": 396361728,
+          "audio-frames": 10087936,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 240.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680480,
+          "flexible-available": 396361728,
+          "audio-frames": 11528704,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 270.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680672,
+          "flexible-available": 396361728,
+          "audio-frames": 12969216,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 300.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680688,
+          "flexible-available": 396361728,
+          "audio-frames": 14409984,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 330.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680640,
+          "flexible-available": 396361728,
+          "audio-frames": 15850496,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 360.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680576,
+          "flexible-available": 396361728,
+          "audio-frames": 17291264,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 390.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680480,
+          "flexible-available": 396361728,
+          "audio-frames": 18731776,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 420.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680448,
+          "flexible-available": 396361728,
+          "audio-frames": 20172544,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 450.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680608,
+          "flexible-available": 396361728,
+          "audio-frames": 21613056,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 480.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680656,
+          "flexible-available": 396361728,
+          "audio-frames": 23053824,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 510.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680768,
+          "flexible-available": 396361728,
+          "audio-frames": 24494336,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 540.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680784,
+          "flexible-available": 396361728,
+          "audio-frames": 25935104,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 570.3,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4680688,
+          "flexible-available": 396361728,
+          "audio-frames": 27375616,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 600.3,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4689024,
+          "flexible-available": 396361728,
+          "audio-frames": 28816384,
+          "audio-errors": 0
+        }
+      ],
+      "resource_ranges_after_30_seconds": {
+        "garlic": {
+          "min": 438697984,
+          "max": 438697984
+        },
+        "onion": {
+          "min": 835584,
+          "max": 835584
+        },
+        "buffers": {
+          "min": 44,
+          "max": 44
+        },
+        "heap-capacity": {
+          "min": 536870912,
+          "max": 536870912
+        },
+        "main-mspace-allocated": {
+          "min": 4679568,
+          "max": 4689024
+        },
+        "flexible-available": {
+          "min": 396361728,
+          "max": 396361728
+        },
+        "audio-errors": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "append_only_from_previous": {
+        "diagnostic.log": true,
+        "runtime-preflight.log": true
+      },
+      "cache_files": [
+        {
+          "path": "run-1-cold/cache/dawn_cache.db",
+          "bytes": 536576,
+          "sha256": "e75b71c324201ff69aa1b444f7ac50f2b03db91dac6b0fc429b8fbf707425565"
+        },
+        {
+          "path": "run-1-cold/cache/pipeline_cache.db",
+          "bytes": 65536,
+          "sha256": "418fc5c0fa32c6cbc9f2cc26cd52fe4e640c5137b629eaf7b926adcbb75b4d7e"
+        }
+      ]
+    },
+    {
+      "folder": "run-2-warm",
+      "launch": 14,
+      "cache_entries_at_start": 2,
+      "diagnostic_lines": [
+        50239,
+        57982
+      ],
+      "build_id": "60975dcf4480aa914369",
+      "manifest_app_version": "01.04",
+      "manifest_eboot_sha256": "5d3438436d381fef0facd0cd2397461e9d3f9741b52f996b88c8e7b89952c036",
+      "end": "END frames=35669 checks=120 failures=0; owner observations/resource review required",
+      "ten_minute_timed_check": "pass",
+      "renderer_sweeps": 10,
+      "renderer_samples": 180,
+      "known_white_efb_samples": 120,
+      "known_white_offscreen_samples": 120,
+      "purple_depth_blend_copy_samples": 120,
+      "successful_map_callbacks": 540,
+      "map_failures": 0,
+      "failed_checks": 0,
+      "pixel_mismatches": 0,
+      "pixel_sample_counts": {
+        "GX-alpha-R8-GT": 10,
+        "GX-alpha-R8-EQ": 10,
+        "GX-alpha-GR16-GT": 10,
+        "GX-alpha-GR16-EQ": 10,
+        "GX-alpha-BGR24-GT": 10,
+        "GX-alpha-BGR24-EQ": 10,
+        "GX-alpha-R8-GT-false": 10,
+        "GX-alpha-R8-EQ-false": 10,
+        "GX-alpha-GR16-GT-false": 10,
+        "GX-alpha-GR16-EQ-false": 10,
+        "GX-alpha-BGR24-GT-false": 10,
+        "GX-alpha-BGR24-EQ-false": 10,
+        "GX-lit-SRTG": 10,
+        "GX-three-vertex-quad": 10,
+        "GX-zero-brightness-attenuation": 10,
+        "GX-EFB-copy-to-texture-known-white": 10,
+        "GX-content-scale-upper-left": 10,
+        "GX-content-scale-lower-right": 10,
+        "Aurora-EFB-known-white-readback": 120,
+        "Aurora-offscreen-known-white-readback": 120
+      },
+      "efb_target_counts": {
+        "TARGET EFB=1280x720 format=22": 120
+      },
+      "display_mode": {
+        "width": 1920,
+        "height": 1080,
+        "millihertz": 59940
+      },
+      "prep_milliseconds": 35.0,
+      "pad_transitions": [
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0"
+      ],
+      "runtime": [
+        "BEGIN runtime build preflight; incomplete diagnostic",
+        "STAGE constructors",
+        "PASS static-constructor",
+        "STAGE tls-and-once",
+        "PASS thread-local-isolation",
+        "PASS thread-local-destructors",
+        "PASS pthread-once",
+        "STAGE mutex-condition-variable",
+        "PASS condition-variable",
+        "STAGE atomic-wait-notify",
+        "PASS atomic-wait-notify",
+        "STAGE file-replacement",
+        "PASS previous-launch-state",
+        "PASS state-read-close",
+        "PASS state-write-flush-sync-close",
+        "PASS state-rename",
+        "END failures=0 launch=14; hardware gate remains incomplete"
+      ],
+      "shutdown": [
+        "STAGE Aurora-offscreen-known-white-readback",
+        "TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22",
+        "MAP Aurora-offscreen-known-white-readback status=1 message=",
+        "PIXEL Aurora-offscreen-known-white-readback origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024",
+        "PASS Aurora-offscreen-known-white-readback",
+        "STAGE shutdown",
+        "PASS synthetic-audio-API-errors",
+        "PASS controller-disconnect-reconnect-resume",
+        "PASS ten-minute-loop",
+        "STAGE drain-GPU-before-resource-and-device-destruction",
+        "PASS GPU-queue-drained",
+        "STAGE Aurora-shutdown-begin",
+        "AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.",
+        "AURORA level=2 module=aurora::window Error enabling screensaver: That operation is not supported",
+        "STAGE Aurora-shutdown-complete",
+        "END frames=35669 checks=120 failures=0; owner observations/resource review required"
+      ],
+      "resources": [
+        {
+          "seconds": 0.0,
+          "garlic": 438632448,
+          "onion": 802816,
+          "buffers": 43,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 3769664,
+          "flexible-available": 396361728,
+          "audio-frames": 1792,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 30.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4489824,
+          "flexible-available": 396361728,
+          "audio-frames": 1442304,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 60.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483008,
+          "flexible-available": 396361728,
+          "audio-frames": 2882816,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 90.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483856,
+          "flexible-available": 396361728,
+          "audio-frames": 4323584,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 120.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484096,
+          "flexible-available": 396361728,
+          "audio-frames": 5764096,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 150.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484096,
+          "flexible-available": 396361728,
+          "audio-frames": 7204864,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 180.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484272,
+          "flexible-available": 396361728,
+          "audio-frames": 8645376,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 210.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483952,
+          "flexible-available": 396361728,
+          "audio-frames": 10086144,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 240.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484000,
+          "flexible-available": 396361728,
+          "audio-frames": 11526656,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 270.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4398432,
+          "flexible-available": 396361728,
+          "audio-frames": 12968960,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 300.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484112,
+          "flexible-available": 396361728,
+          "audio-frames": 14407936,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 330.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484128,
+          "flexible-available": 396361728,
+          "audio-frames": 15848704,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 360.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484176,
+          "flexible-available": 396361728,
+          "audio-frames": 17289216,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 390.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484032,
+          "flexible-available": 396361728,
+          "audio-frames": 18729984,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 420.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484016,
+          "flexible-available": 396361728,
+          "audio-frames": 20170496,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 450.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484256,
+          "flexible-available": 396361728,
+          "audio-frames": 21611264,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 480.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484208,
+          "flexible-available": 396361728,
+          "audio-frames": 23051776,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 510.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484448,
+          "flexible-available": 396361728,
+          "audio-frames": 24492544,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 540.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484448,
+          "flexible-available": 396361728,
+          "audio-frames": 25933056,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 570.3,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484112,
+          "flexible-available": 396361728,
+          "audio-frames": 27373824,
+          "audio-errors": 0
+        }
+      ],
+      "resource_ranges_after_30_seconds": {
+        "garlic": {
+          "min": 438697984,
+          "max": 438697984
+        },
+        "onion": {
+          "min": 835584,
+          "max": 835584
+        },
+        "buffers": {
+          "min": 44,
+          "max": 44
+        },
+        "heap-capacity": {
+          "min": 536870912,
+          "max": 536870912
+        },
+        "main-mspace-allocated": {
+          "min": 4398432,
+          "max": 4489824
+        },
+        "flexible-available": {
+          "min": 396361728,
+          "max": 396361728
+        },
+        "audio-errors": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "append_only_from_previous": {
+        "diagnostic.log": true,
+        "runtime-preflight.log": true
+      },
+      "cache_files": [
+        {
+          "path": "run-2-warm/cache/dawn_cache.db",
+          "bytes": 536576,
+          "sha256": "9d82e7201d248f4d50bda7e18c5cb2eeb513fdcb0c448daf3f2cb089b98f43b2"
+        },
+        {
+          "path": "run-2-warm/cache/pipeline_cache.db",
+          "bytes": 65536,
+          "sha256": "418fc5c0fa32c6cbc9f2cc26cd52fe4e640c5137b629eaf7b926adcbb75b4d7e"
+        }
+      ]
+    },
+    {
+      "folder": "run-3-warm",
+      "launch": 15,
+      "cache_entries_at_start": 2,
+      "diagnostic_lines": [
+        57983,
+        65726
+      ],
+      "build_id": "60975dcf4480aa914369",
+      "manifest_app_version": "01.04",
+      "manifest_eboot_sha256": "5d3438436d381fef0facd0cd2397461e9d3f9741b52f996b88c8e7b89952c036",
+      "end": "END frames=35699 checks=120 failures=0; owner observations/resource review required",
+      "ten_minute_timed_check": "pass",
+      "renderer_sweeps": 10,
+      "renderer_samples": 180,
+      "known_white_efb_samples": 120,
+      "known_white_offscreen_samples": 120,
+      "purple_depth_blend_copy_samples": 120,
+      "successful_map_callbacks": 540,
+      "map_failures": 0,
+      "failed_checks": 0,
+      "pixel_mismatches": 0,
+      "pixel_sample_counts": {
+        "GX-alpha-R8-GT": 10,
+        "GX-alpha-R8-EQ": 10,
+        "GX-alpha-GR16-GT": 10,
+        "GX-alpha-GR16-EQ": 10,
+        "GX-alpha-BGR24-GT": 10,
+        "GX-alpha-BGR24-EQ": 10,
+        "GX-alpha-R8-GT-false": 10,
+        "GX-alpha-R8-EQ-false": 10,
+        "GX-alpha-GR16-GT-false": 10,
+        "GX-alpha-GR16-EQ-false": 10,
+        "GX-alpha-BGR24-GT-false": 10,
+        "GX-alpha-BGR24-EQ-false": 10,
+        "GX-lit-SRTG": 10,
+        "GX-three-vertex-quad": 10,
+        "GX-zero-brightness-attenuation": 10,
+        "GX-EFB-copy-to-texture-known-white": 10,
+        "GX-content-scale-upper-left": 10,
+        "GX-content-scale-lower-right": 10,
+        "Aurora-EFB-known-white-readback": 120,
+        "Aurora-offscreen-known-white-readback": 120
+      },
+      "efb_target_counts": {
+        "TARGET EFB=1280x720 format=22": 120
+      },
+      "display_mode": {
+        "width": 1920,
+        "height": 1080,
+        "millihertz": 59940
+      },
+      "prep_milliseconds": 33.8,
+      "pad_transitions": [
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0",
+        "PAD connected=0 read-result=0",
+        "PAD connected=1 read-result=0"
+      ],
+      "runtime": [
+        "BEGIN runtime build preflight; incomplete diagnostic",
+        "STAGE constructors",
+        "PASS static-constructor",
+        "STAGE tls-and-once",
+        "PASS thread-local-isolation",
+        "PASS thread-local-destructors",
+        "PASS pthread-once",
+        "STAGE mutex-condition-variable",
+        "PASS condition-variable",
+        "STAGE atomic-wait-notify",
+        "PASS atomic-wait-notify",
+        "STAGE file-replacement",
+        "PASS previous-launch-state",
+        "PASS state-read-close",
+        "PASS state-write-flush-sync-close",
+        "PASS state-rename",
+        "END failures=0 launch=15; hardware gate remains incomplete"
+      ],
+      "shutdown": [
+        "STAGE Aurora-offscreen-known-white-readback",
+        "TEXTURE Aurora-offscreen-known-white-readback width=32 height=32 format=22",
+        "MAP Aurora-offscreen-known-white-readback status=1 message=",
+        "PIXEL Aurora-offscreen-known-white-readback origin=0,0 first-storage=255,255,255,255 expected-rgba=255,255,255,255 mismatches=0/1024",
+        "PASS Aurora-offscreen-known-white-readback",
+        "STAGE shutdown",
+        "PASS synthetic-audio-API-errors",
+        "PASS controller-disconnect-reconnect-resume",
+        "PASS ten-minute-loop",
+        "STAGE drain-GPU-before-resource-and-device-destruction",
+        "PASS GPU-queue-drained",
+        "STAGE Aurora-shutdown-begin",
+        "AURORA level=2 module=aurora::gpu Device lost: Device was destroyed.",
+        "AURORA level=2 module=aurora::window Error enabling screensaver: That operation is not supported",
+        "STAGE Aurora-shutdown-complete",
+        "END frames=35699 checks=120 failures=0; owner observations/resource review required"
+      ],
+      "resources": [
+        {
+          "seconds": 0.0,
+          "garlic": 438632448,
+          "onion": 786432,
+          "buffers": 42,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 3768816,
+          "flexible-available": 396361728,
+          "audio-frames": 1792,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 30.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4489680,
+          "flexible-available": 396361728,
+          "audio-frames": 1442048,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 60.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4482800,
+          "flexible-available": 396361728,
+          "audio-frames": 2882816,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 90.0,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483600,
+          "flexible-available": 396361728,
+          "audio-frames": 4323328,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 120.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483808,
+          "flexible-available": 396361728,
+          "audio-frames": 5764096,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 150.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483760,
+          "flexible-available": 396361728,
+          "audio-frames": 7204608,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 180.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483936,
+          "flexible-available": 396361728,
+          "audio-frames": 8645376,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 210.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483760,
+          "flexible-available": 396361728,
+          "audio-frames": 10085888,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 240.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483808,
+          "flexible-available": 396361728,
+          "audio-frames": 11526656,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 270.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483968,
+          "flexible-available": 396361728,
+          "audio-frames": 12967168,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 300.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483968,
+          "flexible-available": 396361728,
+          "audio-frames": 14407936,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 330.1,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484032,
+          "flexible-available": 396361728,
+          "audio-frames": 15848448,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 360.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484016,
+          "flexible-available": 396361728,
+          "audio-frames": 17289216,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 390.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483808,
+          "flexible-available": 396361728,
+          "audio-frames": 18729728,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 420.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483904,
+          "flexible-available": 396361728,
+          "audio-frames": 20170496,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 450.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483952,
+          "flexible-available": 396361728,
+          "audio-frames": 21611008,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 480.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4483984,
+          "flexible-available": 396361728,
+          "audio-frames": 23051776,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 510.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484080,
+          "flexible-available": 396361728,
+          "audio-frames": 24492288,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 540.2,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484128,
+          "flexible-available": 396361728,
+          "audio-frames": 25933056,
+          "audio-errors": 0
+        },
+        {
+          "seconds": 570.3,
+          "garlic": 438697984,
+          "onion": 835584,
+          "buffers": 44,
+          "heap-capacity": 536870912,
+          "main-mspace-allocated": 4484016,
+          "flexible-available": 396361728,
+          "audio-frames": 27373824,
+          "audio-errors": 0
+        }
+      ],
+      "resource_ranges_after_30_seconds": {
+        "garlic": {
+          "min": 438697984,
+          "max": 438697984
+        },
+        "onion": {
+          "min": 835584,
+          "max": 835584
+        },
+        "buffers": {
+          "min": 44,
+          "max": 44
+        },
+        "heap-capacity": {
+          "min": 536870912,
+          "max": 536870912
+        },
+        "main-mspace-allocated": {
+          "min": 4482800,
+          "max": 4489680
+        },
+        "flexible-available": {
+          "min": 396361728,
+          "max": 396361728
+        },
+        "audio-errors": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "append_only_from_previous": {
+        "diagnostic.log": true,
+        "runtime-preflight.log": true
+      },
+      "cache_files": [
+        {
+          "path": "run-3-warm/cache/dawn_cache.db",
+          "bytes": 536576,
+          "sha256": "118d29a9c8463a6e96154d298b05fc8a198db7ba966d87df94e457e2f152835a"
+        },
+        {
+          "path": "run-3-warm/cache/pipeline_cache.db",
+          "bytes": 65536,
+          "sha256": "418fc5c0fa32c6cbc9f2cc26cd52fe4e640c5137b629eaf7b926adcbb75b4d7e"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "No photos/video were supplied; owner written observations and matching logs are available.",
+    "Startup/preparation wall time and display/audio-output device details were left blank; logged PREPARATION covers only the initial existing GX pipeline preparation.",
+    "The report final displayed time 599.9 for run 2 is a screen observation; the subsequent timed shutdown check passes >=600 seconds.",
+    "The original report is preserved without correcting its stale version or filling blank fields.",
+    "Two independent clean builds and explained binary differences under issue #15 remain outside this console evidence review.",
+    "Synthetic checks do not establish game graphics, game DSP audio, game saves, gameplay timing, or universal leak freedom."
+  ]
+}

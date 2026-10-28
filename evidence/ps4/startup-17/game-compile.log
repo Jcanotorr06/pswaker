@@ -1,0 +1,65 @@
+[0/2] Re-checking globbed directories...
+[1/34] Building C object CMakeFiles/pswaker_entry.dir/home/joseph_cano/.cache/pswaker/maintained-15-a/src/native-platform/ps4/native/realpath.c.o
+[2/34] Building C object CMakeFiles/pswaker_entry.dir/home/joseph_cano/.cache/pswaker/game-17/src/platform/native/platform.c.o
+[3/34] Building CXX object CMakeFiles/pswaker_entry.dir/home/joseph_cano/.cache/pswaker/game-17/src/platform/input.cpp.o
+[4/34] Building CXX object CMakeFiles/pswaker_entry.dir/installed-content.cpp.o
+[5/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_chain.cpp.o
+[6/34] Building CXX object native/CMakeFiles/framework.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/f_pc/f_pc_manager.cpp.o
+[7/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_cloth_packet.cpp.o
+[8/34] Building CXX object CMakeFiles/pswaker_entry.dir/main.cpp.o
+[9/34] Linking CXX static library libpswaker_entry.a
+[10/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_flower.cpp.o
+[11/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_drawlist.cpp.o
+[12/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_grass.cpp.o
+[13/34] Building CXX object native/CMakeFiles/m_Do.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp.o
+/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp:620:20: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'J3DTexMtx' [-Wnontrivial-memcall]
+  620 |             memcpy(&mTexMtx[i], texGenBlock->getTexMtx(i), sizeof(J3DTexMtx));
+      |                    ^
+/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp:620:20: note: explicitly cast the pointer to silence this warning
+  620 |             memcpy(&mTexMtx[i], texGenBlock->getTexMtx(i), sizeof(J3DTexMtx));
+      |                    ^
+      |                    (void*)
+/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp:665:12: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'J3DFog' [-Wnontrivial-memcall]
+  665 |     memcpy(&mFog, peBlock->getFog(), sizeof(J3DFog));
+      |            ^
+/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp:665:12: note: explicitly cast the pointer to silence this warning
+  665 |     memcpy(&mFog, peBlock->getFog(), sizeof(J3DFog));
+      |            ^
+      |            (void*)
+/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp:699:33: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'J3DTexMtx' [-Wnontrivial-memcall]
+  699 |             memcpy(texGenBlock->getTexMtx(i), &mTexMtx[i], sizeof(J3DTexMtx));
+      |                                 ^
+/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp:699:33: note: explicitly cast the pointer to silence this warning
+  699 |             memcpy(texGenBlock->getTexMtx(i), &mTexMtx[i], sizeof(J3DTexMtx));
+      |                                 ^
+      |                    (void*)
+/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp:746:21: warning: first argument in call to 'memcpy' is a pointer to non-trivially copyable type 'J3DFog' [-Wnontrivial-memcall]
+  746 |     memcpy(peBlock->getFog(), &mFog, sizeof(J3DFog));
+      |                     ^
+/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/m_Do/m_Do_ext.cpp:746:21: note: explicitly cast the pointer to silence this warning
+  746 |     memcpy(peBlock->getFog(), &mFog, sizeof(J3DFog));
+      |                     ^
+      |            (void*)
+4 warnings generated.
+[14/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_magma.cpp.o
+[15/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_menu_cloth.cpp.o
+[16/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_tree.cpp.o
+[17/34] Building CXX object native/CMakeFiles/d-core.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/d_wood.cpp.o
+[18/34] Building CXX object native/CMakeFiles/actors-1.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_bwdg.cpp.o
+[19/34] Building CXX object native/CMakeFiles/actors-1.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_boomerang.cpp.o
+[20/34] Building CXX object native/CMakeFiles/actors-2.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_grid.cpp.o
+[21/34] Building CXX object native/CMakeFiles/actors-2.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_goal_flag.cpp.o
+[22/34] Building CXX object native/CMakeFiles/actors-2.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_majuu_flag.cpp.o
+[23/34] Building CXX object native/CMakeFiles/actors-2.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_hookshot.cpp.o
+[24/34] Building CXX object native/CMakeFiles/actors-2.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_mant.cpp.o
+[25/34] Building CXX object native/CMakeFiles/actors-5.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_pirate_flag.cpp.o
+[26/34] Building CXX object native/CMakeFiles/actors-5.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_sail.cpp.o
+[27/34] Building CXX object native/CMakeFiles/actors-4.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_obj_buoyflag.cpp.o
+[28/34] Building CXX object native/CMakeFiles/cos_sdk.dir/sdk/src/audio/AI.cpp.o
+[29/34] Linking CXX static library native/libcos_sdk.a
+[30/34] Building CXX object native/CMakeFiles/cos_pc.dir/src/pc/runtime/pc_assets.cpp.o
+[31/34] Linking CXX static library native/libcos_pc.a
+[32/34] Building CXX object native/CMakeFiles/actors-5.dir/home/joseph_cano/.cache/pswaker/game-17/src/switchwaker/game/src/d/actor/d_a_player_main.cpp.o
+[33/34] Linking CXX executable switchwaker
+[34/34] Generating switchwaker_eboot/eboot.bin
+-- check-oelf: /home/joseph_cano/.cache/pswaker/game-17/build/switchwaker_eboot/switchwaker.oelf: segments OK

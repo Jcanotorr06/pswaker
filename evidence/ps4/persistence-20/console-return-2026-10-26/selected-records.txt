@@ -1,0 +1,80 @@
+# logs-1/platform.log
+Logged manifest version=01.07; program/image/identity match retained inspection
+2: BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642
+171: CACHE identity=9ac6fb9b2da43e02d642 files-before-init=0; owner labels cold/warm
+172: STAGE completed=platform-initialized ms=805.7 build=9ac6fb9b2da43e02d642 errors=0
+175: STAGE completed=PS4-runtime-crash-logger-selected ms=814.8 build=9ac6fb9b2da43e02d642 errors=0
+177: STAGE completed=aurora-initialize ms=826.0 build=9ac6fb9b2da43e02d642 errors=0
+295: STAGE completed=graphics-initialized ms=1791.4 build=9ac6fb9b2da43e02d642 errors=0
+492: STAGE completed=installed-image-validated ms=47039.2 build=9ac6fb9b2da43e02d642 errors=0
+493: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+494: STAGE completed=writable-storage-checked ms=47218.2 build=9ac6fb9b2da43e02d642 errors=0
+498: STAGE completed=known-shaders-prepared ms=47250.3 build=9ac6fb9b2da43e02d642 errors=0
+501: STAGE completed=runtime-assets-validated ms=47505.2 build=9ac6fb9b2da43e02d642 errors=0
+1102: SETTINGS saved=1 port-text=standard path=/data/pswaker/settings.ini error=
+Last heartbeat: HEARTBEAT ms=358781.2 shaders-created=264 queued=0 checked-errors=0
+
+# logs-2/platform.log
+Logged manifest version=01.07; program/image/identity match retained inspection
+2: BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642
+175: CACHE identity=9ac6fb9b2da43e02d642 files-before-init=4; owner labels cold/warm
+176: STAGE completed=platform-initialized ms=1284.1 build=9ac6fb9b2da43e02d642 errors=0
+179: STAGE completed=PS4-runtime-crash-logger-selected ms=1313.4 build=9ac6fb9b2da43e02d642 errors=0
+181: STAGE completed=aurora-initialize ms=1324.8 build=9ac6fb9b2da43e02d642 errors=0
+299: STAGE completed=graphics-initialized ms=2030.1 build=9ac6fb9b2da43e02d642 errors=0
+465: STAGE completed=installed-image-validated ms=41375.5 build=9ac6fb9b2da43e02d642 errors=0
+466: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+467: STAGE completed=writable-storage-checked ms=41466.5 build=9ac6fb9b2da43e02d642 errors=0
+471: STAGE completed=known-shaders-prepared ms=41498.3 build=9ac6fb9b2da43e02d642 errors=0
+474: STAGE completed=runtime-assets-validated ms=41663.3 build=9ac6fb9b2da43e02d642 errors=0
+Last heartbeat: HEARTBEAT ms=115982.9 shaders-created=264 queued=0 checked-errors=0
+
+# logs-3/platform.prev.log
+Logged manifest version=01.08; program/image/identity match retained inspection
+2: BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642
+175: CACHE identity=9ac6fb9b2da43e02d642 files-before-init=4; owner labels cold/warm
+176: STAGE completed=platform-initialized ms=1604.4 build=9ac6fb9b2da43e02d642 errors=0
+179: STAGE completed=PS4-runtime-crash-logger-selected ms=1738.3 build=9ac6fb9b2da43e02d642 errors=0
+181: STAGE completed=aurora-initialize ms=1749.8 build=9ac6fb9b2da43e02d642 errors=0
+299: STAGE completed=graphics-initialized ms=2453.7 build=9ac6fb9b2da43e02d642 errors=0
+496: STAGE completed=installed-image-validated ms=49973.5 build=9ac6fb9b2da43e02d642 errors=0
+497: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+498: STAGE completed=writable-storage-checked ms=50067.5 build=9ac6fb9b2da43e02d642 errors=0
+502: STAGE completed=known-shaders-prepared ms=50099.3 build=9ac6fb9b2da43e02d642 errors=0
+505: STAGE completed=runtime-assets-validated ms=50277.5 build=9ac6fb9b2da43e02d642 errors=0
+Last heartbeat: HEARTBEAT ms=151852.3 shaders-created=265 queued=0 checked-errors=0
+
+# logs-4/platform.log
+Logged manifest version=01.08; program/image/identity match retained inspection
+2: BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642
+171: CACHE identity=9ac6fb9b2da43e02d642 files-before-init=0; owner labels cold/warm
+172: STAGE completed=platform-initialized ms=590.9 build=9ac6fb9b2da43e02d642 errors=0
+175: STAGE completed=PS4-runtime-crash-logger-selected ms=711.7 build=9ac6fb9b2da43e02d642 errors=0
+177: STAGE completed=aurora-initialize ms=722.8 build=9ac6fb9b2da43e02d642 errors=0
+295: STAGE completed=graphics-initialized ms=1653.8 build=9ac6fb9b2da43e02d642 errors=0
+498: STAGE completed=installed-image-validated ms=48092.8 build=9ac6fb9b2da43e02d642 errors=0
+499: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+500: STAGE completed=writable-storage-checked ms=48147.8 build=9ac6fb9b2da43e02d642 errors=0
+504: STAGE completed=known-shaders-prepared ms=48178.6 build=9ac6fb9b2da43e02d642 errors=0
+507: STAGE completed=runtime-assets-validated ms=48344.8 build=9ac6fb9b2da43e02d642 errors=0
+805: EXIT code=0 ms=171225.5 checked-errors=0
+806: STAGE completed=shutdown-waiting-for-card ms=171229.5 build=9ac6fb9b2da43e02d642 errors=0
+807: SHUTDOWN card-status=1 (0=busy 1=idle -1=last-store-failed)
+809: PANIC /home/joseph_cano/.cache/pswaker/game-20-final/src/switchwaker/game/src/JSystem/JUtility/JUTGba.cpp:623
+811: EXIT code=12 ms=171245.6 checked-errors=0
+Last heartbeat: HEARTBEAT ms=159782.4 shaders-created=221 queued=0 checked-errors=0
+
+# logs-5/platform.log
+Logged manifest version=01.08; program/image/identity match retained inspection
+2: BEGIN build=9ac6fb9b2da43e02d642 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/9ac6fb9b2da43e02d642
+175: CACHE identity=9ac6fb9b2da43e02d642 files-before-init=4; owner labels cold/warm
+176: STAGE completed=platform-initialized ms=1125.9 build=9ac6fb9b2da43e02d642 errors=0
+179: STAGE completed=PS4-runtime-crash-logger-selected ms=1135.4 build=9ac6fb9b2da43e02d642 errors=0
+181: STAGE completed=aurora-initialize ms=1146.7 build=9ac6fb9b2da43e02d642 errors=0
+299: STAGE completed=graphics-initialized ms=1984.9 build=9ac6fb9b2da43e02d642 errors=0
+465: STAGE completed=installed-image-validated ms=41529.0 build=9ac6fb9b2da43e02d642 errors=0
+466: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=standard GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+467: STAGE completed=writable-storage-checked ms=41581.8 build=9ac6fb9b2da43e02d642 errors=0
+471: STAGE completed=known-shaders-prepared ms=41613.4 build=9ac6fb9b2da43e02d642 errors=0
+474: STAGE completed=runtime-assets-validated ms=41766.3 build=9ac6fb9b2da43e02d642 errors=0
+Last heartbeat: HEARTBEAT ms=73824.6 shaders-created=224 queued=0 checked-errors=0

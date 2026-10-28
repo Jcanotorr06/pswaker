@@ -1,0 +1,99 @@
+{
+  "focused_tests": [
+    {
+      "pattern": "test_game.py",
+      "exit": 0
+    },
+    {
+      "pattern": "test_complete_package.py",
+      "exit": 0
+    }
+  ],
+  "python_bytecompile": true,
+  "shell_syntax": [
+    {
+      "script": "build-game.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-graphics.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-probe.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-runtime.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "build-sdk-support.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "clean-build.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "install-host.sh",
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "script": "prepare-graphics.sh",
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "full_suite_exit": 0,
+  "tests": 84,
+  "skips": 11,
+  "output_retained": "host-checks.log",
+  "command": "python3 -m unittest discover -s platform/ps4/tests -v",
+  "environment": {
+    "PSWAKER_GAME_ROOT": "/home/joseph_cano/.cache/pswaker/game-22-logfile",
+    "PSWAKER_REFERENCE_BUILD": "/home/joseph_cano/.cache/pswaker/maintained-15-a"
+  },
+  "scope": "Host behavior checks and synthetic services; no console acceptance",
+  "gci_followup": {
+    "exit": 0,
+    "environment": {
+      "PSWAKER_GAME_ROOT": "/home/joseph_cano/.cache/pswaker/game-22-logfile",
+      "PSWAKER_REFERENCE_BUILD": "/home/joseph_cano/.cache/pswaker/maintained-15-a",
+      "PSWAKER_HOST_ROOT": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022"
+    },
+    "reason": "Full-suite launch omitted PSWAKER_HOST_ROOT and skipped 11 GCI cases; rerun only those cases with real host SDL",
+    "output": "gci-checks.log"
+  },
+  "all_84_test_cases_passed_across_full_and_targeted_runs": true,
+  "note": "Full discovery passed 73 and skipped 11 due to omitted host SDL variable; the 11 skipped GCI cases then passed with zero skips. Both original logs retained. No second full-suite run.",
+  "windows_package_and_elf_match_fresh_inspection": true,
+  "candidate_reinspection_exit": 0,
+  "repeated_builds_assembly_and_fresh_inspection_exit": 0,
+  "evidence_scripts_bytecompile_exit": 0,
+  "relative_document_links_checked": true,
+  "comparison_report_refactor_verification": [
+    {
+      "report": "build-differences.json",
+      "sha256": "1e7df6a6b96cec8e0f3b4620bdb13ea337b260d8c7161dba4fbda6cf6baf7b97",
+      "unchanged_after_normalization_extraction": true
+    },
+    {
+      "report": "data-differences.json",
+      "sha256": "2480b59240a92cf5b96b687ff410b4158efa338d7c77625a71df9fb88ddd9088",
+      "unchanged_after_normalization_extraction": true
+    },
+    {
+      "report": "text-differences.json",
+      "sha256": "063bd120c11668b1ef51310cb06a412c7d3ce0f431b46a76dfadd88b0b279700",
+      "unchanged_after_normalization_extraction": true
+    }
+  ]
+}

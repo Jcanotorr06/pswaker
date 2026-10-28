@@ -1,0 +1,11 @@
+{
+  "elf_sha256": "a191be91af014df4ffa983cb672544621c7de489994b898bb478e0efabadbe95",
+  "compiled_build_id": "6ebc07987fe3b6c6064a",
+  "compile_commands_checked": 1388,
+  "cpu": "btver2/Jaguar",
+  "unresolved_tls_initializers": [],
+  "unstripped": true,
+  "debug_lines": true,
+  "signal_handling": "Selected PS4 DolphinPS4 logger; no PS5 context, division table or recovery handler",
+  "hardware_status": "Untested for this game binary"
+}

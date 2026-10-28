@@ -1,0 +1,39 @@
+{
+  "scope": "Host inspection only; no hardware result",
+  "artifacts": {
+    "package": {
+      "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+      "sha256": "edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522"
+    },
+    "eboot_sha256": "5d3438436d381fef0facd0cd2397461e9d3f9741b52f996b88c8e7b89952c036",
+    "elf_sha256": "1cb796480f3961447158d6658c56e7bb309f3fc2a290ef2195b38d4b1c6e40e6",
+    "build_id": "60975dcf4480aa914369",
+    "app_version": "01.04"
+  },
+  "package_files": {
+    "build-info.json": "b6c9c02c6859c31f984bce045a8e77b57a012b52382fa63edb3e1533ac8d1dba",
+    "eboot.bin": "5d3438436d381fef0facd0cd2397461e9d3f9741b52f996b88c8e7b89952c036",
+    "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+    "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+    "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+    "sce_sys/keystone": "d09eb8ab5f3b700164fc8ad85c54c2acbad71244e942aeedf7e3e7eb56408aac",
+    "sce_sys/param.sfo": "6bced53a00f022e3c3898e781c5ec0e17dcf9cc5e7ae6250be2d5c7b085af828",
+    "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7"
+  },
+  "sfo": {
+    "APP_TYPE": 1,
+    "APP_VER": "01.04",
+    "ATTRIBUTE": 0,
+    "CATEGORY": "gd",
+    "CONTENT_ID": "IV0000-PSWK00010_00-PSWAKERPROBE0000",
+    "DOWNLOAD_DATA_SIZE": 0,
+    "PUBTOOLINFO": "c_date=20261023,img0_l0_size=42,img0_l1_size=0,img0_sc_ksize=512,img0_pc_ksize=832",
+    "PUBTOOLVER": 42532864,
+    "SYSTEM_VER": 0,
+    "TITLE": "PSWaker Platform Diagnostic",
+    "TITLE_ID": "PSWK00010",
+    "VERSION": "01.04"
+  },
+  "unresolved_wider_atomics": [],
+  "emitted_archive_atomic_references": []
+}

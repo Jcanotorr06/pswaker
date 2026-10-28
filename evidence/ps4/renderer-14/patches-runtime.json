@@ -1,0 +1,18 @@
+[
+  {
+    "phase": "runtime",
+    "target": "refs/DolphinPS4",
+    "context": ".",
+    "patch": "dolphinps4-ps4-runtime.patch",
+    "sha256": "4fff998f1a7f697bf0364e860d7416d49240d19ceb572954b867cd0aa120d410",
+    "origin": "BgbrhrWatchinOVO/dusklight-ps4@fd483cf5d4f04b0f4d887ff412d0e8691925de08"
+  },
+  {
+    "phase": "runtime",
+    "target": "src/llvm-project-21.1.6.src",
+    "context": "libcxx/src",
+    "patch": "libcxx-ps4-atomic-wait.patch",
+    "sha256": "127e29ad3141b289f7c6a66c40b828a1b7f4d6c1b57c7a52464ed25e3581072f",
+    "origin": "BgbrhrWatchinOVO/dusklight-ps4@fd483cf5d4f04b0f4d887ff412d0e8691925de08"
+  }
+]

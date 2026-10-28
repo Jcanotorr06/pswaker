@@ -1,0 +1,115 @@
+{
+  "source_commit": "c7bdf0d584c0bcc0ee330a6564ddb2f07333526c",
+  "selected_files": [
+    {
+      "path": "adapt-platform.py",
+      "original_sha256": "47c496d732adb7915e9732b6a88dfbdf2da14c75a81b68c0df50564c65d5bfe5",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "build-graphics.sh",
+      "original_sha256": "2b7549a37a4e55f74852071d1fbf014c018e42675f5583a6bc66c00d578fc2d0",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "build-probe.sh",
+      "original_sha256": "13d751abc804c0c4ab9337ea3d50b8e784646d7ec0968db76c848d1f515b8ffc",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "build-runtime.sh",
+      "original_sha256": "d3a57673d95999e31e2303ff12380bed741ebef76fb63f83c849bc1d87a05761",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "capture-inputs.py",
+      "original_sha256": "6108b8d060ad73b2b2433e299f47fa41bf3f491986ab77ee058e4ce40d2f4aaf",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "clean-build.sh",
+      "original_sha256": "83475aa2149c663d7b3e096343065b8191703ca31c9a346b137a4ca9b9db5627",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "install-host.sh",
+      "original_sha256": "63db51ba8bd7e335e0d5b8c80bff19fc542525cdc9eb72bf3185d7ea296a6c1e",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "lock-sdk.py",
+      "original_sha256": "d6b6626a55307a863521697649294ef6a8710299240db5fbdc79032906760834",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "package-probe.py",
+      "original_sha256": "e4007e3c1074bac95cdae4280a0336d32c5b07d89fe0052df99a9856a07a5d91",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "prepare-graphics.sh",
+      "original_sha256": "9b52fb4e0630129ce635da4f5193ac9213ec84d87edcbe5acdfc302839eecc08",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "prepare-sources.py",
+      "original_sha256": "c4b671fcddbba90129f7c6d2c2ae35c3749a95d545f856b5057f7c065332ecbc",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "probe/CMakeLists.txt",
+      "original_sha256": "c6fa42b7eaf6836b1124a1dffdb4efe4cfd3cd9ffdef9c9dc81bf80029c52dd0",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "probe/gx-scene.hpp",
+      "original_sha256": "07a8b550b48817b5d7dcd54471a9f64dbbdd98497c8a400f79a6057bcd5f99d8",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "probe/gx-setup.hpp",
+      "original_sha256": "c40bfed064e85f875a6274b7b0e79c5175b7d8a65df27b98a79a97aee4b5c441",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "probe/main.cpp",
+      "original_sha256": "fe8beb96d82759bb2c1a48126cd09ea8d79526e6dcdb8721e844a3976565fc2e",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "probe/sdl-video.hpp",
+      "original_sha256": "0dd199a85078b44284e1c8785690461fc76583332e1a3fc1d7fcbd523a00f0df",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "probe/white-readback.hpp",
+      "original_sha256": "0204b18bae0d8f5e2cb0ec7977df0f90213b3da9c9e7143eab6a8cfa63032678",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "ps4.cmake",
+      "original_sha256": "b1fae8e77a080f29893dae86c4b34ed17854ed58009adecfe9487d4ca1d3e311",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "runtime-preflight/CMakeLists.txt",
+      "original_sha256": "f4ad5434d2bd567d05dcf02037cfcd782a0bcf6b817000813a86e981de7501c1",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "runtime-preflight/main.cpp",
+      "original_sha256": "17f21f65d40bbfd4b170547d5c8a01259fe892ca272c6010da91b793233b1dc3",
+      "adoption": "unchanged"
+    },
+    {
+      "path": "sdk.lock.json",
+      "original_sha256": "5c2d8fe06f773d62b0aef4c9c32a96685be52604666c69b8239f68dd319ec041",
+      "adoption": "adapted for maintained preparation"
+    },
+    {
+      "path": "sources.lock.json",
+      "original_sha256": "81b9f7e33fb1a61ba29660f6039906d29c059cefeb8272462d0d102f32615f4f",
+      "adoption": "unchanged"
+    }
+  ]
+}

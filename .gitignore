@@ -4,6 +4,9 @@ local-research/
 generated/
 /build*/
 game/
+# Maintained data-free PS4 integration sources and patches (never extracted assets).
+!/platform/ps4/game/
+!/platform/ps4/patches/game/
 
 # Disc images and extracted game data
 *.iso
@@ -40,6 +43,10 @@ dolphin_*.bin
 .DS_Store
 
 # Build artifacts
+*.pkg
+*.gp4
+*.oelf
+*.elf
 *.o
 *.a
 *.dylib
@@ -69,3 +76,4 @@ gxruntime-memory-card-*.dolcard*
 *.so
 *.keystore
 *.jks
+*.pyc

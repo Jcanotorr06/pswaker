@@ -1,0 +1,284 @@
+[
+  {
+    "path": "before-01.04/cache-before-01.03-2026-10-23T19_21_24/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/cache-before-01.03-2026-10-23T19_21_24/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/cache-before-01.04-2026-10-24T16_38_52.898Z/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/cache-before-01.04-2026-10-24T16_38_52.898Z/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/diagnostic.log",
+    "bytes": 2400609,
+    "sha256": "074692007b43fed46c8ac6cf4d6d2f79d12a47c0be2b98bec2b85c03ea66a501",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/imgui.ini",
+    "bytes": 205,
+    "sha256": "2364bcd327f94a6d3e20a3f9a18a318e4108833bf452b579d6eaf1bad11decf8",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/platform.log",
+    "bytes": 26506,
+    "sha256": "652787c4e7edb299ae97167fe4d5ee6b8661571c8a6c9afcb77ba3b984a9f4f8",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/platform.prev.log",
+    "bytes": 26506,
+    "sha256": "4fa83fcd9768f57bb8cd6ca7a7495cfbbbd8b50a4f380a8b52a07cf2a57fafb5",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/preflight-state.txt",
+    "bytes": 3,
+    "sha256": "a1fb50e6c86fae1679ef3351296fd6713411a08cf8dd1790a4fd05fae8688164",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "before-01.04/runtime-preflight.log",
+    "bytes": 5745,
+    "sha256": "be6f0bb8f93d55a6ea811c8c8a65bfefe5a44d9ca2149c51b95c753c5cabb914",
+    "mtime_ns": 1792860016000000000
+  },
+  {
+    "path": "report.md",
+    "bytes": 2094,
+    "sha256": "5e09389a16afd5243a50127f02bca8b4d80e672a7051a52668cc9727c3036774",
+    "mtime_ns": 1792863238000000000
+  },
+  {
+    "path": "run-1-cold/cache/dawn_cache.db",
+    "bytes": 536576,
+    "sha256": "e75b71c324201ff69aa1b444f7ac50f2b03db91dac6b0fc429b8fbf707425565",
+    "mtime_ns": 1792861470000000000
+  },
+  {
+    "path": "run-1-cold/cache/pipeline_cache.db",
+    "bytes": 65536,
+    "sha256": "418fc5c0fa32c6cbc9f2cc26cd52fe4e640c5137b629eaf7b926adcbb75b4d7e",
+    "mtime_ns": 1792861468000000000
+  },
+  {
+    "path": "run-1-cold/cache-before-01.03-2026-10-23T19_21_24/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f",
+    "mtime_ns": 1792861470000000000
+  },
+  {
+    "path": "run-1-cold/cache-before-01.03-2026-10-23T19_21_24/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6",
+    "mtime_ns": 1792861470000000000
+  },
+  {
+    "path": "run-1-cold/cache-before-01.04-2026-10-24T16_38_52.898Z/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f",
+    "mtime_ns": 1792861470000000000
+  },
+  {
+    "path": "run-1-cold/cache-before-01.04-2026-10-24T16_38_52.898Z/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6",
+    "mtime_ns": 1792861470000000000
+  },
+  {
+    "path": "run-1-cold/diagnostic.log",
+    "bytes": 2778841,
+    "sha256": "537899a8e01273ba50f78bce5ae2f42d100a1059ef66bf64713742a990477acc",
+    "mtime_ns": 1792861470000000000
+  },
+  {
+    "path": "run-1-cold/imgui.ini",
+    "bytes": 205,
+    "sha256": "2364bcd327f94a6d3e20a3f9a18a318e4108833bf452b579d6eaf1bad11decf8",
+    "mtime_ns": 1792861468000000000
+  },
+  {
+    "path": "run-1-cold/platform.log",
+    "bytes": 26974,
+    "sha256": "2530f19b0856d4248a91453a2bbd7c7d5ac126a1583d67859037acf574226b03",
+    "mtime_ns": 1792861468000000000
+  },
+  {
+    "path": "run-1-cold/platform.prev.log",
+    "bytes": 26506,
+    "sha256": "652787c4e7edb299ae97167fe4d5ee6b8661571c8a6c9afcb77ba3b984a9f4f8",
+    "mtime_ns": 1792861468000000000
+  },
+  {
+    "path": "run-1-cold/preflight-state.txt",
+    "bytes": 3,
+    "sha256": "1a252402972f6057fa53cc172b52b9ffca698e18311facd0f3b06ecaaef79e17",
+    "mtime_ns": 1792861468000000000
+  },
+  {
+    "path": "run-1-cold/runtime-preflight.log",
+    "bytes": 6223,
+    "sha256": "67e821a314d9fb444bcaa00c0a0960aed7975843d143eb970af1290bb833ab52",
+    "mtime_ns": 1792861468000000000
+  },
+  {
+    "path": "run-2-warm/cache/dawn_cache.db",
+    "bytes": 536576,
+    "sha256": "9d82e7201d248f4d50bda7e18c5cb2eeb513fdcb0c448daf3f2cb089b98f43b2",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/cache/pipeline_cache.db",
+    "bytes": 65536,
+    "sha256": "418fc5c0fa32c6cbc9f2cc26cd52fe4e640c5137b629eaf7b926adcbb75b4d7e",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/cache-before-01.03-2026-10-23T19_21_24/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/cache-before-01.03-2026-10-23T19_21_24/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/cache-before-01.04-2026-10-24T16_38_52.898Z/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/cache-before-01.04-2026-10-24T16_38_52.898Z/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/diagnostic.log",
+    "bytes": 3156937,
+    "sha256": "92b1fa9cf1786eae49954805c7749e99cfc83e3fdeab62bd6d1e83246bda019f",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/imgui.ini",
+    "bytes": 205,
+    "sha256": "2364bcd327f94a6d3e20a3f9a18a318e4108833bf452b579d6eaf1bad11decf8",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/platform.log",
+    "bytes": 26506,
+    "sha256": "76297ecac65393d0d63de25db9559c3ebf7e6a5a1b55625918d6e13e21b11ee2",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/platform.prev.log",
+    "bytes": 26974,
+    "sha256": "2530f19b0856d4248a91453a2bbd7c7d5ac126a1583d67859037acf574226b03",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/preflight-state.txt",
+    "bytes": 3,
+    "sha256": "9a92adbc0cee38ef658c71ce1b1bf8c65668f166bfb213644c895ccb1ad07a25",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-2-warm/runtime-preflight.log",
+    "bytes": 6701,
+    "sha256": "70a113198da8e9d47b20dae176e938fb23139ebcb4d121ecebf64bf07976c7e5",
+    "mtime_ns": 1792862438000000000
+  },
+  {
+    "path": "run-3-warm/cache/dawn_cache.db",
+    "bytes": 536576,
+    "sha256": "118d29a9c8463a6e96154d298b05fc8a198db7ba966d87df94e457e2f152835a",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/cache/pipeline_cache.db",
+    "bytes": 65536,
+    "sha256": "418fc5c0fa32c6cbc9f2cc26cd52fe4e640c5137b629eaf7b926adcbb75b4d7e",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/cache-before-01.03-2026-10-23T19_21_24/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/cache-before-01.03-2026-10-23T19_21_24/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/cache-before-01.04-2026-10-24T16_38_52.898Z/dawn_cache.db",
+    "bytes": 344064,
+    "sha256": "d6a005ff31af268fa3ff435464630761a4c2652836a512874c41162907e44d8f",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/cache-before-01.04-2026-10-24T16_38_52.898Z/pipeline_cache.db",
+    "bytes": 28672,
+    "sha256": "dee65796e2b2379d9fcaad3f3be585dcca69aaa82ce6916f15159c123bec94e6",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/diagnostic.log",
+    "bytes": 3535033,
+    "sha256": "a7c21560ae671de77c7a672797cc636985d8035fb1bc3337d5ca2bad1ac3472f",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/imgui.ini",
+    "bytes": 205,
+    "sha256": "2364bcd327f94a6d3e20a3f9a18a318e4108833bf452b579d6eaf1bad11decf8",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/platform.log",
+    "bytes": 26507,
+    "sha256": "2f97c5f2f3ce4fa70f926bf4fa0853c08a8d43af6c64a0fca7df6fdc1aac9250",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/platform.prev.log",
+    "bytes": 26506,
+    "sha256": "76297ecac65393d0d63de25db9559c3ebf7e6a5a1b55625918d6e13e21b11ee2",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/preflight-state.txt",
+    "bytes": 3,
+    "sha256": "238903180cc104ec2c5d8b3f20c5bc61b389ec0a967df8cc208cdc7cd454174f",
+    "mtime_ns": 1792863132000000000
+  },
+  {
+    "path": "run-3-warm/runtime-preflight.log",
+    "bytes": 7179,
+    "sha256": "27a5f79efadba269800a74b84fd145c990ef65f5a87225ca21bbb307cbc77979",
+    "mtime_ns": 1792863132000000000
+  }
+]

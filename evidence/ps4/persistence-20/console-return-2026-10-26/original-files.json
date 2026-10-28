@@ -1,0 +1,100 @@
+{
+  "private_root": "local-research/persistence-20-artifacts/evidence",
+  "files": [
+    {
+      "path": "logs-1/last-stage.txt",
+      "size": 95,
+      "sha256": "30921127deade3aedd3b0c528d9295fcffa5a267e1d98e1cfb96e2b1139708f6"
+    },
+    {
+      "path": "logs-1/platform.log",
+      "size": 127295,
+      "sha256": "33885eb8bffb54eac034764fb98a7a72f76d1b3dd0d3f50bf3dc4949f030e698"
+    },
+    {
+      "path": "logs-1/platform.prev.log",
+      "size": 58507,
+      "sha256": "29e106c3f675e9b81f271fe1564f405185b413552ed0c6a79e4b182c34a075e7"
+    },
+    {
+      "path": "logs-2/last-stage.txt",
+      "size": 95,
+      "sha256": "27057781385420d803a15adba066740da858bc6c1b26cdd736df8eb1bb6626bb"
+    },
+    {
+      "path": "logs-2/platform.log",
+      "size": 53031,
+      "sha256": "583d84b8a76a03da2a60d4bc189bbd4608d0302ed40806fce4ecbc9720c26b43"
+    },
+    {
+      "path": "logs-2/platform.prev.log",
+      "size": 127295,
+      "sha256": "33885eb8bffb54eac034764fb98a7a72f76d1b3dd0d3f50bf3dc4949f030e698"
+    },
+    {
+      "path": "logs-3/last-stage.txt",
+      "size": 95,
+      "sha256": "f9223136024362b8dfd655fbde2b73c9319a72cb536bf0663c3d720fdc6b63f1"
+    },
+    {
+      "path": "logs-3/platform.log",
+      "size": 45242,
+      "sha256": "33922210d4fd9f4d65e25cc71a511529eba2528979ad59de61634845962e5a01"
+    },
+    {
+      "path": "logs-3/platform.prev.log",
+      "size": 66261,
+      "sha256": "12b6a49bcdf10ea2005f8df29b6fa8fc81cbde9de068bc8d53c61d73d35538b6"
+    },
+    {
+      "path": "logs-4/last-stage.txt",
+      "size": 97,
+      "sha256": "1e3bd20a2a48c53d9cf411bc36d40d937a3e61a8aa4b27737f1ddef70f048c01"
+    },
+    {
+      "path": "logs-4/platform.log",
+      "size": 69558,
+      "sha256": "f9df2ea55963f72f546bc95349ab168222de0ad244ea02299b786a16de8ae10f"
+    },
+    {
+      "path": "logs-4/platform.prev.log",
+      "size": 66261,
+      "sha256": "12b6a49bcdf10ea2005f8df29b6fa8fc81cbde9de068bc8d53c61d73d35538b6"
+    },
+    {
+      "path": "logs-5/last-stage.txt",
+      "size": 95,
+      "sha256": "3b30291426bcb816ec764e65440096fb56a25e809ac1f61e04d947ab715eeb27"
+    },
+    {
+      "path": "logs-5/platform.log",
+      "size": 45800,
+      "sha256": "42ad61072300c2f6cd8f294a9ca7d3bdac7417ac752509ddb2c249a188076905"
+    },
+    {
+      "path": "logs-5/platform.prev.log",
+      "size": 69558,
+      "sha256": "f9df2ea55963f72f546bc95349ab168222de0ad244ea02299b786a16de8ae10f"
+    },
+    {
+      "path": "settings.ini 2",
+      "size": 21,
+      "sha256": "9a017da4410aec1edb9b5deefacacdfe7dd7e7c078b1d8d47fdbfc87a756acdc"
+    },
+    {
+      "path": "settings.ini 3",
+      "size": 21,
+      "sha256": "9a017da4410aec1edb9b5deefacacdfe7dd7e7c078b1d8d47fdbfc87a756acdc"
+    },
+    {
+      "path": "settings.ini 4",
+      "size": 21,
+      "sha256": "9a017da4410aec1edb9b5deefacacdfe7dd7e7c078b1d8d47fdbfc87a756acdc"
+    },
+    {
+      "path": "settings.ini 5",
+      "size": 21,
+      "sha256": "9a017da4410aec1edb9b5deefacacdfe7dd7e7c078b1d8d47fdbfc87a756acdc"
+    }
+  ]
+}

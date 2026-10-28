@@ -1,0 +1,42 @@
+diff --git a/game/src/f_pc/f_pc_method.cpp b/game/src/f_pc/f_pc_method.cpp
+index 355f0e7..57070e1 100644
+--- a/game/src/f_pc/f_pc_method.cpp
++++ b/game/src/f_pc/f_pc_method.cpp
+@@ -5,6 +5,16 @@
+ 
+ #include "f_pc/f_pc_method.h"
+ 
++#if TARGET_PC
++// Some actors declare these methods as returning bool (one byte) and are called here as
++// returning int: on x86-64 the rest of the register is whatever was there, so TRUE can read as
++// something other than 1 and e.g. a delete is retried for ever (d_a_tag_attention's Mthd_Delete
++// at the end of A_mori's MEET_TETORA: the next scene never came). Only the low byte counts.
++#define PC_MTD_BOOL(x) ((x) & 0xFF)
++#else
++#define PC_MTD_BOOL(x) (x)
++#endif
++
+ /* 8003EF00-8003EF38       .text fpcMtd_Method__FPFPv_iPv */
+ int fpcMtd_Method(process_method_func i_methodFunc, void* i_data) {
+     if (i_methodFunc != NULL)
+@@ -15,17 +25,17 @@ int fpcMtd_Method(process_method_func i_methodFunc, void* i_data) {
+ 
+ /* 8003EF38-8003EF5C       .text fpcMtd_Execute__FP20process_method_classPv */
+ BOOL fpcMtd_Execute(process_method_class* i_methods, void* i_data) {
+-    return fpcMtd_Method(i_methods->mpExecuteFunc, i_data);
++    return PC_MTD_BOOL(fpcMtd_Method(i_methods->mpExecuteFunc, i_data));
+ }
+ 
+ /* 8003EF5C-8003EF80       .text fpcMtd_IsDelete__FP20process_method_classPv */
+ BOOL fpcMtd_IsDelete(process_method_class* i_methods, void* i_data) {
+-    return fpcMtd_Method(i_methods->mpIsDeleteFunc, i_data);
++    return PC_MTD_BOOL(fpcMtd_Method(i_methods->mpIsDeleteFunc, i_data));
+ }
+ 
+ /* 8003EF80-8003EFA4       .text fpcMtd_Delete__FP20process_method_classPv */
+ BOOL fpcMtd_Delete(process_method_class* i_methods, void* i_data) {
+-    return fpcMtd_Method(i_methods->mpDeleteFunc, i_data);
++    return PC_MTD_BOOL(fpcMtd_Method(i_methods->mpDeleteFunc, i_data));
+ }
+ 
+ /* 8003EFA4-8003EFC8       .text fpcMtd_Create__FP20process_method_classPv */

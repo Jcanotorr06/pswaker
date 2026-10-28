@@ -1,0 +1,153 @@
+{
+  "source_archive": {
+    "path": "sdk-source/openorbis.zip",
+    "url": "https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain/archive/cd480230b946239f758333ef0dff40d67c5f0c20.zip",
+    "sha256": "b77f9ba633cfe1cc829220321ea808b8990f4a625ccbad75b4f8f7686a9d8161"
+  },
+  "packaged_modules": [
+    {
+      "path": "sce_module/libSceFios2.prx",
+      "bytes": 3200,
+      "sha256": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "archive_member": "OpenOrbis-PS4-Toolchain-cd480230b946239f758333ef0dff40d67c5f0c20/samples/piglet/sce_module/libSceFios2.prx",
+      "matches_sdk_and_pinned_archive": true
+    },
+    {
+      "path": "sce_module/libc.prx",
+      "bytes": 3424,
+      "sha256": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "archive_member": "OpenOrbis-PS4-Toolchain-cd480230b946239f758333ef0dff40d67c5f0c20/samples/piglet/sce_module/libc.prx",
+      "matches_sdk_and_pinned_archive": true
+    },
+    {
+      "path": "sce_sys/about/right.sprx",
+      "bytes": 28800,
+      "sha256": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "archive_member": "OpenOrbis-PS4-Toolchain-cd480230b946239f758333ef0dff40d67c5f0c20/samples/piglet/sce_sys/about/right.sprx",
+      "matches_sdk_and_pinned_archive": true
+    }
+  ],
+  "source_candidates": [
+    {
+      "path": "src/modules/build-and-copy.sh",
+      "bytes": 738,
+      "sha256": "6bcc80588c5bf254f3e3c974fe300c76ff18324be2fad7ed4fda8d3abb1d3c3f"
+    },
+    {
+      "path": "src/modules/libSceFios2/Makefile",
+      "bytes": 2805,
+      "sha256": "f02ea3b990819d41324d75475141e2fc9f2f9b75396cabbc4a28ea52887d5b5a"
+    },
+    {
+      "path": "src/modules/libSceFios2/libSceFios2.sln",
+      "bytes": 1067,
+      "sha256": "c236357bdf32e15db1e341b7b3575cd17dcc0e4beddb6a21bb5376487caec41f"
+    },
+    {
+      "path": "src/modules/libSceFios2/libSceFios2/build.bat",
+      "bytes": 1600,
+      "sha256": "301c4e3689c17998e436b75eebc8592cd9357589f74c5f54cb62a4ec60a521f3"
+    },
+    {
+      "path": "src/modules/libSceFios2/libSceFios2/lib.c",
+      "bytes": 48,
+      "sha256": "cc014d782a8882e910bfbce532ad55db8f0fa73c664faceade9689c627caeeda"
+    },
+    {
+      "path": "src/modules/libSceFios2/libSceFios2/libSceFios2.vcxproj",
+      "bytes": 3868,
+      "sha256": "b630401d96c22cb0c36027636de0c78f9c8960f6909b203046896e934bd5672a"
+    },
+    {
+      "path": "src/modules/libSceFios2/libSceFios2/libSceFios2.vcxproj.filters",
+      "bytes": 1121,
+      "sha256": "e32817667a9d16587fa91e809eb233cd6318b902939a36f1d47c98a0b91b40c1"
+    },
+    {
+      "path": "src/modules/libc/Makefile",
+      "bytes": 2798,
+      "sha256": "a0bd79bdfcb2ceae4cfa31d3c9a25517080170e4ecd7dc38fbcbb091d1102670"
+    },
+    {
+      "path": "src/modules/libc/libc.sln",
+      "bytes": 1046,
+      "sha256": "f5780ee05eb6a1b533d58d8b57a912b2c5f50bc23a2aa2a9ce13c6993aa89c9f"
+    },
+    {
+      "path": "src/modules/libc/libc/build.bat",
+      "bytes": 1600,
+      "sha256": "301c4e3689c17998e436b75eebc8592cd9357589f74c5f54cb62a4ec60a521f3"
+    },
+    {
+      "path": "src/modules/libc/libc/lib.c",
+      "bytes": 43,
+      "sha256": "52e5b73b3ea5f7e157a475fb65319bb6939eec430edd8accd225cede2817d4cc"
+    },
+    {
+      "path": "src/modules/libc/libc/libc.vcxproj",
+      "bytes": 3798,
+      "sha256": "88d43df9087328b86611ed7afa24f8e4e8787a7909e7e623b46e98dbe260a8cf"
+    },
+    {
+      "path": "src/modules/libc/libc/libc.vcxproj.filters",
+      "bytes": 1000,
+      "sha256": "92efc2ad8b2b4618a7fb8284efe03c3dc4dbaa3b37b14947caf139b0f818faa8"
+    },
+    {
+      "path": "src/modules/right/Makefile",
+      "bytes": 1802,
+      "sha256": "ce7ed72b831ee58a53bab3615ef256dc17969ff410af21d3a62a7d717701d954"
+    },
+    {
+      "path": "src/modules/right/README.md",
+      "bytes": 260,
+      "sha256": "0ffd4a667270cb1244802cd87416911f48c89dcfa7a9c7e969d0174075377e91"
+    },
+    {
+      "path": "src/modules/right/logo_preview.png",
+      "bytes": 16951,
+      "sha256": "b6a2a2d7652391f8efe9833f34d5b19b960c3d5344dff92098d2b0721d9bbeba"
+    },
+    {
+      "path": "src/modules/right/right.sln",
+      "bytes": 1074,
+      "sha256": "7888b050c728fb8cb472f1829658b92e660127953e86c0b34139c11abde19242"
+    },
+    {
+      "path": "src/modules/right/right/build.bat",
+      "bytes": 1142,
+      "sha256": "a8735eba021ec500057d9445ed3d9bf750166016fba019ae46068d5e4ac49ba2"
+    },
+    {
+      "path": "src/modules/right/right/lib.c",
+      "bytes": 444,
+      "sha256": "0896a1dcc0932abddc3a88209fe71c7ab4be6223e9bc5b6218b0e80450c44cec"
+    },
+    {
+      "path": "src/modules/right/right/logo_data.h",
+      "bytes": 155401,
+      "sha256": "0d7bfe7d52361360a9d9731942e7afcacf757dfc8a517cff3482780b45c3834d"
+    },
+    {
+      "path": "src/modules/right/right/right.vcxproj",
+      "bytes": 3979,
+      "sha256": "ed14ffd4990ec7230b86c6a77ed77ed52335eee4bb68bd7cde02d4c48360bff7"
+    },
+    {
+      "path": "src/modules/right/right/right.vcxproj.filters",
+      "bytes": 1243,
+      "sha256": "057e1edb4706daafc7383462b1b1691cc1d8739a0022c2b3f9b0fb6ee57728a5"
+    },
+    {
+      "path": "src/modules/right/right/right.version",
+      "bytes": 59,
+      "sha256": "1ecae789ea59a921078a2861aad9566ed7ab89e95a391c27bfd698a612e7508f"
+    },
+    {
+      "path": "src/modules/right/right/string_data.h",
+      "bytes": 238,
+      "sha256": "224834c4ea443787d369dbc1add899522100ab7603fa8ba2df7c4e16e4c3913a"
+    }
+  ],
+  "limits": "Candidate sources exist; matching archive membership alone does not prove binary correspondence or per-file rights"
+}

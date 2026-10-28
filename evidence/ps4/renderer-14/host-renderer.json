@@ -1,0 +1,129 @@
+{
+  "compiler": "Ubuntu clang version 21.1.8 (++20251221032922+2078da43e25a-1~exp1~20251221153059.70)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+  "driver_manifest": "/usr/share/vulkan/icd.d/lvp_icd.json",
+  "driver_manifest_sha256": "70d49f7fd41a7593a4e283543ed4855c139c700e5c1b31792f56e9576ede2398",
+  "device": "llvmpipe (LLVM 20.1.2, 256 bits), Mesa 25.2.8-0ubuntu0.24.04.2",
+  "environment": {
+    "SDL_VIDEODRIVER": "x11",
+    "VK_ICD_FILENAMES": "/usr/share/vulkan/icd.d/lvp_icd.json",
+    "XDG_RUNTIME_DIR": "/tmp"
+  },
+  "command": [
+    "xvfb-run",
+    "-a",
+    "/home/joseph_cano/.cache/pswaker/renderer-14-analysis/host-build/renderer-check"
+  ],
+  "files": [
+    {
+      "path": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022/dawn/src/dawn/native/libwebgpu_dawn.a",
+      "sha256": "42a766ba72d6401a554837dec53559c82286681a93a26043b35650c283c25ee2",
+      "bytes": 297138518
+    },
+    {
+      "path": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022/sdl/libSDL3.a",
+      "sha256": "45bb93c07ed762bf38063f639c53beeb456ecff2064e2459b3abc21f920187e4",
+      "bytes": 6235486
+    },
+    {
+      "path": "/home/joseph_cano/.cache/pswaker/renderer-14-analysis/host-build/renderer-check",
+      "sha256": "cdd57656e720776e543a602143b525584dc9464a87813352fe68c8139174aa76",
+      "bytes": 63770520
+    },
+    {
+      "path": "/home/joseph_cano/.cache/pswaker/renderer-14-analysis/host-build/aurora/libaurora_core.a",
+      "sha256": "4f06315480149ace330908840029d0929211a45355a4762be7f77a85b62f3161",
+      "bytes": 607586
+    },
+    {
+      "path": "/home/joseph_cano/.cache/pswaker/renderer-14-analysis/host-build/aurora/libaurora_gx.a",
+      "sha256": "b72c89d3e542cbc7af83ae29dc7d433f27bf05e78fbc7010a234cc6ff1826328",
+      "bytes": 2389308
+    },
+    {
+      "path": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022/dawn/gen/include/dawn/webgpu_cpp_print.h",
+      "sha256": "687f604fe4d1cab84503a8c19ff30048469b2a8c11eefb13606b66224e2f5ae2",
+      "bytes": 102879
+    },
+    {
+      "path": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022/dawn/gen/include/dawn/webgpu.h",
+      "sha256": "73879efab14c9664069fb94b4601dc4db7ead7884349b5414dfe5c49e7f60880",
+      "bytes": 259004
+    },
+    {
+      "path": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022/dawn/gen/include/dawn/webgpu_cpp.h",
+      "sha256": "466d7f2ab1a9fec4880272e8b35141d1b4651f5507cb30b6a25b5e6b8f0d2abb",
+      "bytes": 548145
+    }
+  ],
+  "source_tree": "/home/joseph_cano/.cache/pswaker/renderer-14-analysis/reconciled",
+  "aurora_final_files": {
+    "cmake/aurora_gx.cmake": "5f9f3138c225bc26e44c273cd3455aad6dd5a1541543dd477a7be246275ae1c9",
+    "include/aurora/aurora.h": "74e0c3480b3797d3478b88370901a9a3de27f52b90309ec8009bf2d182cddb0a",
+    "include/dolphin/gx/GXAurora.h": "bc7c4dbe6374035664019aae722c2223134ce93e0f7d4b63897584eda41bf349",
+    "lib/aurora.cpp": "e821697ff6af2a1c68e1c626957b6d7c522f6a473854b91c5ded2ecc75bd1127",
+    "lib/dolphin/dvd/dvd.cpp": "171e9583207a5560eec895bf32a0b4df512b28768106d7ab114eaf3dc043a79f",
+    "lib/dolphin/gx/GXAurora.cpp": "4281614b626e8cb8dfa67cbdabc6eb1b266a73d130ac2a35460de4d4b176199e",
+    "lib/dolphin/gx/GXFrameBuffer.cpp": "8c710c6776098e637dae82e7d8a949acff3f060cdfeede6d7804755fd228dc77",
+    "lib/dolphin/gx/GXLighting.cpp": "c67e0c26461b6cae5cbd91787c0def6a20863b93c9aaaf125618feaec22806c0",
+    "lib/dolphin/os/OSTime.cpp": "807396f34f2abce24146e9b024bbf47f77559fd40d0e4dbc882a8a859ca2a84b",
+    "lib/gfx/census.cpp": "a4e95d41ce577ab19bceb32364eff360b47cd40abd9549581548742f55efc904",
+    "lib/gfx/census.hpp": "fa57757ae6ed4d2381862082749c3dcf0db7018bd96fa063b91ccb7fb786faa0",
+    "lib/gfx/encoding.cpp": "d17f329e6c4deab48c219fe9ba2bbc42916118b9e8a9a19160eed9d74fb80b5a",
+    "lib/gfx/frame.cpp": "7e0623792b68298b6db5e3f6390c9cffbafba244e71e4bca78a5e735f83765d5",
+    "lib/gfx/frame_packet.hpp": "bb739c1989f882b83f4e88109b1659ad3c8da08888a20f4592f0ce0547862a77",
+    "lib/gfx/pipeline_cache.cpp": "ee9ac293287ce39ec659fa5c31ef6fd795e77dd568637acc8f6c870fb5dac51d",
+    "lib/gfx/recording.cpp": "58f6fb07b2bcd16269c03cc8dc456c7c5b5024b0d8ef01ade32d7867be1446a7",
+    "lib/gfx/recording.hpp": "948edde135da283b8f4985e1a17bf123acdc5a23cb1410b62e903bf16104e22b",
+    "lib/gx/command_processor.cpp": "91164af5f1e26698dc9b1fb0485c287320758b3b21d5a245d3965f3b2f9edd8d",
+    "lib/gx/gx.cpp": "4c00ae29b6a8c50389a9fd51a34b2eb35173601ddff898470ae3f50a2ca3450a",
+    "lib/gx/gx.hpp": "1798f68c8de3b0f1205629053992667e834f79bd9143756ad0808523a4d0943e",
+    "lib/gx/shader.cpp": "035be30e91973e70dfafc6478e779d334155411383b9077975a6b58f80c200b5",
+    "lib/gx/shader_info.cpp": "7e08e718a9840616108d16a9beb94cf0880c14184dba1c35c4a816ba560fb569",
+    "lib/gx/texture.cpp": "d85f4b1c60f7bd9e57fe2547d728db36c348f315fb6f1b4e5ab5bea8fcd9bb18",
+    "lib/internal.hpp": "a80156a692ec7680c39cab6c32147f1b3a5ec655d2572f31c9dc32d7b49481bc",
+    "lib/sqlite_utils.hpp": "906e3815901fdb7dc53d388495d4cdb2885869c2bade6e4aa0cfa01e020b87f3",
+    "lib/webgpu/gpu_cache.cpp": "c1cc74d13e5857d65724faf7e12a9cb90498e382e4b332bfd32872f57779ec3e",
+    "lib/window.cpp": "a318f053e468fbd19ebf9928aec9081e45d9ce136895dd4af366902260475e44",
+    "lib/window.hpp": "143ae173dae2d39792f830b275489edd24a66a63c14c0c3b2abe402690baa5d4"
+  },
+  "host_zlib_png_sources": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022/repro/_deps",
+  "cmake_cache": "/home/joseph_cano/.cache/pswaker/renderer-14-analysis/host-build/CMakeCache.txt",
+  "runs": [
+    {
+      "run": "cold",
+      "exit": 0,
+      "log": "host-cold.log",
+      "cache_before": "absent; host harness creates directory"
+    },
+    {
+      "run": "warm",
+      "exit": 0,
+      "log": "host-warm.log",
+      "cache_before": "retained from cold"
+    },
+    {
+      "run": "corrupt",
+      "exit": 0,
+      "log": "host-corrupt.log",
+      "cache_before": "both .db files replaced with 45-byte controlled invalid data; originals preserved locally"
+    }
+  ],
+  "limitations": [
+    "Host Dawn and SDL3 archives reused from the explicitly identified earlier host build; this is not an independent clean-build claim.",
+    "Host-only zlib/libpng source trees reused; their tree hashes and CMake cache are retained locally.",
+    "Host Vulkan llvmpipe results do not validate PS4 static RADV/VideoOut or game rendering.",
+    "Target diagnostic source is compiled independently against its own freshly generated Dawn headers."
+  ],
+  "zlib_source_tree": {
+    "path": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022/repro/_deps/zlib-src",
+    "sha256": "a3db15d743108c232577283a1c626824b3a077c62d62d7ef5c35e3fd7d3e3bd5",
+    "files": 355,
+    "method": "sorted relative UTF-8 name + NUL + bytes; excludes .git"
+  },
+  "png_source_tree": {
+    "path": "/home/joseph_cano/.cache/pswaker/aurora-host-20261022/repro/_deps/png-src",
+    "sha256": "9765041f8e824cddfe1c89488828166dd3088574291fe26dc8e26f909cc9e4c6",
+    "files": 610,
+    "method": "sorted relative UTF-8 name + NUL + bytes; excludes .git"
+  }
+}

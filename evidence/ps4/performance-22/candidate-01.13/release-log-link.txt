@@ -1,0 +1,59 @@
+
+/home/joseph_cano/.cache/pswaker/game-22-logfile/build/switchwaker:	file format elf64-x86-64
+
+Disassembly of section .text:
+
+00000000007ea280 <say>:
+  7ea280: 55                           	pushq	%rbp
+  7ea281: 48 89 e5                     	movq	%rsp, %rbp
+  7ea284: 53                           	pushq	%rbx
+  7ea285: 48 81 ec c8 04 00 00         	subq	$0x4c8, %rsp            # imm = 0x4C8
+  7ea28c: 49 89 fa                     	movq	%rdi, %r10
+  7ea28f: 84 c0                        	testb	%al, %al
+  7ea291: 48 89 b5 38 ff ff ff         	movq	%rsi, -0xc8(%rbp)
+  7ea298: 48 89 95 40 ff ff ff         	movq	%rdx, -0xc0(%rbp)
+  7ea29f: 48 89 8d 48 ff ff ff         	movq	%rcx, -0xb8(%rbp)
+  7ea2a6: 4c 89 85 50 ff ff ff         	movq	%r8, -0xb0(%rbp)
+  7ea2ad: 4c 89 8d 58 ff ff ff         	movq	%r9, -0xa8(%rbp)
+  7ea2b4: 74 2e                        	je	0x7ea2e4 <say+0x64>
+  7ea2b6: c5 f8 29 85 60 ff ff ff      	vmovaps	%xmm0, -0xa0(%rbp)
+  7ea2be: c5 f8 29 8d 70 ff ff ff      	vmovaps	%xmm1, -0x90(%rbp)
+  7ea2c6: c5 f8 29 55 80               	vmovaps	%xmm2, -0x80(%rbp)
+  7ea2cb: c5 f8 29 5d 90               	vmovaps	%xmm3, -0x70(%rbp)
+  7ea2d0: c5 f8 29 65 a0               	vmovaps	%xmm4, -0x60(%rbp)
+  7ea2d5: c5 f8 29 6d b0               	vmovaps	%xmm5, -0x50(%rbp)
+  7ea2da: c5 f8 29 75 c0               	vmovaps	%xmm6, -0x40(%rbp)
+  7ea2df: c5 f8 29 7d d0               	vmovaps	%xmm7, -0x30(%rbp)
+  7ea2e4: 48 8d 85 30 ff ff ff         	leaq	-0xd0(%rbp), %rax
+  7ea2eb: 48 8d 4d 10                  	leaq	0x10(%rbp), %rcx
+  7ea2ef: 48 8d bd 30 fb ff ff         	leaq	-0x4d0(%rbp), %rdi
+  7ea2f6: be ff 03 00 00               	movl	$0x3ff, %esi            # imm = 0x3FF
+  7ea2fb: 4c 89 d2                     	movq	%r10, %rdx
+  7ea2fe: 48 89 45 f0                  	movq	%rax, -0x10(%rbp)
+  7ea302: 48 89 4d e8                  	movq	%rcx, -0x18(%rbp)
+  7ea306: 48 b8 08 00 00 00 30 00 00 00	movabsq	$0x3000000008, %rax     # imm = 0x3000000008
+  7ea310: 48 8d 4d e0                  	leaq	-0x20(%rbp), %rcx
+  7ea314: 48 89 45 e0                  	movq	%rax, -0x20(%rbp)
+  7ea318: e8 d3 b3 3c 01               	callq	0x1bb56f0 <vsnprintf>
+  7ea31d: 85 c0                        	testl	%eax, %eax
+  7ea31f: 79 0a                        	jns	0x7ea32b <say+0xab>
+  7ea321: 48 81 c4 c8 04 00 00         	addq	$0x4c8, %rsp            # imm = 0x4C8
+  7ea328: 5b                           	popq	%rbx
+  7ea329: 5d                           	popq	%rbp
+  7ea32a: c3                           	retq
+  7ea32b: 3d fe 03 00 00               	cmpl	$0x3fe, %eax            # imm = 0x3FE
+  7ea330: b9 fe 03 00 00               	movl	$0x3fe, %ecx            # imm = 0x3FE
+  7ea335: 48 8d bd 30 fb ff ff         	leaq	-0x4d0(%rbp), %rdi
+  7ea33c: 0f 42 c8                     	cmovbl	%eax, %ecx
+  7ea33f: 48 8d 05 fa 9d 92 02         	leaq	0x2929dfa(%rip), %rax   # 0x3114140 <stderr>
+  7ea346: 66 c7 84 0d 30 fb ff ff 0a 00	movw	$0xa, -0x4d0(%rbp,%rcx)
+  7ea350: 48 8b 18                     	movq	(%rax), %rbx
+  7ea353: 48 89 de                     	movq	%rbx, %rsi
+  7ea356: e8 09 7c 3c 01               	callq	0x1bb1f64 <fputs_unlocked>
+  7ea35b: 48 89 df                     	movq	%rbx, %rdi
+  7ea35e: e8 2d 74 3c 01               	callq	0x1bb1790 <fflush_unlocked>
+  7ea363: 48 81 c4 c8 04 00 00         	addq	$0x4c8, %rsp            # imm = 0x4C8
+  7ea36a: 5b                           	popq	%rbx
+  7ea36b: 5d                           	popq	%rbp
+  7ea36c: c3                           	retq
+  7ea36d: 0f 1f 00                     	nopl	(%rax)

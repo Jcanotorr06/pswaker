@@ -1,0 +1,47 @@
+--- a/aurora/lib/card/FileIO.cpp
++++ b/aurora/lib/card/FileIO.cpp
+@@ -6,10 +6,17 @@
+ #include <utility>
+ 
+ #include "../io.hpp"
++#if defined(__ORBIS__)
++extern "C" const char* pswaker_gci_path(const char* path);
++#endif
+ 
+ namespace aurora::card {
+ 
+ FileIO::FileIO(const std::filesystem::path& filename, bool truncate) : m_path(filename) {
++#if defined(__ORBIS__)
++  // Only the game card worker's explicit save transaction redirects this file.
++  m_path = pswaker_gci_path(io::fs_path_to_string(filename).c_str());
++#endif
+   if (m_path.empty()) {
+     return;
+   }
+--- a/aurora/lib/card/CardGciFolder.cpp
++++ b/aurora/lib/card/CardGciFolder.cpp
+@@ -11,6 +11,9 @@
+ #include "Directory.hpp"
+ #include "FileIO.hpp"
+ #include "../internal.hpp"
++#if defined(__ORBIS__)
++extern "C" const char* pswaker_gci_path(const char* path);
++#endif
+ 
+ namespace aurora::card {
+ namespace {
+@@ -202,7 +205,13 @@
+   File diskHeader = header;
+   diskHeader.swapEndian();
+   std::memcpy(fileBuf.data(), &diskHeader, sizeof(File));
+-  if (!io::write_file_atomic(m_folderPath / diskName, fileBuf)) {
++  auto target = m_folderPath / diskName;
++#if defined(__ORBIS__)
++  // A first save initializes the staged GCI, leaving the primary absent until
++  // the entire in-game store, metadata and readback validation have succeeded.
++  target = pswaker_gci_path(io::fs_path_to_string(target).c_str());
++#endif
++  if (!io::write_file_atomic(target, fileBuf)) {
+     return ECardResult::IOERROR;
+   }
+ 

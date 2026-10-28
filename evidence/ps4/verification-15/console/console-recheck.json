@@ -1,0 +1,130 @@
+{
+  "scope": "Recheck of original returned evidence; no new console runs or owner claims",
+  "original_files_verified": 47,
+  "original_inventory_sha256": "434ddebabe4f13f1fb4fabbc489c12fe0492c14617fe487d6069afc9c0d2b86d",
+  "installed_pkg_sha256": "edeaebf3a68413c1f3a23a8224b0125240e6419710b9247b2132ccfccd5d6522",
+  "build_id": "60975dcf4480aa914369",
+  "runs": [
+    {
+      "folder": "run-1-cold",
+      "launch": 13,
+      "embedded_manifest_matches_candidate": true,
+      "append_history_preserved": true,
+      "exports": [
+        {
+          "file": "diagnostic.log",
+          "original_byte_range": [
+            2400609,
+            2778841
+          ],
+          "sha256": "7e7adafac5d8da7078cc62c55a5f9cb6f100ab3b8f207df3fc738e2f85934524",
+          "bytes": 378232
+        },
+        {
+          "file": "runtime-preflight.log",
+          "original_byte_range": [
+            5745,
+            6223
+          ],
+          "sha256": "bfb9e744061ddae329836ad4beb20a44b0b9242b1a03e7b123dc2430c153b5c9",
+          "bytes": 478
+        },
+        {
+          "file": "preflight-state.txt",
+          "sha256": "1a252402972f6057fa53cc172b52b9ffca698e18311facd0f3b06ecaaef79e17",
+          "bytes": 3
+        },
+        {
+          "file": "platform-tail.log",
+          "sha256": "dc642bfe50b2ef53544c76350beb8f9991ec838246f93eff6d95e48eb453debd",
+          "bytes": 2279,
+          "original_byte_range": [
+            24695,
+            26974
+          ]
+        }
+      ]
+    },
+    {
+      "folder": "run-2-warm",
+      "launch": 14,
+      "embedded_manifest_matches_candidate": true,
+      "append_history_preserved": true,
+      "exports": [
+        {
+          "file": "diagnostic.log",
+          "original_byte_range": [
+            2778841,
+            3156937
+          ],
+          "sha256": "52262bfe196026ec7e5789192b92b337c57570d79b00097759e2023a76b61444",
+          "bytes": 378096
+        },
+        {
+          "file": "runtime-preflight.log",
+          "original_byte_range": [
+            6223,
+            6701
+          ],
+          "sha256": "e99ef18dd1958cba756052ce1d06ecaccef8596343837d5248ab63243016d848",
+          "bytes": 478
+        },
+        {
+          "file": "preflight-state.txt",
+          "sha256": "9a92adbc0cee38ef658c71ce1b1bf8c65668f166bfb213644c895ccb1ad07a25",
+          "bytes": 3
+        },
+        {
+          "file": "platform-tail.log",
+          "sha256": "59e3776161af8cc7f10c15d55541d0e279da0da5eacaa05e09f9c5d5c77dcc05",
+          "bytes": 2279,
+          "original_byte_range": [
+            24227,
+            26506
+          ]
+        }
+      ]
+    },
+    {
+      "folder": "run-3-warm",
+      "launch": 15,
+      "embedded_manifest_matches_candidate": true,
+      "append_history_preserved": true,
+      "exports": [
+        {
+          "file": "diagnostic.log",
+          "original_byte_range": [
+            3156937,
+            3535033
+          ],
+          "sha256": "4576453c77e5b98fa75bbdee80be500300ec19a47ff88cf4c4006829556fcdcd",
+          "bytes": 378096
+        },
+        {
+          "file": "runtime-preflight.log",
+          "original_byte_range": [
+            6701,
+            7179
+          ],
+          "sha256": "dc4d374c72dc42d0526784b5354068001831378dcd53fb764805c99d864d3a21",
+          "bytes": 478
+        },
+        {
+          "file": "preflight-state.txt",
+          "sha256": "238903180cc104ec2c5d8b3f20c5bc61b389ec0a967df8cc208cdc7cd454174f",
+          "bytes": 3
+        },
+        {
+          "file": "platform-tail.log",
+          "sha256": "1774a6bfc6458f79895e73d45b3026fcd92c676c956bf70a803a5f0086f544f1",
+          "bytes": 2279,
+          "original_byte_range": [
+            24228,
+            26507
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Original failures/history, backups and cache databases remain in the 47-file private inventory. Shared blocks select only the reviewed final launch from each append log. Resource trends and visible/audible/controller observations require the original human review; parsing does not supply them."
+}

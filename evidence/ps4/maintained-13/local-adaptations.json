@@ -1,0 +1,32 @@
+[
+  {
+    "path": "refs/DolphinPS4/toolchain/env.sh",
+    "patch": "refs-DolphinPS4-toolchain-env.sh.patch",
+    "patch_sha256": "3756e3c66dd88458b2b1097e0730b237b57f1696843695d25f46ae122694c7cd",
+    "prepared_file_sha256": "a7f21817497ee8d03e31932045570551216b94ef70a2ae74c817220dc1300b67"
+  },
+  {
+    "path": "refs/DolphinPS4/port/ps4_dlmalloc.c",
+    "patch": "refs-DolphinPS4-port-ps4_dlmalloc.c.patch",
+    "patch_sha256": "db428601ac3971359a85da85847abce3ef9d473aeaece7c7922089d52e627895",
+    "prepared_file_sha256": "b00567c9122bef620319d4c6f6666583292945825b56a3e54bca56a2a4b9c2d5"
+  },
+  {
+    "path": "refs/DolphinPS4/port/ps4_runtime.cpp",
+    "patch": "refs-DolphinPS4-port-ps4_runtime.cpp.patch",
+    "patch_sha256": "91464b6565fdff1cfcf1e0fc7946ce5a6e3b92c85fea16d647a23e91f83c18cb",
+    "prepared_file_sha256": "b5d924dfe3ca22a2abd1555fa4f4df1807b5d3420a011c05091a9e727528656c"
+  },
+  {
+    "path": "src/native-platform/ps4/native/platform.c",
+    "patch": "src-native-platform-ps4-native-platform.c.patch",
+    "patch_sha256": "be02b7402a4b0b12bf29dbfd2ffe548a70c6db857c175739f40f99647bb48d12",
+    "prepared_file_sha256": "6d790349c3655f42f48e3ea15005a6e2683ec23faa82d7f965ecd6bb5f889d05"
+  },
+  {
+    "path": "refs/DolphinPS4/scripts/make-pkg.sh",
+    "patch": "refs-DolphinPS4-scripts-make-pkg.sh.patch",
+    "patch_sha256": "fbb0393bc1fbca2e02374ac202bbc6681c5a33502d12e1f63c3e5150f9bc8b94",
+    "prepared_file_sha256": "2de1b39301348e94850ac311b0b4284f59aab78ee530594e9d91aa241c53ccc0"
+  }
+]

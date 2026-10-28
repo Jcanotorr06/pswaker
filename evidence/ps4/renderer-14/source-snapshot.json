@@ -1,0 +1,410 @@
+{
+  "base_commit": "9a7fc54aa775c8c0d91de672a40691ca94c6697f",
+  "source_archive": "/home/joseph_cano/.cache/pswaker/maintained-source-14.tar",
+  "source_archive_sha256": "5adbf0b576d7ac4c84308618d79c61a3348cddbbdd6d8eab0b1003ea29304967",
+  "build_root": "/home/joseph_cano/.cache/pswaker/maintained-14",
+  "frozen_source": "/home/joseph_cano/.cache/pswaker/maintained-source-14",
+  "cache_use": "Verified downloads only; all target libraries rebuilt",
+  "workspace_matches_frozen_inputs": true,
+  "verified_maintained_files": 99,
+  "expected_build_id": "60975dcf4480aa914369",
+  "maintained_inputs": [
+    {
+      "path": "LICENSE",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "adapt-platform.py",
+      "sha256": "47c496d732adb7915e9732b6a88dfbdf2da14c75a81b68c0df50564c65d5bfe5"
+    },
+    {
+      "path": "apply-patches.py",
+      "sha256": "d45a19f519d170473d244648c5eec17d150d2af4204d05a74716bb24720f9a76"
+    },
+    {
+      "path": "audit-inputs.py",
+      "sha256": "88059173c466b6852052301bd97bae1164d881981ba2f8608d9caf945aace8cd"
+    },
+    {
+      "path": "build-graphics.sh",
+      "sha256": "2bed91c0f162898b8b5c6dc9d72f4c5f3828799d03be7eddd15685896ac95bae"
+    },
+    {
+      "path": "build-probe.sh",
+      "sha256": "13d751abc804c0c4ab9337ea3d50b8e784646d7ec0968db76c848d1f515b8ffc"
+    },
+    {
+      "path": "build-runtime.sh",
+      "sha256": "f24b0a72df1687965c28257cc0f516770f17dfd3136772a0f1d392174bddd3ef"
+    },
+    {
+      "path": "build-sdk-support.sh",
+      "sha256": "4d60bf25e7bbc49edd075f5586bbe4cad56e4687a85144e32eb1edf743c69e79"
+    },
+    {
+      "path": "capture-inputs.py",
+      "sha256": "780aac1969c462e66b085ec41ab31825a431264cb69893805119f5ba041e9cb6"
+    },
+    {
+      "path": "clean-build.sh",
+      "sha256": "665374782ae4146a11eb859fd5db0c2842f74bdfd758293a6577be3419fe4ce5"
+    },
+    {
+      "path": "dependencies.lock.json",
+      "sha256": "2bd612ee963cc64ecc74daf5688b7a1ec9e750625591fe55ef2cb943a56e2857"
+    },
+    {
+      "path": "host-renderer/CMakeLists.txt",
+      "sha256": "defbec0e82ed8e416d7ba6d3e2f905ae0e8b055576d9434913c54bb527b083f4"
+    },
+    {
+      "path": "host-renderer/main.cpp",
+      "sha256": "12dd481329a566e827ceef1da4caefcf89a8e6dd7345a5c1ce38d3b3a2ad08e5"
+    },
+    {
+      "path": "host.lock.json",
+      "sha256": "acf06d35104d607ff2399df03be786df616eaec748031786cae60880b00e3d3c"
+    },
+    {
+      "path": "inputs.py",
+      "sha256": "50305b2cf327ef27b9ea89ac8128a5544eb40ff5be14909ac803c5c7d774e5e2"
+    },
+    {
+      "path": "inspect-artifacts.py",
+      "sha256": "ac3896a856a334f8ac4170cb012e08d8fc7e19cf15e124067686b0a8b469dc66"
+    },
+    {
+      "path": "install-host.sh",
+      "sha256": "bc8403cd3aaf378880e343fb2af72482c745377ac2d0bc27a0987b6bfe94175f"
+    },
+    {
+      "path": "lock-sdk.py",
+      "sha256": "d6b6626a55307a863521697649294ef6a8710299240db5fbdc79032906760834"
+    },
+    {
+      "path": "package-probe.py",
+      "sha256": "95c480a4b9ba2ea1a365f3e5b7ae96457aead66327b30d444b58f3cc41a2e86d"
+    },
+    {
+      "path": "patch-series.json",
+      "sha256": "adedf6230dd1437c6ea68c8d62bfa2089ae823d14ebbc23b6665ffd42e261833"
+    },
+    {
+      "path": "patches/wind-waker/0001-alpha-stage-channel-compares.patch",
+      "sha256": "47168bacc5a24702b7dc4a62a8747345a3caee3a79448549c77010cc80f98ac3"
+    },
+    {
+      "path": "patches/wind-waker/0002-srtg-texgen-lit-colour.patch",
+      "sha256": "8ac11872712f63c0b9fb44a709349e57fee82ed694c22f012fa3bbdae49f1dc5"
+    },
+    {
+      "path": "patches/wind-waker/0003-quads-three-vertex-triangle.patch",
+      "sha256": "83af6a653332a0b0e639579f24404aebf90fca037b644ec03e6300f9447cebd4"
+    },
+    {
+      "path": "patches/wind-waker/0004-light-dist-attn-zero-brightness.patch",
+      "sha256": "dd28328ef306ac8e031e92b71eb8412b8c6cdbbe2f07015d0646b7f65a50c32b"
+    },
+    {
+      "path": "patches/wind-waker/0005-blocking-pipelines-option.patch",
+      "sha256": "ad1f0c26ef1422eea0554e292963306499580c08c45a6d9560a2c939d799793f"
+    },
+    {
+      "path": "patches/wind-waker/0006-fit-aspect-option.patch",
+      "sha256": "353b6746d38cea99ac3a06e38d2c1447f67838f918964f51e0a94b1fd13f2680"
+    },
+    {
+      "path": "patches/wind-waker/0007-sqlite-cache-recovery.patch",
+      "sha256": "f459255d2d5dba60c76c407d15e2a75dd53dec95ed65b39a461ce8358d189895"
+    },
+    {
+      "path": "patches/wind-waker/0008-draw-census-and-debug-markers.patch",
+      "sha256": "4a8ad7badd4940fe2d1657ca776212426de2dc128fe87c97e9f714dde902ade3"
+    },
+    {
+      "path": "patches/wind-waker/0009-efb-content-scale.patch",
+      "sha256": "31a1594086cd1c7a4d206fa047b5f3d195e6f0033a25f48153a00d38fd3bf845"
+    },
+    {
+      "path": "patches/wind-waker/0012-texture-object-cache-image-check.patch",
+      "sha256": "2ca9ff9aff89f3d93497a7e7bc844fc7b7d95861214b68560668d60ce709a8e0"
+    },
+    {
+      "path": "patches/wind-waker/0013-linux-local-time-without-tzdb.patch",
+      "sha256": "2a22383f6cb06011bdb8f6f2f65801f07bc33baaafb1889b7a84ebce1458f82a"
+    },
+    {
+      "path": "patches/wind-waker/0014-game-name-nul-terminated.patch",
+      "sha256": "88cb0d00dd2b7aaebb699296e97d9be3923d0cae934f829a0b6e12b85d902a20"
+    },
+    {
+      "path": "patches/wind-waker/0015-dvd-queue-malloc.patch",
+      "sha256": "8990778508483b6d490edea0375d4ff382a1e95c53fb1a068439934411036bf4"
+    },
+    {
+      "path": "patches/wind-waker/0016-pipeline-cache-load-abort-return.patch",
+      "sha256": "9f636141caf2e214e28c74c88a38f89e596784d98c7ac133b51472800f7b3328"
+    },
+    {
+      "path": "patches/wind-waker/0017-copy-texture-lookup.patch",
+      "sha256": "15d5c99e65cb1f41d2bd84419aa536cfd957d8a524e308ebda3f4b908ca5224e"
+    },
+    {
+      "path": "prepare-graphics.sh",
+      "sha256": "d9b8ccc249e4cd3100c370473ef60118e9359775d9802af9503c8db062a1823c"
+    },
+    {
+      "path": "prepare-sdk-sources.py",
+      "sha256": "af27e85e5ea098624a35d6b7ea3b8fe848aff5a169d2e3807f5b7c23e956c842"
+    },
+    {
+      "path": "prepare-sources.py",
+      "sha256": "1b76872f23a88dbaaed649ea359ab0aa7f12a5fad36e4046d657cf15b647e8fb"
+    },
+    {
+      "path": "probe/CMakeLists.txt",
+      "sha256": "abaf43dae240932d81e813bafb7ed9a97bc3079120fdb487dd4b3ff7af87f31b"
+    },
+    {
+      "path": "probe/gx-scene.hpp",
+      "sha256": "5fb8ff65c9c0c1760a4edf2483ab7fa6992dd4fcbf402afa330b35e164a1cba0"
+    },
+    {
+      "path": "probe/gx-setup.hpp",
+      "sha256": "c40bfed064e85f875a6274b7b0e79c5175b7d8a65df27b98a79a97aee4b5c441"
+    },
+    {
+      "path": "probe/main.cpp",
+      "sha256": "402fe195e6324e1977a982bc1f9c2930833d0b889b0a56ffa755372c0716f293"
+    },
+    {
+      "path": "probe/renderer-checks.hpp",
+      "sha256": "212dfc24c17861f2de4d56eb15627f70d7beb7bf667a593c2c50007f31a6d586"
+    },
+    {
+      "path": "probe/sdl-video.hpp",
+      "sha256": "0dd199a85078b44284e1c8785690461fc76583332e1a3fc1d7fcbd523a00f0df"
+    },
+    {
+      "path": "probe/white-readback.hpp",
+      "sha256": "510321ebaa5c875ffa2a6f24c31288506d05257bb8b79237473bef4b8fe739fa"
+    },
+    {
+      "path": "provenance/carry-forward.json",
+      "sha256": "34109da51bcfea0d7c27158bcdbed25cc4d5a562b516a010aa123df90ef715b5"
+    },
+    {
+      "path": "provenance/nuget/PkgTool.Core.packages.lock.json",
+      "sha256": "2cb2ba202d3aa804d390815fddb0b4b4acadab69cf985e99730666d3a471d706"
+    },
+    {
+      "path": "provenance/nuget/packages.lock.json",
+      "sha256": "e9d7dcf10be9484ef697cc334fc420be9b71aa6221d89202cd2c5030a3b93f44"
+    },
+    {
+      "path": "provenance/pacbrew-portlibs/bzip2.PKGBUILD",
+      "sha256": "cda7c8f4150959c8c4c8d5883b91c62d027006bc152960625ee8f282c2d832f0"
+    },
+    {
+      "path": "provenance/pacbrew-portlibs/libpng.PKGBUILD",
+      "sha256": "f0e52991eebd84460ff95a41a8bbdda43752af0feb759259fbd4ef8ee7f7cbf6"
+    },
+    {
+      "path": "provenance/pacbrew-portlibs/zlib.PKGBUILD",
+      "sha256": "f5f22d1f2eaca7b35c0233b6b154f09e029c465ed2c2baa9ce700f235673a539"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/clang-001-ps4.patch",
+      "sha256": "811cad73d4b1dd7d0989be8b60b84c64317712ace4d8e51a01b673322f48fd83"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/clang.PKGBUILD",
+      "sha256": "993788c97c09a5aabd2107c8fd1178b9a2d48682fac7dfd698c96cc3514240c9"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/create-fself.PKGBUILD",
+      "sha256": "47633f8a00e03d96b7e8c61b7578d0b16ea3741c94b94981a119e10e4c82020d"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/create-gp4.PKGBUILD",
+      "sha256": "3b8d3433aeb7f3e627b1d6d9db8212530ab84efa962568ebd350d21410469ee6"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/headers.PKGBUILD",
+      "sha256": "2f688c71f5ff84f761e3c80ba479dc494c8c91de24aa7e2075ae03c584875c56"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/libcxx-001-ps4.patch",
+      "sha256": "975aa42e4cd76a55e377ef63ef50781f7fd874af1872a4aa6f2320e5ff2d55d3"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/libcxx.PKGBUILD",
+      "sha256": "69c86bc4495f4cc61dbf3c8947a1e83187821c800100661df135866011cbb60c"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/musl.PKGBUILD",
+      "sha256": "bcddb4de41320598509e3c59300e09f592c6feea335ca88f60bdfdd7daa6f8aa"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/orbis-lib-gen.PKGBUILD",
+      "sha256": "5f67480ec03876f10af26183dca0eada534a3bc9cf7e27a429dd8c64550ef52e"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/pkg-config-pkg-config.in",
+      "sha256": "662a824a733d42e95394975f2e690b8fb06502ca39a958c4c9167930b5a87c21"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/pkg-config.PKGBUILD",
+      "sha256": "a8904dac8c2a02ce9011d5f2ae8b7b5378785997046c0707eaf3071e5f80aa24"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/pkgtools.PKGBUILD",
+      "sha256": "b0e2538be1b7fa025b8b397981f6bbabadf46b0de78f805a123ee047007f45f7"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/readoelf.PKGBUILD",
+      "sha256": "e257ff393fffd83f8008c6d16b4722d69471b3536391bfdaa9f164c3c347ddb9"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/vars-openorbis-cmake",
+      "sha256": "0a32ce4e9a41e91df50e036f9f22b2aafac2778ae8286b8b7fc84fafb38aa38a"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/vars-ps4.cmake",
+      "sha256": "2b74e57e47fcb4aaead0006d0c1a91f1222002cd572b0e6b0e4ca6d9e0e86dc4"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/vars-ps4vars.sh",
+      "sha256": "6557113238446b3f2d05ff2e4b6cc790cfdece0d0682b42b8334663c5b1be3bb"
+    },
+    {
+      "path": "provenance/pacbrew-toolchain/vars.PKGBUILD",
+      "sha256": "fafbd405011fe5a05c9888c23a71096d6253d14509b7223c876dc0e29fe8a359"
+    },
+    {
+      "path": "provenance/sdk-recipes.json",
+      "sha256": "a0793c65ac272eeb9151444a1082789dd58d0449ca51909df026b0f199497e42"
+    },
+    {
+      "path": "provenance/wind-waker/0001-alpha-stage-channel-compares.patch",
+      "sha256": "749b79597847430d324c1c489ff087b97585c4ca6c565c7dca967bf04f73b8b2"
+    },
+    {
+      "path": "provenance/wind-waker/0002-srtg-texgen-lit-colour.patch",
+      "sha256": "064a69fa71471137d44fee8e7e3a628ac500a30c6ee76ee174553566f7110814"
+    },
+    {
+      "path": "provenance/wind-waker/0003-quads-three-vertex-triangle.patch",
+      "sha256": "caa096292d80c36c11626e42e71f175f136ae969f94921ced30d36aeed8bd41a"
+    },
+    {
+      "path": "provenance/wind-waker/0004-light-dist-attn-zero-brightness.patch",
+      "sha256": "0a4c4bc69708583bdaf59a32310088d7e56cf998384f2c5271666243229f981b"
+    },
+    {
+      "path": "provenance/wind-waker/0005-blocking-pipelines-option.patch",
+      "sha256": "9953d3ebc835233696df8f46619cad0fc53ac35081fd3d6118577a355a6fda0e"
+    },
+    {
+      "path": "provenance/wind-waker/0006-fit-aspect-option.patch",
+      "sha256": "854fd94e992a28a9308d1440c5ba9a52469c71979f54322dbe1007bd9994a129"
+    },
+    {
+      "path": "provenance/wind-waker/0007-sqlite-cache-recovery.patch",
+      "sha256": "57447f34bc63751a6c8709eb6565edfbe930eb4e02d5781e861f1256321e3b30"
+    },
+    {
+      "path": "provenance/wind-waker/0008-draw-census-and-debug-markers.patch",
+      "sha256": "5bd873815c16c8267ba99935914a8486014d2da843cb6f300649c398d50cdffc"
+    },
+    {
+      "path": "provenance/wind-waker/0009-efb-content-scale.patch",
+      "sha256": "21b25946ef1744567da552a36190167f64d638f14b0f08ace2c45546b95fcc18"
+    },
+    {
+      "path": "provenance/wind-waker/0010-texture-replacement-streaming.patch",
+      "sha256": "686b400185dc8e6ecb3430ee897bd748202b71bbb9259ad8de535d0313426896"
+    },
+    {
+      "path": "provenance/wind-waker/0011-texture-replacement-smooth-publish.patch",
+      "sha256": "764c47415d858f4b5971b40be2e4830a7c29346cb38ceecd83a7de1779d08148"
+    },
+    {
+      "path": "provenance/wind-waker/0012-texture-object-cache-image-check.patch",
+      "sha256": "643cc3eec438126a68c15b99d19d9429e7f78cc952d91397c379a76cd7337257"
+    },
+    {
+      "path": "provenance/wind-waker/0013-linux-local-time-without-tzdb.patch",
+      "sha256": "d4f758eaed1305a37650eae470e3fff0f1757e99d3eb5b4bebebd124612e8028"
+    },
+    {
+      "path": "provenance/wind-waker/0014-game-name-nul-terminated.patch",
+      "sha256": "7e9f906d7cc3843f88901d82799877b9a10b434f760242555ab3098551bfa68c"
+    },
+    {
+      "path": "provenance/wind-waker/0015-dvd-queue-malloc.patch",
+      "sha256": "42ff801cc65c1e8b5f694e864c782512f3cc3dd21baac67fe2f2e8bc3c500385"
+    },
+    {
+      "path": "provenance/wind-waker/0016-pipeline-cache-load-abort-return.patch",
+      "sha256": "d5b303abd64db1e195eb338bc05930d7db0f69989c96d73581b54845d3dc1511"
+    },
+    {
+      "path": "provenance/wind-waker/0017-copy-texture-lookup.patch",
+      "sha256": "4ac00177ea1492bffbb20ba931f6e02a67e00a4449ed4484512dac8b3256d529"
+    },
+    {
+      "path": "provenance/wind-waker/0018-async-end-frame.patch",
+      "sha256": "bc1ccf7f86ecce852f82198c380f1f220c9226fee8c8980637a20cf81af4dff5"
+    },
+    {
+      "path": "provenance/wind-waker/0019-view-delta.patch",
+      "sha256": "b9fbbeafb932f08a5ea62488a59af4632d24775b48ac9dd62cb33eb0bc8df39b"
+    },
+    {
+      "path": "provenance/wind-waker/0020-fifo-profile.patch",
+      "sha256": "c61f316f382c2578f2a917fe2139f584323ac6783c1c6dbb25e0908f5229cf96"
+    },
+    {
+      "path": "provenance/wind-waker/0021-fifo-fast-paths.patch",
+      "sha256": "b61098d616b69f6c8a67b2be41ffc26b2a0bb621761717da1de2531cf0e20c7f"
+    },
+    {
+      "path": "provenance/wind-waker/ps5-aurora.patch",
+      "sha256": "6d29babe902a8f40b9126e0864049f2284e3d8a9d04139eba25c00f47446f954"
+    },
+    {
+      "path": "provenance/wind-waker/ps5-dawn.patch",
+      "sha256": "96a090eff5c39b3d17a6a70add8965cf58c4fecd6424f20ca45b6225c3492b40"
+    },
+    {
+      "path": "ps4.cmake",
+      "sha256": "b6037a6af24165a5fd94e9abbb5b651fe522b1c3c91f18763859ab49d488a910"
+    },
+    {
+      "path": "reconcile-renderer.py",
+      "sha256": "c223860e37e3c52e91bd56beaaba625b48af1048dbbc77b80dcf0ed21d2a7913"
+    },
+    {
+      "path": "renderer.lock.json",
+      "sha256": "e6593bd002902565b73c3656a0effcfdb7ee634c440cef37ae39c02e8c12b9ec"
+    },
+    {
+      "path": "runtime-preflight/CMakeLists.txt",
+      "sha256": "f4ad5434d2bd567d05dcf02037cfcd782a0bcf6b817000813a86e981de7501c1"
+    },
+    {
+      "path": "runtime-preflight/main.cpp",
+      "sha256": "17f21f65d40bbfd4b170547d5c8a01259fe892ca272c6010da91b793233b1dc3"
+    },
+    {
+      "path": "sdk.lock.json",
+      "sha256": "c6867aec58b33fbc762edc560a76e289c46bde736455d70e9d9391450e68caa4"
+    },
+    {
+      "path": "sources.lock.json",
+      "sha256": "81b9f7e33fb1a61ba29660f6039906d29c059cefeb8272462d0d102f32615f4f"
+    }
+  ],
+  "matches_compiled_snapshot": true
+}

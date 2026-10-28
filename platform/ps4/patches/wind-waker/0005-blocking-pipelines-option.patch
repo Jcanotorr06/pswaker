@@ -1,0 +1,47 @@
+diff --git a/include/aurora/aurora.h b/include/aurora/aurora.h
+index 56c7aae..10f64cc 100644
+--- a/include/aurora/aurora.h
++++ b/include/aurora/aurora.h
+@@ -116,6 +116,13 @@ typedef struct {
+    * This can be set to 0 to disable allocating this region.
+    */
+   uint32_t mem2Size;
++
++  /*
++   * Compile GX and clear pipelines synchronously: a draw whose pipeline is not built yet waits for
++   * it instead of being skipped for that frame (the default asynchronous mode). Every frame then
++   * shows every draw, as on the console, at the cost of a stall the first time a pipeline is used.
++   */
++  bool blockingPipelines;
+ } AuroraConfig;
+ 
+ typedef struct {
+diff --git a/lib/gfx/pipeline_cache.cpp b/lib/gfx/pipeline_cache.cpp
+index c185e44..b2fa194 100644
+--- a/lib/gfx/pipeline_cache.cpp
++++ b/lib/gfx/pipeline_cache.cpp
+@@ -1152,9 +1152,14 @@ static void stop_pipeline_cache_writer() {
+   g_pipelineCacheWriteQueue.clear();
+ }
+ 
++// AuroraConfig::blockingPipelines: wait for a draw's pipeline instead of skipping the draw.
++static PipelinePriority draw_pipeline_priority() {
++  return g_config.blockingPipelines ? PipelinePriority::Blocking : PipelinePriority::Normal;
++}
++
+ PipelineRef find_pipeline(const clear::PipelineConfig& config, const RenderTargetLayout& layout) {
+   remember_pipeline_config(ShaderType::Clear, config, current_frame(), true);
+-  return resolve_pipeline(ShaderType::Clear, config, layout, PipelinePriority::Normal);
++  return resolve_pipeline(ShaderType::Clear, config, layout, draw_pipeline_priority());
+ }
+ 
+ PipelineRef find_pipeline(const gx::PipelineConfig& config, const RenderTargetLayout& layout) {
+@@ -1170,7 +1175,7 @@ PipelineRef find_pipeline(const gx::PipelineConfig& config, const RenderTargetLa
+     }
+   }
+   remember_pipeline_config(ShaderType::GX, config, current_frame(), true);
+-  return resolve_pipeline(ShaderType::GX, config, layout, PipelinePriority::Normal);
++  return resolve_pipeline(ShaderType::GX, config, layout, draw_pipeline_priority());
+ }
+ 
+ #ifdef AURORA_ENABLE_RMLUI

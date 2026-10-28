@@ -1,0 +1,12 @@
+test_diagnostic_identity_tracks_shared_ownership (test_build_inputs.BuildInputTests.test_diagnostic_identity_tracks_shared_ownership) ... ok
+test_game_identity_records_shared_and_target_inputs (test_build_inputs.BuildInputTests.test_game_identity_records_shared_and_target_inputs) ... ok
+test_inventory_preserves_maintained_coverage_and_excludes_records (test_build_inputs.BuildInputTests.test_inventory_preserves_maintained_coverage_and_excludes_records) ... ok
+test_legacy_command_location_cannot_replace_required_tooling (test_build_inputs.BuildInputTests.test_legacy_command_location_cannot_replace_required_tooling) ... ok
+test_missing_required_input_groups_are_rejected (test_build_inputs.BuildInputTests.test_missing_required_input_groups_are_rejected) ... ok
+test_missing_required_target_recipe_is_rejected (test_build_inputs.BuildInputTests.test_missing_required_target_recipe_is_rejected) ... ok
+test_provenance_records_shared_inventory_without_losing_host_closure (test_build_inputs.BuildInputTests.test_provenance_records_shared_inventory_without_losing_host_closure) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 11.885s
+
+OK

@@ -1,0 +1,35 @@
+{
+  "candidate_build": "f236a035ac406940e76a",
+  "candidate_package_sha256": "b3a3f46b8d4b7704b90881b74c7b980543184488cd7e7729f8823706d61a405c",
+  "platform_audit_sha256": "8a2d411aebb2682c2efa36a6b6edc54c0d3f36afaff5f7c7d16540866a283e37",
+  "game_audit_sha256": "2d37c9e8fbb2f8dc6aff6fa7c31d0d9cc53ed616ef7142e80c70895017e87864",
+  "platform_notices_rechecked": 103,
+  "game_notices_rechecked": 23,
+  "packaged_sdk_modules": [
+    {
+      "installed_path": "/app0/sce_module/libSceFios2.prx",
+      "sha256": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "matches_retained_pinned_archive_audit": true,
+      "redistribution_rights": "unresolved"
+    },
+    {
+      "installed_path": "/app0/sce_module/libc.prx",
+      "sha256": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "matches_retained_pinned_archive_audit": true,
+      "redistribution_rights": "unresolved"
+    },
+    {
+      "installed_path": "/app0/sce_sys/about/right.sprx",
+      "sha256": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "matches_retained_pinned_archive_audit": true,
+      "redistribution_rights": "unresolved"
+    }
+  ],
+  "corresponding_source": "Pinned archives, per-file notices, ordered patches, SDK recipes and locked build commands retained privately; see LICENSING.md and candidate provenance.json",
+  "unresolved": [
+    "SDK sample-module per-file redistribution grants",
+    "Import-stub source/rights and actual combined distribution obligations"
+  ],
+  "distribution_cleared": false,
+  "public_release": "Outside #23; no binary publication"
+}

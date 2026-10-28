@@ -1,0 +1,14 @@
+{
+  "python_syntax": "passed",
+  "shell_syntax": "passed",
+  "shell_count": 8,
+  "ci_filters_and_commands": "passed",
+  "stale_active_paths": [],
+  "live_missing_markdown_links": 0,
+  "raw_lf_metadata": "passed",
+  "baseline_members_mapped": 142,
+  "final_maintained_inputs": 144,
+  "protected_files": 474,
+  "byte_identical": 455,
+  "navigation_only": 19
+}

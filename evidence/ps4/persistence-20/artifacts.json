@@ -1,0 +1,33 @@
+{
+  "packages": [
+    {
+      "version": "01.07",
+      "filename": "PSWaker-persistence-01.07.pkg",
+      "size": 1516568576,
+      "sha256": "23bcdffaa4fa2cb9a379197a82940b3835fdf2646211b1019b37efd75df3302b",
+      "build_id": "9ac6fb9b2da43e02d642",
+      "title_id": "PSWK00001",
+      "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+      "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+      "self_sha256": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2",
+      "image_sha1": "6b5f06c10d50ebb4099cded88217eb71e5bfbb4a",
+      "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+      "hardware_status": "UNTESTED; owner evidence pending"
+    },
+    {
+      "version": "01.08",
+      "filename": "PSWaker-persistence-01.08.pkg",
+      "size": 1516568576,
+      "sha256": "504a0548f62ad54fdb04b0836c94c8c679d91c66dc0fb51ccfec151527470205",
+      "build_id": "9ac6fb9b2da43e02d642",
+      "title_id": "PSWK00001",
+      "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+      "elf_sha256": "56361867ddc41680c41a44773f56183e43094dbe68c326c9d56913f840ddeb34",
+      "self_sha256": "d36208ad52a3b9d6a2fab6fa8f7910e1ecfa1c655fa1ff2f2a7a413204d59ad2",
+      "image_sha1": "6b5f06c10d50ebb4099cded88217eb71e5bfbb4a",
+      "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+      "hardware_status": "UNTESTED; owner evidence pending"
+    }
+  ],
+  "update_contract": "Distinct complete packages/versions with stable app identity and identical program/image; no returned install/relaunch result"
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "phase": "packager",
+    "target": "src/liborbispkg",
+    "context": ".",
+    "patch": "liborbispkg-ps4-dusklight.patch",
+    "sha256": "57b45198a32f7748dab644b2f6585b59eb466e15bee90f7ce84bfad3e2115dd1",
+    "origin": "BgbrhrWatchinOVO/dusklight-ps4@fd483cf5d4f04b0f4d887ff412d0e8691925de08"
+  }
+]

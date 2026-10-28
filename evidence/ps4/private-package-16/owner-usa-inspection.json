@@ -1,0 +1,155 @@
+{
+  "scope": "NONPLAYABLE diagnostic; no game startup or hardware acceptance",
+  "installed_image": "/app0/game.iso",
+  "package": {
+    "filename": "IV0000-PSWK00010_00-PSWAKERPROBE0000.pkg",
+    "sha256": "e66f10db989ea47aae81e464e9a31661df7b5cb30b499f7b167af47bbff3d4ea"
+  },
+  "sfo": {
+    "APP_TYPE": 1,
+    "APP_VER": "01.05",
+    "ATTRIBUTE": 0,
+    "CATEGORY": "gd",
+    "CONTENT_ID": "IV0000-PSWK00010_00-PSWAKERPROBE0000",
+    "DOWNLOAD_DATA_SIZE": 0,
+    "PUBTOOLINFO": "c_date=20261024,img0_l0_size=1436,img0_l1_size=0,img0_sc_ksize=512,img0_pc_ksize=832",
+    "PUBTOOLVER": 42532864,
+    "SYSTEM_VER": 0,
+    "TITLE": "PSWaker Diagnostic NONPLAYABLE",
+    "TITLE_ID": "PSWK00010",
+    "VERSION": "01.05"
+  },
+  "payload_sha256": {
+    "build-info.json": "48a82fca742c5488801580309d57d005b93f2070ec0809bc08e3a1ba635131e1",
+    "complete-package.json": "d599f52431df3222dd7a4a28a6568c8be4799d2c7e9c0609cf6db97bb14b3369",
+    "eboot.bin": "f62940819abeb92ea4af228442f8fb83c00a33199861b1e38b78e9b20e9ffd7a",
+    "game.iso": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+    "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+    "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+    "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+    "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+    "sce_sys/param.sfo": "fdf9659aa3ae6edc89dda8ee1ed7eef8d8d78f1ed9c950af9ac8f71b2381e82a",
+    "sce_sys/keystone": "d09eb8ab5f3b700164fc8ad85c54c2acbad71244e942aeedf7e3e7eb56408aac"
+  },
+  "package_header": {
+    "magic": "7f434e54",
+    "content_id": "IV0000-PSWK00010_00-PSWAKERPROBE0000",
+    "size": 1504968704
+  },
+  "image": {
+    "game_id": "GZLE01",
+    "revision": 0,
+    "size": 1459978240,
+    "sha1": "6b5f06c10d50ebb4099cded88217eb71e5bfbb4a",
+    "sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+    "contract_sha256": "309ab1c521a53945760b01d3592721b041206745207515ddaca54d29139eda1c",
+    "required_content": [
+      {
+        "path": "sys/main.dol",
+        "member": "",
+        "sha1": "8d28bab68bb5078c38e43f29206f0bd01f7e7a67",
+        "size": 3822272
+      },
+      {
+        "path": "RELS.arc",
+        "member": "rels/mmem/d_a_majuu_flag.rel",
+        "sha1": "9844a606bcebcceaeff329256665eea72d5aa970",
+        "size": 15208
+      },
+      {
+        "path": "RELS.arc",
+        "member": "rels/mmem/d_a_pirate_flag.rel",
+        "sha1": "ad8581d91ce176c711a4db6a7862e2be510c0645",
+        "size": 11888
+      },
+      {
+        "path": "rels/d_a_bwdg.rel",
+        "member": "",
+        "sha1": "7cef0d0967ffbdae93dfc4a28ef0b8a672b052c9",
+        "size": 154876
+      },
+      {
+        "path": "rels/d_a_goal_flag.rel",
+        "member": "",
+        "sha1": "360285b55c8d8d9353c8c027bcfcc90c368f86b4",
+        "size": 26820
+      },
+      {
+        "path": "rels/d_a_mant.rel",
+        "member": "",
+        "sha1": "a565cdff34a1346c7db964d795179b81ece22ef8",
+        "size": 58364
+      },
+      {
+        "path": "rels/d_a_obj_buoyflag.rel",
+        "member": "",
+        "sha1": "a4db26857f985f6a3c963e183e6be28bf37e46c3",
+        "size": 25120
+      },
+      {
+        "path": "rels/d_a_sail.rel",
+        "member": "",
+        "sha1": "36cd36d17a50769045c087cbb56b26f4ad3a2b6e",
+        "size": 18992
+      }
+    ]
+  },
+  "program": {
+    "build_id": "60975dcf4480aa914369",
+    "elf_filename": "platform_diagnostic",
+    "elf_sha256": "f97123d555dfef871de7483140aa84b738696b397afdc9a54cd95fd20e6d0d84",
+    "eboot_sha256": "f62940819abeb92ea4af228442f8fb83c00a33199861b1e38b78e9b20e9ffd7a",
+    "payload_sha256": {
+      "build-info.json": "48a82fca742c5488801580309d57d005b93f2070ec0809bc08e3a1ba635131e1",
+      "eboot.bin": "f62940819abeb92ea4af228442f8fb83c00a33199861b1e38b78e9b20e9ffd7a",
+      "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "sce_sys/icon0.png": "fedf61923bfcf37e531198330978ebbc74b59ee8011452c91c558f54879c8fd7",
+      "sce_sys/param.sfo": "fa8b5ab3cfc0daaae34d715841767df7e141fd5eb3d14a8027b0e41a5ae81d6f"
+    }
+  },
+  "distribution_cleared": false,
+  "hardware_status": "Untested; no console checkpoint in issue #16",
+  "evidence_scope": "Host inspection of owner-built NONPLAYABLE private diagnostic complete package; no console result",
+  "preparation_inputs_sha256": {
+    "complete-package.py": "1a6eac33481cf06b46f92797aee3fcb2f41385007b51b09d09aa861d15ec15d4",
+    "disc_image.py": "6661f9214a8d242f8f40391d503c6a0643b5b7dfdf5d742f63890072442e6aec",
+    "content-contract.json": "309ab1c521a53945760b01d3592721b041206745207515ddaca54d29139eda1c",
+    "sources.lock.json": "81b9f7e33fb1a61ba29660f6039906d29c059cefeb8272462d0d102f32615f4f"
+  },
+  "tool_provenance": {
+    "files": {
+      "sdk/opt/pacbrew/ps4/openorbis/bin/create-fself": "99f62af15c573a37f3d8ab434bd04fd9efd5566faf9e738deb0c627debfd95ee",
+      "sdk/opt/pacbrew/ps4/openorbis/bin/linux/create-gp4": "f8c52de1cd58f20dea19752decd0768d10bd4b04bcbf469ae2b5ae0acd264729",
+      "build/pkgtool/PkgTool.Core": "f38ac2afee79e49ad0026f2f69ce4660fa2eaf7d34d3dbbee554d29d063980fb",
+      "build/pkgtool/PkgTool.Core.dll": "18b3e9d11a0c061b818da52f4e483be8f80406de3d1af3b5c16be53a7b0c1000",
+      "build/pkgtool/LibOrbisPkg.Core.dll": "5c955568eb914764ae127c5ffeda97e196dac4b7bb549ff25d3ae997b28e3a62",
+      "refs/DolphinPS4/scripts/make-pkg.sh": "2de1b39301348e94850ac311b0b4284f59aab78ee530594e9d91aa241c53ccc0",
+      "refs/DolphinPS4/toolchain/ps4-love-style.cmake": "002ed2d04f1ca09183b56eedef4987482b4abfdb6dca1ac63b4a7c6549ae2ff5",
+      "refs/DolphinPS4/toolchain/check-oelf.cmake": "7a604fc8aff3bbfab88a4b5f24063c3039372810d559beaa7f0b8d018edcecd1"
+    },
+    "source_closure_sha256": "8c4dfb704ef6067b7b43caa284f08555c9893e1083cf0d6d43ee5dbdb6efa196",
+    "sources": [
+      {
+        "path": "refs/DolphinPS4",
+        "repository": "iHaiDeeZ/DolphinPS4",
+        "revision": "b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+        "archive_url": "https://api.github.com/repos/iHaiDeeZ/DolphinPS4/tarball/b1879cc0267a2a4f0949d7b80478fcf2abca24f6",
+        "archive_sha256": "780f830d144a8d341ebc7025473f0a9b5eb95aa4e21661925242de304ee906bd"
+      },
+      {
+        "path": "src/liborbispkg",
+        "repository": "OpenOrbis/LibOrbisPkg",
+        "revision": "594021fdc435409f755a6ae0781b65ec6cec846c",
+        "archive_url": "https://api.github.com/repos/OpenOrbis/LibOrbisPkg/tarball/594021fdc435409f755a6ae0781b65ec6cec846c",
+        "archive_sha256": "c4b918b404e486784717a415cc5a50d866bc56099ed027b4d6bd443cf7f90ee6"
+      }
+    ],
+    "patches_sha256": "f38cb257b362020477bebe5aa28fc1d83a7758c686ba363482873fc9a97aac33"
+  },
+  "packager_sfo_fields": {
+    "PUBTOOLINFO": "c_date=20261024,img0_l0_size=1436,img0_l1_size=0,img0_sc_ksize=512,img0_pc_ksize=832",
+    "PUBTOOLVER": 42532864
+  }
+}

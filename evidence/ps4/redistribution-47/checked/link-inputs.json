@@ -1,0 +1,740 @@
+{
+  "libraries_in_link_order": [
+    {
+      "path": "build/native/libcos_pc.a",
+      "bytes": 5210666,
+      "sha256": "86d9b374db133a0b52c3b54f6f015bdf9d90c13f1fe2a8783cf1103ad5837918",
+      "root": "game",
+      "link_argument": "native/libcos_pc.a"
+    },
+    {
+      "path": "build/native/libcos_sdk.a",
+      "bytes": 649754,
+      "sha256": "067db1d1eeae0587833f4c70c712cbc59e68581316680cbbf48389091c533064",
+      "root": "game",
+      "link_argument": "native/libcos_sdk.a"
+    },
+    {
+      "path": "build/libpswaker_entry.a",
+      "bytes": 601078,
+      "sha256": "3848741a6e7176d4763202d46b795aab72f1aacde945220a75befef56d39849d",
+      "root": "game",
+      "link_argument": "libpswaker_entry.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/usr/lib/libz.a",
+      "bytes": 133044,
+      "sha256": "e3d8c011d1e5bb4cce205afb08c49a1b5bb3eb14cb80fbe205fe4bba215fcca1",
+      "root": "platform",
+      "link_argument": "-lz"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libSceSysmodule.so",
+      "bytes": 15000,
+      "sha256": "806db4cab6adf046b73540d78e1f6999db4127431029850f4feb595043902c33",
+      "root": "platform",
+      "link_argument": "-lSceSysmodule"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libSceSystemService.so",
+      "bytes": 22856,
+      "sha256": "4f6cdb81bc3026be59135f2a9814dd1bd8954189bc72d151c706b9d146caa025",
+      "root": "platform",
+      "link_argument": "-lSceSystemService"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libSceUserService.so",
+      "bytes": 66880,
+      "sha256": "2d7d993a0952ccc74309bb0ff814065198adbb94f3469c65d40f5232d85e0b87",
+      "root": "platform",
+      "link_argument": "-lSceUserService"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libSceVideoOut.so",
+      "bytes": 33536,
+      "sha256": "182bbcc07c7f03b20aff4c08c06e5ffdaae867c243f4234fc98ebf42d4d92caa",
+      "root": "platform",
+      "link_argument": "-lSceVideoOut"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libSceAudioOut.so",
+      "bytes": 21576,
+      "sha256": "e9b2e5af6215cff7e59f933bed06ca4710aa6ea40e98e950aef537086a70eefc",
+      "root": "platform",
+      "link_argument": "-lSceAudioOut"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libScePad.so",
+      "bytes": 22312,
+      "sha256": "ebe516752320ca8b4db848ee24dada36dab3c4bebfaa587628ea79e16141044d",
+      "root": "platform",
+      "link_argument": "-lScePad"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libSceNet.so",
+      "bytes": 40072,
+      "sha256": "98ad7b163612d363b426346dfba995720f43e52af6d02c0e47f6f6b00b9588ea",
+      "root": "platform",
+      "link_argument": "-lSceNet"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libpthread.a",
+      "bytes": 8,
+      "sha256": "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "root": "platform",
+      "link_argument": "-lpthread"
+    },
+    {
+      "path": "build/mesa/src/amd/vulkan/libvulkan_radeon.a",
+      "bytes": 116044,
+      "sha256": "5734c201c3c2d9ed605e528a9f42d67e08a7d27e6ce8279ad7dfd3bbe6f82657",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/amd/vulkan/libvulkan_radeon.a"
+    },
+    {
+      "path": "build/mesa/src/amd/common/libamd_common.a",
+      "bytes": 17228,
+      "sha256": "1213d62f392b3759bd99fd0aead387fb759a4edbe93c09f6957a47bdbc13ab0d",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/amd/common/libamd_common.a"
+    },
+    {
+      "path": "build/mesa/src/amd/compiler/libaco.a",
+      "bytes": 96312,
+      "sha256": "713959a4b3583702397a8a37eafa34040a957f1554ebfd82ea1cd97eaed0308b",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/amd/compiler/libaco.a"
+    },
+    {
+      "path": "build/mesa/src/amd/addrlib/libaddrlib.a",
+      "bytes": 72210,
+      "sha256": "602aafe1a74afa063ff1f5218c061e02aef86ffdf1aca3142fc875768f600b25",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/amd/addrlib/libaddrlib.a"
+    },
+    {
+      "path": "build/mesa/src/vulkan/util/libvulkan_util.a",
+      "bytes": 14490,
+      "sha256": "95d2a1c8ba5a1023c3d75edcda2c2388d1ecd118e83c72a9e0454c1dac9d4f25",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/vulkan/util/libvulkan_util.a"
+    },
+    {
+      "path": "build/mesa/src/compiler/spirv/libvtn.a",
+      "bytes": 4570,
+      "sha256": "c81d1ab270355500b3b24b9ae9189205603ba9026d327b336c966e179ab36a01",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/compiler/spirv/libvtn.a"
+    },
+    {
+      "path": "build/mesa/src/compiler/nir/libnir.a",
+      "bytes": 40990,
+      "sha256": "becb1f903b9ca7b5c4a5f6050150811ab92c77607783391cdbdd42d5f969f69a",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/compiler/nir/libnir.a"
+    },
+    {
+      "path": "build/mesa/src/compiler/libcompiler.a",
+      "bytes": 13436,
+      "sha256": "2121e133d9f362ba7d17ec64424b8271d6bdb26ee422b26acd94632220bec4ce",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/compiler/libcompiler.a"
+    },
+    {
+      "path": "build/mesa/src/util/libxmlconfig.a",
+      "bytes": 488,
+      "sha256": "23841412bace4c6f3f1086cf8b4d90c7146eb2175642330962a04d6a4efdbf18",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/util/libxmlconfig.a"
+    },
+    {
+      "path": "build/mesa/src/util/libmesa_util.a",
+      "bytes": 97398,
+      "sha256": "7a7a1ff9f2c8c4969a23ce15cf9f62d10bdb610a0b7a756c34fad3b7aac3a9e5",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/util/libmesa_util.a"
+    },
+    {
+      "path": "build/mesa/src/util/libmesa_util_simd.a",
+      "bytes": 274,
+      "sha256": "62a03e1beaed242b2d0f9431e302eedd314cd642d8df90fac49d6c5223bab535",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/util/libmesa_util_simd.a"
+    },
+    {
+      "path": "build/mesa/src/util/libmesa_util_clflush.a",
+      "bytes": 460,
+      "sha256": "b37f77b9dc9368f9f80d9d9a0cd37e7b0bf6d7908b49398fcdf17f5df9070987",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/util/libmesa_util_clflush.a"
+    },
+    {
+      "path": "build/mesa/src/util/libmesa_util_clflushopt.a",
+      "bytes": 276,
+      "sha256": "5ad6a6037431de83a5ca2cf1bff2533b38d0b337187956d3cbc05c6915d9ead0",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/util/libmesa_util_clflushopt.a"
+    },
+    {
+      "path": "build/mesa/src/util/libparson.a",
+      "bytes": 3094,
+      "sha256": "d2ec7fbd871367853dab70d17b9f39afb43de7a741f78e4e7ad611b4af42b972",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/util/libparson.a"
+    },
+    {
+      "path": "build/mesa/src/util/blake3/libblake3.a",
+      "bytes": 1962,
+      "sha256": "8741f65db92180608265dd6a0fb548dd99b1ebb9491813a3e19bcb78ad6ac8c7",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/util/blake3/libblake3.a"
+    },
+    {
+      "path": "build/mesa/src/c11/impl/libmesa_util_c11.a",
+      "bytes": 720,
+      "sha256": "c29de56db5c075affd9ea4f5d9e3983e6b1d97ba5a1f383fd2bb524d26ff1f1b",
+      "root": "platform",
+      "link_argument": "<platform>/build/mesa/src/c11/impl/libmesa_util_c11.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_gd.a",
+      "bytes": 295770,
+      "sha256": "3879167ee204a6b0c456f4b4bd35d76cdd280166676974a2a136f18b2a203bee",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_gd.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_pad.a",
+      "bytes": 213112,
+      "sha256": "9a956e65a42b4e25071375b9ae353bebc1f732a37ffe8b5e2dcc6d4322c589eb",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_pad.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_si.a",
+      "bytes": 2672,
+      "sha256": "9da1e8555af45037daae571320dc305184fb930237f834086de244b65e323b5e",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_si.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_mtx.a",
+      "bytes": 64498,
+      "sha256": "4b82d8a3977a3a6fea3f9733be554d1a715c626fc5eb777059e9eea8ff877ce9",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_mtx.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_os.a",
+      "bytes": 122072,
+      "sha256": "0b57ee03f459637023976622b60051d2509d0439834d16c6654f2d9db5d61263",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_os.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_dvd.a",
+      "bytes": 591734,
+      "sha256": "0295443164a5c062993d4480564c39a62f5ec8633defca38d76222902492e1fc",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_dvd.a"
+    },
+    {
+      "path": "build/libpswaker_disc.a",
+      "bytes": 86844,
+      "sha256": "a668d4aace0d87a23b27aba56e58adfd16e852ec255da0bb01d18065bd884b0f",
+      "root": "game",
+      "link_argument": "libpswaker_disc.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_thp.a",
+      "bytes": 46978,
+      "sha256": "5e6c02f078f3457aad333b59eee705b1c802e0f33a198240b451f5b687e63abf",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_thp.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_card.a",
+      "bytes": 737650,
+      "sha256": "a9425b5f83be2903034af2fac2622f20b4044f196abf00ea1439efb4d65062ca",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_card.a"
+    },
+    {
+      "path": "build/native/libcos_dsp_hle.a",
+      "bytes": 879138,
+      "sha256": "c4ed538fd3e54bbb3e169e16b6b222f24d934f46a31bd128eedc290805c38788",
+      "root": "game",
+      "link_argument": "native/libcos_dsp_hle.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/usr/lib/libz.a",
+      "bytes": 133044,
+      "sha256": "e3d8c011d1e5bb4cce205afb08c49a1b5bb3eb14cb80fbe205fe4bba215fcca1",
+      "root": "platform",
+      "link_argument": "-lz"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_gx.a",
+      "bytes": 8166034,
+      "sha256": "ce14efea84a82efcadc1ccefa2db5cfd15ae4023233f52067e294427cfe6d524",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_gx.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/usr/lib/libpng.a",
+      "bytes": 361554,
+      "sha256": "165b83f70109b72fff4cda28a766f446bfc08885fff6f774402b9c6514158822",
+      "root": "platform",
+      "link_argument": "<platform>/sdk/opt/pacbrew/ps4/openorbis/usr/lib/libpng.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_vi.a",
+      "bytes": 10212,
+      "sha256": "dbb7f5532dd61d402a0f3c0bb7cd324fc459d5d292ea959509da0cff17378b7e",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_vi.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/libaurora_core.a",
+      "bytes": 1656784,
+      "sha256": "0286637d949885334d7941b011c5bac7a8d97dbfb538d2f5d8506ddbe5925393",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/libaurora_core.a"
+    },
+    {
+      "path": "build/_deps/fmt-build/libfmt.a",
+      "bytes": 770864,
+      "sha256": "c16e77a4b4b4e586112c6f04d3ac76c6e7f4b83bb2c1e89f7f7fd477bb9ad91f",
+      "root": "game",
+      "link_argument": "_deps/fmt-build/libfmt.a"
+    },
+    {
+      "path": "build/_deps/xxhash-build/libxxhash.a",
+      "bytes": 147968,
+      "sha256": "3b2e7542dc71743e3725dfcb5e12a540e7678b0013be2f3129db46ee24fb0d01",
+      "root": "game",
+      "link_argument": "_deps/xxhash-build/libxxhash.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_cord.a",
+      "bytes": 505400,
+      "sha256": "3da2fc52ba21c2550f22ff7dc6caca02a217fece7864f3a0470e446f2480aebc",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_cord.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_cordz_info.a",
+      "bytes": 48474,
+      "sha256": "e480a91e7332627cb60db90858c4cc17040e6743baef46c2ca78006b0b09c898",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_cordz_info.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_cord_internal.a",
+      "bytes": 300928,
+      "sha256": "331cb9d0b0c9f356a2292afb7fb9a9d6d3d7de7763f26b1e647502bdee339f2c",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_cord_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_cordz_functions.a",
+      "bytes": 3808,
+      "sha256": "041dba1c8254c25ae2d51ccff3641a3760a4886a6cfb970288511dd1b3f6f64e",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_cordz_functions.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_cordz_handle.a",
+      "bytes": 43472,
+      "sha256": "ab75ed9410dc7511695b487b834a54176fec856501c966850bad615d1df4512c",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_cordz_handle.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/crc/libabsl_crc_cord_state.a",
+      "bytes": 110728,
+      "sha256": "f32e597f8b99b77eb95c89d4ea567f505c27072a9887a5f993411be2e9f20057",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/crc/libabsl_crc_cord_state.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/crc/libabsl_crc32c.a",
+      "bytes": 70896,
+      "sha256": "6e2f09f71a033bda186e90330026bb4f97cbf596d56e8a01acb7110483378fdb",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/crc/libabsl_crc32c.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/crc/libabsl_crc_internal.a",
+      "bytes": 545572,
+      "sha256": "86d721bb1db57f3ec37ba3827bb0b788154b0d251695f9969edf37a22ad5e885",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/crc/libabsl_crc_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/crc/libabsl_crc_cpu_detect.a",
+      "bytes": 10374,
+      "sha256": "bba600bef5ea0fb1a974720426fc9dd2667b549424000b7e5152e49e1c9b8d59",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/crc/libabsl_crc_cpu_detect.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_str_format_internal.a",
+      "bytes": 498238,
+      "sha256": "f6e303849382503281e02f5f1d90980f397bb2943006e6aacafdbbbd33c48534",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_str_format_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/container/libabsl_raw_hash_set.a",
+      "bytes": 41132,
+      "sha256": "c15556b819851c331aa208ec5dd1789499363ebedcace8c0a72b3ba5a998ea81",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/container/libabsl_raw_hash_set.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/hash/libabsl_hash.a",
+      "bytes": 8760,
+      "sha256": "953ddc5db659afb1fa2141d411824e4696213803a89b8bf06917e2ad6dbafb57",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/hash/libabsl_hash.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/types/libabsl_bad_optional_access.a",
+      "bytes": 958,
+      "sha256": "95f20da2024acbc91276b784ade117693ca5a0febe8207e52ec207d539f137e9",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/types/libabsl_bad_optional_access.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/hash/libabsl_city.a",
+      "bytes": 15156,
+      "sha256": "0236a8e00e949b5d69945ec8211b94cceb0e914d4690145547aaf7fdf10cacc0",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/hash/libabsl_city.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/types/libabsl_bad_variant_access.a",
+      "bytes": 958,
+      "sha256": "73a00819090fb6f1e180287ce2641e40aa82311d20c0ddb29ff4ea31943d2814",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/types/libabsl_bad_variant_access.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/hash/libabsl_low_level_hash.a",
+      "bytes": 6168,
+      "sha256": "98752cd113c0883afeb12fb5a7b8d3eb00900f79d47efebf0365de1241a0a39b",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/hash/libabsl_low_level_hash.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/container/libabsl_hashtablez_sampler.a",
+      "bytes": 45416,
+      "sha256": "8af8755735e115df93d2c32d455b9039e928c2f0a43a66dbbf64c184ee20e991",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/container/libabsl_hashtablez_sampler.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/profiling/libabsl_exponential_biased.a",
+      "bytes": 6250,
+      "sha256": "a89d8df12ee892d6bafe1a7023f4d8f78dd83e520c9e7e0e97d6025562efe2c5",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/profiling/libabsl_exponential_biased.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/synchronization/libabsl_synchronization.a",
+      "bytes": 203650,
+      "sha256": "f1198879c60e9e350b6cdbb18693b45babd802dce285073ca89f88611de7d70b",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/synchronization/libabsl_synchronization.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/debugging/libabsl_stacktrace.a",
+      "bytes": 7050,
+      "sha256": "3e0c08010f14f93297751358ff0c554393759f46c8227795d0fc19fafaa5a74b",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/debugging/libabsl_stacktrace.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/synchronization/libabsl_graphcycles_internal.a",
+      "bytes": 108190,
+      "sha256": "8f6f9e11c6f5ece997445857507d826fb62acad3b19b45499ae4f0f086271a92",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/synchronization/libabsl_graphcycles_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/synchronization/libabsl_kernel_timeout_internal.a",
+      "bytes": 15762,
+      "sha256": "fb946cf8a081507574ad741ce2b4c5ea12e0a4249101b697386f40b1e1f2769e",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/synchronization/libabsl_kernel_timeout_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/time/libabsl_time.a",
+      "bytes": 350742,
+      "sha256": "d9b0fdd8394e6783decbd613fd10df17c62af3842396eade2659369a304e1ead",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/time/libabsl_time.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/time/libabsl_civil_time.a",
+      "bytes": 91376,
+      "sha256": "aff857c1fb2b7b84d033eea992c70b1670bfbff70fd98d994c48c287781f92f7",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/time/libabsl_civil_time.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/time/libabsl_time_zone.a",
+      "bytes": 717342,
+      "sha256": "471825699f4ecd17724db5cb23712cd5877ea75a806c6505cd91bcd549d74c81",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/time/libabsl_time_zone.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/debugging/libabsl_symbolize.a",
+      "bytes": 3920,
+      "sha256": "1d01dd727335cb9c589edc870c0422c1fdec64324b5ffaff2f5f4831c4c2e013",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/debugging/libabsl_symbolize.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_strings.a",
+      "bytes": 515036,
+      "sha256": "2b64ca0a14ed240c514637248362445c63a063828649ad25fbfb817f3d2c5064",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_strings.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_strings_internal.a",
+      "bytes": 34488,
+      "sha256": "1b71c9e82c22115b9d4a827ba6d9f599b9240224a5c4b0fcfddd4593c4eceb80",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_strings_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/strings/libabsl_string_view.a",
+      "bytes": 942,
+      "sha256": "406c60a220a79d97f76e118647d2572137d441614ba6ccfc9762548b6bbbb877",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/strings/libabsl_string_view.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/base/libabsl_throw_delegate.a",
+      "bytes": 30782,
+      "sha256": "608f307b23c6c68a0f9d81fe0bb11d2a732a409d895858ee60f12f2483e0e52a",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/base/libabsl_throw_delegate.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/numeric/libabsl_int128.a",
+      "bytes": 68894,
+      "sha256": "21fb81684fa7cdb4f99ce16f19c4b7636b17df4eea4cedbeaa6bc6da7d4106f8",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/numeric/libabsl_int128.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/debugging/libabsl_debugging_internal.a",
+      "bytes": 4144,
+      "sha256": "c2922ef99f9b215769eb6e58ac8cd7f8844d6e6b3b6bbbc0b5a26e18d277cb39",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/debugging/libabsl_debugging_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/base/libabsl_malloc_internal.a",
+      "bytes": 42680,
+      "sha256": "77ef588685dfca8f1863369e77ddabe466abd207e7aa49348b46d771f1148b74",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/base/libabsl_malloc_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/base/libabsl_base.a",
+      "bytes": 61902,
+      "sha256": "d38de2d8bfc2c61af1ae0eb6850dfebc165035c7fff6a0b1ab9efc2f6ef9c705",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/base/libabsl_base.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/base/libabsl_raw_logging_internal.a",
+      "bytes": 15424,
+      "sha256": "4d36d74f7811670ab1b6911fcb39a3cef044d3287809cd4700caf0382eaa16c4",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/base/libabsl_raw_logging_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/base/libabsl_log_severity.a",
+      "bytes": 20052,
+      "sha256": "94a3a8cd39a88859a53e9d3b84f6a5be972ce59c8c2a3fa00cc832f5e4b03b4b",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/base/libabsl_log_severity.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/base/libabsl_spinlock_wait.a",
+      "bytes": 7888,
+      "sha256": "dd60ffd01ecbe0aeea265e09d9d68043674de38403197fb59b4e669369cb9597",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/base/libabsl_spinlock_wait.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/librt.a",
+      "bytes": 8,
+      "sha256": "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "root": "platform",
+      "link_argument": "-lrt"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/debugging/libabsl_demangle_internal.a",
+      "bytes": 207638,
+      "sha256": "3ab697f73796a32923f9da7c78bd812048a9bfab2846c7f0af0166f0a247bd97",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/debugging/libabsl_demangle_internal.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/debugging/libabsl_demangle_rust.a",
+      "bytes": 32478,
+      "sha256": "cac747badd523aa076b21e5e78e8222f74c1d881655919e076fca945d225ce6d",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/debugging/libabsl_demangle_rust.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/debugging/libabsl_decode_rust_punycode.a",
+      "bytes": 6472,
+      "sha256": "2d45820893498d8bcee6de9544b444da7f6e2b5eb369ce77e5e9b23ccdfc291f",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/debugging/libabsl_decode_rust_punycode.a"
+    },
+    {
+      "path": "build/_deps/abseil-cpp-build/absl/debugging/libabsl_utf8_for_code_point.a",
+      "bytes": 3332,
+      "sha256": "22314ce6b361a6ef9d487096b6287021ad1637bf27fc78554238489fccfa7885",
+      "root": "game",
+      "link_argument": "_deps/abseil-cpp-build/absl/debugging/libabsl_utf8_for_code_point.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/extern/libsqlite3.a",
+      "bytes": 3988784,
+      "sha256": "341c7ff4a2a536880444ca7c2fa111970646ee47dd194c6f34ea6cc81e3520a5",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/extern/libsqlite3.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/extern/libimgui.a",
+      "bytes": 4534362,
+      "sha256": "838d8f60d7408d65853344d99e29d3f6b84aa8852dbd0fb2159310c4fce169f6",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/extern/libimgui.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/extern/libimgui_backends.a",
+      "bytes": 122806,
+      "sha256": "23f24804cc3b41a5ae385bf7ac2058eb353ea6952cf00f87bb893b1942c86764",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/extern/libimgui_backends.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/extern/libimgui.a",
+      "bytes": 4534362,
+      "sha256": "838d8f60d7408d65853344d99e29d3f6b84aa8852dbd0fb2159310c4fce169f6",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/extern/libimgui.a"
+    },
+    {
+      "path": "build/_deps/aurora-build/extern/libimgui_backends.a",
+      "bytes": 122806,
+      "sha256": "23f24804cc3b41a5ae385bf7ac2058eb353ea6952cf00f87bb893b1942c86764",
+      "root": "game",
+      "link_argument": "_deps/aurora-build/extern/libimgui_backends.a"
+    },
+    {
+      "path": "build/_deps/freetype-build/libfreetype.a",
+      "bytes": 1914356,
+      "sha256": "963562502b16ddb1160bcb731c9c9b728b2cd1afcfbb5e598854e497b0077fa6",
+      "root": "game",
+      "link_argument": "_deps/freetype-build/libfreetype.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/usr/lib/libz.a",
+      "bytes": 133044,
+      "sha256": "e3d8c011d1e5bb4cce205afb08c49a1b5bb3eb14cb80fbe205fe4bba215fcca1",
+      "root": "platform",
+      "link_argument": "<platform>/sdk/opt/pacbrew/ps4/openorbis/usr/lib/libz.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/usr/lib/libbz2.a",
+      "bytes": 100386,
+      "sha256": "26d653157f838b6aec889f927735cc8319a7f4c5996c90783f988b8162c02549",
+      "root": "platform",
+      "link_argument": "<platform>/sdk/opt/pacbrew/ps4/openorbis/usr/lib/libbz2.a"
+    },
+    {
+      "path": "build/sdl3/libSDL3.a",
+      "bytes": 3649096,
+      "sha256": "ff0bb90d5ff3b7a1c042f1f45c0c0e099765f47037165483eb275eca862717cc",
+      "root": "platform",
+      "link_argument": "<platform>/build/sdl3/libSDL3.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libm.a",
+      "bytes": 8,
+      "sha256": "f0a17a43c74d2fe5474fa2fd29c8f14799e777d7d75a2cc4d11c20a6e7b161c5",
+      "root": "platform",
+      "link_argument": "-lm"
+    },
+    {
+      "path": "build/dawn/src/dawn/native/libwebgpu_dawn.a",
+      "bytes": 47766800,
+      "sha256": "8e4bcc5fbf41287913cfcfae62e5a5432efff3d518fd95771922d66388c02efb",
+      "root": "platform",
+      "link_argument": "<platform>/build/dawn/src/dawn/native/libwebgpu_dawn.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libkernel.so",
+      "bytes": 148296,
+      "sha256": "afbfa32541361cab0eeb2ccccdbf97e2899a07a1a4091f38e27c902b24b8ab1c",
+      "root": "platform",
+      "link_argument": "-lkernel"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libc.a",
+      "bytes": 2279516,
+      "sha256": "f82cf6561864b1f3b1f1f13f2764702f8f957c4141426a8d034724e3eff0593a",
+      "root": "platform",
+      "link_argument": "-lc"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libclang_rt.builtins-x86_64.a",
+      "bytes": 221982,
+      "sha256": "163d45b41f6fe24842a4ecff999eb467caa406b3c8e07a6602fd5fcf9cab82bd",
+      "root": "platform",
+      "link_argument": "-lclang_rt.builtins-x86_64"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libSceLibcInternal.so",
+      "bytes": 14200,
+      "sha256": "b13d45fb931c6eb3515bf5c3eafd8d0ca028b9af0dd32807760d6ce1c0cce617",
+      "root": "platform",
+      "link_argument": "-lSceLibcInternal"
+    },
+    {
+      "path": "sysroot/lib/libc++.a",
+      "bytes": 3286462,
+      "sha256": "36c1b388b155aa2b0bcdeee4f11e72d4ceb7824840a9575b1e419059e818ca21",
+      "root": "platform",
+      "link_argument": "<platform>/sysroot/lib/libc++.a"
+    },
+    {
+      "path": "sysroot/lib/libc++abi.a",
+      "bytes": 722952,
+      "sha256": "ea2864172fe55956fae6602ca9627e3491b0ef04a453d92b867283d3fb5c4d35",
+      "root": "platform",
+      "link_argument": "<platform>/sysroot/lib/libc++abi.a"
+    },
+    {
+      "path": "sdk/opt/pacbrew/ps4/openorbis/lib/libunwind.a",
+      "bytes": 118162,
+      "sha256": "5105fda869be89a15783ed17c806a8dc1d8b3dd37a47728ecc46effc8033f0c7",
+      "root": "platform",
+      "link_argument": "<platform>/sdk/opt/pacbrew/ps4/openorbis/lib/libunwind.a"
+    }
+  ],
+  "limits": "Link arguments, not an archive-member extraction map; response-file objects remain in retained build tree"
+}

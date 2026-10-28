@@ -1,0 +1,38 @@
+{
+  "platform": "platform/ps4",
+  "tools": "tools/pswaker",
+  "tests": "tests/ps4",
+  "required_target_directories": [
+    "game", "probe", "host-renderer", "runtime-preflight", "patches", "provenance"
+  ],
+  "required_target_files": [
+    "content-contract.json", "dependencies.lock.json", "game.lock.json",
+    "host.lock.json", "LICENSE", "patch-series.json", "ps4.cmake",
+    "renderer.lock.json", "sdk.lock.json", "sources.lock.json",
+    "game/CMakeLists.txt", "probe/CMakeLists.txt",
+    "host-renderer/CMakeLists.txt", "runtime-preflight/CMakeLists.txt"
+  ],
+  "command_groups": {
+    "diagnostic": {
+      "files": [
+        "adapt-platform.py", "apply-patches.py", "audit-inputs.py",
+        "build-graphics.sh", "build-probe.sh", "build-runtime.sh",
+        "build-sdk-support.sh", "capture-inputs.py", "clean-build.sh",
+        "inputs.py", "inspect-artifacts.py", "install-host.sh", "lock-sdk.py",
+        "package-probe.py", "prepare-graphics.sh", "prepare-sdk-sources.py",
+        "prepare-sources.py", "reconcile-renderer.py"
+      ]
+    },
+    "game": {
+      "files": [
+        "build-game.sh", "complete-package.py", "content-failure-package.py",
+        "disc_image.py", "frame-pacing.py", "game-build.py",
+        "prepare-content-contract.py", "prepare-game.py", "storage-cases.py",
+        "package_validation.py", "desktop_app.py", "PSWaker.pyw", "build-desktop.py", "program_payload.py",
+        "package_artifact.py", "windows_package.py", "prepare-windows-tools.py",
+        "build_operation.py", "owned_work.py", "windows_process.py", "diagnostics.py",
+        "build-installer.py", "desktop-installer.iss", "installed_release.py"
+      ]
+    }
+  }
+}

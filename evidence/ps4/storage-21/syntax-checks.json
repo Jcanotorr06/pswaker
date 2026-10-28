@@ -1,0 +1,13 @@
+{
+  "python_compileall": "passed",
+  "shell_syntax": [
+    "platform/ps4/build-game.sh",
+    "platform/ps4/build-graphics.sh",
+    "platform/ps4/build-probe.sh",
+    "platform/ps4/build-runtime.sh",
+    "platform/ps4/build-sdk-support.sh",
+    "platform/ps4/clean-build.sh",
+    "platform/ps4/install-host.sh",
+    "platform/ps4/prepare-graphics.sh"
+  ]
+}
