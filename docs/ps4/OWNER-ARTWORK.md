@@ -48,9 +48,11 @@ below. Update the record when an image changes. The tools record technical
 identity; they do not collect or approve origin or rights evidence.
 
 Local use, possession of a disc or successful validation does not grant
-permission to commit or redistribute artwork. Only the two approved source PNGs
-in `assets/ps4/` may be committed under the existing decision. Do not commit or
-attach replacement images, private provenance records, raw packaging evidence
+permission to commit or redistribute artwork. For game program artwork, only
+the two approved source PNGs in `assets/ps4/` may be committed under the existing
+decision. The Windows executable icon is separately included at
+[tools/pswaker/waker.ico](../../tools/pswaker/waker.ico) under the same approval.
+Do not commit or attach replacement images, private provenance records, raw packaging evidence
 or artwork-bearing outputs to issues, pull requests or logs. Keep build roots,
 stages, staging history, program releases, complete packages, desktop bundles,
 archives and installers outside git. The repository ignores directories named `local-artwork/` and
@@ -101,7 +103,7 @@ Successful staging publishes `build/program-stage/` and `out/program/`.
 source paths. Private `evidence/game-program-artifacts.json` also records the
 source paths, full stage inventory, package hash, version, title/content IDs,
 compiled build ID, ELF/SELF hashes, build-input inventory hash and cache path.
-Keep this local evidence private. Only the approved source PNGs belong in git;
+Keep this local evidence private. Only the approved source artwork belongs in git;
 replacement artwork and artwork-bearing build outputs stay outside it.
 
 Inspection checks the package hash before extraction, then freshly extracts the

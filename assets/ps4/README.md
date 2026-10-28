@@ -2,7 +2,8 @@
 
 These prepared PNGs are included so anyone can build the game program from a
 checkout. They are separate from the in-game title screen and HUD and from the
-Windows executable's icon.
+Windows executable's [waker.ico](../../tools/pswaker/waker.ico), which is already
+tracked and covered by the same redistribution decision.
 
 | File | Role | Dimensions | SHA-256 |
 | --- | --- | --- | --- |

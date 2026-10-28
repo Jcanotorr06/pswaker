@@ -176,15 +176,18 @@ and contract inventories, and reject any other program files.
 The desktop app folder, portable zip and Windows installer bundle the program
 release's artwork. Keep them and their audit manifests outside git. The
 [artwork redistribution decision](docs/RELEASING.md#artwork-redistribution-blocker)
-permits redistribution when both artwork hashes match its approval; otherwise,
-keep them private pending a separate decision. A passing inventory or installer
+permits redistribution when both game artwork hashes and the executable icon
+source match its approval; otherwise, keep them private pending a separate
+decision. A passing inventory or installer
 check does not grant redistribution permission or clear the public-readiness
 gate.
 
 App versions have four numeric parts, each 0–65535. Give every desktop build
 you hand out a new version. The desktop version is independent of the console
 program version. Both executables embed
-[waker.ico](tools/pswaker/waker.ico). Release builds follow the version scheme
+[waker.ico](tools/pswaker/waker.ico), which is included in the checkout and covered
+by the [artwork approval](docs/RELEASING.md#artwork-redistribution-blocker).
+No separate icon download is needed. Release builds follow the version scheme
 in [RELEASING.md](docs/RELEASING.md).
 
 To check an installed copy without changing it, run the installed

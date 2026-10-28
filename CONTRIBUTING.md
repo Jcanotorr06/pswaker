@@ -20,7 +20,8 @@ pull requests or logs:
 [.gitignore](.gitignore) blocks the common file types; don't work around it.
 Tests use synthetic, data-free fixtures in [tests/ps4](tests/ps4/).
 The approved game icon and launch splash in [assets/ps4](assets/ps4/README.md)
-are the artwork exception: their exact hashes and unrestricted redistribution
+and the Windows executable icon [waker.ico](tools/pswaker/waker.ico)
+are the artwork exceptions: their exact hashes and unrestricted redistribution
 authorization are recorded in the
 [release guide](docs/RELEASING.md#artwork-redistribution-blocker). Different or
 modified artwork needs a separate approval before being committed or distributed.
