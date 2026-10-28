@@ -12,24 +12,54 @@ pre-releases in the private repository.
 
 ## Artwork redistribution blocker
 
-**Release blocker:** a game program release built with owner-supplied game icon
-and launch splash bundles that artwork. The Windows desktop app folder, portable
-zip and installer bundle it too. All such artifacts must stay private until a
-separate provenance decision explicitly permits redistribution of the included
-artwork. Being disc-free, passing inspection or marking a release as a
-pre-release does not resolve this blocker; a pre-release in a public repository
+**Resolved for the approved artwork below.** A game program release bundles its
+game icon and launch splash. The Windows desktop app folder, portable zip and
+installer bundle them too, and the Windows executables embed their own icon.
+On 2026-10-28, Joseph Cano (project owner and decision reviewer) explicitly
+confirmed in the release-preparation conversation that the
+provided artwork can be redistributed without restriction. That owner
+authorization is the rights evidence for this decision. In the same conversation,
+the owner extended the request to the Windows executable icon. The approval
+applies to these exact supplied files:
+
+| Resource | Repository file | SHA-256 |
+| --- | --- | --- |
+| Game icon / `ICON0_PNG` | [assets/ps4/icon0.png](../assets/ps4/icon0.png) | `d3e22130a3c119d1f75daf19de2636cf9162e65575eba6a6ca20a590cb1db03e` |
+| Launch splash / `PIC1_PNG` | [assets/ps4/splash_art.png](../assets/ps4/splash_art.png) | `35fe1f42fab83f27841e9049c650662b5d8cbe505edc94eab8fbb3f1ae8a99b4` |
+| Windows executable and installer icon | [tools/pswaker/waker.ico](../tools/pswaker/waker.ico) | `b4009e68c95d520ecbf9baa9be691b9fa997edc30bc6479d5e77e93afad98da5` |
+
+**Permitted scope:** unrestricted redistribution of all three identified files,
+including in this repository, program releases, desktop bundles, portable
+archives and installers, for private or public pre-releases and final releases.
+The owner requested including these assets so others can build from a checkout.
+This records the owner's authorization, without assigning an additional license
+or claiming authorship.
+Both PNGs passed the maintained game artwork validator without conversion.
+The tracked ICO is byte-for-byte identical to the owner's supplied `waker.ico`
+and is already used by the desktop and installer builds.
+
+Other artwork, including modified or re-encoded PNGs with different hashes,
+needs a separate decision. Without one, artwork-bearing artifacts must remain
+private. Being disc-free, passing inspection or marking a release as a
+pre-release does not supply permission; a pre-release in a public repository
 still distributes its assets.
 
 Before tagging or publishing any artwork-bearing release:
 
 - Match both `ICON0_PNG` and `PIC1_PNG` hashes in the chosen program release's
-  `stage/build-info.json` with the owner's private
+  `stage/build-info.json` with this approval and the
+  [repository artwork record](../assets/ps4/README.md). For replacement artwork,
+  use its separate decision and private
   [origin and provenance record](ps4/OWNER-ARTWORK.md#local-artwork-and-provenance).
-- Record the separate provenance decision in the release tracking issue: the
-  exact artwork hashes, a reference to the reviewed rights evidence, reviewer,
-  date and permitted redistribution scope. Keep images, personal paths and raw
-  private provenance records out of the issue. Missing, pending or insufficient
-  permission keeps this blocker open.
+- Match `tools/pswaker/waker.ico` in the checkout used for the Windows build
+  against its approved source hash above. This is the ICO file's hash, separate
+  from the resulting executable and installer hashes.
+- Record the matching artwork hashes and a reference to this decision in the
+  release tracking issue. For different artwork, record a separate provenance
+  decision with the exact hashes, reviewed rights evidence, reviewer, date and
+  permitted redistribution scope. Keep images, personal paths and raw private
+  provenance records out of the issue. Missing, pending or insufficient
+  permission keeps this blocker open for that artwork.
 - Until that decision permits redistribution, keep program releases, desktop
   bundles, installers, archives and audit outputs outside git and restrict any
   release assets to the private repository. Verify the repository is private
@@ -39,8 +69,9 @@ Before tagging or publishing any artwork-bearing release:
 This decision is separate from permission for local artwork use and does not
 replace the public-readiness gate in
 [#50](https://github.com/Jcanotorr06/pswaker/issues/50). Passing either gate does
-not imply passing the other. No artwork or artwork-bearing output belongs in
-git through this workflow.
+not imply passing the other. Only the three approved source artwork files above
+belong in git through this workflow. Keep private provenance records and all build outputs
+outside git, even when they contain approved artwork.
 
 ## Versions
 
@@ -190,8 +221,9 @@ Tags are never moved or reused. If an asset needs fixing, publish a new RC.
 
 ## 6. Publish the GitHub release
 
-Confirm the [artwork redistribution blocker](#artwork-redistribution-blocker)
-is resolved for the intended audience. Without a separate decision permitting
+Confirm the actual artwork hashes match the
+[approved redistribution decision](#artwork-redistribution-blocker) for the
+intended audience. If different artwork lacks a decision permitting
 redistribution, use only the private repository; stop if it is public.
 
 Append the checksums to the notes, then create the release. Use `--prerelease`
