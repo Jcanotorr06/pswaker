@@ -438,6 +438,39 @@ class RelocatableProgramTests(PreparationCliTestCase):
         for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
             self.assertEqual(report['payload_sha256']['sce_sys/' + name], artwork[resource]['sha256'])
 
+    def test_content_failure_variants_preserve_the_complete_package_artwork(self):
+        stage, elf, _ = self.game_build()
+        artwork = {name: (stage / 'sce_sys' / name).read_bytes() for name in ['icon0.png', 'pic1.png']}
+        result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
+                              '--elf', elf, '--platform-root', self.reference, '--kind', 'game',
+                              '--app-version', '01.05', '--output', self.output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        parent = json.loads((self.output / 'inspection.json').read_text())
+        tool = str(self.reference / 'build/pkgtool/PkgTool.Core')
+        env = dict(os.environ, DOTNET_SYSTEM_GLOBALIZATION_INVARIANT='1')
+        for variant in ['missing', 'unreadable', 'invalid']:
+            with self.subTest(variant=variant):
+                output = self.root / variant
+                result = self.run_cli(self.output, '--platform-root', self.reference, '--variant', variant,
+                                      '--app-version', '01.06', '--output', output,
+                                      cli=Locations(self.root / 'repo').command('content-failure-package.py'))
+                self.assertEqual(result.returncode, 0, result.stderr)
+                report = json.loads((output / 'failure-inspection.json').read_text())
+                self.assertEqual(report['parent_package'], parent['package'])
+                self.assertEqual(report['variant'], variant)
+                self.assertEqual(report['payload_sha256']['eboot.bin'], parent['program']['eboot_sha256'])
+                package = output / 'out' / report['package']['filename']
+                entries = subprocess.check_output([tool, 'pkg_listentries', str(package)], text=True, env=env)
+                for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
+                    rows = [line.split() for line in entries.splitlines()
+                            if line.split() and line.split()[-1] == resource]
+                    self.assertEqual(len(rows), 1)
+                    extracted = output / name
+                    subprocess.run([tool, 'pkg_extractentry', str(package), rows[0][3], str(extracted)],
+                                   check=True, capture_output=True, env=env)
+                    self.assertEqual(extracted.read_bytes(), artwork[name])
+                    self.assertEqual(sha256(extracted), parent['payload_sha256']['sce_sys/' + name])
+
     def test_invalid_game_artwork_stops_assembly_without_completed_output(self):
         stage, elf, _ = self.game_build()
         for resource, name, width, height in [('ICON0_PNG', 'icon0.png', 512, 512),
