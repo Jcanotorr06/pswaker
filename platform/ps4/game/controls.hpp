@@ -1,6 +1,28 @@
 #pragma once
+#include "controls-config.hpp"
 #include <dolphin/pad.h>
 #include <array>
+
+struct AppliedControls {
+    ControlsConfig config;
+    uint64_t generation = 0;
+    // Descriptions of controls that cannot be remapped. Port controls are separate.
+    static constexpr std::array<const char*, 3> fixedGameplay{
+        "Left stick = Control Stick; Right stick = C Stick; D-pad = D-pad",
+        "L2 / R2 = analog L / R; full press starts at 90% travel.",
+        "L3 / R3 assignments are digital only; stick movement stays fixed."};
+    static constexpr std::array<const char*, 2> fixedPort{
+        "Touchpad click = Port settings; D-pad = Navigate",
+        "Cross = Confirm; Circle = Cancel / Back"};
+    std::array<std::string, 8> legend() const;
+};
+// Returns an independent read-only view of one whole generation, safe across publication.
+AppliedControls pswaker_applied_controls();
+// Startup calls this after a successful profile check. Future Apply MUST validate,
+// persist successfully, then publish. Every successful publication (even identical
+// values) increments generation once; rejection leaves snapshot/generation intact.
+// Generation 0 is the initial default; overflow is rejected, never wrapped.
+bool pswaker_publish_controls(const ControlsConfig& config);
 
 enum class PortScreen { Legend, Game, Settings, Quit, InputLost, Exit };
 enum class PortAction { Resume, ShowLegend, CheckFailedRead, ToggleText, Quit, SampleOutset, SampleForest, Transition, Gameplay };

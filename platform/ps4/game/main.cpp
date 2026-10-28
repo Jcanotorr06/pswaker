@@ -83,18 +83,19 @@ void symbolLine(Symbol symbol, const char* text) {
 void portContent() {
     const auto view = pswaker_port_view();
     if (view.screen == PortScreen::Legend) {
-        symbolLine(Symbol::Cross, "Cross = GameCube A");
-        symbolLine(Symbol::Circle, "Circle = GameCube B");
-        symbolLine(Symbol::Square, "Square = GameCube X");
-        symbolLine(Symbol::Triangle, "Triangle = GameCube Y");
-        ImGui::TextUnformatted("R1 = Z     Options = Start     Touchpad click = Port settings");
-        ImGui::TextUnformatted("Left stick = Control Stick     Right stick = C Stick     D-pad = D-pad");
-        ImGui::TextUnformatted("L2 / R2 = analog L / R; terminal click starts at 90% travel.");
+        const auto applied = pswaker_applied_controls();
+        ImGui::TextUnformatted("Applied gameplay controls");
+        for (const auto& line : applied.legend()) ImGui::TextUnformatted(line.c_str());
+        for (const auto* line : applied.fixedGameplay) ImGui::TextUnformatted(line);
+        if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
         ImGui::TextUnformatted("Original GameCube prompts remain in the game.");
         ImGui::Separator();
+        ImGui::TextUnformatted("Fixed port-menu controls");
+        for (const auto* line : applied.fixedPort) ImGui::TextUnformatted(line);
         symbolLine(Symbol::Cross, "Continue / Return to settings");
         symbolLine(Symbol::Circle, "Back to settings (when opened from settings)");
     } else if (view.screen == PortScreen::Settings) {
+        if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
         ImGui::TextUnformatted("D-pad Up / Down: Choose");
         for (unsigned i = 0; i < portMenuItems.size(); ++i)
             ImGui::Text("%s %s", view.selection == i ? ">" : " ", portMenuItems[i].label);
@@ -253,6 +254,9 @@ void pswaker_graphics_ready() {
         snprintf(message, sizeof message, "%s\n\nCheck free space, permissions and the indicated path under /data/pswaker. Existing saves/settings are preserved. Repair the problem, then Retry; or Exit.", settings.error());
         if (!confirmScreen("Save/settings storage unavailable", message, true)) pswaker_exit(2);
     }
+    if (!pswaker_publish_controls(settings.controls()))
+        pswaker_installation_error("Could not publish the complete controls configuration.");
+    if (*settings.controlsFeedback()) say("CONTROLS %s", settings.controlsFeedback());
     say("STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=%s GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent", settings.largeText() ? "large" : "standard");
     pswaker_stage("writable-storage-checked");
     for (const char* channel : {"A", "B"}) {

@@ -23,6 +23,7 @@ class PersistenceTests(unittest.TestCase):
         result = subprocess.run([
             'clang++-21', '-std=c++23', '-Wall', '-Wextra', '-Werror',
             '-I', str(PLATFORM / 'game'), str(PLATFORM / 'game/storage.cpp'),
+            str(PLATFORM / 'game/controls-config.cpp'),
             str(LOCATIONS.tests / 'storage.cpp'), '-Wl,--wrap=fsync',
             '-Wl,--wrap=rename', '-Wl,--wrap=close', '-o', str(cls.binary)],
             capture_output=True, text=True)
@@ -37,6 +38,9 @@ class PersistenceTests(unittest.TestCase):
 
     def test_setting_survives_new_process_and_preserves_other_settings(self):
         self.scenario('roundtrip')
+
+    def test_controls_survive_new_process_and_text_size_changes_preserve_the_section(self):
+        self.scenario('controls-roundtrip')
 
     def test_failed_sync_close_or_replacement_preserves_previous_setting(self):
         self.scenario('failed-replacement')

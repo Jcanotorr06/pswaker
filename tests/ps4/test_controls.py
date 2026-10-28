@@ -34,6 +34,7 @@ class InstalledControlsTests(unittest.TestCase):
             raise AssertionError(native.stderr)
         build = subprocess.run(['clang++-21', '-std=c++23', '-Wall', '-Wextra', '-Werror',
                                 *includes, str(PLATFORM / 'game/controls.cpp'),
+                                str(PLATFORM / 'game/controls-config.cpp'),
                                 str(PLATFORM / 'game/storage.cpp'),
                                 str(LOCATIONS.tests / 'controls-console.cpp'), str(root / 'platform.o'),
                                 '-Wl,--wrap=scePadReadState', '-o', str(cls.binary)],
@@ -41,13 +42,67 @@ class InstalledControlsTests(unittest.TestCase):
         if build.returncode:
             raise AssertionError(build.stderr)
 
-    def check_scenario(self, name):
+    def check_scenario(self, name, contents=None):
         with tempfile.TemporaryDirectory(prefix='pswaker-menu-profile-') as profile:
-            result = subprocess.run([str(self.binary), name, profile], capture_output=True, text=True)
+            ini = Path(profile) / 'settings.ini'
+            if contents is not None:
+                ini.write_bytes(contents)
+            result = subprocess.run([str(self.binary), name, profile], capture_output=True, text=True, timeout=15)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            if contents is not None:
+                self.assertEqual(ini.read_bytes(), contents)
+            elif name == 'profile-defaults':
+                self.assertFalse(ini.exists())
 
     def test_legend_confirmation_does_not_leak_into_game(self):
         self.check_scenario('legend')
+
+    def test_saved_layout_drives_gameplay_and_applied_legend(self):
+        self.check_scenario('saved-layout')
+
+    def test_every_action_on_all_nine_targets_and_legend_agreement(self):
+        self.check_scenario('all-targets')
+
+    def test_assignment_swap_free_and_noop_and_publication_generation(self):
+        self.check_scenario('assignments')
+
+    def test_concurrent_readers_observe_a_complete_applied_generation(self):
+        self.check_scenario('coherent-snapshot')
+
+    def test_fixed_inputs_and_recovery_under_custom_layout(self):
+        for scenario in ['mapping', 'menus', 'disconnect', 'failed-read', 'boot-loss', 'fault-check']:
+            with self.subTest(scenario=scenario):
+                self.check_scenario('custom-' + scenario)
+
+    def test_missing_controls_silently_use_defaults_without_creating_or_rewriting_settings(self):
+        self.check_scenario('profile-defaults')
+        self.check_scenario('profile-defaults', b'# legacy profile\r\nPSWAKER_LARGE_TEXT=0\r\n[dev]\r\nCOS_FPS60=1\r\n')
+
+    def test_invalid_controls_use_complete_defaults_with_feedback_without_rewriting(self):
+        complete = (b'[controls]\nversion=1\nA=L3\nB=R3\nX=L1\nY=Options\nZ=Cross\nStart=Circle\n'
+                    b'invert_camera_x=1\ninvert_camera_y=1\n')
+        cases = {
+            'malformed': complete.replace(b'A=L3', b'A L3'),
+            'incomplete': complete.replace(b'Start=Circle\n', b''),
+            'missing-version': complete.replace(b'version=1\n', b''),
+            'missing-axis': complete.replace(b'invert_camera_y=1\n', b''),
+            'duplicate-target': complete.replace(b'B=R3', b'B=L3'),
+            'duplicate-key': complete + b'A=L3\n',
+            'duplicate-section': complete + complete,
+            'reserved': complete.replace(b'A=L3', b'A=Touchpad'),
+            'unsupported-button': complete.replace(b'A=L3', b'A=Share'),
+            'unsupported-version': complete.replace(b'version=1', b'version=2'),
+            'invalid-axis': complete.replace(b'invert_camera_x=1', b'invert_camera_x=On'),
+            'unknown-action': complete + b'L=L2\n',
+            'malformed-header': complete.replace(b'[controls]', b'[controls'),
+            'empty-section': b'[controls]\n',
+        }
+        for case, contents in cases.items():
+            with self.subTest(case=case):
+                self.check_scenario('profile-fallback', b'PSWAKER_LARGE_TEXT=0\n' + contents + b'[dev]\nCOS_FPS60=1\n')
+
+    def test_settings_read_failure_stays_a_storage_error_and_keeps_applied_controls(self):
+        self.check_scenario('profile-read-failure')
 
     def test_port_text_setting_requires_separate_confirmations_and_pauses_game(self):
         self.check_scenario('text-setting')

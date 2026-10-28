@@ -71,6 +71,26 @@ movement, a face/action button, L2/R2, and a combination. Record each trial.
 
 ## Return evidence
 
+### Saved layout slice (#94, after first playable)
+
+On a new identified build, retain the matching build ID, program/package hashes
+and private profile backup. These checks do not reopen the original #18 results.
+
+- [ ] Launch with a complete custom `[controls]` section as documented in
+  [applied controls](APPLIED-CONTROLS.md). Compare all six first-launch legend
+  entries with gameplay actions; reopen the legend from settings and compare.
+  Across focused layouts, include all nine allowed targets and each action.
+- [ ] Move A, B and Start off Cross, Circle and Options. Check movement, C-stick,
+  D-pad, partial/full L2/R2, digital stick clicks, Touchpad, fixed Cross/Circle
+  navigation and confirmation release. Check disconnect, reconnection and the
+  delayed failed-read action; resuming must remain deliberate.
+- [ ] Record the saved X/Y switch values shown in the legend. Camera/aiming
+  inversion acceptance belongs to the later integration slice.
+- [ ] Return observations and any failures for this exact candidate; host tests
+  do not prove on-console rendering or physical game actions.
+
+### Logs and observations
+
 Before another launch rotates the logs, retrieve via your existing FTP:
 
 - /data/pswaker/logs/platform.log, platform.prev.log and last-stage.txt.

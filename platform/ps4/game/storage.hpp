@@ -1,4 +1,5 @@
 #pragma once
+#include "controls-config.hpp"
 #include <string>
 #include <utility>
 
@@ -34,8 +35,10 @@ extern "C" bool pswaker_save_finish(bool completed);
 class PortSettings {
 public:
     explicit PortSettings(std::string root = "/data/pswaker") : root_(std::move(root)) {}
-    bool check(); // Create/probe the shared profile and load its port setting.
+    bool check(); // Create/probe the shared profile and load text size and complete controls.
     bool largeText() const { return largeText_; }
+    const ControlsConfig& controls() const { return controls_.config; }
+    const char* controlsFeedback() const { return controls_.feedback; }
     bool setLargeText(bool large);
     const char* error() const { return error_.c_str(); }
 
@@ -44,4 +47,5 @@ private:
     bool failure(const std::string& path);
     std::string root_, error_;
     bool largeText_ = true;
+    ControlsLoad controls_;
 };

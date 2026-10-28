@@ -348,6 +348,7 @@ bool PortSettings::check() {
     bool large = true;
     if (!read(contents, large)) return false;
     largeText_ = large;
+    controls_ = parse_controls(contents);
     return true;
 }
 bool PortSettings::setLargeText(bool large) {
@@ -363,7 +364,7 @@ bool PortSettings::setLargeText(bool large) {
         const auto count = end == std::string::npos ? contents.size() - offset : end + 1 - offset;
         const auto raw = contents.substr(offset, count);
         const auto line = trim(raw);
-        if (line == "[dev]") {
+        if (line == "[dev]" || line == "[controls]") {
             updated += setting + contents.substr(offset);
             inserted = true;
             break;

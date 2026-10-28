@@ -3,8 +3,12 @@
 #include "frame-pacing.hpp"
 #include <algorithm>
 #include <cmath>
+#include <limits>
+#include <mutex>
 
 namespace {
+std::mutex appliedMutex;
+AppliedControls applied;
 bool checkAfterResume = false;
 double failReadAt = -1;
 bool enabled = false;
@@ -42,6 +46,27 @@ bool neutral() {
     return current.held == 0 && current.left_x == 0 && current.left_y == 0 &&
            current.right_x == 0 && current.right_y == 0 && current.l2 == 0 && current.r2 == 0;
 }
+}
+
+AppliedControls pswaker_applied_controls() {
+    const std::lock_guard lock(appliedMutex);
+    return applied;
+}
+bool pswaker_publish_controls(const ControlsConfig& config) {
+    if (!config.valid()) return false;
+    const std::lock_guard lock(appliedMutex);
+    if (applied.generation == std::numeric_limits<uint64_t>::max()) return false;
+    applied = {config, applied.generation + 1};
+    return true;
+}
+std::array<std::string, 8> AppliedControls::legend() const {
+    std::array<std::string, 8> lines;
+    for (const auto action : gameActions)
+        lines[static_cast<unsigned>(action)] = std::string("GameCube ") + control_action_name(action) + " = " +
+                                              control_target_name(config.binding(action));
+    lines[6] = std::string("Saved camera inversion X: ") + (config.invertCameraX ? "On" : "Off");
+    lines[7] = std::string("Saved camera inversion Y: ") + (config.invertCameraY ? "On" : "Off");
+    return lines;
 }
 
 PortView pswaker_port_view() { return view; }
@@ -139,10 +164,15 @@ extern "C" u32 pswaker_read_gamepad(PADStatus* status) {
     }
     if (!view.connected || view.screen != PortScreen::Game || view.releasing) return 0;
     auto& p = status[0];
+    const auto snapshot = pswaker_applied_controls();
+    constexpr std::array<uint32_t, 9> targets{PAD_CROSS, PAD_CIRCLE, PAD_SQUARE, PAD_TRIANGLE,
+        PAD_L1, PAD_R1, PAD_L3, PAD_R3, PAD_OPTIONS};
+    constexpr std::array<uint16_t, 6> actions{PAD_BUTTON_A, PAD_BUTTON_B, PAD_BUTTON_X,
+        PAD_BUTTON_Y, PAD_TRIGGER_Z, PAD_BUTTON_START};
+    for (const auto action : gameActions)
+        if (current.held & targets[static_cast<unsigned>(snapshot.config.binding(action))])
+            p.button |= actions[static_cast<unsigned>(action)];
     constexpr struct { uint32_t ds4; uint16_t gc; } mapping[] = {
-        {PAD_CROSS, PAD_BUTTON_A}, {PAD_CIRCLE, PAD_BUTTON_B},
-        {PAD_SQUARE, PAD_BUTTON_X}, {PAD_TRIANGLE, PAD_BUTTON_Y},
-        {PAD_R1, PAD_TRIGGER_Z}, {PAD_OPTIONS, PAD_BUTTON_START},
         {PAD_UP, PAD_BUTTON_UP}, {PAD_DOWN, PAD_BUTTON_DOWN},
         {PAD_LEFT, PAD_BUTTON_LEFT}, {PAD_RIGHT, PAD_BUTTON_RIGHT},
     };
