@@ -12,7 +12,9 @@ import sys
 import tempfile
 
 import build_inputs
+from program_payload import package_metadata
 spec = importlib.util.spec_from_file_location('complete_package', build_inputs.Locations().command('complete-package.py'))
+assert spec is not None and spec.loader is not None
 complete = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(complete)
 
@@ -70,10 +72,12 @@ def build(args):
         payload = work / 'extracted/uroot'
         expected = complete.inventory(stage)
         actual = complete.inventory(payload)
-        complete.require(set(actual) == set(expected) - {'sce_sys/param.sfo', 'sce_sys/icon0.png'} | {'sce_sys/keystone'},
+        resources = package_metadata(parent['kind'])
+        metadata_paths = {'sce_sys/' + name for _, name in resources}
+        complete.require(set(actual) == set(expected) - metadata_paths | {'sce_sys/keystone'},
                          'Failure package extraction has unexpected files')
         complete.require(all(actual[name] == sha for name, sha in expected.items()
-                             if name not in {'sce_sys/param.sfo', 'sce_sys/icon0.png'}),
+                             if name not in metadata_paths),
                          'Failure package extraction changed program/content bytes')
         complete.require(actual['eboot.bin'] == parent['program']['eboot_sha256'], 'Failure package executable differs')
         if args.variant == 'missing':
@@ -87,11 +91,18 @@ def build(args):
                 complete.require('SHA-1 mismatch' in str(error), 'Invalid-content fault failed for an unexpected reason')
             else:
                 raise ValueError('Invalid-content fault unexpectedly passed validation')
-        entries = subprocess.check_output([str(tools.pkgtool), 'pkg_listentries', str(package)],
-                                          env=tools.env, text=True)
-        row = next(line.split() for line in entries.splitlines() if line.split() and line.split()[-1] == 'PARAM_SFO')
-        tools.run([tools.pkgtool, 'pkg_extractentry', package, row[3], work / 'param.sfo'])
-        fields = complete.sfo_fields((work / 'param.sfo').read_bytes())
+        entries = tools.capture([tools.pkgtool, 'pkg_listentries', package])
+        metadata = work / 'metadata'
+        metadata.mkdir()
+        for resource, name in resources:
+            rows = [line.split() for line in entries.splitlines() if line.split() and line.split()[-1] == resource]
+            complete.require(len(rows) == 1, f'Missing/duplicate failure package metadata {resource}')
+            target = metadata / name
+            tools.run([tools.pkgtool, 'pkg_extractentry', package, rows[0][3], target])
+            if resource != 'PARAM_SFO':
+                complete.require(complete.digest(target) == parent['program']['payload_sha256']['sce_sys/' + name],
+                                 f'Failure package {resource} artwork differs from the parent program')
+        fields = complete.sfo_fields((metadata / 'param.sfo').read_bytes())
         complete.require(fields['TITLE_ID'] == 'PSWK00001' and fields['APP_VER'] == args.app_version
                          and fields['CONTENT_ID'] == complete.content_id(identity), 'Failure package identity mismatch')
         manifest.update(package={'filename': package.name, 'sha256': complete.digest(package), 'size': package.stat().st_size},
