@@ -16,6 +16,10 @@ Examples: `bug/42-fix-readback`, `feature/15-platform-verification`,
 
 Before committing, verify that the current branch is the task branch.
 
+Releases use `release/X.Y.Z` (for example `release/0.1.0`), cut from `develop`
+and merged into `main`. Read `docs/RELEASING.md` before preparing, tagging or
+publishing a release.
+
 ## Agent skills
 
 ### Issue tracker

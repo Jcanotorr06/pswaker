@@ -205,47 +205,11 @@ clearance; see [complete packages](../ps4/COMPLETE-PACKAGES.md) and
 
 ## Maintainer preparation
 
-These commands are developer preparation, never consumer setup. On Windows x64,
-use CPython 3.12 with Tcl/Tk and the explicitly pinned .NET SDK **8.0.427**.
-The tool preparer fetches the existing pinned LibOrbisPkg archive, verifies its
-SHA-256, applies the established net6.0 → net8.0 retargeting, and publishes with
-the Windows runtime. Network restore is confined to maintainer preparation.
-Review the actual closure's redistribution obligations before distribution.
-
-```powershell
-python -m pip install -r tools/pswaker/desktop-requirements.txt
-python tools/pswaker/prepare-windows-tools.py --dotnet C:\maintainer\dotnet\dotnet.exe --output C:\private\windows-tools
-python tools/pswaker/build-desktop.py --program C:\private\game-release --packaging C:\private\windows-tools --output C:\private\desktop-build
-python tools/pswaker/build-installer.py --program C:\private\game-release --packaging C:\private\windows-tools --app-version 0.46.0.0 --iscc 'C:\maintainer\Inno Setup 6\ISCC.exe' --output C:\private\installer-0.46.0.0
-```
-
-Tool and build outputs must be new directories. Keep the entire resulting
-`PSWaker` folder, including `_internal` and `application-release.json`, together.
-The application and setup executables embed the repository's
-`tools/pswaker/waker.ico` icon.
-The installer builder uses the same bundle builder with **CPython 3.12**,
-**PyInstaller 6.22.3** and an explicit **Inno Setup 6.7.3** compiler. Its script
-rejects any other compiler version. App versions have four numeric Windows version
-components, each 0..65535; assign a new version to each manual desktop release.
-Compiler preparation is a maintainer step only. Obtain the pinned compiler from
-[Inno Setup's official downloads](https://jrsoftware.org/isdl.php), verify its
-publisher/signature and record the archive identity. The CI recipe additionally
-checks the exact pinned download SHA-256 before installing that compiler.
-
-The new installer output contains the self-contained setup executable and
-`installer-release.json`: installer SHA-256, app version, installed directory
-identity, executable/runtime inventory, Python/PyInstaller versions, desktop
-manifest, full program/tool manifests, installer recipe digest and compiler-file
-inventory. Retain both files privately for audit and acceptance. No owner image
-is read when building an installer. The builder seals only the strict data-free
-program/tool/contract inventories; arbitrary program files are rejected. No
-release artifacts are published by the build or CI.
-
-For a read-only installed closure probe, run the installed `PSWaker.exe
---check-installation C:\private\new-installation-report.json`. It returns zero
-and creates a new identity report only when the entire installed closure matches.
-An invalid closure or an existing report path returns nonzero. This maintainer
-acceptance probe cannot select a different program or alter image policy.
+Building the packaging tools, desktop app folder and installer is maintainer
+work, never consumer setup. The commands, pinned prerequisites and output
+manifests are in [BUILDING.md](../../BUILDING.md#windows-desktop-app-and-installer).
+No release artifacts are published by the build or CI; the release process is
+in [RELEASING.md](../RELEASING.md).
 
 ## Verification and remaining evidence
 

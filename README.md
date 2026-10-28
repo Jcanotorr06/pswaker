@@ -1,74 +1,201 @@
-# Wind Waker (GameCube) for PlayStation 4
+# PSWaker
 
-This project aims to port [SwitchWaker](https://github.com/centollOS/SwitchWaker) to PS4 homebrew, using [PS5_SwitchWaker](https://github.com/griches/PS5_SwitchWaker) as a reference. SwitchWaker compiles The Wind Waker's GameCube decompilation and draws it with [Aurora](https://github.com/encounter/aurora).
+A PS4 homebrew port of *The Legend of Zelda: The Wind Waker* (GameCube), built
+from your own disc.
 
-## Status
+PSWaker runs the game natively on the PS4. It compiles
+[SwitchWaker](https://github.com/centollOS/SwitchWaker), which builds the
+[Wind Waker decompilation](https://github.com/zeldaret/tww) and draws it with
+[Aurora](https://github.com/encounter/aurora), for the PS4. A Windows desktop
+app combines the prebuilt PS4 program with your own disc image to create a
+**complete package** (`.pkg`). You then install the package on a PS4 running
+GoldHEN.
 
-The native game is integrated with the verified PS4 platform. The owner [reports gameplay through Outset, Forsaken Fortress and Windfall to Dragon Roost Island](evidence/ps4/startup-17/console-2026-10-25/REPORT.md), with no observed graphics/audio glitches and brief loading/first-effect pauses. Controlled content failures, repaired startup and owner-confirmed seeded save/settings comparisons complete the bounded [startup checkpoint evidence review](evidence/ps4/startup-17/REPORT.md). The confirmed hardware is a **PS4 Slim running firmware 9.00 / GoldHEN v2.4b18**, with USA disc `GZLE01`, revision 0.
+The repository and its releases contain no game data, disc images or keys.
 
-The [maintained disc-free platform diagnostic](docs/ps4/README.md) passed its [bounded platform gate](evidence/ps4/verification-15/REPORT.md). Those synthetic checks do not validate the game candidate. Complete route/audio evidence, full storage-failure recovery and performance remain separate acceptance checkpoints.
+## Project status
 
-The [Outset/forest route and audio checkpoint](docs/ps4/ROUTE-AUDIO.md) adds repeated audio-defect counters and pending-card/audio/GPU shutdown coordination. The [owner's follow-up to the 01.06 handoff](evidence/ps4/route-19/owner-return-01.06/REPORT.md) confirms the requested title-through-Outset scenes/actions without visual or audible anomalies in both empty-cache and retained-cache runs, completed-save relaunch and clean normal port Quit. Logs could not be retrieved; candidate/cache corroboration and internal shutdown-stage evidence remain outstanding.
+PSWaker is **early and pre-release**. The first release candidate, 0.1.0 RC1,
+is a private pre-release for testing. It is not a public or final release.
 
-The canonical planning map is [Plan the first playable Wind Waker port for PS4 Slim 9.00](https://github.com/Jcanotorr06/pswaker/issues/1). It tracks the decisions needed before implementation. The [initial porting investigation](docs/PORTING_PLAN.md) and [platform research](docs/research/ps4-platform.md) provide background, using [Dusklight's PS4 port](https://github.com/BgbrhrWatchinOVO/dusklight-ps4) as the main platform reference.
+- The game has been played on the console from the title screen through
+  Outset, Forsaken Fortress and Windfall to Dragon Roost Island. No graphics or
+  audio glitches were observed during that run.
+- Saves and settings survive a full relaunch and an update to a newer package.
+- Controls use a fixed DualShock 4 mapping with PlayStation-style menus.
+- Final console acceptance of the bundled program, PS4 testing of packages
+  created by the desktop app and clean-system Windows testing are still pending.
 
-This repository and the releases contain no game data and no keys. You need your own disc, dumped yourself.
+The full checkpoint history with links to its evidence is in
+[docs/STATUS.md](docs/STATUS.md).
 
-The [Windows desktop workflow](docs/desktop/README.md) selects and validates owner
-images, then creates complete packages with a bundled game program and native
-Windows packaging tools. Success requires fresh output extraction and inspection.
-Private builds include both runtimes; the per-user installer, clean-system and
-console acceptance remain separate work.
+## Tested platform
 
-The [returned save/settings checkpoint](evidence/ps4/persistence-20/console-return-2026-10-26/REPORT.md)
-confirms persistence after full relaunch, a separate complete-package update,
-cache-only clearing and Quit without saving unsaved gameplay. Runtime manifests
-and byte-identical settings snapshots corroborate the owner's results. A logged
-Quit panic after an idle card remains an unresolved internal shutdown finding;
-full storage-failure recovery remains separate.
+Nothing else has been tested. Other PS4 models, firmware versions and GoldHEN
+versions may not work.
 
-The [storage recovery candidate](docs/ps4/STORAGE-RECOVERY.md) adds whole-save
-staging, previous valid backups, explicit corruption recovery and a regression
-for the captured GBA shutdown panic. Its [controlled owner checklist](docs/ps4/Storage-recovery-checklist.md)
-isolates genuine progress and exercises failure/pending-write behavior. Installed
-console acceptance remains pending for that exact binary.
-
-The [frame-pacing instrumentation](docs/ps4/FRAME-PACING.md) records completed
-PS4 game-frame flips, independent Outset/forest samples, shader waits and separate
-startup/loading phases. The [01.12 return](evidence/ps4/performance-22/console-return-01.12/REPORT.md)
-preserves warm numerical successes, cold shortfalls and unverified physical timing.
-The owner [accepts current performance for the initial release candidate](evidence/ps4/performance-22/OWNER-DECISION.md)
-and defers further optimization to [#51](https://github.com/Jcanotorr06/pswaker/issues/51).
-
-The [integrated first-playable review](evidence/ps4/integrated-23/REPORT.md)
-uses the existing **01.13** complete package, retaining its exact identity and
-the performance exception. The [consolidated owner checklist](docs/ps4/Integrated-checklist.md)
-covers the 01.12-to-01.13 update, repeated route, controls/audio, save/recovery,
-shutdown and evidence return. **Final integrated console acceptance remains pending.**
-
-## Repository map
-
-| Area | Ownership |
+| | Tested |
 | --- | --- |
-| [tools/pswaker](tools/pswaker/) | Maintained host commands and build-input ownership |
-| [platform/ps4](platform/ps4/) | PS4 runtime, CMake/toolchain definitions, locks, patches, provenance and target notices |
-| [tests/ps4](tests/ps4/) | Python tests, native harnesses and synthetic fixtures |
-| [docs/ps4](docs/ps4/README.md) | Maintained PS4 build instructions and owner checklists |
-| [evidence/ps4](evidence/ps4/) | Retained checkpoint groups and their original records |
+| Console | PS4 Slim, firmware 9.00, GoldHEN v2.4b18 |
+| Game disc | USA *The Wind Waker*, `GZLE01`, revision 0 |
+| PC | Windows 11 Pro x64, build 26200 (the development machine, not a clean system) |
 
-Project planning, research, domain vocabulary and agent guidance remain at their
-project-level locations. Start with the [diagnostic workflow](docs/ps4/README.md)
-or [installed-game workflow](docs/ps4/GAME-STARTUP.md).
+## Requirements
 
-The compiled [host renderer reference](platform/ps4/host-renderer/) and its CMake
-recipe remain target inputs, separate from the regression harnesses. The
-[frame-pacing owner example](platform/ps4/frame-pacing-owner.example.json) also
-remains target-associated maintained data.
+To create a package:
 
-## Standing on the shoulders of others
+- **Windows 10 or Windows 11, x64.** Administrator access, Python, .NET and a
+  network connection are not needed. ARM64 and 32-bit Windows are not
+  supported.
+- **Your own disc image.** Dump your own USA *The Wind Waker* disc (`GZLE01`,
+  revision 0) as a full raw `.iso` or `.gcm` of exactly 1,459,978,240 bytes.
+  See Dolphin's [guide to dumping games](https://dolphin-emu.org/docs/guides/ripping-games/).
+  Scrubbed, trimmed and compressed images (RVZ, CISO, WBFS and similar) are
+  rejected, as are other regions and revisions.
+- **Free disk space on the output drive.** The app checks this before it starts
+  and tells you if there isn't enough.
 
-This repository draws inspiration from several community projects.
+To play:
 
-- [centollOS/SwitchWaker](https://github.com/centollOS/SwitchWaker): Native Nintendo Switch port of The Legend of Zelda: The Wind Waker (GameCube).
-- [griches/PS5_SwitchWaker](https://github.com/griches/PS5_SwitchWaker): A PS5 homebrew port of SwitchWaker.
-- [BgbrhrWatchinOVO/dusklight-ps4](https://github.com/BgbrhrWatchinOVO/dusklight-ps4): A native Twilight Princess port with PS4 adaptations for Aurora, Dawn, SDL3 and Mesa.
+- **A PS4 running [GoldHEN](https://github.com/GoldHEN/GoldHEN).** This project
+  does not explain how to prepare the console.
+- **A USB drive** formatted as exFAT (or FAT32 for files under 4 GB) to copy the
+  package to the console.
+- **A DualShock 4 controller.**
+
+## Creating a package
+
+1. **Install PSWaker.** Run `PSWaker-<version>-win-x64-setup.exe` from the
+   release. It installs for your account only, under
+   `%LOCALAPPDATA%\Programs\PSWaker`. Alternatively, extract the portable
+   `.zip` and keep the whole `PSWaker` folder together. The executables are not
+   code-signed, so Windows SmartScreen may warn before the first run.
+2. **Open PSWaker** from the Start menu, or run `PSWaker.exe` from the portable
+   folder.
+3. **Select your disc image** and a **parent folder** for the output. PSWaker
+   creates a new `PSWaker-NN.NN` folder inside the parent folder.
+4. Select **Validate image**, then **Create package**. PSWaker checks the image,
+   builds the package, then extracts and checks the result. When it shows
+   **Package verified**, select **Open folder**.
+5. **Copy the `.pkg`** to the root of the USB drive and connect the drive to the
+   PS4.
+6. On the PS4, open **Settings → GoldHEN → Debug Settings → Package Installer**
+   and install the package.
+7. **Launch PSWaker** from the home screen. Once it's installed, remove the USB
+   drive; the game doesn't need it.
+
+To update, close PSWaker and run the newer installer. Then create a new package
+and install it over the old one on the PS4. Saves and settings are kept. Keep
+your disc image and packages private.
+
+For progress and cancellation, the files kept next to the package, private
+troubleshooting reports, updating and uninstalling, see the
+[desktop app guide](docs/desktop/README.md).
+
+To build PSWaker yourself, see [BUILDING.md](BUILDING.md).
+
+## Known issues
+
+- **Console acceptance is pending.** Final integrated testing of the bundled
+  program (01.13) on the console hasn't finished, and no package created by the
+  desktop app has been tested on the PS4 yet
+  ([#49](https://github.com/Jcanotorr06/pswaker/issues/49)).
+- **Clean Windows testing is pending.** The desktop app has only been tested on
+  the development machine, not on clean Windows 10 or Windows 11 systems.
+- **Pauses and frame pacing.** Expect brief pauses while areas load and the first
+  time an effect appears. With an empty shader cache, frame pacing falls short of
+  the target. Improving it is deferred to
+  [#51](https://github.com/Jcanotorr06/pswaker/issues/51).
+- **Shutdown logging.** The program includes a fix for an earlier crash when
+  quitting after the memory card goes idle. Quit looks normal on screen, but
+  console logs haven't yet confirmed that shutdown completes internally.
+- **One disc only.** Only the USA `GZLE01` revision 0 raw image is supported.
+- **Limited route.** Only the route through Dragon Roost Island has been played.
+  No claim is made about the rest of the game.
+- **Windows x64 only.** There is no desktop app for macOS or Linux. The
+  installer and app are not code-signed.
+- **Redistribution review is incomplete.** Some inherited SDK modules and stubs
+  in the bundled program still have open licensing questions
+  ([#47](https://github.com/Jcanotorr06/pswaker/issues/47)). See
+  [licensing](docs/ps4/LICENSING.md).
+
+## Documentation
+
+| Document | Contents |
+| --- | --- |
+| [docs/STATUS.md](docs/STATUS.md) | Checkpoint history and evidence |
+| [docs/desktop/README.md](docs/desktop/README.md) | Desktop app details, troubleshooting and lifecycle |
+| [docs/ps4/README.md](docs/ps4/README.md) | PS4 platform build and checks |
+| [BUILDING.md](BUILDING.md) | Building the PS4 program, desktop app and installer from source |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to report issues and contribute changes |
+| [docs/RELEASING.md](docs/RELEASING.md) | Maintainer release process |
+| [docs/ps4/LICENSING.md](docs/ps4/LICENSING.md) | Third-party licenses and outstanding distribution work |
+| [GLOSSARY.md](GLOSSARY.md) | Project vocabulary |
+
+## Credits
+
+PSWaker stands on the work of many other projects.
+
+### Built on and inspired by
+
+- [centollOS/SwitchWaker](https://github.com/centollOS/SwitchWaker): native
+  Nintendo Switch port of *The Wind Waker* (GameCube), and the game code this
+  port compiles.
+- [griches/PS5_SwitchWaker](https://github.com/griches/PS5_SwitchWaker): PS5
+  homebrew port of SwitchWaker, used as the main game-side reference.
+- [BgbrhrWatchinOVO/dusklight-ps4](https://github.com/BgbrhrWatchinOVO/dusklight-ps4):
+  native *Twilight Princess* port with PS4 adaptations for Aurora, Dawn, SDL3
+  and Mesa, used as the main platform reference.
+- [mshivam019/dusklight-ps5](https://github.com/mshivam019/dusklight-ps5):
+  Dusklight's PS5 port, whose Aurora fork is the selected renderer.
+- [zeldaret/tww](https://github.com/zeldaret/tww): *The Wind Waker*
+  decompilation. A pinned fork, [snrubrm/tww](https://github.com/snrubrm/tww),
+  is used.
+- [encounter/aurora](https://github.com/encounter/aurora): GameCube/Wii
+  graphics and platform layer.
+- [elliotttate/RecompCore](https://github.com/elliotttate/RecompCore): DSP
+  high-level emulation.
+
+### Third-party components and tools
+
+- [iHaiDeeZ/DolphinPS4](https://github.com/iHaiDeeZ/DolphinPS4): PS4 runtime
+  and packaging scripts.
+- [OpenOrbis PS4 Toolchain](https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain),
+  with [PacBrew](https://github.com/PacBrew/ps4-openorbis) packaging: the
+  homebrew SDK.
+- [OpenOrbis/LibOrbisPkg](https://github.com/OpenOrbis/LibOrbisPkg): PS4
+  package creation.
+- [Mesa](https://gitlab.freedesktop.org/mesa/mesa),
+  [Dawn](https://dawn.googlesource.com/dawn),
+  [SDL3](https://github.com/libsdl-org/SDL) and
+  [LLVM](https://github.com/llvm/llvm-project): graphics, platform and
+  compiler.
+- [GoldHEN](https://github.com/GoldHEN/GoldHEN): the console homebrew
+  environment used for testing. It is not included.
+- [PyInstaller](https://pyinstaller.org) and
+  [Inno Setup](https://jrsoftware.org/isinfo.php): the Windows app bundle and
+  installer.
+
+The pinned versions and their licenses are listed in the
+[lock files](platform/ps4/) and [licensing notes](docs/ps4/LICENSING.md).
+
+## License
+
+PSWaker's own code is licensed under the [GNU General Public License v3.0](LICENSE).
+Third-party components keep their own licenses and per-file notices. Some of
+them, as well as the combined program, are still under review
+([licensing](docs/ps4/LICENSING.md)).
+
+## Disclaimer
+
+PSWaker is not affiliated with, endorsed by or sponsored by Nintendo, Sony
+Interactive Entertainment or any other video game company. No game data, disc
+images or keys are included or distributed. You must supply a disc image dumped
+from a disc you own.
+
+*The Legend of Zelda*, *The Wind Waker* and *Nintendo GameCube* are trademarks of
+Nintendo. *PlayStation*, *PS4* and *DualShock* are trademarks of Sony
+Interactive Entertainment. All other trademarks belong to their respective
+owners.
+
+PSWaker is provided as is, without warranty of any kind. Use it at your own risk.
