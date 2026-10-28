@@ -33,3 +33,8 @@ A menu supplied by The Wind Waker, such as file selection or inventory.
 
 **Port menu**:
 A menu supplied by the PS4 port for settings, confirmation or input recovery.
+
+**Release candidate**:
+A tagged, versioned build of the desktop app and installer, published as a
+pre-release for testing before the final release of that version.
+_Avoid_: First playable, which is a scope of the game rather than a build

@@ -46,8 +46,8 @@ git switch develop && git pull --ff-only
 git switch -c release/0.1.0
 ```
 
-Commit only release preparation to this branch: the release notes, version
-references and last fixes. For a later RC, add fixes to the same branch.
+Commit only release preparation to this branch: the release notes and last
+fixes. For a later RC, add fixes to the same branch.
 
 ## 2. Write the release notes
 
@@ -88,11 +88,12 @@ git rev-parse origin/main   # the release commit; record it
 ## 4. Build the assets
 
 Build in a separate worktree at the release commit so local changes can't leak
-in:
+in. Steps 4–6 run in the same PowerShell session, from that worktree:
 
 ```powershell
-git worktree add C:\private\pswaker-0.1.0-rc.1 origin/main
-cd C:\private\pswaker-0.1.0-rc.1
+$src = 'C:\private\pswaker-0.1.0-rc.1'
+git worktree add $src origin/main
+Set-Location $src
 $out = 'C:\private\release-0.1.0-rc.1'
 $program = 'C:\private\program-release-01.13'
 $version = '0.1.0.1'
@@ -112,9 +113,10 @@ New-Item -ItemType Directory $assets | Out-Null
 Copy-Item "$out\installer\PSWaker-$version-win-x64-setup.exe" $assets
 Copy-Item "$out\installer\installer-release.json" "$assets\PSWaker-$version-installer-release.json"
 tar -a -c -f "$assets\PSWaker-$version-win-x64-portable.zip" -C "$out\desktop" PSWaker
-Get-ChildItem $assets -File | Where-Object Name -ne 'SHA256SUMS.txt' | Sort-Object Name |
-  ForEach-Object { '{0}  {1}' -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower(), $_.Name } |
-  Set-Content -Encoding ascii "$assets\SHA256SUMS.txt"
+$sums = Get-ChildItem $assets -File | Where-Object Name -ne 'SHA256SUMS.txt' | Sort-Object Name |
+  ForEach-Object { '{0}  {1}' -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower(), $_.Name }
+# LF line endings, so `sha256sum -c` accepts the file.
+[IO.File]::WriteAllText("$assets\SHA256SUMS.txt", ($sums -join "`n") + "`n")
 ```
 
 | Asset | Contents |
@@ -134,9 +136,8 @@ Before publishing, verify the assets:
 - Extract the zip into a new folder and run
   `PSWaker.exe --check-installation <new report path>`. It must return zero.
 - Optionally install and open the app on the build machine and check the
-  version and baseline shown in the window.
-
-Remove the worktree when you're done (`git worktree remove`).
+  app version, program version and console baseline (PS4 Slim / firmware 9.00 /
+  GoldHEN v2.4b18) shown in the window.
 
 ## 5. Tag the release
 
@@ -156,7 +157,7 @@ for every RC:
 
 ```powershell
 $notes = "$out\release-notes.md"
-Get-Content docs\release-notes\v0.1.0-rc.1.md | Set-Content -Encoding utf8 $notes
+Get-Content "$src\docs\release-notes\v0.1.0-rc.1.md" | Set-Content -Encoding utf8 $notes
 Add-Content -Encoding utf8 $notes "`n## SHA-256 checksums`n`n``````text"
 Get-Content "$assets\SHA256SUMS.txt" | Add-Content -Encoding utf8 $notes
 Add-Content -Encoding utf8 $notes '```'
@@ -166,6 +167,12 @@ gh release create v0.1.0-rc.1 --verify-tag --prerelease --title "PSWaker 0.1.0 R
 ```
 
 Open the release page and check that every asset is present and its size matches.
+Then leave the worktree and remove it:
+
+```powershell
+Set-Location C:\path\to\your\checkout
+git worktree remove $src
+```
 
 ## 7. Merge back into `develop`
 
@@ -180,9 +187,8 @@ Keep `release/X.Y.Z` until that version's final release, then delete it.
 
 ## 8. After publishing
 
-- Comment the release's identities (installer and portable SHA-256, app
-  version, program build ID, tool revision) on each issue that tests this
-  candidate. Change issue states only when their evidence supports it.
+- Comment the identities from the release notes, plus the asset checksums, on
+  each issue that tests this candidate. Change issue states only when their evidence supports it.
 - Close the tracking issue after the release is published and the back-merge is
   merged.
 - Keep the build outputs and audit manifests privately. They identify the exact

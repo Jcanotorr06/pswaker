@@ -107,7 +107,9 @@ On Windows x64, install:
 - **.NET SDK 8.0.427**, used only to publish the packaging tools.
 - **Inno Setup 6.7.3**, only for the installer. Get it from
   [Inno Setup's official downloads](https://jrsoftware.org/isdl.php) and check
-  its publisher signature. The build rejects any other compiler version.
+  its publisher signature and record the archive's identity. The build rejects
+  any other compiler version. CI additionally checks the pinned download's
+  SHA-256 before installing it.
 
 Users of the built app need none of these.
 
@@ -129,10 +131,15 @@ python tools/pswaker/build-installer.py --program C:\private\program-release --p
 - `build-installer.py` builds the same bundle and compiles a per-user installer.
   Its output folder holds the setup executable and `installer-release.json`,
   which records the installer SHA-256, app version, full file inventories,
-  Python/PyInstaller versions, recipe digest and compiler inventory.
+  Python/PyInstaller versions, recipe digest and compiler inventory. Keep both
+  files privately for audit and acceptance.
 
-App versions have four numeric parts, each 0–65535. The desktop version is
-independent of the console program version. Both executables embed
+No step reads a disc image; the builders seal only the data-free program, tool
+and contract inventories, and reject any other program files.
+
+App versions have four numeric parts, each 0–65535. Give every desktop build
+you hand out a new version. The desktop version is independent of the console
+program version. Both executables embed
 [waker.ico](tools/pswaker/waker.ico). Release builds follow the version scheme
 in [RELEASING.md](docs/RELEASING.md).
 
@@ -146,28 +153,5 @@ prove, see [content and release integrity](docs/desktop/README.md#content-and-re
 
 ## Checks
 
-Linux:
-
-```bash
-python3 -m compileall -q platform/ps4 tools/pswaker tests/ps4
-python3 -m unittest discover -s tests/ps4
-```
-
-Windows, with the prepared tools and compiler:
-
-```powershell
-$env:PSWAKER_WINDOWS_TOOLS = 'C:\private\windows-tools'
-$env:PSWAKER_ISCC = 'C:\maintainer\Inno Setup 6\ISCC.exe'
-python -m pyright --pythonpath python
-python -m compileall -q tools/pswaker tests/ps4
-python -m unittest discover -s tests/ps4 -p test_desktop.py -v
-python -m unittest discover -s tests/ps4 -p test_complete_package.py -v
-python -m unittest discover -s tests/ps4 -p test_windows_package.py -v
-python -m unittest discover -s tests/ps4 -p test_windows_tools.py -v
-python -m unittest discover -s tests/ps4 -p test_installer.py -v
-```
-
-These are the same checks [CI](.github/workflows/ci.yml) runs. Tests that need
-an unavailable tool or platform are skipped. The installer test drives a real
-desktop session and skips when PSWaker is already installed for the current
-account.
+The Linux and Windows test commands, including the environment variables the
+Windows suites need, are in [CONTRIBUTING.md](CONTRIBUTING.md#checks).

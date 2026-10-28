@@ -34,16 +34,10 @@ contain personal paths. See [private troubleshooting reports](docs/desktop/READM
 
 ### Triage labels
 
-Maintainers use five triage labels, described in
-[docs/agents/triage-labels.md](docs/agents/triage-labels.md):
-
-| Label | Meaning |
-| --- | --- |
-| `needs-triage` | A maintainer needs to evaluate it |
-| `needs-info` | Waiting for information from the reporter |
-| `ready-for-agent` | Fully specified; ready to implement |
-| `ready-for-human` | Needs a person, for example to test on a console |
-| `wontfix` | Will not be actioned |
+Maintainers triage issues with five labels: `needs-triage`, `needs-info`,
+`ready-for-agent`, `ready-for-human` and `wontfix`. Their meanings and rules are
+in [docs/agents/triage-labels.md](docs/agents/triage-labels.md). An issue that
+waits on console testing, for example, is `ready-for-human`.
 
 ## Making a change
 
@@ -61,21 +55,42 @@ Maintainers use five triage labels, described in
 5. **Open a pull request into `develop`.** Say what changed, why, how you tested
    it and what remains untested. Link the issue.
 
-`main` only receives release merges; see [docs/RELEASING.md](docs/RELEASING.md).
+`main` only receives release merges. Maintainers prepare releases on
+`release/X.Y.Z` branches; see [docs/RELEASING.md](docs/RELEASING.md).
 
 ## Checks
+
+These are the checks [CI](.github/workflows/ci.yml) runs on pull requests that
+touch code. Tests that need an unavailable tool or platform are skipped.
 
 Linux or WSL2:
 
 ```bash
 python3 -m compileall -q platform/ps4 tools/pswaker tests/ps4
+while IFS= read -r -d '' script; do bash -n "$script"; done < <(find platform/ps4 tools/pswaker -maxdepth 1 -name '*.sh' -print0)
 python3 -m unittest discover -s tests/ps4
 ```
 
-Windows desktop changes also need the Windows suite and Pyright. The commands
-and prerequisites are in [BUILDING.md](BUILDING.md#checks). [CI](.github/workflows/ci.yml)
-runs both suites on pull requests that touch code. Changes to the PS4 program
-also need a target build; see [BUILDING.md](BUILDING.md).
+Windows x64, for desktop changes. First prepare the packaging tools and the
+installer compiler as described in [BUILDING.md](BUILDING.md#windows-desktop-app-and-installer):
+
+```powershell
+python -m pip install -r tools/pswaker/desktop-requirements.txt
+$env:PSWAKER_WINDOWS_TOOLS = 'C:\private\windows-tools'
+$env:PSWAKER_WINDOWS_DOTNET = (Get-Command dotnet).Source
+$env:PSWAKER_ISCC = 'C:\maintainer\Inno Setup 6\ISCC.exe'
+python -m pyright --pythonpath python
+python -m compileall -q tools/pswaker tests/ps4
+python -m unittest discover -s tests/ps4 -p test_desktop.py -v
+python -m unittest discover -s tests/ps4 -p test_complete_package.py -v
+python -m unittest discover -s tests/ps4 -p test_windows_package.py -v
+python -m unittest discover -s tests/ps4 -p test_windows_tools.py -v
+python -m unittest discover -s tests/ps4 -p test_installer.py -v
+```
+
+The installer test drives a real desktop session and skips when PSWaker is
+already installed for the current account. Changes to the PS4 program also need
+a target build; see [BUILDING.md](BUILDING.md).
 
 ## Console and owner evidence
 
@@ -98,7 +113,7 @@ accepted only through an owner-operated checklist in [docs/ps4](docs/ps4/) or
 | Area | Contents |
 | --- | --- |
 | [tools/pswaker](tools/pswaker/) | Host commands: builds, packaging, desktop app and installer |
-| [platform/ps4](platform/ps4/) | PS4 runtime, CMake/toolchain definitions, locks, patches, provenance and notices |
+| [platform/ps4](platform/ps4/) | PS4 runtime, CMake/toolchain definitions, locks, patches, provenance and notices. Also the compiled [host renderer reference](platform/ps4/host-renderer/), kept separate from the test harnesses, and the [frame-pacing owner example](platform/ps4/frame-pacing-owner.example.json) |
 | [tests/ps4](tests/ps4/) | Python tests, native harnesses and synthetic fixtures |
 | [docs/ps4](docs/ps4/README.md) | PS4 build guides and owner checklists |
 | [docs/desktop](docs/desktop/README.md) | Desktop app guide and Windows checklists |

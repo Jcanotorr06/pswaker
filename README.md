@@ -97,26 +97,32 @@ To build PSWaker yourself, see [BUILDING.md](BUILDING.md).
 ## Known issues
 
 - **Console acceptance is pending.** Final integrated testing of the bundled
-  program (01.13) on the console hasn't finished, and no package created by the
-  desktop app has been tested on the PS4 yet
+  program (01.13) on the console hasn't finished
+  ([integrated checklist](docs/ps4/Integrated-checklist.md)), and no package
+  created by the desktop app has been tested on the PS4 yet
   ([#49](https://github.com/Jcanotorr06/pswaker/issues/49)).
 - **Clean Windows testing is pending.** The desktop app has only been tested on
-  the development machine, not on clean Windows 10 or Windows 11 systems.
+  the development machine. Offline testing on clean Windows 10 and Windows 11
+  systems hasn't been done.
 - **Pauses and frame pacing.** Expect brief pauses while areas load and the first
   time an effect appears. With an empty shader cache, frame pacing falls short of
   the target. Improving it is deferred to
   [#51](https://github.com/Jcanotorr06/pswaker/issues/51).
-- **Shutdown logging.** The program includes a fix for an earlier crash when
-  quitting after the memory card goes idle. Quit looks normal on screen, but
-  console logs haven't yet confirmed that shutdown completes internally.
+- **Shutdown not yet confirmed on 01.13.** The program includes a fix for an
+  earlier crash when quitting after the memory card goes idle. Quit looked normal
+  on screen with the previous build (01.12), but console logs haven't confirmed
+  that shutdown completes internally, and 01.13 hasn't been checked yet.
 - **One disc only.** Only the USA `GZLE01` revision 0 raw image is supported.
+  Other regions and revisions, and scrubbed or compressed images, are rejected.
 - **Limited route.** Only the route through Dragon Roost Island has been played.
   No claim is made about the rest of the game.
-- **Windows x64 only.** There is no desktop app for macOS or Linux. The
-  installer and app are not code-signed.
+- **Windows x64 only, unsigned.** There is no desktop app for macOS or Linux.
+  The installer and app are not code-signed, so Windows SmartScreen may warn.
 - **Redistribution review is incomplete.** Some inherited SDK modules and stubs
   in the bundled program still have open licensing questions
-  ([#47](https://github.com/Jcanotorr06/pswaker/issues/47)). See
+  ([#47](https://github.com/Jcanotorr06/pswaker/issues/47)). Third-party notices
+  and corresponding source for the release are deferred to public release
+  readiness ([#50](https://github.com/Jcanotorr06/pswaker/issues/50)). See
   [licensing](docs/ps4/LICENSING.md).
 
 ## Documentation
