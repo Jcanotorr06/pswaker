@@ -156,11 +156,12 @@ Append the checksums to the notes, then create the release. Use `--prerelease`
 for every RC:
 
 ```powershell
+# Windows PowerShell's -Encoding utf8 adds a byte-order mark, which breaks the
+# first heading on GitHub, so write UTF-8 without one.
 $notes = "$out\release-notes.md"
-Get-Content "$src\docs\release-notes\v0.1.0-rc.1.md" | Set-Content -Encoding utf8 $notes
-Add-Content -Encoding utf8 $notes "`n## SHA-256 checksums`n`n``````text"
-Get-Content "$assets\SHA256SUMS.txt" | Add-Content -Encoding utf8 $notes
-Add-Content -Encoding utf8 $notes '```'
+$body = [IO.File]::ReadAllText("$src\docs\release-notes\v0.1.0-rc.1.md") -replace "`r`n", "`n"
+$body += "`n## SHA-256 checksums`n`n``````text`n" + [IO.File]::ReadAllText("$assets\SHA256SUMS.txt") + "```````n"
+[IO.File]::WriteAllText($notes, $body, (New-Object Text.UTF8Encoding $false))
 
 gh release create v0.1.0-rc.1 --verify-tag --prerelease --title "PSWaker 0.1.0 RC1" `
   --notes-file $notes (Get-ChildItem $assets -File).FullName
