@@ -24,6 +24,14 @@ _Avoid_: Program package, which is an installation package
 An owner-built installation package combining the native game program with game
 data from the owner's disc image, ready to install and play on the PS4.
 
+**Game icon**:
+The artwork representing the installed game on the PS4 home screen and in the
+library.
+
+**Launch splash**:
+The PS4 shell artwork shown while the application starts, until the first
+successful rendered frame.
+
 **PS4 control prompt**:
 An on-screen instruction identifying the DualShock 4 control used for an action
 in the current context.

@@ -7,7 +7,10 @@ follow the [README](README.md).
 
 No step reads a disc image except creating a complete package, which is the
 owner's job. Never put a disc image, extracted game files, keys or complete
-packages inside the repository.
+packages inside the repository. The approved game icon and launch splash are
+included in [assets/ps4](assets/ps4/README.md). Keep replacement artwork, private
+provenance records and all build outputs outside git; use a private directory
+such as `$HOME/pswaker-private` on Linux or `C:\private\pswaker-private` on Windows.
 
 ## Overview
 
@@ -63,7 +66,9 @@ argument. For the full source closure, patches and checks, see the
 
 ```bash
 GAME_ROOT="$HOME/.cache/pswaker/game"
-bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.13
+ARTWORK_ROOT="$PWD/assets/ps4"
+bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.13 \
+  "$ARTWORK_ROOT/icon0.png" "$ARTWORK_ROOT/splash_art.png"
 ```
 
 The third argument is the console program version (`NN.NN`). It changes only
@@ -76,6 +81,29 @@ patch or toolchain gives a different ID. See the
 
 A new build is a new binary. Console results recorded for another build ID don't
 carry over to it.
+
+Arguments four and five are required artwork paths. The command above uses the
+approved images included in the checkout:
+
+| Role | Package resource | Required dimensions |
+| --- | --- | --- |
+| Game icon (PS4 home screen and library) | `sce_sys/icon0.png` / `ICON0_PNG` | 512 x 512 |
+| Launch splash (shell artwork until the first rendered frame) | `sce_sys/pic1.png` / `PIC1_PNG` | 1920 x 1080 |
+
+Both files must fully decode as 24-bit opaque RGB PNGs (8 bits per channel),
+non-interlaced, with no alpha channel or `tRNS` transparency. Indexed, grayscale
+and RGBA images are rejected. The build copies their bytes unchanged without
+resizing, cropping or conversion, then freshly inspects the program package.
+Missing or invalid artwork stops packaging; there is no fallback.
+
+The included images have a recorded
+[redistribution approval](docs/RELEASING.md#artwork-redistribution-blocker), so
+building with them needs no private artwork or provenance setup. To use different
+artwork, supply prepared files from a private directory outside git and record
+their origin and provenance there before staging. See
+[owner artwork](docs/ps4/OWNER-ARTWORK.md) for replacement artwork, the restaging
+command, packaging evidence and existing splash handoff. Local use does not
+grant permission to commit or redistribute replacement images.
 
 ### 3. Derive a program release
 
@@ -91,6 +119,14 @@ The program release is a data-free directory: the staged program, its matching
 ELF and `program-release.json`. It can be copied anywhere, including to the
 Windows machine for steps 4–6. See
 [relocatable program release](docs/ps4/COMPLETE-PACKAGES.md#relocatable-program-release).
+
+A game program release carries both owner-supplied images alongside the
+disc-free program. Complete-package assembly carries them forward from the
+selected stage or release; it does not take a second artwork selection. Match
+both artwork hashes against the
+[approved redistribution decision](docs/RELEASING.md#artwork-redistribution-blocker).
+Different artwork remains private pending a separate decision. The release's
+public-readiness gate still applies.
 
 Optionally, assemble and inspect a complete package on Linux with your own disc
 image, as described in [complete packages](docs/ps4/COMPLETE-PACKAGES.md).
@@ -137,10 +173,21 @@ python tools/pswaker/build-installer.py --program C:\private\program-release --p
 No step reads a disc image; the builders seal only the data-free program, tool
 and contract inventories, and reject any other program files.
 
+The desktop app folder, portable zip and Windows installer bundle the program
+release's artwork. Keep them and their audit manifests outside git. The
+[artwork redistribution decision](docs/RELEASING.md#artwork-redistribution-blocker)
+permits redistribution when both game artwork hashes and the executable icon
+source match its approval; otherwise, keep them private pending a separate
+decision. A passing inventory or installer
+check does not grant redistribution permission or clear the public-readiness
+gate.
+
 App versions have four numeric parts, each 0–65535. Give every desktop build
 you hand out a new version. The desktop version is independent of the console
 program version. Both executables embed
-[waker.ico](tools/pswaker/waker.ico). Release builds follow the version scheme
+[waker.ico](tools/pswaker/waker.ico), which is included in the checkout and covered
+by the [artwork approval](docs/RELEASING.md#artwork-redistribution-blocker).
+No separate icon download is needed. Release builds follow the version scheme
 in [RELEASING.md](docs/RELEASING.md).
 
 To check an installed copy without changing it, run the installed

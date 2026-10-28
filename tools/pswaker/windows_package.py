@@ -15,7 +15,7 @@ from disc_image import CONTRACT, require, validate
 from package_artifact import (IDENTITIES, INSTALLED_IMAGE, StageFailure, Stages, content_id, digest,
                               expected_sfo_fields, inspect_package, inventory, sfo_fields, write_json)
 from package_validation import validate_selection
-from program_payload import PROGRAM_FILES, bundled_program
+from program_payload import program_files, bundled_program, checked_artwork, inventory_changes
 from build_operation import BuildCancelled, BuildOperation, CURRENT, copy_file
 from owned_work import save_evidence, workspace
 from windows_process import capture_owned
@@ -57,13 +57,16 @@ def checked_program(bundle):
     name = release['elf_filename']
     require(isinstance(name, str) and Path(name).name == name and name not in {'.', '..'},
             'Invalid bundled matching ELF name')
-    require(set(release['payload_sha256']) == PROGRAM_FILES, 'Unexpected bundled program inventory')
+    require(set(release['payload_sha256']) == program_files('game'),
+            'Unexpected bundled program inventory; ICON0_PNG and PIC1_PNG are required')
     expected = {'stage/' + path: sha for path, sha in release['payload_sha256'].items()}
     expected['elf/' + name] = release['elf_sha256']
     actual = inventory(root)
     del actual['program-release.json']
-    require(actual == expected, 'Bundled program files differ from the verified release')
+    require(actual == expected, 'Bundled program files differ from the verified release: '
+            + inventory_changes(expected, actual))
     info = json.loads((root / 'stage/build-info.json').read_text())
+    checked_artwork(root / 'stage/sce_sys', info)
     require(info['eboot_sha256'] == release['eboot_sha256'] == expected['stage/eboot.bin'],
             'Bundled program SELF identity mismatch')
     binary = (root / 'elf' / name).read_bytes()
@@ -82,6 +85,15 @@ def bundle_inventory(bundle):
             for name, sha in inventory(bundle / directory).items()}
 
 
+def checked_bundle(bundle):
+    fixed = json.loads((bundle / 'desktop-release.json').read_text())
+    changes = inventory_changes(fixed['files'], bundle_inventory(bundle))
+    require(fixed['schema'] == 1 and not changes,
+            'Bundled release inputs changed: ' + (changes or 'unsupported manifest schema')
+            + '. Reinstall the complete application.')
+    return fixed
+
+
 def seal_bundle(bundle, app_version=None):
     """Maintainer operation; record the fixed release inputs shipped beside the app."""
     version, release = checked_program(bundle)
@@ -95,14 +107,15 @@ def inspect_output(output, bundle):
     """Reinspect a retained artifact using the fixed Windows tool closure."""
     output = output.resolve()
     (output / 'inspection.json').unlink(missing_ok=True)
-    fixed = json.loads((bundle / 'desktop-release.json').read_text())
-    require(fixed['schema'] == 1 and fixed['files'] == bundle_inventory(bundle), 'Bundled release inputs changed')
+    fixed = checked_bundle(bundle)
     require(digest(CONTRACT) == fixed['files']['platform/ps4/content-contract.json'], 'Validation contract changed')
     with tempfile.TemporaryDirectory(prefix='scratch-', dir=output) as scratch:
         return inspect_package(output, WindowsTools(bundle / 'packaging', output, Path(scratch)))
 
 
 class WindowsTools:
+    decode_artwork = False
+
     def __init__(self, root, work, scratch):
         self.root, self.work = root, work
         self.pkgtool = root / 'PkgTool.Core.exe'
@@ -249,9 +262,7 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
                 'Free space or choose a destination on a drive with more space, then retry.')
     with private_workspace(destination, stages) as work:
         with stages('verify-program'):
-            fixed = json.loads((bundle / 'desktop-release.json').read_text())
-            require(fixed['schema'] == 1 and fixed['files'] == bundle_inventory(bundle),
-                    'Bundled release inputs changed. Reinstall the complete application.')
+            fixed = checked_bundle(bundle)
             require(digest(CONTRACT) == fixed['files']['platform/ps4/content-contract.json'],
                     'Bundled validation contract changed. Reinstall the application.')
             version, release = checked_program(bundle)
@@ -265,7 +276,9 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
             for directory in ['program', 'packaging']:
                 expected = {name[len(directory) + 1:]: sha for name, sha in fixed['files'].items()
                             if name.startswith(directory + '/')}
-                require(inventory(work / directory) == expected, 'Bundled inputs changed while copying; retry')
+                actual = inventory(work / directory)
+                require(actual == expected,
+                        'Bundled inputs changed while copying: ' + inventory_changes(expected, actual) + '; retry')
             scratch = work / 'scratch'
             scratch.mkdir()
             tools = WindowsTools(work / 'packaging', work, scratch)

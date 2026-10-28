@@ -15,8 +15,12 @@ The repository and its releases contain no game data, disc images or keys.
 
 ## Project status
 
-PSWaker is **early and pre-release**. The first release candidate, 0.1.0 RC1,
+PSWaker is **early and pre-release**. The latest release candidate, 0.1.0 RC2,
 is a private pre-release for testing. It is not a public or final release.
+
+RC2 bundles the inspected 01.14 game program with the approved game icon and
+launch splash. This binary has not been tested on the console. The observations
+below come from earlier builds and do not establish acceptance of RC2.
 
 - The game has been played on the console from the title screen through
   Outset, Forsaken Fortress and Windfall to Dragon Roost Island. No graphics or
@@ -97,10 +101,14 @@ To build PSWaker yourself, see [BUILDING.md](BUILDING.md).
 ## Known issues
 
 - **Console acceptance is pending.** Final integrated testing of the bundled
-  program (01.13) on the console hasn't finished
+  program (01.14) on the console hasn't been run
   ([integrated checklist](docs/ps4/Integrated-checklist.md)), and no package
   created by the desktop app has been tested on the PS4 yet
   ([#49](https://github.com/Jcanotorr06/pswaker/issues/49)).
+- **Artwork console checks are pending.** The packaged game icon and launch
+  splash match the approved files, but their visibility, splash timing and
+  preservation across an update still need hardware observations
+  ([#85](https://github.com/Jcanotorr06/pswaker/issues/85)).
 - **Clean Windows testing is pending.** The desktop app has only been tested on
   the development machine. Offline testing on clean Windows 10 and Windows 11
   systems hasn't been done.
@@ -108,10 +116,10 @@ To build PSWaker yourself, see [BUILDING.md](BUILDING.md).
   time an effect appears. With an empty shader cache, frame pacing falls short of
   the target. Improving it is deferred to
   [#51](https://github.com/Jcanotorr06/pswaker/issues/51).
-- **Shutdown not yet confirmed on 01.13.** The program includes a fix for an
+- **Shutdown not yet confirmed on 01.14.** The program includes a fix for an
   earlier crash when quitting after the memory card goes idle. Quit looked normal
   on screen with the previous build (01.12), but console logs haven't confirmed
-  that shutdown completes internally, and 01.13 hasn't been checked yet.
+  that shutdown completes internally, and 01.14 hasn't been checked yet.
 - **One disc only.** Only the USA `GZLE01` revision 0 raw image is supported.
   Other regions and revisions, and scrubbed or compressed images, are rejected.
 - **Limited route.** Only the route through Dragon Roost Island has been played.

@@ -19,7 +19,8 @@ diagnostic tree is preserved.
 
     PLATFORM_ROOT="$HOME/.cache/pswaker/maintained-15-a"
     GAME_ROOT="$HOME/.cache/pswaker/game-17"
-    bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.00
+    bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.00 \
+      /absolute/path/to/icon0.png /absolute/path/to/splash.png
 
     python3 tools/pswaker/complete-package.py assemble \
       --image "/absolute/path/to/your/USA-revision-0.iso" \

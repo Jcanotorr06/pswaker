@@ -10,6 +10,69 @@ images, extracted game files, keys or complete packages. Making a release
 [#50](https://github.com/Jcanotorr06/pswaker/issues/50). Until then, releases are
 pre-releases in the private repository.
 
+## Artwork redistribution blocker
+
+**Resolved for the approved artwork below.** A game program release bundles its
+game icon and launch splash. The Windows desktop app folder, portable zip and
+installer bundle them too, and the Windows executables embed their own icon.
+On 2026-10-28, Joseph Cano (project owner and decision reviewer) explicitly
+confirmed in the release-preparation conversation that the
+provided artwork can be redistributed without restriction. That owner
+authorization is the rights evidence for this decision. In the same conversation,
+the owner extended the request to the Windows executable icon. The approval
+applies to these exact supplied files:
+
+| Resource | Repository file | SHA-256 |
+| --- | --- | --- |
+| Game icon / `ICON0_PNG` | [assets/ps4/icon0.png](../assets/ps4/icon0.png) | `d3e22130a3c119d1f75daf19de2636cf9162e65575eba6a6ca20a590cb1db03e` |
+| Launch splash / `PIC1_PNG` | [assets/ps4/splash_art.png](../assets/ps4/splash_art.png) | `35fe1f42fab83f27841e9049c650662b5d8cbe505edc94eab8fbb3f1ae8a99b4` |
+| Windows executable and installer icon | [tools/pswaker/waker.ico](../tools/pswaker/waker.ico) | `b4009e68c95d520ecbf9baa9be691b9fa997edc30bc6479d5e77e93afad98da5` |
+
+**Permitted scope:** unrestricted redistribution of all three identified files,
+including in this repository, program releases, desktop bundles, portable
+archives and installers, for private or public pre-releases and final releases.
+The owner requested including these assets so others can build from a checkout.
+This records the owner's authorization, without assigning an additional license
+or claiming authorship.
+Both PNGs passed the maintained game artwork validator without conversion.
+The tracked ICO is byte-for-byte identical to the owner's supplied `waker.ico`
+and is already used by the desktop and installer builds.
+
+Other artwork, including modified or re-encoded PNGs with different hashes,
+needs a separate decision. Without one, artwork-bearing artifacts must remain
+private. Being disc-free, passing inspection or marking a release as a
+pre-release does not supply permission; a pre-release in a public repository
+still distributes its assets.
+
+Before tagging or publishing any artwork-bearing release:
+
+- Match both `ICON0_PNG` and `PIC1_PNG` hashes in the chosen program release's
+  `stage/build-info.json` with this approval and the
+  [repository artwork record](../assets/ps4/README.md). For replacement artwork,
+  use its separate decision and private
+  [origin and provenance record](ps4/OWNER-ARTWORK.md#local-artwork-and-provenance).
+- Match `tools/pswaker/waker.ico` in the checkout used for the Windows build
+  against its approved source hash above. This is the ICO file's hash, separate
+  from the resulting executable and installer hashes.
+- Record the matching artwork hashes and a reference to this decision in the
+  release tracking issue. For different artwork, record a separate provenance
+  decision with the exact hashes, reviewed rights evidence, reviewer, date and
+  permitted redistribution scope. Keep images, personal paths and raw private
+  provenance records out of the issue. Missing, pending or insufficient
+  permission keeps this blocker open for that artwork.
+- Until that decision permits redistribution, keep program releases, desktop
+  bundles, installers, archives and audit outputs outside git and restrict any
+  release assets to the private repository. Verify the repository is private
+  before uploading; `--prerelease` alone does not provide privacy. If private
+  access cannot be assured, stop before uploading assets.
+
+This decision is separate from permission for local artwork use and does not
+replace the public-readiness gate in
+[#50](https://github.com/Jcanotorr06/pswaker/issues/50). Passing either gate does
+not imply passing the other. Only the three approved source artwork files above
+belong in git through this workflow. Keep private provenance records and all build outputs
+outside git, even when they contain approved artwork.
+
 ## Versions
 
 | Item | Form | Example |
@@ -35,6 +98,9 @@ one version, and its final release, come from the same release branch.
   existing, console-tested program release keeps its evidence valid. A rebuilt
   program is a new binary that needs new console evidence; see
   [BUILDING.md](../BUILDING.md).
+- Check the [artwork redistribution blocker](#artwork-redistribution-blocker)
+  against the chosen program release and record whether release access must
+  remain private.
 - Have the Windows prerequisites from [BUILDING.md](../BUILDING.md#prerequisites)
   ready. Keep every build output outside the repository, for example under
   `C:\private\release-X.Y.Z-rc.N\`.
@@ -141,6 +207,9 @@ Before publishing, verify the assets:
 
 ## 5. Tag the release
 
+Recheck the [artwork redistribution blocker](#artwork-redistribution-blocker)
+for the actual assets before proceeding.
+
 Create an annotated tag on the release commit from step 3 and push it:
 
 ```bash
@@ -152,15 +221,21 @@ Tags are never moved or reused. If an asset needs fixing, publish a new RC.
 
 ## 6. Publish the GitHub release
 
+Confirm the actual artwork hashes match the
+[approved redistribution decision](#artwork-redistribution-blocker) for the
+intended audience. If different artwork lacks a decision permitting
+redistribution, use only the private repository; stop if it is public.
+
 Append the checksums to the notes, then create the release. Use `--prerelease`
 for every RC:
 
 ```powershell
+# Windows PowerShell's -Encoding utf8 adds a byte-order mark, which breaks the
+# first heading on GitHub, so write UTF-8 without one.
 $notes = "$out\release-notes.md"
-Get-Content "$src\docs\release-notes\v0.1.0-rc.1.md" | Set-Content -Encoding utf8 $notes
-Add-Content -Encoding utf8 $notes "`n## SHA-256 checksums`n`n``````text"
-Get-Content "$assets\SHA256SUMS.txt" | Add-Content -Encoding utf8 $notes
-Add-Content -Encoding utf8 $notes '```'
+$body = [IO.File]::ReadAllText("$src\docs\release-notes\v0.1.0-rc.1.md") -replace "`r`n", "`n"
+$body += "`n## SHA-256 checksums`n`n``````text`n" + [IO.File]::ReadAllText("$assets\SHA256SUMS.txt") + "```````n"
+[IO.File]::WriteAllText($notes, $body, (New-Object Text.UTF8Encoding $false))
 
 gh release create v0.1.0-rc.1 --verify-tag --prerelease --title "PSWaker 0.1.0 RC1" `
   --notes-file $notes (Get-ChildItem $assets -File).FullName
@@ -201,3 +276,5 @@ A final release follows the same steps with tag `vX.Y.Z`, app version
 that version have passed, and make the repository or release public only after
 [#50](https://github.com/Jcanotorr06/pswaker/issues/50) records a passing
 readiness decision.
+The [artwork redistribution blocker](#artwork-redistribution-blocker) also
+applies to final releases and to making any existing release assets public.

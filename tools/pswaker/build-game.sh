@@ -7,6 +7,8 @@ INPUTS=$(python3 "$HERE/build_inputs.py" command inputs.py)
 ROOT=$(realpath -m "${1:?Pass an absolute Linux game build-root path}")
 PLATFORM=$(realpath "${2:?Pass the verified maintained PS4 platform root}")
 VERSION=${3:-01.00}
+ICON=${4:?Pass the owner game icon PNG path as argument 4}
+SPLASH=${5:?Pass the owner launch splash PNG path as argument 5}
 [[ "$ROOT" != "$PLATFORM" && "$ROOT" != *' '* ]] || { echo 'Use a separate game root without spaces' >&2; exit 1; }
 source "$PLATFORM/tools/env.sh"
 unset CC CXX CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
@@ -20,4 +22,5 @@ cmake -S "$TARGET/game" -B "$ROOT/build" -G Ninja \
   -DPSWAKER_GAME_ROOT="$ROOT" > "$ROOT/evidence/game-configure.log" 2>&1
 cmake --build "$ROOT/build" --target switchwaker_eboot --parallel "${JOBS:-8}" \
   > "$ROOT/evidence/game-compile.log" 2>&1
-python3 "$HERE/game-build.py" stage "$ROOT" "$PLATFORM" --app-version "$VERSION"
+python3 "$HERE/game-build.py" stage "$ROOT" "$PLATFORM" --app-version "$VERSION" --icon "$ICON" --splash "$SPLASH"
+python3 "$HERE/inspect-game-program.py" "$ROOT" "$PLATFORM"

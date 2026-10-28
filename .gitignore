@@ -1,6 +1,9 @@
 # Private user data - never commit
 ref/
 local-research/
+# Private replacement artwork, provenance and build outputs (normally outside git).
+local-artwork/
+pswaker-private/
 generated/
 /build*/
 game/
