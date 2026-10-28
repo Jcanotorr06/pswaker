@@ -10,6 +10,38 @@ images, extracted game files, keys or complete packages. Making a release
 [#50](https://github.com/Jcanotorr06/pswaker/issues/50). Until then, releases are
 pre-releases in the private repository.
 
+## Artwork redistribution blocker
+
+**Release blocker:** a game program release built with owner-supplied game icon
+and launch splash bundles that artwork. The Windows desktop app folder, portable
+zip and installer bundle it too. All such artifacts must stay private until a
+separate provenance decision explicitly permits redistribution of the included
+artwork. Being disc-free, passing inspection or marking a release as a
+pre-release does not resolve this blocker; a pre-release in a public repository
+still distributes its assets.
+
+Before tagging or publishing any artwork-bearing release:
+
+- Match both `ICON0_PNG` and `PIC1_PNG` hashes in the chosen program release's
+  `stage/build-info.json` with the owner's private
+  [origin and provenance record](ps4/OWNER-ARTWORK.md#local-artwork-and-provenance).
+- Record the separate provenance decision in the release tracking issue: the
+  exact artwork hashes, a reference to the reviewed rights evidence, reviewer,
+  date and permitted redistribution scope. Keep images, personal paths and raw
+  private provenance records out of the issue. Missing, pending or insufficient
+  permission keeps this blocker open.
+- Until that decision permits redistribution, keep program releases, desktop
+  bundles, installers, archives and audit outputs outside git and restrict any
+  release assets to the private repository. Verify the repository is private
+  before uploading; `--prerelease` alone does not provide privacy. If private
+  access cannot be assured, stop before uploading assets.
+
+This decision is separate from permission for local artwork use and does not
+replace the public-readiness gate in
+[#50](https://github.com/Jcanotorr06/pswaker/issues/50). Passing either gate does
+not imply passing the other. No artwork or artwork-bearing output belongs in
+git through this workflow.
+
 ## Versions
 
 | Item | Form | Example |
@@ -35,6 +67,9 @@ one version, and its final release, come from the same release branch.
   existing, console-tested program release keeps its evidence valid. A rebuilt
   program is a new binary that needs new console evidence; see
   [BUILDING.md](../BUILDING.md).
+- Check the [artwork redistribution blocker](#artwork-redistribution-blocker)
+  against the chosen program release and record whether release access must
+  remain private.
 - Have the Windows prerequisites from [BUILDING.md](../BUILDING.md#prerequisites)
   ready. Keep every build output outside the repository, for example under
   `C:\private\release-X.Y.Z-rc.N\`.
@@ -141,6 +176,9 @@ Before publishing, verify the assets:
 
 ## 5. Tag the release
 
+Recheck the [artwork redistribution blocker](#artwork-redistribution-blocker)
+for the actual assets before proceeding.
+
 Create an annotated tag on the release commit from step 3 and push it:
 
 ```bash
@@ -151,6 +189,10 @@ git push origin v0.1.0-rc.1
 Tags are never moved or reused. If an asset needs fixing, publish a new RC.
 
 ## 6. Publish the GitHub release
+
+Confirm the [artwork redistribution blocker](#artwork-redistribution-blocker)
+is resolved for the intended audience. Without a separate decision permitting
+redistribution, use only the private repository; stop if it is public.
 
 Append the checksums to the notes, then create the release. Use `--prerelease`
 for every RC:
@@ -202,3 +244,5 @@ A final release follows the same steps with tag `vX.Y.Z`, app version
 that version have passed, and make the repository or release public only after
 [#50](https://github.com/Jcanotorr06/pswaker/issues/50) records a passing
 readiness decision.
+The [artwork redistribution blocker](#artwork-redistribution-blocker) also
+applies to final releases and to making any existing release assets public.

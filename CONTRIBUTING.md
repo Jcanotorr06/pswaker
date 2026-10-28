@@ -13,10 +13,14 @@ pull requests or logs:
 - keys, signing material or credentials
 - saves, memory-card files or console captures that contain game content
 - complete packages (`.pkg`) or other build outputs
+- owner-supplied game artwork, its local provenance records or artwork-bearing
+  stages, program releases, desktop bundles, archives and installers
 - personal paths, usernames or network details
 
 [.gitignore](.gitignore) blocks the common file types; don't work around it.
 Tests use synthetic, data-free fixtures in [tests/ps4](tests/ps4/).
+Keep owner artwork and its provenance outside git as described in the
+[owner artwork guide](docs/ps4/OWNER-ARTWORK.md#local-artwork-and-provenance).
 
 ## Reporting a problem
 

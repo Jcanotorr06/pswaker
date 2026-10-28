@@ -1,26 +1,72 @@
-# Owner artwork in the game program package (#82)
+# Owner artwork in the game program package
 
 The game icon is `ICON0_PNG` / `sce_sys/icon0.png`, exactly 512 x 512.
 The launch splash is `PIC1_PNG` / `sce_sys/pic1.png`, exactly 1920 x 1080.
-Both must fully decode as non-interlaced, 8-bit RGB PNGs, without alpha or
-`tRNS` transparency. The shared program payload validator uses the pinned
-`python3-png` host package. Staging copies the supplied bytes unchanged.
+Both must fully decode as non-interlaced, 24-bit opaque RGB PNGs (8 bits per
+channel), without alpha or `tRNS` transparency. The shared program payload
+validator uses the pinned `python3-png` host package. Staging copies the supplied
+bytes unchanged.
+
+## Local artwork and provenance
+
+Keep the prepared images in a private local directory outside the checkout,
+for example `$HOME/pswaker-private/local-artwork` on Linux/WSL2 or
+`C:\private\pswaker-private\local-artwork` on Windows. Artwork selection, creation
+and conversion are the owner's responsibility; these tools only validate and
+copy the prepared PNGs. These resources are separate from the in-game title
+screen and HUD, and from the Windows executable's icon.
+
+Before staging, create a private `provenance.md` alongside the images. For each
+image, record:
+
+- Role, filename and SHA-256 of the exact prepared PNG supplied to staging.
+- Origin: creator or rights holder if known, source URL or local source
+  description, and the date obtained. Mark unknown facts as unknown.
+- Preparation: any extraction, editing, cropping or conversion, who performed
+  it, and how the prepared PNG relates to the source.
+- Rights evidence: license text or permission and its source, retained locally;
+  record absent or unresolved permission explicitly.
+- Intended local use and current redistribution status. Keep this pending until
+  a separate provenance decision identifies the exact artwork hashes, evidence,
+  reviewer, date and permitted redistribution scope.
+
+For example, compute the prepared files' hashes with `sha256sum` on Linux or
+`Get-FileHash -Algorithm SHA256` on Windows. After staging, associate this record
+with the hashes and package identity in `game-program-artifacts.json` described
+below. Update the record when an image changes. The tools record technical
+identity; they do not collect or approve origin or rights evidence.
+
+Local use, possession of a disc or successful validation does not grant
+permission to commit or redistribute artwork. Do not commit or attach the images,
+their local provenance record, raw packaging evidence or artwork-bearing outputs
+to issues, pull requests or logs. Keep build roots, stages, staging history,
+program releases, complete packages, desktop bundles, archives and installers
+outside git. The repository ignores directories named `local-artwork/` and
+`pswaker-private/` as a safeguard if private files are accidentally placed inside
+the checkout; retain those directory names and never force-add their contents.
+Check `git status --short` and `git diff --cached --stat` before committing.
+
+Program releases and desktop bundles carry the images even though they contain
+no disc image. Publishing them, including a Windows desktop installer or portable
+zip, distributes the artwork. They must remain private until the separate
+[provenance decision permits redistribution](../RELEASING.md#artwork-redistribution-blocker).
 
 ## Build, restage and inspect
 
 Supply both paths to the maintained build command:
 
 ```bash
+ARTWORK_ROOT="$HOME/pswaker-private/local-artwork"
 bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.13 \
-  /absolute/path/to/icon0.png /absolute/path/to/splash.png
+  "$ARTWORK_ROOT/icon0.png" "$ARTWORK_ROOT/splash.png"
 ```
 
 To change artwork on an otherwise matching compiled build:
 
 ```bash
 python3 tools/pswaker/game-build.py stage "$GAME_ROOT" "$PLATFORM_ROOT" \
-  --app-version 01.14 --icon /absolute/path/to/icon0.png \
-  --splash /absolute/path/to/splash.png
+  --app-version 01.14 --icon "$ARTWORK_ROOT/icon0.png" \
+  --splash "$ARTWORK_ROOT/splash.png"
 python3 tools/pswaker/inspect-game-program.py "$GAME_ROOT" "$PLATFORM_ROOT"
 ```
 
