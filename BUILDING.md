@@ -63,7 +63,8 @@ argument. For the full source closure, patches and checks, see the
 
 ```bash
 GAME_ROOT="$HOME/.cache/pswaker/game"
-bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.13
+bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.13 \
+  /absolute/path/to/icon0.png /absolute/path/to/splash.png
 ```
 
 The third argument is the console program version (`NN.NN`). It changes only
@@ -76,6 +77,11 @@ patch or toolchain gives a different ID. See the
 
 A new build is a new binary. Console results recorded for another build ID don't
 carry over to it.
+
+Arguments four and five are required owner artwork paths. The build validates and
+copies their bytes unchanged, then freshly inspects the program package. See
+[owner artwork](docs/ps4/OWNER-ARTWORK.md) for the contract, restaging command,
+local evidence and existing splash handoff.
 
 ### 3. Derive a program release
 

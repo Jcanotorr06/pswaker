@@ -97,7 +97,8 @@ Use the unchanged verified #15 platform inputs and a separate Linux/WSL2 root:
 
 ```bash
 bash tools/pswaker/build-game.sh "$HOME/.cache/pswaker/game-21" \
-  "$HOME/.cache/pswaker/maintained-15-a" 01.09
+  "$HOME/.cache/pswaker/maintained-15-a" 01.09 \
+  /absolute/path/to/icon0.png /absolute/path/to/splash.png
 export PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-21"
 export PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/maintained-15-a"
 export PSWAKER_HOST_ROOT="$HOME/.cache/pswaker/aurora-host-20261022"
