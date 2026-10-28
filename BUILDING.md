@@ -117,9 +117,11 @@ Windows machine for steps 4–6. See
 
 A game program release carries both owner-supplied images alongside the
 disc-free program. Complete-package assembly carries them forward from the
-selected stage or release; it does not take a second artwork selection. Keep
-the release private pending the separate
-[artwork redistribution decision](docs/RELEASING.md#artwork-redistribution-blocker).
+selected stage or release; it does not take a second artwork selection. Match
+both artwork hashes against the
+[approved redistribution decision](docs/RELEASING.md#artwork-redistribution-blocker).
+Different artwork remains private pending a separate decision. The release's
+public-readiness gate still applies.
 
 Optionally, assemble and inspect a complete package on Linux with your own disc
 image, as described in [complete packages](docs/ps4/COMPLETE-PACKAGES.md).
@@ -167,10 +169,12 @@ No step reads a disc image; the builders seal only the data-free program, tool
 and contract inventories, and reject any other program files.
 
 The desktop app folder, portable zip and Windows installer bundle the program
-release's artwork. Keep them and their audit manifests outside git and private
-until the [artwork redistribution blocker](docs/RELEASING.md#artwork-redistribution-blocker)
-is resolved. A passing inventory or installer check does not grant redistribution
-permission.
+release's artwork. Keep them and their audit manifests outside git. The
+[artwork redistribution decision](docs/RELEASING.md#artwork-redistribution-blocker)
+permits redistribution when both artwork hashes match its approval; otherwise,
+keep them private pending a separate decision. A passing inventory or installer
+check does not grant redistribution permission or clear the public-readiness
+gate.
 
 App versions have four numeric parts, each 0–65535. Give every desktop build
 you hand out a new version. The desktop version is independent of the console

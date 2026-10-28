@@ -26,9 +26,11 @@ image, record:
   it, and how the prepared PNG relates to the source.
 - Rights evidence: license text or permission and its source, retained locally;
   record absent or unresolved permission explicitly.
-- Intended local use and current redistribution status. Keep this pending until
-  a separate provenance decision identifies the exact artwork hashes, evidence,
-  reviewer, date and permitted redistribution scope.
+- Intended local use and current redistribution status. For files matching the
+  [approved redistribution decision](../RELEASING.md#artwork-redistribution-blocker),
+  reference that decision and its exact hashes, evidence, reviewer, date and
+  permitted scope. Keep other artwork pending until a separate decision records
+  those details.
 
 For example, compute the prepared files' hashes with `sha256sum` on Linux or
 `Get-FileHash -Algorithm SHA256` on Windows. After staging, associate this record
@@ -48,8 +50,12 @@ Check `git status --short` and `git diff --cached --stat` before committing.
 
 Program releases and desktop bundles carry the images even though they contain
 no disc image. Publishing them, including a Windows desktop installer or portable
-zip, distributes the artwork. They must remain private until the separate
-[provenance decision permits redistribution](../RELEASING.md#artwork-redistribution-blocker).
+zip, distributes the artwork. The
+[2026-10-28 provenance decision](../RELEASING.md#artwork-redistribution-blocker)
+permits unrestricted redistribution of the two identified PNGs. Match both
+packaged hashes before relying on it. Different artwork must remain private
+until a separate decision permits redistribution. The public-readiness gate
+still applies to the release as a whole.
 
 ## Build, restage and inspect
 
