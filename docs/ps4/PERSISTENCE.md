@@ -66,7 +66,8 @@ Use the selected WSL2/Linux host and unchanged verified #15 platform archives:
 
 ```bash
 bash tools/pswaker/build-game.sh "$HOME/.cache/pswaker/game-20-final" \
-  "$HOME/.cache/pswaker/maintained-15-a" 01.07
+  "$HOME/.cache/pswaker/maintained-15-a" 01.07 \
+  /absolute/path/to/icon0.png /absolute/path/to/splash.png
 
 export PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-20-final"
 export PSWAKER_REFERENCE_BUILD="$HOME/.cache/pswaker/maintained-15-a"

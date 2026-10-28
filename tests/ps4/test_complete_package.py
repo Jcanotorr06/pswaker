@@ -12,8 +12,10 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 
 from synthetic_disc import generate
+from synthetic_program import stage_artwork, png_bytes
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 from build_inputs import Locations
@@ -403,6 +405,230 @@ class RelocatableProgramTests(PreparationCliTestCase):
         return self.run_cli('assemble', '--image', self.image, '--program', program,
                             '--platform-root', self.reference, '--kind', kind,
                             '--app-version', '01.05', '--output', self.output, *extra)
+
+    def game_build(self):
+        stage, elf = self.developer_build()
+        info = json.loads((stage / 'build-info.json').read_text())
+        info['program_build_id'] = info.pop('diagnostic_build_id')
+        info['app_version'] = '01.05'
+        info['artwork'] = stage_artwork(stage)
+        (stage / 'build-info.json').write_text(json.dumps(info))
+        tool = str(self.reference / 'build/pkgtool/PkgTool.Core')
+        for key, value in {'TITLE_ID': 'PSWK00001', 'CONTENT_ID': 'IV0000-PSWK00001_00-PSWAKERGAME00000',
+                           'TITLE': 'PSWaker', 'APP_VER': '01.05', 'VERSION': '01.05'}.items():
+            subprocess.run([tool, 'sfo_setentry', '--type', 'utf8', '--maxsize', '128', '--value', value,
+                            str(stage / 'sce_sys/param.sfo'), key], check=True, capture_output=True,
+                           env=dict(os.environ, DOTNET_SYSTEM_GLOBALIZATION_INVARIANT='1'))
+        return stage, elf, info
+
+    def test_game_release_carries_artwork_through_relocation_and_fresh_inspection(self):
+        stage, elf, info = self.game_build()
+        artwork = info['artwork']
+        release = self.root / 'game-release'
+        result = self.run_cli('release-program', '--program-stage', stage, '--elf', elf,
+                              '--platform-root', self.reference, '--kind', 'game', '--output', release)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        relocated = self.root / 'relocated'
+        release.rename(relocated)
+        shutil.rmtree(self.build)
+        result = self.assemble(relocated, 'game')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads((self.output / 'inspection.json').read_text())
+        self.assertEqual(report['artwork'], artwork)
+        for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
+            self.assertEqual(report['payload_sha256']['sce_sys/' + name], artwork[resource]['sha256'])
+
+    def test_content_failure_variants_preserve_the_complete_package_artwork(self):
+        stage, elf, _ = self.game_build()
+        artwork = {name: (stage / 'sce_sys' / name).read_bytes() for name in ['icon0.png', 'pic1.png']}
+        result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
+                              '--elf', elf, '--platform-root', self.reference, '--kind', 'game',
+                              '--app-version', '01.05', '--output', self.output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        parent = json.loads((self.output / 'inspection.json').read_text())
+        tool = str(self.reference / 'build/pkgtool/PkgTool.Core')
+        env = dict(os.environ, DOTNET_SYSTEM_GLOBALIZATION_INVARIANT='1')
+        for variant in ['missing', 'unreadable', 'invalid']:
+            with self.subTest(variant=variant):
+                output = self.root / variant
+                result = self.run_cli(self.output, '--platform-root', self.reference, '--variant', variant,
+                                      '--app-version', '01.06', '--output', output,
+                                      cli=Locations(self.root / 'repo').command('content-failure-package.py'))
+                self.assertEqual(result.returncode, 0, result.stderr)
+                report = json.loads((output / 'failure-inspection.json').read_text())
+                self.assertEqual(report['parent_package'], parent['package'])
+                self.assertEqual(report['variant'], variant)
+                self.assertEqual(report['payload_sha256']['eboot.bin'], parent['program']['eboot_sha256'])
+                package = output / 'out' / report['package']['filename']
+                entries = subprocess.check_output([tool, 'pkg_listentries', str(package)], text=True, env=env)
+                for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
+                    rows = [line.split() for line in entries.splitlines()
+                            if line.split() and line.split()[-1] == resource]
+                    self.assertEqual(len(rows), 1)
+                    extracted = output / name
+                    subprocess.run([tool, 'pkg_extractentry', str(package), rows[0][3], str(extracted)],
+                                   check=True, capture_output=True, env=env)
+                    self.assertEqual(extracted.read_bytes(), artwork[name])
+                    self.assertEqual(sha256(extracted), parent['payload_sha256']['sce_sys/' + name])
+
+    def test_invalid_game_artwork_stops_assembly_without_completed_output(self):
+        stage, elf, _ = self.game_build()
+        for resource, name, width, height in [('ICON0_PNG', 'icon0.png', 512, 512),
+                                               ('PIC1_PNG', 'pic1.png', 1920, 1080)]:
+            target = stage / 'sce_sys' / name
+            original = target.read_bytes()
+            for case, data in [
+                    ('missing', None), ('not-png', b'not a PNG'), ('truncated', original[:-15]),
+                    ('corrupt', original[:-16] + b'BAD!' + original[-12:]),
+                    ('trailing-data', original + b'not PNG data'),
+                    ('corrupt-deflate', png_bytes(width, height, compressed=b'broken compressed pixels')),
+                    ('short-raster', png_bytes(width, height, scanlines=height - 1)),
+                    ('dimensions', png_bytes(width - 1, height)),
+                    ('rgba', png_bytes(width, height, colour_type=6)),
+                    ('grayscale', png_bytes(width, height, colour_type=0)),
+                    ('grayscale-alpha', png_bytes(width, height, colour_type=4)),
+                    ('indexed', png_bytes(width, height, colour_type=3)),
+                    ('16-bit', png_bytes(width, height, bit_depth=16)),
+                    ('transparency', png_bytes(width, height, transparent=True)),
+                    ('interlaced', png_bytes(width, height, interlace=1))]:
+                with self.subTest(resource=resource, case=case):
+                    if data is None:
+                        target.unlink()
+                    else:
+                        target.write_bytes(data)
+                    result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
+                                          '--elf', elf, '--platform-root', self.reference, '--kind', 'game',
+                                          '--app-version', '01.05', '--output', self.output)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn(resource, result.stderr)
+                    self.assertIn(f'{width} x {height}', result.stderr)
+                    self.assertNotIn('Traceback', result.stderr)
+                    self.assertFalse(self.output.exists())
+                    self.assertFalse(list(self.root.glob('.complete-*')))
+                    target.write_bytes(original)
+
+    def test_artwork_change_requires_a_new_manifest_and_distinguishes_same_build_releases(self):
+        stage, elf, info = self.game_build()
+        first = self.root / 'first-release'
+        args = ['release-program', '--program-stage', stage, '--elf', elf, '--platform-root', self.reference,
+                '--kind', 'game', '--output']
+        result = self.run_cli(*args, first)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        changed = stage_artwork(stage, pixel=84)
+        second = self.root / 'second-release'
+        result = self.run_cli(*args, second)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('ICON0_PNG', result.stderr)
+        self.assertIn('manifest', result.stderr)
+        self.assertFalse(second.exists())
+        info['artwork'] = changed
+        (stage / 'build-info.json').write_text(json.dumps(info))
+        result = self.run_cli(*args, second)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        a, b = [json.loads((release / 'program-release.json').read_text()) for release in [first, second]]
+        self.assertEqual(a['build_id'], b['build_id'])
+        self.assertNotEqual(a['payload_sha256'], b['payload_sha256'])
+        result = self.assemble(second, 'game')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads((self.output / 'inspection.json').read_text())['artwork'], changed)
+
+    def test_fresh_inspection_rejects_swapped_missing_or_extra_game_artwork(self):
+        stage, elf, _ = self.game_build()
+        result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
+                              '--elf', elf, '--platform-root', self.reference, '--kind', 'game',
+                              '--app-version', '01.05', '--output', self.output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        assembly_file = self.output / 'assembly.json'
+        original_report = json.loads(assembly_file.read_text())
+        package = self.output / 'out' / original_report['package']['filename']
+        original_bytes = package.read_bytes()
+        tool = str(self.reference / 'build/pkgtool/PkgTool.Core')
+        env = dict(os.environ, DOTNET_SYSTEM_GLOBALIZATION_INVARIANT='1')
+        for case, resource in [('swap-icon', 'ICON0_PNG'), ('swap-splash', 'PIC1_PNG'),
+                               ('missing-splash', 'PIC1_PNG'), ('extra-splash', 'PIC1_PNG')]:
+            with self.subTest(case=case):
+                package.write_bytes(original_bytes)
+                project = self.root / case
+                subprocess.run([tool, 'pkg_makegp4', str(package), str(project)], check=True,
+                               capture_output=True, env=env)
+                gp4 = project / 'Project.gp4'
+                document = ET.parse(gp4)
+                files = document.getroot().find('files')
+                name = 'sce_sys/icon0.png' if resource == 'ICON0_PNG' else 'sce_sys/pic1.png'
+                entry = next(row for row in files if row.get('targ_path') == name)
+                if case.startswith('swap'):
+                    path = project / entry.get('orig_path')
+                    path.write_bytes(png_bytes(512, 512, pixel=84) if resource == 'ICON0_PNG'
+                                     else png_bytes(1920, 1080, pixel=84))
+                elif case == 'missing-splash':
+                    files.remove(entry)
+                else:
+                    # An extra splash inside PFS must not masquerade as the metadata entry.
+                    ET.SubElement(files, 'file', targ_path='extra/pic1.png', orig_path=entry.get('orig_path'))
+                    ET.SubElement(document.getroot().find('rootdir'), 'dir', targ_name='extra')
+                document.write(gp4)
+                rebuilt = self.root / (case + '-out')
+                rebuilt.mkdir()
+                subprocess.run([tool, 'pkg_build', str(gp4), str(rebuilt)], check=True,
+                               capture_output=True, env=env)
+                shutil.copyfile(rebuilt / package.name, package)
+                report = json.loads(json.dumps(original_report))
+                report['package']['sha256'] = sha256(package)
+                if case == 'swap-splash':
+                    # Even updating the outer inventory cannot bypass the program's artwork manifest.
+                    report['payload_sha256'][name] = sha256(project / entry.get('orig_path'))
+                assembly_file.write_text(json.dumps(report))
+                result = self.run_cli('inspect', self.output, '--platform-root', self.reference)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(resource, result.stderr)
+                self.assertFalse((self.output / 'inspection.json').exists())
+
+    @unittest.skipUnless(os.environ.get('PSWAKER_WINDOWS_PYTHON') and os.environ.get('PSWAKER_WINDOWS_TOOLS'),
+                         'WSL interop, native Windows Python and packaging closure required')
+    def test_same_relocated_release_has_identical_artwork_in_linux_and_windows_packages(self):
+        # Execute native tools on a Windows volume, avoiding WSL network-share executable locks.
+        windows_temp = subprocess.check_output([os.environ['PSWAKER_WINDOWS_PYTHON'], '-c',
+                                                'import tempfile; print(tempfile.gettempdir())'], text=True).strip()
+        parent = subprocess.check_output(['wslpath', '-u', windows_temp], text=True).strip()
+        temporary = tempfile.TemporaryDirectory(prefix='pswaker-cross-artwork-', dir=parent)
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.cli, self.image = generate(self.root, LOCATIONS.repository)
+        self.build, self.output = self.root / 'developer-build', self.root / 'private-complete'
+        stage, elf, _ = self.game_build()
+        release = self.root / 'game-release'
+        result = self.run_cli('release-program', '--program-stage', stage, '--elf', elf,
+                              '--platform-root', self.reference, '--kind', 'game', '--output', release)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        relocated = self.root / 'relocated-release'
+        release.rename(relocated)
+        shutil.rmtree(self.build)
+        result = self.assemble(relocated, 'game')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        script = '''
+import json, shutil, sys
+from pathlib import Path
+root, tests, tools = map(Path, sys.argv[1:])
+sys.path[:0] = [str(root / 'repo/tools/pswaker'), str(tests)]
+from synthetic_program import make_bundle
+from windows_package import create_package, seal_bundle
+bundle = make_bundle(root / 'windows-bundle', tools)
+shutil.rmtree(bundle / 'program')
+shutil.copytree(root / 'relocated-release', bundle / 'program')
+seal_bundle(bundle)
+create_package(root / 'synthetic.iso', root / 'windows-complete', bundle)
+'''
+        def windows_path(path):
+            return subprocess.check_output(['wslpath', '-w', str(path)], text=True).strip()
+        windows = subprocess.run([os.environ['PSWAKER_WINDOWS_PYTHON'], '-c', script,
+                                  windows_path(self.root), windows_path(LOCATIONS.repository / 'tests/ps4'),
+                                  os.environ['PSWAKER_WINDOWS_TOOLS']], capture_output=True, text=True, timeout=120)
+        self.assertEqual(windows.returncode, 0, windows.stdout + windows.stderr)
+        linux_report = json.loads((self.output / 'inspection.json').read_text())
+        windows_report = json.loads((self.root / 'windows-complete/inspection.json').read_text())
+        self.assertEqual(linux_report['artwork'], windows_report['artwork'])
+        for name in ['sce_sys/icon0.png', 'sce_sys/pic1.png']:
+            self.assertEqual(linux_report['payload_sha256'][name], windows_report['payload_sha256'][name])
 
     def test_relocated_release_packages_without_its_developer_build(self):
         release, result = self.release()

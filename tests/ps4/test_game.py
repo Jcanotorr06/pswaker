@@ -1,6 +1,8 @@
 """Game preparation and installed-application boundaries; no game fixtures."""
 import json
 import hashlib
+import importlib.util
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -10,11 +12,127 @@ import tarfile
 import io
 import unittest
 
+from synthetic_program import png_bytes
+from synthetic_game import prepare
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 from build_inputs import Locations, maintained_inputs
 
 LOCATIONS = Locations()
 PLATFORM = LOCATIONS.platform
+ARTWORK_HOST = sys.platform == 'linux' and importlib.util.find_spec('png') is not None
+
+
+class GameStagingTests(unittest.TestCase):
+    def test_artwork_paths_are_required_before_any_program_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for options, missing in [([], '--icon'), (['--icon', 'owner.png'], '--splash'),
+                                     (['--splash', 'owner.png'], '--icon')]:
+                with self.subTest(options=options):
+                    result = subprocess.run([sys.executable, str(LOCATIONS.command('game-build.py')),
+                                             'stage', str(root), str(root / 'platform'), *options],
+                                            capture_output=True, text=True)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn(missing, result.stderr)
+                    self.assertFalse((root / 'build/program-stage').exists())
+                    self.assertFalse((root / 'out/program').exists())
+
+    @unittest.skipUnless(ARTWORK_HOST, 'Artwork decode requires the Linux python3-png host dependency')
+    def test_invalid_artwork_rejects_restaging_and_preserves_previous_output_as_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            icon, splash = root / 'icon.png', root / 'splash.png'
+            icon.write_bytes(png_bytes(512, 512))
+            splash.write_bytes(png_bytes(1920, 1080))
+            for path, resource in [(icon, 'ICON0_PNG'), (splash, 'PIC1_PNG')]:
+                original = path.read_bytes()
+                for invalid in [None, b'broken PNG', png_bytes(10, 10)]:
+                    with self.subTest(resource=resource, invalid=invalid is None):
+                        old = root / 'out/program/previous.pkg'
+                        old.parent.mkdir(parents=True)
+                        old.write_bytes(b'previous completed package')
+                        previous_stage = root / 'build/program-stage'
+                        previous_stage.mkdir(parents=True)
+                        (previous_stage / 'eboot.bin').write_bytes(b'previous program')
+                        if invalid is None:
+                            path.unlink()
+                        else:
+                            path.write_bytes(invalid)
+                        result = subprocess.run([sys.executable, str(LOCATIONS.command('game-build.py')),
+                                                 'stage', str(root), str(root / 'platform'),
+                                                 '--icon', str(icon), '--splash', str(splash)],
+                                                capture_output=True, text=True)
+                        self.assertNotEqual(result.returncode, 0)
+                        self.assertIn(resource, result.stderr)
+                        self.assertFalse(previous_stage.exists())
+                        self.assertFalse(old.parent.exists())
+                        self.assertEqual(json.loads((root / 'evidence/game-staging-attempt.json').read_text())['status'],
+                                         'failed')
+                        self.assertTrue(any(p.read_bytes() == b'previous completed package' for p in
+                                            (root / 'evidence/game-staging-history').rglob('previous.pkg')))
+                        path.write_bytes(original)
+
+
+@unittest.skipUnless(ARTWORK_HOST and os.environ.get('PSWAKER_REFERENCE_BUILD') and shutil.which('clang++-21'),
+                     'Set PSWAKER_REFERENCE_BUILD on Linux for real program packaging')
+class GameProgramPackageTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory(prefix='game-staging-test-')
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.platform, self.icon, self.splash, self.build_id = prepare(
+            self.root, os.environ['PSWAKER_REFERENCE_BUILD'], LOCATIONS)
+
+    def stage(self):
+        return subprocess.run([sys.executable, str(LOCATIONS.command('game-build.py')), 'stage',
+                               str(self.root), str(self.platform), '--app-version', '01.23',
+                               '--icon', str(self.icon), '--splash', str(self.splash)], capture_output=True, text=True)
+
+    def inspect(self):
+        return subprocess.run([sys.executable, str(LOCATIONS.command('inspect-game-program.py')),
+                               str(self.root), str(self.platform)], capture_output=True, text=True)
+
+    def test_supplied_bytes_are_inspected_and_artwork_replacement_keeps_compiled_identity(self):
+        configured = (self.root / 'evidence/game-build-inputs.json').read_bytes()
+        for pixel in [42, 84]:
+            with self.subTest(pixel=pixel):
+                self.splash.write_bytes(png_bytes(1920, 1080, pixel=pixel))
+                staged = self.stage()
+                self.assertEqual(staged.returncode, 0, staged.stderr)
+                inspected = self.inspect()
+                self.assertEqual(inspected.returncode, 0, inspected.stderr)
+                report = json.loads(inspected.stdout)
+                evidence = json.loads((self.root / 'evidence/game-program-artifacts.json').read_text())
+                manifest_text = (self.root / 'build/program-stage/build-info.json').read_text()
+                self.assertNotIn(str(self.root), manifest_text)
+                self.assertNotIn('source_path', manifest_text)
+                self.assertEqual(report['compiled_build_id'], self.build_id)
+                self.assertEqual(report['cache'], '/data/pswaker/cache/' + self.build_id)
+                self.assertEqual((self.root / 'evidence/game-build-inputs.json').read_bytes(), configured)
+                for resource, path, name in [('ICON0_PNG', self.icon, 'icon0.png'),
+                                              ('PIC1_PNG', self.splash, 'pic1.png')]:
+                    self.assertEqual(report['artwork'][resource]['sha256'], hashlib.sha256(path.read_bytes()).hexdigest())
+                    self.assertEqual(evidence['artwork'][resource]['source_path'], str(path.resolve()))
+                    self.assertEqual(report['package_files']['sce_sys/' + name],
+                                     evidence['program_stage_sha256']['sce_sys/' + name])
+        self.splash.write_bytes(b'replaced with invalid artwork')
+        rejected = self.stage()
+        self.assertNotEqual(rejected.returncode, 0)
+        self.assertIn('PIC1_PNG', rejected.stderr)
+        self.assertFalse((self.root / 'out/program').exists())
+        self.assertFalse((self.root / 'evidence/game-program-inspection.json').exists())
+
+    def test_failed_packager_publishes_no_partial_stage_or_package(self):
+        script = self.platform / 'refs/DolphinPS4/scripts/make-pkg.sh'
+        script.write_text('#!/bin/bash\nprintf partial > "$6/partial.pkg"\nexit 9\n')
+        rejected = self.stage()
+        self.assertNotEqual(rejected.returncode, 0)
+        self.assertFalse((self.root / 'build/program-stage').exists())
+        self.assertFalse((self.root / 'out/program').exists())
+        self.assertFalse((self.root / 'evidence/game-program-artifacts.json').exists())
+        attempt = json.loads((self.root / 'evidence/game-staging-attempt.json').read_text())
+        self.assertEqual(attempt['status'], 'failed')
 
 
 class GamePreparationTests(unittest.TestCase):
@@ -59,6 +177,7 @@ class GamePreparationTests(unittest.TestCase):
 
 @unittest.skipUnless(shutil.which('clang++-21'), 'Linux host compiler required')
 class InstalledApplicationTests(unittest.TestCase):
+    @unittest.skipUnless(ARTWORK_HOST, 'Artwork decode requires the Linux python3-png host dependency')
     def test_build_staging_rejects_changed_dsp_reader_and_platform_headers(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory) / 'game'
@@ -84,6 +203,9 @@ class InstalledApplicationTests(unittest.TestCase):
             header.parent.mkdir(parents=True)
             header.write_bytes(b'original header')
             cli = [sys.executable, str(LOCATIONS.command('game-build.py'))]
+            icon, splash = root / 'icon.png', root / 'splash.png'
+            icon.write_bytes(png_bytes(512, 512))
+            splash.write_bytes(png_bytes(1920, 1080))
             configured = subprocess.run(cli + ['identity', str(root), str(platform)],
                                         capture_output=True, text=True)
             self.assertEqual(configured.returncode, 0, configured.stderr)
@@ -92,7 +214,8 @@ class InstalledApplicationTests(unittest.TestCase):
                 with self.subTest(path=path):
                     before = path.read_bytes()
                     path.write_bytes(b'unrecorded change')
-                    staged = subprocess.run(cli + ['stage', str(root), str(platform)],
+                    staged = subprocess.run(cli + ['stage', str(root), str(platform),
+                                                   '--icon', str(icon), '--splash', str(splash)],
                                             capture_output=True, text=True)
                     self.assertNotEqual(staged.returncode, 0)
                     self.assertTrue('Prepared input changed' in staged.stderr or

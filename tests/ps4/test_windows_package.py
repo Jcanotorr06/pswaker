@@ -53,6 +53,10 @@ assert report['sfo']['APP_VER'] == '01.23'
 assert report['installed_image'] == '/app0/game.iso'
 assert report['image']['sha256'] == hashlib.sha256(original).hexdigest()
 assert report['program']['build_id'] == 'synthetic-program'
+artwork = json.loads((bundle / 'program/stage/build-info.json').read_text())['artwork']
+assert report['artwork'] == artwork
+for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
+    assert report['payload_sha256']['sce_sys/' + name] == artwork[resource]['sha256']
 assert report['payload_sha256']['eboot.bin'] == hashlib.sha256(
     (bundle / 'program/stage/eboot.bin').read_bytes()).hexdigest()
 assert [e['stage'] for e in events if e['event'] == 'passed'] == [
@@ -93,6 +97,60 @@ operation = BuildOperation(cancel_after_publication)
 result = create_package(image, output, bundle, operation=operation)
 assert (output / 'inspection.json').is_file()
 assert (output / 'out' / result['package']['filename']).is_file()
+''')
+
+    def test_relocated_bundle_carries_artwork_without_a_decoder(self):
+        self.run_scenario('''
+import importlib.abc
+from windows_package import inspect_output
+class NoImageDecoder(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, path, target=None):
+        if fullname == 'png' or fullname.startswith('PIL'):
+            raise AssertionError('Desktop must not load an image decoder')
+sys.meta_path.insert(0, NoImageDecoder())
+artwork = json.loads((bundle / 'program/stage/build-info.json').read_text())['artwork']
+relocated = root / 'relocated-bundle'
+bundle.rename(relocated)
+bundle = relocated
+create_package(image, output, bundle)
+report = inspect_output(output, bundle)
+assert report['artwork'] == artwork
+for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
+    assert report['payload_sha256']['sce_sys/' + name] == artwork[resource]['sha256']
+''')
+
+    def test_bundle_check_rejects_missing_or_changed_artwork_with_or_without_rehashed_inventory(self):
+        self.run_scenario('''
+from package_artifact import inventory, write_json
+from windows_package import bundle_inventory
+fixed = json.loads((bundle / 'desktop-release.json').read_text())
+release_path = bundle / 'program/program-release.json'
+release = json.loads(release_path.read_text())
+def rejects(resource):
+    try:
+        create_package(image, output, bundle)
+    except ValueError as error:
+        assert resource in str(error), str(error)
+    else:
+        raise AssertionError('Changed artwork passed desktop bundle check: ' + resource)
+    assert not output.exists()
+    assert not list(root.glob('.complete-*'))
+for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
+    target = bundle / 'program/stage/sce_sys' / name
+    saved = target.read_bytes()
+    for missing in [True, False]:
+        if missing:
+            target.unlink()
+        else:
+            target.write_bytes(saved + b'changed artwork')
+        rejects(resource)
+        altered = dict(release, payload_sha256=inventory(bundle / 'program/stage'))
+        write_json(release_path, altered)
+        write_json(bundle / 'desktop-release.json', dict(fixed, files=bundle_inventory(bundle)))
+        rejects(resource)
+        target.write_bytes(saved)
+        write_json(release_path, release)
+        write_json(bundle / 'desktop-release.json', fixed)
 ''')
 
     def test_cancel_preserves_a_replaced_workspace_and_can_recover_the_original(self):
@@ -426,6 +484,53 @@ except ValueError as error:
 else:
     raise AssertionError('Altered package passed fresh inspection')
 assert not (output / 'inspection.json').exists()
+''')
+
+    def test_fresh_inspection_rejects_swapped_and_missing_artwork(self):
+        self.run_scenario('''
+import subprocess
+import xml.etree.ElementTree as ET
+from synthetic_program import png_bytes
+from windows_package import inspect_output
+result = create_package(image, output, bundle)
+package = output / 'out' / result['package']['filename']
+original_package = package.read_bytes()
+assembly_path = output / 'assembly.json'
+original_report = json.loads(assembly_path.read_text())
+tool = str(bundle / 'packaging/PkgTool.Core.exe')
+for case, resource, name in [('icon', 'ICON0_PNG', 'icon0.png'),
+                              ('splash', 'PIC1_PNG', 'pic1.png'),
+                              ('missing-splash', 'PIC1_PNG', 'pic1.png')]:
+    package.write_bytes(original_package)
+    project_root = root / case
+    subprocess.run([tool, 'pkg_makegp4', str(package), str(project_root)], check=True, capture_output=True)
+    gp4 = project_root / 'Project.gp4'
+    project = ET.parse(gp4)
+    files = project.getroot().find('files')
+    entry = next(row for row in files if row.get('targ_path') == 'sce_sys/' + name)
+    if case == 'missing-splash':
+        files.remove(entry)
+    else:
+        (project_root / entry.get('orig_path')).write_bytes(
+            png_bytes(512, 512, pixel=84) if case == 'icon' else png_bytes(1920, 1080, pixel=84))
+    project.write(gp4)
+    rebuilt = root / (case + '-out')
+    rebuilt.mkdir()
+    subprocess.run([tool, 'pkg_build', str(gp4), str(rebuilt)], check=True, capture_output=True)
+    package.write_bytes((rebuilt / package.name).read_bytes())
+    report = json.loads(json.dumps(original_report))
+    report['package']['sha256'] = hashlib.sha256(package.read_bytes()).hexdigest()
+    if case == 'splash':
+        report['payload_sha256']['sce_sys/' + name] = hashlib.sha256(
+            (project_root / entry.get('orig_path')).read_bytes()).hexdigest()
+    assembly_path.write_text(json.dumps(report))
+    try:
+        inspect_output(output, bundle)
+    except ValueError as error:
+        assert resource in str(error), str(error)
+    else:
+        raise AssertionError('Altered artwork passed fresh inspection: ' + case)
+    assert not (output / 'inspection.json').exists()
 ''')
 
     def test_changed_image_during_copy_never_becomes_a_completed_package(self):

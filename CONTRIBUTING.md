@@ -13,10 +13,20 @@ pull requests or logs:
 - keys, signing material or credentials
 - saves, memory-card files or console captures that contain game content
 - complete packages (`.pkg`) or other build outputs
+- unapproved replacement artwork, private provenance records or artwork-bearing
+  stages, program releases, desktop bundles, archives and installers
 - personal paths, usernames or network details
 
 [.gitignore](.gitignore) blocks the common file types; don't work around it.
 Tests use synthetic, data-free fixtures in [tests/ps4](tests/ps4/).
+The approved game icon and launch splash in [assets/ps4](assets/ps4/README.md)
+and the Windows executable icon [waker.ico](tools/pswaker/waker.ico)
+are the artwork exceptions: their exact hashes and unrestricted redistribution
+authorization are recorded in the
+[release guide](docs/RELEASING.md#artwork-redistribution-blocker). Different or
+modified artwork needs a separate approval before being committed or distributed.
+Keep replacement artwork and its private provenance outside git; see the
+[owner artwork guide](docs/ps4/OWNER-ARTWORK.md#local-artwork-and-provenance).
 
 ## Reporting a problem
 

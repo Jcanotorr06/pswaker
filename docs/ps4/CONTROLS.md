@@ -67,7 +67,8 @@ Use the locked WSL2/Linux host and verified #15 platform. A fresh game root
 preserves the earlier owner-tested build:
 
     bash tools/pswaker/build-game.sh "$HOME/.cache/pswaker/game-18" \
-      "$HOME/.cache/pswaker/maintained-15-a" 01.05
+      "$HOME/.cache/pswaker/maintained-15-a" 01.05 \
+      /absolute/path/to/icon0.png /absolute/path/to/splash.png
 
 Assemble and freshly inspect using the normal
 [complete-package workflow](COMPLETE-PACKAGES.md), with that root's explicit
