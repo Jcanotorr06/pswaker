@@ -7,17 +7,26 @@ channel), without alpha or `tRNS` transparency. The shared program payload
 validator uses the pinned `python3-png` host package. Staging copies the supplied
 bytes unchanged.
 
+## Included artwork
+
+The checkout includes the approved [game icon](../../assets/ps4/icon0.png) and
+[launch splash](../../assets/ps4/splash_art.png) in `assets/ps4/`. Use them to
+build on any machine without acquiring separate artwork or creating a private
+provenance record. Their [repository record](../../assets/ps4/README.md) links
+the exact hashes to the owner's unrestricted redistribution authorization.
+The PNGs are copied unchanged; the build still requires both paths explicitly.
+
 ## Local artwork and provenance
 
-Keep the prepared images in a private local directory outside the checkout,
-for example `$HOME/pswaker-private/local-artwork` on Linux/WSL2 or
-`C:\private\pswaker-private\local-artwork` on Windows. Artwork selection, creation
+For replacement artwork, keep the prepared images in a private local directory
+outside the checkout, for example `$HOME/pswaker-private/local-artwork` on
+Linux/WSL2 or `C:\private\pswaker-private\local-artwork` on Windows. Artwork selection, creation
 and conversion are the owner's responsibility; these tools only validate and
 copy the prepared PNGs. These resources are separate from the in-game title
 screen and HUD, and from the Windows executable's icon.
 
-Before staging, create a private `provenance.md` alongside the images. For each
-image, record:
+Before staging replacement artwork, create a private `provenance.md` alongside
+the images. For each image, record:
 
 - Role, filename and SHA-256 of the exact prepared PNG supplied to staging.
 - Origin: creator or rights holder if known, source URL or local source
@@ -39,11 +48,12 @@ below. Update the record when an image changes. The tools record technical
 identity; they do not collect or approve origin or rights evidence.
 
 Local use, possession of a disc or successful validation does not grant
-permission to commit or redistribute artwork. Do not commit or attach the images,
-their local provenance record, raw packaging evidence or artwork-bearing outputs
-to issues, pull requests or logs. Keep build roots, stages, staging history,
-program releases, complete packages, desktop bundles, archives and installers
-outside git. The repository ignores directories named `local-artwork/` and
+permission to commit or redistribute artwork. Only the two approved source PNGs
+in `assets/ps4/` may be committed under the existing decision. Do not commit or
+attach replacement images, private provenance records, raw packaging evidence
+or artwork-bearing outputs to issues, pull requests or logs. Keep build roots,
+stages, staging history, program releases, complete packages, desktop bundles,
+archives and installers outside git. The repository ignores directories named `local-artwork/` and
 `pswaker-private/` as a safeguard if private files are accidentally placed inside
 the checkout; retain those directory names and never force-add their contents.
 Check `git status --short` and `git diff --cached --stat` before committing.
@@ -62,19 +72,22 @@ still applies to the release as a whole.
 Supply both paths to the maintained build command:
 
 ```bash
-ARTWORK_ROOT="$HOME/pswaker-private/local-artwork"
+ARTWORK_ROOT="$PWD/assets/ps4"
 bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.13 \
-  "$ARTWORK_ROOT/icon0.png" "$ARTWORK_ROOT/splash.png"
+  "$ARTWORK_ROOT/icon0.png" "$ARTWORK_ROOT/splash_art.png"
 ```
 
-To change artwork on an otherwise matching compiled build:
+To restage with the included artwork on an otherwise matching compiled build:
 
 ```bash
 python3 tools/pswaker/game-build.py stage "$GAME_ROOT" "$PLATFORM_ROOT" \
   --app-version 01.14 --icon "$ARTWORK_ROOT/icon0.png" \
-  --splash "$ARTWORK_ROOT/splash.png"
+  --splash "$ARTWORK_ROOT/splash_art.png"
 python3 tools/pswaker/inspect-game-program.py "$GAME_ROOT" "$PLATFORM_ROOT"
 ```
+
+For replacement artwork, pass its prepared paths instead and retain the private
+provenance record described above.
 
 Every attempt validates both inputs before writing a new program stage. There
 are no default paths or inherited artwork. The previous stage, program package
@@ -88,8 +101,8 @@ Successful staging publishes `build/program-stage/` and `out/program/`.
 source paths. Private `evidence/game-program-artifacts.json` also records the
 source paths, full stage inventory, package hash, version, title/content IDs,
 compiled build ID, ELF/SELF hashes, build-input inventory hash and cache path.
-Keep this local evidence private. Commit neither artwork nor artwork-bearing
-outputs.
+Keep this local evidence private. Only the approved source PNGs belong in git;
+replacement artwork and artwork-bearing build outputs stay outside it.
 
 Inspection checks the package hash before extraction, then freshly extracts the
 PFS payload and the `PARAM_SFO`, `ICON0_PNG` and `PIC1_PNG` entries. It compares

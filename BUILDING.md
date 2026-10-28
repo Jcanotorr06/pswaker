@@ -7,9 +7,10 @@ follow the [README](README.md).
 
 No step reads a disc image except creating a complete package, which is the
 owner's job. Never put a disc image, extracted game files, keys or complete
-packages inside the repository. Keep owner artwork, local provenance records and
-all artwork-bearing build outputs outside git too; use a private directory such
-as `$HOME/pswaker-private` on Linux or `C:\private\pswaker-private` on Windows.
+packages inside the repository. The approved game icon and launch splash are
+included in [assets/ps4](assets/ps4/README.md). Keep replacement artwork, private
+provenance records and all build outputs outside git; use a private directory
+such as `$HOME/pswaker-private` on Linux or `C:\private\pswaker-private` on Windows.
 
 ## Overview
 
@@ -65,9 +66,9 @@ argument. For the full source closure, patches and checks, see the
 
 ```bash
 GAME_ROOT="$HOME/.cache/pswaker/game"
-ARTWORK_ROOT="$HOME/pswaker-private/local-artwork"
+ARTWORK_ROOT="$PWD/assets/ps4"
 bash tools/pswaker/build-game.sh "$GAME_ROOT" "$PLATFORM_ROOT" 01.13 \
-  "$ARTWORK_ROOT/icon0.png" "$ARTWORK_ROOT/splash.png"
+  "$ARTWORK_ROOT/icon0.png" "$ARTWORK_ROOT/splash_art.png"
 ```
 
 The third argument is the console program version (`NN.NN`). It changes only
@@ -81,7 +82,8 @@ patch or toolchain gives a different ID. See the
 A new build is a new binary. Console results recorded for another build ID don't
 carry over to it.
 
-Arguments four and five are required owner artwork paths:
+Arguments four and five are required artwork paths. The command above uses the
+approved images included in the checkout:
 
 | Role | Package resource | Required dimensions |
 | --- | --- | --- |
@@ -94,11 +96,14 @@ and RGBA images are rejected. The build copies their bytes unchanged without
 resizing, cropping or conversion, then freshly inspects the program package.
 Missing or invalid artwork stops packaging; there is no fallback.
 
-Supply the prepared files in the local, out-of-git `ARTWORK_ROOT` and record
+The included images have a recorded
+[redistribution approval](docs/RELEASING.md#artwork-redistribution-blocker), so
+building with them needs no private artwork or provenance setup. To use different
+artwork, supply prepared files from a private directory outside git and record
 their origin and provenance there before staging. See
-[owner artwork](docs/ps4/OWNER-ARTWORK.md#local-artwork-and-provenance) for the
-local record, restaging command, packaging evidence and existing splash handoff.
-Local use does not grant permission to commit or redistribute the images.
+[owner artwork](docs/ps4/OWNER-ARTWORK.md) for replacement artwork, the restaging
+command, packaging evidence and existing splash handoff. Local use does not
+grant permission to commit or redistribute replacement images.
 
 ### 3. Derive a program release
 

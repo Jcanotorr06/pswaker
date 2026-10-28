@@ -20,15 +20,17 @@ provided artwork can be redistributed without restriction. That owner
 authorization is the rights evidence for this decision; it applies to these
 exact supplied PNGs:
 
-| Resource | Supplied filename | SHA-256 |
+| Resource | Repository file | SHA-256 |
 | --- | --- | --- |
-| Game icon / `ICON0_PNG` | `icon0.png` | `d3e22130a3c119d1f75daf19de2636cf9162e65575eba6a6ca20a590cb1db03e` |
-| Launch splash / `PIC1_PNG` | `splash_art.png` | `35fe1f42fab83f27841e9049c650662b5d8cbe505edc94eab8fbb3f1ae8a99b4` |
+| Game icon / `ICON0_PNG` | [assets/ps4/icon0.png](../assets/ps4/icon0.png) | `d3e22130a3c119d1f75daf19de2636cf9162e65575eba6a6ca20a590cb1db03e` |
+| Launch splash / `PIC1_PNG` | [assets/ps4/splash_art.png](../assets/ps4/splash_art.png) | `35fe1f42fab83f27841e9049c650662b5d8cbe505edc94eab8fbb3f1ae8a99b4` |
 
 **Permitted scope:** unrestricted redistribution of both identified images,
-including in program releases, desktop bundles, portable archives and installers,
-for private or public pre-releases and final releases. This records the owner's
-authorization, without assigning an additional license or claiming authorship.
+including in this repository, program releases, desktop bundles, portable
+archives and installers, for private or public pre-releases and final releases.
+The owner requested including these assets so others can build from a checkout.
+This records the owner's authorization, without assigning an additional license
+or claiming authorship.
 Both files passed the maintained artwork validator without conversion.
 
 Other artwork, including modified or re-encoded PNGs with different hashes,
@@ -40,7 +42,9 @@ still distributes its assets.
 Before tagging or publishing any artwork-bearing release:
 
 - Match both `ICON0_PNG` and `PIC1_PNG` hashes in the chosen program release's
-  `stage/build-info.json` with this approval and the owner's private
+  `stage/build-info.json` with this approval and the
+  [repository artwork record](../assets/ps4/README.md). For replacement artwork,
+  use its separate decision and private
   [origin and provenance record](ps4/OWNER-ARTWORK.md#local-artwork-and-provenance).
 - Record the matching artwork hashes and a reference to this decision in the
   release tracking issue. For different artwork, record a separate provenance
@@ -57,8 +61,9 @@ Before tagging or publishing any artwork-bearing release:
 This decision is separate from permission for local artwork use and does not
 replace the public-readiness gate in
 [#50](https://github.com/Jcanotorr06/pswaker/issues/50). Passing either gate does
-not imply passing the other. No artwork or artwork-bearing output belongs in
-git through this workflow.
+not imply passing the other. Only the two approved source PNGs above belong in
+git through this workflow. Keep private provenance records and all build outputs
+outside git, even when they contain approved artwork.
 
 ## Versions
 
