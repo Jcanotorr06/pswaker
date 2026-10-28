@@ -20,6 +20,7 @@ DisableProgramGroupPage=yes
 UsePreviousAppDir=yes
 UninstallDisplayIcon={app}\releases\{#ReleaseDirectory}\PSWaker.exe
 OutputBaseFilename=PSWaker-{#AppVersion}-win-x64-setup
+SetupIconFile=waker.ico
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern

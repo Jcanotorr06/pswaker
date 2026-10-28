@@ -221,6 +221,8 @@ python tools/pswaker/build-installer.py --program C:\private\game-release --pack
 
 Tool and build outputs must be new directories. Keep the entire resulting
 `PSWaker` folder, including `_internal` and `application-release.json`, together.
+The application and setup executables embed the repository's
+`tools/pswaker/waker.ico` icon.
 The installer builder uses the same bundle builder with **CPython 3.12**,
 **PyInstaller 6.22.3** and an explicit **Inno Setup 6.7.3** compiler. Its script
 rejects any other compiler version. App versions have four numeric Windows version
