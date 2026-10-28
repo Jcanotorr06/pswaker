@@ -18,7 +18,7 @@ import build_inputs
 
 from disc_image import require, validate
 from package_validation import validate_selection
-from program_payload import PROGRAM_FILES
+from program_payload import program_files, checked_artwork, inventory_changes
 from package_artifact import (digest, write_json, inventory, validate_pipeline_seed, content_id,
                               sfo_fields, inspect_package, StageFailure, Stages, IDENTITIES,
                               INSTALLED_IMAGE, PIPELINE_SEED, FAILURES)
@@ -74,6 +74,8 @@ def prepare_pipeline_seed(source, output):
 
 
 class Tools:
+    decode_artwork = True
+
     def __init__(self, root, work):
         self.root, self.work = root, work
         self.sdk = root / 'sdk/opt/pacbrew/ps4/openorbis'
@@ -132,12 +134,15 @@ def convert_program(tools, source, output, cwd=None):
 
 def prepare_program(stage, elf, kind, work, tools, release=None):
     files = inventory(stage)
-    require(set(files) == PROGRAM_FILES, 'Program payload must contain only the documented data-free files; '
-            'unexpected/missing: ' + ', '.join(sorted(set(files) ^ PROGRAM_FILES)))
     manifest = json.loads((stage / 'build-info.json').read_text())
     require(isinstance(manifest, dict), 'Program build-info.json must contain a JSON object')
     diagnostic = 'diagnostic_build_id' in manifest
     require(diagnostic == (kind == 'diagnostic'), KIND_MISMATCH)
+    if not diagnostic:
+        checked_artwork(stage / 'sce_sys', manifest, decode=True)
+    expected = program_files(kind)
+    require(set(files) == expected, 'Program payload must contain only the documented data-free files; '
+            'unexpected/missing: ' + ', '.join(sorted(set(files) ^ expected)))
     require(manifest['eboot_sha256'] == files['eboot.bin'], 'Program manifest SELF SHA-256 mismatch')
     build_id = manifest.get('diagnostic_build_id' if diagnostic else 'program_build_id')
     require(isinstance(build_id, str) and bool(build_id), 'Program manifest requires its compiled build identity')
@@ -197,9 +202,8 @@ def load_program(source, kind, work, tools):
     release = read_release(root, kind, tools)
     shutil.copytree(root / 'stage', stage, symlinks=True)
     files = inventory(stage)
-    changed = sorted(path for path in set(files) | set(release['payload_sha256'])
-                     if files.get(path) != release['payload_sha256'].get(path))
-    require(not changed, 'Program payload differs from its release manifest: ' + ', '.join(changed))
+    changed = inventory_changes(release['payload_sha256'], files)
+    require(not changed, 'Program payload differs from its release manifest: ' + changed)
     elf = root / 'elf' / release['elf_filename']
     program = prepare_program(stage, elf, kind, work, tools, release)
     program['release'] = {'manifest_sha256': digest(root / RELEASE_MANIFEST), 'converter_input': release['elf_filename'],

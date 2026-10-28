@@ -11,6 +11,7 @@ import time
 
 from disc_image import require, validate
 from build_operation import BuildCancelled, checkpoint, progress
+from program_payload import package_metadata, checked_artwork
 
 INSTALLED_IMAGE = '/app0/game.iso'
 
@@ -138,8 +139,9 @@ def inspect_package(work, tools):
         payload = extracted / 'uroot'
         actual = inventory(payload)
         expected = report['payload_sha256']
-        require(set(actual) == set(expected) - {'sce_sys/param.sfo', 'sce_sys/icon0.png'},
-                'Unexpected complete-package payload files')
+        resources = package_metadata(report['kind'])
+        require(set(actual) == set(expected) - {'sce_sys/' + name for _, name in resources},
+                'Unexpected complete-package payload files (including ICON0_PNG/PIC1_PNG resources)')
         for path, sha in actual.items():
             require(sha == expected[path], f'Packaged payload SHA-256 mismatch: {path}')
         # These files are package entries, outside the PFS payload.
@@ -147,12 +149,15 @@ def inspect_package(work, tools):
         (work / 'package-entries.txt').write_text(entries)
         metadata = extracted / 'metadata'
         metadata.mkdir()
-        for entry, name in [('PARAM_SFO', 'param.sfo'), ('ICON0_PNG', 'icon0.png')]:
+        if report['kind'] == 'diagnostic':
+            require(not any(line.split() and line.split()[-1] == 'PIC1_PNG' for line in entries.splitlines()),
+                    'Unexpected package metadata PIC1_PNG for diagnostic')
+        for entry, name in resources:
             rows = [line.split() for line in entries.splitlines() if line.split() and line.split()[-1] == entry]
             require(len(rows) == 1, f'Missing/duplicate package metadata {entry}')
             target = metadata / name
             tools.run([tools.pkgtool, 'pkg_extractentry', package, rows[0][3], target])
-            require(digest(target) == expected['sce_sys/' + name], f'Packaged {name} SHA-256 mismatch')
+            require(digest(target) == expected['sce_sys/' + name], f'Packaged {entry} ({name}) SHA-256 mismatch')
         fields = sfo_fields((metadata / 'param.sfo').read_bytes())
         for key, value in expected_sfo_fields(identity, report['app_version']).items():
             require(fields.get(key) == value, f'Package SFO identity/metadata mismatch: {key}')
@@ -163,6 +168,14 @@ def inspect_package(work, tools):
         # Bind the extracted executable and its own build manifest to the verified program identity.
         info = json.loads((payload / 'build-info.json').read_text())
         diagnostic = report['kind'] == 'diagnostic'
+        artwork = checked_artwork(metadata, info, decode=tools.decode_artwork) if not diagnostic else None
+        require(actual['build-info.json'] == report['program']['payload_sha256']['build-info.json'],
+                'Packaged program manifest SHA-256 mismatch')
+        if artwork is not None:
+            for resource, name in resources[1:]:
+                require(expected['sce_sys/' + name] == artwork[resource]['sha256']
+                        == report['program']['payload_sha256']['sce_sys/' + name],
+                        f'{resource}: packaged artwork differs from the verified program')
         require(actual['eboot.bin'] == info.get('eboot_sha256') == report['program']['eboot_sha256'],
                 'Packaged program SELF identity mismatch')
         require(('diagnostic_build_id' in info) == diagnostic and info.get(
@@ -186,6 +199,8 @@ def inspect_package(work, tools):
                   'hardware_status': 'Untested; package inspection is not console acceptance'}
         if seed is not None:
             result['pipeline_seed'] = seed
+        if artwork is not None:
+            result['artwork'] = artwork
         require(digest(package) == report['package']['sha256'], 'Package changed during fresh inspection')
         write_json(work / 'inspection.json', result)
     return result
