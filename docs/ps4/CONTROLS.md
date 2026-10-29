@@ -10,6 +10,12 @@ evidence limits remain explicit. Previous #17 progression is separate evidence.
 
 ## Controls and menus
 
+The table below is the default layout. Saved controls loading (#94), after the
+first-playable checkpoint, replaces the six action bindings through the shared
+profile. See [applied controls](APPLIED-CONTROLS.md) for the versioned section,
+public lookup and focused validation. The first-launch/settings legend uses
+that same applied snapshot. Port-menu controls remain fixed.
+
 | DualShock 4 | Original GameCube action |
 | --- | --- |
 | Cross / Circle / Square / Triangle | A / B / X / Y |

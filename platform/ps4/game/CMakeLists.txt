@@ -58,7 +58,7 @@ set(COS_ASSETS_DIR "${GAME_ROOT}/assets/GZLE01" CACHE PATH "" FORCE)
 set(COS_RECOMPCORE_DIR "${GAME_ROOT}/src/recompcore" CACHE PATH "" FORCE)
 set(COS_RUNTIME_ASSETS ON CACHE BOOL "" FORCE)
 set(COS_EXE_ENTRY pswaker_entry CACHE STRING "" FORCE)
-add_library(pswaker_entry STATIC main.cpp installed-content.cpp controls.cpp audio-evidence.cpp storage.cpp frame-pacing.cpp
+add_library(pswaker_entry STATIC main.cpp installed-content.cpp controls.cpp controls-config.cpp audio-evidence.cpp storage.cpp frame-pacing.cpp
   "${GAME_ROOT}/src/platform/input.cpp"
   "${GAME_ROOT}/src/platform/native/platform.c"
   "${PLATFORM_ROOT}/src/native-platform/ps4/native/realpath.c")

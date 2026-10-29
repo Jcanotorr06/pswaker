@@ -52,11 +52,33 @@ int main(int argc, char** argv) {
         return 0;
     }
     assert(settings.check());
+    if (std::strcmp(argv[1], "controls-child") == 0) {
+        assert(!settings.largeText() && !*settings.controlsFeedback());
+        assert(settings.controls().binding(GameAction::A) == ControlTarget::L3);
+        assert(settings.controls().binding(GameAction::Start) == ControlTarget::Circle);
+        assert(settings.controls().invertCameraX && settings.controls().invertCameraY);
+        return 0;
+    }
     if (std::strcmp(argv[1], "child") == 0) {
         assert(!settings.largeText());
         return 0;
     }
     const auto ini = root / "settings.ini";
+    if (std::strcmp(argv[1], "controls-roundtrip") == 0) {
+        const std::string controls = "[controls]\r\nversion=1\r\nA=L3\r\nB=R3\r\nX=L1\r\nY=Options\r\nZ=Cross\r\nStart=Circle\r\n"
+            "invert_camera_x=1\r\ninvert_camera_y=1\r\n";
+        const std::string tail = "[dev]\nCOS_FPS60=1\n";
+        write(ini, "# owner settings\nCOS_AUDIO=on\n" + controls + tail);
+        assert(settings.check());
+        assert(settings.setLargeText(false));
+        assert(read(ini) == "# owner settings\nCOS_AUDIO=on\nPSWAKER_LARGE_TEXT=0\n" + controls + tail);
+        const pid_t child = fork();
+        assert(child >= 0);
+        if (child == 0) { execl(argv[0], argv[0], "controls-child", argv[2], nullptr); _exit(99); }
+        int status = 0;
+        assert(waitpid(child, &status, 0) == child && WIFEXITED(status) && WEXITSTATUS(status) == 0);
+        return 0;
+    }
     if (std::strcmp(argv[1], "invalid") == 0) {
         write(ini, "PSWAKER_LARGE_TEXT=invalid\n");
         assert(!settings.check());

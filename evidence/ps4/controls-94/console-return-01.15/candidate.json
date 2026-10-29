@@ -1,0 +1,16 @@
+{
+  "issue": 94,
+  "pull_request": "https://github.com/Jcanotorr06/pswaker/pull/113",
+  "source_commit": "fa35e4f96b7be830d00cf98d252197822dd166c2",
+  "version": "01.15",
+  "title_id": "PSWK00001",
+  "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+  "program_build_id": "6d2368a5373b00387dc9",
+  "package": {
+    "filename": "PSWaker-01.15-controls-94.pkg",
+    "size_bytes": 1519779840,
+    "sha256": "07e8e26eef394b745cfe3d8819d22dad2cc3ffa2b62726761e57ba5ec4e194f0"
+  },
+  "elf_sha256": "89c1b05cb49de4f95846c67288abc06fcdf4879bf69cbc454ddabc2b4f239083",
+  "eboot_sha256": "9b7adb5c80afc54f43d06da9bdbf832f6d442d4a2c8886b9ad2b77640f962ffb"
+}

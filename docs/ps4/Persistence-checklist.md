@@ -1,5 +1,28 @@
 # Owner persistence checkpoint (#20)
 
+## Saved controls follow-up (#94, after first playable)
+
+Use a separately identified new build and private settings backup for these
+checks; they do not change the original #20 acceptance. See the
+[applied controls format](APPLIED-CONTROLS.md).
+
+- [ ] Launch a complete custom layout, close and relaunch, then compare applied
+  gameplay and both legends. Confirm the shared profile location remains the
+  same after a versioned package update and cache-only clearing.
+- [ ] With a temporary settings profile, check an absent controls section:
+  complete defaults, no warning, no file rewrite. Check malformed/incomplete,
+  duplicate, reserved and unsupported layouts: complete defaults, visible reason,
+  byte-identical settings. Restore the private backup after the trials.
+- [ ] Change port text size with a valid saved layout. Relaunch and verify both
+  settings survive, including unrelated lines and `[dev]` placement.
+- [ ] Record read/unavailable-storage failures separately from controls fallback;
+  the existing Retry/Exit storage screen must still gate gameplay. Use only a
+  temporary profile for failure trials and preserve real progress.
+- [ ] Return the exact build/package association and missing observations. No
+  hardware result for #94 is implied by the host harnesses.
+
+## Original #20 procedure
+
 Candidate identities and private artifact locations are in the
 [candidate report](../../evidence/ps4/persistence-20/REPORT.md). These checks are for PS4
 Slim / firmware 9.00 / GoldHEN v2.4b18, USA GZLE01 revision 0. Record any change
