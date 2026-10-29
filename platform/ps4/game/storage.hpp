@@ -40,6 +40,9 @@ public:
     const ControlsConfig& controls() const { return controls_.config; }
     const char* controlsFeedback() const { return controls_.feedback; }
     bool setLargeText(bool large);
+    // Save the whole controls section in one checked profile replacement.
+    // False includes uncertain completion: no in-memory settings are changed.
+    bool setControls(const ControlsConfig& config);
     const char* error() const { return error_.c_str(); }
 
 private:

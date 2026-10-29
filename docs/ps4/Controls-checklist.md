@@ -89,6 +89,35 @@ and private profile backup. These checks do not reopen the original #18 results.
 - [ ] Return observations and any failures for this exact candidate; host tests
   do not prove on-console rendering or physical game actions.
 
+### Button editor slice (#95, after first playable)
+
+Use a new identified build and privately back up the shared settings profile.
+Record each physical input and actual game/menu behavior for this candidate.
+
+- [ ] Open **Controls...**. Verify pending/applied labels, six action rows and
+  the nine-button picker. Exercise an occupied swap, an unused target, the
+  current-target no-op and picker cancellation. Pending edits must not change
+  the applied legend or gameplay, and the game stays paused throughout.
+- [ ] Choose Apply. Observe the progress state and matching pending/applied
+  values afterward. Resume deliberately and verify all six actions against the
+  applied legend. Across focused layouts, reach all nine allowed targets.
+- [ ] Leave with unsaved edits: Keep editing retains them; Discard returns to
+  the previous applied values. Resume with held buttons/sticks/triggers and
+  verify nothing reaches gameplay until everything is released.
+- [ ] Move A, B and Start off their defaults. Check fixed Touchpad, D-pad,
+  Cross/Circle navigation, movement/C-stick and partial/full analog triggers.
+- [ ] In a temporary profile only, exercise an Apply failure. Verify the
+  previous layout stays active, pending edits remain, and Retry/Discard are
+  usable. After storage repair, Retry must save the complete layout. Report
+  uncertain completion honestly; no disk rollback is promised.
+- [ ] Disconnect while holding mapped buttons, movement and triggers. Repeat
+  in editing, the picker and confirmations, then run the delayed failed-read
+  check under the applied custom layout. Reconnection alone never continues;
+  fresh Cross confirmation and neutral release remain required. Pending edits
+  survive loss while in the editor.
+- [ ] Retain the exact build/package identity and observations. Host results
+  do not establish hardware acceptance; camera integration/reset are later work.
+
 ### Logs and observations
 
 Before another launch rotates the logs, retrieve via your existing FTP:

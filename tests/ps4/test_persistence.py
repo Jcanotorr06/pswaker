@@ -39,6 +39,15 @@ class PersistenceTests(unittest.TestCase):
     def test_setting_survives_new_process_and_preserves_other_settings(self):
         self.scenario('roundtrip')
 
+    def test_apply_complete_controls_preserves_profile_and_survives_new_process(self):
+        self.scenario('controls-apply')
+
+    def test_controls_apply_failure_uncertain_completion_and_complete_retry(self):
+        self.scenario('controls-failures')
+
+    def test_controls_apply_inserts_or_repairs_only_controls_and_preserves_developer_placement(self):
+        self.scenario('controls-profile-repair')
+
     def test_controls_survive_new_process_and_text_size_changes_preserve_the_section(self):
         self.scenario('controls-roundtrip')
 

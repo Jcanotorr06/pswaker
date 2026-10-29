@@ -1,8 +1,9 @@
-# Applied controls (#94)
+# Applied controls and button editor (#94, #95)
 
 This is the saved-layout foundation for #78, after first playable. It does not
-extend the accepted #18/#20 checkpoints. The editor, Apply persistence and camera
-integration are later slices; original in-game GameCube prompts remain until #79.
+extend the accepted #18/#20 checkpoints. #95 adds button editing and Apply
+persistence; camera UI/integration and restore defaults remain later slices.
+Original in-game GameCube prompts remain until #79.
 
 The [01.15 console return](../../evidence/ps4/controls-94/console-return-01.15/REPORT.md)
 records owner-confirmed custom/default mappings, relaunch persistence, matching
@@ -70,13 +71,46 @@ A mutex covers whole-snapshot reads and replacement: retained copies remain
 stable, and concurrent consumers cannot observe bindings from one publication
 with switches or a generation from another.
 
-Future Apply must validate, successfully persist the complete configuration,
+Apply must validate, successfully persist the complete configuration,
 then publish. Discard, write failure and uncertain completion must not publish.
 Pending controls never drive gameplay, the legend, camera integration or prompts.
 
 Touchpad, port Cross/Circle/D-pad, movement/C-stick, analog triggers with the 90%
 full press, analog A/B derivation, input-loss neutralization and the release gate
 keep their existing behavior. Stick clicks are digital targets only.
+
+## Button editor (#95)
+
+Touchpad opens settings; choose **Controls...** with D-pad Up/Down and Cross.
+The editor starts with the whole applied snapshot, including both saved camera
+inversion switches. Each action row shows its pending and applied button.
+Cross opens a picker containing all nine allowed targets. D-pad Up/Down selects,
+Cross assigns, and Circle cancels the picker. An occupied target swaps the two
+actions; an unused target frees the old button; choosing the current target is
+a no-op. The saved inversion switches are preserved for later camera UI work.
+
+Choose **Apply** to enter the apply-in-progress state. `PortSettings::setControls`
+validates and serializes all six bindings and both inversion fields, preserving
+text size, unrelated profile bytes and developer-section placement. One checked
+settings-file replacement must succeed before the controls module publishes the
+whole snapshot and advances its generation. The applied legend and gameplay
+never read pending controls. A successful Apply returns to the editor, where
+pending and applied values now agree.
+
+Circle or **Back to settings** leaves a clean editor. Unsaved edits first offer
+Cross **Discard** or Circle **Keep editing**. Discard copies the applied values
+back into pending controls and returns to settings without publication or a
+generation change. Apply failure retains both pending edits and the previous
+applied generation. Its screen offers Cross **Retry** or Circle **Discard**,
+with storage-repair guidance. Failure includes uncertain completion after file
+replacement: disk rollback is never claimed, and Retry writes the entire pending
+configuration again. Discard after uncertainty does not rewrite the disk.
+
+Gameplay stays paused and neutral throughout all editor states. Port navigation
+always uses physical D-pad/Cross/Circle, even with A, B and Start moved elsewhere.
+Input loss preserves the current editor state and pending values; reconnection
+alone cannot continue. Returning to settings and resuming gameplay retain the
+existing explicit-confirmation and neutral-release gate.
 
 ## Verification
 
@@ -94,9 +128,14 @@ The console harness simulates pad/system services and observes `PADStatus`,
 covers every action on every target, swap/free/no-op assignments, generation
 publication, fixed controls and recovery under a custom layout, complete
 fallback with feedback and byte-identical files, and settings read failure.
-The storage harness checks relaunch in a new process and controls preservation
-when text size changes. These checks do not establish PS4 hardware acceptance.
+The #95 scenarios additionally drive every action/target through the editor,
+observe no file/legend/publication effects before Apply, exercise leave/keep/
+discard, failed sync/close/rename, uncertain completion, complete Retry and
+controller loss in every editor state. The storage harness checks Apply across
+a new process, controls preservation when text size changes, profile repair and
+preservation, and failed/uncertain commits. These checks do not establish PS4
+hardware acceptance.
 
-Use the #94 sections of the [controls](Controls-checklist.md) and
+Use the #94/#95 sections of the [controls](Controls-checklist.md) and
 [persistence](Persistence-checklist.md) checklists on an identified new build.
 Do not attribute historical checkpoint results to this changed binary.
