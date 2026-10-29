@@ -1,0 +1,161 @@
+1/platform.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+1/platform.log:485: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+1/platform.log:535: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+1/platform.log:536: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+1/platform.log:675: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+1/platform.log:684: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4000 sticks=-0.911,0.418,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=-116,-53,0,0 game-triggers=0,0 threshold=90%
+1/platform.log:718: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x1000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x800 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+1/platform.log:794: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+1/platform.log:802: INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release
+1/platform.log:803: INPUT screen=settings->legend connected=1; gameplay neutral outside Game
+1/platform.log:807: INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release
+1/platform.log:808: INPUT screen=legend->settings connected=1; gameplay neutral outside Game
+1/platform.log:821: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+1/platform.log:823: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+1/platform.log:896: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+2/platform.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+2/platform.log:468: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+2/platform.log:508: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+2/platform.log:509: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+2/platform.log:558: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+2/platform.log:606: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+2/platform.log:630: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x8000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x400 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+2/platform.log:671: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+2/platform.log:680: INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release
+2/platform.log:681: INPUT screen=settings->legend connected=1; gameplay neutral outside Game
+2/platform.log:691: INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release
+2/platform.log:692: INPUT screen=legend->settings connected=1; gameplay neutral outside Game
+2/platform.log:693: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+2/platform.log:695: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+2/platform.log:753: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x8 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x1000 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+2/platform.log:787: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+3/platform.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+3/platform.log:504: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+3/platform.log:545: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+3/platform.log:546: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+3/platform.log:593: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+3/platform.log:634: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+3/platform.log:712: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x1000 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+3/platform.log:760: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+3/platform.log:774: INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release
+3/platform.log:776: INPUT screen=settings->legend connected=1; gameplay neutral outside Game
+3/platform.log:779: INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release
+3/platform.log:781: INPUT screen=legend->settings connected=1; gameplay neutral outside Game
+3/platform.log:784: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+3/platform.log:787: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+3/platform.log:824: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+3/platform.log:841: INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release
+3/platform.log:842: INPUT screen=input-lost->game connected=1; gameplay neutral outside Game
+3/platform.log:862: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+3/platform.log:870: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+3/platform.log:871: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+3/platform.log:872: INPUT CHECK resumed; one native read will fail in 5 seconds; hold inputs now
+3/platform.log:883: INPUT CHECK injected scePadReadState failure; native reader must neutralize and pause
+3/platform.log:885: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+3/platform.log:891: INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release
+3/platform.log:893: INPUT screen=input-lost->game connected=1; gameplay neutral outside Game
+3/platform.log:912: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+4/platform.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+4/platform.log:508: CONTROLS Saved controls are incomplete. Complete defaults are in use.
+4/platform.log:509: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+4/platform.log:588: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+4/platform.log:589: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+4/platform.log:695: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,-1.009,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,127,0,0 game-triggers=0,0 threshold=90%
+4/platform.log:697: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4100 sticks=0.052,1.000,0.000,0.000 triggers=1.000,0.000 game-buttons=0x140 game-sticks=7,-127,0,0 game-triggers=255,0 threshold=90%
+4/platform.log:794: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+4/platform.prev.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+4/platform.prev.log:501: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+4/platform.prev.log:532: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+4/platform.prev.log:533: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+4/platform.prev.log:638: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x104 sticks=0.454,0.875,0.000,0.000 triggers=1.000,0.000 game-buttons=0x240 game-sticks=58,-111,0,0 game-triggers=255,0 threshold=90%
+4/platform.prev.log:651: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x102 sticks=0.000,1.000,0.000,0.000 triggers=1.000,0.000 game-buttons=0x140 game-sticks=0,-127,0,0 game-triggers=255,0 threshold=90%
+4/platform.prev.log:741: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+5/platform.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+5/platform.log:468: CONTROLS Saved controls share a button between actions. Complete defaults are in use.
+5/platform.log:469: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+5/platform.log:501: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+5/platform.log:502: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+5/platform.log:619: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+5/platform.log:641: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+5/platform.log:676: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+5/platform.log:682: INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release
+5/platform.log:684: INPUT screen=input-lost->game connected=1; gameplay neutral outside Game
+5/platform.log:694: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+5/platform.log:701: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+5/platform.log:702: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+5/platform.log:703: INPUT CHECK resumed; one native read will fail in 5 seconds; hold inputs now
+5/platform.log:714: INPUT CHECK injected scePadReadState failure; native reader must neutralize and pause
+5/platform.log:716: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+5/platform.log:722: INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release
+5/platform.log:723: INPUT screen=input-lost->game connected=1; gameplay neutral outside Game
+5/platform.log:746: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+5/platform.log:751: INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release
+5/platform.log:752: INPUT screen=input-lost->game connected=1; gameplay neutral outside Game
+5/platform.log:761: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+5/platform.log:766: INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release
+5/platform.log:767: INPUT screen=settings->legend connected=1; gameplay neutral outside Game
+5/platform.log:770: INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release
+5/platform.log:771: INPUT screen=legend->settings connected=1; gameplay neutral outside Game
+5/platform.log:772: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+5/platform.log:773: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+5/platform.log:781: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+6/platform.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+6/platform.log:507: CONTROLS Saved controls contain unsupported or reserved values. Complete defaults are in use.
+6/platform.log:508: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+6/platform.log:542: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+6/platform.log:543: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+6/platform.log:591: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+6/platform.log:640: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2100 sticks=0.016,-1.009,0.000,0.000 triggers=1.000,0.000 game-buttons=0x240 game-sticks=2,127,0,0 game-triggers=255,0 threshold=90%
+6/platform.log:651: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x8000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x400 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+6/platform.log:652: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x1000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x800 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+6/platform.log:803: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+6/platform.log:809: INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release
+6/platform.log:810: INPUT screen=settings->legend connected=1; gameplay neutral outside Game
+6/platform.log:824: INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release
+6/platform.log:825: INPUT screen=legend->settings connected=1; gameplay neutral outside Game
+6/platform.log:826: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+6/platform.log:827: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+6/platform.log:835: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+7/platform.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+7/platform.log:508: CONTROLS Saved controls version is unsupported. Complete defaults are in use.
+7/platform.log:509: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+7/platform.log:546: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+7/platform.log:547: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+7/platform.log:616: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x4000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x100 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+7/platform.log:658: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=-0.204,0.991,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=-26,-126,0,0 game-triggers=0,0 threshold=90%
+7/platform.log:665: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x800 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x10 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+7/platform.log:668: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x1000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x800 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+7/platform.log:676: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x8 sticks=-0.982,0.248,0.000,0.000 triggers=0.000,0.000 game-buttons=0x1000 game-sticks=-125,-32,0,0 game-triggers=0,0 threshold=90%
+7/platform.log:710: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+7/platform.log:712: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+7/platform.log:713: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+7/platform.log:720: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+7/platform.log:724: INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release
+7/platform.log:725: INPUT screen=settings->legend connected=1; gameplay neutral outside Game
+7/platform.log:729: INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release
+7/platform.log:730: INPUT screen=legend->settings connected=1; gameplay neutral outside Game
+7/platform.log:732: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+7/platform.log:733: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+7/platform.log:740: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+7/platform.log:744: INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release
+7/platform.log:745: INPUT screen=input-lost->game connected=1; gameplay neutral outside Game
+7/platform.log:748: INPUT screen=game->settings connected=1; gameplay neutral outside Game
+7/platform.log:754: INPUT explicit-confirm screen=settings destination=game; waiting for neutral release
+7/platform.log:755: INPUT screen=settings->game connected=1; gameplay neutral outside Game
+7/platform.log:756: INPUT CHECK resumed; one native read will fail in 5 seconds; hold inputs now
+7/platform.log:769: INPUT CHECK injected scePadReadState failure; native reader must neutralize and pause
+7/platform.log:771: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+7/platform.log:775: INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release
+7/platform.log:776: INPUT screen=input-lost->game connected=1; gameplay neutral outside Game
+7/platform.log:827: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+8/platform.log:2: BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9
+8/platform.log:504: CONTROLS Saved controls are malformed. Complete defaults are in use.
+8/platform.log:505: STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent
+8/platform.log:539: INPUT explicit-confirm screen=legend destination=game; waiting for neutral release
+8/platform.log:540: INPUT screen=legend->game connected=1; gameplay neutral outside Game
+8/platform.log:639: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x2000 sticks=1.000,0.168,0.000,0.000 triggers=0.000,0.000 game-buttons=0x200 game-sticks=127,-21,0,0 game-triggers=0,0 threshold=90%
+8/platform.log:662: INPUT sample connected=1 screen=game releasing=0 raw-buttons=0x1000 sticks=0.000,0.000,0.000,0.000 triggers=0.000,0.000 game-buttons=0x800 game-sticks=0,0,0,0 game-triggers=0,0 threshold=90%
+8/platform.log:726: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game
+8/platform.log:733: INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release
+8/platform.log:734: INPUT screen=input-lost->game connected=1; gameplay neutral outside Game
+8/platform.log:752: INPUT screen=game->input-lost connected=0; gameplay neutral outside Game

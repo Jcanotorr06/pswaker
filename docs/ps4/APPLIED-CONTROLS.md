@@ -4,6 +4,13 @@ This is the saved-layout foundation for #78, after first playable. It does not
 extend the accepted #18/#20 checkpoints. The editor, Apply persistence and camera
 integration are later slices; original in-game GameCube prompts remain until #79.
 
+The [01.15 console return](../../evidence/ps4/controls-94/console-return-01.15/REPORT.md)
+records owner-confirmed custom/default mappings, relaunch persistence, matching
+legends, fallback warnings and fixed-input/recovery checks on build
+`6d2368a5373b00387dc9`. Five extracted invalid profiles match their supplied
+fixtures byte for byte. Broader update/cache/storage trials remain separately
+unreported; these observations apply only to that candidate.
+
 ## Shared profile format
 
 The existing startup check reads `/data/pswaker/settings.ini` after verifying
