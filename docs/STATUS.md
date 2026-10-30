@@ -46,3 +46,11 @@ uses the existing **01.13** complete package, retaining its exact identity and
 the performance exception. The [consolidated owner checklist](ps4/Integrated-checklist.md)
 covers the 01.12-to-01.13 update, repeated route, controls/audio, save/recovery,
 shutdown and evidence return. **Final integrated console acceptance remains pending.**
+
+The [0.1.0 RC3 candidate](release-notes/v0.1.0-rc.3.md) bundles inspected program
+**01.18**, build `0362572f5225303a08ea`, with saved applied controls, a button
+editor, confirmed Restore Defaults and independent camera/aiming inversion.
+The [01.15 controls return](../evidence/ps4/controls-94/console-return-01.15/REPORT.md)
+establishes only that earlier saved-layout slice. It does not validate 01.18.
+Integrated editor/inversion hardware checks, desktop-created PS4 packages,
+clean Windows testing and public readiness remain pending for RC3.
