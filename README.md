@@ -15,18 +15,22 @@ The repository and its releases contain no game data, disc images or keys.
 
 ## Project status
 
-PSWaker is **early and pre-release**. The latest release candidate, 0.1.0 RC2,
+PSWaker is **early and pre-release**. The latest release candidate, 0.1.0 RC3,
 is a private pre-release for testing. It is not a public or final release.
 
-RC2 bundles the inspected 01.14 game program with the approved game icon and
-launch splash. This binary has not been tested on the console. The observations
-below come from earlier builds and do not establish acceptance of RC2.
+RC3 bundles the inspected 01.18 game program with configurable button bindings,
+confirmed Restore Defaults and independent camera/aiming inversion switches.
+It retains the approved game icon and launch splash. This binary has not been
+tested on the console. The observations below come from earlier builds and do
+not establish acceptance of RC3.
 
 - The game has been played on the console from the title screen through
   Outset, Forsaken Fortress and Windfall to Dragon Roost Island. No graphics or
   audio glitches were observed during that run.
 - Saves and settings survive a full relaunch and an update to a newer package.
-- Controls use a fixed DualShock 4 mapping with PlayStation-style menus.
+- The port controls menu supports saved DualShock 4 layouts and a matching
+  legend. Original in-game GameCube prompts remain; integrated editor and
+  inversion hardware validation is pending.
 - Final console acceptance of the bundled program, PS4 testing of packages
   created by the desktop app and clean-system Windows testing are still pending.
 
@@ -101,10 +105,16 @@ To build PSWaker yourself, see [BUILDING.md](BUILDING.md).
 ## Known issues
 
 - **Console acceptance is pending.** Final integrated testing of the bundled
-  program (01.14) on the console hasn't been run
+  program (01.18) on the console hasn't been run
   ([integrated checklist](docs/ps4/Integrated-checklist.md)), and no package
   created by the desktop app has been tested on the PS4 yet
   ([#49](https://github.com/Jcanotorr06/pswaker/issues/49)).
+- **Configurable controls hardware checks are pending.** Saved layouts were
+  tested on an earlier 01.15 build. RC3's editor, Apply/Discard, Restore Defaults
+  and camera/aiming inversion still need integrated console observations
+  ([#98](https://github.com/Jcanotorr06/pswaker/issues/98)). In-game prompts
+  still show the original GameCube controls
+  ([#79](https://github.com/Jcanotorr06/pswaker/issues/79)).
 - **Artwork console checks are pending.** The packaged game icon and launch
   splash match the approved files, but their visibility, splash timing and
   preservation across an update still need hardware observations
@@ -116,10 +126,10 @@ To build PSWaker yourself, see [BUILDING.md](BUILDING.md).
   time an effect appears. With an empty shader cache, frame pacing falls short of
   the target. Improving it is deferred to
   [#51](https://github.com/Jcanotorr06/pswaker/issues/51).
-- **Shutdown not yet confirmed on 01.14.** The program includes a fix for an
+- **Shutdown not yet confirmed on 01.18.** The program includes a fix for an
   earlier crash when quitting after the memory card goes idle. Quit looked normal
   on screen with the previous build (01.12), but console logs haven't confirmed
-  that shutdown completes internally, and 01.14 hasn't been checked yet.
+  that shutdown completes internally, and 01.18 hasn't been checked yet.
 - **One disc only.** Only the USA `GZLE01` revision 0 raw image is supported.
   Other regions and revisions, and scrubbed or compressed images, are rejected.
 - **Limited route.** Only the route through Dragon Roost Island has been played.
