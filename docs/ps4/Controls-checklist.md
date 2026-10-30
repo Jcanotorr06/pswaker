@@ -116,7 +116,36 @@ Record each physical input and actual game/menu behavior for this candidate.
   fresh Cross confirmation and neutral release remain required. Pending edits
   survive loss while in the editor.
 - [ ] Retain the exact build/package identity and observations. Host results
-  do not establish hardware acceptance; camera integration/reset are later work.
+  do not establish hardware acceptance; camera integration is later work.
+
+### Restore defaults slice (#96, after first playable)
+
+Use a new identified build and a private backup of the settings profile. Start
+with custom bindings, both saved inversion switches On and Standard text size.
+These checks do not expand the original #18/#20 acceptance.
+
+- [ ] Make a pending button edit, choose **Restore defaults...**, then cancel
+  with Circle. Verify every pending edit remains, including both switches.
+  Holding Cross to open the prompt must not also confirm the reset.
+- [ ] Confirm a reset with a fresh Cross press. Inspect all six pending default
+  bindings and both pending switches Off, alongside the unchanged applied
+  bindings/switches. Leave and Discard; the previous custom applied layout,
+  generation, legend and settings file must remain unchanged.
+- [ ] Reset again and Apply. Verify matching pending/applied defaults and
+  the updated legend, then resume deliberately and check all six default
+  actions. Text size and unrelated settings must stay unchanged.
+- [ ] In a temporary profile only, exercise failed reset Apply: the previous
+  applied layout/legend remains, pending defaults stay available and Retry/
+  Discard work. After repair, Retry saves the complete defaults. Record any
+  uncertain completion without claiming disk rollback.
+- [ ] Disconnect during reset confirmation while holding buttons, movement
+  and triggers. Reconnection alone cannot continue; release, confirm with
+  fixed Cross and release again. The prompt/pending values must survive.
+  Returning to gameplay still consumes confirmation and waits for neutral
+  release. Check fixed Touchpad/D-pad/Cross/Circle navigation throughout.
+- [ ] Retain exact build/package identity, menu/gameplay observations and
+  preservation results from the [persistence checklist](Persistence-checklist.md).
+  Host tests do not establish hardware acceptance or camera/aiming inversion.
 
 ### Logs and observations
 

@@ -46,10 +46,19 @@ class InstalledControlsTests(unittest.TestCase):
     def check_scenario(self, name, contents=None):
         with tempfile.TemporaryDirectory(prefix='pswaker-menu-profile-') as profile:
             ini = Path(profile) / 'settings.ini'
+            untouched = {}
+            if name.startswith('restore-'):
+                for relative in ['saves/USA/Card A/synthetic-progress.txt', 'cache/synthetic-build/pipelines.bin']:
+                    path = Path(profile) / relative
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    untouched[path] = b'synthetic preservation sentinel\n'
+                    path.write_bytes(untouched[path])
             if contents is not None:
                 ini.write_bytes(contents)
             result = subprocess.run([str(self.binary), name, profile], capture_output=True, text=True, timeout=15)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            for path, expected in untouched.items():
+                self.assertEqual(path.read_bytes(), expected)
             if contents is not None:
                 self.assertEqual(ini.read_bytes(), contents)
             elif name == 'profile-defaults':
@@ -60,6 +69,23 @@ class InstalledControlsTests(unittest.TestCase):
 
     def test_editor_pending_swap_apply_publication_and_neutral_resume(self):
         self.check_scenario('editor-apply')
+
+    def test_restore_confirmation_cancel_preserves_existing_pending_edits(self):
+        self.check_scenario('restore-cancel')
+
+    def test_restore_then_discard_keeps_applied_controls_profile_and_neutral_resume(self):
+        self.check_scenario('restore-discard')
+
+    def test_restore_then_apply_saves_and_publishes_complete_defaults_together(self):
+        self.check_scenario('restore-apply')
+
+    def test_restore_failed_and_uncertain_apply_preserve_applied_controls_and_offer_retry_or_discard(self):
+        for fault in ['sync', 'close', 'rename', 'uncertain', 'discard', 'uncertain-discard']:
+            with self.subTest(fault=fault):
+                self.check_scenario('restore-fail-' + fault)
+
+    def test_controller_loss_during_restore_requires_fresh_confirmation_and_preserves_pending_controls(self):
+        self.check_scenario('restore-loss')
 
     def test_editor_reaches_every_action_and_target_and_applies_gameplay_mapping(self):
         self.check_scenario('editor-all-targets')

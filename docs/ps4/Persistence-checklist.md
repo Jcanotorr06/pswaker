@@ -36,6 +36,28 @@ Use a new identified build and a private profile backup; preserve real saves.
   preserving the shared applied layout. Restore the private profile backup
   after any failure trials. Return missing observations as pending.
 
+## Restore defaults follow-up (#96, after first playable)
+
+Use a new identified build and a private profile backup with custom bindings,
+both saved inversion switches On, Standard text size and unrelated settings.
+Preserve real saves; use a temporary profile for failure trials.
+
+- [ ] Compare settings bytes before and after cancelling restore confirmation,
+  then after confirming reset and choosing Discard. Both flows leave the file
+  byte-identical and the previous applied snapshot/generation unchanged.
+- [ ] Reset and successfully Apply. Compare settings: the complete controls
+  section now contains six default bindings and both switches Off. Text size,
+  unrelated lines and `[dev]` placement remain intact. Fully close/relaunch;
+  verify the default gameplay layout and both applied legends.
+- [ ] Exercise failed and uncertain reset Apply in a temporary profile. Retain
+  file comparisons and observations of the old applied layout, pending defaults
+  and Retry/Discard. A successful Retry saves all defaults; Discard never
+  rewrites the disk, including after uncertain completion.
+- [ ] Compare private save/cache inventories before and after these reset
+  actions, accounting separately for normal game saves or cache activity.
+  Resetting controls must not clear or rewrite owner saves or caches. Return
+  missing observations as pending and restore the private profile backup.
+
 ## Original #20 procedure
 
 Candidate identities and private artifact locations are in the
