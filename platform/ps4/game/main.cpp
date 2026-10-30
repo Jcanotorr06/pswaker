@@ -120,13 +120,15 @@ void portContent() {
                 control_action_name(action), control_target_name(view.pendingControls.binding(action)),
                 control_target_name(applied.config.binding(action)));
         }
-        ImGui::Text("Pending camera inversion: X %s / Y %s",
-            view.pendingControls.invertCameraX ? "On" : "Off", view.pendingControls.invertCameraY ? "On" : "Off");
-        ImGui::Text("Applied camera inversion: X %s / Y %s",
-            applied.config.invertCameraX ? "On" : "Off", applied.config.invertCameraY ? "On" : "Off");
-        ImGui::Text("%s Restore defaults...", view.controlsSelection == gameActions.size() ? ">" : " ");
-        ImGui::Text("%s Apply", view.controlsSelection == gameActions.size() + 1 ? ">" : " ");
-        ImGui::Text("%s Back to settings", view.controlsSelection == gameActions.size() + 2 ? ">" : " ");
+        ImGui::Text("%s Invert camera X: pending %s | applied %s",
+            view.controlsSelection == gameActions.size() ? ">" : " ",
+            view.pendingControls.invertCameraX ? "On" : "Off", applied.config.invertCameraX ? "On" : "Off");
+        ImGui::Text("%s Invert camera Y: pending %s | applied %s",
+            view.controlsSelection == gameActions.size() + 1 ? ">" : " ",
+            view.pendingControls.invertCameraY ? "On" : "Off", applied.config.invertCameraY ? "On" : "Off");
+        ImGui::Text("%s Restore defaults...", view.controlsSelection == gameActions.size() + 2 ? ">" : " ");
+        ImGui::Text("%s Apply", view.controlsSelection == gameActions.size() + 3 ? ">" : " ");
+        ImGui::Text("%s Back to settings", view.controlsSelection == gameActions.size() + 4 ? ">" : " ");
         ImGui::TextUnformatted(view.controlsDirty ? "Unsaved changes" : "Pending values match the applied layout.");
         symbolLine(Symbol::Circle, "Back (unsaved edits require confirmation)");
     } else if (view.screen == PortScreen::Binding) {

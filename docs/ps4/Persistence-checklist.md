@@ -58,6 +58,26 @@ Preserve real saves; use a temporary profile for failure trials.
   Resetting controls must not clear or rewrite owner saves or caches. Return
   missing observations as pending and restore the private profile backup.
 
+## Camera and aiming preference follow-up (#97, acceptance in #98)
+
+Use an identified new build and private profile backup. In each of neither,
+X-only, Y-only and both configurations:
+
+- [ ] Apply a custom binding and the chosen switches together, fully close and
+  relaunch, then compare the applied editor/legend and actual camera/aiming
+  directions against the [controls checklist](Controls-checklist.md).
+- [ ] Confirm the same complete configuration after a versioned package update
+  and cache-only clearing. Record identities and private profile comparisons;
+  preserve text size, unrelated settings and real saves throughout.
+- [ ] With a temporary profile, exercise failed and uncertain Apply: previous
+  directions/bindings stay active and pending edits remain. Retry must save the
+  whole configuration; Discard never promises rollback of uncertain disk state.
+  Missing/invalid controls initialize complete defaults and camera switches Off
+  with the existing feedback rules. Storage read failure still gates startup.
+
+Return build-associated observations and failures to #98. Host checks and
+historical persistence evidence do not establish behavior for this binary.
+
 ## Original #20 procedure
 
 Candidate identities and private artifact locations are in the

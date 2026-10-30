@@ -1,0 +1,70 @@
+--- a/game/src/d/d_camera.cpp
++++ b/game/src/d/d_camera.cpp
+@@ -4666,6 +4666,13 @@
+     
+     fVar6 = CPad_GET_STICK_POS_X(mPadId);
+     fVar5 = CPad_GET_STICK_POS_Y(mPadId);
++#if defined(__ORBIS__)
++    // First-person look and item aim bypass the C-stick camera reader. Reverse
++    // only these semantic inputs, before the native limits/smoothing. Player
++    // movement, menus and other Control Stick consumers retain their baseline.
++    if (pc_camera_invert_x()) fVar6 = -fVar6;
++    if (pc_camera_invert_y()) fVar5 = -fVar5;
++#endif
+ 
+     if (is_player(mpPlayerActor)) {
+         mWork.subject.m3B8 = ((daPy_py_c*)mpPlayerActor)->getBodyAngleX();
+--- a/game/src/d/actor/d_a_ship.cpp
++++ b/game/src/d/actor/d_a_ship.cpp
+@@ -4,6 +4,9 @@
+  */
+ 
+ #include "d/dolzel_rel.h" // IWYU pragma: keep
++#if defined(__ORBIS__)
++#include "pc/pc_controls.h"
++#endif
+ #include "d/actor/d_a_ship.h"
+ #include "d/d_com_inf_game.h"
+ #include "d/d_s_play.h" // IWYU pragma: keep
+@@ -1785,8 +1788,15 @@
+             cLib_addCalcAngleS(&m0394, cM_atan2s(cannonPos.x, cannonPos.z) - shape_angle.y, 5, 0x180, 0x40);
+         } else if (!mDoCPd_R_LOCK_BUTTON(0)) {
+             float adjust = mStickMVal * (m0404 * 4.0f + 1.0f);
+-            m0396 += (adjust * 384.0f) * cM_scos(mStickMAng);
+-            m0394 += (s16)((adjust * 384.0f) * cM_ssin(mStickMAng));
++            float aimY = (adjust * 384.0f) * cM_scos(mStickMAng);
++            float aimX = (adjust * 384.0f) * cM_ssin(mStickMAng);
++#if defined(__ORBIS__)
++            // Invert cannon aim only; sailing and the shared polar stick stay fixed.
++            if (pc_camera_invert_x()) aimX = -aimX;
++            if (pc_camera_invert_y()) aimY = -aimY;
++#endif
++            m0396 += aimY;
++            m0394 += (s16)aimX;
+         }
+         
+         if (m0396 > 0x4000) {
+--- a/game/src/d/actor/d_a_canon.cpp
++++ b/game/src/d/actor/d_a_canon.cpp
+@@ -4,6 +4,9 @@
+  */
+ 
+ #include "d/dolzel_rel.h" // IWYU pragma: keep
++#if defined(__ORBIS__)
++#include "pc/pc_controls.h"
++#endif
+ #include "d/actor/d_a_canon.h"
+ #include "d/actor/d_a_npc_kg2.h"
+ #include "d/actor/d_a_player.h"
+@@ -450,6 +453,11 @@
+     interface_of_controller_pad* pad = &g_mDoCPd_cpadInfo[0];
+     f32 stickX = pad->mMainStickPosX;
+     f32 stickY = pad->mMainStickPosY;
++#if defined(__ORBIS__)
++    // The cannon minigame reads pad fields directly, outside dCamera_c.
++    if (pc_camera_invert_x()) stickX = -stickX;
++    if (pc_camera_invert_y()) stickY = -stickY;
++#endif
+     s16 target1 = shape_angle.y;
+     s16 target2 = shape_angle.x;
+ 

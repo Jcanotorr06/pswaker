@@ -1,9 +1,9 @@
-# Applied controls and button editor (#94, #95, #96)
+# Applied controls and editor (#94, #95, #96, #97)
 
 This is the saved-layout foundation for #78, after first playable. It does not
 extend the accepted #18/#20 checkpoints. #95 adds button editing and Apply
-persistence; #96 adds confirmed restore defaults. Camera UI/integration remains
-a later slice.
+persistence; #96 adds confirmed restore defaults. #97 adds independent camera
+and aiming inversion, with a retained [source-path inventory](CAMERA-INVERSION.md).
 Original in-game GameCube prompts remain until #79.
 
 The [01.15 console return](../../evidence/ps4/controls-94/console-return-01.15/REPORT.md)
@@ -59,10 +59,10 @@ serialization. Serialization returns one complete section; it performs no I/O.
 `AppliedControls` snapshot: six bindings, independent saved camera switches,
 fixed gameplay/port-menu descriptions and a generation. Gameplay resolves
 bindings from this lookup. The legend renders `snapshot.legend()` and the fixed
-descriptions from the same snapshot. Later camera integration and #79 should
+descriptions from the same snapshot. Camera integration and #79 should
 consume this interface, with the generation identifying when to refresh.
-The saved inversion switches are published here; this slice does not change
-camera or aiming paths, or negate raw stick axes.
+The saved inversion switches initialize/update the pinned camera APIs at
+publication. Scoped camera/aiming hooks consume them; raw stick axes stay fixed.
 
 Generation 0 is the initial default snapshot. Startup publishes only after a
 successful profile check. Every successful `pswaker_publish_controls(config)`
@@ -135,6 +135,16 @@ Resetting controls preserves text size, unrelated settings, owner saves and
 caches. Fixed port navigation, gameplay pause/neutralization, controller-loss
 recovery and the explicit-resume release gate stay in effect during reset.
 
+## Camera and aiming switches (#97)
+
+Below the six action rows, Cross independently toggles **Invert camera X**
+or **Invert camera Y** in pending controls. Each row shows its pending and
+applied value; both default Off. A held Cross never repeatedly toggles. The
+existing complete Apply/Discard/Retry and restore-defaults flows include both
+switches. Successful publication updates camera and aiming together, before
+gameplay resumes. See [the inventory](CAMERA-INVERSION.md) for ordinary camera,
+first-person/item aiming and cannon bypass hooks and their observation limits.
+
 ## Verification
 
 Run the installed-controls harness against a prepared game and the real-file
@@ -143,6 +153,7 @@ storage harness:
 ```bash
 export PSWAKER_GAME_ROOT=/absolute/path/to/prepared-game
 python3 -m unittest discover -s tests/ps4 -p test_controls.py -v
+python3 -m unittest discover -s tests/ps4 -p test_camera_inversion.py -v
 python3 -m unittest discover -s tests/ps4 -p test_persistence.py -v
 ```
 
@@ -164,6 +175,6 @@ a new process, controls preservation when text size changes, profile repair and
 preservation, and failed/uncertain commits. These checks do not establish PS4
 hardware acceptance.
 
-Use the #94/#95/#96 sections of the [controls](Controls-checklist.md) and
+Use the #94/#95/#96/#97 sections of the [controls](Controls-checklist.md) and
 [persistence](Persistence-checklist.md) checklists on an identified new build.
 Do not attribute historical checkpoint results to this changed binary.

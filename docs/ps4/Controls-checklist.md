@@ -147,6 +147,42 @@ These checks do not expand the original #18/#20 acceptance.
   preservation results from the [persistence checklist](Persistence-checklist.md).
   Host tests do not establish hardware acceptance or camera/aiming inversion.
 
+### Camera and aiming inversion (#97, acceptance in #98)
+
+Use an identified new build on PS4 Slim / 9.00 / GoldHEN v2.4b18,
+USA GZLE01 revision 0. Back up the shared profile and preserve real progress.
+Follow the [source-path inventory](CAMERA-INVERSION.md); record each context
+actually observed, scene, physical stick/direction, resulting camera/aim
+direction and any mode limits. Missing access/items are unobserved, never a pass.
+
+- [ ] Verify both switches initially Off with defaults. Toggle each with fixed
+  Cross, check pending/applied labels and no repeated toggle while held.
+  Apply bindings and switches together; the legend changes only on success.
+- [ ] Establish a baseline in each context with neither switch set. Repeat
+  with X only, Y only and both. Horizontal input must reverse only with X;
+  vertical input must reverse only with Y. Test both input signs away from
+  rotation/tilt limits, comparing the same scene and physical direction.
+- [ ] Repeat all four combinations for ordinary right-stick free camera,
+  left-stick first-person look, telescope or Picto Box, and at least one
+  available bow/boomerang/hookshot/grappling-hook aiming context. Record the
+  item and whether aiming is free or automatically locked on.
+- [ ] Check the separate ship-cannon and cannon-minigame reader paths in all
+  four combinations when accessible. Retain unavailable contexts as missing
+  observations for #98. Scripted/lock-on limits do not prove a direction pass.
+- [ ] For each combination, check unchanged walking directions, native
+  inventory/file-menu navigation, fixed Touchpad/D-pad/Cross/Circle port
+  controls, analog triggers, and a representative non-camera stick action
+  (baton direction, figure viewer or rope manipulation). Distinguish aiming
+  a grappling hook from manipulating/swinging its rope.
+- [ ] Edit then Discard; verify the previous directions and bindings remain.
+  Restore defaults then Discard, and restore then Apply; verify both switches
+  clear only with the successful Apply. In a temporary profile, exercise a
+  failed Apply and Retry/Discard; preserve uncertainty in the observations.
+- [ ] Check relaunch/update/cache persistence using the #97 persistence
+  follow-up. Return exact build/package identity and context results to #98.
+  Host/API/patch results do not substitute for these physical observations.
+  Full-game camera validation and first-playable acceptance remain separate.
+
 ### Logs and observations
 
 Before another launch rotates the logs, retrieve via your existing FTP:

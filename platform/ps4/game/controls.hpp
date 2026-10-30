@@ -46,7 +46,7 @@ struct PortView {
     bool connected;
     bool releasing;
     ControlsConfig pendingControls{};
-    unsigned controlsSelection = 0; // Six action rows, Restore defaults, Apply, Back.
+    unsigned controlsSelection = 0; // Six actions, inversion X/Y, Restore defaults, Apply, Back.
     unsigned bindingSelection = 0;
     bool controlsDirty = false;
     std::string controlsError{};
