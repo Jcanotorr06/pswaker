@@ -1,8 +1,9 @@
-# Applied controls and button editor (#94, #95)
+# Applied controls and button editor (#94, #95, #96)
 
 This is the saved-layout foundation for #78, after first playable. It does not
 extend the accepted #18/#20 checkpoints. #95 adds button editing and Apply
-persistence; camera UI/integration and restore defaults remain later slices.
+persistence; #96 adds confirmed restore defaults. Camera UI/integration remains
+a later slice.
 Original in-game GameCube prompts remain until #79.
 
 The [01.15 console return](../../evidence/ps4/controls-94/console-return-01.15/REPORT.md)
@@ -87,7 +88,8 @@ inversion switches. Each action row shows its pending and applied button.
 Cross opens a picker containing all nine allowed targets. D-pad Up/Down selects,
 Cross assigns, and Circle cancels the picker. An occupied target swaps the two
 actions; an unused target frees the old button; choosing the current target is
-a no-op. The saved inversion switches are preserved for later camera UI work.
+a no-op. Button assignments preserve the saved inversion switches; restore
+defaults resets both pending switches as described below.
 
 Choose **Apply** to enter the apply-in-progress state. `PortSettings::setControls`
 validates and serializes all six bindings and both inversion fields, preserving
@@ -112,6 +114,27 @@ Input loss preserves the current editor state and pending values; reconnection
 alone cannot continue. Returning to settings and resuming gameplay retain the
 existing explicit-confirmation and neutral-release gate.
 
+## Restore defaults (#96)
+
+Choose **Restore defaults...** in the Controls editor. Cross opens a separate
+confirmation screen; Circle cancels it and keeps every existing pending edit.
+A fresh Cross confirmation replaces only pending controls with A = Cross,
+B = Circle, X = Square, Y = Triangle, Z = R1, Start = Options and both camera
+inversion switches Off. The editor shows pending and applied inversion values
+separately, alongside the pending/applied bindings.
+
+Confirmation does not write settings, publish controls, advance the applied
+generation or update the applied legend. **Apply** uses the same checked save
+and whole-snapshot publication as any other edit. Leaving and confirming
+**Discard** restores the previous applied values. Failed or uncertain Apply
+keeps the pending defaults and previous applied snapshot, with the existing
+**Retry**/**Discard** choices. Discard after uncertain completion makes no claim
+to roll back a file that may already have been replaced.
+
+Resetting controls preserves text size, unrelated settings, owner saves and
+caches. Fixed port navigation, gameplay pause/neutralization, controller-loss
+recovery and the explicit-resume release gate stay in effect during reset.
+
 ## Verification
 
 Run the installed-controls harness against a prepared game and the real-file
@@ -131,11 +154,16 @@ fallback with feedback and byte-identical files, and settings read failure.
 The #95 scenarios additionally drive every action/target through the editor,
 observe no file/legend/publication effects before Apply, exercise leave/keep/
 discard, failed sync/close/rename, uncertain completion, complete Retry and
-controller loss in every editor state. The storage harness checks Apply across
+controller loss in every editor state. The #96 scenarios start with custom
+bindings and both saved inversion switches On, then exercise confirmation and
+cancellation, reset/discard, reset/Apply, failed and uncertain Apply with Retry
+or Discard, and input loss during reset confirmation. They compare saved profile
+bytes, the complete applied snapshot/legend/generation, resumed gameplay and
+synthetic save/cache preservation. The storage harness checks Apply across
 a new process, controls preservation when text size changes, profile repair and
 preservation, and failed/uncertain commits. These checks do not establish PS4
 hardware acceptance.
 
-Use the #94/#95 sections of the [controls](Controls-checklist.md) and
+Use the #94/#95/#96 sections of the [controls](Controls-checklist.md) and
 [persistence](Persistence-checklist.md) checklists on an identified new build.
 Do not attribute historical checkpoint results to this changed binary.

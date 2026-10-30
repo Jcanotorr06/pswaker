@@ -112,7 +112,7 @@ void portContent() {
     } else if (view.screen == PortScreen::Controls) {
         const auto applied = pswaker_applied_controls();
         ImGui::TextUnformatted("Controls: pending edits / applied layout");
-        ImGui::TextUnformatted("D-pad Up / Down: Choose an action; Cross: Choose its button");
+        ImGui::TextUnformatted("D-pad Up / Down: Choose; Cross: Confirm");
         ImGui::TextUnformatted("Pending edits take effect only after Apply succeeds.");
         for (unsigned i = 0; i < gameActions.size(); ++i) {
             const auto action = gameActions[i];
@@ -120,10 +120,13 @@ void portContent() {
                 control_action_name(action), control_target_name(view.pendingControls.binding(action)),
                 control_target_name(applied.config.binding(action)));
         }
-        ImGui::Text("Saved camera inversion (preserved): X %s / Y %s",
+        ImGui::Text("Pending camera inversion: X %s / Y %s",
             view.pendingControls.invertCameraX ? "On" : "Off", view.pendingControls.invertCameraY ? "On" : "Off");
-        ImGui::Text("%s Apply", view.controlsSelection == gameActions.size() ? ">" : " ");
-        ImGui::Text("%s Back to settings", view.controlsSelection == gameActions.size() + 1 ? ">" : " ");
+        ImGui::Text("Applied camera inversion: X %s / Y %s",
+            applied.config.invertCameraX ? "On" : "Off", applied.config.invertCameraY ? "On" : "Off");
+        ImGui::Text("%s Restore defaults...", view.controlsSelection == gameActions.size() ? ">" : " ");
+        ImGui::Text("%s Apply", view.controlsSelection == gameActions.size() + 1 ? ">" : " ");
+        ImGui::Text("%s Back to settings", view.controlsSelection == gameActions.size() + 2 ? ">" : " ");
         ImGui::TextUnformatted(view.controlsDirty ? "Unsaved changes" : "Pending values match the applied layout.");
         symbolLine(Symbol::Circle, "Back (unsaved edits require confirmation)");
     } else if (view.screen == PortScreen::Binding) {
@@ -133,6 +136,13 @@ void portContent() {
             ImGui::Text("%s %s", view.bindingSelection == i ? ">" : " ", control_target_name(static_cast<ControlTarget>(i)));
         symbolLine(Symbol::Cross, "Assign to pending layout");
         symbolLine(Symbol::Circle, "Keep the current pending binding");
+    } else if (view.screen == PortScreen::RestoreControls) {
+        ImGui::TextUnformatted("Restore default controls in pending edits?");
+        ImGui::TextUnformatted("A = Cross; B = Circle; X = Square; Y = Triangle; Z = R1; Start = Options");
+        ImGui::TextUnformatted("Both camera inversion switches will be Off. Other settings stay as they are.");
+        ImGui::TextUnformatted("Review the pending defaults afterward, then Apply to save or Discard to keep the applied layout.");
+        symbolLine(Symbol::Cross, "Restore pending defaults");
+        symbolLine(Symbol::Circle, "Keep the current pending edits");
     } else if (view.screen == PortScreen::DiscardControls) {
         ImGui::TextUnformatted("Discard unsaved controls changes?");
         symbolLine(Symbol::Cross, "Discard and return to settings");

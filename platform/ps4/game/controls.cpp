@@ -23,7 +23,7 @@ PortSettings* settings = nullptr;
 
 const char* screenName(PortScreen screen) {
     constexpr const char* names[] = {"legend", "game", "settings", "quit", "input-lost", "exit",
-        "controls", "binding", "discard-controls", "applying-controls", "controls-failed"};
+        "controls", "binding", "discard-controls", "applying-controls", "controls-failed", "restore-controls"};
     return names[static_cast<unsigned>(screen)];
 }
 
@@ -136,7 +136,7 @@ void pswaker_poll_controls() {
     if ((view.screen == PortScreen::Controls || view.screen == PortScreen::Binding) &&
         (current.held & (PAD_UP | PAD_DOWN))) {
         auto& selection = view.screen == PortScreen::Controls ? view.controlsSelection : view.bindingSelection;
-        const unsigned count = view.screen == PortScreen::Controls ? gameActions.size() + 2 : 9;
+        const unsigned count = view.screen == PortScreen::Controls ? gameActions.size() + 3 : 9;
         selection = (selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
         armed = false;
         return;
@@ -180,12 +180,20 @@ void pswaker_poll_controls() {
         else if (cross) destination = PortScreen::Exit;
         break;
     case PortScreen::Controls:
-        if (circle || (cross && view.controlsSelection == gameActions.size() + 1))
+        if (circle || (cross && view.controlsSelection == gameActions.size() + 2))
             destination = view.pendingControls == pswaker_applied_controls().config ? PortScreen::Settings : PortScreen::DiscardControls;
         else if (cross && view.controlsSelection < gameActions.size()) {
             view.bindingSelection = static_cast<unsigned>(view.pendingControls.binding(gameActions[view.controlsSelection]));
             destination = PortScreen::Binding;
-        } else if (cross) destination = PortScreen::ApplyingControls;
+        } else if (cross && view.controlsSelection == gameActions.size()) destination = PortScreen::RestoreControls;
+        else if (cross) destination = PortScreen::ApplyingControls;
+        break;
+    case PortScreen::RestoreControls:
+        if (circle) destination = PortScreen::Controls;
+        else if (cross) {
+            view.pendingControls = ControlsConfig::defaults();
+            destination = PortScreen::Controls;
+        }
         break;
     case PortScreen::Binding:
         if (circle) destination = PortScreen::Controls;

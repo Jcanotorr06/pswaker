@@ -25,7 +25,7 @@ AppliedControls pswaker_applied_controls();
 bool pswaker_publish_controls(const ControlsConfig& config);
 
 enum class PortScreen { Legend, Game, Settings, Quit, InputLost, Exit,
-    Controls, Binding, DiscardControls, ApplyingControls, ControlsFailed };
+    Controls, Binding, DiscardControls, ApplyingControls, ControlsFailed, RestoreControls };
 enum class PortAction { Resume, ShowLegend, CheckFailedRead, ToggleText, Quit, SampleOutset, SampleForest, Transition, Gameplay, EditControls };
 struct PortMenuItem { PortAction action; const char* label; };
 inline constexpr std::array<PortMenuItem, 10> portMenuItems{{
@@ -46,7 +46,7 @@ struct PortView {
     bool connected;
     bool releasing;
     ControlsConfig pendingControls{};
-    unsigned controlsSelection = 0; // Six action rows, Apply, Back.
+    unsigned controlsSelection = 0; // Six action rows, Restore defaults, Apply, Back.
     unsigned bindingSelection = 0;
     bool controlsDirty = false;
     std::string controlsError{};
