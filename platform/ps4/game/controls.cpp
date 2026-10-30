@@ -2,6 +2,7 @@
 #include "storage.hpp"
 #include "native/platform.h"
 #include "frame-pacing.hpp"
+#include "pc/pc_controls.h"
 #include <algorithm>
 #include <cmath>
 #include <limits>
@@ -60,6 +61,10 @@ bool pswaker_publish_controls(const ControlsConfig& config) {
     const std::lock_guard lock(appliedMutex);
     if (applied.generation == std::numeric_limits<uint64_t>::max()) return false;
     applied = {config, applied.generation + 1};
+    // Startup and Apply run on the game thread, before gameplay can resume.
+    // Keep the pinned camera/aiming API on this complete saved generation.
+    pc_camera_invert_x_set(applied.config.invertCameraX);
+    pc_camera_invert_y_set(applied.config.invertCameraY);
     return true;
 }
 std::array<std::string, 8> AppliedControls::legend() const {
@@ -136,7 +141,7 @@ void pswaker_poll_controls() {
     if ((view.screen == PortScreen::Controls || view.screen == PortScreen::Binding) &&
         (current.held & (PAD_UP | PAD_DOWN))) {
         auto& selection = view.screen == PortScreen::Controls ? view.controlsSelection : view.bindingSelection;
-        const unsigned count = view.screen == PortScreen::Controls ? gameActions.size() + 3 : 9;
+        const unsigned count = view.screen == PortScreen::Controls ? gameActions.size() + 5 : 9;
         selection = (selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
         armed = false;
         return;
@@ -180,12 +185,18 @@ void pswaker_poll_controls() {
         else if (cross) destination = PortScreen::Exit;
         break;
     case PortScreen::Controls:
-        if (circle || (cross && view.controlsSelection == gameActions.size() + 2))
+        if (circle || (cross && view.controlsSelection == gameActions.size() + 4))
             destination = view.pendingControls == pswaker_applied_controls().config ? PortScreen::Settings : PortScreen::DiscardControls;
         else if (cross && view.controlsSelection < gameActions.size()) {
             view.bindingSelection = static_cast<unsigned>(view.pendingControls.binding(gameActions[view.controlsSelection]));
             destination = PortScreen::Binding;
-        } else if (cross && view.controlsSelection == gameActions.size()) destination = PortScreen::RestoreControls;
+        } else if (cross && view.controlsSelection == gameActions.size()) {
+            view.pendingControls.invertCameraX = !view.pendingControls.invertCameraX;
+            armed = false;
+        } else if (cross && view.controlsSelection == gameActions.size() + 1) {
+            view.pendingControls.invertCameraY = !view.pendingControls.invertCameraY;
+            armed = false;
+        } else if (cross && view.controlsSelection == gameActions.size() + 2) destination = PortScreen::RestoreControls;
         else if (cross) destination = PortScreen::ApplyingControls;
         break;
     case PortScreen::RestoreControls:

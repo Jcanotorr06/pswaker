@@ -26,7 +26,9 @@ class InstalledControlsTests(unittest.TestCase):
         cls.binary = root / 'controls'
         game = Path(GAME)
         includes = ['-I', str(PLATFORM / 'game'), '-I', str(game / 'src/platform'),
-                    '-I', str(game / 'src/aurora/include'), '-DTARGET_PC']
+                    '-I', str(game / 'src/aurora/include'),
+                    '-I', str(game / 'src/switchwaker/native/include'),
+                    '-I', str(game / 'src/switchwaker/native/src/pc'), '-DTARGET_PC']
         native = subprocess.run(['clang-21', '-std=c11', '-D_POSIX_C_SOURCE=200809L',
                                  *includes, '-c', str(game / 'src/platform/native/platform.c'),
                                  '-o', str(root / 'platform.o')], capture_output=True, text=True)
@@ -36,6 +38,7 @@ class InstalledControlsTests(unittest.TestCase):
                                 *includes, str(PLATFORM / 'game/controls.cpp'),
                                 str(PLATFORM / 'game/controls-config.cpp'),
                                 str(PLATFORM / 'game/storage.cpp'),
+                                str(game / 'src/switchwaker/native/src/pc/features/pc_controls.cpp'),
                                 str(LOCATIONS.tests / 'controls-console.cpp'), str(root / 'platform.o'),
                                 '-Wl,--wrap=scePadReadState', '-Wl,--wrap=fsync',
                                 '-Wl,--wrap=close', '-Wl,--wrap=rename', '-o', str(cls.binary)],
@@ -66,6 +69,20 @@ class InstalledControlsTests(unittest.TestCase):
 
     def test_legend_confirmation_does_not_leak_into_game(self):
         self.check_scenario('legend')
+
+    def test_independent_inversion_switches_are_pending_and_require_fresh_confirmation(self):
+        self.check_scenario('inversion-pending')
+
+    def test_camera_apis_follow_complete_publication_and_reloaded_preferences(self):
+        for axes in ['neither', 'x', 'y', 'both']:
+            with self.subTest(axes=axes):
+                self.check_scenario('inversion-apply-' + axes)
+
+    def test_inversion_discard_failed_and_uncertain_apply_keep_camera_apis_on_previous_generation(self):
+        for axes in ['neither', 'x', 'y', 'both']:
+            for fault in ['discard', 'sync', 'close', 'rename', 'uncertain', 'failed-discard', 'uncertain-discard']:
+                with self.subTest(axes=axes, fault=fault):
+                    self.check_scenario('inversion-apply-' + axes + '-' + fault)
 
     def test_editor_pending_swap_apply_publication_and_neutral_resume(self):
         self.check_scenario('editor-apply')
