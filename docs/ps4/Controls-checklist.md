@@ -71,6 +71,120 @@ movement, a face/action button, L2/R2, and a combination. Record each trial.
 
 ## Return evidence
 
+### Saved layout slice (#94, after first playable)
+
+On a new identified build, retain the matching build ID, program/package hashes
+and private profile backup. These checks do not reopen the original #18 results.
+
+- [ ] Launch with a complete custom `[controls]` section as documented in
+  [applied controls](APPLIED-CONTROLS.md). Compare all six first-launch legend
+  entries with gameplay actions; reopen the legend from settings and compare.
+  Across focused layouts, include all nine allowed targets and each action.
+- [ ] Move A, B and Start off Cross, Circle and Options. Check movement, C-stick,
+  D-pad, partial/full L2/R2, digital stick clicks, Touchpad, fixed Cross/Circle
+  navigation and confirmation release. Check disconnect, reconnection and the
+  delayed failed-read action; resuming must remain deliberate.
+- [ ] Record the saved X/Y switch values shown in the legend. Camera/aiming
+  inversion acceptance belongs to the later integration slice.
+- [ ] Return observations and any failures for this exact candidate; host tests
+  do not prove on-console rendering or physical game actions.
+
+### Button editor slice (#95, after first playable)
+
+Use a new identified build and privately back up the shared settings profile.
+Record each physical input and actual game/menu behavior for this candidate.
+
+- [ ] Open **Controls...**. Verify pending/applied labels, six action rows and
+  the nine-button picker. Exercise an occupied swap, an unused target, the
+  current-target no-op and picker cancellation. Pending edits must not change
+  the applied legend or gameplay, and the game stays paused throughout.
+- [ ] Choose Apply. Observe the progress state and matching pending/applied
+  values afterward. Resume deliberately and verify all six actions against the
+  applied legend. Across focused layouts, reach all nine allowed targets.
+- [ ] Leave with unsaved edits: Keep editing retains them; Discard returns to
+  the previous applied values. Resume with held buttons/sticks/triggers and
+  verify nothing reaches gameplay until everything is released.
+- [ ] Move A, B and Start off their defaults. Check fixed Touchpad, D-pad,
+  Cross/Circle navigation, movement/C-stick and partial/full analog triggers.
+- [ ] In a temporary profile only, exercise an Apply failure. Verify the
+  previous layout stays active, pending edits remain, and Retry/Discard are
+  usable. After storage repair, Retry must save the complete layout. Report
+  uncertain completion honestly; no disk rollback is promised.
+- [ ] Disconnect while holding mapped buttons, movement and triggers. Repeat
+  in editing, the picker and confirmations, then run the delayed failed-read
+  check under the applied custom layout. Reconnection alone never continues;
+  fresh Cross confirmation and neutral release remain required. Pending edits
+  survive loss while in the editor.
+- [ ] Retain the exact build/package identity and observations. Host results
+  do not establish hardware acceptance; camera integration is later work.
+
+### Restore defaults slice (#96, after first playable)
+
+Use a new identified build and a private backup of the settings profile. Start
+with custom bindings, both saved inversion switches On and Standard text size.
+These checks do not expand the original #18/#20 acceptance.
+
+- [ ] Make a pending button edit, choose **Restore defaults...**, then cancel
+  with Circle. Verify every pending edit remains, including both switches.
+  Holding Cross to open the prompt must not also confirm the reset.
+- [ ] Confirm a reset with a fresh Cross press. Inspect all six pending default
+  bindings and both pending switches Off, alongside the unchanged applied
+  bindings/switches. Leave and Discard; the previous custom applied layout,
+  generation, legend and settings file must remain unchanged.
+- [ ] Reset again and Apply. Verify matching pending/applied defaults and
+  the updated legend, then resume deliberately and check all six default
+  actions. Text size and unrelated settings must stay unchanged.
+- [ ] In a temporary profile only, exercise failed reset Apply: the previous
+  applied layout/legend remains, pending defaults stay available and Retry/
+  Discard work. After repair, Retry saves the complete defaults. Record any
+  uncertain completion without claiming disk rollback.
+- [ ] Disconnect during reset confirmation while holding buttons, movement
+  and triggers. Reconnection alone cannot continue; release, confirm with
+  fixed Cross and release again. The prompt/pending values must survive.
+  Returning to gameplay still consumes confirmation and waits for neutral
+  release. Check fixed Touchpad/D-pad/Cross/Circle navigation throughout.
+- [ ] Retain exact build/package identity, menu/gameplay observations and
+  preservation results from the [persistence checklist](Persistence-checklist.md).
+  Host tests do not establish hardware acceptance or camera/aiming inversion.
+
+### Camera and aiming inversion (#97, acceptance in #98)
+
+Use an identified new build on PS4 Slim / 9.00 / GoldHEN v2.4b18,
+USA GZLE01 revision 0. Back up the shared profile and preserve real progress.
+Follow the [source-path inventory](CAMERA-INVERSION.md); record each context
+actually observed, scene, physical stick/direction, resulting camera/aim
+direction and any mode limits. Missing access/items are unobserved, never a pass.
+
+- [ ] Verify both switches initially Off with defaults. Toggle each with fixed
+  Cross, check pending/applied labels and no repeated toggle while held.
+  Apply bindings and switches together; the legend changes only on success.
+- [ ] Establish a baseline in each context with neither switch set. Repeat
+  with X only, Y only and both. Horizontal input must reverse only with X;
+  vertical input must reverse only with Y. Test both input signs away from
+  rotation/tilt limits, comparing the same scene and physical direction.
+- [ ] Repeat all four combinations for ordinary right-stick free camera,
+  left-stick first-person look, telescope or Picto Box, and at least one
+  available bow/boomerang/hookshot/grappling-hook aiming context. Record the
+  item and whether aiming is free or automatically locked on.
+- [ ] Check the separate ship-cannon and cannon-minigame reader paths in all
+  four combinations when accessible. Retain unavailable contexts as missing
+  observations for #98. Scripted/lock-on limits do not prove a direction pass.
+- [ ] For each combination, check unchanged walking directions, native
+  inventory/file-menu navigation, fixed Touchpad/D-pad/Cross/Circle port
+  controls, analog triggers, and a representative non-camera stick action
+  (baton direction, figure viewer or rope manipulation). Distinguish aiming
+  a grappling hook from manipulating/swinging its rope.
+- [ ] Edit then Discard; verify the previous directions and bindings remain.
+  Restore defaults then Discard, and restore then Apply; verify both switches
+  clear only with the successful Apply. In a temporary profile, exercise a
+  failed Apply and Retry/Discard; preserve uncertainty in the observations.
+- [ ] Check relaunch/update/cache persistence using the #97 persistence
+  follow-up. Return exact build/package identity and context results to #98.
+  Host/API/patch results do not substitute for these physical observations.
+  Full-game camera validation and first-playable acceptance remain separate.
+
+### Logs and observations
+
 Before another launch rotates the logs, retrieve via your existing FTP:
 
 - /data/pswaker/logs/platform.log, platform.prev.log and last-stage.txt.

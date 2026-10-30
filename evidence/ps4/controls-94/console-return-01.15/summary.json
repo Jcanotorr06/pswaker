@@ -1,0 +1,810 @@
+{
+  "program_build_id": "6d2368a5373b00387dc9",
+  "unique_captures": 9,
+  "totals": {
+    "samples": 1036,
+    "paused_samples": 235,
+    "gameplay_samples": 801
+  },
+  "settings_file_comparisons": [
+    {
+      "path": "4/settings.ini",
+      "expected_fixture": "04-incomplete.ini",
+      "sha256": "9cab97d788d642315d779c200dc3b463efee5555efa66ec30d5304738f041c23",
+      "fixture_sha256": "9cab97d788d642315d779c200dc3b463efee5555efa66ec30d5304738f041c23",
+      "byte_identical": true
+    },
+    {
+      "path": "5/settings.ini",
+      "expected_fixture": "05-duplicate-target.ini",
+      "sha256": "93526f3b795aecd52ae7babd5660b9e66075590c63dec8df8aba1cde0b1fd162",
+      "fixture_sha256": "93526f3b795aecd52ae7babd5660b9e66075590c63dec8df8aba1cde0b1fd162",
+      "byte_identical": true
+    },
+    {
+      "path": "6/settings.ini",
+      "expected_fixture": "06-reserved-target.ini",
+      "sha256": "1feb6773e58d23db0f083cf611615865e224d3ca0ec2d8242ed6703256ebc4fb",
+      "fixture_sha256": "1feb6773e58d23db0f083cf611615865e224d3ca0ec2d8242ed6703256ebc4fb",
+      "byte_identical": true
+    },
+    {
+      "path": "7/settings.ini",
+      "expected_fixture": "07-unsupported-version.ini",
+      "sha256": "a74bd9721314f7f8f51f18f4ae1ee2523ff356da029b062eeebb849990a844eb",
+      "fixture_sha256": "a74bd9721314f7f8f51f18f4ae1ee2523ff356da029b062eeebb849990a844eb",
+      "byte_identical": true
+    },
+    {
+      "path": "8/settings.ini",
+      "expected_fixture": "08-malformed.ini",
+      "sha256": "3a539187ba907d5fff9a817403022e21fce9b2cb1df18b9c575b7b4a1042c025",
+      "fixture_sha256": "3a539187ba907d5fff9a817403022e21fce9b2cb1df18b9c575b7b4a1042c025",
+      "byte_identical": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "1/platform.log",
+      "duplicate_paths": [
+        "2/platform.prev.log"
+      ],
+      "sha256": "cdf4466c610991463ed498bd5fb50ff464ac8990785b907b1f28377ccb88aac8",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "complete defaults",
+      "profile_association": "Owner-labelled run folder; extracted settings independently matched where supplied",
+      "counts": {
+        "samples": 163,
+        "paused_samples": 39,
+        "gameplay_samples": 124
+      },
+      "sampled_action_counts": {
+        "B": 2,
+        "A": 2,
+        "Y": 1
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 485,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 535,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 536,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 794,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 802,
+          "text": "INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release"
+        },
+        {
+          "line": 803,
+          "text": "INPUT screen=settings->legend connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 807,
+          "text": "INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release"
+        },
+        {
+          "line": 808,
+          "text": "INPUT screen=legend->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 821,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 823,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 896,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    },
+    {
+      "path": "2/platform.log",
+      "duplicate_paths": [
+        "3/platform.prev.log"
+      ],
+      "sha256": "6fcfc3b233caf0168be404a04b3d565ca320f43c76687f2e1434363ffe92ac3d",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "complete defaults",
+      "profile_association": "Owner-labelled run folder; extracted settings independently matched where supplied",
+      "counts": {
+        "samples": 118,
+        "paused_samples": 26,
+        "gameplay_samples": 92
+      },
+      "sampled_action_counts": {
+        "A": 2,
+        "B": 2,
+        "X": 1,
+        "Start": 1
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 468,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 508,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 509,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 671,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 680,
+          "text": "INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release"
+        },
+        {
+          "line": 681,
+          "text": "INPUT screen=settings->legend connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 691,
+          "text": "INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release"
+        },
+        {
+          "line": 692,
+          "text": "INPUT screen=legend->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 693,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 695,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 787,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    },
+    {
+      "path": "3/platform.log",
+      "duplicate_paths": [],
+      "sha256": "51d336bc43a2f8d884a0c6ed540ace6283c8eb691f48ec802b1f6b84ad1e6934",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "custom profile 03",
+      "profile_association": "Owner-labelled run folder; extracted settings independently matched where supplied",
+      "counts": {
+        "samples": 156,
+        "paused_samples": 47,
+        "gameplay_samples": 109
+      },
+      "sampled_action_counts": {
+        "A": 3,
+        "B": 3,
+        "Start": 1
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 504,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 545,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 546,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 760,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 774,
+          "text": "INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release"
+        },
+        {
+          "line": 776,
+          "text": "INPUT screen=settings->legend connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 779,
+          "text": "INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release"
+        },
+        {
+          "line": 781,
+          "text": "INPUT screen=legend->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 784,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 787,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 824,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        },
+        {
+          "line": 841,
+          "text": "INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release"
+        },
+        {
+          "line": 842,
+          "text": "INPUT screen=input-lost->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 862,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 870,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 871,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 872,
+          "text": "INPUT CHECK resumed; one native read will fail in 5 seconds; hold inputs now"
+        },
+        {
+          "line": 883,
+          "text": "INPUT CHECK injected scePadReadState failure; native reader must neutralize and pause"
+        },
+        {
+          "line": 885,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        },
+        {
+          "line": 891,
+          "text": "INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release"
+        },
+        {
+          "line": 893,
+          "text": "INPUT screen=input-lost->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 912,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    },
+    {
+      "path": "4/platform.log",
+      "duplicate_paths": [
+        "5/platform.prev.log"
+      ],
+      "sha256": "8d9b2ab0e81b2057dc98d8e92cdef9b7e7b19b78fd66edb0f61e07271b689787",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "complete defaults",
+      "profile_association": "Owner-labelled run folder; extracted settings independently matched where supplied",
+      "counts": {
+        "samples": 115,
+        "paused_samples": 43,
+        "gameplay_samples": 72
+      },
+      "sampled_action_counts": {
+        "B": 3,
+        "A": 1
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 508,
+          "text": "CONTROLS Saved controls are incomplete. Complete defaults are in use."
+        },
+        {
+          "line": 509,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 588,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 589,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 794,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    },
+    {
+      "path": "4/platform.prev.log",
+      "duplicate_paths": [],
+      "sha256": "d90005dbb9e91bde0c91bb712ab9c081fca8dfe93cf9eccc9f8148d173e292ee",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "custom profile 03",
+      "profile_association": "Inferred custom relaunch from observed L3/R3 mapping and owner report; settings not returned",
+      "counts": {
+        "samples": 78,
+        "paused_samples": 5,
+        "gameplay_samples": 73
+      },
+      "sampled_action_counts": {
+        "B": 6,
+        "A": 1
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 501,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 532,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 533,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 741,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    },
+    {
+      "path": "5/platform.log",
+      "duplicate_paths": [
+        "6/platform.prev.log"
+      ],
+      "sha256": "c9c441e8b9cc156367685a8a6287419411ff37d6dba031abf2f1eb834be54987",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "complete defaults",
+      "profile_association": "Owner-labelled run folder; extracted settings independently matched where supplied",
+      "counts": {
+        "samples": 102,
+        "paused_samples": 23,
+        "gameplay_samples": 79
+      },
+      "sampled_action_counts": {
+        "A": 1,
+        "B": 2
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 468,
+          "text": "CONTROLS Saved controls share a button between actions. Complete defaults are in use."
+        },
+        {
+          "line": 469,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 501,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 502,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 676,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        },
+        {
+          "line": 682,
+          "text": "INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release"
+        },
+        {
+          "line": 684,
+          "text": "INPUT screen=input-lost->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 694,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 701,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 702,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 703,
+          "text": "INPUT CHECK resumed; one native read will fail in 5 seconds; hold inputs now"
+        },
+        {
+          "line": 714,
+          "text": "INPUT CHECK injected scePadReadState failure; native reader must neutralize and pause"
+        },
+        {
+          "line": 716,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        },
+        {
+          "line": 722,
+          "text": "INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release"
+        },
+        {
+          "line": 723,
+          "text": "INPUT screen=input-lost->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 746,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        },
+        {
+          "line": 751,
+          "text": "INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release"
+        },
+        {
+          "line": 752,
+          "text": "INPUT screen=input-lost->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 761,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 766,
+          "text": "INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release"
+        },
+        {
+          "line": 767,
+          "text": "INPUT screen=settings->legend connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 770,
+          "text": "INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release"
+        },
+        {
+          "line": 771,
+          "text": "INPUT screen=legend->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 772,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 773,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 781,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    },
+    {
+      "path": "6/platform.log",
+      "duplicate_paths": [
+        "7/platform.prev.log"
+      ],
+      "sha256": "52365278a87d95ff219eb6d76ed1fb03a6269e0b6cf9824bfbddc071ca65e976",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "complete defaults",
+      "profile_association": "Owner-labelled run folder; extracted settings independently matched where supplied",
+      "counts": {
+        "samples": 120,
+        "paused_samples": 22,
+        "gameplay_samples": 98
+      },
+      "sampled_action_counts": {
+        "A": 5,
+        "B": 2,
+        "X": 1,
+        "Y": 1
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 507,
+          "text": "CONTROLS Saved controls contain unsupported or reserved values. Complete defaults are in use."
+        },
+        {
+          "line": 508,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 542,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 543,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 803,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 809,
+          "text": "INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release"
+        },
+        {
+          "line": 810,
+          "text": "INPUT screen=settings->legend connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 824,
+          "text": "INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release"
+        },
+        {
+          "line": 825,
+          "text": "INPUT screen=legend->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 826,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 827,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 835,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    },
+    {
+      "path": "7/platform.log",
+      "duplicate_paths": [
+        "8/platform.prev.log"
+      ],
+      "sha256": "fe19459c5292738e069b72f1d816af00ea40f1b6effecc3d5d4d25003e93aa81",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "complete defaults",
+      "profile_association": "Owner-labelled run folder; extracted settings independently matched where supplied",
+      "counts": {
+        "samples": 104,
+        "paused_samples": 20,
+        "gameplay_samples": 84
+      },
+      "sampled_action_counts": {
+        "A": 3,
+        "B": 2,
+        "Z": 1,
+        "Y": 1,
+        "Start": 1
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 508,
+          "text": "CONTROLS Saved controls version is unsupported. Complete defaults are in use."
+        },
+        {
+          "line": 509,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 546,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 547,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 710,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 712,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 713,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 720,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 724,
+          "text": "INPUT explicit-confirm screen=settings destination=legend; waiting for neutral release"
+        },
+        {
+          "line": 725,
+          "text": "INPUT screen=settings->legend connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 729,
+          "text": "INPUT explicit-confirm screen=legend destination=settings; waiting for neutral release"
+        },
+        {
+          "line": 730,
+          "text": "INPUT screen=legend->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 732,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 733,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 740,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        },
+        {
+          "line": 744,
+          "text": "INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release"
+        },
+        {
+          "line": 745,
+          "text": "INPUT screen=input-lost->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 748,
+          "text": "INPUT screen=game->settings connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 754,
+          "text": "INPUT explicit-confirm screen=settings destination=game; waiting for neutral release"
+        },
+        {
+          "line": 755,
+          "text": "INPUT screen=settings->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 756,
+          "text": "INPUT CHECK resumed; one native read will fail in 5 seconds; hold inputs now"
+        },
+        {
+          "line": 769,
+          "text": "INPUT CHECK injected scePadReadState failure; native reader must neutralize and pause"
+        },
+        {
+          "line": 771,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        },
+        {
+          "line": 775,
+          "text": "INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release"
+        },
+        {
+          "line": 776,
+          "text": "INPUT screen=input-lost->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 827,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    },
+    {
+      "path": "8/platform.log",
+      "duplicate_paths": [],
+      "sha256": "3c830f9e92d1904c40345b2fce6a1c085ce1215fc07adfcabad348b5f9869a9d",
+      "begin_count": 1,
+      "package_manifest_matches_candidate": true,
+      "expected_layout": "complete defaults",
+      "profile_association": "Owner-labelled run folder; extracted settings independently matched where supplied",
+      "counts": {
+        "samples": 80,
+        "paused_samples": 10,
+        "gameplay_samples": 70
+      },
+      "sampled_action_counts": {
+        "B": 4,
+        "Y": 1
+      },
+      "mapping_mismatches": [],
+      "nonneutral_paused_lines": [],
+      "events": [
+        {
+          "line": 2,
+          "text": "BEGIN build=6d2368a5373b00387dc9 platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6d2368a5373b00387dc9"
+        },
+        {
+          "line": 504,
+          "text": "CONTROLS Saved controls are malformed. Complete defaults are in use."
+        },
+        {
+          "line": 505,
+          "text": "STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=large GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent"
+        },
+        {
+          "line": 539,
+          "text": "INPUT explicit-confirm screen=legend destination=game; waiting for neutral release"
+        },
+        {
+          "line": 540,
+          "text": "INPUT screen=legend->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 726,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        },
+        {
+          "line": 733,
+          "text": "INPUT explicit-confirm screen=input-lost destination=game; waiting for neutral release"
+        },
+        {
+          "line": 734,
+          "text": "INPUT screen=input-lost->game connected=1; gameplay neutral outside Game"
+        },
+        {
+          "line": 752,
+          "text": "INPUT screen=game->input-lost connected=0; gameplay neutral outside Game"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Log records corroborate sampled input, not rendered legend/warning appearance or physical game actions.",
+    "No extracted settings files were supplied for profiles 01-03.",
+    "Repeated platform.prev.log files are deduplicated by SHA-256.",
+    "Custom relaunch is associated by owner observation plus a distinct custom-mapping capture; no file hash was returned for that profile.",
+    "The recorded platform string is compiled metadata, not independent hardware/firmware detection."
+  ]
+}

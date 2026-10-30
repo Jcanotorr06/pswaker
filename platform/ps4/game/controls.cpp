@@ -1,10 +1,16 @@
 #include "controls.hpp"
+#include "storage.hpp"
 #include "native/platform.h"
 #include "frame-pacing.hpp"
+#include "pc/pc_controls.h"
 #include <algorithm>
 #include <cmath>
+#include <limits>
+#include <mutex>
 
 namespace {
+std::mutex appliedMutex;
+AppliedControls applied;
 bool checkAfterResume = false;
 double failReadAt = -1;
 bool enabled = false;
@@ -14,9 +20,11 @@ bool armed = false;
 PortScreen destination = PortScreen::Game;
 PortScreen beforeLoss = PortScreen::Legend;
 PortScreen afterLegend = PortScreen::Game;
+PortSettings* settings = nullptr;
 
 const char* screenName(PortScreen screen) {
-    constexpr const char* names[] = {"legend", "game", "settings", "quit", "input-lost", "exit"};
+    constexpr const char* names[] = {"legend", "game", "settings", "quit", "input-lost", "exit",
+        "controls", "binding", "discard-controls", "applying-controls", "controls-failed", "restore-controls"};
     return names[static_cast<unsigned>(screen)];
 }
 
@@ -44,8 +52,37 @@ bool neutral() {
 }
 }
 
-PortView pswaker_port_view() { return view; }
-void pswaker_enable_controls() { enabled = true; }
+AppliedControls pswaker_applied_controls() {
+    const std::lock_guard lock(appliedMutex);
+    return applied;
+}
+bool pswaker_publish_controls(const ControlsConfig& config) {
+    if (!config.valid()) return false;
+    const std::lock_guard lock(appliedMutex);
+    if (applied.generation == std::numeric_limits<uint64_t>::max()) return false;
+    applied = {config, applied.generation + 1};
+    // Startup and Apply run on the game thread, before gameplay can resume.
+    // Keep the pinned camera/aiming API on this complete saved generation.
+    pc_camera_invert_x_set(applied.config.invertCameraX);
+    pc_camera_invert_y_set(applied.config.invertCameraY);
+    return true;
+}
+std::array<std::string, 8> AppliedControls::legend() const {
+    std::array<std::string, 8> lines;
+    for (const auto action : gameActions)
+        lines[static_cast<unsigned>(action)] = std::string("GameCube ") + control_action_name(action) + " = " +
+                                              control_target_name(config.binding(action));
+    lines[6] = std::string("Saved camera inversion X: ") + (config.invertCameraX ? "On" : "Off");
+    lines[7] = std::string("Saved camera inversion Y: ") + (config.invertCameraY ? "On" : "Off");
+    return lines;
+}
+
+PortView pswaker_port_view() {
+    auto result = view;
+    result.controlsDirty = result.pendingControls != pswaker_applied_controls().config;
+    return result;
+}
+void pswaker_enable_controls(PortSettings& profile) { settings = &profile; enabled = true; }
 
 void pswaker_poll_controls() {
     pad first{};
@@ -80,6 +117,17 @@ void pswaker_poll_controls() {
         }
         return;
     }
+    if (view.screen == PortScreen::ApplyingControls) {
+        view.controlsError.clear();
+        if (!view.pendingControls.valid() || pswaker_applied_controls().generation == std::numeric_limits<uint64_t>::max())
+            view.controlsError = "The controls configuration could not be applied.";
+        else if (!settings->setControls(view.pendingControls)) view.controlsError = settings->error();
+        else if (!pswaker_publish_controls(view.pendingControls)) view.controlsError = "Saved controls could not be published.";
+        say("CONTROLS apply-confirmed=%d generation=%llu error=%s", view.controlsError.empty(),
+            static_cast<unsigned long long>(pswaker_applied_controls().generation), view.controlsError.c_str());
+        enter(view.controlsError.empty() ? PortScreen::Controls : PortScreen::ControlsFailed);
+        return;
+    }
     if (neutral()) armed = true;
     if (!armed) return;
     const bool cross = current.held & PAD_CROSS;
@@ -87,6 +135,14 @@ void pswaker_poll_controls() {
     if (view.screen == PortScreen::Settings && (current.held & (PAD_UP | PAD_DOWN))) {
         const unsigned count = portMenuItems.size();
         view.selection = (view.selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
+        armed = false;
+        return;
+    }
+    if ((view.screen == PortScreen::Controls || view.screen == PortScreen::Binding) &&
+        (current.held & (PAD_UP | PAD_DOWN))) {
+        auto& selection = view.screen == PortScreen::Controls ? view.controlsSelection : view.bindingSelection;
+        const unsigned count = view.screen == PortScreen::Controls ? gameActions.size() + 5 : 9;
+        selection = (selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
         armed = false;
         return;
     }
@@ -110,6 +166,11 @@ void pswaker_poll_controls() {
         } else if (cross && action == PortAction::ToggleText) {
             pswaker_toggle_text_size();
             armed = false;
+        } else if (cross && action == PortAction::EditControls) {
+            view.pendingControls = pswaker_applied_controls().config;
+            view.controlsSelection = 0;
+            view.controlsError.clear();
+            destination = PortScreen::Controls;
         } else if (cross && action == PortAction::Quit) destination = PortScreen::Quit;
         else if (cross && (action == PortAction::SampleOutset || action == PortAction::SampleForest)) {
             pswaker_perf_arm(action == PortAction::SampleOutset ? "outset" : "forest");
@@ -122,6 +183,51 @@ void pswaker_poll_controls() {
     case PortScreen::Quit:
         if (circle) destination = PortScreen::Settings;
         else if (cross) destination = PortScreen::Exit;
+        break;
+    case PortScreen::Controls:
+        if (circle || (cross && view.controlsSelection == gameActions.size() + 4))
+            destination = view.pendingControls == pswaker_applied_controls().config ? PortScreen::Settings : PortScreen::DiscardControls;
+        else if (cross && view.controlsSelection < gameActions.size()) {
+            view.bindingSelection = static_cast<unsigned>(view.pendingControls.binding(gameActions[view.controlsSelection]));
+            destination = PortScreen::Binding;
+        } else if (cross && view.controlsSelection == gameActions.size()) {
+            view.pendingControls.invertCameraX = !view.pendingControls.invertCameraX;
+            armed = false;
+        } else if (cross && view.controlsSelection == gameActions.size() + 1) {
+            view.pendingControls.invertCameraY = !view.pendingControls.invertCameraY;
+            armed = false;
+        } else if (cross && view.controlsSelection == gameActions.size() + 2) destination = PortScreen::RestoreControls;
+        else if (cross) destination = PortScreen::ApplyingControls;
+        break;
+    case PortScreen::RestoreControls:
+        if (circle) destination = PortScreen::Controls;
+        else if (cross) {
+            view.pendingControls = ControlsConfig::defaults();
+            destination = PortScreen::Controls;
+        }
+        break;
+    case PortScreen::Binding:
+        if (circle) destination = PortScreen::Controls;
+        else if (cross) {
+            view.pendingControls.assign(gameActions[view.controlsSelection], static_cast<ControlTarget>(view.bindingSelection));
+            destination = PortScreen::Controls;
+        }
+        break;
+    case PortScreen::DiscardControls:
+        if (circle) destination = PortScreen::Controls;
+        else if (cross) {
+            view.pendingControls = pswaker_applied_controls().config;
+            view.controlsError.clear();
+            destination = PortScreen::Settings;
+        }
+        break;
+    case PortScreen::ControlsFailed:
+        if (cross) destination = PortScreen::ApplyingControls;
+        else if (circle) {
+            view.pendingControls = pswaker_applied_controls().config;
+            view.controlsError.clear();
+            destination = PortScreen::Settings;
+        }
         break;
     default: break;
     }
@@ -139,10 +245,15 @@ extern "C" u32 pswaker_read_gamepad(PADStatus* status) {
     }
     if (!view.connected || view.screen != PortScreen::Game || view.releasing) return 0;
     auto& p = status[0];
+    const auto snapshot = pswaker_applied_controls();
+    constexpr std::array<uint32_t, 9> targets{PAD_CROSS, PAD_CIRCLE, PAD_SQUARE, PAD_TRIANGLE,
+        PAD_L1, PAD_R1, PAD_L3, PAD_R3, PAD_OPTIONS};
+    constexpr std::array<uint16_t, 6> actions{PAD_BUTTON_A, PAD_BUTTON_B, PAD_BUTTON_X,
+        PAD_BUTTON_Y, PAD_TRIGGER_Z, PAD_BUTTON_START};
+    for (const auto action : gameActions)
+        if (current.held & targets[static_cast<unsigned>(snapshot.config.binding(action))])
+            p.button |= actions[static_cast<unsigned>(action)];
     constexpr struct { uint32_t ds4; uint16_t gc; } mapping[] = {
-        {PAD_CROSS, PAD_BUTTON_A}, {PAD_CIRCLE, PAD_BUTTON_B},
-        {PAD_SQUARE, PAD_BUTTON_X}, {PAD_TRIANGLE, PAD_BUTTON_Y},
-        {PAD_R1, PAD_TRIGGER_Z}, {PAD_OPTIONS, PAD_BUTTON_START},
         {PAD_UP, PAD_BUTTON_UP}, {PAD_DOWN, PAD_BUTTON_DOWN},
         {PAD_LEFT, PAD_BUTTON_LEFT}, {PAD_RIGHT, PAD_BUTTON_RIGHT},
     };

@@ -1,5 +1,85 @@
 # Owner persistence checkpoint (#20)
 
+## Saved controls follow-up (#94, after first playable)
+
+Use a separately identified new build and private settings backup for these
+checks; they do not change the original #20 acceptance. See the
+[applied controls format](APPLIED-CONTROLS.md).
+
+- [ ] Launch a complete custom layout, close and relaunch, then compare applied
+  gameplay and both legends. Confirm the shared profile location remains the
+  same after a versioned package update and cache-only clearing.
+- [ ] With a temporary settings profile, check an absent controls section:
+  complete defaults, no warning, no file rewrite. Check malformed/incomplete,
+  duplicate, reserved and unsupported layouts: complete defaults, visible reason,
+  byte-identical settings. Restore the private backup after the trials.
+- [ ] Change port text size with a valid saved layout. Relaunch and verify both
+  settings survive, including unrelated lines and `[dev]` placement.
+- [ ] Record read/unavailable-storage failures separately from controls fallback;
+  the existing Retry/Exit storage screen must still gate gameplay. Use only a
+  temporary profile for failure trials and preserve real progress.
+- [ ] Return the exact build/package association and missing observations. No
+  hardware result for #94 is implied by the host harnesses.
+
+## Button Apply follow-up (#95, after first playable)
+
+Use a new identified build and a private profile backup; preserve real saves.
+
+- [ ] Apply a custom layout from the editor. Fully close and relaunch; verify
+  all six bindings, both preserved inversion switches, applied legends and
+  gameplay. Confirm text size, unrelated lines and `[dev]` placement survive.
+- [ ] With a temporary profile, verify Discard performs no settings write.
+  Exercise failed Apply and successful Retry after repair. Retain observed
+  file bytes and menu/gameplay behavior; uncertain completion may have changed
+  disk despite the old in-memory layout. Never infer disk rollback from Discard.
+- [ ] Check a versioned package update and cache-only clearing separately,
+  preserving the shared applied layout. Restore the private profile backup
+  after any failure trials. Return missing observations as pending.
+
+## Restore defaults follow-up (#96, after first playable)
+
+Use a new identified build and a private profile backup with custom bindings,
+both saved inversion switches On, Standard text size and unrelated settings.
+Preserve real saves; use a temporary profile for failure trials.
+
+- [ ] Compare settings bytes before and after cancelling restore confirmation,
+  then after confirming reset and choosing Discard. Both flows leave the file
+  byte-identical and the previous applied snapshot/generation unchanged.
+- [ ] Reset and successfully Apply. Compare settings: the complete controls
+  section now contains six default bindings and both switches Off. Text size,
+  unrelated lines and `[dev]` placement remain intact. Fully close/relaunch;
+  verify the default gameplay layout and both applied legends.
+- [ ] Exercise failed and uncertain reset Apply in a temporary profile. Retain
+  file comparisons and observations of the old applied layout, pending defaults
+  and Retry/Discard. A successful Retry saves all defaults; Discard never
+  rewrites the disk, including after uncertain completion.
+- [ ] Compare private save/cache inventories before and after these reset
+  actions, accounting separately for normal game saves or cache activity.
+  Resetting controls must not clear or rewrite owner saves or caches. Return
+  missing observations as pending and restore the private profile backup.
+
+## Camera and aiming preference follow-up (#97, acceptance in #98)
+
+Use an identified new build and private profile backup. In each of neither,
+X-only, Y-only and both configurations:
+
+- [ ] Apply a custom binding and the chosen switches together, fully close and
+  relaunch, then compare the applied editor/legend and actual camera/aiming
+  directions against the [controls checklist](Controls-checklist.md).
+- [ ] Confirm the same complete configuration after a versioned package update
+  and cache-only clearing. Record identities and private profile comparisons;
+  preserve text size, unrelated settings and real saves throughout.
+- [ ] With a temporary profile, exercise failed and uncertain Apply: previous
+  directions/bindings stay active and pending edits remain. Retry must save the
+  whole configuration; Discard never promises rollback of uncertain disk state.
+  Missing/invalid controls initialize complete defaults and camera switches Off
+  with the existing feedback rules. Storage read failure still gates startup.
+
+Return build-associated observations and failures to #98. Host checks and
+historical persistence evidence do not establish behavior for this binary.
+
+## Original #20 procedure
+
 Candidate identities and private artifact locations are in the
 [candidate report](../../evidence/ps4/persistence-20/REPORT.md). These checks are for PS4
 Slim / firmware 9.00 / GoldHEN v2.4b18, USA GZLE01 revision 0. Record any change

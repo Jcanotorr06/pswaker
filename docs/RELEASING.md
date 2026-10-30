@@ -160,7 +160,7 @@ in. Steps 4–6 run in the same PowerShell session, from that worktree:
 $src = 'C:\private\pswaker-0.1.0-rc.1'
 git worktree add $src origin/main
 Set-Location $src
-$out = 'C:\private\release-0.1.0-rc.1'
+$out = 'q\release-0.1.0-rc.1'
 $program = 'C:\private\program-release-01.13'
 $version = '0.1.0.1'
 

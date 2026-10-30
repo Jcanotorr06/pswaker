@@ -38,7 +38,8 @@ class GciPersistenceTests(unittest.TestCase):
             'io.cpp', 'card/CardGciFolder.cpp', 'card/FileIO.cpp',
             'card/File.cpp', 'card/Util.cpp']]
         result = subprocess.run(flags + list(map(str, sources)) + [
-            str(PLATFORM / 'game/storage.cpp'), str(LOCATIONS.tests / 'gci-persistence.cpp'),
+            str(PLATFORM / 'game/storage.cpp'), str(PLATFORM / 'game/controls-config.cpp'),
+            str(LOCATIONS.tests / 'gci-persistence.cpp'),
             str(Path(HOST) / 'sdl/libSDL3.a'), '-pthread', '-ldl', '-lm',
             '-Wl,--wrap=fsync', '-Wl,--wrap=rename', '-o', str(cls.binary)],
             capture_output=True, text=True)

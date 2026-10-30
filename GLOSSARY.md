@@ -39,6 +39,14 @@ in the current context.
 **Native game menu**:
 A menu supplied by The Wind Waker, such as file selection or inventory.
 
+**Applied controls**:
+The complete saved controls configuration used by gameplay, the legend and PS4
+control prompts. It contains six action bindings and two camera inversion switches.
+
+**Pending controls**:
+Edits in the controls editor, including a pending restore defaults. They have no
+effect until Apply succeeds.
+
 **Port menu**:
 A menu supplied by the PS4 port for settings, confirmation or input recovery.
 

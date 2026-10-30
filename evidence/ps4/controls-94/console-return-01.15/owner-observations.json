@@ -1,0 +1,21 @@
+{
+  "source": "Owner return in the implementation conversation",
+  "statement": "The buttons  in 03 functioned as mapped and continued functioning after closing and re-lauching the application.\nAll other profiles resulted in the default mapping",
+  "custom_mapping_functionality": "Owner confirmed profile 03 functioned as mapped",
+  "custom_mapping_full_relaunch": "Owner confirmed after closing and relaunching",
+  "other_profile_mapping": "Owner confirmed default mapping for all other supplied profiles",
+  "per_action_scene_and_item_details": "Not supplied",
+  "legend_and_visible_fallback_feedback": "Owner confirmed: both profile-03 legends matched; profiles 04-08 showed fallback warnings; profiles 01-03 showed none",
+  "fixed_inputs_and_recovery_physical_behavior": "Owner confirmed all passed under profile 03: fixed sticks/D-pad/partial-full triggers, Touchpad/Cross/Circle navigation, physical disconnect and five-second failed-read check, deliberate resume without held-input leakage",
+  "package_update_cache_and_storage_failure_trials": "Not reported",
+  "follow_ups": [
+    {
+      "question": "Did profile 03 show the correct custom mapping in both the first-launch and settings legends, and did profiles 04?08 show a fallback warning (with no warning for 01?03)?",
+      "answer": "Yes, all matched"
+    },
+    {
+      "question": "Under profile 03, did fixed sticks/D-pad/partial-full triggers, Touchpad/Cross/Circle navigation, physical disconnect and the five-second failed-read check all behave correctly, including deliberate resume without held inputs leaking into gameplay?",
+      "answer": "Yes, all passed"
+    }
+  ]
+}
