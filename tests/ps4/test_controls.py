@@ -37,7 +37,8 @@ class InstalledControlsTests(unittest.TestCase):
                                 str(PLATFORM / 'game/controls-config.cpp'),
                                 str(PLATFORM / 'game/storage.cpp'),
                                 str(LOCATIONS.tests / 'controls-console.cpp'), str(root / 'platform.o'),
-                                '-Wl,--wrap=scePadReadState', '-o', str(cls.binary)],
+                                '-Wl,--wrap=scePadReadState', '-Wl,--wrap=fsync',
+                                '-Wl,--wrap=close', '-Wl,--wrap=rename', '-o', str(cls.binary)],
                                capture_output=True, text=True)
         if build.returncode:
             raise AssertionError(build.stderr)
@@ -56,6 +57,23 @@ class InstalledControlsTests(unittest.TestCase):
 
     def test_legend_confirmation_does_not_leak_into_game(self):
         self.check_scenario('legend')
+
+    def test_editor_pending_swap_apply_publication_and_neutral_resume(self):
+        self.check_scenario('editor-apply')
+
+    def test_editor_reaches_every_action_and_target_and_applies_gameplay_mapping(self):
+        self.check_scenario('editor-all-targets')
+
+    def test_controller_loss_preserves_pending_edits_and_requires_fixed_confirmation_in_each_editor_state(self):
+        self.check_scenario('editor-loss')
+
+    def test_editor_noop_unused_assignment_leave_keep_editing_and_discard(self):
+        self.check_scenario('editor-discard')
+
+    def test_editor_failed_and_uncertain_apply_keep_applied_controls_and_allow_retry_or_discard(self):
+        for fault in ['sync', 'close', 'rename', 'uncertain', 'discard']:
+            with self.subTest(fault=fault):
+                self.check_scenario('editor-fail-' + fault)
 
     def test_saved_layout_drives_gameplay_and_applied_legend(self):
         self.check_scenario('saved-layout')

@@ -1,4 +1,5 @@
 #include "controls.hpp"
+#include "storage.hpp"
 #include "native/platform.h"
 #include "frame-pacing.hpp"
 #include <algorithm>
@@ -18,9 +19,11 @@ bool armed = false;
 PortScreen destination = PortScreen::Game;
 PortScreen beforeLoss = PortScreen::Legend;
 PortScreen afterLegend = PortScreen::Game;
+PortSettings* settings = nullptr;
 
 const char* screenName(PortScreen screen) {
-    constexpr const char* names[] = {"legend", "game", "settings", "quit", "input-lost", "exit"};
+    constexpr const char* names[] = {"legend", "game", "settings", "quit", "input-lost", "exit",
+        "controls", "binding", "discard-controls", "applying-controls", "controls-failed"};
     return names[static_cast<unsigned>(screen)];
 }
 
@@ -69,8 +72,12 @@ std::array<std::string, 8> AppliedControls::legend() const {
     return lines;
 }
 
-PortView pswaker_port_view() { return view; }
-void pswaker_enable_controls() { enabled = true; }
+PortView pswaker_port_view() {
+    auto result = view;
+    result.controlsDirty = result.pendingControls != pswaker_applied_controls().config;
+    return result;
+}
+void pswaker_enable_controls(PortSettings& profile) { settings = &profile; enabled = true; }
 
 void pswaker_poll_controls() {
     pad first{};
@@ -105,6 +112,17 @@ void pswaker_poll_controls() {
         }
         return;
     }
+    if (view.screen == PortScreen::ApplyingControls) {
+        view.controlsError.clear();
+        if (!view.pendingControls.valid() || pswaker_applied_controls().generation == std::numeric_limits<uint64_t>::max())
+            view.controlsError = "The controls configuration could not be applied.";
+        else if (!settings->setControls(view.pendingControls)) view.controlsError = settings->error();
+        else if (!pswaker_publish_controls(view.pendingControls)) view.controlsError = "Saved controls could not be published.";
+        say("CONTROLS apply-confirmed=%d generation=%llu error=%s", view.controlsError.empty(),
+            static_cast<unsigned long long>(pswaker_applied_controls().generation), view.controlsError.c_str());
+        enter(view.controlsError.empty() ? PortScreen::Controls : PortScreen::ControlsFailed);
+        return;
+    }
     if (neutral()) armed = true;
     if (!armed) return;
     const bool cross = current.held & PAD_CROSS;
@@ -112,6 +130,14 @@ void pswaker_poll_controls() {
     if (view.screen == PortScreen::Settings && (current.held & (PAD_UP | PAD_DOWN))) {
         const unsigned count = portMenuItems.size();
         view.selection = (view.selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
+        armed = false;
+        return;
+    }
+    if ((view.screen == PortScreen::Controls || view.screen == PortScreen::Binding) &&
+        (current.held & (PAD_UP | PAD_DOWN))) {
+        auto& selection = view.screen == PortScreen::Controls ? view.controlsSelection : view.bindingSelection;
+        const unsigned count = view.screen == PortScreen::Controls ? gameActions.size() + 2 : 9;
+        selection = (selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
         armed = false;
         return;
     }
@@ -135,6 +161,11 @@ void pswaker_poll_controls() {
         } else if (cross && action == PortAction::ToggleText) {
             pswaker_toggle_text_size();
             armed = false;
+        } else if (cross && action == PortAction::EditControls) {
+            view.pendingControls = pswaker_applied_controls().config;
+            view.controlsSelection = 0;
+            view.controlsError.clear();
+            destination = PortScreen::Controls;
         } else if (cross && action == PortAction::Quit) destination = PortScreen::Quit;
         else if (cross && (action == PortAction::SampleOutset || action == PortAction::SampleForest)) {
             pswaker_perf_arm(action == PortAction::SampleOutset ? "outset" : "forest");
@@ -147,6 +178,37 @@ void pswaker_poll_controls() {
     case PortScreen::Quit:
         if (circle) destination = PortScreen::Settings;
         else if (cross) destination = PortScreen::Exit;
+        break;
+    case PortScreen::Controls:
+        if (circle || (cross && view.controlsSelection == gameActions.size() + 1))
+            destination = view.pendingControls == pswaker_applied_controls().config ? PortScreen::Settings : PortScreen::DiscardControls;
+        else if (cross && view.controlsSelection < gameActions.size()) {
+            view.bindingSelection = static_cast<unsigned>(view.pendingControls.binding(gameActions[view.controlsSelection]));
+            destination = PortScreen::Binding;
+        } else if (cross) destination = PortScreen::ApplyingControls;
+        break;
+    case PortScreen::Binding:
+        if (circle) destination = PortScreen::Controls;
+        else if (cross) {
+            view.pendingControls.assign(gameActions[view.controlsSelection], static_cast<ControlTarget>(view.bindingSelection));
+            destination = PortScreen::Controls;
+        }
+        break;
+    case PortScreen::DiscardControls:
+        if (circle) destination = PortScreen::Controls;
+        else if (cross) {
+            view.pendingControls = pswaker_applied_controls().config;
+            view.controlsError.clear();
+            destination = PortScreen::Settings;
+        }
+        break;
+    case PortScreen::ControlsFailed:
+        if (cross) destination = PortScreen::ApplyingControls;
+        else if (circle) {
+            view.pendingControls = pswaker_applied_controls().config;
+            view.controlsError.clear();
+            destination = PortScreen::Settings;
+        }
         break;
     default: break;
     }

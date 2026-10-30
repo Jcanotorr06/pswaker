@@ -44,6 +44,7 @@ bool graphics = false;
 bool quitting = false;
 PortSettings settings;
 bool settingsSaved = false;
+std::string textError;
 std::atomic<unsigned> checkedErrors{0};
 struct PipelineCounts { uint32_t created, queued; };
 PipelineCounts pipelines() {
@@ -101,13 +102,51 @@ void portContent() {
             ImGui::Text("%s %s", view.selection == i ? ">" : " ", portMenuItems[i].label);
         ImGui::Text("Port text size: %s", settings.largeText() ? "Large" : "Standard");
         ImGui::TextWrapped("%s", pswaker_perf_status());
-        if (*settings.error()) {
-            ImGui::TextWrapped("Settings could not be saved: %s", settings.error());
+        if (!textError.empty()) {
+            ImGui::TextWrapped("Port text size could not be saved: %s", textError.c_str());
             ImGui::TextWrapped("Check free space/permissions, then select Change port text size to retry. Saving was not confirmed.");
         } else if (settingsSaved) ImGui::TextUnformatted("Port text size saved.");
         ImGui::Separator();
         symbolLine(Symbol::Cross, "Confirm"); symbolLine(Symbol::Circle, "Cancel / Resume game");
         ImGui::TextWrapped("The read check resumes gameplay, then pauses after 5 seconds. Hold movement, buttons and triggers during the check; explicitly resume afterward.");
+    } else if (view.screen == PortScreen::Controls) {
+        const auto applied = pswaker_applied_controls();
+        ImGui::TextUnformatted("Controls: pending edits / applied layout");
+        ImGui::TextUnformatted("D-pad Up / Down: Choose an action; Cross: Choose its button");
+        ImGui::TextUnformatted("Pending edits take effect only after Apply succeeds.");
+        for (unsigned i = 0; i < gameActions.size(); ++i) {
+            const auto action = gameActions[i];
+            ImGui::Text("%s GameCube %s: pending %s | applied %s", view.controlsSelection == i ? ">" : " ",
+                control_action_name(action), control_target_name(view.pendingControls.binding(action)),
+                control_target_name(applied.config.binding(action)));
+        }
+        ImGui::Text("Saved camera inversion (preserved): X %s / Y %s",
+            view.pendingControls.invertCameraX ? "On" : "Off", view.pendingControls.invertCameraY ? "On" : "Off");
+        ImGui::Text("%s Apply", view.controlsSelection == gameActions.size() ? ">" : " ");
+        ImGui::Text("%s Back to settings", view.controlsSelection == gameActions.size() + 1 ? ">" : " ");
+        ImGui::TextUnformatted(view.controlsDirty ? "Unsaved changes" : "Pending values match the applied layout.");
+        symbolLine(Symbol::Circle, "Back (unsaved edits require confirmation)");
+    } else if (view.screen == PortScreen::Binding) {
+        ImGui::Text("Choose a pending button for GameCube %s", control_action_name(gameActions[view.controlsSelection]));
+        ImGui::TextUnformatted("D-pad Up / Down: Choose; occupied buttons swap actions.");
+        for (unsigned i = 0; i < 9; ++i)
+            ImGui::Text("%s %s", view.bindingSelection == i ? ">" : " ", control_target_name(static_cast<ControlTarget>(i)));
+        symbolLine(Symbol::Cross, "Assign to pending layout");
+        symbolLine(Symbol::Circle, "Keep the current pending binding");
+    } else if (view.screen == PortScreen::DiscardControls) {
+        ImGui::TextUnformatted("Discard unsaved controls changes?");
+        symbolLine(Symbol::Cross, "Discard and return to settings");
+        symbolLine(Symbol::Circle, "Keep editing");
+    } else if (view.screen == PortScreen::ApplyingControls) {
+        ImGui::TextUnformatted("Applying controls...");
+        ImGui::TextUnformatted("Saving the complete layout. Gameplay remains paused.");
+    } else if (view.screen == PortScreen::ControlsFailed) {
+        ImGui::TextUnformatted("Controls Apply was not confirmed.");
+        ImGui::TextWrapped("%s", view.controlsError.c_str());
+        ImGui::TextUnformatted("The previous applied layout remains active; pending edits are kept.");
+        ImGui::TextWrapped("Check free space and permissions in /data/pswaker, then Retry. Disk completion may be uncertain; Retry saves the entire pending layout again.");
+        symbolLine(Symbol::Cross, "Retry Apply");
+        symbolLine(Symbol::Circle, "Discard edits and return to settings");
     } else if (view.screen == PortScreen::Quit) {
         ImGui::TextUnformatted("Quit PSWaker?");
         ImGui::TextUnformatted("Only completed in-game saves are retained. Quitting does not save current progress.");
@@ -214,6 +253,7 @@ void logCache() {
 }
 void pswaker_toggle_text_size() {
     settingsSaved = settings.setLargeText(!settings.largeText());
+    textError = settings.error();
     say("SETTINGS saved=%d port-text=%s path=/data/pswaker/settings.ini error=%s",
         settingsSaved, settings.largeText() ? "large" : "standard", settings.error());
     if (!settingsSaved) ++checkedErrors;
@@ -314,7 +354,7 @@ void pswaker_graphics_ready() {
 void pswaker_frame_boundary() {
     JKRPcHostAllocScope hostAlloc;
     static double next = 0;
-    pswaker_enable_controls();
+    pswaker_enable_controls(settings);
     // The worker records failure only after the transaction finishes. Stop at
     // the next frame boundary so affected progress cannot be overwritten.
     if (pswaker_card_shutdown_status() < 0) pswaker_exit(0);

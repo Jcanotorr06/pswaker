@@ -4,6 +4,7 @@
 #include "frame-pacing.hpp"
 #include "native/platform.h"
 #include <cassert>
+#include <cerrno>
 #include <cstdint>
 #include <cstring>
 #include <fstream>
@@ -16,6 +17,8 @@ uint32_t buttons = 0;
 uint8_t lx = 128, ly = 128, rx = 128, ry = 128, lt = 0, rt = 0;
 bool connected = true;
 bool fail = false;
+bool failSync = false, failClose = false, failRename = false;
+int syncCountdown = -1;
 unsigned textChanges = 0;
 PortSettings* settings = nullptr;
 double clockValue = 1000;
@@ -36,7 +39,7 @@ void neutralGame() {
 }
 void start() {
     assert(pad_open());
-    pswaker_enable_controls();
+    pswaker_enable_controls(*settings);
     sample(PAD_CROSS); // Held during first launch must not confirm.
     assert(pswaker_port_view().screen == PortScreen::Legend);
     neutralGame();
@@ -46,8 +49,59 @@ void start() {
     assert(pswaker_port_view().screen == PortScreen::Game);
     assert(gamepads[0].button == 0);
 }
+void tap(uint32_t button) {
+    sample(button); neutralGame(); sample(); neutralGame();
+}
+void openEditor() {
+    tap(PAD_TOUCH_PAD);
+    for (unsigned i = 0; portMenuItems[pswaker_port_view().selection].action != PortAction::EditControls; ++i) {
+        assert(i < portMenuItems.size());
+        tap(PAD_DOWN);
+    }
+    tap(PAD_CROSS);
+    assert(pswaker_port_view().screen == PortScreen::Controls);
+}
+void editorRow(unsigned row) {
+    for (unsigned i = 0; pswaker_port_view().controlsSelection != row; ++i) {
+        assert(i < 8);
+        tap(PAD_DOWN);
+    }
+}
+void assignButton(unsigned row, unsigned target) {
+    editorRow(row);
+    tap(PAD_CROSS);
+    assert(pswaker_port_view().screen == PortScreen::Binding);
+    for (unsigned i = 0; pswaker_port_view().bindingSelection != target; ++i) {
+        assert(i < 9);
+        tap(PAD_DOWN);
+    }
+    tap(PAD_CROSS);
+    assert(pswaker_port_view().screen == PortScreen::Controls);
+    assert(pswaker_port_view().pendingControls.valid());
+}
+std::string readProfile(const std::string& path) {
+    std::ifstream file(path);
+    return {std::istreambuf_iterator<char>(file), {}};
+}
 }
 extern "C" {
+int __real_fsync(int);
+int __wrap_fsync(int fd) {
+    if (failSync || syncCountdown == 0) { errno = EIO; return -1; }
+    if (syncCountdown > 0) --syncCountdown;
+    return __real_fsync(fd);
+}
+int __real_close(int);
+int __wrap_close(int fd) {
+    const int result = __real_close(fd);
+    if (failClose) { errno = EIO; return -1; }
+    return result;
+}
+int __real_rename(const char*, const char*);
+int __wrap_rename(const char* from, const char* to) {
+    if (failRename) { errno = EIO; return -1; }
+    return __real_rename(from, to);
+}
 int clock_gettime(clockid_t, struct timespec* output) noexcept {
     output->tv_sec = static_cast<time_t>(clockValue);
     output->tv_nsec = static_cast<long>((clockValue - output->tv_sec) * 1e9);
@@ -90,6 +144,201 @@ extern "C" uint64_t pswaker_perf_now() { return 0; }
 void pswaker_perf_diagnostic(PswakerDiagnostic, uint64_t) {}
 int main(int argc, char** argv) {
     assert(argc == 3);
+    PortSettings initialProfile(argv[2]);
+    settings = &initialProfile;
+    if (std::strcmp(argv[1], "editor-all-targets") == 0) {
+        assert(settings->check());
+        start(); openEditor();
+        const uint32_t physical[] = {0x4000, 0x2000, 0x8000, 0x1000, 0x400, 0x800, 2, 4, 8};
+        const uint16_t actions[] = {0x100, 0x200, 0x400, 0x800, 0x10, 0x1000};
+        uint64_t generation = pswaker_applied_controls().generation;
+        for (unsigned action = 0; action < 6; ++action) {
+            for (unsigned target = 0; target < 9; ++target) {
+                assignButton(action, target);
+                const auto pending = pswaker_port_view().pendingControls;
+                assert(static_cast<unsigned>(pending.binding(gameActions[action])) == target);
+                assert(pswaker_applied_controls().generation == generation);
+                editorRow(6); tap(PAD_CROSS); sample(); sample();
+                assert(pswaker_applied_controls().generation == ++generation);
+                assert(pswaker_applied_controls().config == pending);
+                tap(PAD_CIRCLE); tap(PAD_CIRCLE);
+                assert(pswaker_port_view().screen == PortScreen::Game);
+                sample(physical[target]);
+                assert(gamepads[0].button == actions[action]);
+                sample(); openEditor();
+            }
+        }
+        return 0;
+    }
+    if (std::strcmp(argv[1], "editor-loss") == 0) {
+        assert(settings->check());
+        start(); openEditor(); assignButton(0, 6);
+        const auto pending = pswaker_port_view().pendingControls;
+        const auto generation = pswaker_applied_controls().generation;
+        const auto recover = [&](PortScreen expected) {
+            lx = 255; rx = 0; lt = rt = 255;
+            connected = false; sample(PAD_L3 | PAD_R3 | PAD_CROSS); neutralGame();
+            assert(pswaker_port_view().screen == PortScreen::InputLost);
+            connected = true; sample(PAD_CROSS); neutralGame(); sample(); neutralGame();
+            assert(pswaker_port_view().screen == PortScreen::InputLost);
+            lx = rx = 128; lt = rt = 0; sample();
+            sample(PAD_L3); sample(); // A remapped gameplay button cannot confirm recovery.
+            assert(pswaker_port_view().screen == PortScreen::InputLost);
+            sample(PAD_CROSS); sample(PAD_CROSS); neutralGame(); sample();
+            assert(pswaker_port_view().screen == expected);
+            assert(pswaker_port_view().pendingControls == pending);
+            assert(pswaker_applied_controls().generation == generation);
+        };
+        recover(PortScreen::Controls);
+        tap(PAD_CROSS); recover(PortScreen::Binding); tap(PAD_CIRCLE);
+        tap(PAD_CIRCLE); recover(PortScreen::DiscardControls); tap(PAD_CIRCLE);
+        editorRow(6); tap(PAD_CROSS); recover(PortScreen::ApplyingControls);
+        failRename = true; sample(); failRename = false; sample();
+        assert(pswaker_port_view().screen == PortScreen::ControlsFailed);
+        recover(PortScreen::ControlsFailed);
+        tap(PAD_CIRCLE); tap(PAD_CIRCLE);
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        return 0;
+    }
+    if (std::strncmp(argv[1], "editor-fail-", 12) == 0) {
+        const std::string ini = std::string(argv[2]) + "/settings.ini";
+        const std::string previous = "# profile\nPSWAKER_LARGE_TEXT=0\n[dev]\nCOS_FPS60=1\n";
+        std::ofstream(ini) << previous;
+        assert(settings->check());
+        const auto applied = pswaker_applied_controls();
+        start(); openEditor(); assignButton(0, 6);
+        const auto pending = pswaker_port_view().pendingControls;
+        const std::string fault = argv[1] + 12;
+        failSync = fault == "sync";
+        failClose = fault == "close";
+        failRename = fault == "rename" || fault == "discard";
+        syncCountdown = fault == "uncertain" ? 2 : -1;
+        editorRow(6); tap(PAD_CROSS);
+        assert(pswaker_port_view().screen == PortScreen::ApplyingControls);
+        sample(); neutralGame();
+        assert(pswaker_port_view().screen == PortScreen::ControlsFailed);
+        assert(!pswaker_port_view().controlsError.empty());
+        assert(pswaker_port_view().pendingControls == pending);
+        assert(pswaker_applied_controls().config == applied.config);
+        assert(pswaker_applied_controls().generation == applied.generation);
+        assert(pswaker_applied_controls().legend() == applied.legend());
+        // Holding confirm cannot immediately retry; the failure screen needs a fresh release.
+        sample(PAD_CROSS); sample(PAD_CROSS); neutralGame();
+        assert(pswaker_port_view().screen == PortScreen::ControlsFailed);
+        failSync = failClose = failRename = false;
+        syncCountdown = -1;
+        if (fault == "uncertain") {
+            PortSettings disk(argv[2]);
+            assert(disk.check() && disk.controls() == pending);
+            // Prove Retry rewrites all pending values even if the uncertain file changed.
+            std::ofstream(ini) << previous;
+        } else assert(readProfile(ini) == previous);
+        sample();
+        if (fault == "discard") {
+            tap(PAD_CIRCLE);
+            assert(pswaker_port_view().screen == PortScreen::Settings);
+            assert(pswaker_port_view().pendingControls == applied.config);
+            assert(pswaker_applied_controls().generation == applied.generation);
+            assert(readProfile(ini) == previous);
+        } else {
+            tap(PAD_CROSS);
+            assert(pswaker_port_view().screen == PortScreen::ApplyingControls);
+            sample(); sample();
+            assert(pswaker_port_view().screen == PortScreen::Controls);
+            assert(!pswaker_port_view().controlsDirty && pswaker_port_view().controlsError.empty());
+            assert(pswaker_applied_controls().config == pending);
+            assert(pswaker_applied_controls().generation == applied.generation + 1);
+            PortSettings disk(argv[2]);
+            assert(disk.check() && disk.controls() == pending && !disk.largeText());
+            tap(PAD_CIRCLE);
+        }
+        tap(PAD_CIRCLE);
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        sample(PAD_L3); assert(gamepads[0].button == (fault == "discard" ? 0 : 0x100));
+        sample(PAD_CROSS); assert(gamepads[0].button == (fault == "discard" ? 0x100 : 0));
+        return 0;
+    }
+    if (std::strcmp(argv[1], "editor-discard") == 0) {
+        assert(settings->check());
+        const auto applied = pswaker_applied_controls();
+        start(); openEditor();
+        assignButton(0, 0); // Selecting the current target is a no-op.
+        assert(!pswaker_port_view().controlsDirty);
+        assignButton(0, 4); // Unused L1 frees Cross.
+        assert(pswaker_port_view().pendingControls.binding(GameAction::B) == ControlTarget::Circle);
+        const auto pending = pswaker_port_view().pendingControls;
+        tap(PAD_CIRCLE);
+        assert(pswaker_port_view().screen == PortScreen::DiscardControls);
+        tap(PAD_CIRCLE); // Keep editing, including the pending values.
+        assert(pswaker_port_view().screen == PortScreen::Controls);
+        assert(pswaker_port_view().pendingControls == pending);
+        editorRow(7); tap(PAD_CROSS);
+        assert(pswaker_port_view().screen == PortScreen::DiscardControls);
+        tap(PAD_CROSS);
+        assert(pswaker_port_view().screen == PortScreen::Settings);
+        assert(pswaker_port_view().pendingControls == applied.config);
+        assert(pswaker_applied_controls().generation == applied.generation);
+        assert(!std::filesystem::exists(std::string(argv[2]) + "/settings.ini"));
+        tap(PAD_CROSS); // Reopening starts from the complete applied snapshot.
+        assert(pswaker_port_view().pendingControls == applied.config);
+        tap(PAD_CROSS); tap(PAD_DOWN); tap(PAD_CIRCLE); // Cancel the target picker.
+        assert(!pswaker_port_view().controlsDirty);
+        tap(PAD_CIRCLE); tap(PAD_CIRCLE);
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        sample(PAD_CROSS); assert(gamepads[0].button == 0x100);
+        return 0;
+    }
+    if (std::strcmp(argv[1], "editor-apply") == 0) {
+        const std::string previous = "# owner settings\nPSWAKER_LARGE_TEXT=0\n[controls]\nversion=1\n"
+            "A=L3\nB=R3\nX=L1\nY=Options\nZ=Cross\nStart=Circle\n"
+            "invert_camera_x=1\ninvert_camera_y=0\n[dev]\nCOS_FPS60=1\n";
+        const auto ini = std::string(argv[2]) + "/settings.ini";
+        std::ofstream(ini) << previous;
+        assert(settings->check() && pswaker_publish_controls(settings->controls()));
+        const auto applied = pswaker_applied_controls();
+        start();
+        sample(PAD_TOUCH_PAD); sample();
+        while (portMenuItems[pswaker_port_view().selection].action != PortAction::EditControls) {
+            sample(PAD_DOWN); sample();
+        }
+        sample(PAD_CROSS); neutralGame(); sample();
+        assert(pswaker_port_view().screen == PortScreen::Controls);
+        assert(pswaker_port_view().pendingControls == applied.config);
+        // A: select the already occupied R3 target. Fixed Cross operates the editor.
+        sample(PAD_CROSS); sample();
+        assert(pswaker_port_view().screen == PortScreen::Binding);
+        sample(PAD_DOWN); sample(); sample(PAD_CROSS); sample();
+        const auto pending = pswaker_port_view().pendingControls;
+        assert(pending.binding(GameAction::A) == ControlTarget::R3);
+        assert(pending.binding(GameAction::B) == ControlTarget::L3);
+        assert(pending.invertCameraX && !pending.invertCameraY);
+        assert(pswaker_port_view().controlsDirty);
+        assert(pswaker_applied_controls().config == applied.config);
+        assert(pswaker_applied_controls().generation == applied.generation);
+        assert(pswaker_applied_controls().legend() == applied.legend());
+        assert(readProfile(ini) == previous);
+        for (int i = 0; i < 6; ++i) { sample(PAD_DOWN); neutralGame(); sample(); }
+        sample(PAD_CROSS); sample();
+        assert(pswaker_port_view().screen == PortScreen::ApplyingControls);
+        neutralGame();
+        sample();
+        assert(pswaker_port_view().screen == PortScreen::Controls);
+        assert(!pswaker_port_view().controlsDirty);
+        assert(pswaker_applied_controls().config == pending);
+        assert(pswaker_applied_controls().generation == applied.generation + 1);
+        assert(pswaker_applied_controls().legend()[0] == "GameCube A = R3");
+        PortSettings reloaded(argv[2]);
+        assert(reloaded.check() && reloaded.controls() == pending && !reloaded.largeText());
+        // Back to settings, then explicit resume. Held editor buttons cannot leak.
+        sample(); sample(PAD_CIRCLE); neutralGame(); sample();
+        assert(pswaker_port_view().screen == PortScreen::Settings);
+        sample(PAD_CIRCLE); sample(PAD_CIRCLE); neutralGame();
+        sample();
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        sample(PAD_R3); assert(gamepads[0].button == 0x100);
+        sample(PAD_L3); assert(gamepads[0].button == 0x200);
+        return 0;
+    }
     if (std::strcmp(argv[1], "coherent-snapshot") == 0) {
         const auto defaults = ControlsConfig::defaults();
         auto custom = defaults;
@@ -259,7 +508,7 @@ int main(int argc, char** argv) {
     if (std::strcmp(scenario, "boot-loss") == 0) {
         assert(pad_open());
         sample(); sample(PAD_CROSS); sample(); // Preparation screens cannot dismiss the legend.
-        pswaker_enable_controls(); sample();
+        pswaker_enable_controls(*settings); sample();
         fail = true; sample(); fail = false;
         sample(PAD_CROSS); neutralGame(); // A release from before the failure is invalid.
         assert(pswaker_port_view().screen == PortScreen::InputLost);

@@ -64,6 +64,85 @@ int main(int argc, char** argv) {
         return 0;
     }
     const auto ini = root / "settings.ini";
+    if (std::strcmp(argv[1], "controls-profile-repair") == 0) {
+        auto pending = ControlsConfig::defaults();
+        assert(pending.assign(GameAction::Start, ControlTarget::L1));
+        pending.invertCameraX = true;
+        const std::string prefix = "; owner settings\r\nPSWAKER_LARGE_TEXT=0\r\n";
+        const std::string other = "[audio]\r\nvolume=37\r\n";
+        const std::string dev = "[dev]\r\nCOS_FPS60=1\r\n";
+        const auto section = serialize_controls(pending);
+        const auto apply = [&](const std::string& before, const std::string& expected) {
+            write(ini, before);
+            assert(settings.check());
+            assert(settings.setControls(pending));
+            assert(read(ini) == expected && !*settings.controlsFeedback());
+            PortSettings reloaded(root.string());
+            assert(reloaded.check() && reloaded.controls() == pending && !*reloaded.controlsFeedback());
+        };
+        apply("[controls]\nversion=9\nPSWAKER_LARGE_TEXT=0\nCOS_AUDIO=on\n" + dev,
+              "PSWAKER_LARGE_TEXT=0\nCOS_AUDIO=on\n" + section + dev);
+        PortSettings repaired(root.string());
+        assert(repaired.check() && !repaired.largeText());
+        apply(prefix + other + dev, prefix + other + section + dev); // Missing section.
+        apply(prefix + "[controls\nversion=9\nA=Touchpad\n" + other + dev,
+              prefix + other + section + dev); // Malformed controls are repaired only on Apply.
+        apply(prefix + "[controls]\nversion=9\n[controls]\nA=Share\n" + other + dev,
+              prefix + other + section + dev); // Duplicate sections are replaced as a whole.
+        apply(prefix + "[controls]\nversion=9\n; keep this comment\r\nOTHER=37\r\n" + other + dev,
+              prefix + "; keep this comment\r\nOTHER=37\r\n" + other + section + dev);
+        apply(prefix + dev + "[controls]\nversion=9\n", prefix + section + dev);
+        apply("# legacy without final newline", "# legacy without final newline\n" + section);
+        fs::remove(ini);
+        assert(settings.setControls(pending) && read(ini) == section);
+        return 0;
+    }
+    if (std::strcmp(argv[1], "controls-failures") == 0) {
+        const std::string previous = "PSWAKER_LARGE_TEXT=0\n[dev]\nCOS_FPS60=1\n";
+        write(ini, previous);
+        assert(settings.check());
+        auto pending = ControlsConfig::defaults();
+        assert(pending.assign(GameAction::A, ControlTarget::L3));
+        pending.invertCameraY = true;
+        for (bool* fault : {&failSync, &failClose, &failRename}) {
+            *fault = true;
+            assert(!settings.setControls(pending));
+            *fault = false;
+            assert(settings.controls() == ControlsConfig::defaults() && !settings.largeText());
+            assert(*settings.error() && read(ini) == previous);
+        }
+        auto invalid = pending;
+        invalid.bindings[0] = invalid.bindings[1];
+        assert(!settings.setControls(invalid) && read(ini) == previous);
+        syncCountdown = 2;
+        assert(!settings.setControls(pending));
+        syncCountdown = -1;
+        assert(settings.controls() == ControlsConfig::defaults() && *settings.error());
+        PortSettings reopened(root.string());
+        assert(reopened.check() && reopened.controls() == pending); // Disk may already contain the replacement.
+        assert(settings.setControls(pending)); // Retry writes the whole pending snapshot again.
+        assert(settings.controls() == pending && !*settings.error());
+        return 0;
+    }
+    if (std::strcmp(argv[1], "controls-apply") == 0) {
+        const std::string prefix = "# owner settings\r\nPSWAKER_LARGE_TEXT=0\r\nCOS_AUDIO=on\r\n";
+        const std::string tail = "[dev]\r\nCOS_FPS60=1\r\n";
+        auto custom = ControlsConfig::defaults();
+        custom.bindings = {ControlTarget::L3, ControlTarget::R3, ControlTarget::L1,
+            ControlTarget::Options, ControlTarget::Cross, ControlTarget::Circle};
+        custom.invertCameraX = custom.invertCameraY = true;
+        write(ini, prefix + serialize_controls(ControlsConfig::defaults()) + tail);
+        assert(settings.check());
+        assert(settings.setControls(custom));
+        assert(settings.controls() == custom && !settings.largeText());
+        assert(read(ini) == prefix + serialize_controls(custom) + tail);
+        const pid_t child = fork();
+        assert(child >= 0);
+        if (child == 0) { execl(argv[0], argv[0], "controls-child", argv[2], nullptr); _exit(99); }
+        int status = 0;
+        assert(waitpid(child, &status, 0) == child && WIFEXITED(status) && WEXITSTATUS(status) == 0);
+        return 0;
+    }
     if (std::strcmp(argv[1], "controls-roundtrip") == 0) {
         const std::string controls = "[controls]\r\nversion=1\r\nA=L3\r\nB=R3\r\nX=L1\r\nY=Options\r\nZ=Cross\r\nStart=Circle\r\n"
             "invert_camera_x=1\r\ninvert_camera_y=1\r\n";

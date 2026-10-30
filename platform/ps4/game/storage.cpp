@@ -1,4 +1,5 @@
 #include "storage.hpp"
+#include <algorithm>
 #include <cerrno>
 #include <cstdio>
 #include <cstdlib>
@@ -377,6 +378,51 @@ bool PortSettings::setLargeText(bool large) {
         updated += setting;
     }
     if (!replace(root_ + "/settings.ini", updated)) return failure(root_ + "/settings.ini");
+    largeText_ = large;
+    return true;
+}
+
+bool PortSettings::setControls(const ControlsConfig& config) {
+    error_.clear();
+    const auto path = root_ + "/settings.ini";
+    const auto section = serialize_controls(config);
+    if (section.empty()) { errno = EINVAL; return failure(path); }
+    std::string contents, updated;
+    bool large = true;
+    if (!read(contents, large)) return false;
+    bool inControls = false, inserted = false;
+    size_t offset = 0;
+    while (offset < contents.size()) {
+        const auto end = contents.find('\n', offset);
+        const auto count = end == std::string::npos ? contents.size() - offset : end + 1 - offset;
+        const auto raw = contents.substr(offset, count);
+        const auto line = trim(raw);
+        if (line.starts_with("[")) {
+            // Replace duplicate or damaged controls sections too, so Apply can
+            // explicitly repair a profile that loaded with fallback feedback.
+            inControls = line.starts_with("[controls");
+            if (!inserted && line == "[dev]") {
+                updated += section;
+                inserted = true;
+            }
+        }
+        const auto equals = line.find('=');
+        const auto entry = trim(line.substr(0, equals));
+        const bool controlsKey = equals != std::string::npos && (entry == "version" ||
+            entry == "invert_camera_x" || entry == "invert_camera_y" ||
+            std::any_of(gameActions.begin(), gameActions.end(), [&](GameAction action) { return entry == control_action_name(action); }));
+        // Preserve unrelated lines even inside a rejected controls section. Put
+        // the new section after them (before [dev]) so they cannot invalidate
+        // it, and legacy global settings retain their effective order/value.
+        if (!inControls || (!line.starts_with("[controls") && !controlsKey)) updated += raw;
+        offset += count;
+    }
+    if (!inserted) {
+        if (!updated.empty() && updated.back() != '\n') updated += '\n';
+        updated += section;
+    }
+    if (!replace(path, updated)) return failure(path);
+    controls_ = {config, ""};
     largeText_ = large;
     return true;
 }

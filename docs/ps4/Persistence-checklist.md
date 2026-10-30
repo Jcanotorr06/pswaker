@@ -21,6 +21,21 @@ checks; they do not change the original #20 acceptance. See the
 - [ ] Return the exact build/package association and missing observations. No
   hardware result for #94 is implied by the host harnesses.
 
+## Button Apply follow-up (#95, after first playable)
+
+Use a new identified build and a private profile backup; preserve real saves.
+
+- [ ] Apply a custom layout from the editor. Fully close and relaunch; verify
+  all six bindings, both preserved inversion switches, applied legends and
+  gameplay. Confirm text size, unrelated lines and `[dev]` placement survive.
+- [ ] With a temporary profile, verify Discard performs no settings write.
+  Exercise failed Apply and successful Retry after repair. Retain observed
+  file bytes and menu/gameplay behavior; uncertain completion may have changed
+  disk despite the old in-memory layout. Never infer disk rollback from Discard.
+- [ ] Check a versioned package update and cache-only clearing separately,
+  preserving the shared applied layout. Restore the private profile backup
+  after any failure trials. Return missing observations as pending.
+
 ## Original #20 procedure
 
 Candidate identities and private artifact locations are in the
