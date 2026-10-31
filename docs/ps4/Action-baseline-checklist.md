@@ -7,7 +7,7 @@ pipeline configurations that route encounters. It is future-release work and
 does not reopen the [accepted initial release-candidate performance gate](../../evidence/ps4/performance-22/OWNER-DECISION.md).
 
 Use the existing [frame-pacing recorder and analyzer](FRAME-PACING.md) and the
-[pipeline-seed snapshot](COMPLETE-PACKAGES.md#optional-pipeline-description-seed).
+[pipeline-seed snapshot](COMPLETE-PACKAGES.md#required-pipeline-description-seed).
 Every game package carries the recorder; no new build is needed. Only the
 owner's console return completes this ticket. A record count, host checks or a
 returned seed without action evidence cannot.
@@ -45,7 +45,10 @@ Record:
   desktop app has no reinspection command. Return that limitation so a
   maintainer can repeat inspection with `windows_package.inspect_output`.
 - Seed presence: `pipeline_seed` (rows, configurations, SHA-256) in the
-  inspection, or its absence. Unseeded packages lack this field.
+  inspection, or its absence in an older baseline. New game complete packages
+  require this field. Current inspection rejects unseeded packages; preserve
+  older baseline evidence and report that limitation instead of treating it as
+  evidence for a newly assembled seeded package.
 - From the first launch's `platform.log`: the `BEGIN build=` and `PACKAGE_MANIFEST`
   lines, the `CACHE before-init` listing and `files-before-init` count, and
   the `Seeded pipeline cache from ... rows merged` line or
@@ -181,7 +184,7 @@ python3 tools/pswaker/complete-package.py pipeline-seed \
 ```
 
 Each run reads the adjacent WAL itself; see
-[COMPLETE-PACKAGES.md](COMPLETE-PACKAGES.md#optional-pipeline-description-seed)
+[COMPLETE-PACKAGES.md](COMPLETE-PACKAGES.md#required-pipeline-description-seed)
 for its output. A validation failure is a result; return it.
 
 ## 7. Report

@@ -8,6 +8,7 @@ import sys
 from disc_image import CONTRACT, require
 from package_artifact import digest, inventory
 from windows_package import bundle_inventory, checked_program, checked_tools
+from pipeline_assets import ASSET_DIRECTORY, checked_pipeline_asset
 
 APP_MUTEX = 'PSWaker.Desktop.Offline'
 
@@ -23,6 +24,7 @@ def check_installation(root):
     fixed = json.loads((bundle / 'desktop-release.json').read_text())
     version, release = checked_program(bundle)
     tools = checked_tools(bundle / 'packaging')
+    checked_pipeline_asset(bundle / ASSET_DIRECTORY)
     require(fixed['schema'] == 1 and fixed['files'] == bundle_inventory(bundle)
             and digest(CONTRACT) == fixed['files']['platform/ps4/content-contract.json']
             and fixed['app_version'] == manifest['app_version']

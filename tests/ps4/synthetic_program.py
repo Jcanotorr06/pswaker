@@ -43,6 +43,7 @@ def stage_artwork(stage, *, pixel=42):
 
 
 def make_bundle(bundle, tools):
+    from synthetic_pipeline import make_seed
     from disc_image import CONTRACT
     from package_artifact import digest, inventory, write_json
     from windows_package import seal_bundle
@@ -76,5 +77,6 @@ def make_bundle(bundle, tools):
         'schema': 1, 'kind': 'game', 'build_id': 'synthetic-program', 'elf_filename': 'game',
         'elf_sha256': digest(bundle / 'program/elf/game'), 'eboot_sha256': digest(stage / 'eboot.bin'),
         'payload_sha256': inventory(stage)})
+    make_seed(bundle / 'assembly-assets')
     seal_bundle(bundle)
     return bundle

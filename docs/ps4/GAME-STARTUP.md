@@ -12,6 +12,12 @@ actual artifacts and outstanding owner checks.
 
 ## Build and package privately
 
+Current complete-package assembly requires the validated private seed at
+`PLATFORM_ROOT/assembly-assets`; follow the
+[assembly asset instructions](COMPLETE-PACKAGES.md#required-pipeline-description-seed)
+before using the commands below. The original #17 candidate predates this
+automatic requirement.
+
 Use the locked Linux/WSL2 host and an explicit maintained platform root that
 passed #15. The game uses its source-built Dawn, SDL3, Mesa and runtime and
 builds a separate game-local Aurora with DVD, THP and GCI support. The verified
@@ -113,8 +119,9 @@ ELF and return available traces.
   Full write coordination and persistence acceptance remain later work.
 - A full content check and known-shader preparation show progress before
   gameplay. The `CONTENT check=` log line records whether the hash ran.
-  Cold startup has no imported game pipeline cache; the actual known queue may
-  be zero. New shaders compile synchronously when encountered; gameplay stalls
+  The original #17 candidate had no imported game pipeline cache; its actual
+  known queue could be zero. Current complete packages carry validated pipeline
+  descriptions for local compilation. New shaders compile synchronously when encountered; gameplay stalls
   remain part of later performance tests.
 - Record startup/preparation time, allocated internal/output dimensions, scene
   creation requests/intervals, game-frame/resource state, errors and last

@@ -5,6 +5,7 @@
     "tools/pswaker/package_validation.py",
     "tools/pswaker/program_payload.py",
     "tools/pswaker/package_artifact.py",
+    "tools/pswaker/pipeline_assets.py",
     "tools/pswaker/windows_package.py",
     "tools/pswaker/build_operation.py",
     "tools/pswaker/diagnostics.py",

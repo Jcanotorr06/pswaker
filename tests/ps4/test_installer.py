@@ -56,7 +56,8 @@ class InstalledApplicationTests(unittest.TestCase):
             for version in ['0.46.0.0', '0.46.1.0']:
                 output = root / version
                 self.run_command([sys.executable, str(script), '--program', str(root / 'bundle/program'),
-                    '--packaging', str(TOOLS), '--app-version', version, '--iscc', str(ISCC),
+                    '--packaging', str(TOOLS), '--assembly-assets', str(root / 'bundle/assembly-assets'),
+                    '--app-version', version, '--iscc', str(ISCC),
                     '--output', str(output)])
                 audit = json.loads((output / 'installer-release.json').read_text())
                 installer = output / audit['installer']['filename']
