@@ -63,6 +63,9 @@ in its cold and retained-cache launches. Its cold sample maximum falls from
 preparation takes 14.621 s. Physical timing, normal recorder shutdown, actual
 first-action timings, incompatible-update behavior and save/settings
 preservation remain unverified. Residual 50 ms intervals remain, with more in
-the new warm sample than in baseline warm. This bounded improvement does not
-complete [#112](https://github.com/Jcanotorr06/pswaker/issues/112), establish a
-verified numerical pass, or change the initial release-candidate exception.
+the new warm sample than in baseline warm. The owner
+[accepts this evidence as returned](../evidence/ps4/action-validation-112/OWNER-DECISION.md)
+to close [#112](https://github.com/Jcanotorr06/pswaker/issues/112) without further
+capture. The recorded gaps remain limitations; this decision does not establish
+a verified numerical pass, close the broader performance work, or change the
+initial release-candidate exception.
