@@ -1,5 +1,7 @@
 {
   "include": [
+    "evidence/ps4/outset-coverage-111/verify-coverage.py",
+    "tests/ps4/test_outset_coverage.py",
     "tools/pswaker/desktop_app.py",
     "tools/pswaker/complete_package_workflow.py",
     "tools/pswaker/package_validation.py",

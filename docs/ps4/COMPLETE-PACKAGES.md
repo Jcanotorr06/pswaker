@@ -233,9 +233,18 @@ changed or renderer-incompatible seeds fail assembly before publication. Existin
 completed output is retained. Diagnostic packages are not the game acceptance target;
 their optional `--pipeline-cache` input remains available for diagnostics only.
 
-Use the existing validated private seed until separately measured action coverage
-is available. This ticket does not establish Outset action coverage. To prepare a
-replacement, supply the adjacent `pipeline_cache.db-wal` if present and keep the
+The standard asset is the retained 287-description seed SHA-256
+`7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1`, with asset
+manifest SHA-256 `e8d4b523aa45f58e272ccde4c258d76388200e26f28a9060b804f9969b4493fb`.
+The [accepted Outset capture](../../evidence/ps4/action-baseline-108/OWNER-DECISION.md)
+and [reproducible coverage/delivery record](../../evidence/ps4/outset-coverage-111/README.md)
+establish that all 259 recorded configurations are already present byte for byte;
+zero descriptions were added and all existing compatible descriptions remain.
+Use this same private asset for the CLI default directory and Windows app/installer
+`--assembly-assets` inputs. Owners need no prerequisite gameplay capture. This
+bounded configuration comparison does not establish gameplay smoothness.
+
+To prepare a replacement, supply the adjacent `pipeline_cache.db-wal` if present and keep the
 application closed during retrieval. The preparation CLI copies the database/WAL
 before opening SQLite, checks integrity and the
 selected renderer's schema/version/size contract, and backs up their committed
