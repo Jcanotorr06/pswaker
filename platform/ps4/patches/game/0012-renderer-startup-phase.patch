@@ -1,0 +1,18 @@
+--- a/native/src/pc/runtime/pc_main.cpp
++++ b/native/src/pc/runtime/pc_main.cpp
+@@ -23,6 +23,7 @@
+ #include "pc_internal.h"
+ #if defined(__ORBIS__)
+ #include "game-platform.hpp"
++#include "frame-pacing.hpp"
+ #include <SDL3/SDL.h>
+ #endif
+ #include "pc/pc_hd_textures.h"
+@@ -253,6 +254,7 @@
+     config.msaa = 1;
+     config.blockingPipelines = true;
+     SDL_SetHintWithPriority(SDL_HINT_VIDEO_DRIVER, "dummy", SDL_HINT_OVERRIDE);
++    pswaker_perf_phase("renderer-initialize");
+     pswaker_stage("aurora-initialize");
+ #endif
+     const AuroraInfo info = aurora_initialize(argc, argv, &config);
