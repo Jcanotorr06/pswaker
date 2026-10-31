@@ -123,6 +123,8 @@ ELF and return available traces.
   known queue could be zero. Current complete packages carry validated pipeline
   descriptions for local compilation. New shaders compile synchronously when encountered; gameplay stalls
   remain part of later performance tests.
+  Current preparation completion, failure handling, timing and cache-lifecycle
+  verification are described in [shader preparation](SHADER-PREPARATION.md).
 - Record startup/preparation time, allocated internal/output dimensions, scene
   creation requests/intervals, game-frame/resource state, errors and last
   completed stage. Scene requests do not claim visible loading/transition
