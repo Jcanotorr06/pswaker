@@ -1,6 +1,7 @@
 {
   "include": [
     "tools/pswaker/desktop_app.py",
+    "tools/pswaker/complete_package_workflow.py",
     "tools/pswaker/package_validation.py",
     "tools/pswaker/program_payload.py",
     "tools/pswaker/package_artifact.py",
@@ -22,6 +23,7 @@
     "tests/ps4/test_installer.py",
     "tests/ps4/installed_ui.py",
     "tests/ps4/test_desktop.py",
+    "tests/ps4/test_complete_package_workflow.py",
     "tests/ps4/test_windows_package.py",
     "tests/ps4/test_windows_tools.py",
     "tests/ps4/synthetic_program.py"
