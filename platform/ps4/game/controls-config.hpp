@@ -33,3 +33,18 @@ const char* control_target_name(ControlTarget target);
 ControlsLoad parse_controls(std::string_view profile);
 // A complete versioned section, or an empty string for an invalid value.
 std::string serialize_controls(const ControlsConfig& config);
+
+// One authoritative generation, shared by gameplay and presentation. Kept free
+// of console/game headers so semantic prompts can also be checked on the host.
+struct AppliedControls {
+    ControlsConfig config;
+    uint64_t generation = 0;
+    std::array<std::string, 8> legend() const;
+    std::array<std::string, 3> fixedGameplay() const;
+    std::array<std::string, 2> fixedPort() const;
+};
+AppliedControls pswaker_applied_controls();
+// Startup publishes after the profile check; Apply validates and saves first.
+// Each successful publication increments once, including identical values.
+// Invalid values and generation overflow are rejected without publication.
+bool pswaker_publish_controls(const ControlsConfig& config);

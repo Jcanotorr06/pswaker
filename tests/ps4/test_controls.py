@@ -37,6 +37,7 @@ class InstalledControlsTests(unittest.TestCase):
         build = subprocess.run(['clang++-21', '-std=c++23', '-Wall', '-Wextra', '-Werror',
                                 *includes, str(PLATFORM / 'game/controls.cpp'),
                                 str(PLATFORM / 'game/controls-config.cpp'),
+                                str(PLATFORM / 'game/prompts.cpp'),
                                 str(PLATFORM / 'game/storage.cpp'),
                                 str(game / 'src/switchwaker/native/src/pc/features/pc_controls.cpp'),
                                 str(LOCATIONS.tests / 'controls-console.cpp'), str(root / 'platform.o'),
@@ -69,6 +70,11 @@ class InstalledControlsTests(unittest.TestCase):
 
     def test_legend_confirmation_does_not_leak_into_game(self):
         self.check_scenario('legend')
+
+    def test_prompts_refresh_before_resume_and_preserve_previous_generation_after_discard_or_failed_apply(self):
+        for scenario in ['apply', 'discard', 'failure', 'uncertain']:
+            with self.subTest(scenario=scenario):
+                self.check_scenario('prompt-' + scenario)
 
     def test_independent_inversion_switches_are_pending_and_require_fresh_confirmation(self):
         self.check_scenario('inversion-pending')

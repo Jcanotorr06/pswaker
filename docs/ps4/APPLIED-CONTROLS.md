@@ -5,6 +5,8 @@ extend the accepted #18/#20 checkpoints. #95 adds button editing and Apply
 persistence; #96 adds confirmed restore defaults. #97 adds independent camera
 and aiming inversion, with a retained [source-path inventory](CAMERA-INVERSION.md).
 Original in-game GameCube prompts remain until #79.
+The [#99 resolver slice](PS4-PROMPTS.md) now supplies the port legend and fixed
+instructions and coordinates generation refresh at the existing resume gate.
 
 The [01.15 console return](../../evidence/ps4/controls-94/console-return-01.15/REPORT.md)
 records owner-confirmed custom/default mappings, relaunch persistence, matching
@@ -55,7 +57,8 @@ the controls section and unrelated profile bytes.
 validation, assignment with swap/free/no-op semantics, versioned parsing and
 serialization. Serialization returns one complete section; it performs no I/O.
 
-`pswaker_applied_controls()` in `controls.hpp` returns a copy of one complete
+`pswaker_applied_controls()` in `controls-config.hpp` (also included by
+`controls.hpp`) returns a copy of one complete
 `AppliedControls` snapshot: six bindings, independent saved camera switches,
 fixed gameplay/port-menu descriptions and a generation. Gameplay resolves
 bindings from this lookup. The legend renders `snapshot.legend()` and the fixed

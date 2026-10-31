@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "entries": [
+    {"id": "port.legend.GameAction.A", "status": "text-fallback"},
+    {"id": "port.legend.GameAction.B", "status": "text-fallback"},
+    {"id": "port.legend.GameAction.X", "status": "text-fallback"},
+    {"id": "port.legend.GameAction.Y", "status": "text-fallback"},
+    {"id": "port.legend.GameAction.Z", "status": "text-fallback"},
+    {"id": "port.legend.GameAction.Start", "status": "text-fallback"},
+    {"id": "port.legend.FixedControl.MainStick", "status": "text-fallback"},
+    {"id": "port.legend.FixedControl.CStick", "status": "text-fallback"},
+    {"id": "port.legend.FixedControl.DPad", "status": "text-fallback"},
+    {"id": "port.legend.FixedControl.LTrigger", "status": "text-fallback"},
+    {"id": "port.legend.FixedControl.RTrigger", "status": "text-fallback"},
+    {"id": "port.symbolLine.FixedControl.PortConfirm", "status": "converted"},
+    {"id": "port.symbolLine.FixedControl.PortCancel", "status": "converted"},
+    {"id": "port.instructions.FixedControl.PortSettings", "status": "text-fallback"},
+    {"id": "port.instructions.FixedControl.DPad", "status": "text-fallback"},
+    {"id": "game/src/f_op/f_op_msg_mng.cpp::fopMsgM_buttonTex[0x00..0x17]", "status": "unresolved"},
+    {"id": "game/src/f_op/f_op_msg_mng.cpp::fopMsgM_outFontSet", "status": "unresolved"},
+    {"id": "game/src/f_op/f_op_msg_mng.cpp::fopMsgM_outFontDraw", "status": "unresolved"},
+    {"id": "game/src/f_op/f_op_msg_mng.cpp::fopMsgM_outFontDraw2", "status": "unresolved"},
+    {"id": "game/src/d/d_meter.cpp", "status": "unresolved"},
+    {"id": "game/src/d/d_menu_item.cpp", "status": "unresolved"},
+    {"id": "game/src/d/d_menu_window.cpp", "status": "unresolved"},
+    {"id": "game/src/d/d_file_select.cpp", "status": "unresolved"},
+    {"id": "game/src/d/actor/d_a_title.cpp", "status": "unresolved"},
+    {"id": "resource.BMG.literal-control-names", "status": "unresolved"},
+    {"id": "resource.embedded-instructions-and-shared-atlas-regions", "status": "unresolved"},
+    {"id": "resource.partial-full-trigger-contexts", "status": "unresolved"}
+  ]
+}
