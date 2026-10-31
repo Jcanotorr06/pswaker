@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "program": {
+    "build_id": "9f79516d60da618241a1",
+    "elf_sha256": "06417d1c34cdf58b70baee9e679f83e77899b12405ce47f8a9b12bf578790f90",
+    "eboot_sha256": "ac4e2bb217608637b5dd9be430f1f307112286d4c0e112a547b961afcafe690c"
+  },
+  "app_version": "01.20",
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "cc26a2526f9cb4b81383b2875c66fa6521519f3d2d991d3be5be08f1d91ae8f5"
+  },
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      }
+    },
+    "rows": 287,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 286
+      }
+    ],
+    "sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1",
+    "bytes": 1200128,
+    "asset_manifest_sha256": "e8d4b523aa45f58e272ccde4c258d76388200e26f28a9060b804f9969b4493fb"
+  },
+  "assembly_sha256": "11e882083a054bfac5ab52d4eb0c03d48ff7d9f8f26db0fa8ff901c574e18a2f",
+  "inspection_sha256": "9f9203539d945b8a8a75d0975cec887dff30b37d3660c4331b10205e80c1e0ee",
+  "coverage_report_sha256": "2b64b0dc49aacf5ad8fe1f2adacb3e38e2abf8918be59f39ab07eb474d9c8fee",
+  "source_immutability": {
+    "schema": 1,
+    "files_compared": 10,
+    "all_source_hashes_unchanged": true
+  }
+}

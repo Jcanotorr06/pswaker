@@ -97,10 +97,14 @@ error screen or physical presentation.
 ## Console handoff
 
 Keep the candidate complete package, matching ELF, build/program/assembly and
-fresh inspection reports together. Use the retained candidate recorded in
-[the evidence](../../evidence/ps4/shader-preparation-110/README.md). A new build ID
-requires new evidence. Assemble through the existing explicit `--assembly-assets`
-selection; the validated seed is separate from the program release.
+fresh inspection reports together. The final Outset comparison uses the
+[freshly assembled #111 package](../../evidence/ps4/outset-coverage-111/README.md),
+which retains the #110 program and the seed proven to contain every recorded
+#108 configuration. The [original #110 candidate](../../evidence/ps4/shader-preparation-110/README.md)
+remains a separate retained artifact. A new build ID requires new evidence.
+Normal assembly uses the standard verified asset directory automatically;
+maintainers can locate those same assets with `--assembly-assets`. The validated
+seed is separate from the program release.
 
 For the final verification work under #107:
 
