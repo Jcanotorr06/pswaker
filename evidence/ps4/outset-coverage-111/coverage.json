@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "method": "Validated read-only comparison of type/hash keys and config bytes; first_frame_used is capture metadata, not configuration identity",
+  "candidate": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      }
+    },
+    "rows": 287,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 286
+      }
+    ],
+    "sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1",
+    "bytes": 1200128,
+    "asset_manifest_sha256": "e8d4b523aa45f58e272ccde4c258d76388200e26f28a9060b804f9969b4493fb"
+  },
+  "snapshots": [
+    {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "6f263afbdbc1d1a897ce37e57b4e441d1e6e64f95a1cb70d9b91cc11cee29079"
+        },
+        "pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "a05b5f9310a897ce760ef873c6e6096a15d3267ce05efb7ddf5f1875a6281a9a"
+        }
+      },
+      "rows": 258,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 257
+        }
+      ],
+      "bytes": 1081344,
+      "sha256": "bdf848be0d1c43948d2e72fd512160033ebe911f72ba022fed61a81c036114fd",
+      "asset_manifest_sha256": "91a26ab65033ca44e90702f8ebf243ab1acb5fce47e3ef9d1ae684433f375866",
+      "identical_rows_in_candidate": 258
+    },
+    {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "6f263afbdbc1d1a897ce37e57b4e441d1e6e64f95a1cb70d9b91cc11cee29079"
+        },
+        "pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "1d80859c0ff70322d1e99e9b40d063117310b0c6ca528664ae37b51b579adad9"
+        }
+      },
+      "rows": 259,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 258
+        }
+      ],
+      "bytes": 1085440,
+      "sha256": "cb6f1d4d55a873195c67c4edaacfac8f06d726f0eef4de131f1d3da5e3f1114c",
+      "asset_manifest_sha256": "2994a7313353956efc9871c601dceab9d29cb902e4abc9910df785bb015b55d4",
+      "identical_rows_in_candidate": 259
+    }
+  ],
+  "recorded_union_rows": 259,
+  "already_represented_rows": 259,
+  "added_rows": 0,
+  "candidate_rows_not_recorded": 28,
+  "conclusion": "Retain the existing candidate seed unchanged; all recorded descriptions are present. This establishes recorded configuration coverage, not gameplay smoothness."
+}

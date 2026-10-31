@@ -1,0 +1,268 @@
+--- a/aurora/lib/gfx/pipeline_cache.hpp
++++ b/aurora/lib/gfx/pipeline_cache.hpp
+@@ -31,6 +31,18 @@
+   }
+ };
+ 
++// One snapshot in configuration/layout units, including work currently inside
++// the driver. Loading and scheduling must finish before an empty pending set
++// can mean completion. Timestamps use the port's existing performance clock.
++struct PipelinePreparationStatus {
++  bool complete;
++  uint32_t total, ready, pending;
++  uint64_t startedNs, finishedNs;
++  const char* error;
++};
++PipelinePreparationStatus pipeline_preparation_status();
++bool finish_pipeline_preparation();
++
+ void initialize_pipeline_cache();
+ void shutdown_pipeline_cache();
+ void begin_pipeline_frame();
+--- a/aurora/lib/gfx/pipeline_cache.cpp
++++ b/aurora/lib/gfx/pipeline_cache.cpp
+@@ -21,6 +21,7 @@
+ #include <functional>
+ #include <limits>
+ #include <mutex>
++#include <memory>
+ #include <optional>
+ #include <ranges>
+ #include <variant>
+@@ -93,6 +94,78 @@
+ static std::deque<PendingPipeline> g_backgroundPipelineQueue;
+ static absl::flat_hash_set<PipelineRef> g_pendingPipelines;
+ static std::atomic_bool g_gpuCachePrunePending = false;
++
++static bool g_preparationLoading = true;
++static bool g_preparationScheduling = false;
++static uint64_t g_preparationStartedNs = 0, g_preparationFinishedNs = 0;
++static std::atomic<const char*> g_preparationError = nullptr;
++static std::atomic_bool g_preparationActive = true;
++
++static void preparation_failed(const char* reason) {
++  const char* expected = nullptr;
++  g_preparationError.compare_exchange_strong(expected, reason);
++}
++
++// Called with g_pipelineMutex held; pending retains jobs after dequeue until
++// creation has returned and the result has been published.
++static void preparation_finished() {
++  if (!g_preparationLoading && !g_preparationScheduling && g_pendingPipelines.empty() &&
++      !g_preparationError.load() && !g_preparationFinishedNs) {
++    if (g_gpuCachePrunePending.exchange(false, std::memory_order_acq_rel)) webgpu::cache_prune();
++    g_preparationFinishedNs = pswaker_perf_now();
++  }
++}
++
++PipelinePreparationStatus pipeline_preparation_status() {
++  std::lock_guard lock{g_pipelineMutex};
++  uint32_t ready = 0;
++  for (const auto& [key, pipeline] : g_pipelines) ready += bool(pipeline.main);
++  const auto pending = static_cast<uint32_t>(g_pendingPipelines.size());
++  const auto total = static_cast<uint32_t>(g_pipelines.size()) + pending;
++  const auto* error = g_preparationError.load();
++  return {!g_preparationLoading && !g_preparationScheduling && !pending && ready == total && !error && g_preparationFinishedNs != 0,
++          total, ready, pending, g_preparationStartedNs, g_preparationFinishedNs, error};
++}
++
++bool finish_pipeline_preparation() {
++  if (!pipeline_preparation_status().complete) return false;
++  g_preparationActive = false;
++  return true;
++}
++
++// Dawn may return a non-null error object. Capture validation, allocation and
++// internal errors here rather than letting an asynchronous fatal callback hide
++// a preparation failure from the port's startup/error screen.
++static CompiledPipeline create_checked_pipeline(const NewPipelineCallback& create) {
++  if (!g_preparationActive.load()) {
++    auto result = create(); // retain the existing fatal driver callback in gameplay
++    if (!result.main) FATAL("Shader pipeline creation failed during gameplay");
++    return result;
++  }
++  constexpr std::array filters{wgpu::ErrorFilter::Validation, wgpu::ErrorFilter::OutOfMemory,
++                               wgpu::ErrorFilter::Internal};
++  for (auto filter : filters) webgpu::g_device.PushErrorScope(filter);
++  auto result = create();
++  auto failed = std::make_shared<bool>(!result.main);
++  for (size_t i = 0; i < filters.size(); ++i) {
++    const auto future = webgpu::g_device.PopErrorScope(wgpu::CallbackMode::WaitAnyOnly,
++      [failed](wgpu::PopErrorScopeStatus status, wgpu::ErrorType type, wgpu::StringView message) {
++        if (status != wgpu::PopErrorScopeStatus::Success || type != wgpu::ErrorType::NoError) {
++          *failed = true;
++          Log.error("Pipeline preparation failed: {}", message);
++        }
++      });
++    // Wait for this scope before publishing readiness or destroying its callback.
++    if (webgpu::g_instance.WaitAny(future, UINT64_MAX) != wgpu::WaitStatus::Success) {
++      *failed = true;
++    }
++  }
++  if (*failed) {
++    preparation_failed("Shader pipeline creation failed. Return this build's platform.log and matching ELF; rebuild/reinstall the complete package.");
++    return {};
++  }
++  return result;
++}
+ 
+ static sqlite3* g_pipelineCacheDb = nullptr;
+ static sqlite3_stmt* g_pipelineCacheLoadStmt = nullptr;
+@@ -430,9 +503,10 @@
+ 
+ static void notify_pipeline_ready(bool queued, uint32_t pipelineCount) {
+   createdPipelines += pipelineCount;
+-  if (queued && --queuedPipelines == 0 && g_gpuCachePrunePending.exchange(false, std::memory_order_acq_rel)) {
+-    // Prune GPU cache entries after fully loading the pipeline cache.
+-    webgpu::cache_prune();
++  if (queued) --queuedPipelines;
++  {
++    std::lock_guard lock{g_pipelineMutex};
++    preparation_finished();
+   }
+   g_pipelineReadyCv.notify_all();
+ }
+@@ -472,7 +546,7 @@
+       if (blocking && !g_hasPipelineThread) {
+         auto pending = take_pending_pipeline(runtimeKey);
+         if (pending) {
+-          auto result = pending->create();
++          auto result = create_checked_pipeline(pending->create);
+           pipelineCount = result.pipeline_count();
+           g_pipelines.try_emplace(runtimeKey, std::move(result));
+           pipelineReady = true;
+@@ -485,7 +559,7 @@
+         notifyWorker = priority != PipelinePriority::Background;
+       }
+     } else if (!g_hasPipelineThread && (blocking || g_pipelinesPerFrame < BuildPipelinesPerFrame)) {
+-      auto result = cb();
++      auto result = create_checked_pipeline(cb);
+       pipelineCount = result.pipeline_count();
+       g_pipelines.try_emplace(runtimeKey, std::move(result));
+       pipelineReady = true;
+@@ -699,7 +773,8 @@
+   }
+   sqlite3* seedDb = open_pipeline_cache_seed_db(seedPath);
+   if (seedDb == nullptr) {
+-    return SQLITE_OK;
++    preparation_failed("Bundled shader seed could not be loaded. Rebuild/reinstall the complete package with a compatible initial_pipeline_cache.db.");
++    return SQLITE_ERROR;
+   }
+ 
+   sqlite3_stmt* seedStmt = nullptr;
+@@ -718,7 +793,8 @@
+   if (ret != SQLITE_OK) {
+     Log.warn("Failed to read bundled pipeline cache rows from '{}': {}", seedPath, sqlite3_errmsg(seedDb));
+     closeSeed();
+-    return SQLITE_OK;
++    preparation_failed("Bundled shader seed rows could not be read. Rebuild/reinstall the complete package.");
++    return ret;
+   }
+ 
+   bool writeFailed = false;
+@@ -750,6 +826,20 @@
+         continue;
+       }
+ 
++      const auto compatible = [&]<typename Config>(uint32_t version) {
++        if (configVersionValue != version || configBlobSize != sizeof(Config)) return false;
++        Config config;
++        std::memcpy(&config, configBlob, sizeof config);
++        return config.version == version;
++      };
++      if (!((typeValue == underlying(ShaderType::Clear) &&
++              compatible.template operator()<clear::PipelineConfig>(clear::ClearPipelineConfigVersion)) ||
++            (typeValue == underlying(ShaderType::GX) &&
++              compatible.template operator()<gx::PipelineConfig>(gx::GXPipelineConfigVersion)))) {
++        ++skippedRows;
++        continue;
++      }
++
+       PipelineCacheWrite write{
+           .type = static_cast<ShaderType>(typeValue),
+           .hash = static_cast<PipelineRef>(hashValue),
+@@ -787,6 +877,10 @@
+     return g_pipelineCacheWriteError != SQLITE_OK ? g_pipelineCacheWriteError : SQLITE_ERROR;
+   }
+ 
++  if (readFailed || skippedRows || !mergedRows) {
++    preparation_failed("Bundled shader seed is empty, invalid or unreadable. Rebuild/reinstall the complete package with a compatible seed.");
++    return SQLITE_ERROR;
++  }
+   if (!readFailed) {
+     remember_seed_merged(identity);
+     Log.info("Seeded pipeline cache from '{}' ({} rows merged, {} rows skipped)", seedPath, mergedRows, skippedRows);
+@@ -1157,7 +1251,7 @@
+     }
+     auto result = [&] {
+       ZoneScopedN("gfx: compile pipeline (worker)");
+-      return pending.create();
++      return create_checked_pipeline(pending.create);
+     }();
+     const auto pipelineCount = result.pipeline_count();
+     {
+@@ -1320,6 +1414,11 @@
+ 
+ void rebuild_pipeline_cache() {
+   ZoneScoped;
++  {
++    std::lock_guard lock{g_pipelineMutex};
++    g_preparationScheduling = true;
++    g_preparationFinishedNs = 0;
++  }
+   const auto scene = scene_render_target_layout();
+   auto offscreen = scene;
+   offscreen.colorAttachmentCount = 1;
+@@ -1346,9 +1445,19 @@
+         },
+         pipeline.config);
+   }
++  {
++    std::lock_guard lock{g_pipelineMutex};
++    g_preparationScheduling = false;
++    preparation_finished();
++  }
+ }
+ 
+ void initialize_pipeline_cache() {
++  g_preparationLoading = true;
++  g_preparationStartedNs = pswaker_perf_now();
++  g_preparationFinishedNs = 0;
++  g_preparationError = nullptr;
++  g_preparationActive = true;
+   g_pipelineCacheBroken = false;
+   g_pipelineCacheWriterStop = false;
+   g_pipelineThreadEnd = false;
+@@ -1362,6 +1471,9 @@
+   }
+ 
+   const size_t loadedCount = load_pipeline_cache();
++  if (g_pipelineCacheBroken) {
++    preparation_failed("Shader descriptions could not be prepared. Check free space and permissions in /data/pswaker/cache; return platform.log and rebuild/reinstall the complete package.");
++  }
+   rebuild_pipeline_cache();
+   if (!g_pipelineCacheBroken && loadedCount > 0) {
+     g_gpuCachePrunePending = true;
+@@ -1369,6 +1481,11 @@
+ 
+   if (!g_pipelineCacheBroken) {
+     start_pipeline_cache_writer();
++  }
++  {
++    std::lock_guard lock{g_pipelineMutex};
++    g_preparationLoading = false;
++    preparation_finished();
+   }
+ }
+ 
+@@ -1395,6 +1512,10 @@
+ 
+   queuedPipelines = 0;
+   createdPipelines = 0;
++  g_preparationLoading = true;
++  g_preparationScheduling = false;
++  g_preparationStartedNs = g_preparationFinishedNs = 0;
++  g_preparationError = nullptr;
+ }
+ 
+ void begin_pipeline_frame() {

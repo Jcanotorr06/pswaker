@@ -15,6 +15,7 @@ import sys
 import tempfile
 
 import build_inputs
+from pipeline_assets import ASSET_DIRECTORY, install_pipeline_asset
 
 from disc_image import require, validate
 from package_validation import validate_selection
@@ -58,7 +59,7 @@ def snapshot_pipeline_seed(source, target):
                 and all(digest(path) == originals[path.name]['sha256'] for path in paths),
                 'Pipeline database/WAL changed during snapshot; close the application and retry')
     return {'schema': 1, 'installed_path': '/app0/' + PIPELINE_SEED,
-            'source_files': originals, **details, 'sha256': digest(target)}
+            'source_files': originals, **details, 'bytes': target.stat().st_size, 'sha256': digest(target)}
 
 
 def prepare_pipeline_seed(source, output):
@@ -268,6 +269,7 @@ class PackageRequest:
     output: Path
     pipeline_cache: Path | None = None
     command: tuple = ()
+    assembly_assets: Path | None = None
 
 
 def create_package(request, observe=None):
@@ -303,7 +305,13 @@ def create_package(request, observe=None):
                         'image': image, 'program': program, 'distribution_cleared': False,
                         'licensing': 'Private artifact. Review actual combined licenses, notices and provenance '
                                      'before any distribution; assembly is not licensing clearance.'}
-            if request.pipeline_cache is not None:
+            if request.kind == 'game':
+                require(request.pipeline_cache is None,
+                        'Game assembly requires a verified shader seed asset; prepare it with pipeline-seed '
+                        'and place it in the platform root assembly-assets directory or use --assembly-assets')
+                assets = request.assembly_assets or request.platform_root / ASSET_DIRECTORY
+                manifest['pipeline_seed'] = install_pipeline_asset(assets.resolve(), stage)
+            elif request.pipeline_cache is not None:
                 manifest['pipeline_seed'] = snapshot_pipeline_seed(request.pipeline_cache.resolve(),
                                                                    stage / PIPELINE_SEED)
             write_json(stage / 'complete-package.json', manifest)
@@ -377,7 +385,9 @@ def main():
     assembly.add_argument('--app-version', required=True)
     assembly.add_argument('--output', type=Path, required=True)
     assembly.add_argument('--pipeline-cache', type=Path,
-                          help='Optional private pipeline database; snapshot with its adjacent WAL into the package')
+                          help='Diagnostic only: snapshot a private pipeline database and its adjacent WAL')
+    assembly.add_argument('--assembly-assets', type=Path,
+                          help='Verified game assembly assets (default: PLATFORM_ROOT/assembly-assets)')
     assembly.add_argument('--progress', action='store_true',
                           help='Write one JSON stage event per line to stderr')
     inspection = commands.add_parser('inspect', help='Freshly extract and inspect an assembled private package')
@@ -404,7 +414,7 @@ def main():
             request = PackageRequest(
                 image=args.image, program=Program(args.program, args.program_stage, args.elf), kind=args.kind,
                 app_version=args.app_version, platform_root=args.platform_root, output=args.output,
-                pipeline_cache=args.pipeline_cache,
+                pipeline_cache=args.pipeline_cache, assembly_assets=args.assembly_assets,
                 command=(sys.executable, str(LOCATIONS.command('complete-package.py')), *sys.argv[1:]))
             progress = lambda event: print(json.dumps(event), file=sys.stderr, flush=True)
             result = create_package(request, progress if args.progress else None)

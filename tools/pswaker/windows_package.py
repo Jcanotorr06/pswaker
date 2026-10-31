@@ -19,6 +19,7 @@ from program_payload import program_files, bundled_program, checked_artwork, inv
 from build_operation import BuildCancelled, BuildOperation, CURRENT, copy_file
 from owned_work import save_evidence, workspace
 from windows_process import capture_owned
+from pipeline_assets import ASSET_DIRECTORY, checked_pipeline_asset, install_pipeline_asset
 
 TOOL_REVISION = '594021fdc435409f755a6ae0781b65ec6cec846c'
 TOOL_ARCHIVE = 'c4b918b404e486784717a415cc5a50d866bc56099ed027b4d6bd443cf7f90ee6'
@@ -81,7 +82,7 @@ def checked_program(bundle):
 
 
 def bundle_inventory(bundle):
-    return {directory + '/' + name: sha for directory in ['program', 'packaging', 'platform']
+    return {directory + '/' + name: sha for directory in ['program', 'packaging', 'platform', ASSET_DIRECTORY]
             for name, sha in inventory(bundle / directory).items()}
 
 
@@ -91,6 +92,7 @@ def checked_bundle(bundle):
     require(fixed['schema'] == 1 and not changes,
             'Bundled release inputs changed: ' + (changes or 'unsupported manifest schema')
             + '. Reinstall the complete application.')
+    checked_pipeline_asset(bundle / ASSET_DIRECTORY)
     return fixed
 
 
@@ -98,6 +100,7 @@ def seal_bundle(bundle, app_version=None):
     """Maintainer operation; record the fixed release inputs shipped beside the app."""
     version, release = checked_program(bundle)
     checked_tools(bundle / 'packaging')
+    checked_pipeline_asset(bundle / ASSET_DIRECTORY)
     write_json(bundle / 'desktop-release.json', {'schema': 1, 'app_version': app_version or version,
                'program_version': version,
                'program_build_id': release['build_id'], 'files': bundle_inventory(bundle)})
@@ -271,9 +274,10 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
                     'Bundled program version/build differs from the application release')
             shutil.copytree(bundle / 'packaging', work / 'packaging', copy_function=copy_file)
             shutil.copytree(bundle / 'program', work / 'program', copy_function=copy_file)
+            shutil.copytree(bundle / ASSET_DIRECTORY, work / ASSET_DIRECTORY, copy_function=copy_file)
             # Verify the snapshot used below, independent of later bundle changes.
             version, release = checked_program(work)
-            for directory in ['program', 'packaging']:
+            for directory in ['program', 'packaging', ASSET_DIRECTORY]:
                 expected = {name[len(directory) + 1:]: sha for name, sha in fixed['files'].items()
                             if name.startswith(directory + '/')}
                 actual = inventory(work / directory)
@@ -297,7 +301,8 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
             manifest = {'schema': 1, 'kind': 'game', 'acceptance': identity['acceptance'],
                         'title_id': identity['title_id'], 'content_id': content_id(identity),
                         'app_version': version, 'installed_image': INSTALLED_IMAGE, 'image': copied,
-                        'program': program, 'distribution_cleared': False}
+                        'program': program, 'distribution_cleared': False,
+                        'pipeline_seed': install_pipeline_asset(work / ASSET_DIRECTORY, stage)}
             write_json(stage / 'complete-package.json', manifest)
             files = inventory(stage)
             write_project(stage, work / 'package.gp4')
@@ -333,7 +338,7 @@ def _create_package(image, output, bundle, *, accepted_image=None, observe=None,
             require(digest(package) == report['package']['sha256'], 'Package changed after inspection; retry')
             write_json(work / 'stages.json', stages.timings)
             (work / 'INSTALL.txt').write_text(INSTALL_INSTRUCTIONS, encoding='utf-8')
-            for directory in [stage, work / 'packaging', work / 'program', scratch]:
+            for directory in [stage, work / 'packaging', work / 'program', work / ASSET_DIRECTORY, scratch]:
                 shutil.rmtree(directory)
             require(not destination.exists(), 'Output appeared during assembly; choose a new destination')
             # Windows rename refuses an existing destination, including a racing empty folder.

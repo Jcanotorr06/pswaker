@@ -54,3 +54,26 @@ The [01.15 controls return](../evidence/ps4/controls-94/console-return-01.15/REP
 establishes only that earlier saved-layout slice. It does not validate 01.18.
 Integrated editor/inversion hardware checks, desktop-created PS4 packages,
 clean Windows testing and public readiness remain pending for RC3.
+
+The [assembled 01.20 Outset return](../evidence/ps4/action-validation-112/REPORT.md)
+identifies the normally assembled #111 package, confirms all 287 seeded
+configurations prepared before loading, and records zero missing-pipeline waits
+in its cold and retained-cache launches. Its cold sample maximum falls from
+333.669 ms in the accepted unseeded 01.19 baseline to 50.114 ms; full cold
+preparation takes 14.621 s. Physical timing, normal recorder shutdown, actual
+first-action timings, incompatible-update behavior and save/settings
+preservation remain unverified. Residual 50 ms intervals remain, with more in
+the new warm sample than in baseline warm. The owner
+[accepts this evidence as returned](../evidence/ps4/action-validation-112/OWNER-DECISION.md)
+to close [#112](https://github.com/Jcanotorr06/pswaker/issues/112) without further
+capture. The recorded gaps remain limitations; this decision does not establish
+a verified numerical pass, close the broader performance work, or change the
+initial release-candidate exception.
+
+The [0.1.0 RC4 candidate](release-notes/v0.1.0-rc.4.md) bundles the exact
+**01.20** ELF, build `9f79516d60da618241a1`, and unchanged validated
+287-description seed. It includes preparation before gameplay, required seed
+delivery and per-build installed-image verification caching. Its relocatable
+SELF differs from the CLI-assembled #112 package. The bounded owner decision
+above does not certify RC4 desktop-created packages, integrated controls,
+clean Windows operation or public readiness; those checks remain separate.

@@ -1,0 +1,113 @@
+name: Bug report
+description: Something in the desktop app, installer or game on the PS4 doesn't work.
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. **Never attach game data**: no disc
+        images or files extracted from them, keys, saves, memory-card files,
+        complete packages (`.pkg`), or personal paths, usernames or network
+        details. See [CONTRIBUTING.md](https://github.com/Jcanotorr06/pswaker/blob/develop/CONTRIBUTING.md#ground-rule-no-game-data).
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Where did the problem happen?
+      options:
+        - Desktop app (creating a complete package)
+        - Installer (installing, updating or uninstalling PSWaker on Windows)
+        - Game on the PS4
+        - Building from source
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: desktop-version
+    attributes:
+      label: PSWaker desktop version
+      description: Shown in the app window.
+      placeholder: 0.1.0-rc.3
+    validations:
+      required: true
+
+  - type: input
+    id: program-version
+    attributes:
+      label: Game program version and build
+      description: The bundled game-program version and build shown in the app window.
+      placeholder: 01.18
+    validations:
+      required: true
+
+  - type: input
+    id: windows-version
+    attributes:
+      label: Windows version
+      description: Edition, version and build (Settings → System → About).
+      placeholder: Windows 11 Pro x64, build 26200
+    validations:
+      required: true
+
+  - type: input
+    id: console
+    attributes:
+      label: PS4 model, firmware and GoldHEN version
+      description: Required if the problem is on the console.
+      placeholder: PS4 Slim, firmware 9.00, GoldHEN v2.4b18
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: What you did
+      description: The steps that lead to the problem.
+      placeholder: |
+        1. Selected my disc image and an output folder
+        2. Selected Create package
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: Include the exact error message and a screenshot if you have one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: troubleshooting-report
+    attributes:
+      label: Troubleshooting report
+      description: |
+        For desktop app failures, select **Export troubleshooting report…** and
+        attach the `.json` file here. It leaves out personal paths and game data.
+        Don't attach the raw logs under `%LOCALAPPDATA%\PSWaker\logs` or the
+        files next to a package; they can contain personal paths. See
+        [private troubleshooting reports](https://github.com/Jcanotorr06/pswaker/blob/develop/docs/desktop/README.md#private-troubleshooting-reports).
+
+  - type: textarea
+    id: console-logs
+    attributes:
+      label: Console logs
+      description: |
+        For problems on the PS4, attach `platform.log`, `platform.prev.log` and
+        `last-stage.txt` from `/data/pswaker/logs/` if you can retrieve them.
+
+  - type: checkboxes
+    id: no-game-data
+    attributes:
+      label: Game data
+      options:
+        - label: This report and its attachments contain no game data, keys, saves, packages or personal paths.
+          required: true

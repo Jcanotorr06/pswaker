@@ -162,12 +162,13 @@ git worktree add $src origin/main
 Set-Location $src
 $out = 'q\release-0.1.0-rc.1'
 $program = 'C:\private\program-release-01.13'
+$seed = 'C:\private\validated-seed'
 $version = '0.1.0.1'
 
 python -m pip install -r tools/pswaker/desktop-requirements.txt
 python tools/pswaker/prepare-windows-tools.py --dotnet (Get-Command dotnet).Source --output "$out\windows-tools"
-python tools/pswaker/build-desktop.py --program $program --packaging "$out\windows-tools" --app-version $version --output "$out\desktop"
-python tools/pswaker/build-installer.py --program $program --packaging "$out\windows-tools" --app-version $version --iscc 'C:\maintainer\Inno Setup 6\ISCC.exe' --output "$out\installer"
+python tools/pswaker/build-desktop.py --program $program --packaging "$out\windows-tools" --assembly-assets $seed --app-version $version --output "$out\desktop"
+python tools/pswaker/build-installer.py --program $program --packaging "$out\windows-tools" --assembly-assets $seed --app-version $version --iscc 'C:\maintainer\Inno Setup 6\ISCC.exe' --output "$out\installer"
 ```
 
 Check the program release's build ID in `$program\program-release.json`

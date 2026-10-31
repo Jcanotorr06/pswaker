@@ -12,7 +12,7 @@ from disc_image import require
 from package_artifact import digest, inventory, write_json
 
 
-def build(program, packaging, output, app_version, iscc):
+def build(program, packaging, output, app_version, iscc, *, assembly_assets):
     require(re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', app_version)
             and all(int(part) <= 65535 for part in app_version.split('.')),
             'App version must be four numeric Windows version components (0..65535)')
@@ -25,7 +25,7 @@ def build(program, packaging, output, app_version, iscc):
     spec.loader.exec_module(desktop)
     with tempfile.TemporaryDirectory(prefix='pswaker-installer-', dir=output.parent) as folder:
         work = Path(folder)
-        exe = desktop.build(program, packaging, work / 'desktop', app_version)
+        exe = desktop.build(program, packaging, work / 'desktop', app_version, assembly_assets=assembly_assets)
         app = exe.parent
         manifest = json.loads((app / 'application-release.json').read_text())
         release_directory = app_version + '-' + digest(app / 'application-release.json')[:16]
@@ -55,11 +55,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--program', type=Path, required=True)
     parser.add_argument('--packaging', type=Path, required=True)
+    parser.add_argument('--assembly-assets', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--app-version', required=True)
     parser.add_argument('--iscc', type=Path, required=True)
     args = parser.parse_args()
     try:
-        print(build(args.program, args.packaging, args.output, args.app_version, args.iscc))
+        print(build(args.program, args.packaging, args.output, args.app_version, args.iscc,
+                    assembly_assets=args.assembly_assets))
     except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as error:
         parser.exit(1, f'build-installer: {error}\n')

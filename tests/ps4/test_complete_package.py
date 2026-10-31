@@ -16,6 +16,7 @@ import xml.etree.ElementTree as ET
 
 from synthetic_disc import generate
 from synthetic_program import stage_artwork, png_bytes
+from synthetic_pipeline import make_seed
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 from build_inputs import Locations
@@ -375,7 +376,12 @@ class CompletePackageRoundtripTests(PreparationCliTestCase):
 class RelocatableProgramTests(PreparationCliTestCase):
     def setUp(self):
         super().setUp()
-        self.reference = Path(REFERENCE)
+        self.reference = self.root / 'platform-build'
+        self.reference.mkdir()
+        for path in Path(REFERENCE).iterdir():
+            if path.name != 'assembly-assets':
+                (self.reference / path.name).symlink_to(path, target_is_directory=path.is_dir())
+        self.seed = make_seed(self.reference / 'assembly-assets')
         self.output = self.root / 'private-complete'
         self.build = self.root / 'developer-build'
 
@@ -435,6 +441,10 @@ class RelocatableProgramTests(PreparationCliTestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         report = json.loads((self.output / 'inspection.json').read_text())
         self.assertEqual(report['artwork'], artwork)
+        self.assertEqual(report['pipeline_seed']['sha256'], self.seed['sha256'])
+        self.assertEqual(report['pipeline_seed']['rows'], self.seed['rows'])
+        self.assertEqual(report['pipeline_seed']['source_files'], self.seed['source_files'])
+        self.assertEqual(report['payload_sha256']['initial_pipeline_cache.db'], self.seed['sha256'])
         for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
             self.assertEqual(report['payload_sha256']['sce_sys/' + name], artwork[resource]['sha256'])
 
@@ -470,6 +480,48 @@ class RelocatableProgramTests(PreparationCliTestCase):
                                    check=True, capture_output=True, env=env)
                     self.assertEqual(extracted.read_bytes(), artwork[name])
                     self.assertEqual(sha256(extracted), parent['payload_sha256']['sce_sys/' + name])
+
+    def test_default_required_seed_failures_never_publish_an_unseeded_game(self):
+        stage, elf, _ = self.game_build()
+        assets = self.reference / 'assembly-assets'
+        saved = self.root / 'saved-assets'
+        shutil.copytree(assets, saved)
+        for case in ['missing', 'empty', 'corrupted', 'incompatible', 'hash', 'counts',
+                     'empty-manifest', 'corrupt-manifest']:
+            with self.subTest(case=case):
+                shutil.rmtree(assets)
+                shutil.copytree(saved, assets)
+                database = assets / 'initial_pipeline_cache.db'
+                if case == 'missing':
+                    database.unlink()
+                elif case == 'corrupted':
+                    database.write_bytes(b'corrupted database')
+                elif case in ['empty', 'incompatible']:
+                    with sqlite3.connect(database) as db:
+                        db.execute('DELETE FROM pipeline_cache' if case == 'empty'
+                                   else 'UPDATE pipeline_cache SET config_version=999')
+                manifest = assets / 'pipeline-seed.json'
+                seed = json.loads(manifest.read_text())
+                if case not in ['missing', 'hash']:
+                    seed['sha256'] = sha256(database)
+                if case == 'hash':
+                    database.write_bytes(database.read_bytes() + b'changed')
+                if case == 'counts':
+                    seed['rows'] += 1
+                manifest.write_text(json.dumps(seed))
+                if case == 'empty-manifest':
+                    manifest.write_text('')
+                elif case == 'corrupt-manifest':
+                    manifest.write_text('{broken')
+                before = {p.name: p.read_bytes() for p in assets.iterdir()}
+                result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
+                                      '--elf', elf, '--platform-root', self.reference, '--kind', 'game',
+                                      '--app-version', '01.05', '--output', self.output)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('shader seed', result.stderr)
+                self.assertFalse(self.output.exists())
+                self.assertFalse(list(self.root.glob('.complete-*')))
+                self.assertEqual({p.name: p.read_bytes() for p in assets.iterdir()}, before)
 
     def test_invalid_game_artwork_stops_assembly_without_completed_output(self):
         stage, elf, _ = self.game_build()

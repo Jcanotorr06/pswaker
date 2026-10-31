@@ -161,6 +161,8 @@ required cold/warm/relaunch coverage. Preserve separate analyses for separate
 launches and return all of them.
 
 The [owner checklist](Frame-pacing-checklist.md) specifies comparable actions,
-cache handling and evidence renewal. A material graphics/runtime/build change
+cache handling and evidence renewal. The
+[Outset action baseline](Action-baseline-checklist.md) applies the same tools
+to rolls, swimming and sword swings for #108. A material graphics/runtime/build change
 requires new affected platform evidence; an earlier binary's pass is retained
 only as history.

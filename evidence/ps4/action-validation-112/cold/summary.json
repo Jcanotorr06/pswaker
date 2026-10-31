@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "identity": {
+    "schema": 1,
+    "build": "9f79516d60da618241a1",
+    "tsc_frequency": 1593977062,
+    "method": "VideoOut-completed-flip-tsc",
+    "platform": "owner-confirm-required",
+    "cache": "/data/pswaker/cache/9f79516d60da618241a1",
+    "internal": [
+      1280,
+      720
+    ],
+    "logic_hz": 30,
+    "textures": "stock"
+  },
+  "installed_program": {
+    "build_id": "9f79516d60da618241a1",
+    "elf_filename": "switchwaker",
+    "elf_sha256": "06417d1c34cdf58b70baee9e679f83e77899b12405ce47f8a9b12bf578790f90",
+    "eboot_sha256": "ac4e2bb217608637b5dd9be430f1f307112286d4c0e112a547b961afcafe690c",
+    "payload_sha256": {
+      "build-info.json": "7f605f067c741ef5d625d73970cdf66c6dd5cce3833f827f45d5ad434187ff21",
+      "eboot.bin": "ac4e2bb217608637b5dd9be430f1f307112286d4c0e112a547b961afcafe690c",
+      "sce_module/libSceFios2.prx": "905cf6b7c699eccb6b95291fc4dcaf5ce2d2605f450f36496d9b973777afa745",
+      "sce_module/libc.prx": "8ac205d14351edb241238b372b2f1c3350a6385a271483d4867fe9a33bc6e4d3",
+      "sce_sys/about/right.sprx": "1d7b1298bf219ad62a3452fd8ab7fe35fccf674431a24783336a6cb37f45dfed",
+      "sce_sys/icon0.png": "d3e22130a3c119d1f75daf19de2636cf9162e65575eba6a6ca20a590cb1db03e",
+      "sce_sys/param.sfo": "61cb9197afbe29ddd49ffb2f14f78e93b657a47a15c4f76b2fdaebf13168bd77",
+      "sce_sys/pic1.png": "35fe1f42fab83f27841e9049c650662b5d8cbe505edc94eab8fbb3f1ae8a99b4"
+    }
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "cc26a2526f9cb4b81383b2875c66fa6521519f3d2d991d3be5be08f1d91ae8f5"
+  },
+  "owner": {
+    "build": "9f79516d60da618241a1",
+    "package_sha256": "cc26a2526f9cb4b81383b2875c66fa6521519f3d2d991d3be5be08f1d91ae8f5",
+    "platform": {
+      "model": "PS4 Slim",
+      "firmware": "9.00",
+      "goldhen": "v2.4b18"
+    },
+    "cache_state": "cold",
+    "timing_method_verified": false,
+    "timing_verification_notes": "Describe returned display/clock/mapping evidence; leave false until reviewed.",
+    "samples": {
+      "1": {
+        "scene": "outset",
+        "actions": "0:00\u20130:10 Stand still, camera untouched. 0:10\u20130:40 Five rolls on dry ground, about 5 s apart. 0:40\u20131:10 Five standing sword swings, about 5 s apart. 1:10\u20131:50 Walk into the sea and swim near the shore for about 30 s, with a few turns. 1:50\u20132:05 Return to the shallows or shore and stand still.",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      }
+    }
+  },
+  "samples": [
+    {
+      "sample": 1,
+      "scene": "outset",
+      "owner": {
+        "scene": "outset",
+        "actions": "0:00\u20130:10 Stand still, camera untouched. 0:10\u20130:40 Five rolls on dry ground, about 5 s apart. 0:40\u20131:10 Five standing sword swings, about 5 s apart. 1:10\u20131:50 Walk into the sea and swim near the shore for about 30 s, with a few turns. 1:50\u20132:05 Return to the shallows or shore and stand still.",
+        "active_gameplay": true,
+        "graphics_audio_correct": true
+      },
+      "metrics": {
+        "seconds": 120.02161806579372,
+        "intervals": 3601,
+        "average_fps": 30.00292828935197,
+        "p95_ms": 33.3942835621558,
+        "p99_ms": 33.42469303363162,
+        "maximum_ms": 50.11390621880856,
+        "shader_wait_ms": 0.0,
+        "shader_wait_calls": 0,
+        "active_shader_waits_over_35ms": 0,
+        "active_shader_wait_total_ms": 0.0,
+        "resume_to_first_observation_ms": 33.426928,
+        "shader_correlated_hitches": 0
+      },
+      "outside_boundary_presentations": 0,
+      "invalid_reasons": [
+        "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+        "launch has no completed recorder shutdown"
+      ],
+      "shortfalls": [],
+      "target_met": false
+    }
+  ],
+  "phases": [
+    {
+      "phase": "startup",
+      "start_ns": 1157574539790107,
+      "duration_ms": 125.999314
+    },
+    {
+      "phase": "renderer-initialize",
+      "start_ns": 1157574665789421,
+      "duration_ms": 1033.031355
+    },
+    {
+      "phase": "content-validation",
+      "start_ns": 1157575698820776,
+      "duration_ms": 33.206824
+    },
+    {
+      "phase": "storage-check",
+      "start_ns": 1157575732027600,
+      "duration_ms": 262.470542
+    },
+    {
+      "phase": "shader-preparation",
+      "start_ns": 1157575994498142,
+      "duration_ms": 14053.436653
+    },
+    {
+      "phase": "loading",
+      "start_ns": 1157590047934795,
+      "duration_ms": 30593.660109
+    },
+    {
+      "phase": "gameplay",
+      "start_ns": 1157620641594904,
+      "duration_ms": 20773.058802
+    }
+  ],
+  "missing_scenes": [
+    "forest"
+  ],
+  "acceptance": "Individual measured candidates only; final integrated acceptance belongs to issue #23",
+  "evidence_sha256": {
+    "inspection.json": "9f9203539d945b8a8a75d0975cec887dff30b37d3660c4331b10205e80c1e0ee",
+    "owner.json": "876e2d4a0c17e66bb1b84fe3503188e9bacf76319a65ff736fe0e429bbc66169",
+    "raw-launch/events.csv": "bf9801b5db11c98046160f8d5e2036f37867606843410a26a24b6be5f51c21ae",
+    "raw-launch/frames.csv": "1b1cc2864fbd63775f3539e04b1c33fda7679cf185ad2b56ef070372aaec7ff2",
+    "raw-launch/identity.json": "256e614669e5e4d428b5e75de2fbc3a581b67ede46f76011b9d479eed98e3796",
+    "raw-launch/samples.csv": "12041c8b6e9c70c8bd5bfdf6f43a29857c996c53331cff1e8320d7163ab6b723"
+  }
+}

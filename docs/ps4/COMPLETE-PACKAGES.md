@@ -3,7 +3,7 @@
 Issue [#16](https://github.com/Jcanotorr06/pswaker/issues/16) adds Linux/WSL2
 preparation of an owner-built complete package. The game image installs at the
 approved fixed path **`/app0/game.iso`**. Runtime and save locations stay fixed.
-Optional pipeline-description seeds are preparation assets described below;
+Validated pipeline-description seeds are required game assembly assets described below;
 assembly introduces no console checkpoint.
 Game startup and installed-content failure handling belong to #17.
 
@@ -202,7 +202,7 @@ its release SELF.
 `create_package(request, observe)` in `complete-package.py` is the single
 operation behind `assemble`, for use by a later desktop adapter. A
 `PackageRequest` names the image, the `Program` (a release, or a developer stage
-and ELF), kind, version, tool root, output and optional pipeline cache. The
+and ELF), kind, version, tool root, output and verified assembly assets. The
 operation runs these stages in order:
 
 | Stage | Covers |
@@ -222,12 +222,31 @@ after `inspect` passes. The source image is only read. A non-empty existing
 output, such as a completed package, is never replaced. On success,
 `stages.json` keeps the measured durations of the first four stages.
 
-## Optional pipeline-description seed
+## Required pipeline-description seed
 
-For a performance candidate, `assemble --pipeline-cache /private/pipeline_cache.db`
-adds a validated, standalone `/app0/initial_pipeline_cache.db`. Supply the adjacent
-`pipeline_cache.db-wal` if present and keep the application closed during retrieval.
-The CLI copies the database/WAL before opening SQLite, checks integrity and the
+Every `assemble --kind game` includes a validated, standalone
+`/app0/initial_pipeline_cache.db` automatically. The fixed private asset directory
+defaults to `PLATFORM_ROOT/assembly-assets`; maintainers may locate the same
+verified inputs elsewhere with `--assembly-assets /private/validated-seed`.
+There is no player performance flag or shader selection. Missing, empty, corrupt,
+changed or renderer-incompatible seeds fail assembly before publication. Existing
+completed output is retained. Diagnostic packages are not the game acceptance target;
+their optional `--pipeline-cache` input remains available for diagnostics only.
+
+The standard asset is the retained 287-description seed SHA-256
+`7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1`, with asset
+manifest SHA-256 `e8d4b523aa45f58e272ccde4c258d76388200e26f28a9060b804f9969b4493fb`.
+The [accepted Outset capture](../../evidence/ps4/action-baseline-108/OWNER-DECISION.md)
+and [reproducible coverage/delivery record](../../evidence/ps4/outset-coverage-111/README.md)
+establish that all 259 recorded configurations are already present byte for byte;
+zero descriptions were added and all existing compatible descriptions remain.
+Use this same private asset for the CLI default directory and Windows app/installer
+`--assembly-assets` inputs. Owners need no prerequisite gameplay capture. This
+bounded configuration comparison does not establish gameplay smoothness.
+
+To prepare a replacement, supply the adjacent `pipeline_cache.db-wal` if present and keep the
+application closed during retrieval. The preparation CLI copies the database/WAL
+before opening SQLite, checks integrity and the
 selected renderer's schema/version/size contract, and backs up their committed
 view into a DELETE-journal database. It checks the originals stayed unchanged.
 The runtime's optional `aurora_seed` merge identity is validated and omitted from
@@ -239,13 +258,18 @@ To prepare and inspect that snapshot without assembling a complete package:
 
 ```bash
 python3 tools/pswaker/complete-package.py pipeline-seed /private/pipeline_cache.db \
-  --output /private/new-seed-directory
+  --output "$PLATFORM_ROOT/assembly-assets"
 ```
 
 The new private directory contains `initial_pipeline_cache.db` and
 `pipeline-seed.json` with source hashes, configuration counts and seed SHA-256.
-Assembly performs the same snapshot itself; pass the original database/WAL pair
-to preserve its provenance in the package manifest. The seed is a separate asset;
+Existing prepared seeds are compatible. Assembly verifies the seed against its
+asset manifest and selected renderer contract, copies those exact standalone
+bytes, and preserves original database/WAL provenance. It binds the seed size,
+SHA-256, configuration counts and asset-manifest SHA-256 to `complete-package.json`
+and `assembly.json`; fresh extraction revalidates the installed bytes and counts.
+Neither preparation nor assembly modifies source databases or WAL files.
+The seed is a separate asset;
 the data-free program staging allowlist above stays unchanged. Fresh package
 inspection validates the extracted seed's bytes and configuration counts against
 `complete-package.json`. Package/seed hashes distinguish different preparation
@@ -257,6 +281,14 @@ renderer compiles known pipelines before gameplay. Cold disposable caches still
 start empty; preparation and its duration remain visible startup work. This does
 not guarantee coverage of every future draw/effect or a console performance pass.
 Keep actual seeds and complete packages private.
+
+The Windows maintainer supplies this same directory to `build-desktop.py` or
+`build-installer.py` with required `--assembly-assets`. It is shipped beside
+`program`, `packaging` and `platform` as `assembly-assets` and included in the
+verified desktop inventory. The normal owner flow selects only the image and
+output location; it includes and freshly inspects the seed automatically. A
+program release and a program package remain data-free and do not contain this
+private asset. Rebuild the private desktop bundle when changing the seed.
 
 ## Inspection and retained private evidence
 

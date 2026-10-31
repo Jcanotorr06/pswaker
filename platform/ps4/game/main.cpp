@@ -16,6 +16,7 @@ class JKRHeap;
 #include <SDL3/SDL.h>
 #include <imgui.h>
 #include "webgpu/gpu.hpp"
+#include "gfx/pipeline_cache.hpp"
 #include "window.hpp"
 #include <atomic>
 #include <chrono>
@@ -293,10 +294,18 @@ void pswaker_graphics_ready() {
     pswaker_perf_phase("content-validation");
     FILE* image = fopen("/app0/game.iso", "rb");
     char error[512];
-    const bool valid = pswaker_validate_image(image, error, sizeof error, imageProgress);
+    ImageRecord record{"/app0/complete-package.json", "/data/pswaker/installed-image-check.txt", PSWAKER_BUILD_ID};
+    const auto check = pswaker_check_installed_image(image, record, error, sizeof error, imageProgress);
     const bool closed = !image || fclose(image) == 0;
-    if (!valid) pswaker_installation_error(error);
+    if (check == ImageCheck::Failed) pswaker_installation_error(error);
     if (!closed) pswaker_installation_error("Closing installed content failed");
+    // Without a manifest every launch hashes; its read error is already counted above.
+    if (check == ImageCheck::FullUnrecorded && *record.identity) {
+        ++checkedErrors;
+        say("ERROR recording full image check path=%s; the next launch hashes again", record.path);
+    }
+    say("CONTENT check=%s identity='%s' ms=%.1f", check == ImageCheck::MatchedRecord ? "recorded-full-check" :
+        check == ImageCheck::FullRecorded ? "full-recorded" : "full-unrecorded", record.identity, milliseconds());
     pswaker_stage("installed-image-validated");
     pswaker_perf_phase("storage-check");
     while (!settings.check()) {
@@ -348,18 +357,35 @@ void pswaker_graphics_ready() {
     pswaker_perf_phase("shader-preparation");
     uint32_t previous = UINT32_MAX;
     for (;;) {
-        const auto stats = pipelines();
-        if (stats.created != previous) {
-            previous = stats.created;
-            say("SHADERS created=%u queued=%u ms=%.1f", stats.created, stats.queued, milliseconds());
+        // Drain earlier frame work before testing the renderer's preparation
+        // contract. Its pending set includes creation already inside the driver.
+        aurora::gfx::synchronize();
+        const auto status = aurora::gfx::pipeline_preparation_status();
+        if (status.error) pswaker_installation_error(status.error);
+        if (status.ready != previous) {
+            previous = status.ready;
+            say("SHADERS configurations-ready=%u total=%u pending=%u complete=%d ms=%.1f",
+                status.ready, status.total, status.pending, status.complete, milliseconds());
         }
         char text[256];
-        snprintf(text, sizeof text, "%u prepared; %u queued.\nNew shaders are compiled when first encountered. Gameplay shader stalls still count in later performance tests.", stats.created, stats.queued);
-        screen("Shader preparation", text, stats.queued ? float(stats.created)/float(stats.created+stats.queued) : 1);
-        if (!stats.queued) break;
+        snprintf(text, sizeof text, "%u of %u shader configurations prepared.\nConfigurations not included in this package compile when first encountered.",
+                 status.ready, status.total);
+        screen("Shader preparation", text, status.complete ? 1.f :
+               status.total ? float(status.ready)/float(status.total) : 0.f);
+        if (status.complete) {
+            aurora::gfx::synchronize();
+            const auto finalStatus = aurora::gfx::pipeline_preparation_status();
+            if (finalStatus.error) pswaker_installation_error(finalStatus.error);
+            if (!finalStatus.complete || !aurora::gfx::finish_pipeline_preparation()) continue;
+            // Include seed loading and compilation that overlapped content and
+            // storage checks, while retaining the final screen drain separately.
+            say("TIMING shader-preparation_ms=%.1f shader-final-drain_ms=%.1f startup_to_preparation_complete_ms=%.1f preparation_start_ns=%llu preparation_complete_ns=%llu",
+                double(finalStatus.finishedNs-finalStatus.startedNs)/1e6, milliseconds()-start, milliseconds(),
+                (unsigned long long)finalStatus.startedNs, (unsigned long long)finalStatus.finishedNs);
+            break;
+        }
         usleep(16000);
     }
-    say("TIMING shader-preparation_ms=%.1f startup_to_preparation_complete_ms=%.1f", milliseconds()-start, milliseconds());
     pswaker_stage("known-shaders-prepared");
     pswaker_perf_phase("loading");
 }

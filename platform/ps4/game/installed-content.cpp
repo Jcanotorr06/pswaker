@@ -53,6 +53,54 @@ struct Sha1 {
         for (unsigned i=0; i<5; ++i) snprintf(out+i*8,9,"%08x",h[i]);
     }
 };
+
+bool failure(char* error, size_t error_size, const char* reason) {
+    snprintf(error, error_size, "Installation error: %s. Rebuild the complete package on the computer and reinstall; existing saves/settings are preserved.", reason);
+    return false;
+}
+
+bool shaped(FILE* image, struct stat& info, char* error, size_t error_size) {
+    if (!image) return failure(error, error_size, "/app0/game.iso is missing or unreadable");
+    if (fstat(fileno(image), &info) || !S_ISREG(info.st_mode) || uint64_t(info.st_size) != image_size)
+        return failure(error, error_size, "installed image has an invalid size or file type");
+    return true;
+}
+
+bool identify(const struct stat& image, ImageRecord& record) {
+    FILE* manifest = fopen(record.manifest, "rb");
+    struct stat info{};
+    char sha1[41];
+    bool good = manifest && !fstat(fileno(manifest), &info) && S_ISREG(info.st_mode) &&
+                pswaker_hash_stream(manifest, info.st_size, sha1);
+    if (manifest && fclose(manifest)) good = false;
+    const int length = good ? snprintf(record.identity, sizeof record.identity,
+        "pswaker-image-check-1 build=%s size=%llu mtime=%lld manifest-sha1=%s", record.build,
+        (unsigned long long)image.st_size, (long long)image.st_mtime, sha1) : -1;
+    if (length > 0 && size_t(length) < sizeof record.identity) return true;
+    record.identity[0] = 0;
+    return false;
+}
+
+bool recorded(const ImageRecord& record) {
+    FILE* input = fopen(record.path, "rb");
+    if (!input) return false;
+    char contents[sizeof record.identity + 2];
+    const size_t length = fread(contents, 1, sizeof contents, input);
+    const bool closed = fclose(input) == 0;
+    const size_t expected = strlen(record.identity);
+    return closed && length == expected + 1 && !memcmp(contents, record.identity, expected) &&
+           contents[expected] == '\n';
+}
+
+// A torn record cannot match, so it needs no backup or directory sync.
+bool store(const ImageRecord& record) {
+    FILE* output = fopen(record.path, "wb");
+    if (!output) return false;
+    bool good = fprintf(output, "%s\n", record.identity) > 0 && fflush(output) == 0 &&
+                fsync(fileno(output)) == 0;
+    if (fclose(output)) good = false;
+    return good;
+}
 }
 
 bool pswaker_hash_stream(FILE* input, uint64_t size, char sha1[41],
@@ -76,30 +124,42 @@ bool pswaker_hash_stream(FILE* input, uint64_t size, char sha1[41],
 
 bool pswaker_validate_image(FILE* image, char* error, size_t error_size,
                             void (*progress)(uint64_t, uint64_t)) {
-    const auto fail = [&](const char* reason) {
-        snprintf(error, error_size, "Installation error: %s. Rebuild the complete package on the computer and reinstall; existing saves/settings are preserved.", reason);
-        return false;
-    };
-    if (!image) return fail("/app0/game.iso is missing or unreadable");
     struct stat info{};
-    if (fstat(fileno(image), &info) || !S_ISREG(info.st_mode) || uint64_t(info.st_size) != image_size)
-        return fail("installed image has an invalid size or file type");
+    if (!shaped(image, info, error, error_size)) return false;
     char actual[41];
     if (!pswaker_hash_stream(image, image_size, actual, progress))
-        return fail("installed image read failed; partial content cannot be used");
+        return failure(error, error_size, "installed image read failed; partial content cannot be used");
     bool accepted = false;
     for (const char* expected : image_sha1) accepted |= strcmp(actual, expected) == 0;
-    if (!accepted) return fail("installed image checksum is invalid");
+    if (!accepted) return failure(error, error_size, "installed image checksum is invalid");
     return true;
 }
 
+ImageCheck pswaker_check_installed_image(FILE* image, ImageRecord& record, char* error, size_t error_size,
+                                         void (*progress)(uint64_t, uint64_t)) {
+    struct stat info{};
+    if (!shaped(image, info, error, error_size)) return ImageCheck::Failed;
+    const bool identified = identify(info, record);
+    if (identified && recorded(record)) return ImageCheck::MatchedRecord;
+    if (!pswaker_validate_image(image, error, error_size, progress)) return ImageCheck::Failed;
+    return identified && store(record) ? ImageCheck::FullRecorded : ImageCheck::FullUnrecorded;
+}
+
 #if defined(PSWAKER_HOST_CONTENT_CHECK)
+// content-check IMAGE [MANIFEST RECORD BUILD]
 int main(int argc, char** argv) {
-    FILE* image = argc == 2 ? fopen(argv[1], "rb") : nullptr;
+    FILE* image = argc == 2 || argc == 5 ? fopen(argv[1], "rb") : nullptr;
     char error[512] = "Installation error: read failed. Rebuild the complete package and reinstall.";
-    bool valid = pswaker_validate_image(image, error, sizeof error);
-    if (image && fclose(image)) valid = false;
-    if (!valid) { fprintf(stderr, "%s\n", error); return 14; }
-    puts("Installed image verified");
+    auto check = ImageCheck::Failed;
+    if (argc == 5) {
+        ImageRecord record{argv[2], argv[3], argv[4]};
+        check = pswaker_check_installed_image(image, record, error, sizeof error);
+    } else if (pswaker_validate_image(image, error, sizeof error)) check = ImageCheck::FullUnrecorded;
+    if (image && fclose(image)) check = ImageCheck::Failed;
+    if (check == ImageCheck::Failed) { fprintf(stderr, "%s\n", error); return 14; }
+    puts(argc == 2 ? "Installed image verified" :
+         check == ImageCheck::MatchedRecord ? "Installed image verified by recorded full check" :
+         check == ImageCheck::FullRecorded ? "Installed image verified; full check recorded" :
+         "Installed image verified; full check not recorded");
 }
 #endif

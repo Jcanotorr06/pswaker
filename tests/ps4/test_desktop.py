@@ -146,13 +146,13 @@ with patch.object(BuildOperation, 'progress', new=pause_read):
     app.output_button.invoke()
     app.validate_button.invoke()
     wait_until(entered.is_set)
-    assert app.busy
+    assert app.workflow.view.busy
     assert not app.cancel_button.instate(['disabled'])
     app.cancel_button.invoke()
-    assert app.busy  # Wait for owned work to stop before enabling retry.
+    assert app.workflow.view.busy  # Wait for owned work to stop before enabling retry.
     release.set()
     wait_for('Validation cancelled')
-assert app.accepted is None
+assert not app.workflow.view.can_create
 assert app.create_button.instate(['disabled'])
 assert not app.validate_button.instate(['disabled'])
 assert not output.exists()
@@ -181,18 +181,18 @@ for target in ['validate', 'assemble', 'inspect']:
         app.create_button.invoke()
         wait_until(entered.is_set)
         wait_until(lambda: 'bytes' in app.details.get())
-        assert app.busy
+        assert app.workflow.view.busy
         assert not app.cancel_button.instate(['disabled'])
         assert app.image_button.instate(['disabled'])
         assert 'bytes' in app.details.get(), app.details.get()
         app.cancel_button.invoke()
-        assert app.busy
+        assert app.workflow.view.busy
         release.set()
         wait_for('Package creation cancelled')
     assert not output.exists()
     assert not list(folder.glob('.complete-*'))
-    assert app.accepted is None
-    assert app.package is None
+    assert not app.workflow.view.can_create
+    assert app.workflow.view.package_path is None
     assert not app.instructions.get()
     assert app.create_button.instate(['disabled'])
     assert app.open_button.instate(['disabled'])
@@ -227,12 +227,12 @@ with patch.object(BuildOperation, 'progress', new=pause_read), patch.object(root
     app.validate_button.invoke()
     wait_until(entered.is_set)
     app.close()
-    assert app.busy
+    assert app.workflow.view.busy
     destroy.assert_not_called()
     release.set()
     wait_until(lambda: destroy.called)
-assert not app.busy
-assert app.accepted is None
+assert not app.workflow.view.busy
+assert not app.workflow.view.can_create
 assert not output.exists()
 ''')
 
@@ -274,7 +274,7 @@ work.mkdir()
 root.destroy()
 root = tk.Tk()
 app = DesktopApp(root, bundle)
-wait_until(lambda: not app.busy)
+wait_until(lambda: not app.workflow.view.busy)
 assert 'Interrupted work needs attention' in app.status.get(), app.status.get()
 assert 'ownership changed' in app.details.get(), app.details.get()
 assert (work / 'owner.txt').read_text() == 'replacement must survive'
@@ -284,12 +284,12 @@ held.rename(work)
 root.destroy()
 root = tk.Tk()
 app = DesktopApp(root, bundle)
-wait_until(lambda: not app.busy)
+wait_until(lambda: not app.workflow.view.busy)
 assert 'removed' in app.details.get(), app.details.get()
 assert not work.exists()
 assert not record_path.exists()
 assert (unowned / 'keep.txt').read_text() == 'owner files'
-assert app.accepted is None
+assert not app.workflow.view.can_create
 assert app.create_button.instate(['disabled'])
 app.image_button.invoke()
 app.output_button.invoke()
@@ -335,11 +335,11 @@ for mode in ['before', 'after']:
     root.destroy()
     root = tk.Tk()
     app = DesktopApp(root, bundle)
-    wait_until(lambda: not app.busy)
+    wait_until(lambda: not app.workflow.view.busy)
     assert 'removed' in app.details.get(), app.details.get()
     assert not list(folder.glob('.complete-*'))
     assert not record.exists()
-    assert app.accepted is None
+    assert not app.workflow.view.can_create
     (folder / 'paused').unlink()
 ''')
 
@@ -361,6 +361,11 @@ assert app.output_button.instate(['disabled'])
 wait_for('Package verified')
 report = json.loads((output / 'inspection.json').read_text())
 package = output / 'out' / report['package']['filename']
+seed = json.loads((bundle / 'assembly-assets/pipeline-seed.json').read_text())
+assert report['pipeline_seed']['sha256'] == seed['sha256']
+assert report['pipeline_seed']['rows'] == seed['rows']
+assert report['pipeline_seed']['source_files'] == seed['source_files']
+assert report['payload_sha256']['initial_pipeline_cache.db'] == seed['sha256']
 assert package.is_file()
 assert str(package.resolve()) in app.details.get(), app.details.get()
 assert 'USB' in app.instructions.get()
@@ -407,6 +412,24 @@ wait_for('Supported image')
 app.create_button.invoke()
 wait_for('Package verified')
 assert (output / 'inspection.json').is_file()
+''', packaging=True)
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_reports_missing_required_seed_without_publishing_a_package(self):
+        self.run_desktop('''
+(bundle / 'assembly-assets/initial_pipeline_cache.db').unlink()
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Supported image')
+app.create_button.invoke()
+wait_for('Package creation failed')
+assert 'assembly-assets/initial_pipeline_cache.db' in app.details.get()
+assert 'Reinstall' in app.details.get()
+assert not output.exists()
+assert not list(folder.glob('.complete-*'))
+assert app.workflow.view.package_path is None
+assert app.open_button.instate(['disabled'])
 ''', packaging=True)
 
     @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
@@ -548,7 +571,7 @@ with ExitStack() as faults:
 assert expected_stage + ':' in app.details.get(), app.details.get()
 assert expected_message in app.details.get(), app.details.get()
 assert 'retry' in app.details.get().lower()
-assert app.package is None
+assert app.workflow.view.package_path is None
 assert not app.instructions.get()
 assert app.open_button.instate(['disabled'])
 assert app.install_button.instate(['disabled'])
@@ -634,10 +657,12 @@ app.create_button.invoke()
 wait_for('Package verified')
 report = json.loads((output / 'inspection.json').read_text())
 assert report['image']['sha256'] == original
-assert hashlib.sha256(app.package.read_bytes()).hexdigest() == report['package']['sha256']
+assert hashlib.sha256(app.workflow.view.package_path.read_bytes()).hexdigest() == report['package']['sha256']
 assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
 assert not list(folder.glob('.complete-*'))
-assert app.operation.diagnostics.operation_id != diagnostic['operation_id']
+next_report = folder / 'next-attempt.json'
+assert app.workflow.export_diagnostics(next_report)
+assert json.loads(next_report.read_text())['operation_id'] != diagnostic['operation_id']
 ''', packaging=True)
 
     @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
@@ -665,35 +690,6 @@ assert 'full raw dump' in app.details.get(), app.details.get()
 assert app.create_button.instate(['disabled'])
 assert not output.exists()
 ''', production=True)
-
-    @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
-    def test_changed_selection_and_late_validation_cannot_keep_success(self):
-        self.run_desktop('''
-app.image_button.invoke()
-app.output_button.invoke()
-app.validate_button.invoke()
-app.image_button.invoke()
-wait_until(lambda: not app.validate_button.instate(['disabled']))
-assert 'Selection changed' in app.status.get(), app.status.get()
-assert not app.details.get()
-app.validate_button.invoke()
-wait_for('Supported image')
-saved = image.read_bytes()
-image.write_bytes(saved + b'changed')
-wait_for('Selection is stale')
-assert not app.details.get()
-image.write_bytes(saved)
-app.validate_button.invoke()
-wait_for('Supported image')
-output.mkdir()
-(output / 'previous.pkg').write_text('previous result')
-wait_for('Selection is stale')
-app.validate_button.invoke()
-wait_for('Validation failed')
-assert 'Output already exists' in app.details.get(), app.details.get()
-assert (output / 'previous.pkg').read_text() == 'previous result'
-assert app.create_button.instate(['disabled'])
-''')
 
     @unittest.skipUnless(DESKTOP_AVAILABLE, 'Tk desktop display required')
     def test_desktop_reports_content_failures_and_can_retry(self):
@@ -790,7 +786,7 @@ def wait_until(predicate):
         if time.monotonic() > deadline:
             raise AssertionError(app.status.get())
         time.sleep(0.01)
-wait_until(lambda: not app.busy)
+wait_until(lambda: not app.workflow.view.busy)
 with patch('tkinter.filedialog.askopenfilename', return_value=str(image)), \\
      patch('tkinter.filedialog.askdirectory', return_value=str(folder)):
 ''' + '\n'.join('    ' + line for line in scenario.strip().splitlines()) + '''

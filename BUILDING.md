@@ -154,14 +154,20 @@ Users of the built app need none of these.
 ```powershell
 python -m pip install -r tools/pswaker/desktop-requirements.txt
 python tools/pswaker/prepare-windows-tools.py --dotnet C:\maintainer\dotnet\dotnet.exe --output C:\private\windows-tools
-python tools/pswaker/build-desktop.py --program C:\private\program-release --packaging C:\private\windows-tools --app-version 0.1.0.1 --output C:\private\desktop-build
-python tools/pswaker/build-installer.py --program C:\private\program-release --packaging C:\private\windows-tools --app-version 0.1.0.1 --iscc 'C:\maintainer\Inno Setup 6\ISCC.exe' --output C:\private\installer-0.1.0.1
+python tools/pswaker/build-desktop.py --program C:\private\program-release --packaging C:\private\windows-tools --assembly-assets C:\private\validated-seed --app-version 0.1.0.1 --output C:\private\desktop-build
+python tools/pswaker/build-installer.py --program C:\private\program-release --packaging C:\private\windows-tools --assembly-assets C:\private\validated-seed --app-version 0.1.0.1 --iscc 'C:\maintainer\Inno Setup 6\ISCC.exe' --output C:\private\installer-0.1.0.1
 ```
 
 - `prepare-windows-tools.py` fetches the pinned LibOrbisPkg archive, checks its
   SHA-256, retargets it from net6.0 to net8.0 and publishes a self-contained
   Windows x64 build. This is the only step that needs the network.
-- `build-desktop.py` bundles the program release, the tools and the production
+- `--assembly-assets` is the existing private validated seed directory containing
+  `initial_pipeline_cache.db` and `pipeline-seed.json`. See
+  [seed preparation](docs/ps4/COMPLETE-PACKAGES.md#required-pipeline-description-seed).
+  Both builders require and verify it; owners receive it automatically with the
+  app. Missing or incompatible seeds fail the build. No shader selection is added
+  to the owner workflow, and no Outset action coverage is claimed.
+- `build-desktop.py` bundles the program release, validated seed, tools and production
   content contract into a `PSWaker` folder with a hash inventory. Keep the whole
   folder together, including `_internal` and `application-release.json`.
 - `build-installer.py` builds the same bundle and compiles a per-user installer.
@@ -170,8 +176,9 @@ python tools/pswaker/build-installer.py --program C:\private\program-release --p
   Python/PyInstaller versions, recipe digest and compiler inventory. Keep both
   files privately for audit and acceptance.
 
-No step reads a disc image; the builders seal only the data-free program, tool
-and contract inventories, and reject any other program files.
+No step reads a disc image; the builders seal the data-free program, separate
+private shader-description asset, tools and contract inventories, and reject
+any other program files. Keep seeds and the bundles containing them private.
 
 The desktop app folder, portable zip and Windows installer bundle the program
 release's artwork. Keep them and their audit manifests outside git. The

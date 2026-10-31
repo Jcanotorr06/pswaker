@@ -23,6 +23,8 @@ do not validate it. Keep #17 open until the returned evidence is reviewed.
    directory under /data/pswaker/cache/ if it already exists. Record the cache
    label. Other builds' cache directories and saves/settings stay separate.
 2. Launch. Observe checking installed content and shader-preparation progress.
+   The full content check runs on the first launch of each installed build;
+   later launches skip it (`CONTENT check=recorded-full-check` in the log).
    A new cache can report zero known shaders; new shaders then compile when
    encountered. Record launch-to-title time if possible.
 3. Release Cross and press it on the legend. Reach the title screen. Confirm

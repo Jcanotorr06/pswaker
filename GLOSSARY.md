@@ -24,6 +24,10 @@ _Avoid_: Program package, which is an installation package
 An owner-built installation package combining the native game program with game
 data from the owner's disc image, ready to install and play on the PS4.
 
+**Complete package workflow**:
+The desktop process for selecting the owner's disc image and output location,
+validating the image, and creating a verified complete package.
+
 **Game icon**:
 The artwork representing the installed game on the PS4 home screen and in the
 library.

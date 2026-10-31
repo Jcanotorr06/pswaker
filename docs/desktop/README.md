@@ -53,6 +53,12 @@ are managed separately on the console.
 Open `PSWaker.exe` from its complete application folder. It displays its fixed
 game-program version/build and **PS4 Slim / firmware 9.00 / GoldHEN v2.4b18**
 baseline. No program, SDK, build root or package-identity selection is required.
+The application includes a validated shader-description seed automatically.
+Package creation checks and includes it, then verifies the extracted seed against
+the package manifest. If a required bundled input is missing or incompatible,
+reinstall the complete application. The seed describes shaders for local
+compilation; package verification does not establish action coverage or console
+performance.
 
 1. Select your own full raw `.iso` or `.gcm` image. Uppercase extensions work.
 2. Select a private parent folder outside the application/source checkout. The
@@ -213,10 +219,27 @@ in [RELEASING.md](../RELEASING.md).
 
 ## Verification and remaining evidence
 
+`complete_package_workflow.CompletePackageWorkflow` owns the Complete package
+workflow: selections, validation acceptance, worker lifetimes, cancellation,
+progress, interrupted-work recovery and the latest troubleshooting report.
+`desktop_app` is the Tk adapter for dialogs and rendering its immutable
+`WorkflowView`. Actions and nonblocking `poll()` run on the caller's thread;
+workers only enqueue outcomes. Unavailable actions do nothing. Selection changes
+invalidate even a queued validation success, and the active worker retains its
+slot until its completion is consumed. `BuildOperation` still owns the ordering
+of cancellation and verified publication.
+
+Headless workflow tests use real temporary files and diagnostics, with held
+worker execution and controlled validation/package results. They exercise the
+same interface as Tk without requiring a display or native packaging tools.
+Selected desktop checks retain real threads, Tk controls and native package
+creation; these checks verify the adapters as well as the workflow.
+
 ```powershell
 $env:PSWAKER_WINDOWS_TOOLS = 'C:\private\windows-tools'
 python -m pyright --pythonpath python
 python -m compileall -q tools/pswaker tests/ps4
+python -m unittest discover -s tests/ps4 -p test_complete_package_workflow.py -v
 python -m unittest discover -s tests/ps4 -p test_desktop.py -v
 python -m unittest discover -s tests/ps4 -p test_windows_package.py -v
 $env:PSWAKER_ISCC = 'C:\maintainer\Inno Setup 6\ISCC.exe'

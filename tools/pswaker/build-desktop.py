@@ -13,9 +13,10 @@ import tempfile
 from disc_image import CONTRACT, require
 from windows_package import seal_bundle
 from package_artifact import inventory, write_json
+from pipeline_assets import ASSET_DIRECTORY
 
 
-def build(program, packaging, output, app_version=None):
+def build(program, packaging, output, app_version=None, *, assembly_assets):
     require(sys.platform == 'win32' and struct.calcsize('P') == 8, 'Build on Windows with x64 CPython')
     require(sys.version_info[:2] == (3, 12), 'Build with CPython 3.12 and Tcl/Tk')
     require(distribution_version('pyinstaller') == '6.22.3', 'Use pinned PyInstaller 6.22.3')
@@ -30,6 +31,7 @@ def build(program, packaging, output, app_version=None):
         bundled = bundle / 'program'
         shutil.copytree(program, bundled, symlinks=True)
         shutil.copytree(packaging, bundle / 'packaging', symlinks=True)
+        shutil.copytree(assembly_assets, bundle / ASSET_DIRECTORY, symlinks=True)
         (bundle / 'platform/ps4').mkdir(parents=True)
         shutil.copyfile(CONTRACT, bundle / 'platform/ps4/content-contract.json')
         seal_bundle(bundle, app_version)
@@ -51,11 +53,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--program', type=Path, required=True, help='Verified, private #40 game program release')
     parser.add_argument('--packaging', type=Path, required=True, help='Pinned self-contained Windows tool release')
+    parser.add_argument('--assembly-assets', type=Path, required=True, help='Private validated pipeline-seed directory')
     parser.add_argument('--output', type=Path, required=True, help='Absent private build directory outside the checkout')
     parser.add_argument('--app-version', help='Desktop release version (independent of the console program)')
     args = parser.parse_args()
     try:
-        print(build(args.program, args.packaging, args.output, args.app_version))
+        print(build(args.program, args.packaging, args.output, args.app_version, assembly_assets=args.assembly_assets))
     except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as error:
         parser.exit(1, f'build-desktop: {error}\n')
 
