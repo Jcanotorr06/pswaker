@@ -69,3 +69,11 @@ to close [#112](https://github.com/Jcanotorr06/pswaker/issues/112) without furth
 capture. The recorded gaps remain limitations; this decision does not establish
 a verified numerical pass, close the broader performance work, or change the
 initial release-candidate exception.
+
+The [0.1.0 RC4 candidate](release-notes/v0.1.0-rc.4.md) bundles the exact
+**01.20** ELF, build `9f79516d60da618241a1`, and unchanged validated
+287-description seed. It includes preparation before gameplay, required seed
+delivery and per-build installed-image verification caching. Its relocatable
+SELF differs from the CLI-assembled #112 package. The bounded owner decision
+above does not certify RC4 desktop-created packages, integrated controls,
+clean Windows operation or public readiness; those checks remain separate.
