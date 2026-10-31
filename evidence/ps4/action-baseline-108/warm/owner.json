@@ -1,0 +1,20 @@
+{
+  "build": "48d0196e605f00284b21",
+  "package_sha256": "b7739a9c2fb6490dc2faceffe44e706a6f1ecc412805ffb76aaa13ec7fc1319e",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "cache_state": "warm",
+  "timing_method_verified": false,
+  "timing_verification_notes": "Describe returned display/clock/mapping evidence; leave false until reviewed.",
+  "samples": {
+    "1": {
+      "scene": "outset",
+      "actions": "0:00–0:10 Stand still, camera untouched. 0:10–0:40 Five rolls on dry ground, about 5 s apart. 0:40–1:10 Five standing sword swings, about 5 s apart. 1:10–1:50 Walk into the sea and swim near the shore for about 30 s, with a few turns. 1:50–2:05 Return to the shallows or shore and stand still.",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    }
+  }
+}

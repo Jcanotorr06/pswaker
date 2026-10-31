@@ -1,0 +1,4 @@
+* -text
+# Original captures are evidence bytes, including CRLF and trailing spaces.
+*/owner.json -whitespace
+owner-report-original.md -whitespace

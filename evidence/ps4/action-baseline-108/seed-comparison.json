@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "method": "Read-only comparison of (type, hash) keys and config bytes in the standalone snapshot databases",
+  "route_cold": {
+    "seed_sha256": "bdf848be0d1c43948d2e72fd512160033ebe911f72ba022fed61a81c036114fd",
+    "rows": 258
+  },
+  "route_warm": {
+    "seed_sha256": "cb6f1d4d55a873195c67c4edaacfac8f06d726f0eef4de131f1d3da5e3f1114c",
+    "rows": 259,
+    "cold_rows_retained": 258,
+    "rows_added_beyond_cold": 1
+  },
+  "candidate_seed": {
+    "packaged_in": "01.13 candidate",
+    "recorded_from_build_id": "bc90c33b639295f36912",
+    "seed_sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1",
+    "rows": 287
+  },
+  "route_warm_rows_in_candidate_seed": 259,
+  "route_warm_rows_absent_from_candidate_seed": 0,
+  "shared_rows_with_identical_config_bytes": 259,
+  "candidate_seed_rows_not_on_this_route": 28,
+  "union_rows": 287
+}
