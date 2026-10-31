@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Desktop app guide
+    url: https://github.com/Jcanotorr06/pswaker/blob/develop/docs/desktop/README.md
+    about: Requirements, the complete package workflow and troubleshooting reports.
+  - name: Contributing guide
+    url: https://github.com/Jcanotorr06/pswaker/blob/develop/CONTRIBUTING.md
+    about: What to include in a report and how to get a change merged.
