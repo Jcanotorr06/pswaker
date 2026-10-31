@@ -223,19 +223,24 @@ class InstalledApplicationTests(unittest.TestCase):
                                     staged.stderr)
                     path.write_bytes(before)
 
+    def content_checker(self, root, data):
+        """Compile the exact installed-content checker against a contract accepting `data`."""
+        (root / 'image-contract.hpp').write_text(
+            '#pragma once\n#include <cstdint>\n'
+            f'constexpr uint64_t image_size = {len(data)};\n'
+            f'constexpr const char* image_sha1[] = {{"{hashlib.sha1(data).hexdigest()}"}};\n')
+        binary = root / 'content-check'
+        build = subprocess.run(['clang++-21', '-std=c++20', '-DPSWAKER_HOST_CONTENT_CHECK',
+                                '-I', str(root), str(PLATFORM / 'game/installed-content.cpp'),
+                                '-o', str(binary)], capture_output=True, text=True)
+        self.assertEqual(build.returncode, 0, build.stderr)
+        return binary
+
     def test_installed_content_failures_stop_and_preserve_user_files(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             data = b'GZLE01\0\0' + bytes(range(256)) * 4096
-            (root / 'image-contract.hpp').write_text(
-                '#pragma once\n#include <cstdint>\n'
-                f'constexpr uint64_t image_size = {len(data)};\n'
-                f'constexpr const char* image_sha1[] = {{"{hashlib.sha1(data).hexdigest()}"}};\n')
-            binary = root / 'content-check'
-            build = subprocess.run(['clang++-21', '-std=c++20', '-DPSWAKER_HOST_CONTENT_CHECK',
-                                    '-I', str(root), str(PLATFORM / 'game/installed-content.cpp'),
-                                    '-o', str(binary)], capture_output=True, text=True)
-            self.assertEqual(build.returncode, 0, build.stderr)
+            binary = self.content_checker(root, data)
             image = root / 'game.iso'
             saves = root / 'user/seed.gci'
             saves.parent.mkdir()
@@ -254,6 +259,57 @@ class InstalledApplicationTests(unittest.TestCase):
                         self.assertIn('reinstall', result.stderr)
                     self.assertEqual(saves.read_bytes(), b'previous completed save')
                     self.assertEqual(settings.read_bytes(), b'previous settings')
+
+    def test_full_image_check_runs_once_per_build_and_installed_image(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            data = b'GZLE01\0\0' + bytes(range(256)) * 4096
+            binary = self.content_checker(root, data)
+            image, manifest, record = root / 'game.iso', root / 'complete-package.json', root / 'image-check.txt'
+            image.write_bytes(data)
+            manifest.write_text('{"image": "owner image A"}\n')
+
+            def check(build='build-1', record=record):
+                result = subprocess.run([str(binary), str(image), str(manifest), str(record), build],
+                                        capture_output=True, text=True)
+                return result.returncode, result.stdout.strip(), result.stderr
+
+            self.assertEqual(check(), (0, 'Installed image verified; full check recorded', ''))
+            self.assertIn('build=build-1', record.read_text())
+            self.assertEqual(check(), (0, 'Installed image verified by recorded full check', ''))
+
+            # Size and file type are still checked on every launch.
+            image.write_bytes(data[:-1])
+            code, _, error = check()
+            self.assertEqual(code, 14)
+            self.assertIn('invalid size', error)
+
+            # The same installed file under a new build or package manifest is hashed again.
+            image.write_bytes(data)
+            stat = image.stat()
+            image.write_bytes(data[:-1] + b'!')
+            os.utime(image, ns=(stat.st_atime_ns, stat.st_mtime_ns))
+            for build, contents in [('build-2', '{"image": "owner image A"}\n'),
+                                    ('build-1', '{"image": "owner image B"}\n')]:
+                with self.subTest(build=build, manifest=contents):
+                    manifest.write_text(contents)
+                    code, _, error = check(build)
+                    self.assertEqual(code, 14)
+                    self.assertIn('checksum is invalid', error)
+                    self.assertIn('build=build-1', record.read_text())
+
+            image.write_bytes(data)
+            self.assertEqual(check('build-2'), (0, 'Installed image verified; full check recorded', ''))
+            self.assertIn('build=build-2', record.read_text())
+
+            # Without a readable manifest or a writable record, every launch hashes the image.
+            manifest.unlink()
+            self.assertEqual(check('build-2'), (0, 'Installed image verified; full check not recorded', ''))
+            manifest.write_text('{"image": "owner image B"}\n')
+            unwritable = root / 'missing-directory/image-check.txt'
+            for _ in range(2):
+                self.assertEqual(check('build-3', unwritable),
+                                 (0, 'Installed image verified; full check not recorded', ''))
 
 
 if __name__ == '__main__':

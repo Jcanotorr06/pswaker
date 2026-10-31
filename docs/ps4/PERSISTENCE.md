@@ -12,6 +12,7 @@ checks and prepared packages from returned console evidence.
 | Consumer | Location and behavior |
 | --- | --- |
 | Installed disc/runtime assets | Read-only `/app0/game.iso`; fixed image and DOL/REL validation remain. |
+| Installed image check record | `/data/pswaker/installed-image-check.txt` records one passed full image hash for the current build, image and package manifest, so later launches skip it. Deleting it only causes another full check. |
 | Both game card channels | Explicit `CARD_GCIFOLDER`, with `CARDSetBasePath` for each channel before `OSInit`/`CARDInit`: `/data/pswaker/saves/USA/Card A` and `Card B`. Existing GCI names and layout stay compatible. |
 | Port settings UI | `/data/pswaker/settings.ini`, `PSWAKER_LARGE_TEXT=0` (Standard) or `1` (Large). Touchpad → Change port text size → Cross saves and immediately changes port-menu text. Default Large preserves the prior 1.7 scale; Standard uses 1.3. |
 | Desktop settings | The PS4 harness continues to bypass `pc_settings_load_early` and desktop `menuInit`. Existing unrelated lines, including `[dev]`, are retained when changing the port setting, but never applied as PS4 environment overrides. |
