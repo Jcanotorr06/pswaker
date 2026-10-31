@@ -85,9 +85,16 @@ ELF and return available traces.
 
 ## Runtime and evidence
 
-- Game content is read-only at /app0/game.iso. Check full size and accepted
-  SHA-1, then retain pinned runtime DOL/REL checks. Missing, unreadable or invalid
-  content stops with visible rebuild/reinstall guidance. No external search.
+- Game content is read-only at /app0/game.iso. Every launch checks that it is a
+  regular file of the full size. The first launch of each build, installed image
+  and package manifest also checks the accepted SHA-1, then records the passed
+  check in /data/pswaker/installed-image-check.txt (#121). The record holds the
+  build ID, image size and modification time, and the SHA-1 of
+  /app0/complete-package.json. Later matching launches skip the hash; a missing
+  manifest or unwritable record means every launch hashes. Pinned runtime DOL/REL
+  checks remain. Missing, unreadable or invalid content stops with visible
+  rebuild/reinstall guidance. No external search. Damage that leaves the size,
+  modification time and manifest unchanged is not detected after a recorded check.
 - GCI saves use /data/pswaker/saves/USA/Card A and Card B. The settings consumer
   is fixed at /data/pswaker/settings.ini. Quality remains fixed; the desktop
   developer-settings section is not loaded. Full settings/persistence follow
@@ -104,7 +111,8 @@ ELF and return available traces.
 - Normal exit requests SDK shutdown and joins the DMA producer before Aurora
   destroys SDL audio. Fatal paths preserve those objects until process exit.
   Full write coordination and persistence acceptance remain later work.
-- Content validation and known-shader preparation show progress before gameplay.
+- A full content check and known-shader preparation show progress before
+  gameplay. The `CONTENT check=` log line records whether the hash ran.
   Cold startup has no imported game pipeline cache; the actual known queue may
   be zero. New shaders compile synchronously when encountered; gameplay stalls
   remain part of later performance tests.

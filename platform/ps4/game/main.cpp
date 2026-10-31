@@ -293,10 +293,18 @@ void pswaker_graphics_ready() {
     pswaker_perf_phase("content-validation");
     FILE* image = fopen("/app0/game.iso", "rb");
     char error[512];
-    const bool valid = pswaker_validate_image(image, error, sizeof error, imageProgress);
+    ImageRecord record{"/app0/complete-package.json", "/data/pswaker/installed-image-check.txt", PSWAKER_BUILD_ID};
+    const auto check = pswaker_check_installed_image(image, record, error, sizeof error, imageProgress);
     const bool closed = !image || fclose(image) == 0;
-    if (!valid) pswaker_installation_error(error);
+    if (check == ImageCheck::Failed) pswaker_installation_error(error);
     if (!closed) pswaker_installation_error("Closing installed content failed");
+    // Without a manifest every launch hashes; its read error is already counted above.
+    if (check == ImageCheck::FullUnrecorded && *record.identity) {
+        ++checkedErrors;
+        say("ERROR recording full image check path=%s; the next launch hashes again", record.path);
+    }
+    say("CONTENT check=%s identity='%s' ms=%.1f", check == ImageCheck::MatchedRecord ? "recorded-full-check" :
+        check == ImageCheck::FullRecorded ? "full-recorded" : "full-unrecorded", record.identity, milliseconds());
     pswaker_stage("installed-image-validated");
     pswaker_perf_phase("storage-check");
     while (!settings.check()) {
