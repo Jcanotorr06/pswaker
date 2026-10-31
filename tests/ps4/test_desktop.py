@@ -361,6 +361,11 @@ assert app.output_button.instate(['disabled'])
 wait_for('Package verified')
 report = json.loads((output / 'inspection.json').read_text())
 package = output / 'out' / report['package']['filename']
+seed = json.loads((bundle / 'assembly-assets/pipeline-seed.json').read_text())
+assert report['pipeline_seed']['sha256'] == seed['sha256']
+assert report['pipeline_seed']['rows'] == seed['rows']
+assert report['pipeline_seed']['source_files'] == seed['source_files']
+assert report['payload_sha256']['initial_pipeline_cache.db'] == seed['sha256']
 assert package.is_file()
 assert str(package.resolve()) in app.details.get(), app.details.get()
 assert 'USB' in app.instructions.get()
@@ -407,6 +412,24 @@ wait_for('Supported image')
 app.create_button.invoke()
 wait_for('Package verified')
 assert (output / 'inspection.json').is_file()
+''', packaging=True)
+
+    @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')
+    def test_desktop_reports_missing_required_seed_without_publishing_a_package(self):
+        self.run_desktop('''
+(bundle / 'assembly-assets/initial_pipeline_cache.db').unlink()
+app.image_button.invoke()
+app.output_button.invoke()
+app.validate_button.invoke()
+wait_for('Supported image')
+app.create_button.invoke()
+wait_for('Package creation failed')
+assert 'assembly-assets/initial_pipeline_cache.db' in app.details.get()
+assert 'Reinstall' in app.details.get()
+assert not output.exists()
+assert not list(folder.glob('.complete-*'))
+assert app.workflow.view.package_path is None
+assert app.open_button.instate(['disabled'])
 ''', packaging=True)
 
     @unittest.skipUnless(sys.platform == 'win32' and WINDOWS_TOOLS, 'Native Windows tool closure required')

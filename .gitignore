@@ -31,6 +31,10 @@ game/
 *.rel
 
 # Saves, captures, credentials, signing material
+# Private shader-description databases and adjacent SQLite sidecars.
+*.db
+*.db-wal
+*.db-shm
 __pycache__/
 *.sav
 *.gci

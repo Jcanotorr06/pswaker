@@ -182,9 +182,13 @@ def inspect_package(work, tools):
             'diagnostic_build_id' if diagnostic else 'program_build_id') == report['program']['build_id'],
                 'Packaged program build identity/kind mismatch')
         seed = report['manifest'].get('pipeline_seed')
+        require(diagnostic or isinstance(seed, dict), 'Game complete package requires its validated shader seed manifest')
+        require((seed is not None) == (PIPELINE_SEED in actual), 'Packaged pipeline seed/manifest presence mismatch')
         if seed is not None:
             require(seed['installed_path'] == '/app0/' + PIPELINE_SEED
                     and digest(payload / PIPELINE_SEED) == seed['sha256'], 'Packaged pipeline seed identity mismatch')
+            require(seed.get('bytes') == (payload / PIPELINE_SEED).stat().st_size,
+                    'Packaged pipeline seed size differs from manifest')
             with closing(sqlite3.connect((payload / PIPELINE_SEED).as_uri() + '?mode=ro', uri=True)) as db:
                 details = validate_pipeline_seed(db)
                 require(details['rows'] == seed['rows'] and details['configurations'] == seed['configurations'],

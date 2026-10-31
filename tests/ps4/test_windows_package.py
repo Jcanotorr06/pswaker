@@ -53,6 +53,12 @@ assert report['sfo']['APP_VER'] == '01.23'
 assert report['installed_image'] == '/app0/game.iso'
 assert report['image']['sha256'] == hashlib.sha256(original).hexdigest()
 assert report['program']['build_id'] == 'synthetic-program'
+seed = json.loads((bundle / 'assembly-assets/pipeline-seed.json').read_text())
+assert report['pipeline_seed']['sha256'] == seed['sha256']
+assert report['pipeline_seed']['rows'] == seed['rows']
+assert report['pipeline_seed']['source_files'] == seed['source_files']
+assert report['payload_sha256']['initial_pipeline_cache.db'] == seed['sha256']
+assert 'initial_pipeline_cache.db-wal' not in report['payload_sha256']
 artwork = json.loads((bundle / 'program/stage/build-info.json').read_text())['artwork']
 assert report['artwork'] == artwork
 for resource, name in [('ICON0_PNG', 'icon0.png'), ('PIC1_PNG', 'pic1.png')]:
@@ -97,6 +103,132 @@ operation = BuildOperation(cancel_after_publication)
 result = create_package(image, output, bundle, operation=operation)
 assert (output / 'inspection.json').is_file()
 assert (output / 'out' / result['package']['filename']).is_file()
+''')
+
+    def test_required_seed_failures_preserve_completed_output(self):
+        self.run_scenario('''
+import shutil
+import sqlite3
+from contextlib import closing
+from windows_package import seal_bundle
+assets = bundle / 'assembly-assets'
+saved = root / 'saved-assets'
+shutil.copytree(assets, saved)
+prior = root / 'prior'
+result = create_package(image, prior, bundle)
+prior_package = prior / 'out' / result['package']['filename']
+prior_hash = hashlib.sha256(prior_package.read_bytes()).hexdigest()
+for case in ['missing', 'empty', 'corrupted', 'incompatible', 'counts', 'provenance',
+             'empty-manifest', 'corrupt-manifest']:
+    shutil.rmtree(assets)
+    shutil.copytree(saved, assets)
+    database = assets / 'initial_pipeline_cache.db'
+    if case == 'missing':
+        database.unlink()
+    elif case in ['empty', 'incompatible']:
+        with closing(sqlite3.connect(database)) as db, db:
+            db.execute('DELETE FROM pipeline_cache' if case == 'empty'
+                       else 'UPDATE pipeline_cache SET config_version=999')
+    elif case == 'corrupted':
+        database.write_bytes(b'corrupted database')
+    manifest = assets / 'pipeline-seed.json'
+    seed = json.loads(manifest.read_text())
+    if case != 'missing':
+        seed['sha256'] = hashlib.sha256(database.read_bytes()).hexdigest()
+    if case == 'counts':
+        seed['rows'] += 1
+    if case == 'provenance':
+        seed['source_files'] = {}
+    manifest.write_text(json.dumps(seed))
+    if case == 'empty-manifest':
+        manifest.write_text('')
+    elif case == 'corrupt-manifest':
+        manifest.write_text('{broken')
+    # An internally consistent outer bundle cannot bless invalid seed records.
+    fixed_path = bundle / 'desktop-release.json'
+    fixed = json.loads(fixed_path.read_text())
+    from windows_package import bundle_inventory
+    fixed['files'] = bundle_inventory(bundle)
+    fixed_path.write_text(json.dumps(fixed))
+    for action in [lambda: seal_bundle(bundle), lambda: create_package(image, output, bundle)]:
+        try:
+            action()
+        except ValueError as error:
+            assert 'shader seed' in str(error), str(error)
+        else:
+            raise AssertionError('Invalid required seed was accepted: ' + case)
+    assert not output.exists()
+    assert not list(root.glob('.complete-*'))
+    assert hashlib.sha256(prior_package.read_bytes()).hexdigest() == prior_hash
+''')
+
+    def test_fresh_inspection_requires_seed_manifest_and_matching_extracted_records(self):
+        self.run_scenario('''
+import copy
+import subprocess
+from windows_package import inspect_output
+result = create_package(image, output, bundle)
+package = output / 'out' / result['package']['filename']
+original_package = package.read_bytes()
+assembly_path = output / 'assembly.json'
+original_report = json.loads(assembly_path.read_text())
+tool = bundle / 'packaging/PkgTool.Core.exe'
+for case in ['missing-manifest', 'hash', 'counts', 'size']:
+    package.write_bytes(original_package)
+    project = root / case
+    subprocess.run([str(tool), 'pkg_makegp4', str(package), str(project)], check=True, capture_output=True)
+    manifest_path, = project.rglob('complete-package.json')
+    manifest = json.loads(manifest_path.read_text())
+    if case == 'missing-manifest':
+        del manifest['pipeline_seed']
+    elif case == 'hash':
+        manifest['pipeline_seed']['sha256'] = '0' * 64
+    elif case == 'counts':
+        manifest['pipeline_seed']['rows'] += 1
+    else:
+        manifest['pipeline_seed']['bytes'] += 1
+    manifest_path.write_text(json.dumps(manifest))
+    rebuilt = root / (case + '-out')
+    rebuilt.mkdir()
+    subprocess.run([str(tool), 'pkg_build', str(project / 'Project.gp4'), str(rebuilt)],
+                   check=True, capture_output=True)
+    package.write_bytes((rebuilt / package.name).read_bytes())
+    report = copy.deepcopy(original_report)
+    report['manifest'] = manifest
+    report['package']['sha256'] = hashlib.sha256(package.read_bytes()).hexdigest()
+    report['payload_sha256']['complete-package.json'] = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+    assembly_path.write_text(json.dumps(report))
+    try:
+        inspect_output(output, bundle)
+    except ValueError as error:
+        assert 'seed' in str(error), str(error)
+    else:
+        raise AssertionError('Seed/manifest disagreement passed fresh inspection: ' + case)
+    assert not (output / 'inspection.json').exists()
+''')
+
+    def test_replacing_seed_changes_package_identity_without_changing_program(self):
+        self.run_scenario('''
+import shutil
+from synthetic_pipeline import make_seed
+from windows_package import seal_bundle
+assets = bundle / 'assembly-assets'
+before = {p.name: p.read_bytes() for p in assets.iterdir()}
+create_package(image, output, bundle)
+first = json.loads((output / 'inspection.json').read_text())
+assert {p.name: p.read_bytes() for p in assets.iterdir()} == before
+shutil.rmtree(assets)
+replacement = make_seed(assets, keys=(43, 85, 127))
+seal_bundle(bundle)
+other = root / 'replacement-complete'
+create_package(image, other, bundle)
+second = json.loads((other / 'inspection.json').read_text())
+assert first['program'] == second['program']
+assert first['pipeline_seed']['sha256'] != second['pipeline_seed']['sha256']
+assert first['pipeline_seed']['asset_manifest_sha256'] != second['pipeline_seed']['asset_manifest_sha256']
+assert first['package']['sha256'] != second['package']['sha256']
+assert second['pipeline_seed']['rows'] == replacement['rows']
+assert second['pipeline_seed']['source_files'] == replacement['source_files']
 ''')
 
     def test_relocated_bundle_carries_artwork_without_a_decoder(self):

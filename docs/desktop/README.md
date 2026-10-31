@@ -53,6 +53,12 @@ are managed separately on the console.
 Open `PSWaker.exe` from its complete application folder. It displays its fixed
 game-program version/build and **PS4 Slim / firmware 9.00 / GoldHEN v2.4b18**
 baseline. No program, SDK, build root or package-identity selection is required.
+The application includes a validated shader-description seed automatically.
+Package creation checks and includes it, then verifies the extracted seed against
+the package manifest. If a required bundled input is missing or incompatible,
+reinstall the complete application. The seed describes shaders for local
+compilation; package verification does not establish action coverage or console
+performance.
 
 1. Select your own full raw `.iso` or `.gcm` image. Uppercase extensions work.
 2. Select a private parent folder outside the application/source checkout. The
