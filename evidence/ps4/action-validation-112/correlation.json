@@ -1,0 +1,600 @@
+{
+  "schema": 1,
+  "method": "Existing #108 correlation.py launch() applied unchanged to #112 raw launches. Windows are planned, not observed action times; closing observations place intervals. Retain every >35 ms interval and shader wait, including before/after samples.",
+  "cold": {
+    "windows": {
+      "startup": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 1,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.048,
+        "uncorrelated": 1,
+        "max_uncorrelated_ms": 50.048
+      },
+      "loading-to-gameplay-ready": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 6,
+        "shader_correlated": 0,
+        "max_interval_ms": 316.976,
+        "uncorrelated": 6,
+        "max_uncorrelated_ms": 316.976
+      },
+      "walk-to-start": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 2,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.055,
+        "uncorrelated": 2,
+        "max_uncorrelated_ms": 50.055
+      },
+      "arm-to-first-presentation": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 0,
+        "shader_correlated": 0,
+        "max_interval_ms": 0.0,
+        "uncorrelated": 0,
+        "max_uncorrelated_ms": 0.0
+      },
+      "sample 0-10 s still": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 2,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.053,
+        "uncorrelated": 2,
+        "max_uncorrelated_ms": 50.053
+      },
+      "sample 10-40 s rolls": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 5,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.061,
+        "uncorrelated": 5,
+        "max_uncorrelated_ms": 50.061
+      },
+      "sample 40-70 s sword": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 2,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.05,
+        "uncorrelated": 2,
+        "max_uncorrelated_ms": 50.05
+      },
+      "sample 70-110 s swim": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 5,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.114,
+        "uncorrelated": 5,
+        "max_uncorrelated_ms": 50.114
+      },
+      "sample 110-121 s still": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 0,
+        "shader_correlated": 0,
+        "max_interval_ms": 0.0,
+        "uncorrelated": 0,
+        "max_uncorrelated_ms": 0.0
+      },
+      "after-sample": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 10,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.059,
+        "uncorrelated": 10,
+        "max_uncorrelated_ms": 50.059
+      }
+    },
+    "launch_shader_waits": 0,
+    "walk_to_start_seconds": 20.773,
+    "sample_intervals_over_35ms": [
+      {
+        "seconds_after_first_presentation": 7.308,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.053,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 7.442,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.052,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 31.967,
+        "window": "sample 10-40 s rolls",
+        "interval_ms": 50.05,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 32.133,
+        "window": "sample 10-40 s rolls",
+        "interval_ms": 50.061,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 32.433,
+        "window": "sample 10-40 s rolls",
+        "interval_ms": 50.051,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 35.636,
+        "window": "sample 10-40 s rolls",
+        "interval_ms": 50.049,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 35.703,
+        "window": "sample 10-40 s rolls",
+        "interval_ms": 50.055,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 51.27,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.048,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 66.068,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.05,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 81.6,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.05,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 82.066,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.114,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 82.168,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.038,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 82.534,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.087,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 87.373,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.05,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      }
+    ]
+  },
+  "warm": {
+    "windows": {
+      "startup": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 1,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.054,
+        "uncorrelated": 1,
+        "max_uncorrelated_ms": 50.054
+      },
+      "loading-to-gameplay-ready": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 7,
+        "shader_correlated": 0,
+        "max_interval_ms": 417.084,
+        "uncorrelated": 7,
+        "max_uncorrelated_ms": 417.084
+      },
+      "walk-to-start": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 1,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.051,
+        "uncorrelated": 1,
+        "max_uncorrelated_ms": 50.051
+      },
+      "arm-to-first-presentation": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 0,
+        "shader_correlated": 0,
+        "max_interval_ms": 0.0,
+        "uncorrelated": 0,
+        "max_uncorrelated_ms": 0.0
+      },
+      "sample 0-10 s still": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 8,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.109,
+        "uncorrelated": 8,
+        "max_uncorrelated_ms": 50.109
+      },
+      "sample 10-40 s rolls": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 1,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.043,
+        "uncorrelated": 1,
+        "max_uncorrelated_ms": 50.043
+      },
+      "sample 40-70 s sword": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 14,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.057,
+        "uncorrelated": 14,
+        "max_uncorrelated_ms": 50.057
+      },
+      "sample 70-110 s swim": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 8,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.053,
+        "uncorrelated": 8,
+        "max_uncorrelated_ms": 50.053
+      },
+      "sample 110-121 s still": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 0,
+        "shader_correlated": 0,
+        "max_interval_ms": 0.0,
+        "uncorrelated": 0,
+        "max_uncorrelated_ms": 0.0
+      },
+      "after-sample": {
+        "shader_waits": 0,
+        "shader_waits_over_35ms": 0,
+        "shader_wait_ms": 0.0,
+        "max_shader_wait_ms": 0.0,
+        "intervals_over_35ms": 17,
+        "shader_correlated": 0,
+        "max_interval_ms": 50.068,
+        "uncorrelated": 17,
+        "max_uncorrelated_ms": 50.068
+      }
+    },
+    "launch_shader_waits": 0,
+    "walk_to_start_seconds": 18.506,
+    "sample_intervals_over_35ms": [
+      {
+        "seconds_after_first_presentation": 4.705,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.047,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 4.805,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.052,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 4.873,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.049,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 5.573,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.054,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 6.44,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.051,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 7.075,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.059,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 8.042,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.047,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 9.576,
+        "window": "sample 0-10 s still",
+        "interval_ms": 50.109,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 11.078,
+        "window": "sample 10-40 s rolls",
+        "interval_ms": 50.043,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 40.141,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.047,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 40.274,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.057,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 41.576,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.041,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 43.01,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.052,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 54.038,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.051,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 54.138,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.056,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 54.238,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.049,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 54.772,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.049,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 54.873,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.051,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 55.106,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.046,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 55.206,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.052,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 55.907,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.053,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 56.074,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.055,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 57.976,
+        "window": "sample 40-70 s sword",
+        "interval_ms": 50.054,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 76.678,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.053,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 78.847,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.048,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 80.281,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.052,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 87.939,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.045,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 88.174,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.05,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 88.24,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.05,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 88.474,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.052,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      },
+      {
+        "seconds_after_first_presentation": 88.707,
+        "window": "sample 70-110 s swim",
+        "interval_ms": 50.047,
+        "shader_ms": 0.0,
+        "shader_calls": 0,
+        "stage_room": "sea/44"
+      }
+    ]
+  }
+}

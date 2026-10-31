@@ -1,0 +1,265 @@
+{
+  "schema": 1,
+  "issue": 112,
+  "baseline": {
+    "app_version": "01.19",
+    "build_id": "48d0196e605f00284b21",
+    "package_sha256": "b7739a9c2fb6490dc2faceffe44e706a6f1ecc412805ffb76aaa13ec7fc1319e",
+    "pipeline_seed": null,
+    "evidence": "../action-baseline-108/REPORT.md"
+  },
+  "candidate": {
+    "schema": 1,
+    "program": {
+      "build_id": "9f79516d60da618241a1",
+      "elf_sha256": "06417d1c34cdf58b70baee9e679f83e77899b12405ce47f8a9b12bf578790f90",
+      "eboot_sha256": "ac4e2bb217608637b5dd9be430f1f307112286d4c0e112a547b961afcafe690c"
+    },
+    "app_version": "01.20",
+    "package": {
+      "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+      "sha256": "cc26a2526f9cb4b81383b2875c66fa6521519f3d2d991d3be5be08f1d91ae8f5"
+    },
+    "seed": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+        },
+        "pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+        }
+      },
+      "rows": 287,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 286
+        }
+      ],
+      "sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1",
+      "bytes": 1200128,
+      "asset_manifest_sha256": "e8d4b523aa45f58e272ccde4c258d76388200e26f28a9060b804f9969b4493fb"
+    },
+    "assembly_sha256": "11e882083a054bfac5ab52d4eb0c03d48ff7d9f8f26db0fa8ff901c574e18a2f",
+    "inspection_sha256": "9f9203539d945b8a8a75d0975cec887dff30b37d3660c4331b10205e80c1e0ee",
+    "coverage_report_sha256": "2b64b0dc49aacf5ad8fe1f2adacb3e38e2abf8918be59f39ab07eb474d9c8fee",
+    "source_immutability": {
+      "schema": 1,
+      "files_compared": 10,
+      "all_source_hashes_unchanged": true
+    }
+  },
+  "fresh_inspection": {
+    "exit_code": 0,
+    "sha256": "9f9203539d945b8a8a75d0975cec887dff30b37d3660c4331b10205e80c1e0ee",
+    "matches_both_returned_inspections": true
+  },
+  "launches": {
+    "cold": {
+      "analyzer_exit_code": 2,
+      "summary_reproduced": true,
+      "cache_files_before_init": 0,
+      "seed_merge": "287 rows merged, 0 rows skipped",
+      "ready": 287,
+      "total": 287,
+      "pending": 0,
+      "preparation_ms": 14621.2,
+      "final_drain_ms": 14052.0,
+      "preparation_outside_final_drain_ms": 569.2,
+      "log_startup_to_preparation_complete_ms": 15996.6,
+      "preparation_start_ns": 1157575423932544,
+      "preparation_complete_ns": 1157590045167517,
+      "recorder_start_to_loading_ms": 15508.144688,
+      "recorder_start_to_gameplay_ready_ms": 46101.804797,
+      "phases": [
+        {
+          "phase": "startup",
+          "start_ns": 1157574539790107,
+          "duration_ms": 125.999314
+        },
+        {
+          "phase": "renderer-initialize",
+          "start_ns": 1157574665789421,
+          "duration_ms": 1033.031355
+        },
+        {
+          "phase": "content-validation",
+          "start_ns": 1157575698820776,
+          "duration_ms": 33.206824
+        },
+        {
+          "phase": "storage-check",
+          "start_ns": 1157575732027600,
+          "duration_ms": 262.470542
+        },
+        {
+          "phase": "shader-preparation",
+          "start_ns": 1157575994498142,
+          "duration_ms": 14053.436653
+        },
+        {
+          "phase": "loading",
+          "start_ns": 1157590047934795,
+          "duration_ms": 30593.660109
+        },
+        {
+          "phase": "gameplay",
+          "start_ns": 1157620641594904,
+          "duration_ms": 20773.058802
+        }
+      ],
+      "samples": [
+        {
+          "sample": 1,
+          "scene": "outset",
+          "owner": {
+            "scene": "outset",
+            "actions": "0:00\u20130:10 Stand still, camera untouched. 0:10\u20130:40 Five rolls on dry ground, about 5 s apart. 0:40\u20131:10 Five standing sword swings, about 5 s apart. 1:10\u20131:50 Walk into the sea and swim near the shore for about 30 s, with a few turns. 1:50\u20132:05 Return to the shallows or shore and stand still.",
+            "active_gameplay": true,
+            "graphics_audio_correct": true
+          },
+          "metrics": {
+            "seconds": 120.02161806579372,
+            "intervals": 3601,
+            "average_fps": 30.00292828935197,
+            "p95_ms": 33.3942835621558,
+            "p99_ms": 33.42469303363162,
+            "maximum_ms": 50.11390621880856,
+            "shader_wait_ms": 0.0,
+            "shader_wait_calls": 0,
+            "active_shader_waits_over_35ms": 0,
+            "active_shader_wait_total_ms": 0.0,
+            "resume_to_first_observation_ms": 33.426928,
+            "shader_correlated_hitches": 0
+          },
+          "outside_boundary_presentations": 0,
+          "invalid_reasons": [
+            "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+            "launch has no completed recorder shutdown"
+          ],
+          "shortfalls": [],
+          "target_met": false
+        }
+      ],
+      "total_launch_shader_wait_events": 0,
+      "snapshot_reproduced": true
+    },
+    "warm": {
+      "analyzer_exit_code": 2,
+      "summary_reproduced": true,
+      "cache_files_before_init": 4,
+      "seed_merge": "already merged",
+      "ready": 287,
+      "total": 287,
+      "pending": 0,
+      "preparation_ms": 553.9,
+      "final_drain_ms": 482.9,
+      "preparation_outside_final_drain_ms": 71.0,
+      "log_startup_to_preparation_complete_ms": 1690.1,
+      "preparation_start_ns": 1157957447588775,
+      "preparation_complete_ns": 1157958001471599,
+      "recorder_start_to_loading_ms": 1663.703619,
+      "recorder_start_to_gameplay_ready_ms": 37679.206388,
+      "phases": [
+        {
+          "phase": "startup",
+          "start_ns": 1157956344406473,
+          "duration_ms": 537.474633
+        },
+        {
+          "phase": "renderer-initialize",
+          "start_ns": 1157956881881106,
+          "duration_ms": 586.184896
+        },
+        {
+          "phase": "content-validation",
+          "start_ns": 1157957468066002,
+          "duration_ms": 1.591442
+        },
+        {
+          "phase": "storage-check",
+          "start_ns": 1157957469657444,
+          "duration_ms": 54.028987
+        },
+        {
+          "phase": "shader-preparation",
+          "start_ns": 1157957523686431,
+          "duration_ms": 484.423661
+        },
+        {
+          "phase": "loading",
+          "start_ns": 1157958008110092,
+          "duration_ms": 36015.502769
+        },
+        {
+          "phase": "gameplay",
+          "start_ns": 1157994023612861,
+          "duration_ms": 18506.005403
+        }
+      ],
+      "samples": [
+        {
+          "sample": 1,
+          "scene": "outset",
+          "owner": {
+            "scene": "outset",
+            "actions": "0:00\u20130:10 Stand still, camera untouched. 0:10\u20130:40 Five rolls on dry ground, about 5 s apart. 0:40\u20131:10 Five standing sword swings, about 5 s apart. 1:10\u20131:50 Walk into the sea and swim near the shore for about 30 s, with a few turns. 1:50\u20132:05 Return to the shallows or shore and stand still.",
+            "active_gameplay": true,
+            "graphics_audio_correct": true
+          },
+          "metrics": {
+            "seconds": 120.0049306832497,
+            "intervals": 3600,
+            "average_fps": 29.99876737983474,
+            "p95_ms": 33.398501314192686,
+            "p99_ms": 33.442119884156774,
+            "maximum_ms": 50.10935659248527,
+            "shader_wait_ms": 0.0,
+            "shader_wait_calls": 0,
+            "active_shader_waits_over_35ms": 0,
+            "active_shader_wait_total_ms": 0.0,
+            "resume_to_first_observation_ms": 26.542876,
+            "shader_correlated_hitches": 0
+          },
+          "outside_boundary_presentations": 0,
+          "invalid_reasons": [
+            "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+            "launch has no completed recorder shutdown"
+          ],
+          "shortfalls": [],
+          "target_met": false
+        }
+      ],
+      "total_launch_shader_wait_events": 0,
+      "snapshot_reproduced": true
+    }
+  },
+  "retained_cache_corroboration": {
+    "cold_returned_sha1": {
+      "pipeline_cache.db": "3f47d1432ce31e76333521af57a5287f08488710",
+      "pipeline_cache.db-wal": "09c7795a1dbc5396fd03e9dbd1d125bcb7242deb"
+    },
+    "warm_before_init_sha1": {
+      "pipeline_cache.db": "3f47d1432ce31e76333521af57a5287f08488710",
+      "pipeline_cache.db-wal": "09c7795a1dbc5396fd03e9dbd1d125bcb7242deb"
+    },
+    "pipeline_database_and_wal_match": true,
+    "limit": "This binds returned pipeline database/WAL bytes to warm startup; it does not prove normal Quit, backup, or save/settings preservation."
+  },
+  "source_immutability": {
+    "files_compared": 31,
+    "all_source_hashes_unchanged": true
+  }
+}
