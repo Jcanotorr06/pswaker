@@ -15,14 +15,15 @@ The repository and its releases contain no game data, disc images or keys.
 
 ## Project status
 
-PSWaker is **early and pre-release**. The latest release candidate, 0.1.0 RC3,
+PSWaker is **early and pre-release**. The latest release candidate, 0.1.0 RC4,
 is a private pre-release for testing. It is not a public or final release.
 
-RC3 bundles the inspected 01.18 game program with configurable button bindings,
-confirmed Restore Defaults and independent camera/aiming inversion switches.
-It retains the approved game icon and launch splash. This binary has not been
-tested on the console. The observations below come from earlier builds and do
-not establish acceptance of RC3.
+RC4 bundles the inspected 01.20 game program and a validated 287-description
+shader seed. It prepares those configurations before gameplay and reuses a
+successful full disc-image check on later launches of the same build. It retains
+configurable controls and the approved artwork. The owner accepted bounded
+Outset evidence for a CLI-assembled 01.20 package; that decision does not certify
+RC4's desktop-created packages or establish full-game acceptance.
 
 - The game has been played on the console from the title screen through
   Outset, Forsaken Fortress and Windfall to Dragon Roost Island. No graphics or
@@ -105,12 +106,12 @@ To build PSWaker yourself, see [BUILDING.md](BUILDING.md).
 ## Known issues
 
 - **Console acceptance is pending.** Final integrated testing of the bundled
-  program (01.18) on the console hasn't been run
+  program (01.20) on the console hasn't been run
   ([integrated checklist](docs/ps4/Integrated-checklist.md)), and no package
   created by the desktop app has been tested on the PS4 yet
   ([#49](https://github.com/Jcanotorr06/pswaker/issues/49)).
 - **Configurable controls hardware checks are pending.** Saved layouts were
-  tested on an earlier 01.15 build. RC3's editor, Apply/Discard, Restore Defaults
+  tested on an earlier 01.15 build. RC4's editor, Apply/Discard, Restore Defaults
   and camera/aiming inversion still need integrated console observations
   ([#98](https://github.com/Jcanotorr06/pswaker/issues/98)). In-game prompts
   still show the original GameCube controls
@@ -122,14 +123,18 @@ To build PSWaker yourself, see [BUILDING.md](BUILDING.md).
 - **Clean Windows testing is pending.** The desktop app has only been tested on
   the development machine. Offline testing on clean Windows 10 and Windows 11
   systems hasn't been done.
-- **Pauses and frame pacing.** Expect brief pauses while areas load and the first
-  time an effect appears. With an empty shader cache, frame pacing falls short of
-  the target. Improving it is deferred to
-  [#51](https://github.com/Jcanotorr06/pswaker/issues/51).
-- **Shutdown not yet confirmed on 01.18.** The program includes a fix for an
+- **Preparation and frame pacing.** The accepted 01.20 Outset return records
+  14.621 seconds of cold shader preparation, zero missing-pipeline waits and
+  a lower cold-sample maximum (50.114 ms versus 333.669 ms). Residual slow frames
+  and unverified physical timing remain; this is not a numerical performance
+  pass or full-game shader coverage. Area loading and uncovered effects can
+  still pause. See the [evidence and its limits](evidence/ps4/action-validation-112/OWNER-DECISION.md)
+  and [#51](https://github.com/Jcanotorr06/pswaker/issues/51).
+- **Shutdown not yet confirmed on 01.20.** The program includes a fix for an
   earlier crash when quitting after the memory card goes idle. Quit looked normal
   on screen with the previous build (01.12), but console logs haven't confirmed
-  that shutdown completes internally, and 01.18 hasn't been checked yet.
+  that shutdown completes internally. The accepted 01.20 return lacks normal
+  recorder-shutdown evidence.
 - **One disc only.** Only the USA `GZLE01` revision 0 raw image is supported.
   Other regions and revisions, and scrubbed or compressed images, are rejected.
 - **Limited route.** Only the route through Dragon Roost Island has been played.
