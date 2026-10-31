@@ -30,7 +30,8 @@ Keep replacement artwork and its private provenance outside git; see the
 
 ## Reporting a problem
 
-Open a [GitHub issue](https://github.com/Jcanotorr06/pswaker/issues). Include:
+Open a [GitHub issue](https://github.com/Jcanotorr06/pswaker/issues/new/choose)
+with the **Bug report** form. It asks for:
 
 - the PSWaker desktop version and the program version shown in the app window
 - your Windows version, and your PS4 model, firmware and GoldHEN version if the

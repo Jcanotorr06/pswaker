@@ -1,0 +1,55 @@
+name: Feature request
+description: Suggest a change or new capability for PSWaker.
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the problem before the solution, so the scope can be agreed
+        before anyone writes code. Use the terms in
+        [GLOSSARY.md](https://github.com/Jcanotorr06/pswaker/blob/develop/GLOSSARY.md)
+        where they fit.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Desktop app
+        - Installer
+        - Game on the PS4
+        - Building from source
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do, and what gets in the way today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What should PSWaker do instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches or workarounds you tried.
+
+  - type: checkboxes
+    id: no-game-data
+    attributes:
+      label: Game data
+      options:
+        - label: This request and its attachments contain no game data, keys, saves, packages or personal paths.
+          required: true
