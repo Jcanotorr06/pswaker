@@ -1,5 +1,6 @@
 // Only the external console service boundary is simulated. No game data or GPU.
 #include "controls.hpp"
+#include "prompts.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
 #include "native/platform.h"
@@ -24,6 +25,17 @@ unsigned textChanges = 0;
 PortSettings* settings = nullptr;
 double clockValue = 1000;
 PADStatus gamepads[PAD_CHANMAX];
+
+struct RetainedPrompt {
+    bool ready = true;
+    PromptResult rendered;
+};
+bool rebuildPrompt(void* context, const AppliedControls& applied) {
+    auto& picture = *static_cast<RetainedPrompt*>(context);
+    if (!picture.ready) return false;
+    picture.rendered = resolve_ps4_prompt({GameAction::A}, applied);
+    return true;
+}
 
 void sample(uint32_t held = 0) {
     buttons = held;
@@ -149,6 +161,72 @@ int main(int argc, char** argv) {
     assert(argc == 3);
     PortSettings initialProfile(argv[2]);
     settings = &initialProfile;
+    if (std::strncmp(argv[1], "prompt-", 7) == 0) {
+        const std::string scenario = argv[1] + 7;
+        assert(settings->check() && pswaker_publish_controls(settings->controls()));
+        RetainedPrompt dialog, hud;
+        assert(pswaker_register_prompt_adapter(&dialog, rebuildPrompt));
+        assert(pswaker_register_prompt_adapter(&hud, rebuildPrompt));
+        start();
+        const auto previous = pswaker_applied_controls();
+        assert(dialog.rendered.name == "Cross" && dialog.rendered.generation == previous.generation);
+        assert(hud.rendered.generation == previous.generation);
+        openEditor(); assignButton(0, static_cast<unsigned>(ControlTarget::R3));
+        assert(resolve_ps4_prompt({GameAction::A}, pswaker_applied_controls()).name == "Cross");
+        assert(dialog.rendered.generation == previous.generation);
+        if (scenario == "discard") {
+            tap(PAD_CIRCLE); tap(PAD_CROSS);
+        } else {
+            failRename = scenario == "failure";
+            syncCountdown = scenario == "uncertain" ? 1 : -1;
+            editorRow(9); tap(PAD_CROSS); sample(); neutralGame(); sample();
+            if (scenario == "failure" || scenario == "uncertain") {
+                assert(pswaker_port_view().screen == PortScreen::ControlsFailed);
+                assert(pswaker_applied_controls().generation == previous.generation);
+                assert(dialog.rendered.generation == previous.generation);
+                failRename = false; syncCountdown = -1;
+                tap(PAD_CIRCLE);
+            } else {
+                assert(pswaker_port_view().screen == PortScreen::Controls);
+                assert(pswaker_applied_controls().generation == previous.generation + 1);
+                assert(pswaker_applied_controls().legend()[0] == "GameCube A = R3");
+                tap(PAD_CIRCLE);
+            }
+        }
+        assert(pswaker_port_view().screen == PortScreen::Settings);
+        const auto published = pswaker_applied_controls();
+        // Two retained surfaces join the real release gate. One needs another
+        // frame to rebuild; successful peers must not release gameplay early.
+        hud.ready = scenario == "discard" || scenario == "failure" || scenario == "uncertain";
+        sample(PAD_CIRCLE); sample(PAD_CIRCLE); neutralGame();
+        assert(pswaker_port_view().releasing);
+        sample();
+        if (!hud.ready) {
+            neutralGame();
+            assert(pswaker_port_view().screen == PortScreen::Settings && pswaker_port_view().releasing);
+            assert(pswaker_port_view().refreshingPrompts);
+            assert(dialog.rendered.name == "R3" && dialog.rendered.generation == published.generation);
+            assert(hud.rendered.name == "Cross" && hud.rendered.generation == previous.generation);
+            // Disconnect during refresh still requires a new fixed confirmation.
+            connected = false; sample(PAD_R3); neutralGame();
+            assert(pswaker_port_view().screen == PortScreen::InputLost);
+            connected = true; hud.ready = true;
+            lx = 255; lt = rt = 255; sample(PAD_CROSS | PAD_R3); neutralGame();
+            sample(); neutralGame();
+            lx = 128; lt = rt = 0; sample(); neutralGame();
+            assert(pswaker_port_view().screen == PortScreen::InputLost);
+            sample(PAD_CROSS); neutralGame();
+            sample(PAD_R3); neutralGame();
+            sample();
+        }
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        assert(gamepads[0].button == 0);
+        assert(dialog.rendered.generation == published.generation && hud.rendered.generation == published.generation);
+        const auto expected = hud.ready && scenario == "apply" ? "R3" : "Cross";
+        assert(dialog.rendered.name == expected && hud.rendered.name == expected);
+        assert(resolve_ps4_prompt({GameAction::A}, published).name == expected);
+        return 0;
+    }
     if (std::strncmp(argv[1], "inversion-apply-", 16) == 0) {
         const std::string scenario = argv[1] + 16;
         const auto split = scenario.find('-');
@@ -615,6 +693,8 @@ int main(int argc, char** argv) {
             "GameCube Y = Triangle", "GameCube Z = R1", "GameCube Start = Options",
             "Saved camera inversion X: Off", "Saved camera inversion Y: Off"};
         assert(applied.legend() == expected);
+        const auto prompt = resolve_ps4_prompt({GameAction::A}, applied);
+        assert(prompt.name == "Cross" && prompt.generation == applied.generation);
         start();
         const uint32_t ds4[] = {PAD_CROSS, PAD_CIRCLE, PAD_SQUARE, PAD_TRIANGLE, PAD_R1, PAD_OPTIONS};
         const uint16_t gc[] = {0x100, 0x200, 0x400, 0x800, 0x10, 0x1000};

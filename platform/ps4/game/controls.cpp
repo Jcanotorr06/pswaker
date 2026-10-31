@@ -1,4 +1,5 @@
 #include "controls.hpp"
+#include "prompts.hpp"
 #include "storage.hpp"
 #include "native/platform.h"
 #include "frame-pacing.hpp"
@@ -67,15 +68,6 @@ bool pswaker_publish_controls(const ControlsConfig& config) {
     pc_camera_invert_y_set(applied.config.invertCameraY);
     return true;
 }
-std::array<std::string, 8> AppliedControls::legend() const {
-    std::array<std::string, 8> lines;
-    for (const auto action : gameActions)
-        lines[static_cast<unsigned>(action)] = std::string("GameCube ") + control_action_name(action) + " = " +
-                                              control_target_name(config.binding(action));
-    lines[6] = std::string("Saved camera inversion X: ") + (config.invertCameraX ? "On" : "Off");
-    lines[7] = std::string("Saved camera inversion Y: ") + (config.invertCameraY ? "On" : "Off");
-    return lines;
-}
 
 PortView pswaker_port_view() {
     auto result = view;
@@ -94,11 +86,20 @@ void pswaker_poll_controls() {
             beforeLoss = view.releasing ? destination : view.screen;
         enter(PortScreen::InputLost);
         view.releasing = false;
+        view.refreshingPrompts = false;
         armed = false;
         return;
     }
     if (view.releasing) {
+        view.refreshingPrompts = false;
         if (neutral()) {
+            // Rebuild all joined prompt surfaces for the same applied snapshot
+            // before opening the existing gameplay/input gate. A slow adapter
+            // keeps this screen paused without consuming another confirmation.
+            if (destination == PortScreen::Game) {
+                view.refreshingPrompts = !pswaker_refresh_prompts(pswaker_applied_controls());
+                if (view.refreshingPrompts) return;
+            }
             enter(destination);
             if (checkAfterResume && destination == PortScreen::Game) {
                 checkAfterResume = false;
