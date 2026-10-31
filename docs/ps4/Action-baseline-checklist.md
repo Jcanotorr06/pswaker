@@ -14,6 +14,8 @@ returned seed without action evidence cannot.
 
 No earlier return records when each action first occurred, so earlier private
 evidence does not satisfy this route. Retain it unchanged; do not substitute it.
+The [first 01.19 return](../../evidence/ps4/action-baseline-108/REPORT.md)
+records the results and remaining gaps.
 
 ## 1. Identify the installed baseline
 

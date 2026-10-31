@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "installed_path": "/app0/initial_pipeline_cache.db",
+  "source_files": {
+    "pipeline_cache.db": {
+      "bytes": 835584,
+      "sha256": "6f263afbdbc1d1a897ce37e57b4e441d1e6e64f95a1cb70d9b91cc11cee29079"
+    },
+    "pipeline_cache.db-wal": {
+      "bytes": 4128272,
+      "sha256": "a05b5f9310a897ce760ef873c6e6096a15d3267ce05efb7ddf5f1875a6281a9a"
+    }
+  },
+  "rows": 258,
+  "configurations": [
+    {
+      "type": 0,
+      "version": 5,
+      "bytes": 8,
+      "rows": 1
+    },
+    {
+      "type": 1,
+      "version": 13,
+      "bytes": 2772,
+      "rows": 257
+    }
+  ],
+  "sha256": "bdf848be0d1c43948d2e72fd512160033ebe911f72ba022fed61a81c036114fd"
+}
