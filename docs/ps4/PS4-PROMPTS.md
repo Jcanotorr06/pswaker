@@ -35,9 +35,9 @@ Fixed stick movement, eight directions, clockwise/counterclockwise rotation and
 horizontal/vertical animation remain distinct. An action bound to L3/R3 can
 request a stick click; a fixed GameCube stick cannot invent a click binding.
 Partial L2/R2 travel is below 90%; full travel begins at 90%, matching the
-unchanged input bridge (229/255 versus 230/255). The `Trigger` variant names
-the trigger without a travel qualifier, for original instructions that make no
-travel distinction. Base stick/trigger icon IDs are
+unchanged input bridge (229/255 versus 230/255). `TriggerPress` is a plain
+L2/R2 press that does not require full travel, for GameCube L/R used as buttons.
+Base stick/trigger icon IDs are
 accompanied by the semantic variant and accurate qualified name; adapters must
 preserve those qualifiers rather than display a bare icon that loses meaning.
 Resolve each accepted alternative separately, keeping its gesture and variant;
@@ -99,18 +99,31 @@ maps each picture number, after the game's own aliasing, to a resolver request:
 | --- | --- | --- |
 | 0x00 A, 0x14 flashing A, 0x01 B, 0x05 X, 0x06 Y, 0x07 Z | applied action binding | target icon |
 | 0x02 C-stick | right stick movement | right stick with movement arrows |
-| 0x03 L, 0x04 R | `Trigger` (unqualified) | L2 / R2 |
+| 0x03 L, 0x04 R | `TriggerPress` | L2 / R2, no travel gauge |
 | 0x08 D-pad | D-pad | D-pad |
 | 0x0E-0x11 Control Stick up/down/left/right | left stick direction | tilted left stick |
 | 0x09 Control Stick | left stick clockwise | tilt follows the game's turn |
 | 0x12 / 0x13 Control Stick up-down / left-right | left stick oscillation | tilt follows the game's turn |
 | 0x0A-0x0D arrows, 0x15-0x17 heart, note, starburst | not controls | game picture kept |
 
-The `Trigger` variant extends the #79 variant list.
-The L/R tags carry no travel distinction, and Wind Waker's L/R locks use an
-analog threshold that a full press also passes. Calling them partial or full
-would add meaning the original does not state. Any written instruction that
-distinguishes travel belongs to the literal-name slice.
+Owner decisions recorded on 2026-10-31 for this slice:
+
+- `TriggerPress` extends the #79 variant list. The original GameCube L/R are not
+  used as triggers here, so L2/R2 prompts must not require full travel. Wind
+  Waker's L-targeting and R-shield locks compare analog travel against
+  `g_HIO.mTriggerThreshLo/Hi`, which a partial press passes. Any written
+  instruction that distinguishes travel belongs to the literal-name slice.
+- The project-owned prompt artwork below is approved for commit and
+  distribution.
+- Converting the message pictures inside native game menus, a side effect of
+  the shared hooks, is approved.
+
+Some game code reads the digital L/R bits instead (`CPad_CHECK_TRIG_L/R`, for
+example in `d_menu_save.cpp`, `d_file_select.cpp`, `d_picture_box.cpp`,
+`d_menu_fmap.cpp`, `d_a_agb.cpp` and `d_a_player_main.cpp`). The unchanged
+input bridge sets those bits only at 90% travel. The prompt still shows a plain
+press; whether those inputs should also accept partial travel is a gameplay
+input change outside this presentation slice.
 
 The ordered game patch `0013-message-prompts.patch` keeps the game's own
 `remove`/`append` and heap use, then calls `fopMsgM_ps4Set`. A control picture
@@ -234,7 +247,7 @@ icons, trigger gauges and stick tilts in the right direction. Counter-turned
 artwork must look identical after the game's clockwise turn. It also refuses
 poses that would misdescribe a control and checks the text tiles. The adapter
 check covers every control picture number with default and remapped bindings,
-directions and animated turns, and the unqualified L/R trigger. It also checks
+directions and animated turns, and the plain L/R press. It also checks
 non-control pictures, missing-art text, unresolved hiding and reporting, and
 the GX RGBA8 encoding against an independent decoder. Retained pictures are
 checked through set, turn, destruction and refresh. The installed harness keeps

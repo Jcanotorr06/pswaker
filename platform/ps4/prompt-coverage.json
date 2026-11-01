@@ -53,7 +53,7 @@
     {"id": "context.message.directional-main-stick", "status": "converted"},
     {"id": "context.message.animated-main-stick-rotate-and-oscillate", "status": "converted"},
     {"id": "context.message.c-stick-movement", "status": "converted"},
-    {"id": "context.message.trigger-tag-unqualified-travel", "status": "converted"},
+    {"id": "context.message.trigger-tag-press-without-full-travel", "status": "converted"},
     {"id": "context.message.already-open-dialog-refresh", "status": "converted"},
     {"id": "game/src/d/d_meter.cpp", "status": "unresolved"},
     {"id": "game/src/d/d_menu_item.cpp", "status": "unresolved"},

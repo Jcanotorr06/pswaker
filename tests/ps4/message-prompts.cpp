@@ -84,8 +84,8 @@ int main() {
         assert(plan.result.status == PromptStatus::Icon && plan.result.name == example.name);
         assert(plan.result.generation == 4);
     }
-    // The L/R tags make no travel distinction, so neither does the prompt.
-    assert(plan_message_icon(0x03, defaults).result.variant == PromptVariant::Trigger);
+    // GameCube L/R act as buttons: the prompt never asks for full travel.
+    assert(plan_message_icon(0x03, defaults).result.variant == PromptVariant::TriggerPress);
 
     // Directions and animation keep their meaning; the art counter-turns with the game's picture.
     struct Stick { uint8_t picture; uint8_t turns; PromptDirection shown; PromptVariant variant; const char* name; };

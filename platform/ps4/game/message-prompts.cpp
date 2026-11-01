@@ -22,9 +22,9 @@ std::optional<PromptRequest> request_for(uint8_t pictureNo) {
     case 0x00: case 0x14: return PromptRequest{GameAction::A}; // 0x14: flashing A
     case 0x01: return PromptRequest{GameAction::B};
     case 0x02: return PromptRequest{FixedControl::CStick, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::StickMove};
-    // Wind Waker's L/R tags name the trigger; its L/R locks use an analog threshold.
-    case 0x03: return PromptRequest{FixedControl::LTrigger, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::Trigger};
-    case 0x04: return PromptRequest{FixedControl::RTrigger, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::Trigger};
+    // Wind Waker uses GameCube L/R as buttons: a plain press, never full travel.
+    case 0x03: return PromptRequest{FixedControl::LTrigger, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::TriggerPress};
+    case 0x04: return PromptRequest{FixedControl::RTrigger, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::TriggerPress};
     case 0x05: return PromptRequest{GameAction::X};
     case 0x06: return PromptRequest{GameAction::Y};
     case 0x07: return PromptRequest{GameAction::Z};

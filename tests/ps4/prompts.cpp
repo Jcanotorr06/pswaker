@@ -81,9 +81,9 @@ int main() {
         {FixedControl::LTrigger, PromptVariant::TriggerFull, PromptDirection::None, "L2 full press (90% travel or more)", Ps4Icon::L2},
         {FixedControl::RTrigger, PromptVariant::TriggerPartial, PromptDirection::None, "R2 partial press (below 90% travel)", Ps4Icon::R2},
         {FixedControl::RTrigger, PromptVariant::TriggerFull, PromptDirection::None, "R2 full press (90% travel or more)", Ps4Icon::R2},
-        // Original instructions that name the trigger without a travel distinction.
-        {FixedControl::LTrigger, PromptVariant::Trigger, PromptDirection::None, "L2", Ps4Icon::L2},
-        {FixedControl::RTrigger, PromptVariant::Trigger, PromptDirection::None, "R2", Ps4Icon::R2},
+        // GameCube L/R used as buttons: a plain press, without a full-travel requirement.
+        {FixedControl::LTrigger, PromptVariant::TriggerPress, PromptDirection::None, "L2", Ps4Icon::L2},
+        {FixedControl::RTrigger, PromptVariant::TriggerPress, PromptDirection::None, "R2", Ps4Icon::R2},
     };
     for (const auto& example : fixed) {
         for (const auto context : {PromptContext::Gameplay, PromptContext::NativeGameMenu}) {
@@ -125,9 +125,9 @@ int main() {
         {GameAction::A, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::Direction, PromptDirection::Up},
         {GameAction::A, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::TriggerPartial},
         {FixedControl::DPad, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::RotateClockwise},
-        {GameAction::Z, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::Trigger},
-        {FixedControl::MainStick, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::Trigger},
-        {FixedControl::LTrigger, PromptContext::PortMenu, PromptGesture::Press, PromptVariant::Trigger},
+        {GameAction::Z, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::TriggerPress},
+        {FixedControl::MainStick, PromptContext::Gameplay, PromptGesture::Press, PromptVariant::TriggerPress},
+        {FixedControl::LTrigger, PromptContext::PortMenu, PromptGesture::Press, PromptVariant::TriggerPress},
     };
     for (const auto& request : unsupported) {
         const auto answer = resolve_ps4_prompt(request, custom, allIcons);

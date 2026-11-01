@@ -13,7 +13,8 @@ Host and target-compile validation on 2026-10-31, against task base
   picture numbers to resolver requests, encodes GX RGBA8 `ResTIMG` images in
   host memory, and retains pictures until `~J2DPicture`. It joins the #99
   refresh boundary and reports unresolved coverage.
-- Resolver `Trigger` variant for L/R tags, which make no travel distinction.
+- Resolver `TriggerPress` variant for L/R tags: a plain L2/R2 press without a
+  full-travel requirement (owner decision, 2026-10-31).
 - Ordered game patch `0013-message-prompts.patch`: `fopMsgM_outFontSet` (both
   overloads), `fopMsgM_outFontDraw`/`Draw2`, `dDlst_2DOutFont_c::iconset` and its
   stick animations, `fopMsgM_blendDraw` (releases reused pictures) and the
@@ -27,7 +28,7 @@ Host and target-compile validation on 2026-10-31, against task base
 
 - Independent Standards and Spec reviews ran before commit. The spec review found that a refresh could overwrite a picture the game reused through `fopMsgM_blendDraw`, and that missing-art text was unreachable through cache exhaustion. Both are fixed, and the target build and suites were rerun.
 - Red/green tracers: the resolver check first failed to compile without the
-  `Trigger` variant. The art and adapter checks failed on their missing sources
+  `TriggerPress` variant. The art and adapter checks failed on their missing sources
   before implementation.
 - `test_prompts.py`: 4 passed. These are the public resolver contract, the
   artwork check, the message adapter check and the asset-free inventory check,
@@ -42,7 +43,7 @@ Host and target-compile validation on 2026-10-31, against task base
   only in the four files touched by `0013-message-prompts.patch`.
 - Full Linux host suite with that prepared root: **230 tests, 131 passed, 99
   skipped** (unavailable platform, GUI or tool requirements), no failures, in
-  99.7 seconds (rerun after the review fixes).
+  98.9 seconds (rerun after the review fixes and owner decisions).
 - Pyright with the repository configuration: zero errors, warnings or
   informational diagnostics. Changed Python compiles and `git diff --check`
   passes.
