@@ -1,0 +1,331 @@
+diff --git a/game/src/JSystem/J2DGraph/J2DPicture.cpp b/game/src/JSystem/J2DGraph/J2DPicture.cpp
+--- a/game/src/JSystem/J2DGraph/J2DPicture.cpp
++++ b/game/src/JSystem/J2DGraph/J2DPicture.cpp
+@@ -14,6 +14,7 @@
+ #include "dolphin/types.h"
+ #if defined(__ORBIS__)
+ #include "pswaker/message-pictures.h"
++#include "pswaker/hud-pictures.h"
+ #endif
+ 
+ /* 802D2D94-802D2E1C       .text __ct__10J2DPictureFv */
+@@ -152,6 +153,7 @@
+ J2DPicture::~J2DPicture() {
+ #if defined(__ORBIS__)
+     pswaker_message_picture_released(this);
++    pswaker_hud_picture_released(this);
+ #endif
+     for (int i = 0; i < mNumTexture; i++) {
+         if (mValidTexture & 1 << i) {
+diff --git a/game/src/d/d_meter.cpp b/game/src/d/d_meter.cpp
+--- a/game/src/d/d_meter.cpp
++++ b/game/src/d/d_meter.cpp
+@@ -938,6 +938,68 @@
+     sprintf(buf, "rupy_num_%02d.bti", num);
+ }
+ 
++#if defined(__ORBIS__)
++#include "pswaker/hud-pictures.h"
++
++static void dMeter_ps4Apply(void* picture, const void* texture) {
++    J2DPicture* pic = (J2DPicture*)picture;
++    pic->changeTexture((const ResTIMG*)texture, 0);
++}
++
++static void dMeter_ps4ButtonApply(void* picture, const void* texture) {
++    dMeter_ps4Apply(picture, texture);
++    J2DPicture* pic = (J2DPicture*)picture;
++    pic->setWhite(0xFFFFFFFF);
++    pic->setBlack(0x00000000);
++    pic->setCornerColor(0xFFFFFFFF);
++}
++
++// Resize once, before movement/scale routines capture the pane's dimensions.
++// The full PS4 tile needs room beyond the original 16-pixel GC letter overlay.
++static void dMeter_ps4Button(fopMsgM_pane_class* pane, PswakerHudControl control, f32 width, f32 height) {
++    f32 dx = (pane->mSizeOrig.x - width) * 0.5f;
++    f32 dy = (pane->mSizeOrig.y - height) * 0.5f;
++    pane->mPosTopLeftOrig.x += dx;
++    pane->mPosTopLeftOrig.y += dy;
++    pane->mPosTopLeft = pane->mPosTopLeftOrig;
++    pane->mSizeOrig.x = width;
++    pane->mSizeOrig.y = height;
++    pane->mSize = pane->mSizeOrig;
++    pane->pane->move(pane->mPosTopLeft.x, pane->mPosTopLeft.y);
++    pane->pane->resize(width, height);
++    pswaker_hud_picture_set(pane->pane, control, dMeter_ps4ButtonApply);
++}
++
++// Action descriptions are independent textures, not message icons. Keep the
++// game's context words/weapon art and pair them with their semantic control.
++static void dMeter_ps4Description(J2DPicture* picture, PswakerHudControl control, s16 status, const void* texture) {
++    switch (status) {
++    case dActStts_BLANK_e: case dActStts_LOOK_e: case dActStts_SPEAK_e: case dActStts_CHARTS_e:
++    case dActStts_LIFT_e: case dActStts_CLIMB_e: case dActStts_LET_GO_e: case dActStts_RETURN_e:
++    case dActStts_PUT_AWAY_e: case dActStts_DROP_e: case dActStts_CHECK_e: case dActStts_OPEN_e:
++    case dActStts_ATTACK_e: case dActStts_ba_osu: case dActStts_THROW_e: case dActStts_CROUCH_e:
++    case dActStts_SIDLE_e: case dActStts_GRAB_e: case dActStts_JUMP_e: case dActStts_STOP_e:
++    case dActStts_ba_haru: case dActStts_ba_tatamu: case dActStts_LET_GO_ROPE_e: case dActStts_CHOOSE_e:
++    case dActStts_ba_kogu: case dActStts_NEXT_e: case dActStts_PARRY_e: case dActStts_PICK_UP_e:
++    case dActStts_GET_IN_SHIP_e: case dActStts_GET_OUT_SHIP_e: case dActStts_ba_save: case dActStts_ba_option:
++    case dActStts_TAKE_PHOTO_e: case dActStts_INFO_e: case dActStts_SWAP_MODES_e: case dActStts_FLY_e:
++    case dActStts_CALL_e: case dActStts_BID_e: case dActStts_READ_e: case dActStts_CANCEL_e:
++    case dActStts_ba_kakudai: case dActStts_ba_hikaku: case dActStts_ba_zoom01: case dActStts_ba_zoom02:
++    case dActStts_CRUISE_e: case dActStts_ba_nageru__dupe_2D: case dActStts_ba_motu__dupe_2E: case dActStts_SWING_e:
++    case dActStts_SEA_CHART_e: case dActStts_ba_sake__dupe_31: case dActStts_ba_modoru__dupe_32: case dActStts_ba_save__dupe_33:
++    case dActStts_ba_save__dupe_34: case dActStts_sword_01: case dActStts_DEFEND_e: case dActStts_boko_stick:
++    case dActStts_hatchet: case dActStts_iron_club: case dActStts_longsword: case dActStts_spear:
++    case dActStts_spear__dupe_3C: case dActStts_bow_01: case dActStts_HIDDEN_e:
++        break;
++    default:
++        // The game's fallback to the first action texture would guess meaning.
++        control = (PswakerHudControl)0xFF;
++        break;
++    }
++    pswaker_hud_description_set(picture, control, (u16)status, texture, dMeter_ps4Apply);
++}
++#endif
++
+ #if VERSION < VERSION_PAL
+ #define TEXNAME(a) a ".bti"
+ #else
+@@ -1663,8 +1725,17 @@
+     DCStoreRangeNoSync(i_Meter->actionTex[0], 0xc00);
+ #endif
+     ((J2DPicture*)i_Meter->field_0x2828.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x2828.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+     ((J2DPicture*)i_Meter->field_0x2860.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x2860.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+     ((J2DPicture*)i_Meter->field_0x1d00.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x1d00.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+ #if VERSION > VERSION_DEMO
+     i_Meter->field_0x2828.mUserArea = 0;
+ #endif
+@@ -1793,9 +1864,18 @@
+                 DCStoreRangeNoSync(i_Meter->actionTex[0], 0xc00);
+ #endif
+                 ((J2DPicture*)i_Meter->field_0x2828.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x2828.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+                 ((J2DPicture*)i_Meter->field_0x2860.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x2860.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+ #if VERSION > VERSION_DEMO
+                 ((J2DPicture*)i_Meter->field_0x1d00.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x1d00.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+ #endif
+             } else if (dComIfGp_getAStatus() == dActStts_boko_stick ||
+                        dComIfGp_getAStatus() == dActStts_hatchet ||
+@@ -1812,9 +1892,18 @@
+                 DCStoreRangeNoSync(i_Meter->actionTex[0], 0xc00);
+ #endif
+                 ((J2DPicture*)i_Meter->field_0x2828.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x2828.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+                 ((J2DPicture*)i_Meter->field_0x2860.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x2860.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+ #if VERSION > VERSION_DEMO
+                 ((J2DPicture*)i_Meter->field_0x1d00.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x1d00.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+ #endif
+             } else {
+                 JKRArchive* archive;
+@@ -1835,9 +1924,18 @@
+ #endif
+ #if VERSION > VERSION_DEMO
+                 ((J2DPicture*)i_Meter->field_0x2828.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x2828.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+                 ((J2DPicture*)i_Meter->field_0x2860.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x2860.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+ #endif
+                 ((J2DPicture*)i_Meter->field_0x1d00.pane)->changeTexture(i_Meter->actionTex[0], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x1d00.pane, PswakerHudControl::B, dComIfGp_getAStatus(), i_Meter->actionTex[0]);
++#endif
+             }
+         }
+ #if VERSION > VERSION_DEMO
+@@ -2190,8 +2288,17 @@
+     DCStoreRangeNoSync(i_Meter->actionTex[1], 0xc00);
+ #endif
+     ((J2DPicture*)i_Meter->field_0x27b8.pane)->changeTexture(i_Meter->actionTex[1], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x27b8.pane, PswakerHudControl::A, dComIfGp_getDoStatus(), i_Meter->actionTex[1]);
++#endif
+     ((J2DPicture*)i_Meter->field_0x27f0.pane)->changeTexture(i_Meter->actionTex[1], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x27f0.pane, PswakerHudControl::A, dComIfGp_getDoStatus(), i_Meter->actionTex[1]);
++#endif
+     ((J2DPicture*)i_Meter->field_0x1d38.pane)->changeTexture(i_Meter->actionTex[1], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x1d38.pane, PswakerHudControl::A, dComIfGp_getDoStatus(), i_Meter->actionTex[1]);
++#endif
+ }
+ 
+ /* 801F3770-801F37E0       .text dMeter_actionMove__FP15sub_meter_class */
+@@ -2316,7 +2423,13 @@
+                 DCStoreRangeNoSync(i_Meter->actionTex[1], 0xc00);
+ #endif
+                 ((J2DPicture*)i_Meter->field_0x27b8.pane)->changeTexture(i_Meter->actionTex[1], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x27b8.pane, PswakerHudControl::A, dComIfGp_getDoStatus(), i_Meter->actionTex[1]);
++#endif
+                 ((J2DPicture*)i_Meter->field_0x27f0.pane)->changeTexture(i_Meter->actionTex[1], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x27f0.pane, PswakerHudControl::A, dComIfGp_getDoStatus(), i_Meter->actionTex[1]);
++#endif
+             } else {
+                 JKRArchive* archive;
+ #if VERSION == VERSION_PAL
+@@ -2335,6 +2448,9 @@
+                 DCStoreRangeNoSync(i_Meter->actionTex[1], 0xc00);
+ #endif
+                 ((J2DPicture*)i_Meter->field_0x1d38.pane)->changeTexture(i_Meter->actionTex[1], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x1d38.pane, PswakerHudControl::A, dComIfGp_getDoStatus(), i_Meter->actionTex[1]);
++#endif
+                 i_Meter->field_0x1e18[0].mUserArea = 1;
+             }
+         }
+@@ -3517,6 +3633,9 @@
+     DCStoreRangeNoSync(i_Meter->actionTex[2], 0xc00);
+ #endif
+     ((J2DPicture*)i_Meter->field_0x1cc8.pane)->changeTexture(i_Meter->actionTex[2], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x1cc8.pane, PswakerHudControl::R, dComIfGp_getRStatus(), i_Meter->actionTex[2]);
++#endif
+ }
+ 
+ /* 801F70E0-801F71F4       .text dMeter_rMove__FP15sub_meter_class */
+@@ -3548,6 +3667,9 @@
+             DCStoreRangeNoSync(i_Meter->actionTex[2], 0xc00);
+ #endif
+             ((J2DPicture*)i_Meter->field_0x1cc8.pane)->changeTexture(i_Meter->actionTex[2], 0);
++#if defined(__ORBIS__)
++    dMeter_ps4Description((J2DPicture*)i_Meter->field_0x1cc8.pane, PswakerHudControl::R, dComIfGp_getRStatus(), i_Meter->actionTex[2]);
++#endif
+         }
+         i_Meter->field_0x301c = dComIfGp_getRStatus();
+         i_Meter->field_0x26d8.mUserArea = 1;
+@@ -7310,8 +7432,24 @@
+     fopMsgM_setPaneData(&i_Meter->field_0x0100[1], sMainParts1, 'yup');
+     fopMsgM_setPaneData(&i_Meter->field_0x0100[2], sMainParts1, 'ylef');
+     fopMsgM_setPaneData(&i_Meter->field_0x0250, sMainParts1, 'r');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x0250, PswakerHudControl::R, 30.0f, 30.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x0288, sMainParts1, 'l');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x0288, PswakerHudControl::L, 30.0f, 30.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x02c0, sMainParts1, 'crs1');
++#if defined(__ORBIS__)
++    const u32 padTags[] = {'crs2', 'crs3', 'crs4'};
++    for (unsigned i = 0; i < 3; ++i) {
++        J2DPicture* picture = (J2DPicture*)sMainParts1->search(padTags[i]);
++        if (picture != NULL) pswaker_hud_picture_set(picture, PswakerHudControl::DPad, dMeter_ps4ButtonApply);
++    }
++#endif
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x02c0, PswakerHudControl::DPad, 24.0f, 24.0f);
++#endif
+     i_Meter->field_0x0100[0].mPosCenterOrig.x -= 2.0f;
+     i_Meter->field_0x0100[1].mPosCenterOrig.y -= 2.0f;
+     i_Meter->field_0x0100[2].mPosCenterOrig.x -= 1.0f;
+@@ -7395,6 +7533,9 @@
+     fopMsgM_setPaneData(&i_Meter->field_0x1d00, sMainParts1, 'bawd');
+     fopMsgM_setPaneData(&i_Meter->field_0x1d38, sMainParts1, 'bawp');
+     fopMsgM_setPaneData(&i_Meter->field_0x1da8[1], sMainParts1, 'baa2');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x1da8[1], PswakerHudControl::A, 32.0f, 24.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x1e18[1], sMainParts1, 'bat2');
+     fopMsgM_setPaneData(&i_Meter->field_0x1fd8[1], sMainParts1, 'y01');
+     fopMsgM_setPaneData(&i_Meter->field_0x1f30[1], sMainParts1, 'y10');
+@@ -7427,15 +7568,30 @@
+     i_Meter->field_0x23c8[2].pane->hide();
+     i_Meter->field_0x2470[2].pane->hide();
+     fopMsgM_setPaneData(&i_Meter->field_0x2518, sMainParts1, 'baz');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x2518, PswakerHudControl::Z, 40.0f, 32.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x2550[1], sMainParts1, 'bay');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x2550[1], PswakerHudControl::Y, 32.0f, 24.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x25c0[1], sMainParts1, 'b002');
+     fopMsgM_setPaneData(&i_Meter->field_0x2630[1], sMainParts1, 'ba02');
+     fopMsgM_setPaneData(&i_Meter->field_0x2550[0], sMainParts1, 'bax1');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x2550[0], PswakerHudControl::X, 32.0f, 24.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x25c0[0], sMainParts1, 'b001');
+     fopMsgM_setPaneData(&i_Meter->field_0x2630[0], sMainParts1, 'ba01');
+     fopMsgM_setPaneData(&i_Meter->field_0x1da8[0], sMainParts1, 'baa');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x1da8[0], PswakerHudControl::A, 32.0f, 24.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x1e18[0], sMainParts1, 'bawe');
+     fopMsgM_setPaneData(&i_Meter->field_0x26a0, sMainParts1, 'bar1');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x26a0, PswakerHudControl::R, 32.0f, 24.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x26d8, sMainParts1, 'ba0r');
+     fopMsgM_setPaneData(&i_Meter->field_0x2748, sMainParts1, 'a10');
+     fopMsgM_setPaneData(&i_Meter->field_0x2780, sMainParts1, 'a01');
+@@ -7444,6 +7600,9 @@
+     fopMsgM_setPaneData(&i_Meter->field_0x2828, sMainParts1, 'weit');
+     fopMsgM_setPaneData(&i_Meter->field_0x2860, sMainParts1, 'witk');
+     fopMsgM_setPaneData(&i_Meter->field_0x2898, sMainParts1, 'bab');
++#if defined(__ORBIS__)
++    dMeter_ps4Button(&i_Meter->field_0x2898, PswakerHudControl::B, 32.0f, 24.0f);
++#endif
+     fopMsgM_setPaneData(&i_Meter->field_0x28d0, sMainParts1, 'baat');
+     fopMsgM_setPaneData(&i_Meter->field_0x2908, sMainParts1, 'cent');
+     fopMsgM_setPaneData(&i_Meter->field_0x2940[0], sMainParts1, 'arw1');
+diff --git a/game/src/f_op/f_op_msg_mng.cpp b/game/src/f_op/f_op_msg_mng.cpp
+--- a/game/src/f_op/f_op_msg_mng.cpp
++++ b/game/src/f_op/f_op_msg_mng.cpp
+@@ -19,6 +19,7 @@
+ #include <stdio.h>
+ #if defined(__ORBIS__)
+ #include "pswaker/message-pictures.h"
++#include "pswaker/hud-pictures.h"
+ #endif
+ #if VERSION <= VERSION_JPN
+ #include "d/d_s_play.h"
+@@ -10073,6 +10074,7 @@
+ #if defined(__ORBIS__)
+     // The game is replacing this picture; any PS4 prompt is re-applied by its caller.
+     pswaker_message_picture_released(i_pane->pane);
++    pswaker_hud_picture_released(i_pane->pane);
+ #endif
+     i_pane->pane->show();
+     ((J2DPicture*)i_pane->pane)->remove();
+@@ -10084,6 +10086,7 @@
+ #if defined(__ORBIS__)
+     // The game is replacing this picture; any PS4 prompt is re-applied by its caller.
+     pswaker_message_picture_released(pic);
++    pswaker_hud_picture_released(pic);
+ #endif
+     pic->show();
+     pic->remove();
