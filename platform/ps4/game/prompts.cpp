@@ -29,7 +29,7 @@ PromptResult resolve_ps4_prompt(const PromptRequest& request, const AppliedContr
     };
     if (static_cast<unsigned>(request.context) > static_cast<unsigned>(PromptContext::PortMenu) ||
         static_cast<unsigned>(request.gesture) > static_cast<unsigned>(PromptGesture::Hold) ||
-        static_cast<unsigned>(request.variant) > static_cast<unsigned>(PromptVariant::TriggerFull) ||
+        static_cast<unsigned>(request.variant) > static_cast<unsigned>(PromptVariant::Trigger) ||
         static_cast<unsigned>(request.direction) > static_cast<unsigned>(PromptDirection::DownRight))
         return unresolved("Unknown prompt context, gesture, variant or direction");
     if ((request.variant == PromptVariant::Direction) != (request.direction != PromptDirection::None))
@@ -107,6 +107,9 @@ PromptResult resolve_ps4_prompt(const PromptRequest& request, const AppliedContr
         if (!trigger) return unresolved("Analog travel requires a fixed L2 or R2 trigger");
         result.name += request.variant == PromptVariant::TriggerPartial ?
             " partial press (below 90% travel)" : " full press (90% travel or more)";
+        break;
+    case PromptVariant::Trigger:
+        if (!trigger) return unresolved("Trigger prompts require a fixed L2 or R2 trigger");
         break;
     }
     result.icon = available && available(icon) ? std::optional(icon) : std::nullopt;

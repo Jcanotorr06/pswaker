@@ -58,11 +58,11 @@ set(COS_ASSETS_DIR "${GAME_ROOT}/assets/GZLE01" CACHE PATH "" FORCE)
 set(COS_RECOMPCORE_DIR "${GAME_ROOT}/src/recompcore" CACHE PATH "" FORCE)
 set(COS_RUNTIME_ASSETS ON CACHE BOOL "" FORCE)
 set(COS_EXE_ENTRY pswaker_entry CACHE STRING "" FORCE)
-add_library(pswaker_entry STATIC main.cpp installed-content.cpp controls.cpp controls-config.cpp prompts.cpp audio-evidence.cpp storage.cpp frame-pacing.cpp
+add_library(pswaker_entry STATIC main.cpp installed-content.cpp controls.cpp controls-config.cpp prompts.cpp prompt-art.cpp message-prompts.cpp audio-evidence.cpp storage.cpp frame-pacing.cpp
   "${GAME_ROOT}/src/platform/input.cpp"
   "${GAME_ROOT}/src/platform/native/platform.c"
   "${PLATFORM_ROOT}/src/native-platform/ps4/native/realpath.c")
-target_include_directories(pswaker_entry PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}" "${GAME_ROOT}/src/platform" "${GAME_ROOT}/src/aurora/lib" "${GAME_ROOT}/assets/GZLE01")
+target_include_directories(pswaker_entry PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/include" "${GAME_ROOT}/src/platform" "${GAME_ROOT}/src/aurora/lib" "${GAME_ROOT}/assets/GZLE01")
 target_compile_definitions(pswaker_entry PRIVATE PSWAKER_GAME_STORAGE=1)
 target_link_libraries(pswaker_entry PUBLIC aurora::core aurora::gx aurora::vi dawn::dawncpp_headers)
 if(PSWAKER_BUILD_ID)
@@ -77,6 +77,8 @@ get_target_property(_pc_sources cos_pc SOURCES)
 list(FILTER _pc_sources EXCLUDE REGEX "/pc_hd_textures[.]cpp$")
 set_property(TARGET cos_pc PROPERTY SOURCES "${_pc_sources}")
 target_sources(cos_pc PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/stock-textures.cpp")
+# Game 0013-message-prompts.patch: message pictures call the port's prompt adapter.
+target_include_directories(cos_game_headers INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_include_directories(cos_pc PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 target_include_directories(pswaker_entry PRIVATE "${GAME_ROOT}/src/switchwaker/native/sdk/include")
 target_include_directories(pswaker_entry PRIVATE "${GAME_ROOT}/src/switchwaker/native/include")

@@ -1,6 +1,7 @@
 // Only the external console service boundary is simulated. No game data or GPU.
 #include "controls.hpp"
 #include "prompts.hpp"
+#include "message-prompts.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
 #include "native/platform.h"
@@ -8,6 +9,8 @@
 #include <cassert>
 #include <cerrno>
 #include <cstdint>
+#include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <fstream>
 #include <filesystem>
@@ -35,6 +38,12 @@ bool rebuildPrompt(void* context, const AppliedControls& applied) {
     if (!picture.ready) return false;
     picture.rendered = resolve_ps4_prompt({GameAction::A}, applied);
     return true;
+}
+
+// A retained message picture, as the game's J2DPicture hook sees it.
+struct MessagePicture { const void* image = nullptr; };
+void showMessagePicture(void* picture, void*, const void* image, const void*) {
+    static_cast<MessagePicture*>(picture)->image = image;
 }
 
 void sample(uint32_t held = 0) {
@@ -157,6 +166,10 @@ void pswaker_perf_arm(const char*) {}
 void pswaker_perf_phase(const char*) {}
 extern "C" uint64_t pswaker_perf_now() { return 0; }
 void pswaker_perf_diagnostic(PswakerDiagnostic, uint64_t) {}
+void pswaker_report_prompt_coverage(const char* surface, unsigned item, const char* reason) {
+    std::fprintf(stderr, "unexpected unresolved %s %u: %s\n", surface, item, reason);
+    std::abort();
+}
 int main(int argc, char** argv) {
     assert(argc == 3);
     PortSettings initialProfile(argv[2]);
@@ -167,8 +180,15 @@ int main(int argc, char** argv) {
         RetainedPrompt dialog, hud;
         assert(pswaker_register_prompt_adapter(&dialog, rebuildPrompt));
         assert(pswaker_register_prompt_adapter(&hud, rebuildPrompt));
+        assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_message_prompts));
         start();
         const auto previous = pswaker_applied_controls();
+        // A dialog showing the A picture stays open across the whole Apply flow.
+        MessagePicture openDialog;
+        assert(pswaker_message_picture_set(&openDialog, nullptr, 0x00, 0, showMessagePicture));
+        const auto* cross = message_prompt_texture({Ps4Icon::Cross}, false);
+        const auto* r3 = message_prompt_texture({Ps4Icon::R3}, false);
+        assert(openDialog.image == cross);
         assert(dialog.rendered.name == "Cross" && dialog.rendered.generation == previous.generation);
         assert(hud.rendered.generation == previous.generation);
         openEditor(); assignButton(0, static_cast<unsigned>(ControlTarget::R3));
@@ -207,6 +227,7 @@ int main(int argc, char** argv) {
             assert(pswaker_port_view().refreshingPrompts);
             assert(dialog.rendered.name == "R3" && dialog.rendered.generation == published.generation);
             assert(hud.rendered.name == "Cross" && hud.rendered.generation == previous.generation);
+            assert(openDialog.image == r3); // Rebuilt before gameplay can resume.
             // Disconnect during refresh still requires a new fixed confirmation.
             connected = false; sample(PAD_R3); neutralGame();
             assert(pswaker_port_view().screen == PortScreen::InputLost);
@@ -225,6 +246,7 @@ int main(int argc, char** argv) {
         const auto expected = hud.ready && scenario == "apply" ? "R3" : "Cross";
         assert(dialog.rendered.name == expected && hud.rendered.name == expected);
         assert(resolve_ps4_prompt({GameAction::A}, published).name == expected);
+        assert(openDialog.image == (hud.ready && scenario == "apply" ? r3 : cross));
         return 0;
     }
     if (std::strncmp(argv[1], "inversion-apply-", 16) == 0) {
