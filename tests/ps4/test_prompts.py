@@ -56,7 +56,7 @@ class PromptTests(unittest.TestCase):
         self.run_check('prompts.cpp', 'prompts.cpp', 'controls-config.cpp')
 
     def test_message_picture_adapter(self):
-        self.run_check('message-prompts.cpp', 'message-prompts.cpp', 'prompt-art.cpp',
+        self.run_check('message-prompts.cpp', 'message-prompts.cpp', 'prompt-textures.cpp', 'prompt-art.cpp',
                        'prompts.cpp', 'controls-config.cpp')
 
     def test_project_owned_artwork(self):
