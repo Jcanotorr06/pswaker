@@ -1,0 +1,214 @@
+diff --git a/game/include/f_op/f_op_msg_mng.h b/game/include/f_op/f_op_msg_mng.h
+index 21957b0..95e98ef 100644
+--- a/game/include/f_op/f_op_msg_mng.h
++++ b/game/include/f_op/f_op_msg_mng.h
+@@ -685,6 +685,11 @@ void fopMsgM_outFontSet(J2DPicture* i_iconPic, J2DPicture* i_sdwPic, s16* i_time
+ void fopMsgM_outFontSet(J2DPicture* i_iconPic, s16* i_timer, u32 i_color, u8 i_iconNo);
+ void fopMsgM_outFontDraw(J2DPicture* i_iconPic, J2DPicture* i_sdwPic, int param_3, int param_4, int param_5, s16* i_timer, u8 i_alpha, u8 i_iconNo);
+ void fopMsgM_outFontDraw2(J2DPicture* i_iconPic, J2DPicture* param_2, int param_3, int param_4, int i_width, int i_height, s16* i_timer, u8 i_alpha, u8 i_iconNo);
++#if defined(__ORBIS__)
++// PS4 control prompts for retained message pictures (port message-prompts.cpp).
++void fopMsgM_ps4Set(J2DPicture* i_iconPic, J2DPicture* i_sdwPic, u8 i_iconNo);
++void fopMsgM_ps4Turned(J2DPicture* i_iconPic);
++#endif
+ 
+ extern u16 zfont[][2];
+ 
+diff --git a/game/src/JSystem/J2DGraph/J2DPicture.cpp b/game/src/JSystem/J2DGraph/J2DPicture.cpp
+index b5e0d99..0617df2 100644
+--- a/game/src/JSystem/J2DGraph/J2DPicture.cpp
++++ b/game/src/JSystem/J2DGraph/J2DPicture.cpp
+@@ -12,6 +12,9 @@
+ #include "JSystem/JUtility/JUTPalette.h"
+ #include "JSystem/JUtility/JUTTexture.h"
+ #include "dolphin/types.h"
++#if defined(__ORBIS__)
++#include "pswaker/message-pictures.h"
++#endif
+ 
+ /* 802D2D94-802D2E1C       .text __ct__10J2DPictureFv */
+ J2DPicture::J2DPicture() {
+@@ -147,6 +150,9 @@ void J2DPicture::initinfo() {
+ 
+ /* 802D3774-802D3824       .text __dt__10J2DPictureFv */
+ J2DPicture::~J2DPicture() {
++#if defined(__ORBIS__)
++    pswaker_message_picture_released(this);
++#endif
+     for (int i = 0; i < mNumTexture; i++) {
+         if (mValidTexture & 1 << i) {
+             delete mpTexture[i];
+diff --git a/game/src/d/d_2dnumber.cpp b/game/src/d/d_2dnumber.cpp
+index c161909..c0574a9 100644
+--- a/game/src/d/d_2dnumber.cpp
++++ b/game/src/d/d_2dnumber.cpp
+@@ -377,6 +377,9 @@ f32 dDlst_2DOutFont_c::iconset(int i_iconNo, char** param_1) {
+         mpPic[mIconNum]->setBlendRatio(0.0f, 1.0f, 1.0f, 1.0f);
+         mpPic[mIconNum]->setWhite(fopMsgM_outFontColorWhite(i_iconNo));
+         mpPic[mIconNum]->setBlack(0);
++#if defined(__ORBIS__)
++        fopMsgM_ps4Set(mpPic[mIconNum], NULL, i_iconNo);
++#endif
+         mIconNo[mIconNum] = i_iconNo;
+         m76[mIconNum] = m82;
+ 
+@@ -753,6 +756,9 @@ void dDlst_2DOutFont_c::outFontStickAnime1(u8 param_0) {
+ 
+     if ((m7C[param_0] % var_r29) == 0) {
+         mpPic[param_0]->rotate(0.0f, 0.0f, ROTATE_Z, (m7C[param_0] / var_r29) * -90.0f);
++#if defined(__ORBIS__)
++        fopMsgM_ps4Turned(mpPic[param_0]);
++#endif
+     }
+ 
+     m7C[param_0]++;
+@@ -824,6 +830,9 @@ void dDlst_2DOutFont_c::outFontStickAnime2(u8 param_0, u8 param_1) {
+     }
+ 
+     mpPic[param_0]->rotate(0.0f, 0.0f, ROTATE_Z, param_1 * -90.0f);
++#if defined(__ORBIS__)
++    fopMsgM_ps4Turned(mpPic[param_0]);
++#endif
+ 
+     m7C[param_0]++;
+     if (m7C[param_0] >= var_r29) {
+@@ -899,6 +908,9 @@ void dDlst_2DOutFont_c::outFontStickAnime3(u8 param_0, u8 param_1) {
+     }
+ 
+     mpPic[param_0]->rotate(0.0f, 0.0f, ROTATE_Z, var_r0 * -90.0f);
++#if defined(__ORBIS__)
++    fopMsgM_ps4Turned(mpPic[param_0]);
++#endif
+ 
+     m7C[param_0]++;
+     if (m7C[param_0] >= var_r29 * 2) {
+diff --git a/game/src/f_op/f_op_msg_mng.cpp b/game/src/f_op/f_op_msg_mng.cpp
+index 2f1f6de..05bee76 100644
+--- a/game/src/f_op/f_op_msg_mng.cpp
++++ b/game/src/f_op/f_op_msg_mng.cpp
+@@ -17,6 +17,9 @@
+ #include "SSystem/SComponent/c_malloc.h"
+ #include "m_Do/m_Do_controller_pad.h"
+ #include <stdio.h>
++#if defined(__ORBIS__)
++#include "pswaker/message-pictures.h"
++#endif
+ #if VERSION <= VERSION_JPN
+ #include "d/d_s_play.h"
+ #endif
+@@ -991,6 +994,53 @@ static GXColor fopMsgM_buttonW[] = {
+     /* 0x17 */ {0xFF, 0xFF, 0xFF, 0xFF},
+ };
+ 
++#if defined(__ORBIS__)
++// Shows PS4 artwork (GX RGBA8 ResTIMG) in place of a GameCube control picture
++// without allocating: the game has already appended its own texture here.
++static void fopMsgM_ps4Apply(void* i_picture, void* i_shadow, const void* i_image, const void* i_partner) {
++    J2DPicture* pictures[] = {(J2DPicture*)i_picture, (J2DPicture*)i_shadow};
++    for (int i = 0; i < 2; i++) {
++        J2DPicture* pic = pictures[i];
++        if (pic == NULL) {
++            continue;
++        }
++        u8 last = 3;
++        while (last > 0 && pic->getTexture(last) == NULL) {
++            last--;
++        }
++        if (pic->getTexture(last) == NULL) {
++            continue;
++        }
++        pic->changeTexture((const ResTIMG*)i_image, last);
++        // Texture 0 is the crossfade partner of animated stick pictures.
++        if (i_partner != NULL && last > 0) {
++            pic->changeTexture((const ResTIMG*)i_partner, 0);
++        }
++    }
++    // Full-colour artwork is shown untinted; the shadow stays a black silhouette.
++    ((J2DPicture*)i_picture)->setWhite(0xFFFFFFFF);
++    ((J2DPicture*)i_picture)->setBlack(0x00000000);
++}
++
++// Clockwise quarter turns: the stick animations turn pictures by multiples of -90.
++static u8 fopMsgM_ps4Turns(J2DPicture* i_pic) {
++    f32 turns = -i_pic->getRotate() / 90.0f;
++    int rounded = (int)(turns < 0.0f ? turns - 0.5f : turns + 0.5f);
++    return (u8)(((rounded % 4) + 4) % 4);
++}
++
++// Control pictures become PS4 prompts for the applied controls and are retained
++// until destroyed, so Apply rebuilds an already-open message before resume.
++void fopMsgM_ps4Set(J2DPicture* i_iconPic, J2DPicture* i_sdwPic, u8 i_iconNo) {
++    pswaker_message_picture_set(i_iconPic, i_sdwPic, i_iconNo, fopMsgM_ps4Turns(i_iconPic), fopMsgM_ps4Apply);
++}
++
++// After the game turns a picture: keeps PS4 labels upright and tilts accurate.
++void fopMsgM_ps4Turned(J2DPicture* i_iconPic) {
++    pswaker_message_picture_turned(i_iconPic, fopMsgM_ps4Turns(i_iconPic));
++}
++#endif
++
+ /* 8002C6B0-8002C6C4       .text fopMsgM_outFontTex__Fi */
+ const char* fopMsgM_outFontTex(int i_iconNo) {
+     return fopMsgM_buttonTex[i_iconNo];
+@@ -1044,6 +1094,9 @@ void fopMsgM_outFontSet(J2DPicture* i_iconPic, J2DPicture* i_sdwPic, s16* i_time
+     i_sdwPic->setBlendRatio(0.0f, 1.0f, 1.0f, 1.0f);
+ 
+     *i_timer = 0;
++#if defined(__ORBIS__)
++    fopMsgM_ps4Set(i_iconPic, i_sdwPic, i_iconNo);
++#endif
+ }
+ 
+ /* 8002C9B0-8002CBDC       .text fopMsgM_outFontSet__FP10J2DPicturePsUlUc */
+@@ -1084,6 +1137,9 @@ void fopMsgM_outFontSet(J2DPicture* i_iconPic, s16* i_timer, u32 i_color, u8 i_i
+     i_iconPic->setBlendRatio(0.0f, 1.0f, 1.0f, 1.0f);
+ 
+     *i_timer = 0;
++#if defined(__ORBIS__)
++    fopMsgM_ps4Set(i_iconPic, NULL, i_iconNo);
++#endif
+ }
+ 
+ /* 8002CBDC-8002CEB0       .text fopMsgM_outFontStickAnimePiece__FP10J2DPictureP10J2DPicturess */
+@@ -1411,6 +1467,9 @@ void fopMsgM_outFontDraw(J2DPicture* i_iconPic, J2DPicture* i_sdwPic, int param_
+         fopMsgM_outFontArrow(i_iconPic, i_sdwPic, &param_3, &param_4, param_5, i_iconNo);
+         break;
+     }
++#if defined(__ORBIS__)
++    fopMsgM_ps4Turned(i_iconPic);
++#endif
+ 
+     i_sdwPic->draw(param_3 + 2, param_4 + 1 + g_msgHIO.field_0x6a, param_5, param_5, false, false, false);
+     i_iconPic->draw(param_3, param_4 - 1 + g_msgHIO.field_0x6a, param_5, param_5, false, false, false);
+@@ -1452,6 +1511,9 @@ void fopMsgM_outFontDraw2(J2DPicture* i_iconPic, J2DPicture* param_2, int param_
+         fopMsgM_outFontArrow(i_iconPic, &temp1, &temp2, &i_width, &i_height, i_iconNo);
+         break;
+     }
++#if defined(__ORBIS__)
++    fopMsgM_ps4Turned(i_iconPic);
++#endif
+ 
+     param_2->move(param_3, param_4);
+     i_iconPic->move(temp1, temp2);
+@@ -10008,6 +10070,10 @@ void fopMsgM_blendInit(J2DPicture* pic, const char* data) {
+ 
+ /* 8003C16C-8003C1D4       .text fopMsgM_blendDraw__FP18fopMsgM_pane_classPCc */
+ void fopMsgM_blendDraw(fopMsgM_pane_class* i_pane, const char* data) {
++#if defined(__ORBIS__)
++    // The game is replacing this picture; any PS4 prompt is re-applied by its caller.
++    pswaker_message_picture_released(i_pane->pane);
++#endif
+     i_pane->pane->show();
+     ((J2DPicture*)i_pane->pane)->remove();
+     ((J2DPicture*)i_pane->pane)->append(data, 1.0f);
+@@ -10015,6 +10081,10 @@ void fopMsgM_blendDraw(fopMsgM_pane_class* i_pane, const char* data) {
+ 
+ /* 8003C1D4-8003C234       .text fopMsgM_blendDraw__FP10J2DPicturePCc */
+ void fopMsgM_blendDraw(J2DPicture* pic, const char* data) {
++#if defined(__ORBIS__)
++    // The game is replacing this picture; any PS4 prompt is re-applied by its caller.
++    pswaker_message_picture_released(pic);
++#endif
+     pic->show();
+     pic->remove();
+     pic->append(data, 1.0f);

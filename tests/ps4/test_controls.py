@@ -25,7 +25,8 @@ class InstalledControlsTests(unittest.TestCase):
         root = Path(cls.directory.name)
         cls.binary = root / 'controls'
         game = Path(GAME)
-        includes = ['-I', str(PLATFORM / 'game'), '-I', str(game / 'src/platform'),
+        includes = ['-I', str(PLATFORM / 'game'), '-I', str(PLATFORM / 'game/include'),
+                    '-I', str(game / 'src/platform'),
                     '-I', str(game / 'src/aurora/include'),
                     '-I', str(game / 'src/switchwaker/native/include'),
                     '-I', str(game / 'src/switchwaker/native/src/pc'), '-DTARGET_PC']
@@ -38,6 +39,8 @@ class InstalledControlsTests(unittest.TestCase):
                                 *includes, str(PLATFORM / 'game/controls.cpp'),
                                 str(PLATFORM / 'game/controls-config.cpp'),
                                 str(PLATFORM / 'game/prompts.cpp'),
+                                str(PLATFORM / 'game/prompt-art.cpp'),
+                                str(PLATFORM / 'game/message-prompts.cpp'),
                                 str(PLATFORM / 'game/storage.cpp'),
                                 str(game / 'src/switchwaker/native/src/pc/features/pc_controls.cpp'),
                                 str(LOCATIONS.tests / 'controls-console.cpp'), str(root / 'platform.o'),

@@ -10,7 +10,10 @@ enum class FixedControl { MainStick, CStick, DPad, LTrigger, RTrigger,
 enum class PromptGesture { Press, Hold };
 enum class PromptVariant { Button, StickMove, StickClick, Direction,
     RotateClockwise, RotateCounterclockwise, OscillateHorizontal, OscillateVertical,
-    TriggerPartial, TriggerFull };
+    TriggerPartial, TriggerFull,
+    // A plain L2/R2 press that does not require full travel: GameCube L/R used
+    // as buttons, by instructions that make no travel distinction.
+    TriggerPress };
 enum class PromptDirection { None, Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight };
 // Public, platform-independent identifiers. Availability is supplied by the
 // presentation surface; an identifier never implies that artwork was loaded.
