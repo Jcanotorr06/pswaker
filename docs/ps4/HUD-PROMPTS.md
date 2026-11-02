@@ -49,11 +49,12 @@ direction arrows, counters or item pictures are removed. The inspected HUD has
 no Start or stick-motion label to replace; these remain available in the resolver
 and their other presentation surfaces keep their own coverage status.
 
-The original 16-pixel letter overlays expand around the same centre to 32×24
-slots, including Options and R3. Pane position and size metadata are updated so
-the meter's movement and scaling routines keep the extra space. The Z picture
-uses 40×32. Original contextual descriptions and their shadows keep their native
-spacing, colours, animation and alpha. Control artwork has untinted colours and
+The original 16-pixel letter overlays expand around the same centre to 32×32
+slots, including Options and R3. Every control tile remains square so the square
+artwork preserves circular buttons' shape. Pane position and size metadata are
+updated so the meter's movement and scaling routines keep the extra space. The Z
+picture also uses 32×32. Original contextual descriptions and their shadows keep
+their native spacing, colours, animation and alpha. Control artwork has untinted colours and
 an opaque contrasting body. Final readability and overlap checks remain on PS4.
 
 New pictures immediately use the adapter's applied snapshot. Destruction and

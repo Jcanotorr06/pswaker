@@ -256,7 +256,7 @@ diff --git a/game/src/d/d_meter.cpp b/game/src/d/d_meter.cpp
      fopMsgM_setPaneData(&i_Meter->field_0x1d38, sMainParts1, 'bawp');
      fopMsgM_setPaneData(&i_Meter->field_0x1da8[1], sMainParts1, 'baa2');
 +#if defined(__ORBIS__)
-+    dMeter_ps4Button(&i_Meter->field_0x1da8[1], PswakerHudControl::A, 32.0f, 24.0f);
++    dMeter_ps4Button(&i_Meter->field_0x1da8[1], PswakerHudControl::A, 32.0f, 32.0f);
 +#endif
      fopMsgM_setPaneData(&i_Meter->field_0x1e18[1], sMainParts1, 'bat2');
      fopMsgM_setPaneData(&i_Meter->field_0x1fd8[1], sMainParts1, 'y01');
@@ -266,28 +266,28 @@ diff --git a/game/src/d/d_meter.cpp b/game/src/d/d_meter.cpp
      i_Meter->field_0x2470[2].pane->hide();
      fopMsgM_setPaneData(&i_Meter->field_0x2518, sMainParts1, 'baz');
 +#if defined(__ORBIS__)
-+    dMeter_ps4Button(&i_Meter->field_0x2518, PswakerHudControl::Z, 40.0f, 32.0f);
++    dMeter_ps4Button(&i_Meter->field_0x2518, PswakerHudControl::Z, 32.0f, 32.0f);
 +#endif
      fopMsgM_setPaneData(&i_Meter->field_0x2550[1], sMainParts1, 'bay');
 +#if defined(__ORBIS__)
-+    dMeter_ps4Button(&i_Meter->field_0x2550[1], PswakerHudControl::Y, 32.0f, 24.0f);
++    dMeter_ps4Button(&i_Meter->field_0x2550[1], PswakerHudControl::Y, 32.0f, 32.0f);
 +#endif
      fopMsgM_setPaneData(&i_Meter->field_0x25c0[1], sMainParts1, 'b002');
      fopMsgM_setPaneData(&i_Meter->field_0x2630[1], sMainParts1, 'ba02');
      fopMsgM_setPaneData(&i_Meter->field_0x2550[0], sMainParts1, 'bax1');
 +#if defined(__ORBIS__)
-+    dMeter_ps4Button(&i_Meter->field_0x2550[0], PswakerHudControl::X, 32.0f, 24.0f);
++    dMeter_ps4Button(&i_Meter->field_0x2550[0], PswakerHudControl::X, 32.0f, 32.0f);
 +#endif
      fopMsgM_setPaneData(&i_Meter->field_0x25c0[0], sMainParts1, 'b001');
      fopMsgM_setPaneData(&i_Meter->field_0x2630[0], sMainParts1, 'ba01');
      fopMsgM_setPaneData(&i_Meter->field_0x1da8[0], sMainParts1, 'baa');
 +#if defined(__ORBIS__)
-+    dMeter_ps4Button(&i_Meter->field_0x1da8[0], PswakerHudControl::A, 32.0f, 24.0f);
++    dMeter_ps4Button(&i_Meter->field_0x1da8[0], PswakerHudControl::A, 32.0f, 32.0f);
 +#endif
      fopMsgM_setPaneData(&i_Meter->field_0x1e18[0], sMainParts1, 'bawe');
      fopMsgM_setPaneData(&i_Meter->field_0x26a0, sMainParts1, 'bar1');
 +#if defined(__ORBIS__)
-+    dMeter_ps4Button(&i_Meter->field_0x26a0, PswakerHudControl::R, 32.0f, 24.0f);
++    dMeter_ps4Button(&i_Meter->field_0x26a0, PswakerHudControl::R, 32.0f, 32.0f);
 +#endif
      fopMsgM_setPaneData(&i_Meter->field_0x26d8, sMainParts1, 'ba0r');
      fopMsgM_setPaneData(&i_Meter->field_0x2748, sMainParts1, 'a10');
@@ -297,7 +297,7 @@ diff --git a/game/src/d/d_meter.cpp b/game/src/d/d_meter.cpp
      fopMsgM_setPaneData(&i_Meter->field_0x2860, sMainParts1, 'witk');
      fopMsgM_setPaneData(&i_Meter->field_0x2898, sMainParts1, 'bab');
 +#if defined(__ORBIS__)
-+    dMeter_ps4Button(&i_Meter->field_0x2898, PswakerHudControl::B, 32.0f, 24.0f);
++    dMeter_ps4Button(&i_Meter->field_0x2898, PswakerHudControl::B, 32.0f, 32.0f);
 +#endif
      fopMsgM_setPaneData(&i_Meter->field_0x28d0, sMainParts1, 'baat');
      fopMsgM_setPaneData(&i_Meter->field_0x2908, sMainParts1, 'cent');

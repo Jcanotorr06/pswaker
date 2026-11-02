@@ -15,7 +15,9 @@ commit only asset-free observations. A new candidate needs new evidence.
 - [ ] Remap A→R3, B→L3 and an item action→Options. Inspect the same contexts:
   labels read upright, contrast is clear and Options/R3 fit without clipping
   or overlapping text, counters or nearby item pictures. Check HUD scaling and
-  the alternate/parry A animation. Follow #79's six-actions/nine-targets matrix
+  the alternate/parry A animation. Circular prompts must stay round, matching
+  their proportions in messages; recheck the 01.22 top-right squash observation
+  on the corrected candidate. Follow #79's six-actions/nine-targets matrix
   where each action is actually presented; Start's non-HUD layouts belong to
   the native-menu/title slice.
 - [ ] Leave a contextual HUD visible, open port settings, remap and Apply.
