@@ -4,7 +4,7 @@
 // are BTI pictures, not font glyphs. Picture numbers index fopMsgM_buttonTex
 // after the game's own aliasing (flashing A 0x17 becomes 0x14, for example).
 #include "pswaker/message-pictures.h"
-#include "prompt-art.hpp"
+#include "prompt-textures.hpp"
 #include <optional>
 
 struct MessageIconPlan {
@@ -26,7 +26,8 @@ MessageIconPlan plan_message_icon(uint8_t pictureNo, const AppliedControls& appl
 
 // The encoded GX RGBA8 texture for artwork or its text tile, cached for the
 // program lifetime in host memory. Null only if host memory is exhausted.
-const void* message_prompt_texture(const PromptArtKey& key, bool label);
+// Compatibility name for existing message consumers.
+inline const void* message_prompt_texture(const PromptArtKey& key, bool label) { return prompt_texture(key, label); }
 
 // Prompt adapter callback for pswaker_register_prompt_adapter. Rebuilds every
 // retained message picture for this snapshot; later pictures use it too.

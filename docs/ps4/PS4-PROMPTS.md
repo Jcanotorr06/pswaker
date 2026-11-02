@@ -2,8 +2,9 @@
 
 Post-first-playable #79 slices. #99 added the semantic resolver, port legend
 and refresh boundary. #100 converts message boxes and tutorials that use button
-pictures. HUD, native-menu layouts, title, file selection and written
-instructions remain unresolved. This does not extend #12/#18 acceptance or
+pictures. #101 adapts the meter's HUD controls and separate action-description
+textures. Native-menu layouts, title, file selection and written instructions
+remain unresolved. This does not extend #12/#18 acceptance or
 claim that the whole game now shows PS4 prompts.
 
 ## Public contract
@@ -177,6 +178,16 @@ surround, sized for the existing square message slots. Other adapters can reuse
 game. To review the artwork, set `PSWAKER_PROMPT_ART_PREVIEW` to a directory
 when running `test_prompts.py`; it writes PNG previews there, outside git.
 
+## HUD and contextual action descriptions (#101)
+
+The meter's layout controls and its separate `actionTex[0..2]` description paths
+now resolve applied controls and retain their generation through the shared
+refresh boundary. They reuse the original artwork through `prompt-textures.cpp`,
+independently of message tags. See [HUD-PROMPTS.md](HUD-PROMPTS.md) for source
+identifiers, the historical AStatus/B-action distinction, fallback behavior and
+remaining coverage, and the [hardware checklist](HUD-prompts-checklist.md) for
+default/remapped layouts and real retained-picture refresh observations.
+
 ## Coverage and source verification
 
 [prompt-coverage.json](../../platform/ps4/prompt-coverage.json) contains identifiers
@@ -238,8 +249,8 @@ fit or console behavior. On the next identified PS4 candidate, check the legend
 after startup custom/default recovery, pending edits, Apply and discard/failure;
 check fixed Cross/Circle/Touchpad controls after remapping A/B/Start, then
 disconnect with held mapped buttons/sticks/triggers and deliberately resume.
-Real HUD/native-menu layout refresh belongs to the later adapters and needs new
-console evidence; the synthetic retained presentations are not such evidence.
+Real HUD and native-menu layout refresh needs console evidence; the synthetic
+retained presentations are not such evidence.
 
 The #100 checks add the project-owned artwork and the message adapter. The art
 check renders every icon and pose. It requires transparent surrounds, distinct

@@ -2,6 +2,7 @@
 #include "controls.hpp"
 #include "prompts.hpp"
 #include "message-prompts.hpp"
+#include "hud-prompts.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
 #include "native/platform.h"
@@ -43,6 +44,9 @@ bool rebuildPrompt(void* context, const AppliedControls& applied) {
 // A retained message picture, as the game's J2DPicture hook sees it.
 struct MessagePicture { const void* image = nullptr; };
 void showMessagePicture(void* picture, void*, const void* image, const void*) {
+    static_cast<MessagePicture*>(picture)->image = image;
+}
+void showHudPicture(void* picture, const void* image) {
     static_cast<MessagePicture*>(picture)->image = image;
 }
 
@@ -181,6 +185,7 @@ int main(int argc, char** argv) {
         assert(pswaker_register_prompt_adapter(&dialog, rebuildPrompt));
         assert(pswaker_register_prompt_adapter(&hud, rebuildPrompt));
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_message_prompts));
+        assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_hud_prompts));
         start();
         const auto previous = pswaker_applied_controls();
         // A dialog showing the A picture stays open across the whole Apply flow.
@@ -189,9 +194,15 @@ int main(int argc, char** argv) {
         const auto* cross = message_prompt_texture({Ps4Icon::Cross}, false);
         const auto* r3 = message_prompt_texture({Ps4Icon::R3}, false);
         assert(openDialog.image == cross);
+        MessagePicture hudButton, hudDescription;
+        const unsigned char contextWords[] = {1, 2, 3}; // Synthetic native action texture.
+        pswaker_hud_picture_set(&hudButton, PswakerHudControl::A, showHudPicture);
+        pswaker_hud_description_set(&hudDescription, PswakerHudControl::A, 2, contextWords, showHudPicture);
+        assert(hudButton.image == cross && hudDescription.image == contextWords);
         assert(dialog.rendered.name == "Cross" && dialog.rendered.generation == previous.generation);
         assert(hud.rendered.generation == previous.generation);
         openEditor(); assignButton(0, static_cast<unsigned>(ControlTarget::R3));
+        assert(hudButton.image == cross && hudDescription.image == contextWords);
         assert(resolve_ps4_prompt({GameAction::A}, pswaker_applied_controls()).name == "Cross");
         assert(dialog.rendered.generation == previous.generation);
         if (scenario == "discard") {
@@ -228,6 +239,7 @@ int main(int argc, char** argv) {
             assert(dialog.rendered.name == "R3" && dialog.rendered.generation == published.generation);
             assert(hud.rendered.name == "Cross" && hud.rendered.generation == previous.generation);
             assert(openDialog.image == r3); // Rebuilt before gameplay can resume.
+            assert(hudButton.image == r3 && hudDescription.image == contextWords);
             // Disconnect during refresh still requires a new fixed confirmation.
             connected = false; sample(PAD_R3); neutralGame();
             assert(pswaker_port_view().screen == PortScreen::InputLost);
@@ -247,6 +259,10 @@ int main(int argc, char** argv) {
         assert(dialog.rendered.name == expected && hud.rendered.name == expected);
         assert(resolve_ps4_prompt({GameAction::A}, published).name == expected);
         assert(openDialog.image == (hud.ready && scenario == "apply" ? r3 : cross));
+        assert(hudButton.image == (hud.ready && scenario == "apply" ? r3 : cross));
+        assert(hudDescription.image == contextWords); // Context survives either layout.
+        pswaker_hud_picture_released(&hudButton);
+        pswaker_hud_picture_released(&hudDescription);
         return 0;
     }
     if (std::strncmp(argv[1], "inversion-apply-", 16) == 0) {

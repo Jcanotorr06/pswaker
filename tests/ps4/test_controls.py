@@ -41,6 +41,8 @@ class InstalledControlsTests(unittest.TestCase):
                                 str(PLATFORM / 'game/prompts.cpp'),
                                 str(PLATFORM / 'game/prompt-art.cpp'),
                                 str(PLATFORM / 'game/message-prompts.cpp'),
+                                str(PLATFORM / 'game/prompt-textures.cpp'),
+                                str(PLATFORM / 'game/hud-prompts.cpp'),
                                 str(PLATFORM / 'game/storage.cpp'),
                                 str(game / 'src/switchwaker/native/src/pc/features/pc_controls.cpp'),
                                 str(LOCATIONS.tests / 'controls-console.cpp'), str(root / 'platform.o'),
