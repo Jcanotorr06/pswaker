@@ -8,9 +8,9 @@ import tempfile
 import shutil
 import unittest
 
-from synthetic_pipeline import make_seed, make_model_collection
+from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_collection
 from synthetic_disc import generate
-from synthetic_model_collector import add_model_resource, make_collector, MODEL_BYTES
+from synthetic_model_collector import add_model_resource, make_collector, MODEL_BYTES, PARTICLE_BYTES
 from contextlib import closing
 import sqlite3
 
@@ -29,12 +29,31 @@ class CollectorCommandTests(unittest.TestCase):
         self.collector = self.root / 'collector-build'
         self.baseline = make_collector(self.collector)
         self.output = self.root / 'collected'
+        self.scenario = []
         self.root.joinpath('settings.ini').write_text('owner settings sentinel')
 
     def collect(self):
         return subprocess.run([sys.executable, str(self.cli), 'collect', '--collector', str(self.collector),
                                '--image', str(self.image), '--baseline', str(self.baseline),
-                               '--output', str(self.output)], capture_output=True, text=True)
+                               '--output', str(self.output), *self.scenario], capture_output=True, text=True)
+
+    def test_dynamic_command_repeats_resource_attribution_and_lifetime_mapping(self):
+        shutil.rmtree(self.collector)
+        make_collector(self.collector, dynamic=True)
+        self.scenario = ['--scenario', 'common-pot-debris-lifecycle-v1']
+        before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
+        result = self.collect()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads((self.output / 'collection.json').read_text())
+        self.assertEqual(report['resources']['particle_sha256'], hashlib.sha256(PARTICLE_BYTES).hexdigest())
+        self.assertEqual(report['method'], 'dynamic-effect-draw')
+        self.assertEqual(report['commands'][0][-1], 'common-pot-debris-lifecycle-v1')
+        self.output = self.root / 'dynamic-repeat'
+        self.assertEqual(self.collect().returncode, 0)
+        repeated = json.loads((self.output / 'collection.json').read_text())
+        for name in ['seed_sha256', 'variations', 'collector', 'resources', 'script']:
+            self.assertEqual(repeated[name], report[name])
+        self.assertEqual({p: p.read_bytes() for p in before}, before)
 
     def test_command_repeats_export_and_attributes_exact_build_image_and_resource(self):
         before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
@@ -108,6 +127,57 @@ class ModelCollectionTests(unittest.TestCase):
         self.assertEqual(report['seed']['rows'], 3)
         self.assertEqual(report['provenance'], 'asset-material-draw')
         self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def test_dynamic_lifetime_maps_each_variation_to_combined_description_bytes(self):
+        shutil.rmtree(self.collection)
+        make_dynamic_collection(self.collection)
+        before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+        result = self.prepare()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads((self.output / 'collection-report.json').read_text())
+        self.assertEqual(report['provenance'], 'dynamic-effect-draw')
+        self.assertEqual((report['baseline_rows'], report['collected_rows'],
+                          report['baseline_covered_rows'], report['new_rows'], report['seed']['rows']),
+                         (2, 2, 1, 1, 3))
+        self.assertEqual([(row['hash'], row['states']) for row in report['mapping']], [
+            (84, [{'texture_index': 0, 'ticks': [1, 2]}]),
+            (126, [{'texture_index': 1, 'ticks': [1, 2]}])])
+        self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def test_dynamic_export_requires_completed_lifetimes_and_exact_state_mapping(self):
+        shutil.rmtree(self.collection)
+        original = make_dynamic_collection(self.collection)
+        path = self.collection / 'collection.json'
+        for defect in ['no-particles', 'not-retired', 'skipped-tick', 'wrong-variation',
+                       'unmapped-description', 'invented-description', 'no-draw', 'wrong-total']:
+            with self.subTest(defect=defect):
+                self.output = self.root / defect
+                metadata = json.loads(json.dumps(original))
+                steps = metadata['variations'][0]['steps']
+                if defect == 'no-particles':
+                    for step in steps:
+                        step['particles'] = 0
+                elif defect == 'not-retired':
+                    steps[-1]['emitters'] = 1
+                elif defect == 'skipped-tick':
+                    steps[1]['tick'] = 5
+                elif defect == 'wrong-variation':
+                    metadata['variations'][1]['texture_index'] = 0
+                elif defect == 'unmapped-description':
+                    for step in steps:
+                        step['configurations'] = []
+                elif defect == 'invented-description':
+                    steps[0]['configurations'].append({'type': 0, 'hash': 999})
+                elif defect == 'no-draw':
+                    metadata['draw_calls'] = 0
+                else:
+                    metadata['pipeline_lookups'] = 99
+                path.write_text(json.dumps(metadata))
+                result = self.prepare()
+                self.assertNotEqual(result.returncode, 0, defect)
+                self.assertIn('dynamic', result.stderr)
+                self.assertNotIn('Traceback', result.stderr)
+                self.assertFalse(self.output.exists())
 
     def test_unattributed_export_is_rejected_without_publishing_a_seed(self):
         path = self.collection / 'collection.json'

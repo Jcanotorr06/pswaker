@@ -35,3 +35,26 @@ def make_model_collection(directory, *, keys=(84, 126)):
               'image_sha256': 'c' * 64, 'seed_sha256': asset['sha256']}
     (directory / 'collection.json').write_text(json.dumps(report))
     return report
+
+
+def make_dynamic_collection(directory, *, keys=(84, 126)):
+    report = make_model_collection(directory, keys=keys)
+    report.update(scenario='common-pot-debris-lifecycle-v1', method='dynamic-effect-draw',
+                  resource='/res/Particle/common.jpc:0x0018', frames=6,
+                  draw_calls=4, pipeline_lookups=4,
+                  script={'effect_id': 24, 'random_seed': 0, 'max_ticks': 180,
+                          'position': [0, 0, 0], 'scale': [1, 1, 1],
+                          'color': [255, 255, 255, 255], 'texture_indices': [0, 1]},
+                  unhandled_states=['model-shards-0x0017', 'actor-lighting-and-collision',
+                                    'other-pot-textures', 'overlapping-effects', 'other-cameras'])
+    report.pop('materials')
+    report['variations'] = [
+        {'texture_index': texture, 'steps': [
+            {'tick': tick, 'particles': 1 if tick < 3 else 0,
+             'emitters': 1 if tick < 3 else 0,
+             'draw_calls': 1 if tick < 3 else 0, 'pipeline_lookups': 1 if tick < 3 else 0,
+             'configurations': [{'type': 0, 'hash': keys[texture % len(keys)]}] if tick < 3 else []}
+            for tick in range(1, 4)]}
+        for texture in [0, 1]]
+    (directory / 'collection.json').write_text(json.dumps(report))
+    return report
