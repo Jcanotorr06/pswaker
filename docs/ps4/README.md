@@ -231,6 +231,10 @@ The [full-game coverage campaign](COVERAGE-CAMPAIGN.md) defines #137's inventory
 and ordinary-save cohorts. Begin with the
 [Windfall pilot checklist](Windfall-coverage-checklist.md); package preparation
 and host checks remain separate from returned console acceptance.
+For #139, use the [early-story checklist](Early-story-coverage-checklist.md)
+and its linked scenario matrix from CP-E0 through CP-E1. The identified
+discovery package and cumulative corpus are prepared; physical routes,
+expanded-seed validation and the middle-story checkpoint return remain pending.
 
 The agreed test boundaries are the preparation and artifact-inspection CLIs:
 

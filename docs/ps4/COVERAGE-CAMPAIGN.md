@@ -6,6 +6,10 @@ Start with the [Windfall pilot](Windfall-coverage-checklist.md). The
 [inventory](COVERAGE-INVENTORY.md) defines the finite scope; the
 [pilot report](../../evidence/ps4/coverage-137/REPORT.md) identifies the prepared
 candidate and distinguishes completed host preparation from pending PS4 work.
+The [early-story cohort checklist](Early-story-coverage-checklist.md) supplies
+#139's fixed E routes and CP-E1/C-E handoff; its
+[current matrix](../../evidence/ps4/early-story-139/scenario-matrix.json) keeps
+unreturned observations and deferred optional variants visible.
 
 ## Supported configuration
 
