@@ -104,11 +104,13 @@ presentation timing remains unverified until corroborated with visible output.
 
 ## Warm comparison and subsequent acceptance
 
-After retrieving cold evidence, optionally repeat with the **same** package,
+After retrieving cold evidence, repeat with the **same** package,
 CP-P01-entry and equipment, retaining the discovery cache. Restore the entry save
 only with the app closed, keeping CP-P01-exit backed up; record the restoration
 and actual reload. Repeat startup/route/Quit/retrieval into `P01-D1-warm/` before
 logs rotate. Mark `cache_state: warm`. Warm data cannot pass cold acceptance.
+This supplies the compatible warm startup comparison. If it cannot be obtained,
+record the missing observation for an explicit owner decision.
 
 After the agent supplies frozen V1 (or confirms the exact D1 PKG/seed can serve
 as V1), replay from CP-P01-entry after backing up/renaming only that build's

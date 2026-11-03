@@ -21,7 +21,7 @@ changes. The second quest is the original game's cleared-file playthrough.
 ## Fixed cohorts and ordinary checkpoints
 
 Back up `/data/pswaker/saves/` and `settings.ini` separately before starting.
-Use ordinary in-game saving and the maintained PS4 save workflow only. No warp,
+Use ordinary in-game saving and the maintained PS4 save workflow only. No debug warp,
 stage-select, save-state, save editor or automated gameplay is part of this
 campaign. In-game sailing and normally learned songs are allowed.
 
