@@ -227,6 +227,11 @@ and the [owner sampling checklist](Frame-pacing-checklist.md). The
 rolls, swimming and sword swings. Diagnostic or host FPS cannot establish the
 game's performance targets.
 
+The [full-game coverage campaign](COVERAGE-CAMPAIGN.md) defines #137's inventory
+and ordinary-save cohorts. Begin with the
+[Windfall pilot checklist](Windfall-coverage-checklist.md); package preparation
+and host checks remain separate from returned console acceptance.
+
 The agreed test boundaries are the preparation and artifact-inspection CLIs:
 
 ```bash
