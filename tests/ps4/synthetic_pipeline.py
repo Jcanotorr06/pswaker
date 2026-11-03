@@ -24,3 +24,14 @@ def make_seed(directory, *, keys=(42, 84)):
               'sha256': sha}
     (directory / 'pipeline-seed.json').write_text(json.dumps(report))
     return report
+
+
+def make_model_collection(directory, *, keys=(84, 126)):
+    asset = make_seed(directory / 'assets', keys=keys)
+    report = {'schema': 1, 'scenario': 'always-small-pot-stock-v1',
+              'method': 'asset-material-draw', 'draw_calls': 1,
+              'resource': '/res/Object/Always.arc:bdl/obm_kotubo1.bdl', 'materials': 1,
+              'collector': {'sha256': 'a' * 64, 'build_sha256': 'b' * 64},
+              'image_sha256': 'c' * 64, 'seed_sha256': asset['sha256']}
+    (directory / 'collection.json').write_text(json.dumps(report))
+    return report
