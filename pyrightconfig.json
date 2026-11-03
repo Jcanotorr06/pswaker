@@ -1,5 +1,8 @@
 {
   "include": [
+    "tools/pswaker/collect-model-seed.py",
+    "tests/ps4/test_model_collection.py",
+    "tests/ps4/synthetic_model_collector.py",
     "evidence/ps4/outset-coverage-111/verify-coverage.py",
     "tests/ps4/test_outset_coverage.py",
     "tools/pswaker/desktop_app.py",

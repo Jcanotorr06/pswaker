@@ -16,7 +16,7 @@ import xml.etree.ElementTree as ET
 
 from synthetic_disc import generate
 from synthetic_program import stage_artwork, png_bytes
-from synthetic_pipeline import make_seed
+from synthetic_pipeline import make_seed, make_model_collection
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 from build_inputs import Locations
@@ -426,6 +426,28 @@ class RelocatableProgramTests(PreparationCliTestCase):
                             str(stage / 'sce_sys/param.sfo'), key], check=True, capture_output=True,
                            env=dict(os.environ, DOTNET_SYSTEM_GLOBALIZATION_INVARIANT='1'))
         return stage, elf, info
+
+    def test_collected_seed_is_carried_into_the_freshly_inspected_game_package(self):
+        collection = self.root / 'collection'
+        make_model_collection(collection)
+        prepared = self.root / 'prepared'
+        result = self.run_cli('prepare', '--collection', collection,
+                              '--baseline', self.reference / 'assembly-assets', '--output', prepared,
+                              cli=Locations(self.root / 'repo').command('collect-model-seed.py'))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        collected = json.loads((prepared / 'collection-report.json').read_text())
+        self.assertEqual((collected['new_rows'], collected['seed']['rows']), (1, 3))
+        stage, elf, _ = self.game_build()
+        result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
+                              '--elf', elf, '--platform-root', self.reference, '--kind', 'game',
+                              '--app-version', '01.05', '--assembly-assets', prepared / 'assets',
+                              '--output', self.output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        result = self.run_cli('inspect', self.output, '--platform-root', self.reference)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        inspection = json.loads((self.output / 'inspection.json').read_text())
+        self.assertEqual(inspection['pipeline_seed'], collected['seed'])
+        self.assertEqual(inspection['payload_sha256']['initial_pipeline_cache.db'], collected['seed']['sha256'])
 
     def test_game_release_carries_artwork_through_relocation_and_fresh_inspection(self):
         stage, elf, info = self.game_build()

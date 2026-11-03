@@ -1,5 +1,10 @@
 # Maintained PS4 platform diagnostic
 
+The maintainer-only [model/material collector](MODEL-COLLECTOR.md) exercises a
+bounded real asset draw and exports validated private seed/package inputs for
+the automated coverage pilot. Its [pilot evidence](../../evidence/ps4/model-collector-147/README.md)
+separates generated descriptions from physical PS4 verification.
+
 Implements the preparation in [issue #13](https://github.com/Jcanotorr06/pswaker/issues/13)
 and [renderer reconciliation in #14](RENDERER.md).
 This builds a **disc-free program package**, title ID `PSWK00010`, version `01.04`.
