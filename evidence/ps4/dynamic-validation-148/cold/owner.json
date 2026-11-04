@@ -1,0 +1,26 @@
+{
+  "build": "6e885683f47a49a119ae",
+  "package_sha256": "14069c0c7776e330ae9441f81e7537ba95859dfa70bd4b65059d6ec5374b4328",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "cache_state": "cold",
+  "timing_method_verified": false,
+  "timing_verification_notes": "Describe returned display/clock/mapping evidence; leave false until reviewed.",
+  "samples": {
+    "1": {
+      "scene": "outset",
+      "actions": "Record actual approach, pot appearance/location, first throw/break and repeat times, movement/rolls, sample ID and all pauses. Leave unobserved fields false.",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    },
+    "2": {
+      "scene": "outset",
+      "actions": "Record actual approach, pot appearance/location, first throw/break and repeat times, movement/rolls, sample ID and all pauses. Leave unobserved fields false.",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    }
+  }
+}

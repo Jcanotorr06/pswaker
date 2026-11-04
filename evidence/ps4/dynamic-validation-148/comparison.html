@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Returned dynamic pilot: cold and warm evidence</title>
+  <style>
+    body { margin: 0; color: var(--foreground, #20242b); font-family: var(--font-sans, system-ui); font-size: 14px; }
+    .plots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    figure { margin: 0; padding: 16px; border-radius: var(--radius, 10px); background: var(--card, #f5f6f8); }
+    figcaption { font-weight: 650; margin-bottom: 18px; }
+    .chart { height: 120px; }
+    .row { margin-bottom: 16px; }
+    .label { display: flex; justify-content: space-between; margin-bottom: 7px; gap: 8px; }
+    .number { font-family: var(--font-mono, monospace); font-variant-numeric: tabular-nums; }
+    .track { height: 10px; background: var(--secondary, #e1e5eb); border-radius: 3px; }
+    .bar { height: 10px; border-radius: 3px; }
+    .cold { background: var(--chart-1, #2563eb); }
+    .warm { background: var(--chart-2, #0d9488); }
+    .note { color: var(--muted-foreground, #5b6471); font-size: 12px; line-height: 1.5; margin: 0; }
+    .context { margin: 14px 0 0; line-height: 1.55; }
+    @media (max-width: 480px) { .plots { grid-template-columns: 1fr; } }
+    @media print { body { color: black; } }
+  </style>
+</head>
+<body>
+  <div class="plots">
+    <figure>
+      <figcaption>Raw shader waits over whole launch</figcaption>
+      <div class="chart" role="img" aria-label="Cold: 139.497 milliseconds in three waits. Warm: zero waits.">
+        <div class="row">
+          <div class="label"><span>Cold</span><span class="number">139.497 ms</span></div>
+          <div class="track"><div class="bar cold" style="width:99.64%"></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><span>Warm</span><span class="number">0 ms</span></div>
+          <div class="track"><div class="bar warm" style="width:0"></div></div>
+        </div>
+      </div>
+      <p class="note">Cold: two waits in loading and one 61.035 ms wait in the pot sample. Zero waits are required.</p>
+    </figure>
+    <figure>
+      <figcaption>Maximum recorded sample interval</figcaption>
+      <div class="chart" role="img" aria-label="Cold: 100.103 milliseconds. Warm: 50.061 milliseconds. Physical timestamp semantics are unverified.">
+        <div class="row">
+          <div class="label"><span>Cold</span><span class="number">100.103 ms</span></div>
+          <div class="track"><div class="bar cold" style="width:83.42%"></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><span>Warm</span><span class="number">50.061 ms</span></div>
+          <div class="track"><div class="bar warm" style="width:41.72%"></div></div>
+        </div>
+      </div>
+      <p class="note">One two-minute sample per launch. Physical timing and completed shutdown remain unverified.</p>
+    </figure>
+  </div>
+  <p class="context"><strong>Warm reused three learned descriptions absent from the bundled seed.</strong>
+    Both returns contain 291 descriptions; the frozen seed contains 288. The owner confirms correct pot breaks and
+    <span class="number">CE-34878-0</span> on Quit in both runs. This candidate does not pass validation.</p>
+</body>
+</html>
