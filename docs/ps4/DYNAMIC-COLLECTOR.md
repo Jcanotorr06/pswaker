@@ -1,5 +1,9 @@
 # Bounded dynamic-effect collector (#148)
 
+The returned candidate failed seed validation. The subsequent
+[seed-only correction workflow](SEED-CORRECTION.md) preserves that record and
+identifies a replacement seed/package; Quit diagnosis remains separate in #159.
+
 This maintainer-only extension to the [model collector](MODEL-COLLECTOR.md)
 exercises one real particle lifetime without stage loading, equipment acquisition,
 story progression, or access to owner saves/settings. The collector is a separate

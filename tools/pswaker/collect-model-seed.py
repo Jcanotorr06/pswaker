@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collect private stock model or dynamic-effect draws and combine a compatible seed."""
+"""Collect stock draws and preserve compatible generated/runtime seed descriptions privately."""
 import argparse
 from contextlib import closing, contextmanager
 import hashlib
@@ -277,6 +277,74 @@ def records(directory):
             'FROM pipeline_cache ORDER BY type, hash')}
 
 
+def additional_records(existing, sources):
+    combined = dict(existing)
+    for source in sources:
+        for key, row in sorted(source.items()):
+            if key in combined:
+                require(combined[key][2:5] == row[2:5],
+                        'Same pipeline identity has conflicting description bytes')
+            else:
+                combined[key] = row
+    return {key: row for key, row in combined.items() if key not in existing}
+
+
+def write_combined_seed(baseline, original, additions, manifests, assets):
+    assets.mkdir()
+    shutil.copyfile(baseline / PIPELINE_SEED, assets / PIPELINE_SEED)
+    if additions:
+        with closing(sqlite3.connect(assets / PIPELINE_SEED)) as db, db:
+            db.executemany('INSERT INTO pipeline_cache VALUES(?,?,?,?,?,?)',
+                           [additions[key] for key in sorted(additions)])
+            details = validate_pipeline_seed(db)
+        write_json(assets / 'pipeline-seed.json', {
+            'schema': 1, 'installed_path': '/app0/' + PIPELINE_SEED,
+            'source_files': {f'{label}:{name}': source
+                             for label, manifest in [('baseline', original), *manifests]
+                             for name, source in manifest['source_files'].items()},
+            **details, 'bytes': (assets / PIPELINE_SEED).stat().st_size,
+            'sha256': digest(assets / PIPELINE_SEED)})
+    else:
+        shutil.copyfile(baseline / 'pipeline-seed.json', assets / 'pipeline-seed.json')
+    return checked_pipeline_asset(assets)
+
+
+def correct_seed(baseline, snapshots, output):
+    require(not output.exists(), 'Output already exists; retain it and choose a new directory')
+    require(not output.is_relative_to(REPOSITORY), 'Corrected seeds must remain outside the repository')
+    sources = [('baseline', baseline), *[(f'runtime-{index}', directory)
+                                       for index, directory in enumerate(snapshots, 1)]]
+    require(not any(output.is_relative_to(directory) for _, directory in sources),
+            'Seed output must remain outside source assets')
+    inputs = {label: inventory(directory) for label, directory in sources}
+    manifests = {label: checked_pipeline_asset(directory) for label, directory in sources}
+    descriptions = {label: records(directory) for label, directory in sources}
+    existing = descriptions['baseline']
+    runtime = {label: rows for label, rows in descriptions.items() if label != 'baseline'}
+    additions = additional_records(existing, runtime.values())
+    with tempfile.TemporaryDirectory(prefix='.runtime-seed-', dir=output.parent) as folder:
+        work = Path(folder)
+        seed = write_combined_seed(baseline, manifests['baseline'], additions,
+                                   [(label, manifests[label]) for label in runtime], work / 'assets')
+        report = {
+            'schema': 1, 'provenance': 'runtime-capture-correction',
+            'baseline': manifests['baseline'], 'snapshots': {label: manifests[label] for label in runtime},
+            'baseline_rows': len(existing), 'runtime_union_rows': len(set().union(*runtime.values())),
+            'added_rows': len(additions), 'seed': seed, 'input_files': inputs,
+            'source_path_attribution': 'unresolved', 'corrected_candidate_physical_verification': False,
+            'additions': [{'type': key[0], 'hash': key[1], 'version': row[2], 'bytes': row[3],
+                           'description_sha256': hashlib.sha256(row[4]).hexdigest(),
+                           'sources': [label for label, rows in runtime.items() if key in rows],
+                           'first_frame_used_by_source': {label: rows[key][5] for label, rows in runtime.items()
+                                                         if key in rows}}
+                          for key, row in sorted(additions.items())]}
+        require(all(inventory(directory) == inputs[label] for label, directory in sources),
+                'Correction inputs changed during preparation')
+        write_json(work / 'correction-report.json', report)
+        work.rename(output)
+    return report
+
+
 def prepare(collection, baseline, output):
     require(not output.exists(), 'Output already exists; retain it and choose a new directory')
     require(not output.is_relative_to(REPOSITORY), 'Generated seeds must remain outside the repository')
@@ -296,30 +364,10 @@ def prepare(collection, baseline, output):
             'Collected seed differs from its collection attribution')
     existing, generated = records(baseline), records(collection / 'assets')
     check_dynamic_mapping(metadata, generated)
-    for key in existing.keys() & generated.keys():
-        require(existing[key][2:5] == generated[key][2:5],
-                'Same pipeline identity has conflicting description bytes')
-    additions = generated.keys() - existing.keys()
+    additions = additional_records(existing, [generated])
     with tempfile.TemporaryDirectory(prefix='.model-seed-', dir=output.parent) as folder:
         work = Path(folder)
-        assets = work / 'assets'
-        assets.mkdir()
-        shutil.copyfile(baseline / PIPELINE_SEED, assets / PIPELINE_SEED)
-        if additions:
-            with closing(sqlite3.connect(assets / PIPELINE_SEED)) as db, db:
-                db.executemany('INSERT INTO pipeline_cache VALUES(?,?,?,?,?,?)',
-                               [generated[key] for key in sorted(additions)])
-                details = validate_pipeline_seed(db)
-            seed = {'schema': 1, 'installed_path': '/app0/' + PIPELINE_SEED,
-                    'source_files': {f'{label}:{name}': source
-                                     for label, manifest in [('baseline', original), ('generated', collected)]
-                                     for name, source in manifest['source_files'].items()},
-                    **details, 'bytes': (assets / PIPELINE_SEED).stat().st_size,
-                    'sha256': digest(assets / PIPELINE_SEED)}
-            write_json(assets / 'pipeline-seed.json', seed)
-        else:
-            shutil.copyfile(baseline / 'pipeline-seed.json', assets / 'pipeline-seed.json')
-        seed = checked_pipeline_asset(assets)
+        seed = write_combined_seed(baseline, original, additions, [('generated', collected)], work / 'assets')
         report = {'schema': 1, 'provenance': metadata['method'], 'collection': metadata,
                   'baseline': original, 'generated': collected, 'baseline_rows': len(existing),
                   'collected_rows': len(generated), 'baseline_covered_rows': len(generated) - len(additions),
@@ -340,6 +388,11 @@ def prepare(collection, baseline, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
+    command = commands.add_parser('correct', help='Supplement a seed with validated runtime snapshot assets')
+    command.add_argument('--baseline', type=lambda value: Path(value).resolve(), required=True)
+    command.add_argument('--runtime-snapshot', type=lambda value: Path(value).resolve(),
+                         action='append', required=True)
+    command.add_argument('--output', type=lambda value: Path(value).resolve(), required=True)
     command = commands.add_parser('prepare')
     command.add_argument('--collection', type=Path, required=True)
     command.add_argument('--baseline', type=Path, required=True)
@@ -358,6 +411,9 @@ def main():
             build_collector(args)
         elif args.command == 'collect':
             collect(args)
+        elif args.command == 'correct':
+            report = correct_seed(args.baseline, args.runtime_snapshot, args.output)
+            print(json.dumps({'rows': report['seed']['rows'], 'added_rows': report['added_rows']}))
         else:
             report = prepare(args.collection.resolve(), args.baseline.resolve(), args.output.resolve())
             print(json.dumps({'rows': report['seed']['rows'], 'new_rows': report['new_rows']}))

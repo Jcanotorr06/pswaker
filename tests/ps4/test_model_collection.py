@@ -274,5 +274,130 @@ class ModelCollectionTests(unittest.TestCase):
         self.assertFalse(self.output.exists())
 
 
+class RuntimeCorrectionTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        self.baseline = self.root / 'baseline'
+        self.cold = self.root / 'cold'
+        self.warm = self.root / 'warm'
+        self.output = self.root / 'corrected'
+        make_seed(self.baseline, keys=(42, 84))
+        make_seed(self.cold, keys=(84, 126, 168, 210))
+        make_seed(self.warm, keys=(84, 126, 168, 210))
+
+    def correct(self):
+        return subprocess.run([sys.executable, str(CLI), 'correct', '--baseline', str(self.baseline),
+                               '--runtime-snapshot', str(self.cold), '--runtime-snapshot', str(self.warm),
+                               '--output', str(self.output)], capture_output=True, text=True)
+
+    def test_correction_preserves_baseline_and_attributes_deduplicated_runtime_discoveries(self):
+        before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+        result = self.correct()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads((self.output / 'correction-report.json').read_text())
+        self.assertEqual(report['provenance'], 'runtime-capture-correction')
+        self.assertEqual((report['baseline_rows'], report['runtime_union_rows'],
+                          report['added_rows'], report['seed']['rows']), (2, 4, 3, 5))
+        self.assertEqual([(row['hash'], row['sources']) for row in report['additions']], [
+            (126, ['runtime-1', 'runtime-2']), (168, ['runtime-1', 'runtime-2']),
+            (210, ['runtime-1', 'runtime-2'])])
+        self.assertEqual(report['source_path_attribution'], 'unresolved')
+        self.assertFalse(report['corrected_candidate_physical_verification'])
+        self.assertEqual(set(report['seed']['source_files']), {
+            'baseline:synthetic.db', 'runtime-1:synthetic.db', 'runtime-2:synthetic.db'})
+        self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def change_snapshot(self, directory, statement):
+        path = directory / 'initial_pipeline_cache.db'
+        with closing(sqlite3.connect(path)) as db, db:
+            db.execute(statement)
+        manifest = directory / 'pipeline-seed.json'
+        value = json.loads(manifest.read_text())
+        value['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+        manifest.write_text(json.dumps(value))
+
+    def test_identity_conflicts_in_baseline_or_between_captures_reject_the_entire_correction(self):
+        original = {p: p.read_bytes() for p in self.warm.iterdir()}
+        for key in [84, 126]:
+            with self.subTest(key=key):
+                for path, data in original.items():
+                    path.write_bytes(data)
+                self.output = self.root / f'conflict-{key}'
+                self.change_snapshot(self.warm,
+                                     f"UPDATE pipeline_cache SET config=X'0500000000010100' WHERE hash={key}")
+                before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+                result = self.correct()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('conflicting description bytes', result.stderr)
+                self.assertFalse(self.output.exists())
+                self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def test_incompatible_and_unvalidated_snapshots_do_not_publish_a_partial_seed(self):
+        cases = ['incompatible', 'corrupt', 'sidecar', 'bad-hash', 'bad-provenance']
+        original = {p: p.read_bytes() for p in self.warm.iterdir()}
+        for case in cases:
+            with self.subTest(case=case):
+                self.output = self.root / case
+                if case == 'incompatible':
+                    self.change_snapshot(self.warm, 'UPDATE pipeline_cache SET type=2 WHERE hash=210')
+                elif case == 'corrupt':
+                    self.warm.joinpath('initial_pipeline_cache.db').write_bytes(b'invalid database')
+                elif case == 'sidecar':
+                    self.warm.joinpath('initial_pipeline_cache.db-wal').write_bytes(b'uncheckpointed')
+                else:
+                    manifest = self.warm / 'pipeline-seed.json'
+                    value = json.loads(manifest.read_text())
+                    value['sha256' if case == 'bad-hash' else 'source_files'] = 'bad'
+                    manifest.write_text(json.dumps(value))
+                before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+                result = self.correct()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertNotIn('Traceback', result.stderr)
+                self.assertFalse(self.output.exists())
+                self.assertEqual({p: p.read_bytes() for p in before}, before)
+                self.warm.joinpath('initial_pipeline_cache.db-wal').unlink(missing_ok=True)
+                for path, data in original.items():
+                    path.write_bytes(data)
+
+    def test_repeats_exact_outputs_and_preserves_baseline_frame_metadata(self):
+        self.change_snapshot(self.cold, 'UPDATE pipeline_cache SET first_frame_used=900')
+        self.change_snapshot(self.warm, 'UPDATE pipeline_cache SET first_frame_used=901')
+        result = self.correct()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        with closing(sqlite3.connect(self.output / 'assets/initial_pipeline_cache.db')) as db:
+            self.assertEqual(db.execute('SELECT hash,first_frame_used FROM pipeline_cache ORDER BY hash').fetchall(),
+                             [(42, 10), (84, 10), (126, 900), (168, 900), (210, 900)])
+        before = {p.relative_to(self.output): p.read_bytes() for p in self.output.rglob('*') if p.is_file()}
+        self.assertNotEqual(self.correct().returncode, 0)
+        self.assertEqual({p.relative_to(self.output): p.read_bytes()
+                          for p in self.output.rglob('*') if p.is_file()}, before)
+        self.output = self.root / 'repeated'
+        self.assertEqual(self.correct().returncode, 0)
+        self.assertEqual({p.relative_to(self.output): p.read_bytes()
+                          for p in self.output.rglob('*') if p.is_file()}, before)
+
+    def test_no_additions_keep_exact_baseline_asset_and_preserve_earlier_provenance(self):
+        for directory in [self.cold, self.warm]:
+            shutil.rmtree(directory)
+            make_seed(directory, keys=(42, 84))
+        result = self.correct()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads((self.output / 'correction-report.json').read_text())
+        self.assertEqual(report['added_rows'], 0)
+        for name in ['initial_pipeline_cache.db', 'pipeline-seed.json']:
+            self.assertEqual((self.output / 'assets' / name).read_bytes(), (self.baseline / name).read_bytes())
+
+    def test_output_cannot_be_created_inside_baseline_or_runtime_inputs(self):
+        for directory in [self.baseline, self.cold, self.warm]:
+            with self.subTest(directory=directory.name):
+                self.output = directory / 'output'
+                result = self.correct()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('outside source', result.stderr)
+                self.assertFalse(self.output.exists())
+
+
 if __name__ == '__main__':
     unittest.main()
