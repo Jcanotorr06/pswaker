@@ -6,6 +6,21 @@ and retains the exact final #148 seed. #159's known normal-Quit failure is
 unchanged and blocks successful clean-shutdown acceptance. No new console
 observation, full-game coverage or scaling result is claimed.
 
+## Automated validation
+
+The agreed platform-log seam passes two native tests with synthetic memory
+services, including a red/green failure for a query returning an invalid value.
+All ten real initialized-renderer startup regression checks pass. The full
+reference-enabled WSL suite ran **254 tests, 60 platform/environment skips,
+no failures** in 406.626 seconds. Native Windows/desktop and other unavailable
+platform checks remain skipped. Pyright reports zero errors/warnings; Python
+compilation, maintained shell syntax, new document links/forms and Git whitespace
+checks pass. PowerShell's WSL stderr wrapper also reported exit 1 for the full
+suite; the retained unittest summary is `OK (skipped=60)`.
+
+[Independent standards and spec reviews](REVIEW.md) found no actionable defects
+in the agent preparation. Physical obligations remain pending.
+
 ## Frozen candidate
 
 | Artifact | Identity |
