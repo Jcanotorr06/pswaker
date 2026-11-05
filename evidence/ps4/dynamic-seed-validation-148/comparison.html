@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>291-description candidate: cold and warm return</title>
+<style>
+body{margin:0;color:var(--foreground,#ddd);font-family:var(--font-sans,system-ui)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+article{background:var(--card,#20242b);padding:16px;border-radius:var(--radius,10px)}
+h2{font-size:15px;margin:0 0 16px} .chart{height:110px;display:grid;align-content:center;gap:18px}
+.row{display:grid;grid-template-columns:42px 1fr 26px;gap:10px;align-items:center;font-size:13px}
+.track{height:16px;background:var(--secondary,#30353c);border-radius:3px;position:relative}
+.bar{height:16px;background:var(--chart-2,#da9f46);border-radius:3px;width:100%}
+.zero{width:2px;height:16px;background:var(--chart-1,#6da3db)}
+.note{font-size:13px;color:var(--muted-foreground,#aaa);line-height:1.5;margin:12px 0 0}
+strong{color:var(--foreground,#ddd)}
+</style></head><body>
+<div class="grid">
+<article><h2>Descriptions missing from the tested seed</h2><div class="chart" role="img" aria-label="Cold zero missing descriptions; warm ten">
+<div class="row"><span>Cold</span><div class="track"><div class="zero"></div></div><strong>0</strong></div>
+<div class="row"><span>Warm</span><div class="track"><div class="bar"></div></div><strong>10</strong></div>
+</div><p class="note">Cold: 291 / 291 covered. Warm: 291 / 301 covered.</p></article>
+<article><h2>Raw missing-pipeline waits</h2><div class="chart" role="img" aria-label="Cold zero wait events; warm ten wait events">
+<div class="row"><span>Cold</span><div class="track"><div class="zero"></div></div><strong>0</strong></div>
+<div class="row"><span>Warm</span><div class="track"><div class="bar"></div></div><strong>10</strong></div>
+</div><p class="note">Warm: 4.890 ms total, at 58.24–58.54 s. All below 1 ms.</p></article>
+</div>
+<p class="note"><strong>Tested 291-description candidate failed zero misses.</strong> The replacement contains 301 descriptions and awaits console validation. No clean-shutdown or frame-pacing pass is claimed.</p>
+</body></html>

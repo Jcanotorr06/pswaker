@@ -1,0 +1,20 @@
+{
+  "build": "6e885683f47a49a119ae",
+  "package_sha256": "058bd19c4fc4be1782b631ad4e808dbddea4b31530f0e3a599c38d71b93090e0",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "cache_state": "warm",
+  "timing_method_verified": false,
+  "timing_verification_notes": "Describe returned display/clock/mapping evidence; leave false until reviewed.",
+  "samples": {
+    "1": {
+      "scene": "outset",
+      "actions": "Record actual approach, Outdoor Bath pot break methods/times, repeated appearance, rolls and all pauses; leave unobserved fields false.",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    }
+  }
+}

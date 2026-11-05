@@ -96,6 +96,16 @@ Keep the existing generated source mappings and explicit scenario exclusions.
 
 ## Identified replacement and future console evidence
 
+The first 291-description correction subsequently failed its returned warm run:
+see [the preserved assessment](../../evidence/ps4/dynamic-seed-validation-148/REPORT.md).
+The current separate replacement has 301 descriptions, incorporating ten further
+runtime discoveries. Its identities and checks are in
+[the second correction](../../evidence/ps4/dynamic-seed-correction-148-round2/README.md).
+Its private complete-package directory is
+`dynamic-148-seed-corrected-round2-complete-01.23`; its Windows handoff is
+`PSWaker-01.23-dynamic-pilot-148-seed-correction-round2`. It has no physical
+validation yet. The earlier identities below are retained as history.
+
 The corrected candidate's exact seed/package/ELF/inspection identities and executed
 checks are in [the correction report](../../evidence/ps4/dynamic-seed-correction-148/README.md)
 and [candidate.json](../../evidence/ps4/dynamic-seed-correction-148/candidate.json).
