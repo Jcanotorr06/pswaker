@@ -103,8 +103,12 @@ runtime discoveries. Its identities and checks are in
 [the second correction](../../evidence/ps4/dynamic-seed-correction-148-round2/README.md).
 Its private complete-package directory is
 `dynamic-148-seed-corrected-round2-complete-01.23`; its Windows handoff is
-`PSWaker-01.23-dynamic-pilot-148-seed-correction-round2`. It has no physical
-validation yet. The earlier identities below are retained as history.
+`PSWaker-01.23-dynamic-pilot-148-seed-correction-round2`. Its
+[physical return assessment](../../evidence/ps4/dynamic-seed-validation-148-round2/REPORT.md)
+confirms all 301 descriptions match and zero raw waits in both bounded Outset
+runs, with correct break rendering reported by the owner. Retain that exact seed.
+Quit still crashes in both runs, and timing verification and overall acceptance
+remain incomplete. The earlier identities below are retained as history.
 
 The corrected candidate's exact seed/package/ELF/inspection identities and executed
 checks are in [the correction report](../../evidence/ps4/dynamic-seed-correction-148/README.md)

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Warm returns before and after the second seed correction</title>
+<style>
+body{margin:0;color:var(--foreground,#ddd);font-family:var(--font-sans,system-ui)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+article{background:var(--card,#20242b);padding:16px;border-radius:var(--radius,10px)}
+h2{font-size:15px;margin:0 0 12px}.chart{height:100px;display:grid;align-content:center;gap:20px}
+.row{display:grid;grid-template-columns:62px 1fr 24px;gap:10px;align-items:center;font-size:13px}
+.track{height:16px;background:var(--secondary,#30353c);border-radius:3px}
+.bar{height:16px;width:100%;background:var(--chart-2,#d7a147);border-radius:3px}
+.zero{height:16px;width:2px;background:var(--success,#6bb17b)}
+.note{font-size:13px;color:var(--muted-foreground,#aaa);line-height:1.5;margin:12px 0 0}
+strong{color:var(--foreground,#ddd)}
+</style></head><body>
+<div class="grid">
+<article><h2>Warm: descriptions missing from seed</h2><div class="chart" role="img" aria-label="291-description package: ten missing. 301-description package: zero missing.">
+<div class="row"><span>291 seed</span><div class="track"><div class="bar"></div></div><strong>10</strong></div>
+<div class="row"><span>301 seed</span><div class="track"><div class="zero"></div></div><strong>0</strong></div>
+</div><p class="note">All 301 descriptions now match in both cold and warm captures.</p></article>
+<article><h2>Warm: raw missing-pipeline waits</h2><div class="chart" role="img" aria-label="291-description package: ten wait events. 301-description package: zero wait events.">
+<div class="row"><span>291 seed</span><div class="track"><div class="bar"></div></div><strong>10</strong></div>
+<div class="row"><span>301 seed</span><div class="track"><div class="zero"></div></div><strong>0</strong></div>
+</div><p class="note">Cold also has zero raw waits in both returns.</p></article>
+</div>
+<p class="note"><strong>Bounded seed checks pass for the 301-description package.</strong> Separate console returns using the same owner-confirmed route. Correct breaks in both runs; Quit still crashes. Overall acceptance and timing verification remain incomplete.</p>
+</body></html>
