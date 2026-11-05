@@ -57,6 +57,11 @@ overlapping durations or treat only the final drain as preparation cost. A
 retained cache can finish compilation before the preparation screen. There is
 no numerical startup-time budget.
 
+The [generated-seed feasibility gate](GENERATED-SEED-FEASIBILITY.md) adds phased
+startup memory observations alongside the existing gameplay resource heartbeat.
+It defines a bounded cold/warm owner run and keeps full preparation, final drain,
+filmed launch-to-control and sampled resource limits separate.
+
 The runtime description database, seed merge identity, configuration versions,
 layout keys and Dawn cache rules remain in use. Compatible relaunches retain
 their cache. They still load descriptions and create runtime objects, with Dawn

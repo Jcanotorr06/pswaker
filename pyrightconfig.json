@@ -1,5 +1,6 @@
 {
   "include": [
+    "tests/ps4/test_resource_evidence.py",
     "tools/pswaker/collect-model-seed.py",
     "tests/ps4/test_model_collection.py",
     "tests/ps4/synthetic_model_collector.py",
