@@ -1,0 +1,513 @@
+{
+  "schema": 1,
+  "files": {
+    "REPORT.md": {
+      "bytes": 656,
+      "sha256": "a2d6c09e9618398bb7c596d00985e62c5afb4bd83b6d2db903954fc24ffa93c7"
+    },
+    "cold/analysis/inspection.json": {
+      "bytes": 6445,
+      "sha256": "8afea3c9d7e0f290724eb6cc56868b76deb2ad704e1bf0e7f8791e56d99424da"
+    },
+    "cold/analysis/owner.json": {
+      "bytes": 990,
+      "sha256": "c92f85b118e03c3432953f86dd84e69347173d2fd13c9040e4149bcf656e962d"
+    },
+    "cold/analysis/raw-launch/events.csv": {
+      "bytes": 22741,
+      "sha256": "a7f3e0f46e0f2c07902fb3df3ed1af33454f9d91cfc4618eef75e842ba057f2f"
+    },
+    "cold/analysis/raw-launch/frames.csv": {
+      "bytes": 1174224,
+      "sha256": "4b9ef44282075136c70747e4f8da243ad78c81ab444520a91987d9c0107a2d6b"
+    },
+    "cold/analysis/raw-launch/identity.json": {
+      "bytes": 252,
+      "sha256": "28ef9288b79f2628c14a253d3a6d24222ec4257e3779302227fbcf4cf88683c7"
+    },
+    "cold/analysis/raw-launch/samples.csv": {
+      "bytes": 192,
+      "sha256": "a5112b0355037a61a254b9c0233189935bccd6474a89069f54a60abcbb360c75"
+    },
+    "cold/analysis/sample-001-outset-raw.json": {
+      "bytes": 1270402,
+      "sha256": "9abc8e59c0b3f8b1075f8e828cc5bdc22c11283786e0cf73c4ce16a26fa5bbe6"
+    },
+    "cold/analysis/summary.json": {
+      "bytes": 5496,
+      "sha256": "e93005cfcf3f1e79d375ce4d5ce72bd5384917b5256f433bc2e8e70cf2db4d74"
+    },
+    "cold/last-stage.txt": {
+      "bytes": 99,
+      "sha256": "4bd201bf1923c13cdeb925030499d4a9eae931dc23df5bfefd6b2a639c301dd1"
+    },
+    "cold/performance-djpGGj/events.csv": {
+      "bytes": 22741,
+      "sha256": "a7f3e0f46e0f2c07902fb3df3ed1af33454f9d91cfc4618eef75e842ba057f2f"
+    },
+    "cold/performance-djpGGj/frames.csv": {
+      "bytes": 1174224,
+      "sha256": "4b9ef44282075136c70747e4f8da243ad78c81ab444520a91987d9c0107a2d6b"
+    },
+    "cold/performance-djpGGj/identity.json": {
+      "bytes": 252,
+      "sha256": "28ef9288b79f2628c14a253d3a6d24222ec4257e3779302227fbcf4cf88683c7"
+    },
+    "cold/performance-djpGGj/samples.csv": {
+      "bytes": 192,
+      "sha256": "a5112b0355037a61a254b9c0233189935bccd6474a89069f54a60abcbb360c75"
+    },
+    "cold/pipeline_cache.db": {
+      "bytes": 4096,
+      "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+    },
+    "cold/pipeline_cache.db-wal": {
+      "bytes": 1318432,
+      "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+    },
+    "cold/platform.log": {
+      "bytes": 129213,
+      "sha256": "edb23d262d15357c9f648f35a1f7cfce372757c6cb7676d512b187ed9e8d7b4c"
+    },
+    "cold/platform.prev.log": {
+      "bytes": 64675,
+      "sha256": "b518c97d78401b2c415e2bc7b552bc6894d734d0ca1209d7b749acd6469bd336"
+    },
+    "cold/seed/initial_pipeline_cache.db": {
+      "bytes": 1224704,
+      "sha256": "d6db6d59ca0c6931432e85ec015a902e501c59eb6488d57805be9d3d58ef86f9"
+    },
+    "cold/seed/pipeline-seed.json": {
+      "bytes": 695,
+      "sha256": "c56632bd2759d4723447f7bdb0deea7ee541dcef2fd3f185a96c966888bfab0a"
+    },
+    "cold/tools/pswaker/PSWaker.pyw": {
+      "bytes": 112,
+      "sha256": "683790fd7d80b1849364957f89417944a78d58380a4801f20a3ca759a4646d8c"
+    },
+    "cold/tools/pswaker/__pycache__/adapt-platform.cpython-312.pyc": {
+      "bytes": 4437,
+      "sha256": "82776e7490034bba816547974d541b3e74c9d8ae9b64d8d518a731bd1994fc03"
+    },
+    "cold/tools/pswaker/__pycache__/apply-patches.cpython-312.pyc": {
+      "bytes": 2108,
+      "sha256": "bd79f638f8f2d63dbfd6f150aa8157cf60bb72fb0381d7c427bac45a93dfff68"
+    },
+    "cold/tools/pswaker/__pycache__/audit-inputs.cpython-312.pyc": {
+      "bytes": 5089,
+      "sha256": "116270ec59b5f925d0e9feb661c6738d10af08179dbdbd5f4dcaf3a6f7a84b60"
+    },
+    "cold/tools/pswaker/__pycache__/build-desktop.cpython-312.pyc": {
+      "bytes": 5672,
+      "sha256": "7baa656489c37f32315a986187bfcf10faec942c77642c690bc5ecbcc325c0b1"
+    },
+    "cold/tools/pswaker/__pycache__/build-installer.cpython-312.pyc": {
+      "bytes": 5845,
+      "sha256": "1eb98a34962e23c9167ae8de414709dbd50c8ceb678e8eee680392be6e30a583"
+    },
+    "cold/tools/pswaker/__pycache__/build_inputs.cpython-312.pyc": {
+      "bytes": 7074,
+      "sha256": "94774b0d84ad6d61df2839b3cad7032e87149efa517630f0623a5062b5c558eb"
+    },
+    "cold/tools/pswaker/__pycache__/build_operation.cpython-312.pyc": {
+      "bytes": 6652,
+      "sha256": "f5b67f626db1f393c5d8bb6b0ea45b2ec00b502b6d7fc7a5255a362fca957d10"
+    },
+    "cold/tools/pswaker/__pycache__/capture-inputs.cpython-312.pyc": {
+      "bytes": 5422,
+      "sha256": "9113320073a681f5d37f3aa6b22dbd4a89df8cf0c156340a21dfbdad94233270"
+    },
+    "cold/tools/pswaker/__pycache__/collect-model-seed.cpython-312.pyc": {
+      "bytes": 35196,
+      "sha256": "ac7bc25149651941fabd955bf759d0998bd55c8764ce949a3b6445552ed91e0d"
+    },
+    "cold/tools/pswaker/__pycache__/complete-package.cpython-312.pyc": {
+      "bytes": 37437,
+      "sha256": "a14f4360c9e266bc10d794beba15e4927986666a35af3068ca90f28245141f47"
+    },
+    "cold/tools/pswaker/__pycache__/complete_package_workflow.cpython-312.pyc": {
+      "bytes": 25322,
+      "sha256": "2e6ba5f006b4c9bff50d003abd3d7e3a516b61ba7e527e09f0c8478133eabcc9"
+    },
+    "cold/tools/pswaker/__pycache__/content-failure-package.cpython-312.pyc": {
+      "bytes": 12715,
+      "sha256": "2c7cfc9a97d14943b016e8323dc83dda5c87ebe2eeb70b8d3b4eedfcd585381e"
+    },
+    "cold/tools/pswaker/__pycache__/desktop_app.cpython-312.pyc": {
+      "bytes": 17741,
+      "sha256": "9513e9437f48eeae1d99b5a51466442e12efc03b787b01cc8a03d2b20995d108"
+    },
+    "cold/tools/pswaker/__pycache__/diagnostics.cpython-312.pyc": {
+      "bytes": 13139,
+      "sha256": "2f9d74cb2c25a4445653e9ebb71f7cc539a13273d9b12e4a76d3140d11ee1ad7"
+    },
+    "cold/tools/pswaker/__pycache__/disc_image.cpython-312.pyc": {
+      "bytes": 16556,
+      "sha256": "dd00f8169da249a024e267cb9e32d7357dbd415b09c3f701352c70aa6a6eccd6"
+    },
+    "cold/tools/pswaker/__pycache__/frame-pacing.cpython-312.pyc": {
+      "bytes": 19673,
+      "sha256": "6f31281f11561853e184b3589103899b6ecc5fa099dcf8728c62b8885f6bd8ee"
+    },
+    "cold/tools/pswaker/__pycache__/game-build.cpython-312.pyc": {
+      "bytes": 19187,
+      "sha256": "2644d2939dc10e3836245c4dcb787eea1c8b00427fffe16c7033a56582ef8ca1"
+    },
+    "cold/tools/pswaker/__pycache__/inputs.cpython-312.pyc": {
+      "bytes": 9441,
+      "sha256": "2d4656a0a36e3710dd2ae8b32ac453512f8ef7a31e7465743a1e1a8b5366feb1"
+    },
+    "cold/tools/pswaker/__pycache__/inspect-artifacts.cpython-312.pyc": {
+      "bytes": 10759,
+      "sha256": "8ab1337e034b3974f716bff02c8483b41f64fb986cb3b6287b3960a6d6c6e32c"
+    },
+    "cold/tools/pswaker/__pycache__/inspect-game-program.cpython-312.pyc": {
+      "bytes": 9945,
+      "sha256": "5ae35ff16ce77c8a24773afbe7e0b285351ca0d0f2a8aa2ad4e244e95f404c14"
+    },
+    "cold/tools/pswaker/__pycache__/installed_release.cpython-312.pyc": {
+      "bytes": 3764,
+      "sha256": "168f8f59ed928ccfe8021897ff4055274f8e890c1b1ecda777575c5c2206c3db"
+    },
+    "cold/tools/pswaker/__pycache__/lock-sdk.cpython-312.pyc": {
+      "bytes": 9148,
+      "sha256": "26766d11c84aea884a9096d0d18d59cf639420ec453d1f1d734499dccaecd756"
+    },
+    "cold/tools/pswaker/__pycache__/owned_work.cpython-312.pyc": {
+      "bytes": 10169,
+      "sha256": "80303d6ae96493d467ad6a15cb376c909ab299e45663983a9e7e32ed7694c6b9"
+    },
+    "cold/tools/pswaker/__pycache__/package-probe.cpython-312.pyc": {
+      "bytes": 8367,
+      "sha256": "04410f7e4ffa900d0a38034b836a893a6b5619d539109cb0101e384e7d7d6e97"
+    },
+    "cold/tools/pswaker/__pycache__/package_artifact.cpython-312.pyc": {
+      "bytes": 20453,
+      "sha256": "eeb868c38068c2f9ec79bcc178dff1a0118a1625efcf72339faf26f83d6a9249"
+    },
+    "cold/tools/pswaker/__pycache__/package_validation.cpython-312.pyc": {
+      "bytes": 1953,
+      "sha256": "e3722354df9c2e1e9a850520638f774abac5c8f4de81bec5463b772c95c26599"
+    },
+    "cold/tools/pswaker/__pycache__/pipeline_assets.cpython-312.pyc": {
+      "bytes": 5134,
+      "sha256": "000e959d009b8d66ec4cdc8f8e8c92b404b428ea1d927e2e73441f97d2b383c6"
+    },
+    "cold/tools/pswaker/__pycache__/prepare-content-contract.cpython-312.pyc": {
+      "bytes": 4324,
+      "sha256": "68d4e372cbd1288b236467d819fc54b4ed1ce6521150cba5f5315f49f129655c"
+    },
+    "cold/tools/pswaker/__pycache__/prepare-game.cpython-312.pyc": {
+      "bytes": 9045,
+      "sha256": "9ea523a2fe4920718de2130a5603711f71c7eaff63b55d4358809579853d1c7f"
+    },
+    "cold/tools/pswaker/__pycache__/prepare-sdk-sources.cpython-312.pyc": {
+      "bytes": 3391,
+      "sha256": "5e68328376bf90bfeb174f49df473556cbc671cf17b6711a60b21a446a86c94e"
+    },
+    "cold/tools/pswaker/__pycache__/prepare-sources.cpython-312.pyc": {
+      "bytes": 7876,
+      "sha256": "269024cffea44a9b6c6a90e9fee49ea7045aac3944e8391f32b8f7ec7a4c43f4"
+    },
+    "cold/tools/pswaker/__pycache__/prepare-windows-tools.cpython-312.pyc": {
+      "bytes": 4719,
+      "sha256": "dccd5d2c7d9d6a8bf4c2e24a63f1247d13e116c0cfd665c129a24a91ab392ba9"
+    },
+    "cold/tools/pswaker/__pycache__/program_payload.cpython-312.pyc": {
+      "bytes": 10343,
+      "sha256": "98391b347cfdffc84c12767eba9315a60556c45fa156296be9a0240f6965e322"
+    },
+    "cold/tools/pswaker/__pycache__/reconcile-renderer.cpython-312.pyc": {
+      "bytes": 3928,
+      "sha256": "8d9911ebe47ee0535100622fafd31aeef139be66996cc25b42a59d7d897495ca"
+    },
+    "cold/tools/pswaker/__pycache__/storage-cases.cpython-312.pyc": {
+      "bytes": 6979,
+      "sha256": "54e8f51de0ea1c6e5c97b5ffa47d675a69e4d8c200f50e5db858ee89aaefed25"
+    },
+    "cold/tools/pswaker/__pycache__/windows_package.cpython-312.pyc": {
+      "bytes": 28243,
+      "sha256": "d5831c6788bec4400faf09bc4e871979d5c884e2f2a0f77d77fee0469c4d53a8"
+    },
+    "cold/tools/pswaker/__pycache__/windows_process.cpython-312.pyc": {
+      "bytes": 9493,
+      "sha256": "ed3fe871be3d48f892f00b8cd57102fe83bea2d998493af8866a9b28c6e68dbe"
+    },
+    "cold/tools/pswaker/adapt-platform.py": {
+      "bytes": 3214,
+      "sha256": "47c496d732adb7915e9732b6a88dfbdf2da14c75a81b68c0df50564c65d5bfe5"
+    },
+    "cold/tools/pswaker/apply-patches.py": {
+      "bytes": 1159,
+      "sha256": "6971ae1462af42a92c21a0495448f7fea33fe85911779f79d1b34a771023a3a7"
+    },
+    "cold/tools/pswaker/audit-inputs.py": {
+      "bytes": 3293,
+      "sha256": "cf259088b800b25d7d6a6cc1246b7a921f39dc7561456cdc917e2691af6b3897"
+    },
+    "cold/tools/pswaker/build-desktop.py": {
+      "bytes": 3643,
+      "sha256": "a5fc504debeef24cdae16f093bf8887fd8f229e3b2728380bcf566f6874270c5"
+    },
+    "cold/tools/pswaker/build-game.sh": {
+      "bytes": 1555,
+      "sha256": "3f6d06064e6a69a033553871dd05a4656659cd16b8d8d3aa861fe1e5085d89e1"
+    },
+    "cold/tools/pswaker/build-graphics.sh": {
+      "bytes": 474,
+      "sha256": "2bed91c0f162898b8b5c6dc9d72f4c5f3828799d03be7eddd15685896ac95bae"
+    },
+    "cold/tools/pswaker/build-installer.py": {
+      "bytes": 3724,
+      "sha256": "34092f75ba076568479a8b1bc004ed7c37a350967c2b57cf6be6bd41b1ff5e64"
+    },
+    "cold/tools/pswaker/build-probe.sh": {
+      "bytes": 722,
+      "sha256": "45dbd887b67d83bdc88acfb36d557abf54577dd6fc467d281b6e4e3e60de6075"
+    },
+    "cold/tools/pswaker/build-runtime.sh": {
+      "bytes": 1688,
+      "sha256": "21620a39545e70af022d7ba8fb1d39ea65a7583f395cc4b2042858a55ab04305"
+    },
+    "cold/tools/pswaker/build-sdk-support.sh": {
+      "bytes": 3820,
+      "sha256": "4d60bf25e7bbc49edd075f5586bbe4cad56e4687a85144e32eb1edf743c69e79"
+    },
+    "cold/tools/pswaker/build_inputs.py": {
+      "bytes": 4215,
+      "sha256": "fcd05014f60a44a3b192aebf7939e2af3e4045eb72a92b0166597670ffd3dc84"
+    },
+    "cold/tools/pswaker/build_operation.py": {
+      "bytes": 3466,
+      "sha256": "5c9092bd9661afb5e40f45997126d5395dde549eddcadb419f1c339493ca06de"
+    },
+    "cold/tools/pswaker/capture-inputs.py": {
+      "bytes": 3380,
+      "sha256": "60f8b6b2cad86c145eb80fe12da537764350b81e7d7f9da5f7eff1b35f47df3f"
+    },
+    "cold/tools/pswaker/clean-build.sh": {
+      "bytes": 2442,
+      "sha256": "665374782ae4146a11eb859fd5db0c2842f74bdfd758293a6577be3419fe4ce5"
+    },
+    "cold/tools/pswaker/collect-model-seed.py": {
+      "bytes": 22722,
+      "sha256": "3dbce6d25990cb91259913c3a9e972110a19c63db93e0d695713a434d8c8a3c8"
+    },
+    "cold/tools/pswaker/complete-package.py": {
+      "bytes": 26505,
+      "sha256": "80c6ace227a99fa7c8d84623e55190738a3852515dca35206d74c92e5f4f5fae"
+    },
+    "cold/tools/pswaker/complete_package_workflow.py": {
+      "bytes": 17473,
+      "sha256": "f604eab2d5b1389b7d1f621cfc39e2c760e498fa2ecd3d5a045f9e9b4cfbd6f8"
+    },
+    "cold/tools/pswaker/content-failure-package.py": {
+      "bytes": 8142,
+      "sha256": "9ff14cfad6088156fceb73576ea634f986b59738904a159deb709da75724ed11"
+    },
+    "cold/tools/pswaker/desktop-installer.iss": {
+      "bytes": 1442,
+      "sha256": "14ecbad463749176abb0c083ad46afcbd972d897ae88452b58e73fc8f3d34191"
+    },
+    "cold/tools/pswaker/desktop-requirements.txt": {
+      "bytes": 116,
+      "sha256": "d8e350ce0854055a59ca06852e2da83a94a745281ae431f2c61d781604174cf0"
+    },
+    "cold/tools/pswaker/desktop_app.py": {
+      "bytes": 10130,
+      "sha256": "c353510ec14c641c731fb1a346b55d1d837a7a408cbc9266845a39c5eeac3dd5"
+    },
+    "cold/tools/pswaker/diagnostics.py": {
+      "bytes": 8981,
+      "sha256": "74dc6801ca8bfde883b249f3ec5e442bc5a69775f60901cfd6c342bde33a70e0"
+    },
+    "cold/tools/pswaker/disc_image.py": {
+      "bytes": 11570,
+      "sha256": "1fbcc805a4f9e577601c572e1bc170c0644a9384bad9ef1f490394eeca8e97c2"
+    },
+    "cold/tools/pswaker/frame-pacing.py": {
+      "bytes": 12256,
+      "sha256": "112c73fe4cfd7a675e2430579377016b2bbc76cf489947fb9683ab87ad6b8bc4"
+    },
+    "cold/tools/pswaker/game-build.py": {
+      "bytes": 14181,
+      "sha256": "28fb8a1735dc6c8c7d95e3afeb4649dcb73b897c4e48f162679c0c91a317e789"
+    },
+    "cold/tools/pswaker/inputs.py": {
+      "bytes": 5396,
+      "sha256": "3477bfac9ce553b53fe17f35e8ce117807a52a703fe0f13dab1aa4c363cce3b5"
+    },
+    "cold/tools/pswaker/inspect-artifacts.py": {
+      "bytes": 6435,
+      "sha256": "ac3896a856a334f8ac4170cb012e08d8fc7e19cf15e124067686b0a8b469dc66"
+    },
+    "cold/tools/pswaker/inspect-game-program.py": {
+      "bytes": 6854,
+      "sha256": "7112d699089e68b96c824c6ef9df7e50c953a432b826ea2f76a1c177cf9d7cbb"
+    },
+    "cold/tools/pswaker/install-host.sh": {
+      "bytes": 1455,
+      "sha256": "9dbed2753755140db770f4c463015de496f664448f853f8f1819f74b73d7fb0d"
+    },
+    "cold/tools/pswaker/installed_release.py": {
+      "bytes": 2622,
+      "sha256": "118c55e4af1808fa88da6a5ee7a4d45362f3396b192082d3b46372a69de1705e"
+    },
+    "cold/tools/pswaker/lock-sdk.py": {
+      "bytes": 5573,
+      "sha256": "22ba7bf45e6b154045b8739ed340b282db3cc51b6de8ec42e88b87270940fd32"
+    },
+    "cold/tools/pswaker/owned_work.py": {
+      "bytes": 6946,
+      "sha256": "4a45904be850bf4fc9b0e02ab9ea052dd8c21f3c5df4dd71dd663b1e9dbe5bea"
+    },
+    "cold/tools/pswaker/ownership.json": {
+      "bytes": 1785,
+      "sha256": "16bab6ee41ca7b237774a79c42b3dfb1697b6198d65cf70ea8a753187d856c93"
+    },
+    "cold/tools/pswaker/package-probe.py": {
+      "bytes": 5518,
+      "sha256": "be570c44a4b5b3491254b868aad38b3cb42c0b3002948f5395249e092424ab53"
+    },
+    "cold/tools/pswaker/package_artifact.py": {
+      "bytes": 13790,
+      "sha256": "e212b4b8cdf1e0dd515a3a8e54b93c0716775c2d53135579d37d0ebfe1ea6481"
+    },
+    "cold/tools/pswaker/package_validation.py": {
+      "bytes": 1130,
+      "sha256": "d7c8e667e6ab30152afc60da8f9fb838776ca349cb2f56587816f6d35ad1c839"
+    },
+    "cold/tools/pswaker/pipeline_assets.py": {
+      "bytes": 2947,
+      "sha256": "d2b9488f208ece4cf3584c7c4b3c035100a03e3789b6e13d5021d44f8add78f4"
+    },
+    "cold/tools/pswaker/prepare-content-contract.py": {
+      "bytes": 3505,
+      "sha256": "6e3b3060a380cc83e94116799c72f61e7ef7fbe43905cf7df6c58ec865bb86a7"
+    },
+    "cold/tools/pswaker/prepare-game.py": {
+      "bytes": 5649,
+      "sha256": "bde2ba3cc315ce05b30272b7b8871136c973e7cd924dc15500b8b7775cf36ff4"
+    },
+    "cold/tools/pswaker/prepare-graphics.sh": {
+      "bytes": 829,
+      "sha256": "b9b4ebfcab9375f4c682953756b3e5deac917e74cd9b89e11dc6deef96ccfcba"
+    },
+    "cold/tools/pswaker/prepare-sdk-sources.py": {
+      "bytes": 1956,
+      "sha256": "af27e85e5ea098624a35d6b7ea3b8fe848aff5a169d2e3807f5b7c23e956c842"
+    },
+    "cold/tools/pswaker/prepare-sources.py": {
+      "bytes": 5215,
+      "sha256": "26b4291aadf62523bfdc91241294fd8bab27c481e4ead2945b767cb0c98aea97"
+    },
+    "cold/tools/pswaker/prepare-windows-tools.py": {
+      "bytes": 3089,
+      "sha256": "08ad76426010eba448e10f8010aac7d37fe2084fb3c37c73c37608e5d9a991e8"
+    },
+    "cold/tools/pswaker/program_payload.py": {
+      "bytes": 6581,
+      "sha256": "30c78497fb7e0aad400ca2a6442175a95fffec66bc1ef18553530a91adb730f4"
+    },
+    "cold/tools/pswaker/reconcile-renderer.py": {
+      "bytes": 2413,
+      "sha256": "751379f4c627f08fe471c29647e1b191118b0beeed217dad8dee1e30ace0afcf"
+    },
+    "cold/tools/pswaker/storage-cases.py": {
+      "bytes": 4726,
+      "sha256": "fda29b6cdc3323c6926ca0c3c9dd7fd4454ae28af415ffe6b667e490841290b8"
+    },
+    "cold/tools/pswaker/waker.ico": {
+      "bytes": 4286,
+      "sha256": "b4009e68c95d520ecbf9baa9be691b9fa997edc30bc6479d5e77e93afad98da5"
+    },
+    "cold/tools/pswaker/windows_package.py": {
+      "bytes": 19888,
+      "sha256": "176d9b21fd5e8c8711155280cfffca38a1228a4e63aeee57b60ceb27a272bb9e"
+    },
+    "cold/tools/pswaker/windows_process.py": {
+      "bytes": 5731,
+      "sha256": "7c82e100c3e08cf0fab823ed884a5341a7841e3081489d8d8dbb8fca3cbbbdaf"
+    },
+    "inspection.json": {
+      "bytes": 6445,
+      "sha256": "8afea3c9d7e0f290724eb6cc56868b76deb2ad704e1bf0e7f8791e56d99424da"
+    },
+    "warm/analysis/inspection.json": {
+      "bytes": 6445,
+      "sha256": "8afea3c9d7e0f290724eb6cc56868b76deb2ad704e1bf0e7f8791e56d99424da"
+    },
+    "warm/analysis/owner.json": {
+      "bytes": 990,
+      "sha256": "771571ab902675a0a1cac2e0cb372b61088c8c60d8c079c0590e8a2ba7f2374a"
+    },
+    "warm/analysis/raw-launch/events.csv": {
+      "bytes": 18887,
+      "sha256": "061825ad1ab3f982877aa5ed1557e79790314a37173f86617394792e450e6056"
+    },
+    "warm/analysis/raw-launch/frames.csv": {
+      "bytes": 856655,
+      "sha256": "c307a3bf85067c8d5a36bdce474cf7f3265fad13e48430c70064e60af658e7fa"
+    },
+    "warm/analysis/raw-launch/identity.json": {
+      "bytes": 252,
+      "sha256": "28ef9288b79f2628c14a253d3a6d24222ec4257e3779302227fbcf4cf88683c7"
+    },
+    "warm/analysis/raw-launch/samples.csv": {
+      "bytes": 191,
+      "sha256": "d81d4662e257766697e53594d622d012b49bbe0f1e6e0d6f3991ff878c4d9351"
+    },
+    "warm/analysis/sample-001-outset-raw.json": {
+      "bytes": 1241378,
+      "sha256": "c2f9846673c1307dfcba25425c571fb8853496449de41e3bda532e4f061b6e4a"
+    },
+    "warm/analysis/summary.json": {
+      "bytes": 5354,
+      "sha256": "5278aa6f66bfdd6076b0dcb115087f3ba6f591efe51cd5163e82d2d4f4ad4fa2"
+    },
+    "warm/last-stage.txt": {
+      "bytes": 99,
+      "sha256": "10fe6b467d97fae2f49a672e826feb61c9bc3d2b0c4710fe05ecad83e0f2e8cb"
+    },
+    "warm/performance-EjnldP/events.csv": {
+      "bytes": 18887,
+      "sha256": "061825ad1ab3f982877aa5ed1557e79790314a37173f86617394792e450e6056"
+    },
+    "warm/performance-EjnldP/frames.csv": {
+      "bytes": 856655,
+      "sha256": "c307a3bf85067c8d5a36bdce474cf7f3265fad13e48430c70064e60af658e7fa"
+    },
+    "warm/performance-EjnldP/identity.json": {
+      "bytes": 252,
+      "sha256": "28ef9288b79f2628c14a253d3a6d24222ec4257e3779302227fbcf4cf88683c7"
+    },
+    "warm/performance-EjnldP/samples.csv": {
+      "bytes": 191,
+      "sha256": "d81d4662e257766697e53594d622d012b49bbe0f1e6e0d6f3991ff878c4d9351"
+    },
+    "warm/pipeline_cache.db": {
+      "bytes": 4096,
+      "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+    },
+    "warm/pipeline_cache.db-wal": {
+      "bytes": 1326672,
+      "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+    },
+    "warm/platform.log": {
+      "bytes": 99899,
+      "sha256": "fb6f380c24e610b7704616b121adcb69cd5ffb87fb4c7caac41c80fa6ea63547"
+    },
+    "warm/platform.prev.log": {
+      "bytes": 129213,
+      "sha256": "edb23d262d15357c9f648f35a1f7cfce372757c6cb7676d512b187ed9e8d7b4c"
+    },
+    "warm/seed/initial_pipeline_cache.db": {
+      "bytes": 1224704,
+      "sha256": "933f9262b7d474e6d23ff83784debc8e4451bd6e838f13ba93effc610eced6ec"
+    },
+    "warm/seed/pipeline-seed.json": {
+      "bytes": 695,
+      "sha256": "baf5934315d494c2eb7e8f05bfaee1c631ab67baa7daea491b71ab62a6d89bb4"
+    }
+  }
+}

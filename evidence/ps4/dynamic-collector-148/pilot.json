@@ -1,0 +1,292 @@
+{
+  "schema": 1,
+  "scenario": "common-pot-debris-lifecycle-v1",
+  "method": "dynamic-effect-draw",
+  "program": {
+    "build_id": "6e885683f47a49a119ae",
+    "elf_sha256": "400de6f1bb42fb4fc79f9399f290d2f0ee292e58ea03e4f8eea9c2e4dd7c32ab",
+    "eboot_sha256": "bc142562457d3acfd7d90c126aa6ca75753889d07dd01b02661448fc4a8d9811"
+  },
+  "app_version": "01.23",
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "14069c0c7776e330ae9441f81e7537ba95859dfa70bd4b65059d6ec5374b4328"
+  },
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      }
+    },
+    "rows": 288,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 287
+      }
+    ],
+    "bytes": 1204224,
+    "sha256": "37779b102fff3c8bd71330c77a78efd49ac9881b89bd17c5743bacb4daa281b4",
+    "asset_manifest_sha256": "7b35e7c12cc95747d097262ba9ea3fbf1af60d5148c9578ce0c6d3f77fcc91b6"
+  },
+  "assembly_sha256": "31895d61331a1ceefcc419deb3e5b0cead2281fcfb4298c5d81575c076ccbc62",
+  "inspection_sha256": "8afea3c9d7e0f290724eb6cc56868b76deb2ad704e1bf0e7f8791e56d99424da",
+  "baseline_rows": 288,
+  "collected_rows": 1,
+  "baseline_covered_rows": 1,
+  "new_rows": 0,
+  "mapping": [
+    {
+      "type": 1,
+      "hash": 3379288233266289835,
+      "description_sha256": "0d00768a54622e8322830f81f12c7677f42f488661f56081dc0f2a382b3f9013",
+      "scenario": "common-pot-debris-lifecycle-v1",
+      "baseline_covered": true,
+      "states": [
+        {
+          "texture_index": 0,
+          "ticks": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "texture_index": 1,
+          "ticks": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        }
+      ]
+    }
+  ],
+  "script": {
+    "effect_id": 24,
+    "random_seed": 0,
+    "max_ticks": 180,
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "color": [
+      255,
+      255,
+      255,
+      255
+    ],
+    "texture_indices": [
+      0,
+      1
+    ]
+  },
+  "unhandled_states": [
+    "model-shards-0x0017",
+    "actor-lighting-and-collision",
+    "other-pot-textures",
+    "overlapping-effects",
+    "other-cameras"
+  ],
+  "known_runtime_comparison": {
+    "evidence": "action-validation-112/launch-2",
+    "matching_full_descriptions": 1,
+    "snapshot_sha256": "431578ed91f8f4831b1dcbf41876cfaa2cad77f931838c0a15742ad03d8bbdef"
+  },
+  "collector_build": {
+    "binary_sha256": "e366be98ea39eccc24f640b685f0d81ba50c95f2a13db99e64b41e75e3a4af56",
+    "prepared_inputs_sha256": "a647390f913854b3ae59e68169c8aa70359f319c2fcbc235a7077606fc04cee1",
+    "renderer_sources_sha256": "e8c95694065f153501f6d4217328d42605fc9cd318f975f437b2ffad63399dab",
+    "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+    "contract_bytes": 2872,
+    "collector_sources": {
+      "CMakeLists.txt": "c2ccdabaff749f188e9826d496dd16185501e45c4ca37a4c558850bf4a666d59",
+      "main.cpp": "12dd481329a566e827ceef1da4caefcf89a8e6dd7345a5c1ce38d3b3a2ad08e5",
+      "model-collector.cpp": "dda5ea5dfc3a4c60a987fce5102afee92774cb5c7846c5550bee73a7c9365f20",
+      "model-contract.cpp": "7baf0056fea33c25868b164828471312415b98f5fe1899ab1853f86d274c6e0c"
+    },
+    "adapter_sources": {
+      "stock-textures.cpp": "963740b0fa44f1c9ed5cbc62b0b6746ede13b31b1d00e721d6133f949e1efb96",
+      "frame-pacing.hpp": "f074d1279621f8b4feae76e6a2ad9f0aba222d310dec455bebe6906b38d41b79",
+      "game-platform.hpp": "fdc1cd4f7f20dc80890ed3bd6fd0219789b30ebdb11d8e6e3dd7923a8463ddbd"
+    },
+    "build_tool_sha256": "3dbce6d25990cb91259913c3a9e972110a19c63db93e0d695713a434d8c8a3c8"
+  },
+  "collections": [
+    {
+      "collector": {
+        "sha256": "e366be98ea39eccc24f640b685f0d81ba50c95f2a13db99e64b41e75e3a4af56",
+        "build_sha256": "29c60be55b0ed5d7a47230e0e60729a8e94976fa80edf7ab1a8f619857888fd9"
+      },
+      "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+      "resources": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      },
+      "seed_sha256": "21a49ccafef655070adbebeecf70a27d3ae3c539e763eba7531badba7bf2ecaa",
+      "collection_tool_sha256": "3dbce6d25990cb91259913c3a9e972110a19c63db93e0d695713a434d8c8a3c8",
+      "frames": 44,
+      "draw_calls": 40,
+      "pipeline_lookups": 40,
+      "layout": {
+        "key": 16288162637680331091,
+        "attachments": 1,
+        "color_format": 27,
+        "depth_format": 48,
+        "samples": 1,
+        "width": 1280,
+        "height": 720
+      },
+      "runtime_identity_verified_rows": 288,
+      "recorder_verified_rows": 1,
+      "baseline_roundtrip_rows": 288,
+      "variations": [
+        {
+          "texture_index": 0,
+          "ticks": 22,
+          "peak_particles": 20,
+          "draw_calls": 20,
+          "terminal_particles": 0,
+          "terminal_emitters": 0
+        },
+        {
+          "texture_index": 1,
+          "ticks": 22,
+          "peak_particles": 20,
+          "draw_calls": 20,
+          "terminal_particles": 0,
+          "terminal_emitters": 0
+        }
+      ]
+    },
+    {
+      "collector": {
+        "sha256": "e366be98ea39eccc24f640b685f0d81ba50c95f2a13db99e64b41e75e3a4af56",
+        "build_sha256": "29c60be55b0ed5d7a47230e0e60729a8e94976fa80edf7ab1a8f619857888fd9"
+      },
+      "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+      "resources": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      },
+      "seed_sha256": "21a49ccafef655070adbebeecf70a27d3ae3c539e763eba7531badba7bf2ecaa",
+      "collection_tool_sha256": "3dbce6d25990cb91259913c3a9e972110a19c63db93e0d695713a434d8c8a3c8",
+      "frames": 44,
+      "draw_calls": 40,
+      "pipeline_lookups": 40,
+      "layout": {
+        "key": 16288162637680331091,
+        "attachments": 1,
+        "color_format": 27,
+        "depth_format": 48,
+        "samples": 1,
+        "width": 1280,
+        "height": 720
+      },
+      "runtime_identity_verified_rows": 288,
+      "recorder_verified_rows": 1,
+      "baseline_roundtrip_rows": 288,
+      "variations": [
+        {
+          "texture_index": 0,
+          "ticks": 22,
+          "peak_particles": 20,
+          "draw_calls": 20,
+          "terminal_particles": 0,
+          "terminal_emitters": 0
+        },
+        {
+          "texture_index": 1,
+          "ticks": 22,
+          "peak_particles": 20,
+          "draw_calls": 20,
+          "terminal_particles": 0,
+          "terminal_emitters": 0
+        }
+      ]
+    }
+  ],
+  "static_regression": {
+    "scenario": "always-small-pot-stock-v1",
+    "mapping": [
+      {
+        "type": 1,
+        "hash": -7485608149410595803,
+        "description_sha256": "21d64659ba67a00c25c2c4fdec5dfd5bb827982a1abfd5c8c65d1c51d782cc95",
+        "scenario": "always-small-pot-stock-v1",
+        "baseline_covered": true
+      }
+    ],
+    "draw_calls": 3,
+    "seed_sha256": "37779b102fff3c8bd71330c77a78efd49ac9881b89bd17c5743bacb4daa281b4"
+  },
+  "source_immutability": {
+    "files_checked": 34,
+    "unchanged": true
+  },
+  "repeat_seed_bytes_equal": true,
+  "repeat_mapping_equal": true,
+  "repeat_lifetimes_equal": true,
+  "baseline_asset_bytes_unchanged": true,
+  "final_seed_matches_inspected_package": true,
+  "physical_verification": false
+}

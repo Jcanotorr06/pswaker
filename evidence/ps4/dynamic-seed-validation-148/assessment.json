@@ -1,0 +1,709 @@
+{
+  "schema": 1,
+  "issue": 148,
+  "assessed": "2026-11-05",
+  "candidate": {
+    "program": {
+      "build_id": "6e885683f47a49a119ae",
+      "elf_sha256": "400de6f1bb42fb4fc79f9399f290d2f0ee292e58ea03e4f8eea9c2e4dd7c32ab",
+      "eboot_sha256": "bc142562457d3acfd7d90c126aa6ca75753889d07dd01b02661448fc4a8d9811"
+    },
+    "app_version": "01.23",
+    "package": {
+      "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+      "sha256": "058bd19c4fc4be1782b631ad4e808dbddea4b31530f0e3a599c38d71b93090e0"
+    },
+    "seed": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "baseline:baseline:pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+        },
+        "baseline:baseline:pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+        },
+        "baseline:generated:observed.db": {
+          "bytes": 16384,
+          "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+        },
+        "runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1318432,
+          "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+        },
+        "runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1326672,
+          "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+        }
+      },
+      "rows": 291,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 290
+        }
+      ],
+      "bytes": 1216512,
+      "sha256": "d55bc3934764d66543a2a5b56ba02223da403e345d88dffe26c77c0c4b15cbaa",
+      "asset_manifest_sha256": "524a2a8d9bc0b46fe560aea0d65f33a75231a4d9a6de97dd1fefcf164811716e"
+    },
+    "assembly_sha256": "2885712a81e497eb0b6154633ac4cb745978a60193de398385129b05620a8266",
+    "inspection_sha256": "ab0caea56632e249def6210b2cec86da239f8a887fbdbda123c211301c9325a4"
+  },
+  "fresh_inspection": {
+    "exit_code": 0,
+    "sha256": "ab0caea56632e249def6210b2cec86da239f8a887fbdbda123c211301c9325a4",
+    "matches_frozen_candidate": true
+  },
+  "launches": {
+    "cold": {
+      "analyzer_exit_code": 2,
+      "summary_reproduced_exactly": true,
+      "summary_sha256": "b6fa3ee36076cc83a5a78f575670702ee72e7aefcb58ba692443948d240edb72",
+      "samples": [
+        {
+          "sample": 1,
+          "scene": "outset",
+          "owner": {
+            "scene": "outset",
+            "actions": "Record actual approach, Outdoor Bath pot break methods/times, repeated appearance, rolls and all pauses; leave unobserved fields false.",
+            "active_gameplay": true,
+            "graphics_audio_correct": true
+          },
+          "metrics": {
+            "seconds": 120.00265662143798,
+            "intervals": 3600,
+            "average_fps": 29.999335859343592,
+            "p95_ms": 33.398464088476864,
+            "p99_ms": 33.44418470682386,
+            "maximum_ms": 50.0537960831802,
+            "shader_wait_ms": 0.0,
+            "shader_wait_calls": 0,
+            "active_shader_waits_over_35ms": 0,
+            "active_shader_wait_total_ms": 0.0,
+            "resume_to_first_observation_ms": 22.533409,
+            "shader_correlated_hitches": 0
+          },
+          "outside_boundary_presentations": 0,
+          "invalid_reasons": [
+            "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+            "launch has no completed recorder shutdown"
+          ],
+          "shortfalls": [],
+          "target_met": false
+        }
+      ],
+      "missing_scenes": [
+        "forest"
+      ],
+      "snapshot": {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "pipeline_cache.db-wal": {
+            "bytes": 1268992,
+            "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+          }
+        },
+        "rows": 291,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 290
+          }
+        ],
+        "bytes": 1224704,
+        "sha256": "605c666ebe87cc8676aeebfa032e84d3c00f660c8e78cf97e524a37f0394be0d"
+      },
+      "snapshot_reproduced_exactly": true,
+      "coverage_exit_code": 0,
+      "seed_membership": {
+        "candidate_rows": 291,
+        "recorded_rows": 291,
+        "identical_common_rows": 291,
+        "missing_rows": [],
+        "conflicting_rows": [],
+        "candidate_rows_absent_from_snapshot": 0
+      },
+      "raw_shader_waits": [],
+      "raw_shader_wait_total_ms": 0,
+      "frame_shader_wait_calls": 0,
+      "frame_shader_wait_ms": 0.0,
+      "frame_shader_counter_method": "Final minus initial cumulative counters; no summing cumulative per-frame values",
+      "frame_shader_counter_increments": [],
+      "sample_intervals_over_35ms": 29,
+      "event_kinds": {
+        "phase": 8,
+        "diagnostic-recorder-flush-ns": 123,
+        "diagnostic-input-ns": 219,
+        "diagnostic-heartbeat-ns": 39,
+        "scene-request": 8,
+        "stage": 2,
+        "sample-arm": 1,
+        "sample-resume": 1,
+        "sample-first-presentation": 1,
+        "sample-end": 1
+      },
+      "preparation_timing": {
+        "preparation_ms": 15209.6,
+        "drain_ms": 14604.0,
+        "startup_to_preparation_complete_ms": 16190.2,
+        "preparation_start_ns": 3060747909185.0,
+        "preparation_complete_ns": 3075957514561.0
+      },
+      "selected_log_records": [
+        {
+          "line": 2,
+          "record": "BEGIN build=6e885683f47a49a119ae platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6e885683f47a49a119ae"
+        },
+        {
+          "line": 277,
+          "record": "CACHE identity=6e885683f47a49a119ae files-before-init=0; owner labels cold/warm"
+        },
+        {
+          "line": 415,
+          "record": "SHADERS configurations-ready=5 total=291 pending=286 complete=0 ms=1586.2"
+        },
+        {
+          "line": 674,
+          "record": "SHADERS configurations-ready=291 total=291 pending=0 complete=1 ms=16188.9"
+        },
+        {
+          "line": 675,
+          "record": "TIMING shader-preparation_ms=15209.6 shader-final-drain_ms=14604.0 startup_to_preparation_complete_ms=16190.2 preparation_start_ns=3060747909185 preparation_complete_ns=3075957514561"
+        },
+        {
+          "line": 676,
+          "record": "STAGE completed=known-shaders-prepared ms=16190.2 build=6e885683f47a49a119ae errors=0"
+        },
+        {
+          "line": 1214,
+          "record": "EXIT code=0 ms=240011.9 checked-errors=0"
+        },
+        {
+          "line": 1215,
+          "record": "STAGE completed=shutdown-waiting-for-card ms=240012.0 build=6e885683f47a49a119ae errors=0"
+        },
+        {
+          "line": 1216,
+          "record": "SHUTDOWN card-status=1 (0=busy 1=idle -1=last-store-failed)"
+        },
+        {
+          "line": 1217,
+          "record": "STAGE completed=shutdown-card-finished ms=240017.1 build=6e885683f47a49a119ae errors=0"
+        },
+        {
+          "line": 1219,
+          "record": "STAGE completed=shutdown-requesting-sdk-stop ms=240018.4 build=6e885683f47a49a119ae errors=0"
+        },
+        {
+          "line": 1220,
+          "record": "STAGE completed=shutdown-sdk-stop-requested ms=240019.6 build=6e885683f47a49a119ae errors=0"
+        }
+      ],
+      "shutdown": {
+        "last_stage": "build=6e885683f47a49a119ae stage=shutdown-sdk-stop-requested elapsed_ms=240019.7 checked_errors=0",
+        "requested_exit_zero": true,
+        "recorder_shutdown_complete": false
+      }
+    },
+    "warm": {
+      "analyzer_exit_code": 2,
+      "summary_reproduced_exactly": true,
+      "summary_sha256": "a983df6b3ef5e7016cc82afe4c4629780cd88c4a9a98b3a4fc8f937bac789698",
+      "samples": [
+        {
+          "sample": 1,
+          "scene": "outset",
+          "owner": {
+            "scene": "outset",
+            "actions": "Record actual approach, Outdoor Bath pot break methods/times, repeated appearance, rolls and all pauses; leave unobserved fields false.",
+            "active_gameplay": true,
+            "graphics_audio_correct": true
+          },
+          "metrics": {
+            "seconds": 120.01933766786928,
+            "intervals": 3601,
+            "average_fps": 30.003498352616173,
+            "p95_ms": 33.39757952540836,
+            "p99_ms": 50.00120284893574,
+            "maximum_ms": 50.11745451132695,
+            "shader_wait_ms": 4.890056,
+            "shader_wait_calls": 10,
+            "active_shader_waits_over_35ms": 0,
+            "active_shader_wait_total_ms": 4.890056,
+            "resume_to_first_observation_ms": 35.569885,
+            "shader_correlated_hitches": 0
+          },
+          "outside_boundary_presentations": 0,
+          "invalid_reasons": [
+            "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+            "launch has no completed recorder shutdown"
+          ],
+          "shortfalls": [
+            {
+              "metric": "p99_ms",
+              "measured": 50.00120284893574,
+              "limit": 50
+            }
+          ],
+          "target_met": false
+        }
+      ],
+      "missing_scenes": [
+        "forest"
+      ],
+      "snapshot": {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "pipeline_cache.db-wal": {
+            "bytes": 1474992,
+            "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+          }
+        },
+        "rows": 301,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 300
+          }
+        ],
+        "bytes": 1265664,
+        "sha256": "d1b7a4e28f414babe2158a97f21611217184380f12c0fce43cf2f85d9f049a6c"
+      },
+      "snapshot_reproduced_exactly": true,
+      "coverage_exit_code": 1,
+      "seed_membership": {
+        "candidate_rows": 291,
+        "recorded_rows": 301,
+        "identical_common_rows": 291,
+        "missing_rows": [
+          {
+            "type": 1,
+            "hash": -8804625231670774290,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "3d5654201ff3191c8bfae31b6d5dbda350d1afef261efb6c61761ed0e4fb0541",
+            "first_frame_used": 7028
+          },
+          {
+            "type": 1,
+            "hash": -7535848670488184678,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "98517b7a01e4f0ee8a03cd21e7c3b0db088c4a6e31933d49db98225648504aa1",
+            "first_frame_used": 7034
+          },
+          {
+            "type": 1,
+            "hash": -5862430152044925554,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "a48997f9ee239b75648b4a91038851057f814036c45b29bd51ce7084496c5f2d",
+            "first_frame_used": 7033
+          },
+          {
+            "type": 1,
+            "hash": -2476814880301511663,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "3a82c3df74c3ae7e647ec14d1d3d6ded057e2b1e52c1071b6ba923515d7c91a5",
+            "first_frame_used": 7035
+          },
+          {
+            "type": 1,
+            "hash": -1906308374028750244,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "77b5a1f0db3787e5f884d3c379a41c4b6352641b962f0a533719c263543a7e34",
+            "first_frame_used": 7032
+          },
+          {
+            "type": 1,
+            "hash": -475346947822263283,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "3ac2fc3ec8b1f1062fb3566fb7351d47b4df17fd43b32519e25db70300d92734",
+            "first_frame_used": 7027
+          },
+          {
+            "type": 1,
+            "hash": 2916965127834176779,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "a0b82037fcbaf96678e7e862f859cdd5097540ace85b042f827ae0029c8224f9",
+            "first_frame_used": 7029
+          },
+          {
+            "type": 1,
+            "hash": 3513760078266503951,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "4e2d3b60a7d33ea811a419b91415c1f9df8b1503f5ea1b36d308e61075970255",
+            "first_frame_used": 7030
+          },
+          {
+            "type": 1,
+            "hash": 5900688493499515325,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "2ae7749c576f8f96b1679c0433851a5134bfbb9f2ed2ac682792d972606f1dd4",
+            "first_frame_used": 7036
+          },
+          {
+            "type": 1,
+            "hash": 7978634423270074121,
+            "version": 13,
+            "bytes": 2772,
+            "description_sha256": "3ed4f0f5aaf03a1cb410d0f1947ac493301daab9e3fb474cf562ad1f79c12c44",
+            "first_frame_used": 7031
+          }
+        ],
+        "conflicting_rows": [],
+        "candidate_rows_absent_from_snapshot": 0
+      },
+      "raw_shader_waits": [
+        {
+          "line": 314,
+          "monotonic_ns": "3743419857099",
+          "kind": "shader-wait-ns",
+          "detail": "515736",
+          "sample": "1",
+          "duration_ms": 0.515736,
+          "since_sample_resume_s": 58.2387815
+        },
+        {
+          "line": 315,
+          "monotonic_ns": "3743453178707",
+          "kind": "shader-wait-ns",
+          "detail": "467410",
+          "sample": "1",
+          "duration_ms": 0.46741,
+          "since_sample_resume_s": 58.272103108
+        },
+        {
+          "line": 317,
+          "monotonic_ns": "3743486516884",
+          "kind": "shader-wait-ns",
+          "detail": "456423",
+          "sample": "1",
+          "duration_ms": 0.456423,
+          "since_sample_resume_s": 58.305441285
+        },
+        {
+          "line": 318,
+          "monotonic_ns": "3743519918355",
+          "kind": "shader-wait-ns",
+          "detail": "551382",
+          "sample": "1",
+          "duration_ms": 0.551382,
+          "since_sample_resume_s": 58.338842756
+        },
+        {
+          "line": 319,
+          "monotonic_ns": "3743553135330",
+          "kind": "shader-wait-ns",
+          "detail": "451649",
+          "sample": "1",
+          "duration_ms": 0.451649,
+          "since_sample_resume_s": 58.372059731
+        },
+        {
+          "line": 320,
+          "monotonic_ns": "3743586426436",
+          "kind": "shader-wait-ns",
+          "detail": "448915",
+          "sample": "1",
+          "duration_ms": 0.448915,
+          "since_sample_resume_s": 58.405350837
+        },
+        {
+          "line": 321,
+          "monotonic_ns": "3743619871390",
+          "kind": "shader-wait-ns",
+          "detail": "513638",
+          "sample": "1",
+          "duration_ms": 0.513638,
+          "since_sample_resume_s": 58.438795791
+        },
+        {
+          "line": 322,
+          "monotonic_ns": "3743653147517",
+          "kind": "shader-wait-ns",
+          "detail": "457091",
+          "sample": "1",
+          "duration_ms": 0.457091,
+          "since_sample_resume_s": 58.472071918
+        },
+        {
+          "line": 323,
+          "monotonic_ns": "3743686476038",
+          "kind": "shader-wait-ns",
+          "detail": "458097",
+          "sample": "1",
+          "duration_ms": 0.458097,
+          "since_sample_resume_s": 58.505400439
+        },
+        {
+          "line": 324,
+          "monotonic_ns": "3743719966650",
+          "kind": "shader-wait-ns",
+          "detail": "569715",
+          "sample": "1",
+          "duration_ms": 0.569715,
+          "since_sample_resume_s": 58.538891051
+        }
+      ],
+      "raw_shader_wait_total_ms": 4.890056,
+      "frame_shader_wait_calls": 10,
+      "frame_shader_wait_ms": 4.890056,
+      "frame_shader_counter_method": "Final minus initial cumulative counters; no summing cumulative per-frame values",
+      "frame_shader_counter_increments": [
+        {
+          "game_frame": 3777,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.515736,
+          "interval_ms": 33.36921265429602,
+          "observed_since_sample_resume_s": 58.260532036
+        },
+        {
+          "game_frame": 3778,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.46741,
+          "interval_ms": 33.3634805601422,
+          "observed_since_sample_resume_s": 58.29449798
+        },
+        {
+          "game_frame": 3779,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.456423,
+          "interval_ms": 33.37187638109663,
+          "observed_since_sample_resume_s": 58.327518494
+        },
+        {
+          "game_frame": 3780,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.551382,
+          "interval_ms": 33.365554578230466,
+          "observed_since_sample_resume_s": 58.360499964
+        },
+        {
+          "game_frame": 3781,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.451649,
+          "interval_ms": 33.36305458969999,
+          "observed_since_sample_resume_s": 58.393498716
+        },
+        {
+          "game_frame": 3782,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.448915,
+          "interval_ms": 33.41807378521105,
+          "observed_since_sample_resume_s": 58.427526231
+        },
+        {
+          "game_frame": 3783,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.513638,
+          "interval_ms": 33.31548956325271,
+          "observed_since_sample_resume_s": 58.461546348
+        },
+        {
+          "game_frame": 3784,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.457091,
+          "interval_ms": 33.370055184935026,
+          "observed_since_sample_resume_s": 58.494535443
+        },
+        {
+          "game_frame": 3785,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.458097,
+          "interval_ms": 33.36278671138067,
+          "observed_since_sample_resume_s": 58.528504771
+        },
+        {
+          "game_frame": 3786,
+          "sample": 1,
+          "new_calls": 1,
+          "new_wait_ms": 0.569715,
+          "interval_ms": 33.368033236871355,
+          "observed_since_sample_resume_s": 58.561529832
+        }
+      ],
+      "sample_intervals_over_35ms": 37,
+      "event_kinds": {
+        "phase": 8,
+        "diagnostic-input-ns": 284,
+        "diagnostic-recorder-flush-ns": 149,
+        "diagnostic-heartbeat-ns": 39,
+        "scene-request": 8,
+        "stage": 2,
+        "sample-arm": 1,
+        "sample-resume": 1,
+        "sample-first-presentation": 1,
+        "shader-wait-ns": 10,
+        "sample-end": 1
+      },
+      "preparation_timing": {
+        "preparation_ms": 440.4,
+        "drain_ms": 203.7,
+        "startup_to_preparation_complete_ms": 1437.2,
+        "preparation_start_ns": 3566418456544.0,
+        "preparation_complete_ns": 3566858889979.0
+      },
+      "selected_log_records": [
+        {
+          "line": 2,
+          "record": "BEGIN build=6e885683f47a49a119ae platform=PS4-Slim/9.00/GoldHEN-v2.4b18 owner-must-confirm; cache=/data/pswaker/cache/6e885683f47a49a119ae"
+        },
+        {
+          "line": 277,
+          "record": "CACHE before-init name=dawn_cache.db bytes=4018176 sha1=3135a4fc9b8d599eca69d53c14719a3f201cadde readable=1"
+        },
+        {
+          "line": 278,
+          "record": "CACHE before-init name=dawn_cache.db-wal bytes=4132392 sha1=dc2e08fd2a33c9acc77d6dfb90c71c3950462bb8 readable=1"
+        },
+        {
+          "line": 279,
+          "record": "CACHE before-init name=pipeline_cache.db bytes=4096 sha1=3f47d1432ce31e76333521af57a5287f08488710 readable=1"
+        },
+        {
+          "line": 280,
+          "record": "CACHE before-init name=pipeline_cache.db-wal bytes=1268992 sha1=270fb9022ac72da33ed84e2a794d48f764f75931 readable=1"
+        },
+        {
+          "line": 281,
+          "record": "CACHE identity=6e885683f47a49a119ae files-before-init=4; owner labels cold/warm"
+        },
+        {
+          "line": 419,
+          "record": "SHADERS configurations-ready=156 total=291 pending=135 complete=0 ms=1233.6"
+        },
+        {
+          "line": 440,
+          "record": "SHADERS configurations-ready=291 total=291 pending=0 complete=1 ms=1430.0"
+        },
+        {
+          "line": 442,
+          "record": "TIMING shader-preparation_ms=440.4 shader-final-drain_ms=203.7 startup_to_preparation_complete_ms=1437.2 preparation_start_ns=3566418456544 preparation_complete_ns=3566858889979"
+        },
+        {
+          "line": 443,
+          "record": "STAGE completed=known-shaders-prepared ms=1437.2 build=6e885683f47a49a119ae errors=0"
+        },
+        {
+          "line": 1089,
+          "record": "EXIT code=0 ms=290993.7 checked-errors=0"
+        },
+        {
+          "line": 1090,
+          "record": "STAGE completed=shutdown-waiting-for-card ms=290993.7 build=6e885683f47a49a119ae errors=0"
+        },
+        {
+          "line": 1091,
+          "record": "SHUTDOWN card-status=1 (0=busy 1=idle -1=last-store-failed)"
+        },
+        {
+          "line": 1092,
+          "record": "STAGE completed=shutdown-card-finished ms=290995.2 build=6e885683f47a49a119ae errors=0"
+        },
+        {
+          "line": 1094,
+          "record": "STAGE completed=shutdown-requesting-sdk-stop ms=290996.5 build=6e885683f47a49a119ae errors=0"
+        },
+        {
+          "line": 1095,
+          "record": "STAGE completed=shutdown-sdk-stop-requested ms=290997.9 build=6e885683f47a49a119ae errors=0"
+        }
+      ],
+      "shutdown": {
+        "last_stage": "build=6e885683f47a49a119ae stage=shutdown-sdk-stop-requested elapsed_ms=290998.0 checked_errors=0",
+        "requested_exit_zero": true,
+        "recorder_shutdown_complete": false
+      }
+    }
+  },
+  "overall_pass": false,
+  "quit_issue": 159,
+  "shutdown_cause": "Unestablished; no crash trace or executable reproduction supplied.",
+  "compatible_cache_retention": [
+    {
+      "file": "pipeline_cache.db",
+      "bytes": 4096,
+      "sha1": "3f47d1432ce31e76333521af57a5287f08488710",
+      "matches_warm_before_init": true
+    },
+    {
+      "file": "pipeline_cache.db-wal",
+      "bytes": 1268992,
+      "sha1": "270fb9022ac72da33ed84e2a794d48f764f75931",
+      "matches_warm_before_init": true
+    }
+  ],
+  "cold_descriptions_preserved_in_warm": true,
+  "source_immutability": {
+    "files_checked": 31,
+    "unchanged": true,
+    "private_copy_verified": true
+  },
+  "unresolved": [
+    "Warm captured ten descriptions absent from the corrected seed",
+    "Warm has ten raw missing-pipeline waits, each below the hitch threshold",
+    "Normal Quit still lacks completed recorder shutdown; CE-34878-0 reported again",
+    "New run action details, visual observations, timing verification and save/settings preservation not yet fully confirmed"
+  ]
+}

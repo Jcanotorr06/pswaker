@@ -1,4 +1,4 @@
-// Maintainer-only asset draw. Linked to the same prepared game and GX renderer
+// Maintainer-only model/effect draws. Linked to the same prepared game and GX renderer
 // as the PS4 program; never entered from the player executable.
 #include <aurora/aurora.h>
 #include <aurora/dvd.h>
@@ -9,12 +9,17 @@
 #include <dolphin/gx/GXAurora.h>
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRArchive.h"
+#include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JMath/JMath.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "m_Do/m_Do_ext.h"
+#include "JSystem/JParticle/JPAEmitterManager.h"
+#include "JSystem/JParticle/JPAResourceManager.h"
+#include "d/d_particle.h"
+#include "d/d_particle_name.h"
 #include "gx/pipeline.hpp"
 #include "gfx/resources.hpp"
 #include "frame-pacing.hpp"
@@ -25,11 +30,20 @@
 #include <cstring>
 #include <filesystem>
 #include <mutex>
+#include <algorithm>
+#include <vector>
 
 static sqlite3* observed;
 static std::mutex observationMutex;
 static unsigned drawCalls;
 static aurora::gfx::RenderTargetLayout observedLayout;
+struct EffectStep {
+  unsigned texture, tick, particles, emitters, draws = 0, lookups = 0;
+  std::vector<sqlite3_int64> configurations;
+};
+static std::vector<EffectStep> effectSteps;
+static EffectStep* activeStep;
+static bool recording;
 static void check(bool ok, const char* message) {
   if (!ok) { fprintf(stderr, "collector: %s\n", message); fflush(stderr); std::_Exit(1); }
 }
@@ -66,6 +80,7 @@ PipelineRef observe_find(const PipelineConfig&, const RenderTargetLayout&)
   asm("__wrap__ZN6aurora3gfx13find_pipelineERKNS_2gx14PipelineConfigERKNS0_18RenderTargetLayoutE");
 PipelineRef observe_find(const PipelineConfig& config, const RenderTargetLayout& layout) {
   const auto ref = original_find(config, layout);
+  if (!recording) return ref;
   const auto key = aurora::xxh3_hash(config, static_cast<aurora::HashType>(aurora::gfx::ShaderType::GX));
   std::lock_guard lock(observationMutex);
   sqlite3_stmt* row = nullptr;
@@ -79,6 +94,12 @@ PipelineRef observe_find(const PipelineConfig& config, const RenderTargetLayout&
   check(sqlite3_step(row) == SQLITE_DONE, "finish observation");
   sqlite3_finalize(row);
   ++drawCalls;
+  if (activeStep) {
+    ++activeStep->lookups;
+    const auto identity = static_cast<sqlite3_int64>(key);
+    auto& keys = activeStep->configurations;
+    if (std::find(keys.begin(), keys.end(), identity) == keys.end()) keys.push_back(identity);
+  }
   check(observedLayout.key == 0 || observedLayout.key == layout.key, "fixed scenario must retain one target layout");
   observedLayout = layout;
   return ref;
@@ -97,8 +118,99 @@ void pswaker_frame_boundary() { check(false, "game loop is outside this collecto
 void pswaker_perf_game_frame(uint64_t) { check(false, "game logic is outside this collector"); }
 void pswaker_perf_stage(const char*, int) { check(false, "stage loading is outside this collector"); }
 
+static void begin_draw() {
+  aurora_update();
+  check(aurora_begin_frame(), "begin scenario frame");
+  GXSetViewport(0, 0, 640, 480, 0, 1);
+  GXSetScissor(0, 0, 640, 480);
+  Mtx44 projection;
+  MTXPerspective(projection, 45, 4.0f / 3.0f, 1, 10000);
+  GXSetProjection(projection, GX_PERSPECTIVE);
+  j3dSys.drawInit();
+}
+
+static unsigned end_draw() {
+  aurora_end_frame();
+  aurora::gfx::synchronize();
+  return aurora_get_stats()->drawCallCount;
+}
+
+static unsigned draw_effect(Mtx view) {
+  auto* bytes = JKRDvdToMainRam("/res/Particle/common.jpc", nullptr, EXPAND_SWITCH_UNKNOWN1,
+                               0, JKRHeap::getCurrentHeap(), JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, nullptr);
+  check(bytes, "load common particles through game DVD loader");
+  JPAResourceManager resources(bytes, JKRHeap::getCurrentHeap());
+  check(resources.getEmitterResource()->getByUserIndex(dPa_name::ID_AK_JN_TUBOKONAGONA),
+        "find stock pot debris effect 0x0018");
+  // Same common-effect pool sizes as dPa_control_c::createCommon. Scene, actor,
+  // model-shard and framebuffer-swap prerequisites are outside this scenario.
+  JPAEmitterManager manager(&resources, 3000, 150, 200, JKRHeap::getCurrentHeap());
+  JPADrawInfo drawInfo(view, 45, 4.0f / 3.0f);
+  unsigned draws = 0;
+  for (unsigned texture = 0; texture < 2; ++texture) {
+    check(manager.getEmitterNumber() == 0 && manager.getParticleNumber() == 0, "empty initial effect state");
+    JPABaseEmitter::emtrInfo.mRandom.setSeed(0);
+    dPa_selectTexEcallBack callback(texture);
+    JGeometry::TVec3<f32> origin(0, 0, 0), scale(1, 1, 1);
+    auto* emitter = manager.createSimpleEmitterID(origin, dPa_name::ID_AK_JN_TUBOKONAGONA, 0, 0, nullptr, nullptr);
+    check(emitter, "instantiate stock pot debris");
+    // Mirror eff_break_tsubo -> dPa_control_c::set's selected inputs without
+    // constructing a stage controller or consulting actor/save/environment state.
+    emitter->setGlobalScale(scale);
+    emitter->setGlobalAlpha(255);
+    emitter->setGlobalPrmColor(255, 255, 255);
+    emitter->setGlobalEnvColor(255, 255, 255);
+    emitter->setEmitterCallBackPtr(&callback);
+    callback.setup(emitter, nullptr, nullptr, -1);
+    bool alive = false, complete = false;
+    for (unsigned tick = 1; tick <= 180; ++tick) {
+      manager.calc(0); // One original particle update per scripted 30 Hz tick.
+      effectSteps.push_back({texture, tick, manager.getParticleNumber(), manager.getEmitterNumber()});
+      activeStep = &effectSteps.back();
+      alive |= activeStep->particles > 0;
+      begin_draw();
+      j3dSys.reinitGX();
+      manager.draw(&drawInfo, 0);
+      GXSetAlphaUpdate(GX_DISABLE);
+      GXSetNumIndStages(0);
+      activeStep->draws = end_draw();
+      draws += activeStep->draws;
+      activeStep = nullptr;
+      if (manager.getEmitterNumber() == 0 && manager.getParticleNumber() == 0) {
+        complete = true;
+        break;
+      }
+    }
+    check(alive && complete, "effect must emit particles and retire naturally within 180 ticks");
+  }
+  return draws;
+}
+
+static void write_effect_steps(FILE* report) {
+  fprintf(report, ",\"variations\":[");
+  for (unsigned texture = 0; texture < 2; ++texture) {
+    fprintf(report, "%s{\"texture_index\":%u,\"steps\":[", texture ? "," : "", texture);
+    bool first = true;
+    for (const auto& step : effectSteps) {
+      if (step.texture != texture) continue;
+      fprintf(report, "%s{\"tick\":%u,\"particles\":%u,\"emitters\":%u,\"draw_calls\":%u,"
+              "\"pipeline_lookups\":%u,\"configurations\":[", first ? "" : ",", step.tick,
+              step.particles, step.emitters, step.draws, step.lookups);
+      first = false;
+      for (size_t i = 0; i < step.configurations.size(); ++i)
+        fprintf(report, "%s{\"type\":1,\"hash\":%lld}", i ? "," : "",
+                static_cast<long long>(step.configurations[i]));
+      fprintf(report, "]}");
+    }
+    fprintf(report, "]}");
+  }
+  fprintf(report, "]");
+}
+
 int main(int argc, char* argv[]) {
-  check(argc == 3, "usage: collector IMAGE BASELINE_ASSETS (run in a new private directory)");
+  check(argc == 3 || argc == 4, "usage: collector IMAGE BASELINE_ASSETS [SCENARIO] (new private directory)");
+  const bool dynamic = argc == 4 && !strcmp(argv[3], "common-pot-debris-lifecycle-v1");
+  check(argc == 3 || dynamic || !strcmp(argv[3], "always-small-pot-stock-v1"), "unknown scenario");
   const auto runtimeIdentityRows = verify_runtime_identities(argv[2]);
   check(!std::filesystem::exists("observed.db") && !std::filesystem::exists("cache"), "retain earlier output");
   check(sqlite3_open("observed.db", &observed) == SQLITE_OK, "open observations");
@@ -128,15 +240,18 @@ int main(int argc, char* argv[]) {
   VIConfigure(&GXNtsc480IntDf);
   check(JKRExpHeap::createRoot(64, false), "create isolated game heap");
   check(JMANewSinTable(12), "initialize the game's transform tables as mDoMch_Create does");
-  auto* archive = JKRArchive::mount("/res/Object/Always.arc", JKRArchive::MOUNT_MEM,
+  J3DModel* model = nullptr;
+  if (!dynamic) {
+    auto* archive = JKRArchive::mount("/res/Object/Always.arc", JKRArchive::MOUNT_MEM,
                                    JKRHeap::getCurrentHeap(), JKRArchive::MOUNT_DIRECTION_HEAD);
-  check(archive, "mount Always archive through game loader");
-  auto* bytes = archive->getResource("bdl/obm_kotubo1.bdl");
-  check(bytes, "find small pot model");
-  auto* data = J3DModelLoaderDataBase::loadBinaryDisplayList(bytes, 0x2020);
-  check(data && data->getMaterialNum() == 1, "load the fixed one-material model");
-  auto* model = mDoExt_J3DModel__create(data, 0, 0x11000084);
-  check(model, "create game model and material display lists");
+    check(archive, "mount Always archive through game loader");
+    auto* bytes = archive->getResource("bdl/obm_kotubo1.bdl");
+    check(bytes, "find small pot model");
+    auto* data = J3DModelLoaderDataBase::loadBinaryDisplayList(bytes, 0x2020);
+    check(data && data->getMaterialNum() == 1, "load the fixed one-material model");
+    model = mDoExt_J3DModel__create(data, 0, 0x11000084);
+    check(model, "create game model and material display lists");
+  }
   J3DDrawBuffer opaque(32), translucent(32);
   j3dSys.setDrawBuffer(&opaque, J3DSysDrawBuf_Opa);
   j3dSys.setDrawBuffer(&translucent, J3DSysDrawBuf_Xlu);
@@ -150,24 +265,21 @@ int main(int argc, char* argv[]) {
     if (aurora_begin_frame()) aurora_end_frame();
   }
   check(aurora::gfx::finish_pipeline_preparation(), "finish preparation");
+  recording = true;
   unsigned renderedDraws = 0;
-  for (int frame = 0; frame < 3; ++frame) {
-    aurora_update();
-    check(aurora_begin_frame(), "begin model frame");
-    GXSetViewport(0, 0, 640, 480, 0, 1);
-    GXSetScissor(0, 0, 640, 480);
-    Mtx44 projection;
-    MTXPerspective(projection, 45, 4.0f / 3.0f, 1, 10000);
-    GXSetProjection(projection, GX_PERSPECTIVE);
-    j3dSys.drawInit();
-    opaque.frameInit(); translucent.frameInit();
-    model->update(); model->viewCalc();
-    j3dSys.setDrawModeOpaTexEdge(); opaque.draw();
-    j3dSys.setDrawModeXlu(); translucent.draw();
-    aurora_end_frame();
-    aurora::gfx::synchronize();
-    renderedDraws += aurora_get_stats()->drawCallCount;
+  if (dynamic) {
+    renderedDraws = draw_effect(view);
+  } else {
+    for (int frame = 0; frame < 3; ++frame) {
+      begin_draw();
+      opaque.frameInit(); translucent.frameInit();
+      model->update(); model->viewCalc();
+      j3dSys.setDrawModeOpaTexEdge(); opaque.draw();
+      j3dSys.setDrawModeXlu(); translucent.draw();
+      renderedDraws += end_draw();
+    }
   }
+  recording = false;
   aurora_shutdown(); // Join render work and close the normal recorder before export.
   check(drawCalls > 0 && renderedDraws > 0, "real GX material draws required");
   const auto& target = observedLayout.colorAttachments[0];
@@ -176,13 +288,23 @@ int main(int argc, char* argv[]) {
   check(sqlite3_close(observed) == SQLITE_OK, "close observation database");
   auto* report = fopen("collection.json", "wx");
   check(report, "new collection report");
-  fprintf(report, "{\"schema\":1,\"scenario\":\"always-small-pot-stock-v1\","
+  if (dynamic) {
+    fprintf(report, "{\"schema\":1,\"scenario\":\"common-pot-debris-lifecycle-v1\","
+            "\"method\":\"dynamic-effect-draw\",\"resource\":\"/res/Particle/common.jpc:0x0018\","
+            "\"draw_calls\":%u,\"pipeline_lookups\":%u,\"runtime_identity_verified_rows\":%u,\"frames\":%zu,"
+            "\"script\":{\"effect_id\":24,\"random_seed\":0,\"max_ticks\":180,\"position\":[0,0,0],"
+            "\"scale\":[1,1,1],\"color\":[255,255,255,255],\"texture_indices\":[0,1]},"
+            "\"unhandled_states\":[\"model-shards-0x0017\",\"actor-lighting-and-collision\","
+            "\"other-pot-textures\",\"overlapping-effects\",\"other-cameras\"]",
+            renderedDraws, drawCalls, runtimeIdentityRows, effectSteps.size());
+    write_effect_steps(report);
+  } else fprintf(report, "{\"schema\":1,\"scenario\":\"always-small-pot-stock-v1\","
     "\"method\":\"asset-material-draw\",\"resource\":\"/res/Object/Always.arc:bdl/obm_kotubo1.bdl\","
     "\"materials\":1,\"draw_calls\":%u,\"pipeline_lookups\":%u,\"runtime_identity_verified_rows\":%u,"
     "\"frames\":3,\"loader_flags\":8224,"
-    "\"model_flags\":0,\"differed_display_list_flags\":285212804,"
-    "\"layout\":{\"key\":%llu,\"attachments\":%u,\"color_format\":%u,\"depth_format\":%u,"
-    "\"samples\":%u,\"width\":%u,\"height\":%u}}\n", renderedDraws, drawCalls, runtimeIdentityRows,
+    "\"model_flags\":0,\"differed_display_list_flags\":285212804", renderedDraws, drawCalls, runtimeIdentityRows);
+  fprintf(report, ",\"layout\":{\"key\":%llu,\"attachments\":%u,\"color_format\":%u,\"depth_format\":%u,"
+    "\"samples\":%u,\"width\":%u,\"height\":%u}}\n",
     static_cast<unsigned long long>(observedLayout.key), observedLayout.colorAttachmentCount,
     static_cast<uint32_t>(target.format), static_cast<uint32_t>(observedLayout.depthStencilFormat),
     observedLayout.sampleCount, target.width, target.height);

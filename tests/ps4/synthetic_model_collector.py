@@ -7,10 +7,11 @@ import hashlib
 import json
 import struct
 
-from synthetic_pipeline import make_seed, make_model_collection
+from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_collection
 
 
 MODEL_BYTES = b'Synthetic model resource; no game content'
+PARTICLE_BYTES = b'Synthetic particle resource; no game content'
 
 
 def add_model_resource(image, contract_path):
@@ -31,24 +32,28 @@ def add_model_resource(image, contract_path):
     old = data[fst_offset:fst_offset + fst_size]
     count = struct.unpack_from('>I', old, 8)[0]
     entries, names = bytearray(old[:count * 12]), old[count * 12:]
-    struct.pack_into('>I', entries, 8, count + 3)
-    entries += struct.pack('>III', 0x01000000 | len(names), 0, count + 3)
+    struct.pack_into('>I', entries, 8, count + 5)
+    entries += struct.pack('>III', 0x01000000 | len(names), 0, count + 5)
     entries += struct.pack('>III', 0x01000000 | (len(names) + 4), count, count + 3)
     entries += struct.pack('>III', len(names) + 11, 0x5000, len(archive))
-    fst = entries + names + b'res\0Object\0Always.arc\0'
+    entries += struct.pack('>III', 0x01000000 | (len(names) + 22), count, count + 5)
+    entries += struct.pack('>III', len(names) + 31, 0x6000, len(PARTICLE_BYTES))
+    fst = entries + names + b'res\0Object\0Always.arc\0Particle\0common.jpc\0'
     data[fst_offset:fst_offset + len(fst)] = fst
     struct.pack_into('>II', data, 0x428, len(fst), len(fst))
     data[0x5000:0x5000 + len(archive)] = archive
+    data[0x6000:0x6000 + len(PARTICLE_BYTES)] = PARTICLE_BYTES
     image.write_bytes(data)
     contract = json.loads(contract_path.read_text())
     contract['image_sha1'] = hashlib.sha1(data).hexdigest()
     contract_path.write_text(json.dumps(contract))
 
 
-def make_collector(directory):
+def make_collector(directory, *, dynamic=False):
     directory.mkdir()
     make_seed(directory / 'baseline', keys=(42, 84, 126))
-    metadata = make_model_collection(directory / 'observations', keys=(84,))
+    factory = make_dynamic_collection if dynamic else make_model_collection
+    metadata = factory(directory / 'observations', keys=(84,))
     metadata['runtime_identity_verified_rows'] = 3
     (directory / 'native-report.json').write_text(json.dumps(metadata))
     executable = directory / 'collector'
@@ -67,6 +72,8 @@ if mode == 'recorder-mismatch':
     with sqlite3.connect('cache/pipeline_cache.db') as db:
         db.execute('DELETE FROM pipeline_cache WHERE hash=84')
 metadata = json.loads((root / 'native-report.json').read_text())
+if len(sys.argv) == 4 and sys.argv[3] != metadata['scenario']:
+    sys.exit('wrong scenario input')
 if mode == 'no-draw':
     metadata['draw_calls'] = 0
 if mode == 'malformed':

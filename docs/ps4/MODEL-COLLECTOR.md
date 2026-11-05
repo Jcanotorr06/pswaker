@@ -123,6 +123,11 @@ preparation or physical gameplay evidence.
 
 ## Runnable handoff to the dynamic pilot (#148)
 
+The implemented follow-up is documented in
+[DYNAMIC-COLLECTOR.md](DYNAMIC-COLLECTOR.md), with its executed identities and
+bounded static/dynamic console handoff. It exercises the pot's sprite-debris
+component; the companion model-shard component remains an explicit gap.
+
 Start with this verified collector build command and the validated prepared
 asset directory as the next baseline. Preserve both source collections and the
 original runtime baseline. Add a separate finite scenario in the collector for

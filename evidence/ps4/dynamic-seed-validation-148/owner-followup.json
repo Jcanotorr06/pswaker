@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "recorded": "2026-11-05",
+  "source": "Owner clarification in this task",
+  "assessment": "assessment.json",
+  "candidate_package_sha256": "058bd19c4fc4be1782b631ad4e808dbddea4b31530f0e3a599c38d71b93090e0",
+  "candidate_seed_rows": 291,
+  "applies_to_runs": ["cold", "warm"],
+  "location": "Outset Island, the two pots next to the Outdoor Bath",
+  "sequence": [
+    {"action": "Look at the pots", "approximate_sample_seconds": [0, 10]},
+    {"action": "Break the first pot", "approximate_sample_seconds": 10, "method": null},
+    {"action": "Break the second pot", "approximate_sample_seconds": 40, "method": "sword"},
+    {"action": "Roll back and forth until the two-minute sample ends", "approximate_sample_seconds": [40, 120]}
+  ],
+  "first_and_second_breaks_rendered_correctly": true,
+  "quit_ce_34878_0": {"cold": true, "warm": true},
+  "differences_reported": false,
+  "unmentioned_pauses": null,
+  "action_times_frame_accurate": false,
+  "wait_action_attribution": "unresolved",
+  "candidate_overall_pass": false,
+  "quit_issue": 159,
+  "replacement_301_description_candidate_physical_verification": false,
+  "original_evidence_unchanged": true
+}

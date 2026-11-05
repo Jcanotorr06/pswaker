@@ -19,6 +19,11 @@
 /evidence/ps4/repository-54/** whitespace=cr-at-eol
 # Preserve the owner's original #112 report, including CRLF and trailing spaces.
 /evidence/ps4/action-validation-112/owner-report-original.md whitespace=-trailing-space,-blank-at-eof,cr-at-eol
+# Preserve the original #148 owner report's CRLF and trailing spaces.
+/evidence/ps4/dynamic-validation-148/owner-report-original.md whitespace=-trailing-space,-blank-at-eof,cr-at-eol
+# Preserve the corrected candidate's original owner report byte-for-byte.
+/evidence/ps4/dynamic-seed-validation-148/owner-report-original.md whitespace=-trailing-space,-blank-at-eof,cr-at-eol
+/evidence/ps4/dynamic-seed-validation-148-round2/owner-report-original.md whitespace=-trailing-space,-blank-at-eof,cr-at-eol
 # Keep diagnostic captures and tool output byte-identical, including whitespace.
 /evidence/ps4/startup-17/*.log whitespace=-trailing-space,-blank-at-eof
 /evidence/ps4/verification-15/**/*.log whitespace=-trailing-space,-blank-at-eof

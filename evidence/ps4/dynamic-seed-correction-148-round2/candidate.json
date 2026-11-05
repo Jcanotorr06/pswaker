@@ -1,0 +1,646 @@
+{
+  "schema": 1,
+  "scope": "Second seed-only correction; Quit diagnosis remains #159",
+  "previous_candidate": {
+    "program": {
+      "build_id": "6e885683f47a49a119ae",
+      "elf_sha256": "400de6f1bb42fb4fc79f9399f290d2f0ee292e58ea03e4f8eea9c2e4dd7c32ab",
+      "eboot_sha256": "bc142562457d3acfd7d90c126aa6ca75753889d07dd01b02661448fc4a8d9811"
+    },
+    "app_version": "01.23",
+    "package": {
+      "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+      "sha256": "058bd19c4fc4be1782b631ad4e808dbddea4b31530f0e3a599c38d71b93090e0"
+    },
+    "seed": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "baseline:baseline:pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+        },
+        "baseline:baseline:pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+        },
+        "baseline:generated:observed.db": {
+          "bytes": 16384,
+          "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+        },
+        "runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1318432,
+          "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+        },
+        "runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1326672,
+          "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+        }
+      },
+      "rows": 291,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 290
+        }
+      ],
+      "bytes": 1216512,
+      "sha256": "d55bc3934764d66543a2a5b56ba02223da403e345d88dffe26c77c0c4b15cbaa",
+      "asset_manifest_sha256": "524a2a8d9bc0b46fe560aea0d65f33a75231a4d9a6de97dd1fefcf164811716e"
+    },
+    "inspection_sha256": "ab0caea56632e249def6210b2cec86da239f8a887fbdbda123c211301c9325a4"
+  },
+  "program": {
+    "build_id": "6e885683f47a49a119ae",
+    "elf_sha256": "400de6f1bb42fb4fc79f9399f290d2f0ee292e58ea03e4f8eea9c2e4dd7c32ab",
+    "eboot_sha256": "bc142562457d3acfd7d90c126aa6ca75753889d07dd01b02661448fc4a8d9811"
+  },
+  "app_version": "01.23",
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "107e13f80423e89324aabb3aca453f46f2a0ea13569e0be6a509588fc9835a3d"
+  },
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      }
+    },
+    "rows": 301,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 300
+      }
+    ],
+    "bytes": 1257472,
+    "sha256": "06b8ef5d5df64e6a1218728550eab209f6a841926392ac18064effce64f17fd8",
+    "asset_manifest_sha256": "4caf1f6ba2572dd7faeb3d77aa99a38c3fbdc8a0e0ed0e4d1ca186183646a6a4"
+  },
+  "assembly_sha256": "279d02dd49e9951a50ae6c4e754e4e6f86a5f8f7c6c60ee31158701dd6d36944",
+  "inspection_sha256": "2076142fad4075fb11462f84beaefc05f172837e827e11082299e64d6fb62cdb",
+  "correction_report_sha256": "d4f8154e67eed54e6e4989a57ea25871672f7bc3dbc15fa971870f30026430dd",
+  "baseline_rows": 291,
+  "added_rows": 10,
+  "provenance": "runtime-capture-correction",
+  "additions": [
+    {
+      "type": 1,
+      "hash": -8804625231670774290,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "3d5654201ff3191c8bfae31b6d5dbda350d1afef261efb6c61761ed0e4fb0541",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7028
+      }
+    },
+    {
+      "type": 1,
+      "hash": -7535848670488184678,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "98517b7a01e4f0ee8a03cd21e7c3b0db088c4a6e31933d49db98225648504aa1",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7034
+      }
+    },
+    {
+      "type": 1,
+      "hash": -5862430152044925554,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "a48997f9ee239b75648b4a91038851057f814036c45b29bd51ce7084496c5f2d",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7033
+      }
+    },
+    {
+      "type": 1,
+      "hash": -2476814880301511663,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "3a82c3df74c3ae7e647ec14d1d3d6ded057e2b1e52c1071b6ba923515d7c91a5",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7035
+      }
+    },
+    {
+      "type": 1,
+      "hash": -1906308374028750244,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "77b5a1f0db3787e5f884d3c379a41c4b6352641b962f0a533719c263543a7e34",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7032
+      }
+    },
+    {
+      "type": 1,
+      "hash": -475346947822263283,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "3ac2fc3ec8b1f1062fb3566fb7351d47b4df17fd43b32519e25db70300d92734",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7027
+      }
+    },
+    {
+      "type": 1,
+      "hash": 2916965127834176779,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "a0b82037fcbaf96678e7e862f859cdd5097540ace85b042f827ae0029c8224f9",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7029
+      }
+    },
+    {
+      "type": 1,
+      "hash": 3513760078266503951,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "4e2d3b60a7d33ea811a419b91415c1f9df8b1503f5ea1b36d308e61075970255",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7030
+      }
+    },
+    {
+      "type": 1,
+      "hash": 5900688493499515325,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "2ae7749c576f8f96b1679c0433851a5134bfbb9f2ed2ac682792d972606f1dd4",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7036
+      }
+    },
+    {
+      "type": 1,
+      "hash": 7978634423270074121,
+      "version": 13,
+      "bytes": 2772,
+      "description_sha256": "3ed4f0f5aaf03a1cb410d0f1947ac493301daab9e3fb474cf562ad1f79c12c44",
+      "sources": [
+        "runtime-2"
+      ],
+      "first_frame_used_by_source": {
+        "runtime-2": 7031
+      }
+    }
+  ],
+  "snapshots": {
+    "runtime-1": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "pipeline_cache.db-wal": {
+          "bytes": 1268992,
+          "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+        }
+      },
+      "rows": 291,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 290
+        }
+      ],
+      "bytes": 1224704,
+      "sha256": "605c666ebe87cc8676aeebfa032e84d3c00f660c8e78cf97e524a37f0394be0d",
+      "asset_manifest_sha256": "48fc3ceca59d4509d5a86bb0480e50dfa4c50c6a78537a1aa2a5f55cadcec8ab"
+    },
+    "runtime-2": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "pipeline_cache.db-wal": {
+          "bytes": 1474992,
+          "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+        }
+      },
+      "rows": 301,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 300
+        }
+      ],
+      "bytes": 1265664,
+      "sha256": "d1b7a4e28f414babe2158a97f21611217184380f12c0fce43cf2f85d9f049a6c",
+      "asset_manifest_sha256": "cb04597ca11f4d6b98888877fd229889614760c03f0476fa1b59685692ed2eae"
+    }
+  },
+  "source_path_attribution": "unresolved",
+  "all_baseline_columns_preserved": true,
+  "repeat_seed_manifest_report_equal": true,
+  "coverage": {
+    "schema": 1,
+    "method": "Validated read-only comparison of type/hash keys and config bytes; first_frame_used is capture metadata, not configuration identity",
+    "candidate": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "baseline:baseline:baseline:pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+        },
+        "baseline:baseline:baseline:pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+        },
+        "baseline:baseline:generated:observed.db": {
+          "bytes": 16384,
+          "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+        },
+        "baseline:runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1318432,
+          "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+        },
+        "baseline:runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1326672,
+          "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+        },
+        "runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1268992,
+          "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+        },
+        "runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1474992,
+          "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+        }
+      },
+      "rows": 301,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 300
+        }
+      ],
+      "bytes": 1257472,
+      "sha256": "06b8ef5d5df64e6a1218728550eab209f6a841926392ac18064effce64f17fd8",
+      "asset_manifest_sha256": "4caf1f6ba2572dd7faeb3d77aa99a38c3fbdc8a0e0ed0e4d1ca186183646a6a4"
+    },
+    "snapshots": [
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "baseline:baseline:pipeline_cache.db": {
+            "bytes": 835584,
+            "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+          },
+          "baseline:baseline:pipeline_cache.db-wal": {
+            "bytes": 4128272,
+            "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+          },
+          "baseline:generated:observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          },
+          "runtime-1:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "runtime-1:pipeline_cache.db-wal": {
+            "bytes": 1318432,
+            "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+          },
+          "runtime-2:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "runtime-2:pipeline_cache.db-wal": {
+            "bytes": 1326672,
+            "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+          }
+        },
+        "rows": 291,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 290
+          }
+        ],
+        "bytes": 1216512,
+        "sha256": "d55bc3934764d66543a2a5b56ba02223da403e345d88dffe26c77c0c4b15cbaa",
+        "asset_manifest_sha256": "524a2a8d9bc0b46fe560aea0d65f33a75231a4d9a6de97dd1fefcf164811716e",
+        "identical_rows_in_candidate": 291
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "pipeline_cache.db-wal": {
+            "bytes": 1268992,
+            "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+          }
+        },
+        "rows": 291,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 290
+          }
+        ],
+        "bytes": 1224704,
+        "sha256": "605c666ebe87cc8676aeebfa032e84d3c00f660c8e78cf97e524a37f0394be0d",
+        "asset_manifest_sha256": "48fc3ceca59d4509d5a86bb0480e50dfa4c50c6a78537a1aa2a5f55cadcec8ab",
+        "identical_rows_in_candidate": 291
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "pipeline_cache.db-wal": {
+            "bytes": 1474992,
+            "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+          }
+        },
+        "rows": 301,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 300
+          }
+        ],
+        "bytes": 1265664,
+        "sha256": "d1b7a4e28f414babe2158a97f21611217184380f12c0fce43cf2f85d9f049a6c",
+        "asset_manifest_sha256": "cb04597ca11f4d6b98888877fd229889614760c03f0476fa1b59685692ed2eae",
+        "identical_rows_in_candidate": 301
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "3857bc4f6f33dee625e99fe651fb54bd66b297d06aa1dacab43409e81a9bd4eb"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "21a49ccafef655070adbebeecf70a27d3ae3c539e763eba7531badba7bf2ecaa",
+        "asset_manifest_sha256": "469d125429af7547b384ba0d0b8b26d6723952ac725fa8615abca46073f58c92",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+        "asset_manifest_sha256": "33b0d7eab38d530722b922a96813cb13cf312598d85690dfce49f8fb3d05c27d",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "3857bc4f6f33dee625e99fe651fb54bd66b297d06aa1dacab43409e81a9bd4eb"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "21a49ccafef655070adbebeecf70a27d3ae3c539e763eba7531badba7bf2ecaa",
+        "asset_manifest_sha256": "469d125429af7547b384ba0d0b8b26d6723952ac725fa8615abca46073f58c92",
+        "identical_rows_in_candidate": 1
+      }
+    ],
+    "recorded_union_rows": 301,
+    "already_represented_rows": 301,
+    "added_rows": 0,
+    "candidate_rows_not_recorded": 0,
+    "conclusion": "Retain the existing candidate seed unchanged; all recorded descriptions are present. This establishes recorded configuration coverage, not gameplay smoothness."
+  },
+  "dynamic_control": {
+    "scenario": "common-pot-debris-lifecycle-v1",
+    "draw_calls": 40,
+    "pipeline_lookups": 40,
+    "runtime_identity_verified_rows": 301,
+    "baseline_roundtrip_rows": 301,
+    "recorder_verified_rows": 1,
+    "collector": {
+      "sha256": "e366be98ea39eccc24f640b685f0d81ba50c95f2a13db99e64b41e75e3a4af56",
+      "build_sha256": "29c60be55b0ed5d7a47230e0e60729a8e94976fa80edf7ab1a8f619857888fd9"
+    },
+    "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+    "collection_tool_sha256": "2919b2b59ccfa066e55ff0889f456508dea44dc622175b624361d20e8ec3180f"
+  },
+  "source_immutability": {
+    "private_input_files": 17,
+    "returned_files": 31,
+    "unchanged": true
+  },
+  "corrected_candidate_physical_verification": false,
+  "quit_failure": {
+    "issue": 159,
+    "program_unchanged": true,
+    "fixed": false
+  }
+}

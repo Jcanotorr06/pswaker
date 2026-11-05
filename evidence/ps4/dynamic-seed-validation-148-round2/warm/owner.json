@@ -1,0 +1,20 @@
+{
+  "build": "6e885683f47a49a119ae",
+  "package_sha256": "107e13f80423e89324aabb3aca453f46f2a0ea13569e0be6a509588fc9835a3d",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "cache_state": "warm",
+  "timing_method_verified": false,
+  "timing_verification_notes": "Describe returned display/clock/mapping evidence; leave false until reviewed.",
+  "samples": {
+    "1": {
+      "scene": "outset",
+      "actions": "Replace with actual route, pot break methods/times, first/repeated rendering, rolls and pauses; retain unknown observations as unknown.",
+      "active_gameplay": true,
+      "graphics_audio_correct": true
+    }
+  }
+}
