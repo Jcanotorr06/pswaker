@@ -1,0 +1,1568 @@
+{
+  "schema": 1,
+  "issue": 153,
+  "manifest_sha256": "7e6148e0bf63ee1d6cb471c3dae21ed5c7332ad52f33a6dbd2a8312c6e006d30",
+  "baseline_rows": 301,
+  "collected_rows": 40,
+  "new_rows": 39,
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "boss-gohma-defeat-v1:observed.db": {
+        "bytes": 53248,
+        "sha256": "4324fe73068157c42ba595ebe26e57d999a285edff2db8690d0c80d16b1c3092"
+      },
+      "boss-jalhalla-visibility-v1:observed.db": {
+        "bytes": 49152,
+        "sha256": "f853bed0fc3cc86107a310621883d6dfbccda49b0844f34013b90d23c196f910"
+      },
+      "boss-puppet-ganon-water-v1:observed.db": {
+        "bytes": 24576,
+        "sha256": "fa04d11aa23719aff1573b2bddb3037fb93aa2c136dd49858344870ab5a92540"
+      },
+      "enemy-bokoblin-materials-v1:observed.db": {
+        "bytes": 36864,
+        "sha256": "db6a6e1ed28cfe2aa8e64a9a2be7881bece96f334ddc800b42c313b731178bb3"
+      },
+      "enemy-chuchu-states-v1:observed.db": {
+        "bytes": 40960,
+        "sha256": "59dee0831740e7277ec3f7778137a9b329399776e6b5a6f565e7c80d3bbb4e3e"
+      },
+      "enemy-death-large-v1:observed.db": {
+        "bytes": 32768,
+        "sha256": "530647e29eb75efe8f6c58beba1e652bd0f8322311b281c23efdce8cf14a191c"
+      },
+      "enemy-death-small-v1:observed.db": {
+        "bytes": 32768,
+        "sha256": "530647e29eb75efe8f6c58beba1e652bd0f8322311b281c23efdce8cf14a191c"
+      },
+      "enemy-peahat-freeze-v1:observed.db": {
+        "bytes": 45056,
+        "sha256": "61ed6bb3d6e9b2b4bb7f48ff0021652adb0a04dbacd380c4e25e5cd5efcab730"
+      }
+    },
+    "rows": 340,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 339
+      }
+    ],
+    "bytes": 1425408,
+    "sha256": "912b99b13dbb1a5a077968f3d9ba2df32cd35a436c3441b81bccf19f17915056",
+    "asset_manifest_sha256": "bbf065c0bb96a24157bda29a9c1d80cf70f825d413e418fae2f6ff952de7d24e"
+  },
+  "scenarios": [
+    {
+      "id": "boss-gohma-defeat-v1",
+      "frames": 3,
+      "draw_calls": 60,
+      "pipeline_lookups": 17,
+      "configurations": 9,
+      "baseline_covered": 0,
+      "new": 9,
+      "states": [
+        {
+          "state": "phase-one",
+          "draw_calls": 22,
+          "pipeline_lookups": 5,
+          "configurations": 4
+        },
+        {
+          "state": "phase-two",
+          "draw_calls": 19,
+          "pipeline_lookups": 6,
+          "configurations": 5
+        },
+        {
+          "state": "defeat",
+          "draw_calls": 19,
+          "pipeline_lookups": 6,
+          "configurations": 5
+        }
+      ],
+      "states_sharing_their_exact_set_with_an_earlier_state": [],
+      "lifetimes": [],
+      "physical_verification": false
+    },
+    {
+      "id": "boss-jalhalla-visibility-v1",
+      "frames": 6,
+      "draw_calls": 224,
+      "pipeline_lookups": 19,
+      "configurations": 8,
+      "baseline_covered": 0,
+      "new": 8,
+      "states": [
+        {
+          "state": "default",
+          "draw_calls": 44,
+          "pipeline_lookups": 3,
+          "configurations": 3
+        },
+        {
+          "state": "light-stun",
+          "draw_calls": 44,
+          "pipeline_lookups": 3,
+          "configurations": 3
+        },
+        {
+          "state": "curse-start",
+          "draw_calls": 44,
+          "pipeline_lookups": 3,
+          "configurations": 3
+        },
+        {
+          "state": "curse-end",
+          "draw_calls": 44,
+          "pipeline_lookups": 3,
+          "configurations": 3
+        },
+        {
+          "state": "light-freeze",
+          "draw_calls": 44,
+          "pipeline_lookups": 3,
+          "configurations": 3
+        },
+        {
+          "state": "possession",
+          "draw_calls": 4,
+          "pipeline_lookups": 4,
+          "configurations": 4
+        }
+      ],
+      "states_sharing_their_exact_set_with_an_earlier_state": [
+        "curse-start",
+        "curse-end",
+        "light-freeze"
+      ],
+      "lifetimes": [],
+      "physical_verification": false
+    },
+    {
+      "id": "boss-puppet-ganon-water-v1",
+      "frames": 3,
+      "draw_calls": 4,
+      "pipeline_lookups": 4,
+      "configurations": 2,
+      "baseline_covered": 0,
+      "new": 2,
+      "states": [
+        {
+          "state": "water-surface",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1
+        },
+        {
+          "state": "water-mask",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1
+        },
+        {
+          "state": "water-combined",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2
+        }
+      ],
+      "states_sharing_their_exact_set_with_an_earlier_state": [],
+      "lifetimes": [],
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-bokoblin-materials-v1",
+      "frames": 7,
+      "draw_calls": 74,
+      "pipeline_lookups": 19,
+      "configurations": 5,
+      "baseline_covered": 0,
+      "new": 5,
+      "states": [
+        {
+          "state": "body-stock",
+          "draw_calls": 14,
+          "pipeline_lookups": 3,
+          "configurations": 2
+        },
+        {
+          "state": "body-green",
+          "draw_calls": 14,
+          "pipeline_lookups": 3,
+          "configurations": 2
+        },
+        {
+          "state": "body-pink",
+          "draw_calls": 14,
+          "pipeline_lookups": 3,
+          "configurations": 2
+        },
+        {
+          "state": "body-frozen",
+          "draw_calls": 14,
+          "pipeline_lookups": 3,
+          "configurations": 2
+        },
+        {
+          "state": "body-restored",
+          "draw_calls": 14,
+          "pipeline_lookups": 3,
+          "configurations": 2
+        },
+        {
+          "state": "weapon-club",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 1
+        },
+        {
+          "state": "weapon-sword",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 1
+        }
+      ],
+      "states_sharing_their_exact_set_with_an_earlier_state": [
+        "body-green",
+        "body-pink",
+        "body-restored",
+        "weapon-sword"
+      ],
+      "lifetimes": [],
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-chuchu-states-v1",
+      "frames": 5,
+      "draw_calls": 11,
+      "pipeline_lookups": 11,
+      "configurations": 6,
+      "baseline_covered": 0,
+      "new": 6,
+      "states": [
+        {
+          "state": "body",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2
+        },
+        {
+          "state": "stone-first",
+          "draw_calls": 3,
+          "pipeline_lookups": 3,
+          "configurations": 3
+        },
+        {
+          "state": "stone-second",
+          "draw_calls": 3,
+          "pipeline_lookups": 3,
+          "configurations": 3
+        },
+        {
+          "state": "puddle",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1
+        },
+        {
+          "state": "frozen",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2
+        }
+      ],
+      "states_sharing_their_exact_set_with_an_earlier_state": [
+        "stone-second"
+      ],
+      "lifetimes": [],
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-death-large-v1",
+      "frames": 224,
+      "draw_calls": 11336,
+      "pipeline_lookups": 802,
+      "configurations": 4,
+      "baseline_covered": 1,
+      "new": 3,
+      "states": [],
+      "states_sharing_their_exact_set_with_an_earlier_state": [],
+      "lifetimes": [
+        {
+          "variation": 0,
+          "ticks": 112,
+          "peak_particles": 247
+        },
+        {
+          "variation": 1,
+          "ticks": 112,
+          "peak_particles": 247
+        }
+      ],
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-death-small-v1",
+      "frames": 104,
+      "draw_calls": 1044,
+      "pipeline_lookups": 333,
+      "configurations": 4,
+      "baseline_covered": 1,
+      "new": 3,
+      "states": [],
+      "states_sharing_their_exact_set_with_an_earlier_state": [],
+      "lifetimes": [
+        {
+          "variation": 0,
+          "ticks": 52,
+          "peak_particles": 36
+        },
+        {
+          "variation": 1,
+          "ticks": 52,
+          "peak_particles": 36
+        }
+      ],
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-peahat-freeze-v1",
+      "frames": 3,
+      "draw_calls": 16,
+      "pipeline_lookups": 12,
+      "configurations": 7,
+      "baseline_covered": 0,
+      "new": 7,
+      "states": [
+        {
+          "state": "stock",
+          "draw_calls": 4,
+          "pipeline_lookups": 3,
+          "configurations": 2
+        },
+        {
+          "state": "frozen",
+          "draw_calls": 8,
+          "pipeline_lookups": 6,
+          "configurations": 5
+        },
+        {
+          "state": "restored",
+          "draw_calls": 4,
+          "pipeline_lookups": 3,
+          "configurations": 2
+        }
+      ],
+      "states_sharing_their_exact_set_with_an_earlier_state": [
+        "restored"
+      ],
+      "lifetimes": [],
+      "physical_verification": false
+    }
+  ],
+  "rows": [
+    {
+      "id": "bokoblin-eye-mask-and-blink",
+      "family": "bokoblin",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Eye mask-off joint entry, BTP blinking, search light and held-prop attachment need actor-owned joint state.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/br_draw/search_check_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "boss-gohma-defeat-v1",
+      "family": "gohma",
+      "action": "exercise",
+      "scenario": "boss-gohma-defeat-v1",
+      "resource": "/res/Object/Btd.arc:bmdm/sotai.bmd",
+      "script": {
+        "states": [
+          "phase-one",
+          "phase-two",
+          "defeat"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_btd.cpp:daBtd_Draw/useHeapInit/damage_check"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Phase two binds DEADA first and rebinds SOTAI as daBtd_Create does; defeat swaps the DEADA material table.",
+        "Rock debris, armor shards and the dead-head model are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "2d608f73997891d0867fb103dbc75e3481ea3d79e09e78a01ea741bcc7db6c78",
+        "model_sha256": "70b9f60c895bb542c04d0707a3afaee7aa3724f68ac7d17710d34483d0987c44",
+        "model_bytes": 334752,
+        "companions": {
+          "/res/Object/Btd.arc:bmdm/btd.bmd": {
+            "sha256": "f6d6472080d78940963312de4f1cf305586e1607904e2c7a4f49f23b24237d15",
+            "bytes": 425504
+          },
+          "/res/Object/Btd.arc:btk/btd.btk": {
+            "sha256": "ee89392b4cfc23041ee21523230ab19e92c4b849ee096c7c5d07ecca1b70a22e",
+            "bytes": 1280
+          },
+          "/res/Object/Btd.arc:brk/btd.brk": {
+            "sha256": "a7807ffc85aeac68f2c1ac144e599e45f951ac9acf2698a0967c8dc3197e8d16",
+            "bytes": 2752
+          },
+          "/res/Object/Btd.arc:btk/sotai.btk": {
+            "sha256": "de62e0853f9e05a0ba277f817ca5af92d8dc461d315afee23470f995a158f7dc",
+            "bytes": 1536
+          },
+          "/res/Object/Btd.arc:brk/sotai.brk": {
+            "sha256": "a75be97d25ef685b5965f2cf9d5aa0c6a85dbcf8e5ebd8d87da6abcad92b9edb",
+            "bytes": 3392
+          },
+          "/res/Object/Btd.arc:bmt/deada.bmt": {
+            "sha256": "b92bc284605ad18fd1317eea11cba08e139ebc038aeca54fd8530a77c7db2fa2",
+            "bytes": 5120
+          },
+          "/res/Object/Btd.arc:brk/deada.brk": {
+            "sha256": "4806835463cad176ec681c5c104dafdbd55ce315042ad6241d7abcfac0cbd6aa",
+            "bytes": 2752
+          },
+          "/res/Object/Btd.arc:btk/deada.btk": {
+            "sha256": "450cd249ee69f877e9260b3953aafbf714af29a33935f3e242bf0ff8636895dc",
+            "bytes": 1856
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/boss-gohma-defeat-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "boss-jalhalla-visibility-v1",
+      "family": "jalhalla",
+      "action": "exercise",
+      "scenario": "boss-jalhalla-visibility-v1",
+      "resource": "/res/Object/Bpw.arc:bdlm/bpw.bdl",
+      "script": {
+        "states": [
+          "default",
+          "light-stun",
+          "curse-start",
+          "curse-end",
+          "light-freeze",
+          "possession"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:body_draw/torituki_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_list_c::entryZSortXluDrawList"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body states use the mask-off list; light-freeze uses the normal list and invisible packets as in body_draw.",
+        "Possession follows torituki_draw with the lantern model. Alpha is fixed at 255; split-Poe actors are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "861c09175e65e2b5e814f7e210afcf8ca314ce4d089676e1d72099af214c0a40",
+        "model_sha256": "369a2506b07e864490831b138e417909e8070dc16df483c42e729a789bf42b1f",
+        "model_bytes": 124384,
+        "companions": {
+          "/res/Object/Bpw.arc:bdlm/bpw_kan1.bdl": {
+            "sha256": "bcad1bc7daa4404f355b42ee4f7a6779b60acbc0e42b034771bb963fdac39f34",
+            "bytes": 22560
+          },
+          "/res/Object/Bpw.arc:brk/default.brk": {
+            "sha256": "3a53dfce79cd68de76ea160218a3e2ac5c51ad7e2d457f829a8be06797c49e91",
+            "bytes": 224
+          },
+          "/res/Object/Bpw.arc:brk/hit.brk": {
+            "sha256": "d70ee74d863a1c047f83dc58f4d5d0e52939142ede0af0fadedae98b66413a5f",
+            "bytes": 288
+          },
+          "/res/Object/Bpw.arc:brk/noroi_s1.brk": {
+            "sha256": "cc014f2d8b4ea8f8825e12b0f095f0afd2d1082b0226ab66b51ab10cd1d040c2",
+            "bytes": 256
+          },
+          "/res/Object/Bpw.arc:brk/noroi_e1.brk": {
+            "sha256": "ceadd4a12145fe6b50d5adf24c18dc17683843e2f0bf089e6faab737ea6f837b",
+            "bytes": 256
+          },
+          "/res/Object/Bpw.arc:brk/hiraru1.brk": {
+            "sha256": "aabbf1367bfe321b633d1a30233fd5a6695b0185cfd6becbbd7e63361fac51ca",
+            "bytes": 288
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/boss-jalhalla-visibility-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "boss-puppet-ganon-water-v1",
+      "family": "puppet-ganon",
+      "action": "exercise",
+      "scenario": "boss-puppet-ganon-water-v1",
+      "resource": "/res/Object/Bgn.arc:bdlm/r0e_a.bdl",
+      "script": {
+        "states": [
+          "water-surface",
+          "water-mask",
+          "water-combined"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn.cpp:water0_disp/water1_disp"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Surface and mask share one material; blend and depth update are mutated before each sky-list draw.",
+        "TEV register values, fog and room rendering are excluded; only description-affecting mutations are reproduced."
+      ],
+      "input_identity": {
+        "archive_sha256": "da1c29475123ee1f6ba04509b754c6bde592a4b0f5d38ae0b82c8600115ca5c4",
+        "model_sha256": "f6376624285ab2395915444fc6d96a897348354b3edfe05356b5ed5c7a0bbe3d",
+        "model_bytes": 3296,
+        "companions": {
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/boss-puppet-ganon-water-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-bokoblin-materials-v1",
+      "family": "bokoblin",
+      "action": "exercise",
+      "scenario": "enemy-bokoblin-materials-v1",
+      "resource": "/res/Object/Bk.arc:bdlm/bk.bdl",
+      "script": {
+        "states": [
+          "body-stock",
+          "body-green",
+          "body-pink",
+          "body-frozen",
+          "body-restored",
+          "weapon-club",
+          "weapon-sword"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_material.cpp:dMat_ice_c::entryDL"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Green and pink tables follow mpMorf->entryDL(table), which swaps table textures for that draw.",
+        "Frozen follows the shared dMat_ice_c material copy; restoration returns to the stock state.",
+        "Club and sword follow daBk_Create setMaterialTable; the held attachment and eye-mask pass are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "7fda4e453a6c55eea2aeb89cd2b5c0f3e5522e664dd498140375104609442840",
+        "model_sha256": "f0f715d3c6f8567ac5029040b73c36822d748f081382b5e660df57235630f3a4",
+        "model_bytes": 49088,
+        "companions": {
+          "/res/Object/Bk.arc:bmt/green.bmt": {
+            "sha256": "09d3717c2f7da0cb293fb543799bfde52a49456e4e2e1fbb0e49143927951027",
+            "bytes": 12928
+          },
+          "/res/Object/Bk.arc:bmt/pink.bmt": {
+            "sha256": "5da5fd12ff0ca2ede4b8840b8b11e612b375c5db5cff317211d7e579a8557dda",
+            "bytes": 12864
+          },
+          "/res/Object/Bk.arc:bmt/bk_boko.bmt": {
+            "sha256": "06b455e6d71a2d0b110b373451f0c4127bbfcd12f0f871c0f0ef3fb1a28685f4",
+            "bytes": 1888
+          },
+          "/res/Object/Bk.arc:bmt/bk_ken.bmt": {
+            "sha256": "b05c71bb2d893a6dd845d55ca6af4c1c5708b940109cf66bab09a8b586997f7f",
+            "bytes": 1888
+          },
+          "/res/Object/Bk.arc:bmd/bk_kb.bmd": {
+            "sha256": "4144f21fe8087b14c1ed385215d2f97b09df45527d521dc41d0eabe6ace3762a",
+            "bytes": 37120
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/enemy-bokoblin-materials-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-chuchu-states-v1",
+      "family": "chuchu",
+      "action": "exercise",
+      "scenario": "enemy-chuchu-states-v1",
+      "resource": "/res/Object/Cc.arc:bmdm/cc.bmd",
+      "script": {
+        "states": [
+          "body",
+          "stone-first",
+          "stone-second",
+          "puddle",
+          "frozen"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_cc.cpp:daCC_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_material.cpp:dMat_ice_c::updateDL"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body, stone overlays, puddle and frozen branches use their own BRK/BTK bindings.",
+        "One color frame per state; BRK color frames change registers, not the description set selected here."
+      ],
+      "input_identity": {
+        "archive_sha256": "224966e0ab1fead4a2b24d49efe38440b7ef641b59fe8550a06456410022b02d",
+        "model_sha256": "f509d6281ad32e674830187578fdbaba0180206ca1d436ef3e0502b1a33ff565",
+        "model_bytes": 23424,
+        "companions": {
+          "/res/Object/Cc.arc:bdlm/cc_iwa.bdl": {
+            "sha256": "0db0d6663a65b002e0708c7e45a2a8d8f8a3103a83e131191b00c3b7e5ab8adc",
+            "bytes": 16480
+          },
+          "/res/Object/Cc.arc:bdlm/cc_beta.bdl": {
+            "sha256": "dbb6bce6a531303d727ba25de35b366825fbd7c34c71c7ae04cef8e05eff5953",
+            "bytes": 12672
+          },
+          "/res/Object/Cc.arc:brk/cc.brk": {
+            "sha256": "79e0f77989b45f820578d878a8700c08a2b873e27503e4e67281e923d3ec19d1",
+            "bytes": 480
+          },
+          "/res/Object/Cc.arc:brk/cc_beta.brk": {
+            "sha256": "4d2ec52e67dd89c0f9fb5157f87a687f0ec0e605c3fe6aa70f2c5a6527df07e9",
+            "bytes": 320
+          },
+          "/res/Object/Cc.arc:brk/cc_iwa01.brk": {
+            "sha256": "9b640d6668d1f01324a37709fb9987fb7cf63601b834142b37233c03de2d2144",
+            "bytes": 256
+          },
+          "/res/Object/Cc.arc:brk/cc_iwa02.brk": {
+            "sha256": "88445308d5fc697a33af4df4c45d04596a8263c87f7c02d180a944420f2ad4ca",
+            "bytes": 256
+          },
+          "/res/Object/Cc.arc:btk/cc_iwa01.btk": {
+            "sha256": "10560c222fc143bcd6561487d375b08243c61b0452668cb4196fd8cfef829bc1",
+            "bytes": 320
+          },
+          "/res/Object/Cc.arc:btk/cc_iwa02.btk": {
+            "sha256": "47b450587117ea628606740299c2a33d841153399ca3d06152c2df532e88e49f",
+            "bytes": 320
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/enemy-chuchu-states-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-death-large-v1",
+      "family": "enemy-death",
+      "action": "exercise",
+      "scenario": "enemy-death-large-v1",
+      "resource": "/res/Particle/common.jpc:0x0014+0x0013+0x0015+0x0016",
+      "script": {
+        "effect_ids": [
+          20,
+          19,
+          21,
+          22
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "enemy-death-large-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_disappear.cpp:set_disappear",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:setNormalStripes/dPa_stripesEcallBack::draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Four simultaneous effects of the 0x0/0x2/0xA-0xD branch, attributed collectively; spirit uses the real stripes callback.",
+        "Two deterministic seed/scale/alpha variations in the normal group, 240 ticks maximum. Stage lighting is excluded."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/enemy-death-large-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-death-small-v1",
+      "family": "enemy-death",
+      "action": "exercise",
+      "scenario": "enemy-death-small-v1",
+      "resource": "/res/Particle/common.jpc:0x043c+0x043d+0x043e",
+      "script": {
+        "effect_ids": [
+          1084,
+          1085,
+          1086
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "enemy-death-small-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_disappear.cpp:set_disappear"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Three simultaneous effects of the 0x4 branch, attributed collectively.",
+        "Two deterministic seed/scale/alpha variations in the normal group, 240 ticks maximum. Stage lighting is excluded."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/enemy-death-small-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-hit-fire-ice-effects",
+      "family": "enemy-effects",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Hit sparks, burning, freeze shatter and scene-bank effects are not inferred from the death recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_cc_uty.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_ep.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-line-materials",
+      "family": "line-materials",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Rope, chain and tail line packets need textures, lighting and sort-packet setup outside the model recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_ext.cpp:mDoExt_3DlineMat0_c/1_c",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_st.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "enemy-peahat-freeze-v1",
+      "family": "peahat",
+      "action": "exercise",
+      "scenario": "enemy-peahat-freeze-v1",
+      "resource": "/res/Object/Ph.arc:bdlm/phb.bdl",
+      "script": {
+        "states": [
+          "stock",
+          "frozen",
+          "restored"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_ph.cpp:daPH_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_ext.cpp:mDoExt_invisibleModel::entry/mDoExt_invJntPacket::draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body and propeller freeze through dMat_ice_c with the real depth-only invisible packets.",
+        "Propeller visibility remains drawn in the frozen state; collision and flight are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "527754a76a574e4df425a3d6fa02d3ec6afb20187af7292085678b35049fda0b",
+        "model_sha256": "55023b3db082fe22d668b95c063d77ccc4a1a95e6e6416271a1f498211431d4f",
+        "model_bytes": 19488,
+        "companions": {
+          "/res/Object/Ph.arc:bdlm/php.bdl": {
+            "sha256": "3b9a3e27b69561244d7b7c06542eb7bfc26ee0e51711456c22d25b548de8dc4a",
+            "bytes": 11744
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/enemy-peahat-freeze-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "environment-combinations",
+      "family": "overlap",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Actor lighting, fog, shadows, screen blur and scene overlap belong with environment follow-up #154.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_kankyo.cpp:setLightTevColorType",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_graphic.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "gohdan",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Head/hand parts, real shadow and blur need a dedicated multi-part recipe.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bst.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "gohma-debris-and-head",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Rock shards, armor fragments and the dead-head model need separate actor state.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_btd.cpp:hahen_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "kalle-demos",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Multi-actor plant phases, screen blur and feet/hand children exceed one bounded recipe.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmdfoot.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmdhand.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "moblin-darknut-equipment",
+      "family": "armored-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Armor pieces, shape visibility, blur materials and multi-part attachments need dedicated per-actor recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_mo2.cpp:daMo2_Draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_tn.cpp:daTn_Draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "molgera",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Sand surface, screen blur and larva actors are scene-dependent.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bwd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bwds.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "other-ordinary-enemies",
+      "family": "ordinary-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Remaining enemy families are oversized for this slice. Sharing the freeze path does not prove their stock or state materials.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_rd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_st.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_am2.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_mt.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_kb.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "phantom-ganon-ganondorf",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Energy attacks, material swaps, line trails, blur and cutscene-linked phases are oversized.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_fganon.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_gnd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_pz.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "poe-floormaster-wizzrobe",
+      "family": "spectral-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Lantern visibility, alpha models and arm/portal mixes span controllers beyond the shared freeze path.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_pw.cpp:daPW_Draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_fm.cpp:daFmDraw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_wz.cpp:daWZ_Draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "puppet-ganon-phases",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Ropes, tail parts, weak-point BRKs, reflection packets and later phases need their own controllers.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn.cpp:part_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn2.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn3.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    }
+  ],
+  "mapping": [
+    {
+      "type": 1,
+      "hash": -8993405169450835037,
+      "description_sha256": "57a704e437efba55549ea96d668c436d9e4b633a96b4d4f50a3d725c4bad638b",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8682731107956263761,
+      "description_sha256": "06a6ac6848da6a6ecbc68161c7b7306a77741d9261348d64e0816631a46276a4",
+      "baseline_covered": false,
+      "sources": [
+        "boss-jalhalla-visibility-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8436234278297615197,
+      "description_sha256": "fc65765006895b2c2dd905d6c880514f0d6899dc8aa7b91e62d9c3e0d2c8fd7b",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-peahat-freeze-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8001027794102202290,
+      "description_sha256": "4fcb0036d59f1551ff66883c7855e1c021a9e69b857b90e52f209ae4d9646b0f",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-chuchu-states-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -7029497707878460171,
+      "description_sha256": "c7f46b03690750e02f7d75ce32eef60019109e4233ebd81e63bc8ff9ae58709c",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-death-large-v1",
+        "enemy-death-small-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6716110049402617750,
+      "description_sha256": "53fdd42e1e83bd169ca805cb7d92efb460c159bf150e75f2d45b6977f7325a54",
+      "baseline_covered": false,
+      "sources": [
+        "boss-jalhalla-visibility-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6682340371899261239,
+      "description_sha256": "16c74c18f995eecef1bb8427a07ef18b1eb7b79a9177e96d19500932cf043ea0",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-chuchu-states-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6630657632905910662,
+      "description_sha256": "d6a1f5fdd4d9d1af2696d742d8e1f7780338ef01d817c271b3c5625e5b804bc1",
+      "baseline_covered": false,
+      "sources": [
+        "boss-jalhalla-visibility-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6207221627095666545,
+      "description_sha256": "14d7b4acaa69bb19882e79e529a256af0be48d61f72aaaf0194b1b44565b1415",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5762321900409344197,
+      "description_sha256": "3a94adb40a23e1f9249ba2be26ddc5b5bdc1b35922b64285823c78f0a1dbf3eb",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-chuchu-states-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5530635449352916194,
+      "description_sha256": "9b40dd1bf88946cb927a01026cdb69e6a42bfe09bec1c50eb9aaac4e536aa6bd",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4876368576268572860,
+      "description_sha256": "c06f6967fb0766899784cfc72bdbf43d34a4c2b044182b4e44ee50c0a0004355",
+      "baseline_covered": true,
+      "sources": [
+        "enemy-death-large-v1",
+        "enemy-death-small-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4765623107857290320,
+      "description_sha256": "85eb61d508b55a6564c65f0259ae750fbbda001fe218f7c49c872d0ea52d93f1",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-peahat-freeze-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4299191451180618288,
+      "description_sha256": "b992b57758feb9b58c7080498a1106512af02de9086dc70c7c3997e5e08eec6b",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3167161683416658565,
+      "description_sha256": "c8c9bd91f6d3ba540b51f3db62417ae0c92b95944427bf24ec2f0f99d6e50a83",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-peahat-freeze-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -299122715297165150,
+      "description_sha256": "1c385c68c2a5243209474893ba9e89e6a035ff51488fb4ea18de2e0f6e95a607",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-chuchu-states-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 164380837841461368,
+      "description_sha256": "c409fce9576f8a4f18835934a60444f195e54120a95054d88efe23b7f843b971",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-bokoblin-materials-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 312719097137248653,
+      "description_sha256": "15ce9e3c9ff7f919a1f962941ba703db2784094cd837b0d3eb7f4c6c12abedcb",
+      "baseline_covered": false,
+      "sources": [
+        "boss-jalhalla-visibility-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1085996510293711437,
+      "description_sha256": "b0f13469c443e20e720e233b13537a142cb28785f528c912dd82f33c544f7618",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1201461082907490617,
+      "description_sha256": "83f3f59927ed56b26cd3c34ed337e336675582742032657d7411fd4a9bc10f02",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1247348684577070708,
+      "description_sha256": "986d9da38b0c9f013468d3d209ed75c5c8950073c7f03fadc63205a2719c26b2",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-peahat-freeze-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1613186355662787003,
+      "description_sha256": "ab42045e0e8df7de63f7b979a09fbfcd159404f99f39481f214153452ad0fae6",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-death-large-v1",
+        "enemy-death-small-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1906264098967636261,
+      "description_sha256": "e73893c0d0920c847ef1141aa0b7f5774af6f948995b01380e32151b094a2290",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-bokoblin-materials-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3353737241235233465,
+      "description_sha256": "007458f950634dd32b57f59e496f6246f5a8aadb1dc1b9c0c209210e9c08cfc9",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3650791763251053204,
+      "description_sha256": "b80f617f5c449116854882f3b33029f01fd20bd74a9b055699b986575ed90276",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-peahat-freeze-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3968213177483327850,
+      "description_sha256": "accbd13f7020ed67d88235a6a464b29e8da60d0619322db299c9e095f1674e37",
+      "baseline_covered": false,
+      "sources": [
+        "boss-puppet-ganon-water-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4313604762377106461,
+      "description_sha256": "72340878ae1cb29ff64f816f7f4c1f99ed2c0f1d8406ca786b784d1e9051fe7e",
+      "baseline_covered": false,
+      "sources": [
+        "boss-jalhalla-visibility-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5066199660074624125,
+      "description_sha256": "ed6335053549e1520d736fc9dc3800a475e01705c383067ad0e015d79beccdb2",
+      "baseline_covered": false,
+      "sources": [
+        "boss-puppet-ganon-water-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5982188645762532990,
+      "description_sha256": "452614665d65c9b7c37eea41a2997c225c1d5d23229d242df1e635e2ccd281d7",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-peahat-freeze-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6568270658377349682,
+      "description_sha256": "7854d672e62df82732a0b97832aa7bf2dffd44d05b46537b6060f42f67642d6d",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6616007111367429399,
+      "description_sha256": "e6ea9e646476f5d5de13f6962a963fbe835d1c2f78dcb7b7d2ead0566b4c1185",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-bokoblin-materials-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6690051204767892586,
+      "description_sha256": "1f1662126b8ecab579be65dee246c5f8023ecff52c4da1bd59e78ed37028ce7a",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-bokoblin-materials-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6796089643604112000,
+      "description_sha256": "f96b4a078c9d229594c61c1a13d44884c4733516d28f0bd440ec9b578c62dd98",
+      "baseline_covered": false,
+      "sources": [
+        "boss-jalhalla-visibility-v1",
+        "enemy-peahat-freeze-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6830172664135547875,
+      "description_sha256": "59247768b16398c80d8b2ac6c93fa1a34d9b99193a27e944ffce35a975094be2",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-chuchu-states-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7043678107085969086,
+      "description_sha256": "54606b61f065901591372ad1247bf366b97245a72f87be8e51f289076f3afe98",
+      "baseline_covered": false,
+      "sources": [
+        "boss-gohma-defeat-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7268489219463978344,
+      "description_sha256": "e6b2ae2a898c2f1950f810336001e9fe2b88a81c1127d5cc88f48a0f148e0026",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-bokoblin-materials-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7672490693887150342,
+      "description_sha256": "45ecbe05744ac92e796b30f0f88f47fe550dba923dd00ccd7fde5348bb176e60",
+      "baseline_covered": false,
+      "sources": [
+        "boss-jalhalla-visibility-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7870707320051415874,
+      "description_sha256": "8b4ef47a3b7a0c6f23fe70a16dd0fb2a28ca79df7001195d14936905235b85e6",
+      "baseline_covered": false,
+      "sources": [
+        "boss-jalhalla-visibility-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8052185868510806993,
+      "description_sha256": "f2776077b3358cce668931a0e18982abda63450b5702add4ad8ee26a0b6ef178",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-chuchu-states-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8085692756027006818,
+      "description_sha256": "56dd07d53f463c91c4dddf29301fe6c43c502d01c887f5e2b07c034642505150",
+      "baseline_covered": false,
+      "sources": [
+        "enemy-death-large-v1",
+        "enemy-death-small-v1"
+      ]
+    }
+  ],
+  "inventory_complete": false,
+  "residual_gaps": [
+    "bokoblin-eye-mask-and-blink",
+    "enemy-hit-fire-ice-effects",
+    "enemy-line-materials",
+    "environment-combinations",
+    "gohdan",
+    "gohma-debris-and-head",
+    "kalle-demos",
+    "moblin-darknut-equipment",
+    "molgera",
+    "other-ordinary-enemies",
+    "phantom-ganon-ganondorf",
+    "poe-floormaster-wizzrobe",
+    "puppet-ganon-phases"
+  ],
+  "additions_also_in_independent_152_seed": 3,
+  "existing_recipe_controls": {
+    "equipment-arrow-tips-v1": {
+      "descriptions": 2,
+      "equal_to_retained_152_collection": true
+    },
+    "equipment-bomb-normal-v1": {
+      "descriptions": 107,
+      "equal_to_retained_152_collection": true
+    },
+    "equipment-bomb-cheap-v1": {
+      "descriptions": 35,
+      "equal_to_retained_152_collection": true
+    }
+  },
+  "physical_verification": false
+}

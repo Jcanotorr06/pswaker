@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "issue": 153,
+  "app_version": "01.24",
+  "program": {
+    "build_id": "35a453336a0e4b0d432c",
+    "elf_sha256": "c2d48776ed9f79d90ec71d61cc0732a3b2b673da361ca57d7c4a10596a2392fc",
+    "eboot_sha256": "76ddd46e09966d6372cb597f16329285b4bbea1450f6ead03102c66539ad97bc"
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "abed3433b58c87179bf3516151ecfd9adcdcdaefaee64716fc09d7a9ff69aab5",
+    "bytes": 1521287168
+  },
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "boss-gohma-defeat-v1:observed.db": {
+        "bytes": 53248,
+        "sha256": "4324fe73068157c42ba595ebe26e57d999a285edff2db8690d0c80d16b1c3092"
+      },
+      "boss-jalhalla-visibility-v1:observed.db": {
+        "bytes": 49152,
+        "sha256": "f853bed0fc3cc86107a310621883d6dfbccda49b0844f34013b90d23c196f910"
+      },
+      "boss-puppet-ganon-water-v1:observed.db": {
+        "bytes": 24576,
+        "sha256": "fa04d11aa23719aff1573b2bddb3037fb93aa2c136dd49858344870ab5a92540"
+      },
+      "enemy-bokoblin-materials-v1:observed.db": {
+        "bytes": 36864,
+        "sha256": "db6a6e1ed28cfe2aa8e64a9a2be7881bece96f334ddc800b42c313b731178bb3"
+      },
+      "enemy-chuchu-states-v1:observed.db": {
+        "bytes": 40960,
+        "sha256": "59dee0831740e7277ec3f7778137a9b329399776e6b5a6f565e7c80d3bbb4e3e"
+      },
+      "enemy-death-large-v1:observed.db": {
+        "bytes": 32768,
+        "sha256": "530647e29eb75efe8f6c58beba1e652bd0f8322311b281c23efdce8cf14a191c"
+      },
+      "enemy-death-small-v1:observed.db": {
+        "bytes": 32768,
+        "sha256": "530647e29eb75efe8f6c58beba1e652bd0f8322311b281c23efdce8cf14a191c"
+      },
+      "enemy-peahat-freeze-v1:observed.db": {
+        "bytes": 45056,
+        "sha256": "61ed6bb3d6e9b2b4bb7f48ff0021652adb0a04dbacd380c4e25e5cd5efcab730"
+      }
+    },
+    "rows": 340,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 339
+      }
+    ],
+    "bytes": 1425408,
+    "sha256": "912b99b13dbb1a5a077968f3d9ba2df32cd35a436c3441b81bccf19f17915056",
+    "asset_manifest_sha256": "bbf065c0bb96a24157bda29a9c1d80cf70f825d413e418fae2f6ff952de7d24e"
+  },
+  "manifest_sha256": "7e6148e0bf63ee1d6cb471c3dae21ed5c7332ad52f33a6dbd2a8312c6e006d30",
+  "plan_sha256": "8dd1da871671dd1e05f3395761617c30e6d5795ee80f8e8285a9054d8b12973b",
+  "collector": {
+    "binary_sha256": "b63236f51e8b4572491dcd22e75788faeaf1deb0576b8a5df5e5a26534074141",
+    "prepared_inputs_sha256": "a647390f913854b3ae59e68169c8aa70359f319c2fcbc235a7077606fc04cee1",
+    "renderer_sources_sha256": "e8c95694065f153501f6d4217328d42605fc9cd318f975f437b2ffad63399dab",
+    "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+    "contract_bytes": 2872,
+    "collector_sources": {
+      "CMakeLists.txt": "c2ccdabaff749f188e9826d496dd16185501e45c4ca37a4c558850bf4a666d59",
+      "main.cpp": "12dd481329a566e827ceef1da4caefcf89a8e6dd7345a5c1ce38d3b3a2ad08e5",
+      "model-collector.cpp": "91824228e393a6a10d34107641d1a5cceb98db00c7054e27da6179849619b11c",
+      "model-contract.cpp": "7baf0056fea33c25868b164828471312415b98f5fe1899ab1853f86d274c6e0c"
+    },
+    "adapter_sources": {
+      "stock-textures.cpp": "963740b0fa44f1c9ed5cbc62b0b6746ede13b31b1d00e721d6133f949e1efb96",
+      "frame-pacing.hpp": "f074d1279621f8b4feae76e6a2ad9f0aba222d310dec455bebe6906b38d41b79",
+      "game-platform.hpp": "fdc1cd4f7f20dc80890ed3bd6fd0219789b30ebdb11d8e6e3dd7923a8463ddbd"
+    },
+    "build_tool_sha256": "e25f55c377d52e0b2168f15aa2e36e81f785663e06f3d4375988ca7fcb12b5a5"
+  },
+  "collector_build_sha256": "fc4164d51e83916e5a9237b10c2e0c76847f1b646115d5e4f6c169f2d05758f8",
+  "assembly_sha256": "208d5028fc0456fae0ffebc9978a95639d7fb0ecaf409c2a25515818bdb20424",
+  "inspection_sha256": "f82d2dcd2415985c695b540c5ad28e2b6281863c455aff66bd3b40964fedb192",
+  "fresh_inspection_reproduces_assembly_inspection": true,
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "package_inputs_preserved_sha256": "8e5ae1c76229f625c03d2da377b1f899b117be72c5b763e31aa2cfbc82d0bd43",
+  "seed_source_sha256": "bbf065c0bb96a24157bda29a9c1d80cf70f825d413e418fae2f6ff952de7d24e",
+  "physical_verification": false,
+  "host_target_limits": [
+    "Host BGRA8 versus PS4 RGBA8; PS4 prepares its own driver objects from descriptions.",
+    "No new PS4 preparation, appearance, wait, scaling, Quit or preservation observation.",
+    "Isolated actor state and effect setups do not prove complete actor, AI or boss-phase execution."
+  ],
+  "validation_sources": {
+    "collect-model-seed.py": "e25f55c377d52e0b2168f15aa2e36e81f785663e06f3d4375988ca7fcb12b5a5",
+    "enemy_collection.py": "d2db7741afeca1bfa899a597f1e68ed5b5898e066f8f14a9e8ec73fe1f66c3f5",
+    "particle_collection.py": "6d51818a5342f225fb351f7ceccfea2f9fc6b6ef85dc541496b36e9dfaebee3b",
+    "asset_inventory.py": "687621f6f5ef3ff8f01fe0b1d8831e960ce8c232269006a0c90894f50872fa7c",
+    "pipeline_assets.py": "d2b9488f208ece4cf3584c7c4b3c035100a03e3789b6e13d5021d44f8add78f4",
+    "package_artifact.py": "e212b4b8cdf1e0dd515a3a8e54b93c0716775c2d53135579d37d0ebfe1ea6481"
+  },
+  "replay_sources": {
+    "build153.py": "f22d33b3b7d6f390038ea773f73345b09b78608929d6c6ed31c83de61e25f8ad",
+    "run153.py": "432d2ecc38de5d31099baf66cb1c4fbafe472c823f576df74fc9df2987923de1",
+    "verify153.py": "b4be59495e714c232e218ac67764a013ec7214d08c15b6f80a4d7114e29076f4",
+    "package153.py": "174765636ae1175edf2d9f0928a5e226bea39e9251486a8752b6f9be3f579b7d"
+  }
+}

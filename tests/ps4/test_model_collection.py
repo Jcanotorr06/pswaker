@@ -12,6 +12,7 @@ from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_co
 from synthetic_disc import generate
 from synthetic_model_collector import add_model_resource, make_collector, MODEL_BYTES, PARTICLE_BYTES
 from synthetic_equipment import make_equipment_collection
+from synthetic_enemy import add_enemy_resources, make_enemy_collection, member_bytes, PEAHAT_COMPANIONS, PEAHAT_RESOURCE
 from contextlib import closing
 import sqlite3
 
@@ -132,6 +133,55 @@ class CollectorCommandTests(unittest.TestCase):
                 identity = native['resources']
                 self.assertEqual(identity['model_sha256' if arrow else 'particle_sha256'],
                                  hashlib.sha256(MODEL_BYTES if arrow else PARTICLE_BYTES).hexdigest())
+                self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def test_enemy_freeze_and_batch_bind_every_private_input_and_preserve_them(self):
+        # The stand-in rejects wrong scenario/resource arguments; native actor
+        # rendering is separately exercised with private inputs.
+        _, self.image = generate(self.root, CLI.parents[2])
+        add_enemy_resources(self.image, self.root / 'repo/platform/ps4/content-contract.json')
+        for actor in [True, False]:
+            with self.subTest(actor=actor):
+                metadata = make_enemy_collection(self.root / ('actor-fixture' if actor else 'effect-fixture'),
+                                                 actor=actor, keys=(84,))
+                metadata['runtime_identity_verified_rows'] = 3
+                (self.collector / 'native-report.json').write_text(json.dumps(metadata))
+                name = 'actor' if actor else 'effect'
+                row = {'id': name, 'family': name, 'scenario': metadata['scenario'], 'resource': metadata['resource'],
+                       'script': metadata['script'], 'source_references': ['synthetic.cpp:draw'],
+                       'action': 'exercise', 'assumptions': ['Synthetic enemy process boundary.']}
+                plan = self.root / (name + '-plan.json')
+                plan.write_text(json.dumps({'schema': 1, 'id': 'synthetic-enemy-v1', 'kind': 'enemy-actors',
+                                            'exclusions': ['Other actors excluded.'], 'rows': [row]}))
+                manifest = self.root / (name + '-manifest.json')
+                command = [sys.executable, str(self.cli), 'freeze-inventory', '--plan', str(plan),
+                           '--collector', str(self.collector), '--image', str(self.image)]
+                result = subprocess.run(command + ['--output', str(manifest)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                repeat = self.root / (name + '-repeat.json')
+                result = subprocess.run(command + ['--output', str(repeat)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(manifest.read_bytes(), repeat.read_bytes())
+                before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
+                output = self.root / (name + '-batch')
+                result = subprocess.run([sys.executable, str(self.cli), 'batch', '--manifest', str(manifest),
+                                         '--collector', str(self.collector), '--image', str(self.image),
+                                         '--baseline', str(self.baseline), '--output', str(output)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                report = json.loads((output / 'prepared/batch-report.json').read_text())
+                self.assertEqual((report['provenance'], report['collected_rows'], report['new_rows']),
+                                 ('enemy-actor-batch', 1, 0))
+                native = json.loads((output / f'collections/{name}/collection.json').read_text())
+                self.assertEqual(native['commands'][0][-2:], [metadata['scenario'], metadata['resource']])
+                identity = native['resources']
+                self.assertEqual(identity, json.loads(manifest.read_text())['rows'][0]['input_identity'])
+                if actor:
+                    self.assertEqual(identity['model_sha256'], hashlib.sha256(member_bytes(PEAHAT_RESOURCE)).hexdigest())
+                    self.assertEqual(identity['companions'],
+                                     {name: {'sha256': hashlib.sha256(member_bytes(name)).hexdigest(),
+                                             'bytes': len(member_bytes(name))} for name in PEAHAT_COMPANIONS})
+                else:
+                    self.assertEqual(identity['particle_sha256'], hashlib.sha256(PARTICLE_BYTES).hexdigest())
                 self.assertEqual({p: p.read_bytes() for p in before}, before)
 
     def test_command_repeats_export_and_attributes_exact_build_image_and_resource(self):

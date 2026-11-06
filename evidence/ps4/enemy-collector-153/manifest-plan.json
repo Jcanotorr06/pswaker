@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "kind": "enemy-actors",
+  "id": "enemy-actors-153-v1",
+  "exclusions": [
+    "Only eight fixed recipes; other enemies, bosses and phases remain explicit rows.",
+    "1280x720/single sample, stock quality, synchronous rendering, original 30 Hz particle ticks.",
+    "No playthrough, owner storage access, production warmup, combat agent or physical verification."
+  ],
+  "rows": [
+    {
+      "id": "enemy-bokoblin-materials-v1",
+      "family": "bokoblin",
+      "action": "exercise",
+      "scenario": "enemy-bokoblin-materials-v1",
+      "resource": "/res/Object/Bk.arc:bdlm/bk.bdl",
+      "script": {
+        "states": [
+          "body-stock",
+          "body-green",
+          "body-pink",
+          "body-frozen",
+          "body-restored",
+          "weapon-club",
+          "weapon-sword"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_material.cpp:dMat_ice_c::entryDL"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Green and pink tables follow mpMorf->entryDL(table), which swaps table textures for that draw.",
+        "Frozen follows the shared dMat_ice_c material copy; restoration returns to the stock state.",
+        "Club and sword follow daBk_Create setMaterialTable; the held attachment and eye-mask pass are excluded."
+      ]
+    },
+    {
+      "id": "enemy-chuchu-states-v1",
+      "family": "chuchu",
+      "action": "exercise",
+      "scenario": "enemy-chuchu-states-v1",
+      "resource": "/res/Object/Cc.arc:bmdm/cc.bmd",
+      "script": {
+        "states": [
+          "body",
+          "stone-first",
+          "stone-second",
+          "puddle",
+          "frozen"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_cc.cpp:daCC_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_material.cpp:dMat_ice_c::updateDL"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body, stone overlays, puddle and frozen branches use their own BRK/BTK bindings.",
+        "One color frame per state; BRK color frames change registers, not the description set selected here."
+      ]
+    },
+    {
+      "id": "enemy-peahat-freeze-v1",
+      "family": "peahat",
+      "action": "exercise",
+      "scenario": "enemy-peahat-freeze-v1",
+      "resource": "/res/Object/Ph.arc:bdlm/phb.bdl",
+      "script": {
+        "states": [
+          "stock",
+          "frozen",
+          "restored"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_ph.cpp:daPH_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_ext.cpp:mDoExt_invisibleModel::entry/mDoExt_invJntPacket::draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body and propeller freeze through dMat_ice_c with the real depth-only invisible packets.",
+        "Propeller visibility remains drawn in the frozen state; collision and flight are excluded."
+      ]
+    },
+    {
+      "id": "boss-jalhalla-visibility-v1",
+      "family": "jalhalla",
+      "action": "exercise",
+      "scenario": "boss-jalhalla-visibility-v1",
+      "resource": "/res/Object/Bpw.arc:bdlm/bpw.bdl",
+      "script": {
+        "states": [
+          "default",
+          "light-stun",
+          "curse-start",
+          "curse-end",
+          "light-freeze",
+          "possession"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:body_draw/torituki_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_list_c::entryZSortXluDrawList"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body states use the mask-off list; light-freeze uses the normal list and invisible packets as in body_draw.",
+        "Possession follows torituki_draw with the lantern model. Alpha is fixed at 255; split-Poe actors are excluded."
+      ]
+    },
+    {
+      "id": "boss-gohma-defeat-v1",
+      "family": "gohma",
+      "action": "exercise",
+      "scenario": "boss-gohma-defeat-v1",
+      "resource": "/res/Object/Btd.arc:bmdm/sotai.bmd",
+      "script": {
+        "states": [
+          "phase-one",
+          "phase-two",
+          "defeat"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_btd.cpp:daBtd_Draw/useHeapInit/damage_check"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Phase two binds DEADA first and rebinds SOTAI as daBtd_Create does; defeat swaps the DEADA material table.",
+        "Rock debris, armor shards and the dead-head model are excluded."
+      ]
+    },
+    {
+      "id": "boss-puppet-ganon-water-v1",
+      "family": "puppet-ganon",
+      "action": "exercise",
+      "scenario": "boss-puppet-ganon-water-v1",
+      "resource": "/res/Object/Bgn.arc:bdlm/r0e_a.bdl",
+      "script": {
+        "states": [
+          "water-surface",
+          "water-mask",
+          "water-combined"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn.cpp:water0_disp/water1_disp"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Surface and mask share one material; blend and depth update are mutated before each sky-list draw.",
+        "TEV register values, fog and room rendering are excluded; only description-affecting mutations are reproduced."
+      ]
+    },
+    {
+      "id": "enemy-death-large-v1",
+      "family": "enemy-death",
+      "action": "exercise",
+      "scenario": "enemy-death-large-v1",
+      "resource": "/res/Particle/common.jpc:0x0014+0x0013+0x0015+0x0016",
+      "script": {
+        "effect_ids": [
+          20,
+          19,
+          21,
+          22
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "enemy-death-large-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_disappear.cpp:set_disappear",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:setNormalStripes/dPa_stripesEcallBack::draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Four simultaneous effects of the 0x0/0x2/0xA-0xD branch, attributed collectively; spirit uses the real stripes callback.",
+        "Two deterministic seed/scale/alpha variations in the normal group, 240 ticks maximum. Stage lighting is excluded."
+      ]
+    },
+    {
+      "id": "enemy-death-small-v1",
+      "family": "enemy-death",
+      "action": "exercise",
+      "scenario": "enemy-death-small-v1",
+      "resource": "/res/Particle/common.jpc:0x043c+0x043d+0x043e",
+      "script": {
+        "effect_ids": [
+          1084,
+          1085,
+          1086
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "enemy-death-small-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_disappear.cpp:set_disappear"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Three simultaneous effects of the 0x4 branch, attributed collectively.",
+        "Two deterministic seed/scale/alpha variations in the normal group, 240 ticks maximum. Stage lighting is excluded."
+      ]
+    },
+    {
+      "id": "bokoblin-eye-mask-and-blink",
+      "family": "bokoblin",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Eye mask-off joint entry, BTP blinking, search light and held-prop attachment need actor-owned joint state.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/br_draw/search_check_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "moblin-darknut-equipment",
+      "family": "armored-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Armor pieces, shape visibility, blur materials and multi-part attachments need dedicated per-actor recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_mo2.cpp:daMo2_Draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_tn.cpp:daTn_Draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "poe-floormaster-wizzrobe",
+      "family": "spectral-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Lantern visibility, alpha models and arm/portal mixes span controllers beyond the shared freeze path.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_pw.cpp:daPW_Draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_fm.cpp:daFmDraw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_wz.cpp:daWZ_Draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "other-ordinary-enemies",
+      "family": "ordinary-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Remaining enemy families are oversized for this slice. Sharing the freeze path does not prove their stock or state materials.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_rd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_st.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_am2.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_mt.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_kb.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "enemy-line-materials",
+      "family": "line-materials",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Rope, chain and tail line packets need textures, lighting and sort-packet setup outside the model recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_ext.cpp:mDoExt_3DlineMat0_c/1_c",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_st.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "enemy-hit-fire-ice-effects",
+      "family": "enemy-effects",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Hit sparks, burning, freeze shatter and scene-bank effects are not inferred from the death recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_cc_uty.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_ep.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "kalle-demos",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Multi-actor plant phases, screen blur and feet/hand children exceed one bounded recipe.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmdfoot.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmdhand.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "gohdan",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Head/hand parts, real shadow and blur need a dedicated multi-part recipe.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bst.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "molgera",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Sand surface, screen blur and larva actors are scene-dependent.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bwd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bwds.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "phantom-ganon-ganondorf",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Energy attacks, material swaps, line trails, blur and cutscene-linked phases are oversized.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_fganon.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_gnd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_pz.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "gohma-debris-and-head",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Rock shards, armor fragments and the dead-head model need separate actor state.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_btd.cpp:hahen_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "puppet-ganon-phases",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Ropes, tail parts, weak-point BRKs, reflection packets and later phases need their own controllers.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn.cpp:part_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn2.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn3.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "environment-combinations",
+      "family": "overlap",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Actor lighting, fog, shadows, screen blur and scene overlap belong with environment follow-up #154.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_kankyo.cpp:setLightTevColorType",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_graphic.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    }
+  ]
+}

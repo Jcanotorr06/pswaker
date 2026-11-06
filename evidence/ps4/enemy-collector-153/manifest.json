@@ -1,0 +1,719 @@
+{
+  "schema": 1,
+  "kind": "enemy-actors",
+  "id": "enemy-actors-153-v1",
+  "exclusions": [
+    "Only eight fixed recipes; other enemies, bosses and phases remain explicit rows.",
+    "1280x720/single sample, stock quality, synchronous rendering, original 30 Hz particle ticks.",
+    "No playthrough, owner storage access, production warmup, combat agent or physical verification."
+  ],
+  "rows": [
+    {
+      "id": "enemy-bokoblin-materials-v1",
+      "family": "bokoblin",
+      "action": "exercise",
+      "scenario": "enemy-bokoblin-materials-v1",
+      "resource": "/res/Object/Bk.arc:bdlm/bk.bdl",
+      "script": {
+        "states": [
+          "body-stock",
+          "body-green",
+          "body-pink",
+          "body-frozen",
+          "body-restored",
+          "weapon-club",
+          "weapon-sword"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_material.cpp:dMat_ice_c::entryDL"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Green and pink tables follow mpMorf->entryDL(table), which swaps table textures for that draw.",
+        "Frozen follows the shared dMat_ice_c material copy; restoration returns to the stock state.",
+        "Club and sword follow daBk_Create setMaterialTable; the held attachment and eye-mask pass are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "7fda4e453a6c55eea2aeb89cd2b5c0f3e5522e664dd498140375104609442840",
+        "model_sha256": "f0f715d3c6f8567ac5029040b73c36822d748f081382b5e660df57235630f3a4",
+        "model_bytes": 49088,
+        "companions": {
+          "/res/Object/Bk.arc:bmt/green.bmt": {
+            "sha256": "09d3717c2f7da0cb293fb543799bfde52a49456e4e2e1fbb0e49143927951027",
+            "bytes": 12928
+          },
+          "/res/Object/Bk.arc:bmt/pink.bmt": {
+            "sha256": "5da5fd12ff0ca2ede4b8840b8b11e612b375c5db5cff317211d7e579a8557dda",
+            "bytes": 12864
+          },
+          "/res/Object/Bk.arc:bmt/bk_boko.bmt": {
+            "sha256": "06b455e6d71a2d0b110b373451f0c4127bbfcd12f0f871c0f0ef3fb1a28685f4",
+            "bytes": 1888
+          },
+          "/res/Object/Bk.arc:bmt/bk_ken.bmt": {
+            "sha256": "b05c71bb2d893a6dd845d55ca6af4c1c5708b940109cf66bab09a8b586997f7f",
+            "bytes": 1888
+          },
+          "/res/Object/Bk.arc:bmd/bk_kb.bmd": {
+            "sha256": "4144f21fe8087b14c1ed385215d2f97b09df45527d521dc41d0eabe6ace3762a",
+            "bytes": 37120
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      }
+    },
+    {
+      "id": "enemy-chuchu-states-v1",
+      "family": "chuchu",
+      "action": "exercise",
+      "scenario": "enemy-chuchu-states-v1",
+      "resource": "/res/Object/Cc.arc:bmdm/cc.bmd",
+      "script": {
+        "states": [
+          "body",
+          "stone-first",
+          "stone-second",
+          "puddle",
+          "frozen"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_cc.cpp:daCC_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_material.cpp:dMat_ice_c::updateDL"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body, stone overlays, puddle and frozen branches use their own BRK/BTK bindings.",
+        "One color frame per state; BRK color frames change registers, not the description set selected here."
+      ],
+      "input_identity": {
+        "archive_sha256": "224966e0ab1fead4a2b24d49efe38440b7ef641b59fe8550a06456410022b02d",
+        "model_sha256": "f509d6281ad32e674830187578fdbaba0180206ca1d436ef3e0502b1a33ff565",
+        "model_bytes": 23424,
+        "companions": {
+          "/res/Object/Cc.arc:bdlm/cc_iwa.bdl": {
+            "sha256": "0db0d6663a65b002e0708c7e45a2a8d8f8a3103a83e131191b00c3b7e5ab8adc",
+            "bytes": 16480
+          },
+          "/res/Object/Cc.arc:bdlm/cc_beta.bdl": {
+            "sha256": "dbb6bce6a531303d727ba25de35b366825fbd7c34c71c7ae04cef8e05eff5953",
+            "bytes": 12672
+          },
+          "/res/Object/Cc.arc:brk/cc.brk": {
+            "sha256": "79e0f77989b45f820578d878a8700c08a2b873e27503e4e67281e923d3ec19d1",
+            "bytes": 480
+          },
+          "/res/Object/Cc.arc:brk/cc_beta.brk": {
+            "sha256": "4d2ec52e67dd89c0f9fb5157f87a687f0ec0e605c3fe6aa70f2c5a6527df07e9",
+            "bytes": 320
+          },
+          "/res/Object/Cc.arc:brk/cc_iwa01.brk": {
+            "sha256": "9b640d6668d1f01324a37709fb9987fb7cf63601b834142b37233c03de2d2144",
+            "bytes": 256
+          },
+          "/res/Object/Cc.arc:brk/cc_iwa02.brk": {
+            "sha256": "88445308d5fc697a33af4df4c45d04596a8263c87f7c02d180a944420f2ad4ca",
+            "bytes": 256
+          },
+          "/res/Object/Cc.arc:btk/cc_iwa01.btk": {
+            "sha256": "10560c222fc143bcd6561487d375b08243c61b0452668cb4196fd8cfef829bc1",
+            "bytes": 320
+          },
+          "/res/Object/Cc.arc:btk/cc_iwa02.btk": {
+            "sha256": "47b450587117ea628606740299c2a33d841153399ca3d06152c2df532e88e49f",
+            "bytes": 320
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      }
+    },
+    {
+      "id": "enemy-peahat-freeze-v1",
+      "family": "peahat",
+      "action": "exercise",
+      "scenario": "enemy-peahat-freeze-v1",
+      "resource": "/res/Object/Ph.arc:bdlm/phb.bdl",
+      "script": {
+        "states": [
+          "stock",
+          "frozen",
+          "restored"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_ph.cpp:daPH_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_ext.cpp:mDoExt_invisibleModel::entry/mDoExt_invJntPacket::draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body and propeller freeze through dMat_ice_c with the real depth-only invisible packets.",
+        "Propeller visibility remains drawn in the frozen state; collision and flight are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "527754a76a574e4df425a3d6fa02d3ec6afb20187af7292085678b35049fda0b",
+        "model_sha256": "55023b3db082fe22d668b95c063d77ccc4a1a95e6e6416271a1f498211431d4f",
+        "model_bytes": 19488,
+        "companions": {
+          "/res/Object/Ph.arc:bdlm/php.bdl": {
+            "sha256": "3b9a3e27b69561244d7b7c06542eb7bfc26ee0e51711456c22d25b548de8dc4a",
+            "bytes": 11744
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      }
+    },
+    {
+      "id": "boss-jalhalla-visibility-v1",
+      "family": "jalhalla",
+      "action": "exercise",
+      "scenario": "boss-jalhalla-visibility-v1",
+      "resource": "/res/Object/Bpw.arc:bdlm/bpw.bdl",
+      "script": {
+        "states": [
+          "default",
+          "light-stun",
+          "curse-start",
+          "curse-end",
+          "light-freeze",
+          "possession"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:body_draw/torituki_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_list_c::entryZSortXluDrawList"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Body states use the mask-off list; light-freeze uses the normal list and invisible packets as in body_draw.",
+        "Possession follows torituki_draw with the lantern model. Alpha is fixed at 255; split-Poe actors are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "861c09175e65e2b5e814f7e210afcf8ca314ce4d089676e1d72099af214c0a40",
+        "model_sha256": "369a2506b07e864490831b138e417909e8070dc16df483c42e729a789bf42b1f",
+        "model_bytes": 124384,
+        "companions": {
+          "/res/Object/Bpw.arc:bdlm/bpw_kan1.bdl": {
+            "sha256": "bcad1bc7daa4404f355b42ee4f7a6779b60acbc0e42b034771bb963fdac39f34",
+            "bytes": 22560
+          },
+          "/res/Object/Bpw.arc:brk/default.brk": {
+            "sha256": "3a53dfce79cd68de76ea160218a3e2ac5c51ad7e2d457f829a8be06797c49e91",
+            "bytes": 224
+          },
+          "/res/Object/Bpw.arc:brk/hit.brk": {
+            "sha256": "d70ee74d863a1c047f83dc58f4d5d0e52939142ede0af0fadedae98b66413a5f",
+            "bytes": 288
+          },
+          "/res/Object/Bpw.arc:brk/noroi_s1.brk": {
+            "sha256": "cc014f2d8b4ea8f8825e12b0f095f0afd2d1082b0226ab66b51ab10cd1d040c2",
+            "bytes": 256
+          },
+          "/res/Object/Bpw.arc:brk/noroi_e1.brk": {
+            "sha256": "ceadd4a12145fe6b50d5adf24c18dc17683843e2f0bf089e6faab737ea6f837b",
+            "bytes": 256
+          },
+          "/res/Object/Bpw.arc:brk/hiraru1.brk": {
+            "sha256": "aabbf1367bfe321b633d1a30233fd5a6695b0185cfd6becbbd7e63361fac51ca",
+            "bytes": 288
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      }
+    },
+    {
+      "id": "boss-gohma-defeat-v1",
+      "family": "gohma",
+      "action": "exercise",
+      "scenario": "boss-gohma-defeat-v1",
+      "resource": "/res/Object/Btd.arc:bmdm/sotai.bmd",
+      "script": {
+        "states": [
+          "phase-one",
+          "phase-two",
+          "defeat"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_btd.cpp:daBtd_Draw/useHeapInit/damage_check"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Phase two binds DEADA first and rebinds SOTAI as daBtd_Create does; defeat swaps the DEADA material table.",
+        "Rock debris, armor shards and the dead-head model are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "2d608f73997891d0867fb103dbc75e3481ea3d79e09e78a01ea741bcc7db6c78",
+        "model_sha256": "70b9f60c895bb542c04d0707a3afaee7aa3724f68ac7d17710d34483d0987c44",
+        "model_bytes": 334752,
+        "companions": {
+          "/res/Object/Btd.arc:bmdm/btd.bmd": {
+            "sha256": "f6d6472080d78940963312de4f1cf305586e1607904e2c7a4f49f23b24237d15",
+            "bytes": 425504
+          },
+          "/res/Object/Btd.arc:btk/btd.btk": {
+            "sha256": "ee89392b4cfc23041ee21523230ab19e92c4b849ee096c7c5d07ecca1b70a22e",
+            "bytes": 1280
+          },
+          "/res/Object/Btd.arc:brk/btd.brk": {
+            "sha256": "a7807ffc85aeac68f2c1ac144e599e45f951ac9acf2698a0967c8dc3197e8d16",
+            "bytes": 2752
+          },
+          "/res/Object/Btd.arc:btk/sotai.btk": {
+            "sha256": "de62e0853f9e05a0ba277f817ca5af92d8dc461d315afee23470f995a158f7dc",
+            "bytes": 1536
+          },
+          "/res/Object/Btd.arc:brk/sotai.brk": {
+            "sha256": "a75be97d25ef685b5965f2cf9d5aa0c6a85dbcf8e5ebd8d87da6abcad92b9edb",
+            "bytes": 3392
+          },
+          "/res/Object/Btd.arc:bmt/deada.bmt": {
+            "sha256": "b92bc284605ad18fd1317eea11cba08e139ebc038aeca54fd8530a77c7db2fa2",
+            "bytes": 5120
+          },
+          "/res/Object/Btd.arc:brk/deada.brk": {
+            "sha256": "4806835463cad176ec681c5c104dafdbd55ce315042ad6241d7abcfac0cbd6aa",
+            "bytes": 2752
+          },
+          "/res/Object/Btd.arc:btk/deada.btk": {
+            "sha256": "450cd249ee69f877e9260b3953aafbf714af29a33935f3e242bf0ff8636895dc",
+            "bytes": 1856
+          },
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      }
+    },
+    {
+      "id": "boss-puppet-ganon-water-v1",
+      "family": "puppet-ganon",
+      "action": "exercise",
+      "scenario": "boss-puppet-ganon-water-v1",
+      "resource": "/res/Object/Bgn.arc:bdlm/r0e_a.bdl",
+      "script": {
+        "states": [
+          "water-surface",
+          "water-mask",
+          "water-combined"
+        ],
+        "frames_per_state": 1
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn.cpp:water0_disp/water1_disp"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Surface and mask share one material; blend and depth update are mutated before each sky-list draw.",
+        "TEV register values, fog and room rendering are excluded; only description-affecting mutations are reproduced."
+      ],
+      "input_identity": {
+        "archive_sha256": "da1c29475123ee1f6ba04509b754c6bde592a4b0f5d38ae0b82c8600115ca5c4",
+        "model_sha256": "f6376624285ab2395915444fc6d96a897348354b3edfe05356b5ed5c7a0bbe3d",
+        "model_bytes": 3296,
+        "companions": {
+          "/res/Object/Always.arc:bmtm/ice.bmt": {
+            "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
+            "bytes": 7776
+          },
+          "/res/Object/Always.arc:btk/ice.btk": {
+            "sha256": "398b5a5f8b7c898d139b48953764b50f5774c6fb1018215bd3d22294c3f2f1fb",
+            "bytes": 416
+          },
+          "/res/Object/System.arc:dat/toon.bti": {
+            "sha256": "601e74a2f2228b9abe97820e04b94e1daed5f0675eb3fb8cbe6d7ec9fa726864",
+            "bytes": 1056
+          },
+          "/res/Object/System.arc:dat/toonex.bti": {
+            "sha256": "ac43e12438a03461dda5849fbdfa167992453690c716259f7abe28d78a5ccc78",
+            "bytes": 32800
+          }
+        }
+      }
+    },
+    {
+      "id": "enemy-death-large-v1",
+      "family": "enemy-death",
+      "action": "exercise",
+      "scenario": "enemy-death-large-v1",
+      "resource": "/res/Particle/common.jpc:0x0014+0x0013+0x0015+0x0016",
+      "script": {
+        "effect_ids": [
+          20,
+          19,
+          21,
+          22
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "enemy-death-large-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_disappear.cpp:set_disappear",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:setNormalStripes/dPa_stripesEcallBack::draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Four simultaneous effects of the 0x0/0x2/0xA-0xD branch, attributed collectively; spirit uses the real stripes callback.",
+        "Two deterministic seed/scale/alpha variations in the normal group, 240 ticks maximum. Stage lighting is excluded."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "enemy-death-small-v1",
+      "family": "enemy-death",
+      "action": "exercise",
+      "scenario": "enemy-death-small-v1",
+      "resource": "/res/Particle/common.jpc:0x043c+0x043d+0x043e",
+      "script": {
+        "effect_ids": [
+          1084,
+          1085,
+          1086
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "enemy-death-small-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_disappear.cpp:set_disappear"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
+        "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Three simultaneous effects of the 0x4 branch, attributed collectively.",
+        "Two deterministic seed/scale/alpha variations in the normal group, 240 ticks maximum. Stage lighting is excluded."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "bokoblin-eye-mask-and-blink",
+      "family": "bokoblin",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Eye mask-off joint entry, BTP blinking, search light and held-prop attachment need actor-owned joint state.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/br_draw/search_check_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "moblin-darknut-equipment",
+      "family": "armored-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Armor pieces, shape visibility, blur materials and multi-part attachments need dedicated per-actor recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_mo2.cpp:daMo2_Draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_tn.cpp:daTn_Draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "poe-floormaster-wizzrobe",
+      "family": "spectral-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Lantern visibility, alpha models and arm/portal mixes span controllers beyond the shared freeze path.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_pw.cpp:daPW_Draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_fm.cpp:daFmDraw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_wz.cpp:daWZ_Draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "other-ordinary-enemies",
+      "family": "ordinary-enemies",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Remaining enemy families are oversized for this slice. Sharing the freeze path does not prove their stock or state materials.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_rd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_st.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_am2.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_mt.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_kb.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "enemy-line-materials",
+      "family": "line-materials",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Rope, chain and tail line packets need textures, lighting and sort-packet setup outside the model recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_ext.cpp:mDoExt_3DlineMat0_c/1_c",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_st.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "enemy-hit-fire-ice-effects",
+      "family": "enemy-effects",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Hit sparks, burning, freeze shatter and scene-bank effects are not inferred from the death recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_cc_uty.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_ep.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "kalle-demos",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Multi-actor plant phases, screen blur and feet/hand children exceed one bounded recipe.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmdfoot.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bmdhand.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "gohdan",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Head/hand parts, real shadow and blur need a dedicated multi-part recipe.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bst.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "molgera",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Sand surface, screen blur and larva actors are scene-dependent.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bwd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bwds.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "phantom-ganon-ganondorf",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Energy attacks, material swaps, line trails, blur and cutscene-linked phases are oversized.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_fganon.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_gnd.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_pz.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "gohma-debris-and-head",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Rock shards, armor fragments and the dead-head model need separate actor state.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_btd.cpp:hahen_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "puppet-ganon-phases",
+      "family": "bosses",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Ropes, tail parts, weak-point BRKs, reflection packets and later phases need their own controllers.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn.cpp:part_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn2.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bgn3.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "environment-combinations",
+      "family": "overlap",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Actor lighting, fog, shadows, screen blur and scene overlap belong with environment follow-up #154.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_kankyo.cpp:setLightTevColorType",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_graphic.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    }
+  ],
+  "plan_sha256": "8dd1da871671dd1e05f3395761617c30e6d5795ee80f8e8285a9054d8b12973b",
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+  "collector": {
+    "sha256": "b63236f51e8b4572491dcd22e75788faeaf1deb0576b8a5df5e5a26534074141",
+    "build_sha256": "fc4164d51e83916e5a9237b10c2e0c76847f1b646115d5e4f6c169f2d05758f8"
+  }
+}

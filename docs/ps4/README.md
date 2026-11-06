@@ -10,6 +10,12 @@ tip-shape cycle and normal/cheap bomb effect setups, with an independent
 [seed/package evidence record](../../evidence/ps4/equipment-collector-152/README.md)
 and explicit unsupported equipment/controller families.
 
+The [enemy/boss collector](ENEMY-COLLECTOR.md) exercises fixed actor material,
+freeze, visibility and death-effect states through the game's own resource and
+draw-list paths, with an independent
+[seed/package evidence record](../../evidence/ps4/enemy-collector-153/README.md)
+and explicit unsupported enemy/boss families.
+
 Implements the preparation in [issue #13](https://github.com/Jcanotorr06/pswaker/issues/13)
 and [renderer reconciliation in #14](RENDERER.md).
 This builds a **disc-free program package**, title ID `PSWK00010`, version `01.04`.

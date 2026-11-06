@@ -7,7 +7,8 @@ from asset_inventory import identifier, sha256, text_list
 
 SCENARIO = 'particle-effect-lifecycle-v1'
 SUPPORTED_EFFECTS = {0x2022, 0x2027, 0x2008, 0x2009, 0x200a, 0x000b,
-                     0x0013, 0x0018, 0x0019, 0x232a}
+                     0x0013, 0x0014, 0x0015, 0x0016, 0x0018, 0x0019,
+                     0x232a, 0x043c, 0x043d, 0x043e}
 UNHANDLED = ['stage-lighting-and-wind', 'projection-framebuffer',
              'model-particles', 'actor-collision', 'other-cameras']
 
