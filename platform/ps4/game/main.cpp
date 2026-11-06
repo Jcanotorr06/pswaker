@@ -6,6 +6,7 @@
 #include "hud-prompts.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
+#include "resource-evidence.hpp"
 #include "native/platform.h"
 #include <aurora/event.h>
 #include <aurora/gfx.h>
@@ -37,9 +38,6 @@ class JKRHeap;
 extern "C" int aurora_main(int argc, char** argv);
 extern "C" void pswaker_log_game_state();
 extern "C" int pswaker_card_shutdown_status();
-extern "C" void ac_ps4_get_memory(uint64_t*, uint64_t*, uint64_t*);
-extern "C" size_t pswaker_heap_used();
-extern "C" int sceKernelAvailableFlexibleMemorySize(size_t*);
 void pswaker_log_audio_output();
 extern "C" uint64_t ps4_disc_busy_until_ns() { return 0; }
 namespace {
@@ -58,6 +56,9 @@ PipelineCounts pipelines() {
 }
 double milliseconds() {
     return std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now()-launch).count();
+}
+void logResources(const char* phase) {
+    pswaker_log_resources(phase, milliseconds());
 }
 void events() {
     for (const auto* event = aurora_update(); event && event->type != AURORA_NONE; ++event)
@@ -256,8 +257,13 @@ bool confirmScreen(const char* title, const char* text, bool allowExit, const ch
 }
 void imageProgress(uint64_t done, uint64_t total) {
     static double next = 0;
+    static double nextResource = 0;
     if (milliseconds() < next && done != total) return;
     next = milliseconds() + 250;
+    if (milliseconds() >= nextResource || done == total) {
+        logResources("content-validation");
+        nextResource = milliseconds() + 1000;
+    }
     say("CONTENT validation bytes=%llu/%llu ms=%.1f", (unsigned long long)done,
         (unsigned long long)total, milliseconds());
     screen("Checking installed game content", "Checking /app0/game.iso before starting the game.", float(done)/float(total));
@@ -335,6 +341,7 @@ void pswaker_graphics_ready() {
         pswaker_installation_error("Port prompt refresh registration failed");
     graphics = true;
     pswaker_stage("graphics-initialized");
+    logResources("graphics-initialized");
     pswaker_perf_phase("content-validation");
     FILE* image = fopen("/app0/game.iso", "rb");
     char error[512];
@@ -395,6 +402,7 @@ void pswaker_graphics_ready() {
         }
     }
     pswaker_stage("save-recovery-checked");
+    logResources("before-render-target");
     VISetFrameBufferScale(1.5f);
     // Pump resize events and allocate a frame before querying actual GPU textures.
     screen("Preparing graphics", "Allocating the 1280x720 game render target.");
@@ -403,12 +411,17 @@ void pswaker_graphics_ready() {
     const auto start = milliseconds();
     pswaker_perf_phase("shader-preparation");
     uint32_t previous = UINT32_MAX;
+    double nextResource = 0;
     for (;;) {
         // Drain earlier frame work before testing the renderer's preparation
         // contract. Its pending set includes creation already inside the driver.
         aurora::gfx::synchronize();
         const auto status = aurora::gfx::pipeline_preparation_status();
         if (status.error) pswaker_installation_error(status.error);
+        if (milliseconds() >= nextResource) {
+            logResources("shader-final-drain");
+            nextResource = milliseconds() + 1000;
+        }
         if (status.ready != previous) {
             previous = status.ready;
             say("SHADERS configurations-ready=%u total=%u pending=%u complete=%d ms=%.1f",
@@ -434,6 +447,7 @@ void pswaker_graphics_ready() {
         usleep(16000);
     }
     pswaker_stage("known-shaders-prepared");
+    logResources("known-shaders-prepared");
     pswaker_perf_phase("loading");
 }
 void pswaker_frame_boundary() {
@@ -463,13 +477,7 @@ void pswaker_frame_boundary() {
             (unsigned long long)frames, (unsigned long long)squares);
         pswaker_log_audio_output();
         pswaker_log_game_state();
-        uint64_t garlic = 0, onion = 0, buffers = 0;
-        ac_ps4_get_memory(&garlic, &onion, &buffers);
-        size_t flexible = 0;
-        const int result = sceKernelAvailableFlexibleMemorySize(&flexible);
-        say("RESOURCE ms=%.1f garlic=%llu onion=%llu buffers=%llu main-mspace-allocated=%zu flexible-available=%zu query-result=%d",
-            milliseconds(), (unsigned long long)garlic, (unsigned long long)onion,
-            (unsigned long long)buffers, pswaker_heap_used(), flexible, result);
+        logResources("gameplay");
         pswaker_perf_diagnostic(PswakerDiagnostic::Heartbeat, diagnosticStart);
     }
 }
@@ -580,5 +588,6 @@ int main(int argc, char** argv) {
     setenv("COS_SYNC_PIPELINES", "1", 1);
     setenv("COS_PRECOMPILE", "off", 1); // preparation is reported explicitly above
     pswaker_stage("platform-initialized");
+    logResources("before-renderer");
     pswaker_exit(aurora_main(argc, argv));
 }

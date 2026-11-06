@@ -226,6 +226,11 @@ pass establish no game DSP, game-save correctness or gameplay performance.
 
 ## Host checks
 
+For the generated static/dynamic pilot's bounded cold/warm console gate, use
+[generated-seed feasibility](GENERATED-SEED-FEASIBILITY.md). It covers exact
+candidate identities, startup resources, save/settings preservation and evidence
+retrieval; physical acceptance remains pending under #149.
+
 For installed-game frame measurements, use [FRAME-PACING.md](FRAME-PACING.md)
 and the [owner sampling checklist](Frame-pacing-checklist.md). The
 [Outset action baseline](Action-baseline-checklist.md) captures #108's cold
