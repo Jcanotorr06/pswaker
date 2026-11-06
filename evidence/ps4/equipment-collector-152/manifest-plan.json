@@ -1,0 +1,253 @@
+{
+  "schema": 1,
+  "kind": "equipment-actions",
+  "id": "equipment-actions-152-v1",
+  "exclusions": [
+    "Only three fixed recipes; other equipment/controllers remain explicit rows.",
+    "1280x720/single sample, stock quality, synchronous rendering, original 30 Hz particle ticks.",
+    "No full playthrough, owner storage access, production warmup, or physical verification."
+  ],
+  "rows": [
+    {
+      "id": "equipment-arrow-tips-v1",
+      "family": "arrow",
+      "action": "exercise",
+      "scenario": "equipment-arrow-tips-v1",
+      "resource": "/res/Object/Link.arc:bdlm/arrow.bdl",
+      "script": {
+        "states": [
+          "normal",
+          "fire",
+          "ice",
+          "normal"
+        ],
+        "frames_per_state": 1,
+        "loader_flags": 8224,
+        "model_flags": 524288,
+        "differed_display_list_flags": 285212706
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_arrow.cpp:createInit/setDrawShapeMaterial/_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/include/res/Object/Link.h:ARROW_JNT; src/m_Do/m_Do_ext.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/JSystem/J3DGraphBase/J3DShape.cpp:draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, equipment acquisition or player controller.",
+        "Actual J3D/JPA/GX draws and full descriptions; numeric uniform changes are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Hide all three tip meshes and the ice second material; show selected tip/next material for one frame then hide.",
+        "Normal/fire/ice/normal is a scripted selection cycle on the same model, not a live arrow actor transition.",
+        "Use actor model flags; BTK animation, environmental lighting, flight and elemental actors are excluded."
+      ]
+    },
+    {
+      "id": "equipment-bomb-normal-v1",
+      "family": "bomb",
+      "action": "exercise",
+      "scenario": "equipment-bomb-normal-v1",
+      "resource": "/res/Particle/common.jpc:0x000b+0x2009+0x200a+0x2008",
+      "script": {
+        "effect_ids": [
+          11,
+          8201,
+          8202,
+          8200
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "normal-bomb-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bomb3.inc:eff_explode_normal/eff_explode_cheap",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:setBombSmoke/dPa_bombSmokeEcallBack::execute",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/JSystem/JParticle/JPAEmitterManager.cpp:calc/draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, equipment acquisition or player controller.",
+        "Actual J3D/JPA/GX draws and full descriptions; numeric uniform changes are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Two deterministic seed/scale/alpha variations, normal-P1 then toon-P1 groups, 240 ticks maximum.",
+        "Real bomb-smoke callback/user-work values; simultaneous four-component overlap is attributed collectively.",
+        "Normal branch is a rerun control of #151, independently generated against the pilot baseline.",
+        "Source branch setup is reproduced through real emitter APIs; the full bomb actor, collision and scene are excluded."
+      ]
+    },
+    {
+      "id": "equipment-bomb-cheap-v1",
+      "family": "bomb",
+      "action": "exercise",
+      "scenario": "equipment-bomb-cheap-v1",
+      "resource": "/res/Particle/common.jpc:0x000b+0x232a+0x200a+0x2008",
+      "script": {
+        "effect_ids": [
+          11,
+          9002,
+          8202,
+          8200
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "cheap-bomb-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bomb3.inc:eff_explode_normal/eff_explode_cheap",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:setBombSmoke/dPa_bombSmokeEcallBack::execute",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/JSystem/JParticle/JPAEmitterManager.cpp:calc/draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, equipment acquisition or player controller.",
+        "Actual J3D/JPA/GX draws and full descriptions; numeric uniform changes are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Two deterministic seed/scale/alpha variations, normal-P1 then toon-P1 groups, 240 ticks maximum.",
+        "Real bomb-smoke callback/user-work values; simultaneous four-component overlap is attributed collectively.",
+        "Cheap branch sets flash lifetime 12/particle scale .5,.67, smoke02/fragments lifetime 70, fragment away/directional speeds 25/35.",
+        "Source branch setup is reproduced through real emitter APIs; the full bomb actor, collision and scene are excluded."
+      ]
+    },
+    {
+      "id": "arrow-effects-flight",
+      "family": "arrow",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Elemental light/ice actors, arrow trail and impact/collision paths require separately bounded controller recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_arrow.cpp:setLightEffect/createBlur/arrowShooting"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "arrow-texture-animation",
+      "family": "arrow",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Player-owned ice/light BTK, randomized frames and light-arrow alternate model are outside the shape cycle.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_arrow.cpp:createInit/_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "sword-shield-actions",
+      "family": "melee",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Sword slash/spin/hit and shield reflection involve player attachment, blur, collision and lighting; oversized here.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "boomerang-trails",
+      "family": "boomerang",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Stock boomerang resource reuse does not exercise trail segments, locks, return or player draw suppression.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_boomerang.cpp:draw/createHeap"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "hookshot-grapple",
+      "family": "hookshot",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Chain/rope callbacks, extension/retraction and collision need a dedicated finite harness.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_hookshot.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "leaf-hammer-actions",
+      "family": "tools",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Leaf wind/glide and hammer impact/controller states exceed the selected branch boundary.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "bottle-bait-camera",
+      "family": "items",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Contents, pours, bait and camera framebuffer behavior are not inferred from equipment models.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "model-shards",
+      "family": "model-particles",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Companion shard 0x0017 needs model control, texture animation and lighting; #151 ownership retained as follow-up.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_modelEcallBack"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "environment-combinations",
+      "family": "overlap",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Water, stage wind/light/fog, framebuffer projection and cross-equipment combinations are outside fixed setup.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    }
+  ]
+}

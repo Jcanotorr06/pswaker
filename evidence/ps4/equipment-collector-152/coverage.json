@@ -1,0 +1,1553 @@
+{
+  "schema": 1,
+  "issue": 152,
+  "manifest_sha256": "f5e60619a15f27ff7d032004a085765d464cfd760b95be276f60a3a910b7c618",
+  "baseline_rows": 301,
+  "collected_rows": 109,
+  "new_rows": 108,
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "equipment-arrow-tips-v1:observed.db": {
+        "bytes": 24576,
+        "sha256": "994cfe2fc0ceae32249977f2f7fc9f54ebb28c5c6473fb8b6c1b75e88ee918b9"
+      },
+      "equipment-bomb-cheap-v1:observed.db": {
+        "bytes": 159744,
+        "sha256": "46fecef1ebe5ad049b2eb998788100d147cfc6fc8c58c02a6b9c8e1dfcb1da69"
+      },
+      "equipment-bomb-normal-v1:observed.db": {
+        "bytes": 454656,
+        "sha256": "f1110c4d8620c7e3223f1a8243436b749cec09b142f570eb9cc7f116bf17a0cf"
+      }
+    },
+    "rows": 409,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 408
+      }
+    ],
+    "bytes": 1708032,
+    "sha256": "9c99d6c7cf9dd573fe75f88601390f06b8773e01a5cb63eb4fc27922a81cbf86",
+    "asset_manifest_sha256": "e2a821877b60ec62a25642fae3f9b789c16e6998510583df7700478241f4ca3a"
+  },
+  "scenarios": [
+    {
+      "id": "equipment-arrow-tips-v1",
+      "frames": 4,
+      "draw_calls": 9,
+      "pipeline_lookups": 9,
+      "configurations": 2,
+      "baseline_covered": 0,
+      "new": 2,
+      "states": [
+        {
+          "tick": 1,
+          "state": "normal",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": [
+            {
+              "type": 1,
+              "hash": 6746599188459929516
+            }
+          ]
+        },
+        {
+          "tick": 2,
+          "state": "fire",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": [
+            {
+              "type": 1,
+              "hash": 6746599188459929516
+            }
+          ]
+        },
+        {
+          "tick": 3,
+          "state": "ice",
+          "draw_calls": 3,
+          "pipeline_lookups": 3,
+          "configurations": [
+            {
+              "type": 1,
+              "hash": 6746599188459929516
+            },
+            {
+              "type": 1,
+              "hash": 1898998086686626081
+            }
+          ]
+        },
+        {
+          "tick": 4,
+          "state": "normal",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": [
+            {
+              "type": 1,
+              "hash": 6746599188459929516
+            }
+          ]
+        }
+      ],
+      "lifetimes": [],
+      "physical_verification": false
+    },
+    {
+      "id": "equipment-bomb-cheap-v1",
+      "frames": 194,
+      "draw_calls": 20106,
+      "pipeline_lookups": 690,
+      "configurations": 35,
+      "baseline_covered": 1,
+      "new": 34,
+      "states": null,
+      "lifetimes": [
+        {
+          "variation": 0,
+          "ticks": 98,
+          "peak_particles": 197,
+          "terminal": {
+            "tick": 98,
+            "particles": 0,
+            "emitters": 0,
+            "draw_calls": 0,
+            "pipeline_lookups": 0,
+            "configurations": []
+          }
+        },
+        {
+          "variation": 1,
+          "ticks": 96,
+          "peak_particles": 196,
+          "terminal": {
+            "tick": 96,
+            "particles": 0,
+            "emitters": 0,
+            "draw_calls": 0,
+            "pipeline_lookups": 0,
+            "configurations": []
+          }
+        }
+      ],
+      "physical_verification": false
+    },
+    {
+      "id": "equipment-bomb-normal-v1",
+      "frames": 308,
+      "draw_calls": 44640,
+      "pipeline_lookups": 1241,
+      "configurations": 107,
+      "baseline_covered": 1,
+      "new": 106,
+      "states": null,
+      "lifetimes": [
+        {
+          "variation": 0,
+          "ticks": 154,
+          "peak_particles": 236,
+          "terminal": {
+            "tick": 154,
+            "particles": 0,
+            "emitters": 0,
+            "draw_calls": 0,
+            "pipeline_lookups": 0,
+            "configurations": []
+          }
+        },
+        {
+          "variation": 1,
+          "ticks": 154,
+          "peak_particles": 236,
+          "terminal": {
+            "tick": 154,
+            "particles": 0,
+            "emitters": 0,
+            "draw_calls": 0,
+            "pipeline_lookups": 0,
+            "configurations": []
+          }
+        }
+      ],
+      "physical_verification": false
+    }
+  ],
+  "rows": [
+    {
+      "id": "arrow-effects-flight",
+      "family": "arrow",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Elemental light/ice actors, arrow trail and impact/collision paths require separately bounded controller recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_arrow.cpp:setLightEffect/createBlur/arrowShooting"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "arrow-texture-animation",
+      "family": "arrow",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Player-owned ice/light BTK, randomized frames and light-arrow alternate model are outside the shape cycle.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_arrow.cpp:createInit/_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "boomerang-trails",
+      "family": "boomerang",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Stock boomerang resource reuse does not exercise trail segments, locks, return or player draw suppression.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_boomerang.cpp:draw/createHeap"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "bottle-bait-camera",
+      "family": "items",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Contents, pours, bait and camera framebuffer behavior are not inferred from equipment models.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "environment-combinations",
+      "family": "overlap",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Water, stage wind/light/fog, framebuffer projection and cross-equipment combinations are outside fixed setup.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "equipment-arrow-tips-v1",
+      "family": "arrow",
+      "action": "exercise",
+      "scenario": "equipment-arrow-tips-v1",
+      "resource": "/res/Object/Link.arc:bdlm/arrow.bdl",
+      "script": {
+        "states": [
+          "normal",
+          "fire",
+          "ice",
+          "normal"
+        ],
+        "frames_per_state": 1,
+        "loader_flags": 8224,
+        "model_flags": 524288,
+        "differed_display_list_flags": 285212706
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_arrow.cpp:createInit/setDrawShapeMaterial/_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/include/res/Object/Link.h:ARROW_JNT; src/m_Do/m_Do_ext.cpp",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/JSystem/J3DGraphBase/J3DShape.cpp:draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, equipment acquisition or player controller.",
+        "Actual J3D/JPA/GX draws and full descriptions; numeric uniform changes are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Hide all three tip meshes and the ice second material; show selected tip/next material for one frame then hide.",
+        "Normal/fire/ice/normal is a scripted selection cycle on the same model, not a live arrow actor transition.",
+        "Use actor model flags; BTK animation, environmental lighting, flight and elemental actors are excluded."
+      ],
+      "input_identity": {
+        "archive_sha256": "eec58ba062a69f004a682db4ae5175d4f4cedf6802ffdfec15929e971d138ebe",
+        "model_sha256": "d6d8c6b3a3711bf1bedb537b67713b144e56b27263eab08c8c5bc40000d7a54d",
+        "model_bytes": 29440
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/equipment-arrow-tips-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "equipment-bomb-cheap-v1",
+      "family": "bomb",
+      "action": "exercise",
+      "scenario": "equipment-bomb-cheap-v1",
+      "resource": "/res/Particle/common.jpc:0x000b+0x232a+0x200a+0x2008",
+      "script": {
+        "effect_ids": [
+          11,
+          9002,
+          8202,
+          8200
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "cheap-bomb-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bomb3.inc:eff_explode_normal/eff_explode_cheap",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:setBombSmoke/dPa_bombSmokeEcallBack::execute",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/JSystem/JParticle/JPAEmitterManager.cpp:calc/draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, equipment acquisition or player controller.",
+        "Actual J3D/JPA/GX draws and full descriptions; numeric uniform changes are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Two deterministic seed/scale/alpha variations, normal-P1 then toon-P1 groups, 240 ticks maximum.",
+        "Real bomb-smoke callback/user-work values; simultaneous four-component overlap is attributed collectively.",
+        "Cheap branch sets flash lifetime 12/particle scale .5,.67, smoke02/fragments lifetime 70, fragment away/directional speeds 25/35.",
+        "Source branch setup is reproduced through real emitter APIs; the full bomb actor, collision and scene are excluded."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/equipment-bomb-cheap-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "equipment-bomb-normal-v1",
+      "family": "bomb",
+      "action": "exercise",
+      "scenario": "equipment-bomb-normal-v1",
+      "resource": "/res/Particle/common.jpc:0x000b+0x2009+0x200a+0x2008",
+      "script": {
+        "effect_ids": [
+          11,
+          8201,
+          8202,
+          8200
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ],
+        "setup": "normal-bomb-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bomb3.inc:eff_explode_normal/eff_explode_cheap",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:setBombSmoke/dPa_bombSmokeEcallBack::execute",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/JSystem/JParticle/JPAEmitterManager.cpp:calc/draw"
+      ],
+      "assumptions": [
+        "Fixed isolated origin/view and stock resources; no save, stage, equipment acquisition or player controller.",
+        "Actual J3D/JPA/GX draws and full descriptions; numeric uniform changes are not assumed to add pipelines.",
+        "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
+        "Two deterministic seed/scale/alpha variations, normal-P1 then toon-P1 groups, 240 ticks maximum.",
+        "Real bomb-smoke callback/user-work values; simultaneous four-component overlap is attributed collectively.",
+        "Normal branch is a rerun control of #151, independently generated against the pilot baseline.",
+        "Source branch setup is reproduced through real emitter APIs; the full bomb actor, collision and scene are excluded."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/equipment-bomb-normal-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "hookshot-grapple",
+      "family": "hookshot",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Chain/rope callbacks, extension/retraction and collision need a dedicated finite harness.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_hookshot.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "leaf-hammer-actions",
+      "family": "tools",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Leaf wind/glide and hammer impact/controller states exceed the selected branch boundary.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "model-shards",
+      "family": "model-particles",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Companion shard 0x0017 needs model control, texture animation and lighting; #151 ownership retained as follow-up.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_modelEcallBack"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "sword-shield-actions",
+      "family": "melee",
+      "action": "unsupported",
+      "owner": "#152 follow-up",
+      "reason": "Sword slash/spin/hit and shield reflection involve player attachment, blur, collision and lighting; oversized here.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    }
+  ],
+  "mapping": [
+    {
+      "type": 1,
+      "hash": -9026454783789652685,
+      "description_sha256": "eead10e2e261c4b3fd1bd65ba88de09bc1dee038a39eb1cf9dd2323c855148e8",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8952351939696147408,
+      "description_sha256": "00f863295cc443221a8b1652c26fd00c519ce06bb6e6b92261a607e6f1bbeb30",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8740786407264299663,
+      "description_sha256": "7be664640ab3977515dc818383714becb97a94dddf9a15f73dbff7207a885737",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8441651395697525929,
+      "description_sha256": "9a7280f93b54c44554bc53e508960c318457680ddeb180565416e639dddb5963",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8424778248458921230,
+      "description_sha256": "6c22dce52d56c971c338f47dd99793973acc0de4825e8e9193a1042fe5dc2837",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8395138218233622278,
+      "description_sha256": "7e1198895bb5e0a95061f6f99d80b4e29a8c863ac775812b381933fe15441441",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8339893198862691409,
+      "description_sha256": "111568911585790f85cd2f95b59bf23df10f55d69d8b27d85cf844a01895f420",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -7183275656759142528,
+      "description_sha256": "abc302d6ef2df06c125fbdd9380a3f969859c3d4435f1edab0367284d562b88f",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -7029497707878460171,
+      "description_sha256": "c7f46b03690750e02f7d75ce32eef60019109e4233ebd81e63bc8ff9ae58709c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6771441247895228622,
+      "description_sha256": "c49f7cbe1b3a2e48011e9683d1d3d371d64466b137001dbbe0eb50fe12e4086e",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6323620762165790680,
+      "description_sha256": "fc26c21a7abe7f6c0c333cbf6b07405b8961bb93ae18c725e7979ae32bbbcd9b",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5898213683800829546,
+      "description_sha256": "989b7d4af8a4341ece11a73a6288f91b975835790a2d817b6f9639ec576309a4",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5879565187501216215,
+      "description_sha256": "2e3ed10199491b6136f92c56fc1e36134d47de10e5ee1324e950b090eceeeb11",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5837594077073783528,
+      "description_sha256": "25300333fd5f9d1c162de3128de6cbe0a81876b53a0aa1374a3555d21fdaf256",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5151754359999216336,
+      "description_sha256": "ea660361455c84c7b3f16e57eb36e42103dcc4962e78ead8a9f3a9f282d6a09b",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5020033242417597915,
+      "description_sha256": "17f5f1bc44151e8f576ed7e2c822732dacc46e18593ebdf6f639a4b548e8d09b",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4993697552264241401,
+      "description_sha256": "32b413de141e2a254b651d18c77889170333a8f80ea048a48879421a8c50dbcf",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4876368576268572860,
+      "description_sha256": "c06f6967fb0766899784cfc72bdbf43d34a4c2b044182b4e44ee50c0a0004355",
+      "baseline_covered": true,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4640232969825267032,
+      "description_sha256": "aa3738e505288b71b02ac0e6c2cbe60e1375714b0f1c90636a17df6ff955c96d",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4599895659791711028,
+      "description_sha256": "8fd33242d1ee6968990d3d3ad99e981b7eba2e1e9440514cedd4500bc8c2a68c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4567141094498682714,
+      "description_sha256": "6c48fc7b0c30212bf4eb603b12ccba8eec9449a80c9b320763c377779b5364e1",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4443503222725614165,
+      "description_sha256": "70c87b992ad1446d621aa287a01b2d0d297669536a9469daadaead17ea6001dc",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4396181233189901426,
+      "description_sha256": "08ca51f190689e2c51a934287075057fa8a3f0e5e63954f04c81d7037cda6b5c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4391511051490115256,
+      "description_sha256": "b7d9dd2535067b2b554abc4648fd7db6de4cf04c259144db44fcbfb8af0ce97e",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3921588062476502815,
+      "description_sha256": "8692e0a8b27a33364bc8e533f85e83c9ada2af83430405c249cb7c4f0eb39deb",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3905160247353154299,
+      "description_sha256": "f7eacd421da9281f6703b2beeaa7df1df9a2f0c6b419241944fa15bb62f58481",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3725036169346607784,
+      "description_sha256": "b8a30c827dff68eeecdfae70450b33fda82dabfa8bf35ede8903408972a110ae",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3699783188783991797,
+      "description_sha256": "c81bdaa976350a0e632078b346e05482250ed3c486dcf9594b4657c771a77b35",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3097975247039589812,
+      "description_sha256": "f665bed77324c2bb064749b6bd2d239da10e06bf7d1fbb11faf8fe3b699ab1e9",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2953812322304652718,
+      "description_sha256": "3a7980addff7d52c883087281d1bd4e6bfbcc4186e3fc38c007824a2590e54bf",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2756065165886587382,
+      "description_sha256": "2ccc341ffd84bada02413652e16b7ba1f5bca6b3102e44ee0ed7ae2ef829613c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2736195160034589370,
+      "description_sha256": "510384127d8b440739c1fb4a137ea69552ca9dabdd67261a8d3d437a87733939",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2724133692630833395,
+      "description_sha256": "db9ee00efecac97c125abcbbca5b53eb76821c5a1f117647399c93e27d45f60a",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2334178746416190059,
+      "description_sha256": "37b98f36d622002864c09652a015df101bff3060416d310b5575da1bcbda3825",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2233732171556006704,
+      "description_sha256": "9de4738929e6cd0460feaf075e0b4957c1a73911ceaa0226cd0eb69dc4e412bd",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2065960151319331066,
+      "description_sha256": "4b7c9181dd0a44af213092b48bebb78a3e68062145c55b6c133afef003059fe9",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -1897909500406737586,
+      "description_sha256": "9917ce2118f6a1ad371d8fb7361148036370d664aa3f04ce44d0ca5f4f07e701",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -1876213806682984753,
+      "description_sha256": "dc125ba923e9127f37e89a487bc4fb350eb960bfe77eb6ecec831aa1853f2f35",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -951680460044722434,
+      "description_sha256": "68f00c0be89d6ec78ade0959e0b5852e8ae75850a65d33cbc64919096f6d7eed",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -756360970804668357,
+      "description_sha256": "ac289585ccd8c893522baea6ecf5edc6ff701050ba4a1301d624e3b94138e0b5",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -496038376264830113,
+      "description_sha256": "9e84b6297981def672ae47188635718f6b2da5698fe40c3e56996dbfce1e8f48",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -490103215238951590,
+      "description_sha256": "499282983d830461d9e3080fe84a142513134d401d4a626aadc9d8e6fc91d927",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -481682130151723518,
+      "description_sha256": "e2096f0ed19904336f5d67187da34b580900caea974cbd94871ab8ed287b1ceb",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -359997696120495981,
+      "description_sha256": "2817f6d47b1dcdd167c1b00f3eeaf942b41051817102be3a21a5b879ea1cf5ac",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 96613525104680127,
+      "description_sha256": "25b07b67d0e87ec75f8ce490ba984df94ad591b8f81fde890358c339ea0467bf",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 105574391630655979,
+      "description_sha256": "7e65acb08df241f1a4bf6286577164e51c964d6f63f0ce9edad284c8d9a82e5d",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 292961225511408427,
+      "description_sha256": "9127e02854dac9a03da2e30583412076151eda07928b921082f81c934431eece",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 501483833243612513,
+      "description_sha256": "57cac99403febaedb15d47667223c4f55a3a68e50a01854b802dd5c87c9b86f3",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 567143335214413932,
+      "description_sha256": "59c63dae01e704c8a678da51a517eda3214fabe08ff6c5f3d335d78024a46b45",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 687218143710104838,
+      "description_sha256": "ea75fc7f98c5390ee11ee6e07b763dad51c0b48a8ac94240abb7313c1b21cf3e",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 705460845427752769,
+      "description_sha256": "9b0a6d642e0437e263d1254d75ecb56f1900c15340199a841d89c5691628c26c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 836995115160766003,
+      "description_sha256": "4d282aafe1ca30ee65b6b8bfa1132fda185675f2d161b234e733be9968133e3c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 961412724245169245,
+      "description_sha256": "136240be1222435e22b64c9d8d1927470b783582783bae5306fc1395f648eb95",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 972297034446234767,
+      "description_sha256": "b13294b61a43d15111c535d2e3204f39ee3d1854b04ac1d7381e12603be92939",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1017365187142733087,
+      "description_sha256": "ea7c147c5013d19e300fa8adc091172ebd2620a0d8b967c50a632dc51f85101a",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1023412947433272815,
+      "description_sha256": "6b88239c5b161259bce4922dc8120460e271c4be939eb818f4e1bc31bdda7276",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1092058693226493875,
+      "description_sha256": "4192708b1de113a951b98eadb3d8ba81f12c6939a6dc5c69992b82b4f34a9a23",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1177286202173182909,
+      "description_sha256": "075d604855aad59836076817b3ce4a1843712eef4bce3566525e892cef49b087",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1314049917168784139,
+      "description_sha256": "d9b2022c17bb07de567ad79e43f7b52def358ac48628425ef01561f2ef9cd0e9",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1420968895619951725,
+      "description_sha256": "e27d67c1c198444fcc5b8451b671760d95eae09fe65acd248818cb029bf0b2bb",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1501027100422446739,
+      "description_sha256": "cd9a7809f3bfed373d2124162e76c8e1760990188147911c9e0dee367a294ab4",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1586600390805162089,
+      "description_sha256": "487ff9b5c646492a4bd887d475a423d7c22d19f039797799775650cff1de2d7f",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1613186355662787003,
+      "description_sha256": "ab42045e0e8df7de63f7b979a09fbfcd159404f99f39481f214153452ad0fae6",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1687054160591597208,
+      "description_sha256": "487a282b6c10277fac31d33be05bb0e8e61f657e5511f51644435b6451116dea",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1870608718498777680,
+      "description_sha256": "045902a82e13ff63adfc301f5eba74dec3afd0b7bff8f7ed3cf25e16e770db2e",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1898998086686626081,
+      "description_sha256": "b79bc8629533514e5fff9d9483ec897aee818d49f287ca99b84dc2ab076bb5a9",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-arrow-tips-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2022036149851115262,
+      "description_sha256": "2aaf029da81788c25baf7f14895094ba7e8226ef7d2be4cdac6ae062bc2a7267",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2443154721172588457,
+      "description_sha256": "934fbdd3464ecb2e25ffa252dc68d15d33ade2a77d417f9e1262d71a5950271a",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2455661842703301397,
+      "description_sha256": "1cfb493b7c1acb88b93ea28532b879fdd4658427659c0c102c43a639d9ce865d",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2878204956025153747,
+      "description_sha256": "a7ce4ce5dd6e59c4a8d5add71ef0065ba56a3354b7fc41df2b4e25f3bf5ba3e8",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3381949977247392635,
+      "description_sha256": "c631d5023799c05558336f7e6c39497320700ec453ae5592a3c2a6688f7c50ce",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3487517623728072421,
+      "description_sha256": "129d192d05626932574b42b85eb7f767705d37ecdc7c5299b58e457f815e2592",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3504605903218914587,
+      "description_sha256": "f24658ef331b042ecd1b655867e6d207ca77246e4d01aa104fddb2a268b98204",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3594157853360434564,
+      "description_sha256": "c56248067f051b645919957ed05469a879f47af9f442f02750d597fe9f4e16f0",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3636356310424845780,
+      "description_sha256": "41cfbc8ecc297a255835688dbaf15db34de896b9e6d2d52030a13bf0462fd771",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3720126365173197535,
+      "description_sha256": "5c8e48569b74532809a5e807840174bf15bdde183ed9c0f0fd0cbc9195116e41",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4103674452035955639,
+      "description_sha256": "7a604c940ddcbf0484fb9c52fe11868ca8ddd9ade571db23259bfc4884cf5d25",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4211108208361036617,
+      "description_sha256": "a7767f41626ca4718deabb1cb7352c9b7cc87bf2e5f590737dbaef275b9583fe",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4275086257270766433,
+      "description_sha256": "4c4425e9224fc5357aac0f56edbc26adddfe130b93c714642d5abcf8955cb464",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4600018606219484771,
+      "description_sha256": "1d6bfa05d8dcf8dab492fb8ffc632c420e8cd6380926e2427f78b37905f264a6",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4687236255765815903,
+      "description_sha256": "4b9fa52b1f613cd215cd924e0eade3a9b097187cd574b0bc0be10acd3931d30c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4899647301679848990,
+      "description_sha256": "9e1249d34009c0f1b2fc49547fca7694a9ada1dbe1b325bd6821a2d49ec51933",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4984816891910961730,
+      "description_sha256": "efa071fc1976873c0a129fea269eb2432d8b1e9e0339d7fe8d9190d579a24f7e",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4991415644920488321,
+      "description_sha256": "ced670e81510f03ec59ad5e104cd6d13eb1f1d9a6d2a49ee10656025cb4a4ce4",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5180640799940085302,
+      "description_sha256": "2534768fd0a17d1486fafbed9baa51bcb8728d21f24c73ffcc69a6a57d6647ba",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5338065028906082634,
+      "description_sha256": "f6be6eb81d554b9d3e08d0f11a772ce1a613ca9856d81a789affc3f0a8e2cbb0",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5390163480107324236,
+      "description_sha256": "a5942f4ff89b7d7df98b4f020f90bea2bfd9dda1f6bdb840958355a07d8d01a6",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5468209093610006174,
+      "description_sha256": "b618ec5edc2f392f68101f369a1846e278cbc76959cd9a298bdcc2601e489268",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5469613917988594988,
+      "description_sha256": "b33cfc3826e645f60f9d0a7e4fa1262e26a8e0b8065dddc5294342e9c722cd1c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5472727232322752375,
+      "description_sha256": "750ac495e796ca40462c183740891bdfd3d83c43735ea3fc8808252c21ee2e41",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5897333344757873863,
+      "description_sha256": "e6df8f4840433ef9dedad32322f78f828797c6f4464af78d19b87f59e07c837c",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5985898297029102024,
+      "description_sha256": "e83fd7d1feccb252cefec5b16e68f1ef3d8b565fbf8c97172d8771463b6286e4",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6365783691660805360,
+      "description_sha256": "da0c48a8ba4c772c4781d4f56ea8a2e7b5364969af4c15777f3703d277cc8f81",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6638300505970605384,
+      "description_sha256": "836c1240163f60da610e268662ebb33a77597d058acd887251dff0a291914286",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6746599188459929516,
+      "description_sha256": "160d25321e1ac452c0ff7a5d56960c34d556ce225b400692973dd44eb8e07e9f",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-arrow-tips-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6790523234000255674,
+      "description_sha256": "9021a9d6c81daac752f6b5d938421338231ac25fb354956db0f5da88effbd1af",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7273235206081416263,
+      "description_sha256": "42aaf9fccb91177958454320402f3f8aeab4385e4c8d3a87fddb253eb1206174",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7408943427610041066,
+      "description_sha256": "cd72e2a6dedad2af6b9491fc0dc4d1cb76097d40942ede5e273207140d87d792",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7747144420359714360,
+      "description_sha256": "d5369ec8b2c20bceebc4a4f43278da4f6c6e48a6c609a40621d9f13329339a70",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7883284238365332803,
+      "description_sha256": "89b96f79dd077a7dfda669ec372db154619e7f9ba7df254032397d569c3e09e5",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8085692756027006818,
+      "description_sha256": "56dd07d53f463c91c4dddf29301fe6c43c502d01c887f5e2b07c034642505150",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8363315235830655977,
+      "description_sha256": "d7f07178c6207b9e4a26bed23d1f8d05050a66b429e0754f73e61e1295aa0660",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8419006030952542648,
+      "description_sha256": "7a888544f718584bfa50c9a9fb9559493904549569b9aa059ca1e42df35d2dc3",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8467377340695790908,
+      "description_sha256": "ddf40f9d209ce7437b20a99a4a5c2d41a0c8df9d351868249908132ff0cc0a3e",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8744742451552494154,
+      "description_sha256": "c87734f7a70e2235e849ae32902209cea4749136a015128a82cf52d4affdeea1",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8809123631478256754,
+      "description_sha256": "2bfdc978a400c92ffbbf55c4e1a15e895af19c3dbdfcdb5f52bdafc737460153",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8812278018789292873,
+      "description_sha256": "4aaede7781bca28b863c2b8020244cc16ff07a9fd652d8eaa375486197f76b8b",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8827603981508419940,
+      "description_sha256": "045bd89fc0ef33dd2ab621a62812c6f9b4eabe29eedf31348130627e4d965345",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-cheap-v1",
+        "equipment-bomb-normal-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8972579132857701728,
+      "description_sha256": "af3808abe90a77e540c637fe7fed03625fefe11cba868502a39c290ecff8430f",
+      "baseline_covered": false,
+      "sources": [
+        "equipment-bomb-normal-v1"
+      ]
+    }
+  ],
+  "inventory_complete": false,
+  "residual_gaps": [
+    "arrow-effects-flight",
+    "arrow-texture-animation",
+    "boomerang-trails",
+    "bottle-bait-camera",
+    "environment-combinations",
+    "hookshot-grapple",
+    "leaf-hammer-actions",
+    "model-shards",
+    "sword-shield-actions"
+  ],
+  "bomb_comparison": {
+    "shared_complete_descriptions": 35,
+    "cheap_only": 0,
+    "normal_only": 72,
+    "normal_matches_151_complete_bytes": true
+  },
+  "physical_verification": false
+}

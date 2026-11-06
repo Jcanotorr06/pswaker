@@ -5,6 +5,11 @@ bounded real asset draw and exports validated private seed/package inputs for
 the automated coverage pilot. Its [pilot evidence](../../evidence/ps4/model-collector-147/README.md)
 separates generated descriptions from physical PS4 verification.
 
+The [equipment/action collector](EQUIPMENT-COLLECTOR.md) adds a fixed arrow
+tip-shape cycle and normal/cheap bomb effect setups, with an independent
+[seed/package evidence record](../../evidence/ps4/equipment-collector-152/README.md)
+and explicit unsupported equipment/controller families.
+
 Implements the preparation in [issue #13](https://github.com/Jcanotorr06/pswaker/issues/13)
 and [renderer reconciliation in #14](RENDERER.md).
 This builds a **disc-free program package**, title ID `PSWK00010`, version `01.04`.
