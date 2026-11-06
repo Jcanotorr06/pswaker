@@ -22,6 +22,7 @@ import particle_collection as particle
 import equipment_collection as equipment
 import enemy_collection as enemy
 import scripted_collection as scripted
+import scene_collection as scene
 
 
 DYNAMIC_SCENARIO = 'common-pot-debris-lifecycle-v1'
@@ -30,7 +31,7 @@ DYNAMIC_SCRIPT = {'effect_id': 24, 'random_seed': 0, 'max_ticks': 180,
                   'color': [255, 255, 255, 255], 'texture_indices': [0, 1]}
 DYNAMIC_UNHANDLED = ['model-shards-0x0017', 'actor-lighting-and-collision',
                      'other-pot-textures', 'overlapping-effects', 'other-cameras']
-SCRIPTED_KINDS = {'equipment-actions': equipment, 'enemy-actors': enemy}
+SCRIPTED_KINDS = {'equipment-actions': equipment, 'enemy-actors': enemy, 'environment-scenes': scene}
 VARIATION_SCENARIOS = [particle.SCENARIO, equipment.NORMAL, equipment.CHEAP, *enemy.EFFECTS]
 
 
@@ -88,7 +89,9 @@ def check_dynamic_mapping(metadata, generated):
 
 def configuration_states(metadata, key):
     if metadata['method'] in scripted.STATE_METHODS:
-        return {'states': [{'tick': step['tick'], 'state': step['state']} for step in metadata['states']
+        return {'states': [{'tick': step['tick'], 'state': step['state'],
+                            **({'layout_keys': step['layout_keys']} if metadata['method'] == 'scripted-scene-draw' else {})}
+                           for step in metadata['states']
                            if {'type': key[0], 'hash': key[1]} in step['configurations']]}
     if metadata['method'] != 'dynamic-effect-draw':
         return {}
@@ -231,7 +234,9 @@ def collect(args):
     with args.image.open('rb') as stream:
         disc = DiscImage(stream)
         files = disc.files(disc.read(0, 0x440, 'header'))
-        if args.scenario in [DYNAMIC_SCENARIO, *VARIATION_SCENARIOS]:
+        if args.scenario in scene.SCENARIOS:
+            resources = scene.input_identity(disc, files)
+        elif args.scenario in [DYNAMIC_SCENARIO, *VARIATION_SCENARIOS]:
             offset, size = files['res/Particle/common.jpc']
             particles = disc.read(offset, size, 'common particles')
             resources = {'particle_sha256': hashlib.sha256(particles).hexdigest(), 'particle_bytes': len(particles)}
@@ -250,7 +255,7 @@ def collect(args):
         command = ['xvfb-run', '-a', str(binary), str(args.image), str(args.baseline)]
         if args.scenario != 'always-small-pot-stock-v1':
             command.append(args.scenario)
-        if args.scenario in ['asset-model-stock-v1', particle.SCENARIO, *equipment.SCENARIOS, *enemy.SCENARIOS]:
+        if args.scenario in ['asset-model-stock-v1', particle.SCENARIO, *equipment.SCENARIOS, *enemy.SCENARIOS, *scene.SCENARIOS]:
             command.append(resource)
         # The isolated collector has no game boot or card/settings paths.
         run_logged(command, work, work / 'collector.log', timeout=180)
@@ -547,6 +552,9 @@ def freeze_inventory(args):
                     continue
                 require(all(row.get(k) == v for k, v in family.recipe(row.get('scenario')).items()),
                         'Scripted plan differs from fixed recipe')
+            if family is scene:
+                rows.append({**row, 'input_identity': scene.input_identity(disc, files)})
+                continue
             if plan.get('kind') == 'particle-effects' or (family and row.get('scenario') in VARIATION_SCENARIOS):
                 require(isinstance(row, dict), 'Invalid particle plan row')
                 if row.get('action') != 'exercise':
@@ -612,7 +620,7 @@ def main():
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     command = commands.add_parser('collect')
     command.add_argument('--scenario', choices=['always-small-pot-stock-v1', DYNAMIC_SCENARIO, 'asset-model-stock-v1', particle.SCENARIO,
-                                                  *equipment.SCENARIOS, *enemy.SCENARIOS],
+                                                  *equipment.SCENARIOS, *enemy.SCENARIOS, *scene.SCENARIOS],
                          default='always-small-pot-stock-v1')
     command.add_argument('--resource', help='Exact model resource or fixed common.jpc effect ID combination')
     for name in ['collector', 'image', 'baseline', 'output']:

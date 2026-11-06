@@ -1,5 +1,8 @@
 {
   "include": [
+    "tools/pswaker/scene_collection.py",
+    "tests/ps4/test_scene_collection.py",
+    "tests/ps4/synthetic_scene.py",
     "tools/pswaker/enemy_collection.py",
     "tools/pswaker/scripted_collection.py",
     "tests/ps4/test_enemy_collection.py",

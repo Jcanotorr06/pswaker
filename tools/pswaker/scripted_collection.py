@@ -3,7 +3,7 @@ from asset_inventory import identifier, sha256, text_list
 from disc_image import require
 
 
-STATE_METHODS = ['scripted-equipment-draw', 'scripted-actor-draw']
+STATE_METHODS = ['scripted-equipment-draw', 'scripted-actor-draw', 'scripted-scene-draw']
 
 
 def sized_hashes(value, hashes, size):

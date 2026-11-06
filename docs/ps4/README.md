@@ -16,6 +16,11 @@ draw-list paths, with an independent
 [seed/package evidence record](../../evidence/ps4/enemy-collector-153/README.md)
 and explicit unsupported enemy/boss families.
 
+The [environment/scene collector](SCENE-COLLECTOR.md) exercises the real ocean,
+simple-shadow and alpha-volume paths with fixed world/camera states and a selected
+overlap. Its independent [evidence record](../../evidence/ps4/scene-collector-154/README.md)
+records exact seed/package identities, layout contracts and scene-family gaps.
+
 Implements the preparation in [issue #13](https://github.com/Jcanotorr06/pswaker/issues/13)
 and [renderer reconciliation in #14](RENDERER.md).
 This builds a **disc-free program package**, title ID `PSWK00010`, version `01.04`.

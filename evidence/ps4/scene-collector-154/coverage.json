@@ -1,0 +1,803 @@
+{
+  "schema": 1,
+  "issue": 154,
+  "manifest_sha256": "173c6711bb953900f97e797ab41b1069a3a9e352ab7bd780eb8cf6cd604833ea",
+  "baseline_rows": 301,
+  "collected_rows": 11,
+  "new_rows": 9,
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "scene-alpha-overlap-v1:observed.db": {
+        "bytes": 53248,
+        "sha256": "b8918dfe7d8ff5c35a429c1fd14ba00d61347305e0aa155143559ec43369c8a6"
+      },
+      "scene-ocean-world-v1:observed.db": {
+        "bytes": 32768,
+        "sha256": "1855d1f64426c5360adbfe182eb8d0d5613d37573f1578aaec5d71f81ecd45c2"
+      },
+      "scene-simple-shadows-v1:observed.db": {
+        "bytes": 36864,
+        "sha256": "840983230cbd5bfb3a2add7c0efae7fe2877a47b8b0460cb082ea4f8d86c3557"
+      }
+    },
+    "rows": 310,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 309
+      }
+    ],
+    "bytes": 1294336,
+    "sha256": "fb0b83f4fc876ad572de7146b3d1b61b015051fde8f8c7777c96c06d72dbb9e6",
+    "asset_manifest_sha256": "884d2b6755d2433d539bb29cddb7308c36321da1a120ed8bfd67a3d61c49fffc"
+  },
+  "scenarios": [
+    {
+      "id": "scene-alpha-overlap-v1",
+      "frames": 5,
+      "draw_calls": 12,
+      "pipeline_lookups": 12,
+      "configurations": 9,
+      "baseline_covered": 0,
+      "new": 9,
+      "layout": {
+        "key": 16288162637680331091,
+        "attachments": 1,
+        "color_format": 27,
+        "depth_format": 48,
+        "samples": 1,
+        "width": 1280,
+        "height": 720
+      },
+      "preparation_layouts": [
+        {
+          "role": "scene",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "role": "offscreen",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "states": [
+        {
+          "state": "sphere",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "cube",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "sphere-faded",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "sea-shadow-sphere",
+          "draw_calls": 8,
+          "pipeline_lookups": 8,
+          "configurations": 8,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "sphere-repeated",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        }
+      ],
+      "first_state_with_the_same_description_set": {
+        "cube": "sphere",
+        "sphere-faded": "sphere",
+        "sphere-repeated": "sphere"
+      },
+      "physical_verification": false
+    },
+    {
+      "id": "scene-ocean-world-v1",
+      "frames": 6,
+      "draw_calls": 12,
+      "pipeline_lookups": 12,
+      "configurations": 4,
+      "baseline_covered": 2,
+      "new": 2,
+      "layout": {
+        "key": 16288162637680331091,
+        "attachments": 1,
+        "color_format": 27,
+        "depth_format": 48,
+        "samples": 1,
+        "width": 1280,
+        "height": 720
+      },
+      "preparation_layouts": [
+        {
+          "role": "scene",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "role": "offscreen",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "states": [
+        {
+          "state": "day",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "night",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "dense-fog",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "range-adjusted",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "camera-raised",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "day-repeated",
+          "draw_calls": 2,
+          "pipeline_lookups": 2,
+          "configurations": 2,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        }
+      ],
+      "first_state_with_the_same_description_set": {
+        "night": "day",
+        "dense-fog": "day",
+        "camera-raised": "day",
+        "day-repeated": "day"
+      },
+      "physical_verification": false
+    },
+    {
+      "id": "scene-simple-shadows-v1",
+      "frames": 4,
+      "draw_calls": 19,
+      "pipeline_lookups": 19,
+      "configurations": 5,
+      "baseline_covered": 0,
+      "new": 5,
+      "layout": {
+        "key": 16288162637680331091,
+        "attachments": 1,
+        "color_format": 27,
+        "depth_format": 48,
+        "samples": 1,
+        "width": 1280,
+        "height": 720
+      },
+      "preparation_layouts": [
+        {
+          "role": "scene",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "role": "offscreen",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "states": [
+        {
+          "state": "untextured",
+          "draw_calls": 4,
+          "pipeline_lookups": 4,
+          "configurations": 4,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "textured",
+          "draw_calls": 5,
+          "pipeline_lookups": 5,
+          "configurations": 5,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "sloped-raised",
+          "draw_calls": 5,
+          "pipeline_lookups": 5,
+          "configurations": 5,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "textured-repeated",
+          "draw_calls": 5,
+          "pipeline_lookups": 5,
+          "configurations": 5,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        }
+      ],
+      "first_state_with_the_same_description_set": {
+        "sloped-raised": "textured",
+        "textured-repeated": "textured"
+      },
+      "physical_verification": false
+    }
+  ],
+  "rows": [
+    {
+      "id": "mirror-and-reflection-scenes",
+      "family": "reflections",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Mirror geometry/collision and room capture are oversized for this slice.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_mirrorPacket::draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "other-alpha-volumes",
+      "family": "alpha",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Multi-volume accumulator/searchlight variants are distinct from the alpha packet exercised here.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_alphaModelData_c::draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "other-world-camera-overlaps",
+      "family": "world",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Full painter order, clipping, other camera projections and arbitrary simultaneous effects are unhandled.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_graphic.cpp:mDoGph_Painter"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "real-shadow-capture-and-receivers",
+      "family": "shadows",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Real caster image capture and collision/sea receivers need separate bounded setup; simple shadows do not cover them.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowReal_c::imageDraw/draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "rectangular-shadow-textures",
+      "family": "shadows",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Non-square actor textures take a different seal display list and are not supplied by this inventory.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowSimple_c::draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "scene-alpha-overlap-v1",
+      "family": "alpha",
+      "action": "exercise",
+      "scenario": "scene-alpha-overlap-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "sphere",
+          "cube",
+          "sphere-faded",
+          "sea-shadow-sphere",
+          "sphere-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-scene-world-camera-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_alphaModelPacket::draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_sea.cpp:daSea_packet_c::draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowControl_c::draw"
+      ],
+      "assumptions": [
+        "Finite isolated scene packet draws; no stage/player/weather process, logic loop, audio, saves or settings.",
+        "Generated full descriptions through actual game draw code and the normal synchronous renderer recorder.",
+        "Stock 1280x720/single-sample target; no optional normals, MSAA, texture replacement or driver binary portability.",
+        "Camera day: eye (0,1000,2000), look-at (0,0,-2000), up (0,1,0), FOV 45, aspect 4/3, near 1, far 160000.",
+        "Raised camera: eye Y 3000, FOV 60, near 10, far 80000; other camera components unchanged.",
+        "Day sea C0=(80,160,200,255), K0=(20,80,120,255); night C0=(10,20,40,255), K0=(5,10,20,255).",
+        "Fog uses day/night C0 and real perspective-linear dKy fog; start/end 1000/50000, dense 100/5000; range center 320/table 0.",
+        "Numeric colors, fog distances, transforms and scrolling are candidates for shared configuration only when full descriptions match.",
+        "Scene and single-color/single-sample offscreen preparation contracts are recorded separately even when their keys coincide.",
+        "Real alpha packet types 0 (sphere) and 3 (cube), transform scale 100, RGBA=(255,200,100,255/128).",
+        "Selected overlap draws ocean, default textured simple shadow, then faded sphere in one frame.",
+        "This packet sequence does not claim a reached gameplay state or full painter/actor ordering equivalence."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/scene-alpha-overlap-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "scene-ocean-world-v1",
+      "family": "ocean",
+      "action": "exercise",
+      "scenario": "scene-ocean-world-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "day",
+          "night",
+          "dense-fog",
+          "range-adjusted",
+          "camera-raised",
+          "day-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-scene-world-camera-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_sea.cpp:daSea_packet_c::create/draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_kankyo.cpp:dKy_GxFog_sea_set/GxXFog_set/dKy_get_seacolor"
+      ],
+      "assumptions": [
+        "Finite isolated scene packet draws; no stage/player/weather process, logic loop, audio, saves or settings.",
+        "Generated full descriptions through actual game draw code and the normal synchronous renderer recorder.",
+        "Stock 1280x720/single-sample target; no optional normals, MSAA, texture replacement or driver binary portability.",
+        "Camera day: eye (0,1000,2000), look-at (0,0,-2000), up (0,1,0), FOV 45, aspect 4/3, near 1, far 160000.",
+        "Raised camera: eye Y 3000, FOV 60, near 10, far 80000; other camera components unchanged.",
+        "Day sea C0=(80,160,200,255), K0=(20,80,120,255); night C0=(10,20,40,255), K0=(5,10,20,255).",
+        "Fog uses day/night C0 and real perspective-linear dKy fog; start/end 1000/50000, dense 100/5000; range center 320/table 0.",
+        "Numeric colors, fog distances, transforms and scrolling are candidates for shared configuration only when full descriptions match.",
+        "Scene and single-color/single-sample offscreen preparation contracts are recorded separately even when their keys coincide.",
+        "Real create initializes a 65x65 flat height table at Y=1; fixed grid bounds +/-25600, 800-unit cells.",
+        "Draw advances the real texture counter once per frame; no wave execute or weather/time progression."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/scene-ocean-world-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "scene-simple-shadows-v1",
+      "family": "simple",
+      "action": "exercise",
+      "scenario": "scene-simple-shadows-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "untextured",
+          "textured",
+          "sloped-raised",
+          "textured-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-scene-world-camera-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowControl_c::setSimple/draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowSimple_c::set/draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_s_logo.cpp:dScnLogo_Delete"
+      ],
+      "assumptions": [
+        "Finite isolated scene packet draws; no stage/player/weather process, logic loop, audio, saves or settings.",
+        "Generated full descriptions through actual game draw code and the normal synchronous renderer recorder.",
+        "Stock 1280x720/single-sample target; no optional normals, MSAA, texture replacement or driver binary portability.",
+        "Camera day: eye (0,1000,2000), look-at (0,0,-2000), up (0,1,0), FOV 45, aspect 4/3, near 1, far 160000.",
+        "Raised camera: eye Y 3000, FOV 60, near 10, far 80000; other camera components unchanged.",
+        "Day sea C0=(80,160,200,255), K0=(20,80,120,255); night C0=(10,20,40,255), K0=(5,10,20,255).",
+        "Fog uses day/night C0 and real perspective-linear dKy fog; start/end 1000/50000, dense 100/5000; range center 320/table 0.",
+        "Numeric colors, fog distances, transforms and scrolling are candidates for shared configuration only when full descriptions match.",
+        "Scene and single-color/single-sample offscreen preparation contracts are recorded separately even when their keys coincide.",
+        "Real volume/front/back/seal/clear display lists, default ball128b texture versus NULL.",
+        "Caster (0,50,0), ground Y=0, scale XZ=100, Z ratio=1, normal=(0,1,0), Y rotation=0.",
+        "Sloped state: raised camera, caster Y=200, normal=(0.6,0.8,0), rotation=4096, Z ratio=2.",
+        "Non-square custom actor shadow textures and real collision receivers remain unhandled."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/scene-simple-shadows-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "stage-sky-and-underwater",
+      "family": "world",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Stage sky resources, underwater room state and transitions are not reached by isolated packets.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_vrbox.cpp"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "waterfalls-and-dungeon-water",
+      "family": "water",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Stage resource actors, projected textures and offscreen capture inputs need independent bounded recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_waterfall.cpp:daWfall_c::_draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "wave-simulation-and-storms",
+      "family": "ocean",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Player/stage wave bounds, storms and octopus interactions need dedicated scene controllers.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_sea.cpp:daSea_packet_c::execute"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "weather-rain-snow-clouds",
+      "family": "weather",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Weather packet initialization and camera/spawn controllers require follow-up recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_kankyo_wether.cpp"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    }
+  ],
+  "mapping": [
+    {
+      "type": 1,
+      "hash": -9049690777993005320,
+      "description_sha256": "4ce415a00ef74e09c17e2a3e179e78bff744ce2ad38a23b3e9a49acd2a825c9f",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -7319526879029702584,
+      "description_sha256": "ac2733b519d651c03ba435a6e2e449a4a877cd0145cb04194dc59ef9543bca51",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1",
+        "scene-simple-shadows-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6811978204254739052,
+      "description_sha256": "7962fe836a34cf5450cc9083fd50a0239db194756260142f1ac23bab8f9c27cd",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1",
+        "scene-ocean-world-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6250731902864848287,
+      "description_sha256": "8b09222434c0c64f1b857fa6b2dd1ca90a0a97aa9b52bcf1037122c255b7f4df",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6188235616750955052,
+      "description_sha256": "d7a8b9cd57b646d7fffdd3185cb362c57f50ee8f973b75d884c0c2573c2b0bab",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1",
+        "scene-simple-shadows-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4903179455085947811,
+      "description_sha256": "19868b5417f697ff8e8d2258ad23ec7144134b88e0fb0f2f15a6174d5bf3d972",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1",
+        "scene-simple-shadows-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2713996361780577909,
+      "description_sha256": "0754035f7d919d3bda001ba48f44fa2c625437279f0efbb49a7c6fb5ac54a5e6",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1",
+        "scene-simple-shadows-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 587858538552342752,
+      "description_sha256": "a326539d54c7031377542bed045047cb3ed53fbe07ee86b3a9ef1c253fc8b1ee",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1",
+        "scene-ocean-world-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2531376136326673965,
+      "description_sha256": "573dd25e04b5d45707dc2f6273e8233c59c9f3cc74dd055d22bd3005fc07b57c",
+      "baseline_covered": true,
+      "sources": [
+        "scene-ocean-world-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2819629572419598935,
+      "description_sha256": "223f1a6a54461b3a4dab14210e0d49b574d1f1e795ebbff095172cf22f04e038",
+      "baseline_covered": false,
+      "sources": [
+        "scene-alpha-overlap-v1",
+        "scene-simple-shadows-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4251643188918909934,
+      "description_sha256": "6440da0c5b18ce7eb69b6137ca647f3cd7a1cfd9bf811b20a31504f913403261",
+      "baseline_covered": true,
+      "sources": [
+        "scene-ocean-world-v1"
+      ]
+    }
+  ],
+  "inventory_complete": false,
+  "residual_gaps": [
+    "mirror-and-reflection-scenes",
+    "other-alpha-volumes",
+    "other-world-camera-overlaps",
+    "real-shadow-capture-and-receivers",
+    "rectangular-shadow-textures",
+    "stage-sky-and-underwater",
+    "waterfalls-and-dungeon-water",
+    "wave-simulation-and-storms",
+    "weather-rain-snow-clouds"
+  ],
+  "existing_recipe_controls": {
+    "equipment-arrow-tips-v1": {
+      "descriptions": 2,
+      "equal_to_retained_collection": true
+    },
+    "boss-puppet-ganon-water-v1": {
+      "descriptions": 2,
+      "equal_to_retained_collection": true
+    }
+  },
+  "candidate_controls": {
+    "scene-alpha-overlap-v1": {
+      "all_descriptions_in_frozen_seed": true,
+      "host_candidate_preparation_completed": true,
+      "physical_verification": false
+    },
+    "scene-ocean-world-v1": {
+      "all_descriptions_in_frozen_seed": true,
+      "host_candidate_preparation_completed": true,
+      "physical_verification": false
+    },
+    "scene-simple-shadows-v1": {
+      "all_descriptions_in_frozen_seed": true,
+      "host_candidate_preparation_completed": true,
+      "physical_verification": false
+    }
+  },
+  "physical_verification": false
+}
