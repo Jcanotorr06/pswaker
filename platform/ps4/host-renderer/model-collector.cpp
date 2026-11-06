@@ -34,6 +34,7 @@
 #include <cctype>
 #include <string>
 #include <vector>
+#include <memory>
 
 static sqlite3* observed;
 static std::mutex observationMutex;
@@ -209,21 +210,119 @@ static void write_effect_steps(FILE* report) {
   fprintf(report, "]");
 }
 
+static std::vector<unsigned> particle_ids(const std::string& resource) {
+  const std::string prefix = "/res/Particle/common.jpc:";
+  check(resource.starts_with(prefix), "only the fixed common particle bank is supported");
+  std::vector<unsigned> ids;
+  size_t start = prefix.size();
+  while (start < resource.size()) {
+    const auto end = resource.find('+', start);
+    const auto token = resource.substr(start, end == std::string::npos ? end : end - start);
+    check(token.size() == 6 && token.starts_with("0x") &&
+          std::all_of(token.begin() + 2, token.end(), [](unsigned char c) { return std::isxdigit(c); }),
+          "fixed four-digit effect ID required");
+    const unsigned id = std::stoul(token, nullptr, 16);
+    check(id == 0x2022 || id == 0x2027 || id == 0x2008 || id == 0x2009 || id == 0x200a ||
+          id == 0x000b || id == 0x0013 || id == 0x0018 || id == 0x0019 || id == 0x232a,
+          "effect requires a separately validated recipe");
+    check(ids.size() < 4 && std::find(ids.begin(), ids.end(), id) == ids.end(), "bounded unique effect IDs");
+    ids.push_back(id);
+    if (end == std::string::npos) break;
+    start = end + 1;
+  }
+  check(!ids.empty() && resource.back() != '+', "particle recipe required");
+  return ids;
+}
+
+static unsigned draw_particles(Mtx view, const std::vector<unsigned>& ids) {
+  auto* bytes = JKRDvdToMainRam("/res/Particle/common.jpc", nullptr, EXPAND_SWITCH_UNKNOWN1,
+                               0, JKRHeap::getCurrentHeap(), JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, nullptr);
+  check(bytes, "load actual common particle bank");
+  JPAResourceManager resources(bytes, JKRHeap::getCurrentHeap());
+  JPAEmitterManager manager(&resources, 3000, 150, 200, JKRHeap::getCurrentHeap());
+  JPADrawInfo drawInfo(view, 45, 4.0f / 3.0f);
+  unsigned draws = 0;
+  for (unsigned variation = 0; variation < 2; ++variation) {
+    check(manager.getEmitterNumber() == 0 && manager.getParticleNumber() == 0, "empty particle manager");
+    JPABaseEmitter::emtrInfo.mRandom.setSeed(variation);
+    dPa_selectTexEcallBack texture(variation);
+    dPa_bombSmokeEcallBack bombSmoke;
+    const cXyz smokePosition(0, 0, 0); // Follow callbacks retain this pointer through every tick.
+    std::vector<std::unique_ptr<dPa_smokeEcallBack>> smokeCallbacks;
+    for (const auto id : ids) {
+      JGeometry::TVec3<f32> origin(0, 0, 0), scale(variation ? 2 : 1, variation ? 2 : 1, variation ? 2 : 1);
+      const auto group = id & 0x2000 ? dPa_control_c::dPtclGroup_ToonP1_e : dPa_control_c::dPtclGroup_NormalP1_e;
+      auto* emitter = manager.createSimpleEmitterID(origin, id, group, 0, nullptr, nullptr);
+      check(emitter, "instantiate selected particle effect");
+      emitter->setGlobalScale(scale);
+      emitter->setGlobalAlpha(variation ? 128 : 255);
+      if (id == 0x0018) {
+        emitter->setEmitterCallBackPtr(&texture);
+        texture.setup(emitter, nullptr, nullptr, -1);
+      } else if (id == 0x2009 || id == 0x200a || id == 0x232a) {
+        emitter->setEmitterCallBackPtr(&bombSmoke);
+        emitter->setUserWork(id == 0x2009 ? 0x460501 : 0x280478);
+      } else if (id == 0x2022 || id == 0x2027) {
+        // Real smoke TEV/vertex callbacks with fixed lighting and no stage wind.
+        auto callback = std::make_unique<dPa_smokeEcallBack>(0, 0, 0, 1);
+        callback->onWindOff();
+        emitter->setEmitterCallBackPtr(callback.get());
+        callback->setup(emitter, &smokePosition, nullptr, -1);
+        // Selected setSimpleLand inputs, independent of ground collision.
+        emitter->setMaxFrame(1);
+        emitter->setRate(3.0f);
+        emitter->setSpread(0.05f);
+        smokeCallbacks.push_back(std::move(callback));
+      }
+      // Continuous resources get an explicit finite emission window; particles
+      // still expire through normal JPA simulation, never forced pool deletion.
+      if (emitter->isContinuousParticle()) emitter->setMaxFrame(30);
+    }
+    bool alive = false, complete = false;
+    for (unsigned tick = 1; tick <= 240; ++tick) {
+      manager.calc(dPa_control_c::dPtclGroup_NormalP1_e);
+      manager.calc(dPa_control_c::dPtclGroup_ToonP1_e);
+      effectSteps.push_back({variation, tick, manager.getParticleNumber(), manager.getEmitterNumber()});
+      activeStep = &effectSteps.back();
+      alive |= activeStep->particles > 0;
+      begin_draw();
+      for (const auto group : {dPa_control_c::dPtclGroup_NormalP1_e, dPa_control_c::dPtclGroup_ToonP1_e}) {
+        j3dSys.reinitGX();
+        manager.draw(&drawInfo, group);
+        GXSetAlphaUpdate(GX_DISABLE);
+        GXSetNumIndStages(0);
+      }
+      activeStep->draws = end_draw();
+      draws += activeStep->draws;
+      activeStep = nullptr;
+      if (manager.getEmitterNumber() == 0 && manager.getParticleNumber() == 0) {
+        complete = true;
+        break;
+      }
+    }
+    check(alive && complete, "particle recipe must draw and retire within 240 ticks");
+  }
+  return draws;
+}
+
 int main(int argc, char* argv[]) {
   check(argc >= 3 && argc <= 5, "usage: collector IMAGE BASELINE_ASSETS [SCENARIO [RESOURCE]] (new private directory)");
-  const bool dynamic = argc == 4 && !strcmp(argv[3], "common-pot-debris-lifecycle-v1");
+  const bool particles = argc == 5 && !strcmp(argv[3], "particle-effect-lifecycle-v1");
+  const bool dynamic = particles || (argc == 4 && !strcmp(argv[3], "common-pot-debris-lifecycle-v1"));
   const bool inventory = argc == 5 && !strcmp(argv[3], "asset-model-stock-v1");
   check(argc == 3 || dynamic || inventory || (argc == 4 && !strcmp(argv[3], "always-small-pot-stock-v1")),
         "unknown scenario");
-  const std::string resource = inventory ? argv[4] : "/res/Object/Always.arc:bdl/obm_kotubo1.bdl";
-  const auto separator = resource.find(':');
-  check(separator != std::string::npos && resource.find(':', separator + 1) == std::string::npos,
+  const std::string resource = inventory || particles ? argv[4] : "/res/Object/Always.arc:bdl/obm_kotubo1.bdl";
+  const auto particleIds = particles ? particle_ids(resource) : std::vector<unsigned>{};
+  const auto modelResource = particles ? std::string("/res/Object/Always.arc:bdl/obm_kotubo1.bdl") : resource;
+  const auto separator = modelResource.find(':');
+  check(separator != std::string::npos && modelResource.find(':', separator + 1) == std::string::npos,
         "one archive/member separator required");
-  const auto archivePath = resource.substr(0, separator);
-  const auto memberPath = resource.substr(separator + 1);
+  const auto archivePath = modelResource.substr(0, separator);
+  const auto memberPath = modelResource.substr(separator + 1);
   check(archivePath.starts_with("/res/") && archivePath.ends_with(".arc") && memberPath.ends_with(".bdl")
-        && resource.find("..") == std::string::npos && !memberPath.starts_with('/')
-        && std::all_of(resource.begin(), resource.end(), [](unsigned char c) {
+        && modelResource.find("..") == std::string::npos && !memberPath.starts_with('/')
+        && std::all_of(modelResource.begin(), modelResource.end(), [](unsigned char c) {
           return std::isalnum(c) || c == '/' || c == '.' || c == '_' || c == '-' || c == ':';
         }), "supported stock BDL resource path required");
   const auto runtimeIdentityRows = verify_runtime_identities(argv[2]);
@@ -286,7 +385,7 @@ int main(int argc, char* argv[]) {
   recording = true;
   unsigned renderedDraws = 0;
   if (dynamic) {
-    renderedDraws = draw_effect(view);
+    renderedDraws = particles ? draw_particles(view, particleIds) : draw_effect(view);
   } else {
     for (int frame = 0; frame < 3; ++frame) {
       begin_draw();
@@ -306,7 +405,19 @@ int main(int argc, char* argv[]) {
   check(sqlite3_close(observed) == SQLITE_OK, "close observation database");
   auto* report = fopen("collection.json", "wx");
   check(report, "new collection report");
-  if (dynamic) {
+  if (particles) {
+    fprintf(report, "{\"schema\":1,\"scenario\":\"particle-effect-lifecycle-v1\",\"method\":\"dynamic-effect-draw\","
+            "\"resource\":\"%s\",\"draw_calls\":%u,\"pipeline_lookups\":%u,\"runtime_identity_verified_rows\":%u,"
+            "\"frames\":%zu,\"script\":{\"effect_ids\":[", resource.c_str(), renderedDraws, drawCalls,
+            runtimeIdentityRows, effectSteps.size());
+    for (size_t i = 0; i < particleIds.size(); ++i) fprintf(report, "%s%u", i ? "," : "", particleIds[i]);
+    fprintf(report, "],\"max_ticks\":240,\"continuous_emission_ticks\":30,\"variations\":["
+            "{\"random_seed\":0,\"scale\":1,\"alpha\":255,\"texture_index\":0},"
+            "{\"random_seed\":1,\"scale\":2,\"alpha\":128,\"texture_index\":1}]},"
+            "\"unhandled_states\":[\"stage-lighting-and-wind\",\"projection-framebuffer\","
+            "\"model-particles\",\"actor-collision\",\"other-cameras\"]");
+    write_effect_steps(report);
+  } else if (dynamic) {
     fprintf(report, "{\"schema\":1,\"scenario\":\"common-pot-debris-lifecycle-v1\","
             "\"method\":\"dynamic-effect-draw\",\"resource\":\"/res/Particle/common.jpc:0x0018\","
             "\"draw_calls\":%u,\"pipeline_lookups\":%u,\"runtime_identity_verified_rows\":%u,\"frames\":%zu,"

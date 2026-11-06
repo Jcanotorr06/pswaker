@@ -18,6 +18,7 @@ from package_artifact import PIPELINE_SEED, digest, inventory, validate_pipeline
 from pipeline_assets import checked_pipeline_asset
 from build_inputs import REPOSITORY
 from asset_inventory import read_manifest, model_resource
+import particle_collection as particle
 
 
 DYNAMIC_SCENARIO = 'common-pot-debris-lifecycle-v1'
@@ -34,13 +35,16 @@ def source_inventory(directory):
 
 
 def check_draw_report(metadata):
+    if isinstance(metadata, dict) and metadata.get('scenario') == particle.SCENARIO:
+        particle.check_report(metadata)
+        return
     if isinstance(metadata, dict) and metadata.get('scenario') == DYNAMIC_SCENARIO:
         require(metadata.get('schema') == 1 and metadata.get('method') == 'dynamic-effect-draw'
                 and metadata.get('resource') == '/res/Particle/common.jpc:0x0018'
                 and metadata.get('script') == DYNAMIC_SCRIPT
                 and metadata.get('unhandled_states') == DYNAMIC_UNHANDLED,
                 'Invalid dynamic collection script or unhandled states')
-        check_dynamic_lifetimes(metadata)
+        particle.check_lifetimes(metadata, max_ticks=DYNAMIC_SCRIPT['max_ticks'], emitter_limit=1)
         return
     if isinstance(metadata, dict) and metadata.get('scenario') == 'asset-model-stock-v1':
         require(model_resource(metadata.get('resource')) and metadata['resource'].endswith('.bdl')
@@ -59,52 +63,6 @@ def check_draw_report(metadata):
             'Invalid model collection or no actual material draws')
 
 
-def check_dynamic_lifetimes(metadata):
-    variations = metadata.get('variations')
-    require(isinstance(variations, list) and len(variations) == 2,
-            'Invalid dynamic variations')
-    variations = metadata['variations']
-    totals = dict(frames=0, draw_calls=0, pipeline_lookups=0)
-    for texture, variation in enumerate(variations):
-        require(isinstance(variation, dict) and type(variation.get('texture_index')) is int
-                and variation['texture_index'] == texture,
-                'Invalid dynamic texture variation')
-        steps = variation.get('steps')
-        require(isinstance(steps, list) and 1 < len(steps) <= DYNAMIC_SCRIPT['max_ticks'],
-                'Invalid dynamic lifetime length')
-        steps = variation['steps']
-        peak = draws = lookups = 0
-        for tick, step in enumerate(steps, 1):
-            require(isinstance(step, dict) and type(step.get('tick')) is int and step['tick'] == tick
-                    and all(type(step.get(name)) is int and step[name] >= 0
-                            for name in ['particles', 'emitters', 'draw_calls', 'pipeline_lookups']),
-                    'Invalid dynamic lifetime step')
-            require(step['emitters'] == (0 if tick == len(steps) else 1),
-                    'Invalid dynamic emitter transition')
-            configurations = step.get('configurations')
-            require(isinstance(configurations, list) and all(
-                isinstance(key, dict) and set(key) == {'type', 'hash'}
-                and type(key['type']) is int and key['type'] in [0, 1]
-                and type(key['hash']) is int and -(2**63) <= key['hash'] < 2**63
-                for key in configurations), 'Invalid dynamic description mapping')
-            configurations = step['configurations']
-            require(len({(key['type'], key['hash']) for key in configurations}) == len(configurations)
-                    and bool(configurations) == (step['pipeline_lookups'] > 0)
-                    and len(configurations) <= step['pipeline_lookups'],
-                    'Incomplete dynamic description mapping')
-            peak = max(peak, step['particles'])
-            draws += step['draw_calls']
-            lookups += step['pipeline_lookups']
-        require(peak > 0 and draws > 0 and lookups > 0
-                and steps[-1]['particles'] == steps[-1]['emitters'] == 0,
-                'Incomplete dynamic particle lifetime or no actual draws')
-        totals['frames'] += len(steps)
-        totals['draw_calls'] += draws
-        totals['pipeline_lookups'] += lookups
-    require(all(type(metadata.get(name)) is int and metadata[name] == value
-                for name, value in totals.items()), 'Invalid dynamic collection totals')
-
-
 def check_dynamic_mapping(metadata, generated):
     if metadata['method'] == 'dynamic-effect-draw':
         mapped = {(key['type'], key['hash']) for variation in metadata['variations']
@@ -116,6 +74,8 @@ def configuration_states(metadata, key):
     if metadata['method'] != 'dynamic-effect-draw':
         return {}
     return {'states': [{'texture_index': variation['texture_index'],
+                        **({'variation': metadata['script']['variations'][variation['texture_index']]}
+                           if metadata['scenario'] == particle.SCENARIO else {}),
                         'ticks': [step['tick'] for step in variation['steps']
                                   if {'type': key[0], 'hash': key[1]} in step['configurations']]}
                        for variation in metadata['variations']
@@ -217,6 +177,9 @@ def collect(args):
     if args.scenario == 'asset-model-stock-v1':
         require(model_resource(resource) and str(resource).endswith('.bdl'), 'A valid stock BDL resource is required')
         resource = str(resource)
+    elif args.scenario == particle.SCENARIO:
+        particle.effect_ids(resource)
+        resource = str(resource)
     else:
         require(resource is None, 'Resource selection is only supported for inventory collection')
         resource = '/res/Object/Always.arc:bdl/obm_kotubo1.bdl'
@@ -233,7 +196,7 @@ def collect(args):
     with args.image.open('rb') as stream:
         disc = DiscImage(stream)
         files = disc.files(disc.read(0, 0x440, 'header'))
-        if args.scenario == DYNAMIC_SCENARIO:
+        if args.scenario in [DYNAMIC_SCENARIO, particle.SCENARIO]:
             offset, size = files['res/Particle/common.jpc']
             particles = disc.read(offset, size, 'common particles')
             resources = {'particle_sha256': hashlib.sha256(particles).hexdigest(), 'particle_bytes': len(particles)}
@@ -250,7 +213,7 @@ def collect(args):
         command = ['xvfb-run', '-a', str(binary), str(args.image), str(args.baseline)]
         if args.scenario != 'always-small-pot-stock-v1':
             command.append(args.scenario)
-        if args.scenario == 'asset-model-stock-v1':
+        if args.scenario in ['asset-model-stock-v1', particle.SCENARIO]:
             command.append(resource)
         # The isolated collector has no game boot or card/settings paths.
         run_logged(command, work, work / 'collector.log', timeout=180)
@@ -412,7 +375,8 @@ def prepare_batch(manifest_path, collections, baseline, output):
     require(not any(output.is_relative_to(source) for source in [collections, baseline, manifest_path]),
             'Batch output must remain outside source inputs')
     manifest_sha = digest(manifest_path)
-    manifest = read_manifest(manifest_path)
+    manifest = read_collection_manifest(manifest_path)
+    particles = manifest.get('kind') == 'particle-effects'
     inputs = {'baseline': inventory(baseline), 'collections': inventory(collections)}
     original = checked_pipeline_asset(baseline)
     existing = records(baseline)
@@ -428,10 +392,13 @@ def prepare_batch(manifest_path, collections, baseline, output):
             collection = collections / identifier
             report = prepare(collection, baseline, validation / identifier)
             metadata = report['collection']
-            require(metadata['method'] == 'asset-material-draw'
+            require(metadata['method'] == ('dynamic-effect-draw' if particles else 'asset-material-draw')
                     and metadata['resource'] == row['resource']
                     and metadata.get('resources') == row['input_identity'],
                     'Collection resource differs from its inventory row')
+            if particles:
+                require(metadata['scenario'] == particle.SCENARIO and metadata['script'] == row['script'],
+                        'Collection particle script differs from manifest')
             require(all(metadata.get(key) == manifest[key]
                         for key in ['collector', 'image_sha256', 'contract_sha256']),
                     'Collection target/input identity differs from inventory contract')
@@ -453,7 +420,7 @@ def prepare_batch(manifest_path, collections, baseline, output):
         additions = additional_records(existing, sources.values())
         seed = write_combined_seed(baseline, original, additions, manifests, work / 'assets')
         generated = {key: value for source in sources.values() for key, value in source.items()}
-        report = {'schema': 1, 'provenance': 'asset-material-batch', 'manifest': manifest,
+        report = {'schema': 1, 'provenance': 'particle-effect-batch' if particles else 'asset-material-batch', 'manifest': manifest,
                   'manifest_sha256': manifest_sha, 'baseline_rows': len(existing),
                   'collected_rows': len(generated), 'new_rows': len(additions), 'seed': seed,
                   'rows': rows, 'physical_verification': False, 'input_files': inputs,
@@ -470,12 +437,18 @@ def prepare_batch(manifest_path, collections, baseline, output):
     return report
 
 
+def read_collection_manifest(path):
+    document = json.loads(path.read_text(encoding='utf-8'))
+    require(isinstance(document, dict), 'Invalid collection manifest')
+    return particle.read_manifest(document) if document.get('kind') == 'particle-effects' else read_manifest(path)
+
+
 def collect_batch(args):
     require(not args.output.exists(), 'Output already exists; retain the earlier batch')
     require(not args.output.is_relative_to(REPOSITORY), 'Batch collections must remain private')
     require(not any(args.output.is_relative_to(source) for source in [args.baseline, args.collector]),
             'Batch output must remain outside source inputs')
-    manifest = read_manifest(args.manifest)
+    manifest = read_collection_manifest(args.manifest)
     manifest_sha = digest(args.manifest)
     inputs = {'baseline': inventory(args.baseline), 'collector': inventory(args.collector)}
     with collection_attempt(args.output) as work:
@@ -484,7 +457,8 @@ def collect_batch(args):
         for row in sorted(manifest['rows'], key=lambda row: row['id']):
             if row['action'] == 'exercise':
                 collect(argparse.Namespace(collector=args.collector, image=args.image, baseline=args.baseline,
-                                           output=collections / row['id'], scenario='asset-model-stock-v1',
+                                           output=collections / row['id'], scenario=(particle.SCENARIO
+                                               if manifest.get('kind') == 'particle-effects' else 'asset-model-stock-v1'),
                                            resource=row['resource']))
         report = prepare_batch(args.manifest, collections, args.baseline, work / 'prepared')
         require(digest(args.manifest) == manifest_sha and digest(args.image) == manifest['image_sha256']
@@ -519,6 +493,17 @@ def freeze_inventory(args):
         files = disc.files(disc.read(0, 0x440, 'header'))
         archive_path, expanded_archive, archive_sha = None, b'', ''
         for row in plan['rows']:
+            if plan.get('kind') == 'particle-effects':
+                require(isinstance(row, dict), 'Invalid particle plan row')
+                if row.get('action') != 'exercise':
+                    rows.append(row)
+                    continue
+                particle.effect_ids(row.get('resource'))
+                offset, size = files['res/Particle/common.jpc']
+                particles = disc.read(offset, size, 'common particles')
+                rows.append({**row, 'input_identity': {'particle_sha256': hashlib.sha256(particles).hexdigest(),
+                                                      'particle_bytes': len(particles)}})
+                continue
             require(isinstance(row, dict) and model_resource(row.get('resource')), 'Invalid inventory plan resource')
             path, member = row['resource'].split(':')
             if path != archive_path:
@@ -536,7 +521,7 @@ def freeze_inventory(args):
     with tempfile.TemporaryDirectory(prefix='.inventory-', dir=args.output.parent) as folder:
         path = Path(folder) / 'manifest.json'
         write_json(path, manifest)
-        read_manifest(path)
+        read_collection_manifest(path)
         require(digest(args.image) == image['sha256'] and digest(args.plan) == plan_sha
                 and inventory(args.collector) == collector_before, 'Inventory inputs changed during freezing')
         path.rename(args.output)
@@ -568,9 +553,9 @@ def main():
     for name in ['game-root', 'platform-root', 'host-root', 'build-directory', 'output']:
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     command = commands.add_parser('collect')
-    command.add_argument('--scenario', choices=['always-small-pot-stock-v1', DYNAMIC_SCENARIO, 'asset-model-stock-v1'],
+    command.add_argument('--scenario', choices=['always-small-pot-stock-v1', DYNAMIC_SCENARIO, 'asset-model-stock-v1', particle.SCENARIO],
                          default='always-small-pot-stock-v1')
-    command.add_argument('--resource', help='Exact /res/archive.arc:member.bdl for the stock inventory scenario')
+    command.add_argument('--resource', help='Exact model resource or fixed common.jpc effect ID combination')
     for name in ['collector', 'image', 'baseline', 'output']:
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     args = parser.parse_args()

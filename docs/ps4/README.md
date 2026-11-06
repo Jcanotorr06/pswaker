@@ -226,6 +226,9 @@ pass establish no game DSP, game-save correctness or gameplay performance.
 
 ## Host checks
 
+For the bounded common-bank smoke/explosion manifest, scripted overlaps and
+independent test package, use [particle collection](PARTICLE-COLLECTOR.md).
+
 For the generated static/dynamic pilot's bounded cold/warm console gate, use
 [generated-seed feasibility](GENERATED-SEED-FEASIBILITY.md). It covers exact
 candidate identities, startup resources, save/settings preservation and evidence

@@ -1,0 +1,718 @@
+{
+  "schema": 1,
+  "id": "common-particle-effects-151-v1",
+  "kind": "particle-effects",
+  "exclusions": [
+    "Scene particle banks and scene controllers: #153/#154.",
+    "Projection/framebuffer, stage lighting and wind: #154.",
+    "Model particles and actor/equipment mutations: #152.",
+    "Menu/cutscene/mode-dependent callbacks: #155.",
+    "PS4 preparation/scaling and final interactions: #138/#157."
+  ],
+  "rows": [
+    {
+      "id": "common-smoke-zero-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2005",
+      "action": "missing",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "reason": "Symbol exists in the source enum but ID is absent from the supported revision common bank; actual creation failed."
+    },
+    {
+      "id": "common-smoke-one-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2006",
+      "action": "missing",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "reason": "Symbol exists in the source enum but ID is absent from the supported revision common bank; actual creation failed."
+    },
+    {
+      "id": "common-smoke-two-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2007",
+      "action": "missing",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "reason": "Symbol exists in the source enum but ID is absent from the supported revision common bank; actual creation failed."
+    },
+    {
+      "id": "common-bomb-fragments-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x2008",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          8200
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/actor/d_a_bomb3.inc:daBomb_c::eff_explode_normal/eff_explode_cheap",
+        "game/src/d/d_particle.cpp:dPa_control_c::setBombSmoke/dPa_bombSmokeEcallBack::execute"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-bomb-smoke-one-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x2009",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          8201
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/actor/d_a_bomb3.inc:daBomb_c::eff_explode_normal/eff_explode_cheap",
+        "game/src/d/d_particle.cpp:dPa_control_c::setBombSmoke/dPa_bombSmokeEcallBack::execute"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-bomb-smoke-two-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x200a",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          8202
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/actor/d_a_bomb3.inc:daBomb_c::eff_explode_normal/eff_explode_cheap",
+        "game/src/d/d_particle.cpp:dPa_control_c::setBombSmoke/dPa_bombSmokeEcallBack::execute"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-bomb-flash-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x000b",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          11
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/actor/d_a_bomb3.inc:daBomb_c::eff_explode_normal/eff_explode_cheap",
+        "game/src/d/d_particle.cpp:dPa_control_c::setBombSmoke/dPa_bombSmokeEcallBack::execute"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-death-cloud-v1",
+      "family": "death-explosion",
+      "resource": "/res/Particle/common.jpc:0x0013",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          19
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-ascension-cloud-v1",
+      "family": "death-explosion",
+      "resource": "/res/Particle/common.jpc:0x0019",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          25
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-pot-debris-v1",
+      "family": "debris",
+      "resource": "/res/Particle/common.jpc:0x0018",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          24
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-bomb-light-smoke-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x232a",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          9002
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/actor/d_a_bomb3.inc:daBomb_c::eff_explode_normal/eff_explode_cheap",
+        "game/src/d/d_particle.cpp:dPa_control_c::setBombSmoke/dPa_bombSmokeEcallBack::execute"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-bomb-normal-overlap-v1",
+      "family": "overlap",
+      "resource": "/res/Particle/common.jpc:0x000b+0x2009+0x200a+0x2008",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          11,
+          8201,
+          8202,
+          8200
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/actor/d_a_bomb3.inc:daBomb_c::eff_explode_normal/eff_explode_cheap",
+        "game/src/d/d_particle.cpp:dPa_control_c::setBombSmoke/dPa_bombSmokeEcallBack::execute"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-smoke-overlap-v1",
+      "family": "overlap",
+      "resource": "/res/Particle/common.jpc:0x2022+0x2027",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          8226,
+          8231
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-flash-smoke-overlap-v1",
+      "family": "overlap",
+      "resource": "/res/Particle/common.jpc:0x000b+0x2022",
+      "action": "exercise",
+      "script": {
+        "effect_ids": [
+          11,
+          8226
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240."
+      ],
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "scene-smoke-explosions-v1",
+      "family": "scene-particles",
+      "resource": "/res/Particle/PsceneNNN.jpc",
+      "action": "unsupported",
+      "reason": "Scene bank selection, actor callbacks and stage lighting need separately bounded recipes.",
+      "owner": "#153/#154",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs"
+      ],
+      "assumptions": [
+        "No generated or physical coverage claim."
+      ]
+    },
+    {
+      "id": "projection-heat-haze-v1",
+      "family": "projection",
+      "resource": "/res/Particle/common.jpc:0x4004",
+      "action": "unsupported",
+      "reason": "Requires framebuffer swap texture and projection render pass.",
+      "owner": "#154",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs"
+      ],
+      "assumptions": [
+        "No generated or physical coverage claim."
+      ]
+    },
+    {
+      "id": "model-shards-v1",
+      "family": "model-particles",
+      "resource": "/res/Particle/common.jpc:0x0017",
+      "action": "unsupported",
+      "reason": "Requires model control, texture animation and lighting; plain JPA sprites are insufficient.",
+      "owner": "#152",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs"
+      ],
+      "assumptions": [
+        "No generated or physical coverage claim."
+      ]
+    },
+    {
+      "id": "cheap-bomb-mutations-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x000b+0x232a+0x200a+0x2008",
+      "action": "unsupported",
+      "reason": "Light smoke alone is exercised; cheap-bomb lifetime, scale and velocity mutations are not.",
+      "owner": "#152",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs"
+      ],
+      "assumptions": [
+        "No generated or physical coverage claim."
+      ]
+    },
+    {
+      "id": "common-ground-smoke-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2022",
+      "action": "exercise",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw",
+        "game/src/d/d_particle.cpp:dPa_control_c::setSimpleLand"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240.",
+        "Selected setSimpleLand max-frame=1, rate=3, spread=0.05; no collision query."
+      ],
+      "reason": "",
+      "script": {
+        "effect_ids": [
+          8226
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    },
+    {
+      "id": "common-ground-smoke-alt-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2027",
+      "action": "exercise",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_particle.cpp:dPa_control_c::set/draw",
+        "game/src/JSystem/JParticle/JPAEmitterManager.cpp:createSimpleEmitterID/calc/draw",
+        "game/include/d/d_particle_name.h:common.jpc IDs",
+        "game/src/d/d_particle.cpp:dPa_smokeEcallBack::setup/draw; smokeEcallBack; dPa_smokePcallBack::draw",
+        "game/src/d/d_particle.cpp:dPa_control_c::setSimpleLand"
+      ],
+      "assumptions": [
+        "Isolated fixed origin/view, normal-P1 then toon-P1 groups; no actor or scene execution.",
+        "Stock JPA resources; smoke uses real TEV/vertex callbacks with wind disabled and fixed uninitialized-stage lighting.",
+        "Two deterministic seed/scale/alpha variations; debris additionally selects texture 0/1.",
+        "Continuous emitters capped at 30 emission ticks; natural particle drain must finish by tick 240.",
+        "Selected setSimpleLand max-frame=1, rate=3, spread=0.05; no collision query."
+      ],
+      "reason": "",
+      "script": {
+        "effect_ids": [
+          8231
+        ],
+        "max_ticks": 240,
+        "continuous_emission_ticks": 30,
+        "variations": [
+          {
+            "random_seed": 0,
+            "scale": 1,
+            "alpha": 255,
+            "texture_index": 0
+          },
+          {
+            "random_seed": 1,
+            "scale": 2,
+            "alpha": 128,
+            "texture_index": 1
+          }
+        ]
+      },
+      "input_identity": {
+        "particle_sha256": "cef30ea978ff9e93f30ee890f3ed9e08726d429afe901ce8ebd5b54c0db74d13",
+        "particle_bytes": 425280
+      }
+    }
+  ],
+  "plan_sha256": "d279e590c1d77e751cda199ed81743a383b21cac87f74cf36b9c555662026f66",
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+  "collector": {
+    "sha256": "26700c6d362cf10d2dfd2e5000af6fce94ab5aa273923e3cc931385bffa540ac",
+    "build_sha256": "1de1920aca141d203ddb0bb3f439cf8a451f8f27314299f62eabbfca8a56be50"
+  }
+}
