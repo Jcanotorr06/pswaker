@@ -1,0 +1,2058 @@
+{
+  "schema": 1,
+  "issue": 149,
+  "assessed": "2026-11-05",
+  "candidate": {
+    "schema": 1,
+    "issue": 149,
+    "status": "prepared; physical return pending; clean shutdown blocked by #159",
+    "app_version": "01.24",
+    "program": {
+      "build_id": "35a453336a0e4b0d432c",
+      "elf_sha256": "c2d48776ed9f79d90ec71d61cc0732a3b2b673da361ca57d7c4a10596a2392fc",
+      "eboot_sha256": "76ddd46e09966d6372cb597f16329285b4bbea1450f6ead03102c66539ad97bc"
+    },
+    "package": {
+      "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+      "sha256": "578f0d946ebfb3a96cc6d68a0feae040a7d205da1970a9ffdfc9f5d0f8cfc516",
+      "bytes": 1521156096
+    },
+    "seed": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "baseline:baseline:baseline:pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+        },
+        "baseline:baseline:baseline:pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+        },
+        "baseline:baseline:generated:observed.db": {
+          "bytes": 16384,
+          "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+        },
+        "baseline:runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1318432,
+          "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+        },
+        "baseline:runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1326672,
+          "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+        },
+        "runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1268992,
+          "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+        },
+        "runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1474992,
+          "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+        }
+      },
+      "rows": 301,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 300
+        }
+      ],
+      "bytes": 1257472,
+      "sha256": "06b8ef5d5df64e6a1218728550eab209f6a841926392ac18064effce64f17fd8",
+      "asset_manifest_sha256": "4caf1f6ba2572dd7faeb3d77aa99a38c3fbdc8a0e0ed0e4d1ca186183646a6a4"
+    },
+    "assembly_sha256": "1ffb1cbe01f0e8dd6d9c42a621a9080ec23ea6dbf52ca24cefc1378625010f3c",
+    "inspection_sha256": "5c3e316c7146960d129fed75b5cf982c4388317984ade1ba8ec02f4e2109ec44",
+    "fresh_inspection_reproduces_assembly_inspection": true,
+    "program_inspection_sha256": "27ddc3c0334e2f04d58da428c9343d149ad5adfaf0bdc2b615487921b6a3f5ad",
+    "platform": {
+      "diagnostic_build_id": "60975dcf4480aa914369",
+      "build_info_sha256": "48a82fca742c5488801580309d57d005b93f2070ec0809bc08e3a1ba635131e1",
+      "inspection_sha256": "e787b884ed4cfad7ae8ef9ba02a6c53b026266c5f71f327887c7ebf3b541e3e2",
+      "host_lock_sha256": "1ede95ef96fff4ae80e21d3383c3a8a0b9d70f3313d95a982e412bb02550395d",
+      "sdk_lock_sha256": "c6867aec58b33fbc762edc560a76e289c46bde736455d70e9d9391450e68caa4",
+      "game_lock_sha256": "ffec9f4ed994ea9849c6d108c6f154b860e0ae13de1305756561b0d168ddd873",
+      "prepared_game_inputs_sha256": "a647390f913854b3ae59e68169c8aa70359f319c2fcbc235a7077606fc04cee1",
+      "prepared_sources_unchanged_from_0123": true
+    },
+    "generated_controls": {
+      "static": {
+        "scenario": "always-small-pot-stock-v1",
+        "draw_calls": 3,
+        "pipeline_lookups": 3,
+        "runtime_identity_verified_rows": 301,
+        "baseline_roundtrip_rows": 301,
+        "recorder_verified_rows": 1,
+        "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+        "layout": {
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        },
+        "seed_sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+        "collector": {
+          "sha256": "e366be98ea39eccc24f640b685f0d81ba50c95f2a13db99e64b41e75e3a4af56",
+          "build_sha256": "701fbab0b3d2f9eecff738ce19e06afbf7899fb055d99d661a780c8ea87c4698"
+        },
+        "collection_sha256": "edee029eea355cebfa037f6fcd69f0e7d6dcc7e068864e664368d05b17373c86"
+      },
+      "dynamic": {
+        "scenario": "common-pot-debris-lifecycle-v1",
+        "draw_calls": 40,
+        "pipeline_lookups": 40,
+        "runtime_identity_verified_rows": 301,
+        "baseline_roundtrip_rows": 301,
+        "recorder_verified_rows": 1,
+        "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+        "layout": {
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        },
+        "seed_sha256": "21a49ccafef655070adbebeecf70a27d3ae3c539e763eba7531badba7bf2ecaa",
+        "collector": {
+          "sha256": "e366be98ea39eccc24f640b685f0d81ba50c95f2a13db99e64b41e75e3a4af56",
+          "build_sha256": "701fbab0b3d2f9eecff738ce19e06afbf7899fb055d99d661a780c8ea87c4698"
+        },
+        "collection_sha256": "5ddd37a0892ae9baa6d7cbf3a8a80375f452a4cece27e51058a93bfc859b69e6"
+      }
+    },
+    "generated_coverage": {
+      "schema": 1,
+      "method": "Validated read-only comparison of type/hash keys and config bytes; first_frame_used is capture metadata, not configuration identity",
+      "candidate": {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "baseline:baseline:baseline:pipeline_cache.db": {
+            "bytes": 835584,
+            "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+          },
+          "baseline:baseline:baseline:pipeline_cache.db-wal": {
+            "bytes": 4128272,
+            "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+          },
+          "baseline:baseline:generated:observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          },
+          "baseline:runtime-1:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "baseline:runtime-1:pipeline_cache.db-wal": {
+            "bytes": 1318432,
+            "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+          },
+          "baseline:runtime-2:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "baseline:runtime-2:pipeline_cache.db-wal": {
+            "bytes": 1326672,
+            "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+          },
+          "runtime-1:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "runtime-1:pipeline_cache.db-wal": {
+            "bytes": 1268992,
+            "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+          },
+          "runtime-2:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "runtime-2:pipeline_cache.db-wal": {
+            "bytes": 1474992,
+            "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+          }
+        },
+        "rows": 301,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 300
+          }
+        ],
+        "bytes": 1257472,
+        "sha256": "06b8ef5d5df64e6a1218728550eab209f6a841926392ac18064effce64f17fd8",
+        "asset_manifest_sha256": "4caf1f6ba2572dd7faeb3d77aa99a38c3fbdc8a0e0ed0e4d1ca186183646a6a4"
+      },
+      "snapshots": [
+        {
+          "schema": 1,
+          "installed_path": "/app0/initial_pipeline_cache.db",
+          "source_files": {
+            "observed.db": {
+              "bytes": 16384,
+              "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+            }
+          },
+          "rows": 1,
+          "configurations": [
+            {
+              "type": 1,
+              "version": 13,
+              "bytes": 2772,
+              "rows": 1
+            }
+          ],
+          "bytes": 16384,
+          "sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+          "asset_manifest_sha256": "33b0d7eab38d530722b922a96813cb13cf312598d85690dfce49f8fb3d05c27d",
+          "identical_rows_in_candidate": 1
+        },
+        {
+          "schema": 1,
+          "installed_path": "/app0/initial_pipeline_cache.db",
+          "source_files": {
+            "observed.db": {
+              "bytes": 16384,
+              "sha256": "3857bc4f6f33dee625e99fe651fb54bd66b297d06aa1dacab43409e81a9bd4eb"
+            }
+          },
+          "rows": 1,
+          "configurations": [
+            {
+              "type": 1,
+              "version": 13,
+              "bytes": 2772,
+              "rows": 1
+            }
+          ],
+          "bytes": 16384,
+          "sha256": "21a49ccafef655070adbebeecf70a27d3ae3c539e763eba7531badba7bf2ecaa",
+          "asset_manifest_sha256": "469d125429af7547b384ba0d0b8b26d6723952ac725fa8615abca46073f58c92",
+          "identical_rows_in_candidate": 1
+        }
+      ],
+      "recorded_union_rows": 2,
+      "already_represented_rows": 2,
+      "added_rows": 0,
+      "candidate_rows_not_recorded": 299,
+      "conclusion": "Retain the existing candidate seed unchanged; all recorded descriptions are present. This establishes recorded configuration coverage, not gameplay smoothness."
+    },
+    "corpus_growth": {
+      "original_runtime_baseline": 287,
+      "static_generated_additions": 1,
+      "dynamic_generated_additions": 0,
+      "runtime_capture_corrections": 13,
+      "frozen_total": 301,
+      "new_additions_this_issue": 0
+    },
+    "source_input_files_verified_unchanged": 5,
+    "physical_observations_this_candidate": null,
+    "unsupported_paths": [
+      "companion model-shard effect 0x0017",
+      "actor lighting/collision",
+      "other effects, cameras and overlapping effects",
+      "full-game inventory",
+      "full-game resource or startup extrapolation"
+    ]
+  },
+  "fresh_inspection_reproduces_frozen": true,
+  "fresh_inspection_sha256": "5c3e316c7146960d129fed75b5cf982c4388317984ade1ba8ec02f4e2109ec44",
+  "original_files_preserved": 45,
+  "pilot_coverage": {
+    "schema": 1,
+    "method": "Validated read-only comparison of type/hash keys and config bytes; first_frame_used is capture metadata, not configuration identity",
+    "candidate": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "baseline:baseline:baseline:pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+        },
+        "baseline:baseline:baseline:pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+        },
+        "baseline:baseline:generated:observed.db": {
+          "bytes": 16384,
+          "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+        },
+        "baseline:runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1318432,
+          "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+        },
+        "baseline:runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1326672,
+          "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+        },
+        "runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1268992,
+          "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+        },
+        "runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1474992,
+          "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+        }
+      },
+      "rows": 301,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 300
+        }
+      ],
+      "bytes": 1257472,
+      "sha256": "06b8ef5d5df64e6a1218728550eab209f6a841926392ac18064effce64f17fd8",
+      "asset_manifest_sha256": "4caf1f6ba2572dd7faeb3d77aa99a38c3fbdc8a0e0ed0e4d1ca186183646a6a4"
+    },
+    "snapshots": [
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "pipeline_cache.db-wal": {
+            "bytes": 1310192,
+            "sha256": "f237d9a9526633530e20d6c9aea531246aeef8ee02e20c892870775b361b128f"
+          }
+        },
+        "rows": 301,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 300
+          }
+        ],
+        "bytes": 1265664,
+        "sha256": "e2a1ae790e58b787daa206695458734cc7c077d501011121ae7e92f920816700",
+        "asset_manifest_sha256": "a2a5bfa5c6ca63571db633be4c2c0482e9466e440bc08684c427e562bcea81e6",
+        "identical_rows_in_candidate": 301
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "pipeline_cache.db-wal": {
+            "bytes": 1318432,
+            "sha256": "332a1be98e7e723ae2a4d38ebd5b92e2784cc027f414cc8a8aafe37239bfac83"
+          }
+        },
+        "rows": 301,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 300
+          }
+        ],
+        "bytes": 1265664,
+        "sha256": "4adf4ad3f7ed7b1716208c3e994d8627f9688b9164007f726e85b760b5a259ca",
+        "asset_manifest_sha256": "f70a9602498d5c88e6705b71bfe2f7e0a01e16851297e126d779ec57917eb9c9",
+        "identical_rows_in_candidate": 301
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+        "asset_manifest_sha256": "33b0d7eab38d530722b922a96813cb13cf312598d85690dfce49f8fb3d05c27d",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "3857bc4f6f33dee625e99fe651fb54bd66b297d06aa1dacab43409e81a9bd4eb"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "21a49ccafef655070adbebeecf70a27d3ae3c539e763eba7531badba7bf2ecaa",
+        "asset_manifest_sha256": "469d125429af7547b384ba0d0b8b26d6723952ac725fa8615abca46073f58c92",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "baseline:baseline:baseline:pipeline_cache.db": {
+            "bytes": 835584,
+            "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+          },
+          "baseline:baseline:baseline:pipeline_cache.db-wal": {
+            "bytes": 4128272,
+            "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+          },
+          "baseline:baseline:generated:observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          },
+          "baseline:runtime-1:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "baseline:runtime-1:pipeline_cache.db-wal": {
+            "bytes": 1318432,
+            "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+          },
+          "baseline:runtime-2:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "baseline:runtime-2:pipeline_cache.db-wal": {
+            "bytes": 1326672,
+            "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+          },
+          "runtime-1:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "runtime-1:pipeline_cache.db-wal": {
+            "bytes": 1268992,
+            "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+          },
+          "runtime-2:pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "runtime-2:pipeline_cache.db-wal": {
+            "bytes": 1474992,
+            "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+          }
+        },
+        "rows": 301,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 300
+          }
+        ],
+        "bytes": 1257472,
+        "sha256": "06b8ef5d5df64e6a1218728550eab209f6a841926392ac18064effce64f17fd8",
+        "asset_manifest_sha256": "4caf1f6ba2572dd7faeb3d77aa99a38c3fbdc8a0e0ed0e4d1ca186183646a6a4",
+        "identical_rows_in_candidate": 301
+      }
+    ],
+    "recorded_union_rows": 301,
+    "already_represented_rows": 301,
+    "added_rows": 0,
+    "candidate_rows_not_recorded": 0,
+    "conclusion": "Retain the existing candidate seed unchanged; all recorded descriptions are present. This establishes recorded configuration coverage, not gameplay smoothness."
+  },
+  "owner_followup": "owner-followup.md",
+  "gate_complete": false,
+  "known_blocker": "Normal Quit CE-34878-0 in both runs; completed recorder shutdown absent (#159)",
+  "cache_reuse": {
+    "dawn_cache.db": {
+      "cold_return_sha1": "ccfac2d79ad4867d5a2c9d2450cd57303030add7",
+      "warm_before_init_sha1": "ccfac2d79ad4867d5a2c9d2450cd57303030add7",
+      "bytes_match": true,
+      "sha1_matches": true
+    },
+    "dawn_cache.db-wal": {
+      "cold_return_sha1": "b370831d4c40752f8231644bc25cd091cd3c3ff2",
+      "warm_before_init_sha1": "b370831d4c40752f8231644bc25cd091cd3c3ff2",
+      "bytes_match": true,
+      "sha1_matches": true
+    },
+    "pipeline_cache.db": {
+      "cold_return_sha1": "3f47d1432ce31e76333521af57a5287f08488710",
+      "warm_before_init_sha1": "3f47d1432ce31e76333521af57a5287f08488710",
+      "bytes_match": true,
+      "sha1_matches": true
+    },
+    "pipeline_cache.db-wal": {
+      "cold_return_sha1": "9d74a736e116d676103fe951053a26ccd1de2259",
+      "warm_before_init_sha1": "9d74a736e116d676103fe951053a26ccd1de2259",
+      "bytes_match": true,
+      "sha1_matches": true
+    }
+  },
+  "owner_confirmations": {
+    "platform": {
+      "model": "PS4 Slim",
+      "firmware": "9.00",
+      "goldhen": "v2.4b18"
+    },
+    "cold_progress": "responsive progress bar",
+    "warm_progress": "screen shown for less than a second, then game",
+    "saves": "preserved from previous runs",
+    "settings_preservation": null,
+    "save_settings_hash_inventories": null,
+    "visible_launch_to_control_seconds": null,
+    "actions": "two-minute timed Outset pot route as supplied in chat; then three additional minutes in the area",
+    "effects": "both breaks rendered correctly in both runs",
+    "quit": "CE-34878-0 in both runs",
+    "actual_break_methods": null,
+    "exact_action_timestamps": null
+  },
+  "layout_source_analysis": {
+    "gx_description_counts": {
+      "gx": 300,
+      "dst_alpha_none": 295,
+      "dst_alpha_replace": 5,
+      "dst_alpha_needs_source_alpha": 0
+    },
+    "contract_offsets": [
+      0,
+      4,
+      8,
+      2728,
+      2732,
+      2736,
+      2740,
+      2744,
+      2748,
+      2752,
+      2756,
+      2760,
+      2764,
+      2768,
+      2769,
+      2770,
+      2771,
+      2720
+    ],
+    "physical_variant_trace_available": false,
+    "source_inference": "For a single-color layout with DualSourceBlending enabled, source-alpha cases use dual-source; otherwise they need alpha prepass. Scene/offscreen equal keys are deduplicated. Aggregate readiness alone does not expose each compiled layout key/pass.",
+    "returned_surface": "RGBA8Unorm",
+    "returned_target": [
+      1280,
+      720
+    ],
+    "returned_feature_list_includes_dual_source": true
+  },
+  "required_evidence_status": {
+    "bounded_description_membership": "pass, all 301 in both returns; no correction indicated",
+    "observed_pipeline_waits": "zero in available whole-launch events and cumulative frame counters",
+    "preparation": "301 ready, 0 pending, complete, no errors; before gameplay",
+    "cold_warm_cache_conditions": "empty cold, all four retained-cache files match warm before-init",
+    "visible_progress": "owner-confirmed cold responsive; warm screen less than one second",
+    "startup_resource_observations": "42 cold / 5 warm samples with successful flexible queries",
+    "subsequent_resource_observations": "short bounded window, positive flexible memory, finite allocation ranges; not full-game budget or exact peaks",
+    "effect_appearance": "owner-confirmed first/repeat breaks correct",
+    "saves": "owner-confirmed preserved; no byte inventories supplied",
+    "settings": "unverified",
+    "visible_launch_to_control": "unmeasured",
+    "per_variant_layout_trace": "not present; source reconciliation only",
+    "shutdown": "failed both, CE-34878-0 and absent completed recorder shutdown; #159",
+    "expansion_handoff": "gated; not accepted"
+  },
+  "launches": {
+    "cold": {
+      "analyzer_exit_code": 2,
+      "summary_reproduced_exactly": true,
+      "summary_sha256": "7604e92af16960808e452afefacea6fd8ea5b08e55187c3c2e697899ad75b06c",
+      "samples": [
+        {
+          "sample": 1,
+          "scene": "outset",
+          "owner": {
+            "scene": "outset",
+            "actions": "Replace with actual route, equipment, camera/movement/effect actions and any pauses.",
+            "active_gameplay": true,
+            "graphics_audio_correct": true
+          },
+          "metrics": {
+            "seconds": 120.01933951541413,
+            "intervals": 3601,
+            "average_fps": 30.003497890750534,
+            "p95_ms": 33.39723009162882,
+            "p99_ms": 33.4606256602538,
+            "maximum_ms": 50.05520448324317,
+            "shader_wait_ms": 0.0,
+            "shader_wait_calls": 0,
+            "active_shader_waits_over_35ms": 0,
+            "active_shader_wait_total_ms": 0.0,
+            "resume_to_first_observation_ms": 33.437476,
+            "shader_correlated_hitches": 0
+          },
+          "outside_boundary_presentations": 0,
+          "invalid_reasons": [
+            "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+            "launch has no completed recorder shutdown"
+          ],
+          "shortfalls": [],
+          "target_met": false
+        }
+      ],
+      "phases": [
+        {
+          "phase": "startup",
+          "start_ns": 27836505302006,
+          "duration_ms": 26.896357
+        },
+        {
+          "phase": "renderer-initialize",
+          "start_ns": 27836532198363,
+          "duration_ms": 1131.26641
+        },
+        {
+          "phase": "content-validation",
+          "start_ns": 27837663464773,
+          "duration_ms": 42512.574221
+        },
+        {
+          "phase": "storage-check",
+          "start_ns": 27880176038994,
+          "duration_ms": 307.310197
+        },
+        {
+          "phase": "shader-preparation",
+          "start_ns": 27880483349191,
+          "duration_ms": 17.910969
+        },
+        {
+          "phase": "loading",
+          "start_ns": 27880501260160,
+          "duration_ms": 31093.36231
+        },
+        {
+          "phase": "gameplay",
+          "start_ns": 27911594622470,
+          "duration_ms": 46221.017358
+        }
+      ],
+      "missing_scenes": [
+        "forest"
+      ],
+      "snapshot": {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "pipeline_cache.db-wal": {
+            "bytes": 1310192,
+            "sha256": "f237d9a9526633530e20d6c9aea531246aeef8ee02e20c892870775b361b128f"
+          }
+        },
+        "rows": 301,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 300
+          }
+        ],
+        "bytes": 1265664,
+        "sha256": "e2a1ae790e58b787daa206695458734cc7c077d501011121ae7e92f920816700"
+      },
+      "snapshot_reproduced_exactly": true,
+      "snapshot_manifest_reproduced_exactly": true,
+      "coverage": {
+        "schema": 1,
+        "method": "Validated read-only comparison of type/hash keys and config bytes; first_frame_used is capture metadata, not configuration identity",
+        "candidate": {
+          "schema": 1,
+          "installed_path": "/app0/initial_pipeline_cache.db",
+          "source_files": {
+            "baseline:baseline:baseline:pipeline_cache.db": {
+              "bytes": 835584,
+              "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+            },
+            "baseline:baseline:baseline:pipeline_cache.db-wal": {
+              "bytes": 4128272,
+              "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+            },
+            "baseline:baseline:generated:observed.db": {
+              "bytes": 16384,
+              "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+            },
+            "baseline:runtime-1:pipeline_cache.db": {
+              "bytes": 4096,
+              "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+            },
+            "baseline:runtime-1:pipeline_cache.db-wal": {
+              "bytes": 1318432,
+              "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+            },
+            "baseline:runtime-2:pipeline_cache.db": {
+              "bytes": 4096,
+              "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+            },
+            "baseline:runtime-2:pipeline_cache.db-wal": {
+              "bytes": 1326672,
+              "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+            },
+            "runtime-1:pipeline_cache.db": {
+              "bytes": 4096,
+              "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+            },
+            "runtime-1:pipeline_cache.db-wal": {
+              "bytes": 1268992,
+              "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+            },
+            "runtime-2:pipeline_cache.db": {
+              "bytes": 4096,
+              "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+            },
+            "runtime-2:pipeline_cache.db-wal": {
+              "bytes": 1474992,
+              "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+            }
+          },
+          "rows": 301,
+          "configurations": [
+            {
+              "type": 0,
+              "version": 5,
+              "bytes": 8,
+              "rows": 1
+            },
+            {
+              "type": 1,
+              "version": 13,
+              "bytes": 2772,
+              "rows": 300
+            }
+          ],
+          "bytes": 1257472,
+          "sha256": "06b8ef5d5df64e6a1218728550eab209f6a841926392ac18064effce64f17fd8",
+          "asset_manifest_sha256": "4caf1f6ba2572dd7faeb3d77aa99a38c3fbdc8a0e0ed0e4d1ca186183646a6a4"
+        },
+        "snapshots": [
+          {
+            "schema": 1,
+            "installed_path": "/app0/initial_pipeline_cache.db",
+            "source_files": {
+              "pipeline_cache.db": {
+                "bytes": 4096,
+                "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+              },
+              "pipeline_cache.db-wal": {
+                "bytes": 1310192,
+                "sha256": "f237d9a9526633530e20d6c9aea531246aeef8ee02e20c892870775b361b128f"
+              }
+            },
+            "rows": 301,
+            "configurations": [
+              {
+                "type": 0,
+                "version": 5,
+                "bytes": 8,
+                "rows": 1
+              },
+              {
+                "type": 1,
+                "version": 13,
+                "bytes": 2772,
+                "rows": 300
+              }
+            ],
+            "bytes": 1265664,
+            "sha256": "e2a1ae790e58b787daa206695458734cc7c077d501011121ae7e92f920816700",
+            "asset_manifest_sha256": "a2a5bfa5c6ca63571db633be4c2c0482e9466e440bc08684c427e562bcea81e6",
+            "identical_rows_in_candidate": 301
+          }
+        ],
+        "recorded_union_rows": 301,
+        "already_represented_rows": 301,
+        "added_rows": 0,
+        "candidate_rows_not_recorded": 0,
+        "conclusion": "Retain the existing candidate seed unchanged; all recorded descriptions are present. This establishes recorded configuration coverage, not gameplay smoothness."
+      },
+      "raw_shader_wait_events": [],
+      "full_launch_shader_counter_first": {
+        "shader_ns": 0,
+        "shader_calls": 0
+      },
+      "full_launch_shader_counter_last": {
+        "shader_ns": 0,
+        "shader_calls": 0
+      },
+      "timing": {
+        "shader-preparation_ms": 17392.8,
+        "shader-final-drain_ms": 10.5,
+        "startup_to_preparation_complete_ms": 44315.9,
+        "preparation_start_ns": 27837451965339,
+        "preparation_complete_ns": 27854844792008
+      },
+      "performance_and_analysis_raw_copies_identical": true,
+      "shutdown_completed": false,
+      "error_log_lines": [],
+      "resource_phase_summary": {
+        "before-renderer": {
+          "samples": 1,
+          "first_ms": 352.1,
+          "last_ms": 352.1,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 0,
+              "maximum": 0,
+              "first": 0,
+              "last": 0
+            },
+            "onion": {
+              "minimum": 0,
+              "maximum": 0,
+              "first": 0,
+              "last": 0
+            },
+            "buffers": {
+              "minimum": 0,
+              "maximum": 0,
+              "first": 0,
+              "last": 0
+            },
+            "main-mspace-allocated": {
+              "minimum": 16336,
+              "maximum": 16336,
+              "first": 16336,
+              "last": 16336
+            },
+            "flexible-available": {
+              "minimum": 404750336,
+              "maximum": 404750336,
+              "first": 404750336,
+              "last": 404750336
+            }
+          }
+        },
+        "graphics-initialized": {
+          "samples": 1,
+          "first_ms": 1485.2,
+          "last_ms": 1485.2,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 435519488,
+              "maximum": 435519488,
+              "first": 435519488,
+              "last": 435519488
+            },
+            "onion": {
+              "minimum": 180224,
+              "maximum": 180224,
+              "first": 180224,
+              "last": 180224
+            },
+            "buffers": {
+              "minimum": 24,
+              "maximum": 24,
+              "first": 24,
+              "last": 24
+            },
+            "main-mspace-allocated": {
+              "minimum": 6713344,
+              "maximum": 6713344,
+              "first": 6713344,
+              "last": 6713344
+            },
+            "flexible-available": {
+              "minimum": 393216000,
+              "maximum": 393216000,
+              "first": 393216000,
+              "last": 393216000
+            }
+          }
+        },
+        "content-validation": {
+          "samples": 37,
+          "first_ms": 1506.6,
+          "last_ms": 43956.7,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 435519488,
+              "maximum": 439140352,
+              "first": 435519488,
+              "last": 439140352
+            },
+            "onion": {
+              "minimum": 180224,
+              "maximum": 753664,
+              "first": 180224,
+              "last": 753664
+            },
+            "buffers": {
+              "minimum": 24,
+              "maximum": 41,
+              "first": 24,
+              "last": 41
+            },
+            "main-mspace-allocated": {
+              "minimum": 9004832,
+              "maximum": 21395792,
+              "first": 9004832,
+              "last": 18613312
+            },
+            "flexible-available": {
+              "minimum": 386924544,
+              "maximum": 393216000,
+              "first": 393216000,
+              "last": 386924544
+            }
+          }
+        },
+        "before-render-target": {
+          "samples": 1,
+          "first_ms": 44302.4,
+          "last_ms": 44302.4,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 439140352,
+              "maximum": 439140352,
+              "first": 439140352,
+              "last": 439140352
+            },
+            "onion": {
+              "minimum": 753664,
+              "maximum": 753664,
+              "first": 753664,
+              "last": 753664
+            },
+            "buffers": {
+              "minimum": 41,
+              "maximum": 41,
+              "first": 41,
+              "last": 41
+            },
+            "main-mspace-allocated": {
+              "minimum": 18615808,
+              "maximum": 18615808,
+              "first": 18615808,
+              "last": 18615808
+            },
+            "flexible-available": {
+              "minimum": 386924544,
+              "maximum": 386924544,
+              "first": 386924544,
+              "last": 386924544
+            }
+          }
+        },
+        "shader-final-drain": {
+          "samples": 1,
+          "first_ms": 44305.5,
+          "last_ms": 44305.5,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 439140352,
+              "maximum": 439140352,
+              "first": 439140352,
+              "last": 439140352
+            },
+            "onion": {
+              "minimum": 753664,
+              "maximum": 753664,
+              "first": 753664,
+              "last": 753664
+            },
+            "buffers": {
+              "minimum": 41,
+              "maximum": 41,
+              "first": 41,
+              "last": 41
+            },
+            "main-mspace-allocated": {
+              "minimum": 18617728,
+              "maximum": 18617728,
+              "first": 18617728,
+              "last": 18617728
+            },
+            "flexible-available": {
+              "minimum": 386924544,
+              "maximum": 386924544,
+              "first": 386924544,
+              "last": 386924544
+            }
+          }
+        },
+        "known-shaders-prepared": {
+          "samples": 1,
+          "first_ms": 44322.2,
+          "last_ms": 44322.2,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 439140352,
+              "maximum": 439140352,
+              "first": 439140352,
+              "last": 439140352
+            },
+            "onion": {
+              "minimum": 835584,
+              "maximum": 835584,
+              "first": 835584,
+              "last": 835584
+            },
+            "buffers": {
+              "minimum": 42,
+              "maximum": 42,
+              "first": 42,
+              "last": 42
+            },
+            "main-mspace-allocated": {
+              "minimum": 18646304,
+              "maximum": 18646304,
+              "first": 18646304,
+              "last": 18646304
+            },
+            "flexible-available": {
+              "minimum": 386924544,
+              "maximum": 386924544,
+              "first": 386924544,
+              "last": 386924544
+            }
+          }
+        },
+        "gameplay": {
+          "samples": 74,
+          "first_ms": 48823.7,
+          "last_ms": 458215.9,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 439156736,
+              "maximum": 456523776,
+              "first": 439156736,
+              "last": 456523776
+            },
+            "onion": {
+              "minimum": 835584,
+              "maximum": 5996544,
+              "first": 835584,
+              "last": 5996544
+            },
+            "buffers": {
+              "minimum": 43,
+              "maximum": 57,
+              "first": 43,
+              "last": 57
+            },
+            "main-mspace-allocated": {
+              "minimum": 308530400,
+              "maximum": 318402800,
+              "first": 308530400,
+              "last": 318057104
+            },
+            "flexible-available": {
+              "minimum": 362807296,
+              "maximum": 371195904,
+              "first": 371195904,
+              "last": 362807296
+            }
+          }
+        }
+      },
+      "resource_clock_alignment": {
+        "method": "Align known-shaders-prepared RESOURCE launch-ms to immediately following loading phase performance-ns; approximate, not action timestamps",
+        "performance_ns_minus_launch_ns": 27836179060160.0
+      },
+      "active_sample_resources": {
+        "samples": 23,
+        "first_ms": 126783.4,
+        "last_ms": 237153.5,
+        "query_failures": 0,
+        "ranges": {
+          "garlic": {
+            "minimum": 456294400,
+            "maximum": 456458240,
+            "first": 456294400,
+            "last": 456458240
+          },
+          "onion": {
+            "minimum": 5832704,
+            "maximum": 5996544,
+            "first": 5832704,
+            "last": 5996544
+          },
+          "buffers": {
+            "minimum": 56,
+            "maximum": 57,
+            "first": 56,
+            "last": 57
+          },
+          "main-mspace-allocated": {
+            "minimum": 317289664,
+            "maximum": 318099104,
+            "first": 317289664,
+            "last": 318056320
+          },
+          "flexible-available": {
+            "minimum": 362807296,
+            "maximum": 362807296,
+            "first": 362807296,
+            "last": 362807296
+          }
+        }
+      },
+      "post_sample_3min_resources": {
+        "samples": 28,
+        "first_ms": 282563.8,
+        "last_ms": 418074.3,
+        "query_failures": 0,
+        "ranges": {
+          "garlic": {
+            "minimum": 456458240,
+            "maximum": 456523776,
+            "first": 456458240,
+            "last": 456523776
+          },
+          "onion": {
+            "minimum": 5996544,
+            "maximum": 5996544,
+            "first": 5996544,
+            "last": 5996544
+          },
+          "buffers": {
+            "minimum": 57,
+            "maximum": 57,
+            "first": 57,
+            "last": 57
+          },
+          "main-mspace-allocated": {
+            "minimum": 316265248,
+            "maximum": 318322160,
+            "first": 316265248,
+            "last": 317353680
+          },
+          "flexible-available": {
+            "minimum": 362807296,
+            "maximum": 362807296,
+            "first": 362807296,
+            "last": 362807296
+          }
+        }
+      },
+      "startup_resources": {
+        "samples": 42,
+        "first_ms": 352.1,
+        "last_ms": 44322.2,
+        "query_failures": 0,
+        "ranges": {
+          "garlic": {
+            "minimum": 0,
+            "maximum": 439140352,
+            "first": 0,
+            "last": 439140352
+          },
+          "onion": {
+            "minimum": 0,
+            "maximum": 835584,
+            "first": 0,
+            "last": 835584
+          },
+          "buffers": {
+            "minimum": 0,
+            "maximum": 42,
+            "first": 0,
+            "last": 42
+          },
+          "main-mspace-allocated": {
+            "minimum": 16336,
+            "maximum": 21395792,
+            "first": 16336,
+            "last": 18646304
+          },
+          "flexible-available": {
+            "minimum": 386924544,
+            "maximum": 404750336,
+            "first": 404750336,
+            "last": 386924544
+          }
+        }
+      },
+      "first_last_observed_ns": [
+        27837935608571,
+        28303081593473
+      ],
+      "raw_recorded_seconds": 465.145984902,
+      "cache_before_init": [],
+      "cache_files_before_init": 0,
+      "cache_after_bytes": {
+        "dawn_cache.db": 4009984,
+        "pipeline_cache.db": 4096,
+        "pipeline_cache.db-wal": 1310192,
+        "dawn_cache.db-wal": 4132392
+      },
+      "subsequent_observed_resources": {
+        "samples": 36,
+        "first_ms": 282563.8,
+        "last_ms": 458215.9,
+        "span_seconds": 175.65210000000005,
+        "query_failures": 0,
+        "ranges": {
+          "garlic": {
+            "minimum": 456458240,
+            "maximum": 456523776,
+            "first": 456458240,
+            "last": 456523776
+          },
+          "onion": {
+            "minimum": 5996544,
+            "maximum": 5996544,
+            "first": 5996544,
+            "last": 5996544
+          },
+          "buffers": {
+            "minimum": 57,
+            "maximum": 57,
+            "first": 57,
+            "last": 57
+          },
+          "main-mspace-allocated": {
+            "minimum": 316265248,
+            "maximum": 318328016,
+            "first": 316265248,
+            "last": 318057104
+          },
+          "flexible-available": {
+            "minimum": 362807296,
+            "maximum": 362807296,
+            "first": 362807296,
+            "last": 362807296
+          }
+        }
+      },
+      "subsequent_first_observation_after_sample_end_seconds": 40.734940878,
+      "preparation_shutdown_markers": [
+        "CACHE identity=35a453336a0e4b0d432c files-before-init=0; owner labels cold/warm",
+        "STAGE completed=platform-initialized ms=342.6 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=PS4-runtime-crash-logger-selected ms=352.2 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=aurora-initialize ms=354.3 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=graphics-initialized ms=1483.5 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=installed-image-validated ms=43996.9 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=writable-storage-checked ms=44266.9 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=save-recovery-checked ms=44300.5 build=35a453336a0e4b0d432c errors=0",
+        "DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=44305.4",
+        "SHADERS configurations-ready=301 total=301 pending=0 complete=1 ms=44306.8",
+        "TIMING shader-preparation_ms=17392.8 shader-final-drain_ms=10.5 startup_to_preparation_complete_ms=44315.9 preparation_start_ns=27837451965339 preparation_complete_ns=27854844792008",
+        "STAGE completed=known-shaders-prepared ms=44315.9 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=runtime-assets-validated ms=44554.5 build=35a453336a0e4b0d432c errors=0",
+        "EXIT code=0 ms=466909.6 checked-errors=0",
+        "STAGE completed=shutdown-waiting-for-card ms=466909.7 build=35a453336a0e4b0d432c errors=0",
+        "SHUTDOWN card-status=1 (0=busy 1=idle -1=last-store-failed)",
+        "STAGE completed=shutdown-card-finished ms=466958.3 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=shutdown-requesting-sdk-stop ms=466959.6 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=shutdown-sdk-stop-requested ms=466960.8 build=35a453336a0e4b0d432c errors=0"
+      ]
+    },
+    "warm": {
+      "analyzer_exit_code": 2,
+      "summary_reproduced_exactly": true,
+      "summary_sha256": "f9e592dd66cbc42b2f3df6f9b567646610c34dddcd7d8d7be45e8fbb12d9ae3d",
+      "samples": [
+        {
+          "sample": 1,
+          "scene": "outset",
+          "owner": {
+            "scene": "outset",
+            "actions": "Replace with actual route, equipment, camera/movement/effect actions and any pauses.",
+            "active_gameplay": true,
+            "graphics_audio_correct": true
+          },
+          "metrics": {
+            "seconds": 120.00265750976514,
+            "intervals": 3600,
+            "average_fps": 29.999335637271635,
+            "p95_ms": 33.40009143358303,
+            "p99_ms": 33.46943804140502,
+            "maximum_ms": 50.08229908917614,
+            "shader_wait_ms": 0.0,
+            "shader_wait_calls": 0,
+            "active_shader_waits_over_35ms": 0,
+            "active_shader_wait_total_ms": 0.0,
+            "resume_to_first_observation_ms": 26.38088,
+            "shader_correlated_hitches": 0
+          },
+          "outside_boundary_presentations": 0,
+          "invalid_reasons": [
+            "VideoOut timestamp semantics unverified; obtain agreement before substituting evidence",
+            "launch has no completed recorder shutdown"
+          ],
+          "shortfalls": [],
+          "target_met": false
+        }
+      ],
+      "phases": [
+        {
+          "phase": "startup",
+          "start_ns": 30364008392745,
+          "duration_ms": 174.958391
+        },
+        {
+          "phase": "renderer-initialize",
+          "start_ns": 30364183351136,
+          "duration_ms": 597.185495
+        },
+        {
+          "phase": "content-validation",
+          "start_ns": 30364780536631,
+          "duration_ms": 1.761264
+        },
+        {
+          "phase": "storage-check",
+          "start_ns": 30364782297895,
+          "duration_ms": 170.404562
+        },
+        {
+          "phase": "shader-preparation",
+          "start_ns": 30364952702457,
+          "duration_ms": 231.252455
+        },
+        {
+          "phase": "loading",
+          "start_ns": 30365183954912,
+          "duration_ms": 23912.687278
+        },
+        {
+          "phase": "gameplay",
+          "start_ns": 30389096642190,
+          "duration_ms": 47675.009314
+        }
+      ],
+      "missing_scenes": [
+        "forest"
+      ],
+      "snapshot": {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "pipeline_cache.db": {
+            "bytes": 4096,
+            "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+          },
+          "pipeline_cache.db-wal": {
+            "bytes": 1318432,
+            "sha256": "332a1be98e7e723ae2a4d38ebd5b92e2784cc027f414cc8a8aafe37239bfac83"
+          }
+        },
+        "rows": 301,
+        "configurations": [
+          {
+            "type": 0,
+            "version": 5,
+            "bytes": 8,
+            "rows": 1
+          },
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 300
+          }
+        ],
+        "bytes": 1265664,
+        "sha256": "4adf4ad3f7ed7b1716208c3e994d8627f9688b9164007f726e85b760b5a259ca"
+      },
+      "snapshot_reproduced_exactly": true,
+      "snapshot_manifest_reproduced_exactly": true,
+      "coverage": {
+        "schema": 1,
+        "method": "Validated read-only comparison of type/hash keys and config bytes; first_frame_used is capture metadata, not configuration identity",
+        "candidate": {
+          "schema": 1,
+          "installed_path": "/app0/initial_pipeline_cache.db",
+          "source_files": {
+            "baseline:baseline:baseline:pipeline_cache.db": {
+              "bytes": 835584,
+              "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+            },
+            "baseline:baseline:baseline:pipeline_cache.db-wal": {
+              "bytes": 4128272,
+              "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+            },
+            "baseline:baseline:generated:observed.db": {
+              "bytes": 16384,
+              "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+            },
+            "baseline:runtime-1:pipeline_cache.db": {
+              "bytes": 4096,
+              "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+            },
+            "baseline:runtime-1:pipeline_cache.db-wal": {
+              "bytes": 1318432,
+              "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+            },
+            "baseline:runtime-2:pipeline_cache.db": {
+              "bytes": 4096,
+              "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+            },
+            "baseline:runtime-2:pipeline_cache.db-wal": {
+              "bytes": 1326672,
+              "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+            },
+            "runtime-1:pipeline_cache.db": {
+              "bytes": 4096,
+              "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+            },
+            "runtime-1:pipeline_cache.db-wal": {
+              "bytes": 1268992,
+              "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+            },
+            "runtime-2:pipeline_cache.db": {
+              "bytes": 4096,
+              "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+            },
+            "runtime-2:pipeline_cache.db-wal": {
+              "bytes": 1474992,
+              "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+            }
+          },
+          "rows": 301,
+          "configurations": [
+            {
+              "type": 0,
+              "version": 5,
+              "bytes": 8,
+              "rows": 1
+            },
+            {
+              "type": 1,
+              "version": 13,
+              "bytes": 2772,
+              "rows": 300
+            }
+          ],
+          "bytes": 1257472,
+          "sha256": "06b8ef5d5df64e6a1218728550eab209f6a841926392ac18064effce64f17fd8",
+          "asset_manifest_sha256": "4caf1f6ba2572dd7faeb3d77aa99a38c3fbdc8a0e0ed0e4d1ca186183646a6a4"
+        },
+        "snapshots": [
+          {
+            "schema": 1,
+            "installed_path": "/app0/initial_pipeline_cache.db",
+            "source_files": {
+              "pipeline_cache.db": {
+                "bytes": 4096,
+                "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+              },
+              "pipeline_cache.db-wal": {
+                "bytes": 1318432,
+                "sha256": "332a1be98e7e723ae2a4d38ebd5b92e2784cc027f414cc8a8aafe37239bfac83"
+              }
+            },
+            "rows": 301,
+            "configurations": [
+              {
+                "type": 0,
+                "version": 5,
+                "bytes": 8,
+                "rows": 1
+              },
+              {
+                "type": 1,
+                "version": 13,
+                "bytes": 2772,
+                "rows": 300
+              }
+            ],
+            "bytes": 1265664,
+            "sha256": "4adf4ad3f7ed7b1716208c3e994d8627f9688b9164007f726e85b760b5a259ca",
+            "asset_manifest_sha256": "f70a9602498d5c88e6705b71bfe2f7e0a01e16851297e126d779ec57917eb9c9",
+            "identical_rows_in_candidate": 301
+          }
+        ],
+        "recorded_union_rows": 301,
+        "already_represented_rows": 301,
+        "added_rows": 0,
+        "candidate_rows_not_recorded": 0,
+        "conclusion": "Retain the existing candidate seed unchanged; all recorded descriptions are present. This establishes recorded configuration coverage, not gameplay smoothness."
+      },
+      "raw_shader_wait_events": [],
+      "full_launch_shader_counter_first": {
+        "shader_ns": 0,
+        "shader_calls": 0
+      },
+      "full_launch_shader_counter_last": {
+        "shader_ns": 0,
+        "shader_calls": 0
+      },
+      "timing": {
+        "shader-preparation_ms": 446.8,
+        "shader-final-drain_ms": 228.7,
+        "startup_to_preparation_complete_ms": 1359.8,
+        "preparation_start_ns": 30364724423310,
+        "preparation_complete_ns": 30365171198347
+      },
+      "performance_and_analysis_raw_copies_identical": true,
+      "shutdown_completed": false,
+      "error_log_lines": [],
+      "resource_phase_summary": {
+        "before-renderer": {
+          "samples": 1,
+          "first_ms": 359.6,
+          "last_ms": 359.6,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 0,
+              "maximum": 0,
+              "first": 0,
+              "last": 0
+            },
+            "onion": {
+              "minimum": 0,
+              "maximum": 0,
+              "first": 0,
+              "last": 0
+            },
+            "buffers": {
+              "minimum": 0,
+              "maximum": 0,
+              "first": 0,
+              "last": 0
+            },
+            "main-mspace-allocated": {
+              "minimum": 16336,
+              "maximum": 16336,
+              "first": 16336,
+              "last": 16336
+            },
+            "flexible-available": {
+              "minimum": 404750336,
+              "maximum": 404750336,
+              "first": 404750336,
+              "last": 404750336
+            }
+          }
+        },
+        "graphics-initialized": {
+          "samples": 1,
+          "first_ms": 958.5,
+          "last_ms": 958.5,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 435519488,
+              "maximum": 435519488,
+              "first": 435519488,
+              "last": 435519488
+            },
+            "onion": {
+              "minimum": 180224,
+              "maximum": 180224,
+              "first": 180224,
+              "last": 180224
+            },
+            "buffers": {
+              "minimum": 24,
+              "maximum": 24,
+              "first": 24,
+              "last": 24
+            },
+            "main-mspace-allocated": {
+              "minimum": 7339456,
+              "maximum": 7339456,
+              "first": 7339456,
+              "last": 7339456
+            },
+            "flexible-available": {
+              "minimum": 393216000,
+              "maximum": 393216000,
+              "first": 393216000,
+              "last": 393216000
+            }
+          }
+        },
+        "before-render-target": {
+          "samples": 1,
+          "first_ms": 1087.7,
+          "last_ms": 1087.7,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 435519488,
+              "maximum": 435519488,
+              "first": 435519488,
+              "last": 435519488
+            },
+            "onion": {
+              "minimum": 180224,
+              "maximum": 180224,
+              "first": 180224,
+              "last": 180224
+            },
+            "buffers": {
+              "minimum": 24,
+              "maximum": 24,
+              "first": 24,
+              "last": 24
+            },
+            "main-mspace-allocated": {
+              "minimum": 11606960,
+              "maximum": 11606960,
+              "first": 11606960,
+              "last": 11606960
+            },
+            "flexible-available": {
+              "minimum": 393216000,
+              "maximum": 393216000,
+              "first": 393216000,
+              "last": 393216000
+            }
+          }
+        },
+        "shader-final-drain": {
+          "samples": 1,
+          "first_ms": 1131.1,
+          "last_ms": 1131.1,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 496730112,
+              "maximum": 496730112,
+              "first": 496730112,
+              "last": 496730112
+            },
+            "onion": {
+              "minimum": 753664,
+              "maximum": 753664,
+              "first": 753664,
+              "last": 753664
+            },
+            "buffers": {
+              "minimum": 44,
+              "maximum": 44,
+              "first": 44,
+              "last": 44
+            },
+            "main-mspace-allocated": {
+              "minimum": 13588544,
+              "maximum": 13588544,
+              "first": 13588544,
+              "last": 13588544
+            },
+            "flexible-available": {
+              "minimum": 386924544,
+              "maximum": 386924544,
+              "first": 386924544,
+              "last": 386924544
+            }
+          }
+        },
+        "known-shaders-prepared": {
+          "samples": 1,
+          "first_ms": 1361.3,
+          "last_ms": 1361.3,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 439156736,
+              "maximum": 439156736,
+              "first": 439156736,
+              "last": 439156736
+            },
+            "onion": {
+              "minimum": 917504,
+              "maximum": 917504,
+              "first": 917504,
+              "last": 917504
+            },
+            "buffers": {
+              "minimum": 44,
+              "maximum": 44,
+              "first": 44,
+              "last": 44
+            },
+            "main-mspace-allocated": {
+              "minimum": 18342704,
+              "maximum": 18342704,
+              "first": 18342704,
+              "last": 18342704
+            },
+            "flexible-available": {
+              "minimum": 386924544,
+              "maximum": 386924544,
+              "first": 386924544,
+              "last": 386924544
+            }
+          }
+        },
+        "gameplay": {
+          "samples": 74,
+          "first_ms": 2736.1,
+          "last_ms": 397562.0,
+          "query_failures": 0,
+          "ranges": {
+            "garlic": {
+              "minimum": 439156736,
+              "maximum": 456523776,
+              "first": 439156736,
+              "last": 456523776
+            },
+            "onion": {
+              "minimum": 917504,
+              "maximum": 6078464,
+              "first": 917504,
+              "last": 6078464
+            },
+            "buffers": {
+              "minimum": 44,
+              "maximum": 58,
+              "first": 44,
+              "last": 58
+            },
+            "main-mspace-allocated": {
+              "minimum": 308216336,
+              "maximum": 317873920,
+              "first": 308216336,
+              "last": 316553984
+            },
+            "flexible-available": {
+              "minimum": 362807296,
+              "maximum": 371195904,
+              "first": 371195904,
+              "last": 362807296
+            }
+          }
+        }
+      },
+      "resource_clock_alignment": {
+        "method": "Align known-shaders-prepared RESOURCE launch-ms to immediately following loading phase performance-ns; approximate, not action timestamps",
+        "performance_ns_minus_launch_ns": 30363822654912.0
+      },
+      "active_sample_resources": {
+        "samples": 23,
+        "first_ms": 78078.4,
+        "last_ms": 188417.6,
+        "query_failures": 0,
+        "ranges": {
+          "garlic": {
+            "minimum": 456294400,
+            "maximum": 456458240,
+            "first": 456294400,
+            "last": 456458240
+          },
+          "onion": {
+            "minimum": 5750784,
+            "maximum": 6078464,
+            "first": 5750784,
+            "last": 6078464
+          },
+          "buffers": {
+            "minimum": 57,
+            "maximum": 58,
+            "first": 57,
+            "last": 58
+          },
+          "main-mspace-allocated": {
+            "minimum": 315811440,
+            "maximum": 316875520,
+            "first": 315811440,
+            "last": 316602688
+          },
+          "flexible-available": {
+            "minimum": 362807296,
+            "maximum": 362807296,
+            "first": 362807296,
+            "last": 362807296
+          }
+        }
+      },
+      "post_sample_3min_resources": {
+        "samples": 32,
+        "first_ms": 217047.0,
+        "last_ms": 372523.8,
+        "query_failures": 0,
+        "ranges": {
+          "garlic": {
+            "minimum": 456458240,
+            "maximum": 456523776,
+            "first": 456458240,
+            "last": 456523776
+          },
+          "onion": {
+            "minimum": 6078464,
+            "maximum": 6078464,
+            "first": 6078464,
+            "last": 6078464
+          },
+          "buffers": {
+            "minimum": 58,
+            "maximum": 58,
+            "first": 58,
+            "last": 58
+          },
+          "main-mspace-allocated": {
+            "minimum": 314793616,
+            "maximum": 317275664,
+            "first": 314793616,
+            "last": 315899472
+          },
+          "flexible-available": {
+            "minimum": 362807296,
+            "maximum": 362807296,
+            "first": 362807296,
+            "last": 362807296
+          }
+        }
+      },
+      "startup_resources": {
+        "samples": 5,
+        "first_ms": 359.6,
+        "last_ms": 1361.3,
+        "query_failures": 0,
+        "ranges": {
+          "garlic": {
+            "minimum": 0,
+            "maximum": 496730112,
+            "first": 0,
+            "last": 439156736
+          },
+          "onion": {
+            "minimum": 0,
+            "maximum": 917504,
+            "first": 0,
+            "last": 917504
+          },
+          "buffers": {
+            "minimum": 0,
+            "maximum": 44,
+            "first": 0,
+            "last": 44
+          },
+          "main-mspace-allocated": {
+            "minimum": 16336,
+            "maximum": 18342704,
+            "first": 16336,
+            "last": 18342704
+          },
+          "flexible-available": {
+            "minimum": 386924544,
+            "maximum": 404750336,
+            "first": 404750336,
+            "last": 386924544
+          }
+        }
+      },
+      "first_last_observed_ns": [
+        30364963622945,
+        30771785586418
+      ],
+      "raw_recorded_seconds": 406.821963473,
+      "cache_before_init": [
+        {
+          "name": "dawn_cache.db",
+          "bytes": "4009984",
+          "sha1": "ccfac2d79ad4867d5a2c9d2450cd57303030add7",
+          "readable": "1"
+        },
+        {
+          "name": "dawn_cache.db-wal",
+          "bytes": "4132392",
+          "sha1": "b370831d4c40752f8231644bc25cd091cd3c3ff2",
+          "readable": "1"
+        },
+        {
+          "name": "pipeline_cache.db",
+          "bytes": "4096",
+          "sha1": "3f47d1432ce31e76333521af57a5287f08488710",
+          "readable": "1"
+        },
+        {
+          "name": "pipeline_cache.db-wal",
+          "bytes": "1310192",
+          "sha1": "9d74a736e116d676103fe951053a26ccd1de2259",
+          "readable": "1"
+        }
+      ],
+      "cache_files_before_init": 4,
+      "cache_after_bytes": {
+        "dawn_cache.db": 4009984,
+        "pipeline_cache.db": 4096,
+        "pipeline_cache.db-wal": 1318432,
+        "dawn_cache.db-wal": 4132392
+      },
+      "subsequent_observed_resources": {
+        "samples": 37,
+        "first_ms": 217047.0,
+        "last_ms": 397562.0,
+        "span_seconds": 180.515,
+        "query_failures": 0,
+        "ranges": {
+          "garlic": {
+            "minimum": 456458240,
+            "maximum": 456523776,
+            "first": 456458240,
+            "last": 456523776
+          },
+          "onion": {
+            "minimum": 6078464,
+            "maximum": 6078464,
+            "first": 6078464,
+            "last": 6078464
+          },
+          "buffers": {
+            "minimum": 58,
+            "maximum": 58,
+            "first": 58,
+            "last": 58
+          },
+          "main-mspace-allocated": {
+            "minimum": 314793616,
+            "maximum": 317275664,
+            "first": 314793616,
+            "last": 316553984
+          },
+          "flexible-available": {
+            "minimum": 362807296,
+            "maximum": 362807296,
+            "first": 362807296,
+            "last": 362807296
+          }
+        }
+      },
+      "subsequent_first_observation_after_sample_end_seconds": 23.946742999999998,
+      "preparation_shutdown_markers": [
+        "CACHE identity=35a453336a0e4b0d432c files-before-init=4; owner labels cold/warm",
+        "STAGE completed=platform-initialized ms=358.2 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=PS4-runtime-crash-logger-selected ms=359.7 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=aurora-initialize ms=361.7 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=graphics-initialized ms=916.5 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=installed-image-validated ms=959.3 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=writable-storage-checked ms=1063.1 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=save-recovery-checked ms=1085.6 build=35a453336a0e4b0d432c errors=0",
+        "DIMENSIONS allocated-internal=1280x720 output=1920x1080 framebuffer=1280x720 ms=1131.0",
+        "SHADERS configurations-ready=145 total=301 pending=156 complete=0 ms=1131.9",
+        "SHADERS configurations-ready=155 total=301 pending=146 complete=0 ms=1149.0",
+        "SHADERS configurations-ready=187 total=301 pending=114 complete=0 ms=1209.4",
+        "SHADERS configurations-ready=199 total=301 pending=102 complete=0 ms=1227.8",
+        "SHADERS configurations-ready=210 total=301 pending=91 complete=0 ms=1245.0",
+        "SHADERS configurations-ready=235 total=301 pending=66 complete=0 ms=1276.2",
+        "SHADERS configurations-ready=253 total=301 pending=48 complete=0 ms=1293.1",
+        "SHADERS configurations-ready=278 total=301 pending=23 complete=0 ms=1310.0",
+        "SHADERS configurations-ready=301 total=301 pending=0 complete=1 ms=1349.6",
+        "TIMING shader-preparation_ms=446.8 shader-final-drain_ms=228.7 startup_to_preparation_complete_ms=1359.8 preparation_start_ns=30364724423310 preparation_complete_ns=30365171198347",
+        "STAGE completed=known-shaders-prepared ms=1359.8 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=runtime-assets-validated ms=1650.3 build=35a453336a0e4b0d432c errors=0",
+        "EXIT code=0 ms=408023.0 checked-errors=0",
+        "STAGE completed=shutdown-waiting-for-card ms=408023.0 build=35a453336a0e4b0d432c errors=0",
+        "SHUTDOWN card-status=1 (0=busy 1=idle -1=last-store-failed)",
+        "STAGE completed=shutdown-card-finished ms=408024.4 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=shutdown-requesting-sdk-stop ms=408025.6 build=35a453336a0e4b0d432c errors=0",
+        "STAGE completed=shutdown-sdk-stop-requested ms=408027.0 build=35a453336a0e4b0d432c errors=0"
+      ]
+    }
+  }
+}

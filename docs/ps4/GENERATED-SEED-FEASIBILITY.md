@@ -7,6 +7,14 @@ inspection. Do not substitute an earlier 01.23 package or infer console acceptan
 from a host build. #149 stays open through returned evidence and owner review;
 downstream expansion remains gated until a successful result and explicit handoff.
 
+The [01.24 physical return](../../evidence/ps4/feasibility-validation-149/REPORT.md)
+now passes bounded description membership and observed-wait checks and supplies
+startup/resource and owner progress observations. Normal Quit still crashes in
+both runs; settings preservation, exact launch-to-control and per-variant traces
+remain unverified. Keep the gate open. Use the procedure below for affected
+revalidation after an identified correction; do not repeat the unchanged candidate
+as though the known shutdown failure were resolved.
+
 The prior [301-description console return](../../evidence/ps4/dynamic-seed-validation-148-round2/REPORT.md)
 passes bounded seed membership and raw-wait checks, but lacks startup resource,
 visible progress and save/settings preservation evidence. Normal Quit crashes in
