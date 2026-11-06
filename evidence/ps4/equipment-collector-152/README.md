@@ -106,4 +106,5 @@ mapping, deduplication, baseline and input preservation, repeatability, atomic
 rejection of bad scripts/identities/mappings/lifetimes/conflicts/incompatibility,
 the external collector-process boundary, and actual package-tool assembly/fresh
 inspection. Actual rendering evidence above is separate from those fixtures.
-Final automated checks and independent reviews are recorded in [REVIEW.md](REVIEW.md).
+Independent reviews are recorded in [REVIEW.md](REVIEW.md), with final automated
+checks in [FINAL-VERIFICATION.md](FINAL-VERIFICATION.md).
