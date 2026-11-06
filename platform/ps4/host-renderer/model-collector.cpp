@@ -15,6 +15,9 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphAnimator/J3DJoint.h"
+#include "res/Object/Link.h"
 #include "m_Do/m_Do_ext.h"
 #include "JSystem/JParticle/JPAEmitterManager.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
@@ -234,7 +237,7 @@ static std::vector<unsigned> particle_ids(const std::string& resource) {
   return ids;
 }
 
-static unsigned draw_particles(Mtx view, const std::vector<unsigned>& ids) {
+static unsigned draw_particles(Mtx view, const std::vector<unsigned>& ids, bool cheapBomb = false) {
   auto* bytes = JKRDvdToMainRam("/res/Particle/common.jpc", nullptr, EXPAND_SWITCH_UNKNOWN1,
                                0, JKRHeap::getCurrentHeap(), JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, nullptr);
   check(bytes, "load actual common particle bank");
@@ -277,6 +280,17 @@ static unsigned draw_particles(Mtx view, const std::vector<unsigned>& ids) {
       // Continuous resources get an explicit finite emission window; particles
       // still expire through normal JPA simulation, never forced pool deletion.
       if (emitter->isContinuousParticle()) emitter->setMaxFrame(30);
+      // daBomb_c::eff_explode_cheap mutations, applied before the first real tick.
+      if (cheapBomb && id == 0x000b) {
+        emitter->setLifeTime(12);
+        emitter->setGlobalParticleScale(0.5f, 0.67f);
+      } else if (cheapBomb && (id == 0x200a || id == 0x2008)) {
+        emitter->setLifeTime(70);
+        if (id == 0x2008) {
+          emitter->setAwayFromAxisSpeed(25.0f);
+          emitter->setDirectionalSpeed(35.0f);
+        }
+      }
     }
     bool alive = false, complete = false;
     for (unsigned tick = 1; tick <= 240; ++tick) {
@@ -307,12 +321,18 @@ static unsigned draw_particles(Mtx view, const std::vector<unsigned>& ids) {
 
 int main(int argc, char* argv[]) {
   check(argc >= 3 && argc <= 5, "usage: collector IMAGE BASELINE_ASSETS [SCENARIO [RESOURCE]] (new private directory)");
-  const bool particles = argc == 5 && !strcmp(argv[3], "particle-effect-lifecycle-v1");
+  const bool bombNormal = argc == 5 && !strcmp(argv[3], "equipment-bomb-normal-v1");
+  const bool bombCheap = argc == 5 && !strcmp(argv[3], "equipment-bomb-cheap-v1");
+  const bool arrow = argc == 5 && !strcmp(argv[3], "equipment-arrow-tips-v1");
+  const bool particles = bombNormal || bombCheap || (argc == 5 && !strcmp(argv[3], "particle-effect-lifecycle-v1"));
   const bool dynamic = particles || (argc == 4 && !strcmp(argv[3], "common-pot-debris-lifecycle-v1"));
   const bool inventory = argc == 5 && !strcmp(argv[3], "asset-model-stock-v1");
-  check(argc == 3 || dynamic || inventory || (argc == 4 && !strcmp(argv[3], "always-small-pot-stock-v1")),
+  check(argc == 3 || dynamic || inventory || arrow || (argc == 4 && !strcmp(argv[3], "always-small-pot-stock-v1")),
         "unknown scenario");
-  const std::string resource = inventory || particles ? argv[4] : "/res/Object/Always.arc:bdl/obm_kotubo1.bdl";
+  const std::string resource = inventory || particles || arrow ? argv[4] : "/res/Object/Always.arc:bdl/obm_kotubo1.bdl";
+  check(!arrow || resource == "/res/Object/Link.arc:bdlm/arrow.bdl", "fixed arrow resource required");
+  check(!bombNormal || resource == "/res/Particle/common.jpc:0x000b+0x2009+0x200a+0x2008", "normal bomb recipe");
+  check(!bombCheap || resource == "/res/Particle/common.jpc:0x000b+0x232a+0x200a+0x2008", "cheap bomb recipe");
   const auto particleIds = particles ? particle_ids(resource) : std::vector<unsigned>{};
   const auto modelResource = particles ? std::string("/res/Object/Always.arc:bdl/obm_kotubo1.bdl") : resource;
   const auto separator = modelResource.find(':');
@@ -363,10 +383,10 @@ int main(int argc, char* argv[]) {
     auto* bytes = archive->getResource(memberPath.c_str());
     check(bytes, "find requested stock model");
     auto* data = J3DModelLoaderDataBase::loadBinaryDisplayList(bytes, 0x2020);
-    check(data && data->getMaterialNum() > 0 && (inventory || data->getMaterialNum() == 1),
+    check(data && data->getMaterialNum() > 0 && (inventory || arrow || data->getMaterialNum() == 1),
           "load supported stock model materials");
     materials = data->getMaterialNum();
-    model = mDoExt_J3DModel__create(data, 0, 0x11000084);
+    model = mDoExt_J3DModel__create(data, arrow ? 0x00080000 : 0, arrow ? 0x11000022 : 0x11000084);
     check(model, "create game model and material display lists");
   }
   J3DDrawBuffer opaque(32), translucent(32);
@@ -385,7 +405,39 @@ int main(int argc, char* argv[]) {
   recording = true;
   unsigned renderedDraws = 0;
   if (dynamic) {
-    renderedDraws = particles ? draw_particles(view, particleIds) : draw_effect(view);
+    renderedDraws = particles ? draw_particles(view, particleIds, bombCheap) : draw_effect(view);
+  } else if (arrow) {
+    // daArrow_c::createInit/_draw: hide all tip shapes, show the selected
+    // material and its optional next material for drawing, then hide again.
+    // Player attachment, BTK animation and elemental actors are separate gaps.
+    auto* data = model->getModelData();
+    check(data->getJointNum() > ARROW_JNT_TIPNOMAL_e, "arrow tip joints required");
+    const unsigned tips[] = {ARROW_JNT_TIPNOMAL_e, ARROW_JNT_TIPFIRE_e, ARROW_JNT_TIPICE_e};
+    for (const auto joint : tips) {
+      auto* material = data->getJointNodePointer(joint)->getMesh();
+      check(material && material->getShape(), "arrow tip material required");
+      material->getShape()->hide();
+      if (material->getNext()) material->getNext()->getShape()->hide();
+    }
+    const unsigned cycle[] = {0, 1, 2, 0};
+    for (unsigned tick = 0; tick < 4; ++tick) {
+      auto* material = data->getJointNodePointer(tips[cycle[tick]])->getMesh();
+      material->getShape()->show();
+      if (material->getNext()) material->getNext()->getShape()->show();
+      effectSteps.push_back({cycle[tick], tick + 1, 0, 0});
+      activeStep = &effectSteps.back();
+      begin_draw();
+      opaque.frameInit(); translucent.frameInit();
+      model->update(); model->viewCalc();
+      j3dSys.setDrawModeOpaTexEdge(); opaque.draw();
+      j3dSys.setDrawModeXlu(); translucent.draw();
+      activeStep->draws = end_draw();
+      check(activeStep->draws && activeStep->lookups, "each arrow state must actually draw");
+      renderedDraws += activeStep->draws;
+      activeStep = nullptr;
+      material->getShape()->hide();
+      if (material->getNext()) material->getNext()->getShape()->hide();
+    }
   } else {
     for (int frame = 0; frame < 3; ++frame) {
       begin_draw();
@@ -406,17 +458,38 @@ int main(int argc, char* argv[]) {
   auto* report = fopen("collection.json", "wx");
   check(report, "new collection report");
   if (particles) {
-    fprintf(report, "{\"schema\":1,\"scenario\":\"particle-effect-lifecycle-v1\",\"method\":\"dynamic-effect-draw\","
+    fprintf(report, "{\"schema\":1,\"scenario\":\"%s\",\"method\":\"dynamic-effect-draw\","
             "\"resource\":\"%s\",\"draw_calls\":%u,\"pipeline_lookups\":%u,\"runtime_identity_verified_rows\":%u,"
-            "\"frames\":%zu,\"script\":{\"effect_ids\":[", resource.c_str(), renderedDraws, drawCalls,
+            "\"frames\":%zu,\"script\":{\"effect_ids\":[", argv[3], resource.c_str(), renderedDraws, drawCalls,
             runtimeIdentityRows, effectSteps.size());
     for (size_t i = 0; i < particleIds.size(); ++i) fprintf(report, "%s%u", i ? "," : "", particleIds[i]);
     fprintf(report, "],\"max_ticks\":240,\"continuous_emission_ticks\":30,\"variations\":["
             "{\"random_seed\":0,\"scale\":1,\"alpha\":255,\"texture_index\":0},"
-            "{\"random_seed\":1,\"scale\":2,\"alpha\":128,\"texture_index\":1}]},"
+            "{\"random_seed\":1,\"scale\":2,\"alpha\":128,\"texture_index\":1}]");
+    if (bombNormal || bombCheap) fprintf(report, ",\"setup\":\"%s\"", bombCheap ? "cheap-bomb-v1" : "normal-bomb-v1");
+    fprintf(report, "},"
             "\"unhandled_states\":[\"stage-lighting-and-wind\",\"projection-framebuffer\","
             "\"model-particles\",\"actor-collision\",\"other-cameras\"]");
     write_effect_steps(report);
+  } else if (arrow) {
+    fprintf(report, "{\"schema\":1,\"scenario\":\"equipment-arrow-tips-v1\",\"method\":\"scripted-equipment-draw\","
+            "\"resource\":\"%s\",\"materials\":%u,\"draw_calls\":%u,\"pipeline_lookups\":%u,"
+            "\"runtime_identity_verified_rows\":%u,\"frames\":4,"
+            "\"script\":{\"states\":[\"normal\",\"fire\",\"ice\",\"normal\"],\"frames_per_state\":1,"
+            "\"loader_flags\":8224,\"model_flags\":524288,\"differed_display_list_flags\":285212706},"
+            "\"unhandled_states\":[\"texture-animation\",\"elemental-effects-and-trails\",\"actor-lighting-and-collision\","
+            "\"player-attachment-and-flight\",\"light-arrow\",\"other-cameras\"],\"states\":[",
+            resource.c_str(), materials, renderedDraws, drawCalls, runtimeIdentityRows);
+    const char* names[] = {"normal", "fire", "ice"};
+    for (size_t i = 0; i < effectSteps.size(); ++i) {
+      const auto& step = effectSteps[i];
+      fprintf(report, "%s{\"tick\":%u,\"state\":\"%s\",\"draw_calls\":%u,\"pipeline_lookups\":%u,\"configurations\":[",
+              i ? "," : "", step.tick, names[step.texture], step.draws, step.lookups);
+      for (size_t k = 0; k < step.configurations.size(); ++k)
+        fprintf(report, "%s{\"type\":1,\"hash\":%lld}", k ? "," : "", static_cast<long long>(step.configurations[k]));
+      fprintf(report, "]}");
+    }
+    fprintf(report, "]");
   } else if (dynamic) {
     fprintf(report, "{\"schema\":1,\"scenario\":\"common-pot-debris-lifecycle-v1\","
             "\"method\":\"dynamic-effect-draw\",\"resource\":\"/res/Particle/common.jpc:0x0018\","

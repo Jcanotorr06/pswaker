@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "issue": 152,
+  "app_version": "01.24",
+  "program": {
+    "build_id": "35a453336a0e4b0d432c",
+    "elf_sha256": "c2d48776ed9f79d90ec71d61cc0732a3b2b673da361ca57d7c4a10596a2392fc",
+    "eboot_sha256": "76ddd46e09966d6372cb597f16329285b4bbea1450f6ead03102c66539ad97bc"
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "69a1873e3a9659e0331db80226386da5022d0b78f415c48175b7cd6d7e859c86",
+    "bytes": 1521614848
+  },
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "equipment-arrow-tips-v1:observed.db": {
+        "bytes": 24576,
+        "sha256": "994cfe2fc0ceae32249977f2f7fc9f54ebb28c5c6473fb8b6c1b75e88ee918b9"
+      },
+      "equipment-bomb-cheap-v1:observed.db": {
+        "bytes": 159744,
+        "sha256": "46fecef1ebe5ad049b2eb998788100d147cfc6fc8c58c02a6b9c8e1dfcb1da69"
+      },
+      "equipment-bomb-normal-v1:observed.db": {
+        "bytes": 454656,
+        "sha256": "f1110c4d8620c7e3223f1a8243436b749cec09b142f570eb9cc7f116bf17a0cf"
+      }
+    },
+    "rows": 409,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 408
+      }
+    ],
+    "bytes": 1708032,
+    "sha256": "9c99d6c7cf9dd573fe75f88601390f06b8773e01a5cb63eb4fc27922a81cbf86",
+    "asset_manifest_sha256": "e2a821877b60ec62a25642fae3f9b789c16e6998510583df7700478241f4ca3a"
+  },
+  "manifest_sha256": "f5e60619a15f27ff7d032004a085765d464cfd760b95be276f60a3a910b7c618",
+  "plan_sha256": "6aea8b0e0199a4e35b65aee1a65359d3c3e406b7e84a3cffc28725d4e694e3be",
+  "collector": {
+    "binary_sha256": "bfdc51d3b7b0240b735db2995d547bba385f91f9a206eff3642ab1be16d3f405",
+    "prepared_inputs_sha256": "a647390f913854b3ae59e68169c8aa70359f319c2fcbc235a7077606fc04cee1",
+    "renderer_sources_sha256": "e8c95694065f153501f6d4217328d42605fc9cd318f975f437b2ffad63399dab",
+    "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+    "contract_bytes": 2872,
+    "collector_sources": {
+      "CMakeLists.txt": "c2ccdabaff749f188e9826d496dd16185501e45c4ca37a4c558850bf4a666d59",
+      "main.cpp": "12dd481329a566e827ceef1da4caefcf89a8e6dd7345a5c1ce38d3b3a2ad08e5",
+      "model-collector.cpp": "04194805eb54efb177e41d03c5982b1ee73d0b5164a3cb0c7e4b8b3cec10919d",
+      "model-contract.cpp": "7baf0056fea33c25868b164828471312415b98f5fe1899ab1853f86d274c6e0c"
+    },
+    "adapter_sources": {
+      "stock-textures.cpp": "963740b0fa44f1c9ed5cbc62b0b6746ede13b31b1d00e721d6133f949e1efb96",
+      "frame-pacing.hpp": "f074d1279621f8b4feae76e6a2ad9f0aba222d310dec455bebe6906b38d41b79",
+      "game-platform.hpp": "fdc1cd4f7f20dc80890ed3bd6fd0219789b30ebdb11d8e6e3dd7923a8463ddbd"
+    },
+    "build_tool_sha256": "09883e9a22a2fa60b3416b38a2a292acef36dcf697f13c257d548fa1805db71f"
+  },
+  "collector_build_sha256": "a644537b287fb8f95df07adeaf33e6be936b5b049dd28587587c89182841d606",
+  "assembly_sha256": "a2ef577fe43347651be618ff38b3ebddf2a50a6543aff08a925861575cbe1c00",
+  "inspection_sha256": "b4af3d8f19648a1dc2ecc203ac2c938163c8a93a4abc84b932ca728771206ffd",
+  "fresh_inspection_reproduces_assembly_inspection": true,
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "package_inputs_preserved_sha256": "bf9cc6df4920e25bfed5c69a3de054745e99f8b92694426b78b0c84f441df8c2",
+  "seed_source_sha256": "e2a821877b60ec62a25642fae3f9b789c16e6998510583df7700478241f4ca3a",
+  "physical_verification": false,
+  "host_target_limits": [
+    "Host BGRA8 versus PS4 RGBA8; PS4 prepares its own driver objects from descriptions.",
+    "No new PS4 preparation, appearance, wait, scaling, Quit or preservation observation.",
+    "Isolated arrow shape/bomb setup branches do not prove complete actor/controller execution."
+  ],
+  "validation_sources": {
+    "collect-model-seed.py": "09883e9a22a2fa60b3416b38a2a292acef36dcf697f13c257d548fa1805db71f",
+    "equipment_collection.py": "23d1cc2ac248ef852fb97b62aa51fcf8be796c0f578ea7555f295fee538c7a8a",
+    "particle_collection.py": "4999424dfb1758ab733f842ca0960b260e9a157de5d7f84f2427cc0241d95df8",
+    "asset_inventory.py": "687621f6f5ef3ff8f01fe0b1d8831e960ce8c232269006a0c90894f50872fa7c",
+    "pipeline_assets.py": "d2b9488f208ece4cf3584c7c4b3c035100a03e3789b6e13d5021d44f8add78f4",
+    "package_artifact.py": "e212b4b8cdf1e0dd515a3a8e54b93c0716775c2d53135579d37d0ebfe1ea6481"
+  },
+  "replay_sources": {
+    "build152.py": "ca326ff9f4d3ae878748e84429d2efa330d7ffc1fbf3a229a5ce5fb61e162fa9",
+    "run152.py": "d10b1a8ed1039b02ee4e8f87d7b655152bd257e66ecd37540e78feef3360493a",
+    "verify152.py": "ded4d3da6a2c87cf304eaf539be26e2918044a5dbd552bb244d2df204a198a7c",
+    "package152.py": "0aca671998597c21c50fa89907f0cdc38927543832c2fc24ccbf7641e4af6946"
+  }
+}

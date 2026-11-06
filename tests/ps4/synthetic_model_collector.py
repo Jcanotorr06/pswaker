@@ -14,15 +14,16 @@ MODEL_BYTES = b'Synthetic model resource; no game content'
 PARTICLE_BYTES = b'Synthetic particle resource; no game content'
 
 
-def add_model_resource(image, contract_path):
-    strings = b'root\0bdl\0obm_kotubo1.bdl\0'
+def add_model_resource(image, contract_path, *, arrow=False):
+    directory, member = (b'bdlm', b'arrow.bdl') if arrow else (b'bdl', b'obm_kotubo1.bdl')
+    strings = b'root\0' + directory + b'\0' + member + b'\0'
     archive = bytearray(0x100)
     struct.pack_into('>4sIII', archive, 0, b'RARC', 0x100 + len(MODEL_BYTES), 0x20, 0xE0)
     struct.pack_into('>6I', archive, 0x20, 2, 0x20, 2, 0x40, len(strings), 0x80)
     struct.pack_into('>4sIHHI', archive, 0x40, b'ROOT', 0, 0, 1, 0)
     struct.pack_into('>4sIHHI', archive, 0x50, b'BDL ', 5, 0, 1, 1)
     for index, (flags, name, offset, size) in enumerate([
-            (2, 5, 1, 0), (0x11, 9, 0, len(MODEL_BYTES))]):
+            (2, 5, 1, 0), (0x11, 6 + len(directory), 0, len(MODEL_BYTES))]):
         struct.pack_into('>HHIIII', archive, 0x60 + index * 20, index, 0,
                          flags << 24 | name, offset, size, 0)
     archive[0xA0:0xA0 + len(strings)] = strings
@@ -36,9 +37,10 @@ def add_model_resource(image, contract_path):
     entries += struct.pack('>III', 0x01000000 | len(names), 0, count + 5)
     entries += struct.pack('>III', 0x01000000 | (len(names) + 4), count, count + 3)
     entries += struct.pack('>III', len(names) + 11, 0x5000, len(archive))
-    entries += struct.pack('>III', 0x01000000 | (len(names) + 22), count, count + 5)
-    entries += struct.pack('>III', len(names) + 31, 0x6000, len(PARTICLE_BYTES))
-    fst = entries + names + b'res\0Object\0Always.arc\0Particle\0common.jpc\0'
+    archive_name = b'Link.arc' if arrow else b'Always.arc'
+    entries += struct.pack('>III', 0x01000000 | (len(names) + 12 + len(archive_name)), count, count + 5)
+    entries += struct.pack('>III', len(names) + 21 + len(archive_name), 0x6000, len(PARTICLE_BYTES))
+    fst = entries + names + b'res\0Object\0' + archive_name + b'\0Particle\0common.jpc\0'
     data[fst_offset:fst_offset + len(fst)] = fst
     struct.pack_into('>II', data, 0x428, len(fst), len(fst))
     data[0x5000:0x5000 + len(archive)] = archive

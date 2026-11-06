@@ -11,6 +11,7 @@ import unittest
 from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_collection, make_particle_collection
 from synthetic_disc import generate
 from synthetic_model_collector import add_model_resource, make_collector, MODEL_BYTES, PARTICLE_BYTES
+from synthetic_equipment import make_equipment_collection
 from contextlib import closing
 import sqlite3
 
@@ -87,6 +88,51 @@ class CollectorCommandTests(unittest.TestCase):
         self.assertEqual(collected['input_identity']['particle_sha256'], hashlib.sha256(PARTICLE_BYTES).hexdigest())
         self.assertEqual(collected['script']['effect_ids'], [11, 8201])
         self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def test_equipment_freeze_and_batch_dispatch_real_process_arguments_and_preserve_inputs(self):
+        # The stand-in rejects wrong scenario/resource arguments. Native rendering
+        # is separately exercised with private inputs, not simulated by this test.
+        for arrow in [True, False]:
+            with self.subTest(arrow=arrow):
+                if arrow:
+                    _, self.image = generate(self.root, CLI.parents[2])
+                    add_model_resource(self.image, self.root / 'repo/platform/ps4/content-contract.json', arrow=True)
+                metadata = make_equipment_collection(self.root / ('arrow-fixture' if arrow else 'bomb-fixture'),
+                                                     arrow=arrow, keys=(84,))
+                metadata['runtime_identity_verified_rows'] = 3
+                (self.collector / 'native-report.json').write_text(json.dumps(metadata))
+                name = 'arrow' if arrow else 'bomb'
+                row = {'id': name, 'family': name, 'scenario': metadata['scenario'], 'resource': metadata['resource'],
+                       'script': metadata['script'], 'source_references': ['synthetic.cpp:draw'],
+                       'action': 'exercise', 'assumptions': ['Synthetic equipment process boundary.']}
+                plan = self.root / (name + '-plan.json')
+                plan.write_text(json.dumps({'schema': 1, 'id': 'synthetic-equipment-v1', 'kind': 'equipment-actions',
+                                            'exclusions': ['Other equipment excluded.'], 'rows': [row]}))
+                manifest = self.root / (name + '-manifest.json')
+                command = [sys.executable, str(self.cli), 'freeze-inventory', '--plan', str(plan),
+                           '--collector', str(self.collector), '--image', str(self.image)]
+                result = subprocess.run(command + ['--output', str(manifest)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                repeat = self.root / (name + '-repeat.json')
+                result = subprocess.run(command + ['--output', str(repeat)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(manifest.read_bytes(), repeat.read_bytes())
+                before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
+                output = self.root / (name + '-batch')
+                result = subprocess.run([sys.executable, str(self.cli), 'batch', '--manifest', str(manifest),
+                                         '--collector', str(self.collector), '--image', str(self.image),
+                                         '--baseline', str(self.baseline), '--output', str(output)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                report = json.loads((output / 'prepared/batch-report.json').read_text())
+                self.assertEqual((report['collected_rows'], report['new_rows']), (1, 0))
+                for filename in ['initial_pipeline_cache.db', 'pipeline-seed.json']:
+                    self.assertEqual((output / 'prepared/assets' / filename).read_bytes(), (self.baseline / filename).read_bytes())
+                native = json.loads((output / f'collections/{name}/collection.json').read_text())
+                self.assertEqual(native['commands'][0][-2:], [metadata['scenario'], metadata['resource']])
+                identity = native['resources']
+                self.assertEqual(identity['model_sha256' if arrow else 'particle_sha256'],
+                                 hashlib.sha256(MODEL_BYTES if arrow else PARTICLE_BYTES).hexdigest())
+                self.assertEqual({p: p.read_bytes() for p in before}, before)
 
     def test_command_repeats_export_and_attributes_exact_build_image_and_resource(self):
         before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
