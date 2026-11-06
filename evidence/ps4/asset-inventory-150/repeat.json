@@ -1,0 +1,1418 @@
+{
+  "schema": 1,
+  "issue": 150,
+  "method": "Independent real probes/control versus fresh public batch; full descriptions plus exact prepared bytes",
+  "manifest_sha256": "efbb252dab8e9db799283e08c0c4248d37328141e7a7fed45cf8d705b4f8478b",
+  "first_report_sha256": "0412201d3ee2e959803861c6e20fea88596fc8764b50e2cd693d0aeb40030cb1",
+  "repeat_report_sha256": "9b3affb5d83db0d62954461cbf3da4a696d3f230ca7db216676de9a10dc21a63",
+  "batch_run_sha256": "124005bc645825ae9b5c5cdf826560582e14157e24f35937d59c6c86211f8375",
+  "seed_sha256": "e3559efe1e2920ef3880e73f9ae387ae856256dc71ba1c4aabe9e3004c46428a",
+  "asset_manifest_sha256": "4783c97a24747b93381d14ce54b2562d315806e5384daa746b13bac77f73c985",
+  "complete_seed_bytes_identical": true,
+  "complete_asset_manifest_bytes_identical": true,
+  "configuration_source_mapping_identical": true,
+  "freeze_manifest_bytes_identical": true,
+  "input_inventories_before_after_sha256": "807b25175063696c8972bc03c0ddcdaa7209843ece155f7256be03a2a0a419ee",
+  "input_roles_preserved": [
+    "supported image",
+    "301-description baseline assets",
+    "collector build directory",
+    "fixed inventory plan"
+  ],
+  "resources": [
+    {
+      "id": "common-large-pot",
+      "collection_report_sha256": [
+        "2e4c0023cdd926cb5151e49f4dd4d861920e617bc0c61717fd3fbab06c3c775c",
+        "de2b9b18daf400caafae62ba6043c7645b31b8a60c51610cbc42df9436c98992"
+      ],
+      "observed_seed_sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "common-small-pot",
+      "collection_report_sha256": [
+        "4b5294e559056d5ab211184f79227d03d88384f31d066e18e76fc8dd2a7901c5",
+        "80fabaeae88c367e90fcc2fa9c7505e69bfac0edb4a73803ab77e31fbefa131e"
+      ],
+      "observed_seed_sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "dragon-roost-dungeon",
+      "collection_report_sha256": [
+        "4dd70210e8009c57293c2d593b94fefd953a9306d276361799d50e085d06c7aa",
+        "fd7dcb90b1e1a64302d1b0c35a958008856258781da4b096a3593a732725ba5a"
+      ],
+      "observed_seed_sha256": "e1fed361641713913fd09cbd9766bcd1afa8cb7ce6b6961c8d83971432614aa3",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "earth-temple",
+      "collection_report_sha256": [
+        "703c8a228b256e04be044295ef30ce32b1bc28d1fcca8d838149d95931270692",
+        "dc1566a37eff2b05d818c23b80f570dbd024e4762b6ea2ab8f2d326d04e24ae7"
+      ],
+      "observed_seed_sha256": "2a1dd03cd3bc1489073be228510c137160d413685ce264ce2c70a796d1a22af1",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "forbidden-woods-boss-room",
+      "collection_report_sha256": [
+        "79ac79e3953854ab72a7d99caa31d44bc29cb882f245ea1338f9a3e43a6b9821",
+        "49e539dd5514648824069219fd95fc40ce1466a8b17295e4f40cee2dae2ad398"
+      ],
+      "observed_seed_sha256": "7350ca2fc109c73a48187429ab559bc691f1d34d74867b7811e4f242616bdeb9",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "forest-haven-ground",
+      "collection_report_sha256": [
+        "d04bde0e5783cf18f874641094000d50886fe270af2ff24e9b58d25bc3be1dc8",
+        "32beed98e6b8c4dfc953d903532d222bf15986c1bf8af23c28b432924c4c4289"
+      ],
+      "observed_seed_sha256": "fdf2877f5901f9dea1a5f9ded972eb50fa1e5823c03923597f395d811376faba",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "forsaken-fortress-room",
+      "collection_report_sha256": [
+        "0f91b61d039955533f0426b77d0a8c3c65419ffc7fb224a36e4d58c84fee6741",
+        "a9d81b464997572d8a8a3c838a60858bfca3cba047e055adf6c00892a80270d1"
+      ],
+      "observed_seed_sha256": "8dd5f43d6f8727f2d06dcc4f90f006971f292248814f7c55885faccc38252e9a",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "ganons-tower",
+      "collection_report_sha256": [
+        "5b4f79fe177275a33433d011b596e66e7c4d93343b1dc62f68813e5bc3e2de45",
+        "575b417eb8f0859addda6ec1124eb28ffce17c88c4bf571ca36a25d1409f8158"
+      ],
+      "observed_seed_sha256": "1396bb386b903ca95542d0ee14da6e1759adfd501ce8224370eece9358124148",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "link-boomerang",
+      "collection_report_sha256": [
+        "d582fd0c15afa2eef15dc7fb4682432930cee627dd7c9f9050a5735c0f3072f9",
+        "c36f22b7b99bea92f36a387086a554d44fe9a60514faacfb7bd770a866e483ec"
+      ],
+      "observed_seed_sha256": "de8b9a1ba516116c32095d7596bab5eb2cf2a246633524a39207eac5eb7d534f",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "link-bow",
+      "collection_report_sha256": [
+        "7c56dedd184d90b645e58553fe367efe31fba98172aab5cde375ac8820c83cd3",
+        "a628b329cbb411b95cc9291c83ce85cf59219e18b056108778b3b0ecaee64628"
+      ],
+      "observed_seed_sha256": "924c2bdd929a43eac50a309deed79af073696221a3919b2f5ff8c1ce5427721c",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "link-casual-model",
+      "collection_report_sha256": [
+        "6593892d2de963f09da3ef04b5d3ec559f10b78c44c3967295584e75ca820ebc",
+        "13e17b92517677db358181f4b6b4c29c6b7b08bc8ee6cc205b9d41b6a756e394"
+      ],
+      "observed_seed_sha256": "50d1d5467c925d9230b8928a32234b0fb529dd7a3a22d77b7d560efb11e6e9b8",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "links-house",
+      "collection_report_sha256": [
+        "1b49220d62af5d333f867fc4119c4d9527f0e6d79beed5f3c984a202c338af44",
+        "ac83509335660c8c84dc1b3c328469d430cd570d1733abaa701fb82538332921"
+      ],
+      "observed_seed_sha256": "62be35abc8854e60eb172a85f72a853b261277355820edf97d91443fc9ea1274",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "optional-cave",
+      "collection_report_sha256": [
+        "ed4342d370b2b81344774be3ccfaa9b02bfa90be647f622bbc25700d659e2bd1",
+        "06cc3b15dc067e0e632a3aa6e056f63d7254ad25be5c3ec5cc1ce87fb9989a43"
+      ],
+      "observed_seed_sha256": "b7ddbd3ecff35ae26aa0cee7c96135cb7a53d151b22caf46941ccf77b83af1ac",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "outset-ground",
+      "collection_report_sha256": [
+        "e18f2697852cbd8e98be645f1a1d68bc6a28c9ac1df1f3fb180a34260fde2f22",
+        "a7e8c528b2aa072331d8c56da408524a312d32ee47ca4868513f26bcc0eda94e"
+      ],
+      "observed_seed_sha256": "33ca6055a927f41bf4189fcb7ca08cec97b3a29c428cf766ba5a357d8dd8eb32",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "pirate-ship",
+      "collection_report_sha256": [
+        "f6bb1cf547d3df618c42c0a937ca57520714f0e88bbcf10c403ffc67e33311df",
+        "5f9cf2f6184011f040ff6f3b408deccf618e0e716ff216c88cefbb11b6715e47"
+      ],
+      "observed_seed_sha256": "0014b4e3d8dfe26f09d628f4e49cb664056b2475fcb7e0bc5744ced439f30e71",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "rito-bag",
+      "collection_report_sha256": [
+        "e6b2cfbdcc54027099b4221b272ba6d3734ce1052c6526bcf0c7a0f64b728277",
+        "32bbd16e1fac11444bdad1c8ebe89a3522500a317e583c6a942f7e713b75867a"
+      ],
+      "observed_seed_sha256": "2e17d9eea7feaa1cd3b5bf12f271eadd5dc5b4a82efe9a9c82986e0c5d5d3ce0",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "tower-of-gods",
+      "collection_report_sha256": [
+        "ad722dc3923506af96ff2dae1987e285366f3cd9de5ef3c4a93f296393b243ee",
+        "a92bf45c5d3c8673819106170fa1cb49c3a9c59aeb6b671db8f8c3a0d338d639"
+      ],
+      "observed_seed_sha256": "33ca6055a927f41bf4189fcb7ca08cec97b3a29c428cf766ba5a357d8dd8eb32",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "wind-temple",
+      "collection_report_sha256": [
+        "cbdfceb6446316a121034fe1364e6168ced88c0f9d661b937a50e7ad67c2141f",
+        "56da6618eb062717721b72dc313f6cff7d7a802e2cbf5b753ac362b6b1f5be5e"
+      ],
+      "observed_seed_sha256": "58f583718b6054fc9c09ef0a4169c0f5afb7204623baaa36cefe80b4062daf59",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    },
+    {
+      "id": "windfall-ground",
+      "collection_report_sha256": [
+        "a294e7fa08ef17669ffcaad86eea1c899a48bde925565e717d93ebe73576a58d",
+        "01c140ab1d2f0c728a88075afd843c8489d0ab1c2a533c644a972be9238a64ba"
+      ],
+      "observed_seed_sha256": "ff1d46b3f61b6878011537dfc940a38f04bbb2156213f81d5fdf7578c51a4372",
+      "matching_fields": [
+        "resources",
+        "collector",
+        "image_sha256",
+        "contract_sha256",
+        "seed_sha256",
+        "materials",
+        "draw_calls",
+        "pipeline_lookups",
+        "layout"
+      ]
+    }
+  ],
+  "full_description_comparison": {
+    "schema": 1,
+    "method": "Validated read-only comparison of type/hash keys and config bytes; first_frame_used is capture metadata, not configuration identity",
+    "candidate": {
+      "schema": 1,
+      "installed_path": "/app0/initial_pipeline_cache.db",
+      "source_files": {
+        "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+          "bytes": 835584,
+          "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+        },
+        "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+          "bytes": 4128272,
+          "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+        },
+        "baseline:baseline:baseline:generated:observed.db": {
+          "bytes": 16384,
+          "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+        },
+        "baseline:baseline:runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1318432,
+          "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+        },
+        "baseline:baseline:runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1326672,
+          "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+        },
+        "baseline:runtime-1:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:runtime-1:pipeline_cache.db-wal": {
+          "bytes": 1268992,
+          "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+        },
+        "baseline:runtime-2:pipeline_cache.db": {
+          "bytes": 4096,
+          "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+        },
+        "baseline:runtime-2:pipeline_cache.db-wal": {
+          "bytes": 1474992,
+          "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+        },
+        "common-large-pot:observed.db": {
+          "bytes": 16384,
+          "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+        },
+        "common-small-pot:observed.db": {
+          "bytes": 16384,
+          "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+        },
+        "dragon-roost-dungeon:observed.db": {
+          "bytes": 32768,
+          "sha256": "c602be445d1521d1a2ed568d8984b14fb8bf851ede64b83ea356d949dc9044f9"
+        },
+        "earth-temple:observed.db": {
+          "bytes": 28672,
+          "sha256": "04594547c90450b308dc18629e7a11bbb83b2f79eb9ec6063406f32eb2b54fb6"
+        },
+        "forbidden-woods-boss-room:observed.db": {
+          "bytes": 28672,
+          "sha256": "a34f6d5b52f880e339669ba3f75310a362ce620c7444de6cc55954dd75fe4963"
+        },
+        "forest-haven-ground:observed.db": {
+          "bytes": 32768,
+          "sha256": "ab35ee9826d806f9f395acdc889fd4849c6f1e81e11b405b264f66c579a0a392"
+        },
+        "forsaken-fortress-room:observed.db": {
+          "bytes": 32768,
+          "sha256": "2fff2f1ae6997b097604947dd1abfce5c0da0a2e9745f4ca5c6401e3d0b5de22"
+        },
+        "ganons-tower:observed.db": {
+          "bytes": 28672,
+          "sha256": "5b4f0c5881722eb7c580b6bd07fd6e9900d1f1716034817844eaa675193322e5"
+        },
+        "link-boomerang:observed.db": {
+          "bytes": 16384,
+          "sha256": "7b866ca412656be6d55487bba1a410415f34706b3e1d74c28081629a4467ff7a"
+        },
+        "link-bow:observed.db": {
+          "bytes": 16384,
+          "sha256": "4a52c220ef08401179c03a031d89d626167d0747ef6af622f85703f391564aa6"
+        },
+        "link-casual-model:observed.db": {
+          "bytes": 45056,
+          "sha256": "e17ea1b6cc86e867f88e700f4ae66d36a9c695bef58d97fc01c7a67f40bf9b31"
+        },
+        "links-house:observed.db": {
+          "bytes": 28672,
+          "sha256": "74fde926fe1eaa2e16d9210260ba5ac875e60793b83d52bc3d69f9523b052f75"
+        },
+        "optional-cave:observed.db": {
+          "bytes": 28672,
+          "sha256": "c49a25d876bfc637b639f000f0a547155680b9c2c0aa2b027ea09cf25da5256b"
+        },
+        "outset-ground:observed.db": {
+          "bytes": 24576,
+          "sha256": "2400ff1f235476eddcfc7a6e2d8936a6d2dbb7797bf9ea43e5cd26db56dc8137"
+        },
+        "pirate-ship:observed.db": {
+          "bytes": 45056,
+          "sha256": "619dd45830297fc9e84fef08696f25ddc1c27e4c5cd312bc00abcef5f61dfe99"
+        },
+        "rito-bag:observed.db": {
+          "bytes": 16384,
+          "sha256": "2c236d2490ff0c9eb9adfe7f2d56c09494ec5a842f44ec4a3aa0b9484e8079f8"
+        },
+        "tower-of-gods:observed.db": {
+          "bytes": 24576,
+          "sha256": "2400ff1f235476eddcfc7a6e2d8936a6d2dbb7797bf9ea43e5cd26db56dc8137"
+        },
+        "wind-temple:observed.db": {
+          "bytes": 32768,
+          "sha256": "0b0948c653eb455c13dc369461d3ddc8d0fd7ff6737a0b76480eb31ea7dab65c"
+        },
+        "windfall-ground:observed.db": {
+          "bytes": 45056,
+          "sha256": "eabc3a9c1e84e4d63a6679119487e320f1886c58a4fe41e38f13d2bdb5659fff"
+        }
+      },
+      "rows": 333,
+      "configurations": [
+        {
+          "type": 0,
+          "version": 5,
+          "bytes": 8,
+          "rows": 1
+        },
+        {
+          "type": 1,
+          "version": 13,
+          "bytes": 2772,
+          "rows": 332
+        }
+      ],
+      "bytes": 1396736,
+      "sha256": "e3559efe1e2920ef3880e73f9ae387ae856256dc71ba1c4aabe9e3004c46428a",
+      "asset_manifest_sha256": "4783c97a24747b93381d14ce54b2562d315806e5384daa746b13bac77f73c985"
+    },
+    "snapshots": [
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+        "asset_manifest_sha256": "33b0d7eab38d530722b922a96813cb13cf312598d85690dfce49f8fb3d05c27d",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+        "asset_manifest_sha256": "33b0d7eab38d530722b922a96813cb13cf312598d85690dfce49f8fb3d05c27d",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 32768,
+            "sha256": "c602be445d1521d1a2ed568d8984b14fb8bf851ede64b83ea356d949dc9044f9"
+          }
+        },
+        "rows": 4,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 4
+          }
+        ],
+        "bytes": 32768,
+        "sha256": "e1fed361641713913fd09cbd9766bcd1afa8cb7ce6b6961c8d83971432614aa3",
+        "asset_manifest_sha256": "29b2d3b33fe640cd5b4f332fa49e885ac6f9ac66b4410d2d9138ab3c7c1fbad1",
+        "identical_rows_in_candidate": 4
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "04594547c90450b308dc18629e7a11bbb83b2f79eb9ec6063406f32eb2b54fb6"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "2a1dd03cd3bc1489073be228510c137160d413685ce264ce2c70a796d1a22af1",
+        "asset_manifest_sha256": "b943b14cffb76ddbc34485e07ab01f0c1e84a762c946a9055835a1e34494f667",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "a34f6d5b52f880e339669ba3f75310a362ce620c7444de6cc55954dd75fe4963"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "7350ca2fc109c73a48187429ab559bc691f1d34d74867b7811e4f242616bdeb9",
+        "asset_manifest_sha256": "b5fc8d61aad7b9f03df07d318a7542113ce1425ff2d4d278dd96a98018285de7",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 32768,
+            "sha256": "ab35ee9826d806f9f395acdc889fd4849c6f1e81e11b405b264f66c579a0a392"
+          }
+        },
+        "rows": 4,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 4
+          }
+        ],
+        "bytes": 32768,
+        "sha256": "fdf2877f5901f9dea1a5f9ded972eb50fa1e5823c03923597f395d811376faba",
+        "asset_manifest_sha256": "2d8a056c9c0c37f63e47f68a86877d21c615a02498fe8b7d47b253654e68d8dd",
+        "identical_rows_in_candidate": 4
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 32768,
+            "sha256": "2fff2f1ae6997b097604947dd1abfce5c0da0a2e9745f4ca5c6401e3d0b5de22"
+          }
+        },
+        "rows": 4,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 4
+          }
+        ],
+        "bytes": 32768,
+        "sha256": "8dd5f43d6f8727f2d06dcc4f90f006971f292248814f7c55885faccc38252e9a",
+        "asset_manifest_sha256": "57e27221d7d165b5c4b930520eeec2af87b3e3c9735a2132afac5974c390b1ac",
+        "identical_rows_in_candidate": 4
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "5b4f0c5881722eb7c580b6bd07fd6e9900d1f1716034817844eaa675193322e5"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "1396bb386b903ca95542d0ee14da6e1759adfd501ce8224370eece9358124148",
+        "asset_manifest_sha256": "26da0523b94fa3a37785d4d5f12eae6fa4e62958be4ea66a7073a98cba61a2a8",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "7b866ca412656be6d55487bba1a410415f34706b3e1d74c28081629a4467ff7a"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "de8b9a1ba516116c32095d7596bab5eb2cf2a246633524a39207eac5eb7d534f",
+        "asset_manifest_sha256": "0135d7f1dcc05f48d69b566d2363eae191aa923a21cee4fa03cdfc11cc1b8d8d",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "4a52c220ef08401179c03a031d89d626167d0747ef6af622f85703f391564aa6"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "924c2bdd929a43eac50a309deed79af073696221a3919b2f5ff8c1ce5427721c",
+        "asset_manifest_sha256": "6201eee74181d2f7a35f768bed27f7363ee21eac15e21204d65359cba86e05e0",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 45056,
+            "sha256": "e17ea1b6cc86e867f88e700f4ae66d36a9c695bef58d97fc01c7a67f40bf9b31"
+          }
+        },
+        "rows": 7,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 7
+          }
+        ],
+        "bytes": 45056,
+        "sha256": "50d1d5467c925d9230b8928a32234b0fb529dd7a3a22d77b7d560efb11e6e9b8",
+        "asset_manifest_sha256": "133d0a70003fc42ccbbda9bae5ad01ced88d3f5eaf1ec28d11a27c1206efbfdd",
+        "identical_rows_in_candidate": 7
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "74fde926fe1eaa2e16d9210260ba5ac875e60793b83d52bc3d69f9523b052f75"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "62be35abc8854e60eb172a85f72a853b261277355820edf97d91443fc9ea1274",
+        "asset_manifest_sha256": "703c366dba759ffffa72b6746a446472a6a0dfeb336f600b366d6de884f5bd1f",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "c49a25d876bfc637b639f000f0a547155680b9c2c0aa2b027ea09cf25da5256b"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "b7ddbd3ecff35ae26aa0cee7c96135cb7a53d151b22caf46941ccf77b83af1ac",
+        "asset_manifest_sha256": "a39c43e9ccedbac221f9164a7e1e586978566f0e069e1bece40f57cdd4387aca",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 24576,
+            "sha256": "2400ff1f235476eddcfc7a6e2d8936a6d2dbb7797bf9ea43e5cd26db56dc8137"
+          }
+        },
+        "rows": 2,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 2
+          }
+        ],
+        "bytes": 24576,
+        "sha256": "33ca6055a927f41bf4189fcb7ca08cec97b3a29c428cf766ba5a357d8dd8eb32",
+        "asset_manifest_sha256": "889b0be392853d0cce39c589accae90db98034bb46288231baf913ea2f0adf79",
+        "identical_rows_in_candidate": 2
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 45056,
+            "sha256": "619dd45830297fc9e84fef08696f25ddc1c27e4c5cd312bc00abcef5f61dfe99"
+          }
+        },
+        "rows": 7,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 7
+          }
+        ],
+        "bytes": 45056,
+        "sha256": "0014b4e3d8dfe26f09d628f4e49cb664056b2475fcb7e0bc5744ced439f30e71",
+        "asset_manifest_sha256": "10360f8413a85241bdd7ffa28bff6b77dd0a26fa1dd9dfb8d3450c0d892d6e81",
+        "identical_rows_in_candidate": 7
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "2c236d2490ff0c9eb9adfe7f2d56c09494ec5a842f44ec4a3aa0b9484e8079f8"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "2e17d9eea7feaa1cd3b5bf12f271eadd5dc5b4a82efe9a9c82986e0c5d5d3ce0",
+        "asset_manifest_sha256": "733b3b155746ffffe78a87e89057f4f840266fb5421776e223210a33cb98dc8e",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 24576,
+            "sha256": "2400ff1f235476eddcfc7a6e2d8936a6d2dbb7797bf9ea43e5cd26db56dc8137"
+          }
+        },
+        "rows": 2,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 2
+          }
+        ],
+        "bytes": 24576,
+        "sha256": "33ca6055a927f41bf4189fcb7ca08cec97b3a29c428cf766ba5a357d8dd8eb32",
+        "asset_manifest_sha256": "889b0be392853d0cce39c589accae90db98034bb46288231baf913ea2f0adf79",
+        "identical_rows_in_candidate": 2
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 32768,
+            "sha256": "0b0948c653eb455c13dc369461d3ddc8d0fd7ff6737a0b76480eb31ea7dab65c"
+          }
+        },
+        "rows": 4,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 4
+          }
+        ],
+        "bytes": 32768,
+        "sha256": "58f583718b6054fc9c09ef0a4169c0f5afb7204623baaa36cefe80b4062daf59",
+        "asset_manifest_sha256": "590f3fd30c34543d045c05cc11a855db5237f9fd7fcf1870b234572dad9cf38b",
+        "identical_rows_in_candidate": 4
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 45056,
+            "sha256": "eabc3a9c1e84e4d63a6679119487e320f1886c58a4fe41e38f13d2bdb5659fff"
+          }
+        },
+        "rows": 7,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 7
+          }
+        ],
+        "bytes": 45056,
+        "sha256": "ff1d46b3f61b6878011537dfc940a38f04bbb2156213f81d5fdf7578c51a4372",
+        "asset_manifest_sha256": "6cc999285995cc432ab9a550bd81978f27fd565a71c47934329195ff5f379aa4",
+        "identical_rows_in_candidate": 7
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+        "asset_manifest_sha256": "33b0d7eab38d530722b922a96813cb13cf312598d85690dfce49f8fb3d05c27d",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "d99b2504ff6a640235f0946576a5b20dd6a5cc8422b76efbef4c8a61bbe95195",
+        "asset_manifest_sha256": "33b0d7eab38d530722b922a96813cb13cf312598d85690dfce49f8fb3d05c27d",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 32768,
+            "sha256": "c602be445d1521d1a2ed568d8984b14fb8bf851ede64b83ea356d949dc9044f9"
+          }
+        },
+        "rows": 4,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 4
+          }
+        ],
+        "bytes": 32768,
+        "sha256": "e1fed361641713913fd09cbd9766bcd1afa8cb7ce6b6961c8d83971432614aa3",
+        "asset_manifest_sha256": "29b2d3b33fe640cd5b4f332fa49e885ac6f9ac66b4410d2d9138ab3c7c1fbad1",
+        "identical_rows_in_candidate": 4
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "04594547c90450b308dc18629e7a11bbb83b2f79eb9ec6063406f32eb2b54fb6"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "2a1dd03cd3bc1489073be228510c137160d413685ce264ce2c70a796d1a22af1",
+        "asset_manifest_sha256": "b943b14cffb76ddbc34485e07ab01f0c1e84a762c946a9055835a1e34494f667",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "a34f6d5b52f880e339669ba3f75310a362ce620c7444de6cc55954dd75fe4963"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "7350ca2fc109c73a48187429ab559bc691f1d34d74867b7811e4f242616bdeb9",
+        "asset_manifest_sha256": "b5fc8d61aad7b9f03df07d318a7542113ce1425ff2d4d278dd96a98018285de7",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 32768,
+            "sha256": "ab35ee9826d806f9f395acdc889fd4849c6f1e81e11b405b264f66c579a0a392"
+          }
+        },
+        "rows": 4,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 4
+          }
+        ],
+        "bytes": 32768,
+        "sha256": "fdf2877f5901f9dea1a5f9ded972eb50fa1e5823c03923597f395d811376faba",
+        "asset_manifest_sha256": "2d8a056c9c0c37f63e47f68a86877d21c615a02498fe8b7d47b253654e68d8dd",
+        "identical_rows_in_candidate": 4
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 32768,
+            "sha256": "2fff2f1ae6997b097604947dd1abfce5c0da0a2e9745f4ca5c6401e3d0b5de22"
+          }
+        },
+        "rows": 4,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 4
+          }
+        ],
+        "bytes": 32768,
+        "sha256": "8dd5f43d6f8727f2d06dcc4f90f006971f292248814f7c55885faccc38252e9a",
+        "asset_manifest_sha256": "57e27221d7d165b5c4b930520eeec2af87b3e3c9735a2132afac5974c390b1ac",
+        "identical_rows_in_candidate": 4
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "5b4f0c5881722eb7c580b6bd07fd6e9900d1f1716034817844eaa675193322e5"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "1396bb386b903ca95542d0ee14da6e1759adfd501ce8224370eece9358124148",
+        "asset_manifest_sha256": "26da0523b94fa3a37785d4d5f12eae6fa4e62958be4ea66a7073a98cba61a2a8",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "7b866ca412656be6d55487bba1a410415f34706b3e1d74c28081629a4467ff7a"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "de8b9a1ba516116c32095d7596bab5eb2cf2a246633524a39207eac5eb7d534f",
+        "asset_manifest_sha256": "0135d7f1dcc05f48d69b566d2363eae191aa923a21cee4fa03cdfc11cc1b8d8d",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "4a52c220ef08401179c03a031d89d626167d0747ef6af622f85703f391564aa6"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "924c2bdd929a43eac50a309deed79af073696221a3919b2f5ff8c1ce5427721c",
+        "asset_manifest_sha256": "6201eee74181d2f7a35f768bed27f7363ee21eac15e21204d65359cba86e05e0",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 45056,
+            "sha256": "e17ea1b6cc86e867f88e700f4ae66d36a9c695bef58d97fc01c7a67f40bf9b31"
+          }
+        },
+        "rows": 7,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 7
+          }
+        ],
+        "bytes": 45056,
+        "sha256": "50d1d5467c925d9230b8928a32234b0fb529dd7a3a22d77b7d560efb11e6e9b8",
+        "asset_manifest_sha256": "133d0a70003fc42ccbbda9bae5ad01ced88d3f5eaf1ec28d11a27c1206efbfdd",
+        "identical_rows_in_candidate": 7
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "74fde926fe1eaa2e16d9210260ba5ac875e60793b83d52bc3d69f9523b052f75"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "62be35abc8854e60eb172a85f72a853b261277355820edf97d91443fc9ea1274",
+        "asset_manifest_sha256": "703c366dba759ffffa72b6746a446472a6a0dfeb336f600b366d6de884f5bd1f",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 28672,
+            "sha256": "c49a25d876bfc637b639f000f0a547155680b9c2c0aa2b027ea09cf25da5256b"
+          }
+        },
+        "rows": 3,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 3
+          }
+        ],
+        "bytes": 28672,
+        "sha256": "b7ddbd3ecff35ae26aa0cee7c96135cb7a53d151b22caf46941ccf77b83af1ac",
+        "asset_manifest_sha256": "a39c43e9ccedbac221f9164a7e1e586978566f0e069e1bece40f57cdd4387aca",
+        "identical_rows_in_candidate": 3
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 24576,
+            "sha256": "2400ff1f235476eddcfc7a6e2d8936a6d2dbb7797bf9ea43e5cd26db56dc8137"
+          }
+        },
+        "rows": 2,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 2
+          }
+        ],
+        "bytes": 24576,
+        "sha256": "33ca6055a927f41bf4189fcb7ca08cec97b3a29c428cf766ba5a357d8dd8eb32",
+        "asset_manifest_sha256": "889b0be392853d0cce39c589accae90db98034bb46288231baf913ea2f0adf79",
+        "identical_rows_in_candidate": 2
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 45056,
+            "sha256": "619dd45830297fc9e84fef08696f25ddc1c27e4c5cd312bc00abcef5f61dfe99"
+          }
+        },
+        "rows": 7,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 7
+          }
+        ],
+        "bytes": 45056,
+        "sha256": "0014b4e3d8dfe26f09d628f4e49cb664056b2475fcb7e0bc5744ced439f30e71",
+        "asset_manifest_sha256": "10360f8413a85241bdd7ffa28bff6b77dd0a26fa1dd9dfb8d3450c0d892d6e81",
+        "identical_rows_in_candidate": 7
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 16384,
+            "sha256": "2c236d2490ff0c9eb9adfe7f2d56c09494ec5a842f44ec4a3aa0b9484e8079f8"
+          }
+        },
+        "rows": 1,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 1
+          }
+        ],
+        "bytes": 16384,
+        "sha256": "2e17d9eea7feaa1cd3b5bf12f271eadd5dc5b4a82efe9a9c82986e0c5d5d3ce0",
+        "asset_manifest_sha256": "733b3b155746ffffe78a87e89057f4f840266fb5421776e223210a33cb98dc8e",
+        "identical_rows_in_candidate": 1
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 24576,
+            "sha256": "2400ff1f235476eddcfc7a6e2d8936a6d2dbb7797bf9ea43e5cd26db56dc8137"
+          }
+        },
+        "rows": 2,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 2
+          }
+        ],
+        "bytes": 24576,
+        "sha256": "33ca6055a927f41bf4189fcb7ca08cec97b3a29c428cf766ba5a357d8dd8eb32",
+        "asset_manifest_sha256": "889b0be392853d0cce39c589accae90db98034bb46288231baf913ea2f0adf79",
+        "identical_rows_in_candidate": 2
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 32768,
+            "sha256": "0b0948c653eb455c13dc369461d3ddc8d0fd7ff6737a0b76480eb31ea7dab65c"
+          }
+        },
+        "rows": 4,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 4
+          }
+        ],
+        "bytes": 32768,
+        "sha256": "58f583718b6054fc9c09ef0a4169c0f5afb7204623baaa36cefe80b4062daf59",
+        "asset_manifest_sha256": "590f3fd30c34543d045c05cc11a855db5237f9fd7fcf1870b234572dad9cf38b",
+        "identical_rows_in_candidate": 4
+      },
+      {
+        "schema": 1,
+        "installed_path": "/app0/initial_pipeline_cache.db",
+        "source_files": {
+          "observed.db": {
+            "bytes": 45056,
+            "sha256": "eabc3a9c1e84e4d63a6679119487e320f1886c58a4fe41e38f13d2bdb5659fff"
+          }
+        },
+        "rows": 7,
+        "configurations": [
+          {
+            "type": 1,
+            "version": 13,
+            "bytes": 2772,
+            "rows": 7
+          }
+        ],
+        "bytes": 45056,
+        "sha256": "ff1d46b3f61b6878011537dfc940a38f04bbb2156213f81d5fdf7578c51a4372",
+        "asset_manifest_sha256": "6cc999285995cc432ab9a550bd81978f27fd565a71c47934329195ff5f379aa4",
+        "identical_rows_in_candidate": 7
+      }
+    ],
+    "recorded_union_rows": 33,
+    "already_represented_rows": 33,
+    "added_rows": 0,
+    "candidate_rows_not_recorded": 300,
+    "conclusion": "Retain the existing candidate seed unchanged; all recorded descriptions are present. This establishes recorded configuration coverage, not gameplay smoothness."
+  },
+  "packaged_seed_membership_basis": "Both real-run unions match the standalone seed in full; independent fresh package inspection identifies byte-identical packaged seed.",
+  "package_sha256": "9c4bf9271bccc43396ba2d0e2e567daf3dfdc5e985c2690f0accbd41ec78adea",
+  "fresh_inspection_sha256": "8ecacba4ff050990ce767e544984db3877e0e0a2cfaad8c2b2bfd97c1d12f922",
+  "physical_verification": false
+}

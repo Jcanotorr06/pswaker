@@ -19,6 +19,8 @@ Every selected archive's inventoried BDL/BMD members remain explicit, including
 unexercisable members. A list of filenames does not establish draw coverage.
 The retained [plan and generation record](../../evidence/ps4/asset-inventory-150/README.md)
 define this bounded slice and the larger families left for follow-up.
+The [final independent verification](../../evidence/ps4/asset-inventory-150/FINAL-VERIFICATION.md)
+records the repeated real runs and exact packaged seed membership.
 
 ```bash
 python3 tools/pswaker/collect-model-seed.py freeze-inventory \
