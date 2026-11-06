@@ -12,18 +12,18 @@ UNHANDLED = ['stage-lighting-and-wind', 'projection-framebuffer',
              'model-particles', 'actor-collision', 'other-cameras']
 
 
-def effect_ids(resource):
+def effect_ids(resource, supported=SUPPORTED_EFFECTS):
     require(isinstance(resource, str) and re.fullmatch(
         r'/res/Particle/common\.jpc:0x[0-9a-f]{4}(?:\+0x[0-9a-f]{4}){0,3}', resource),
         'Invalid particle resource or oversized combination')
     effects = [int(value, 16) for value in resource.split(':')[1].split('+')]
-    require(len(set(effects)) == len(effects) and set(effects) <= SUPPORTED_EFFECTS,
+    require(len(set(effects)) == len(effects) and set(effects) <= supported,
             'Unsupported or duplicate particle effect')
     return effects
 
 
-def script(resource):
-    return {'effect_ids': effect_ids(resource), 'max_ticks': 240, 'continuous_emission_ticks': 30,
+def script(resource, supported=SUPPORTED_EFFECTS):
+    return {'effect_ids': effect_ids(resource, supported), 'max_ticks': 240, 'continuous_emission_ticks': 30,
             'variations': [{'random_seed': 0, 'scale': 1, 'alpha': 255, 'texture_index': 0},
                            {'random_seed': 1, 'scale': 2, 'alpha': 128, 'texture_index': 1}]}
 

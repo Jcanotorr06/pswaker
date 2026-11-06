@@ -1,9 +1,10 @@
 """Finite equipment recipes; shared assets never imply unexercised transitions."""
-from asset_inventory import identifier, sha256, text_list
 from disc_image import require
 import particle_collection as particle
+import scripted_collection as scripted
 
 
+PROVENANCE = 'equipment-action-batch'
 ARROW = 'equipment-arrow-tips-v1'
 NORMAL = 'equipment-bomb-normal-v1'
 CHEAP = 'equipment-bomb-cheap-v1'
@@ -36,54 +37,15 @@ def check_report(metadata):
     require(metadata.get('method') == 'scripted-equipment-draw' and metadata.get('unhandled_states') == ARROW_GAPS
             and type(metadata.get('materials')) is int and metadata['materials'] > 0,
             'Invalid equipment model method or exclusions')
-    states = metadata.get('states')
-    require(isinstance(states, list) and len(states) == 4, 'Incomplete equipment state cycle')
-    states = metadata['states']
-    for tick, (step, state) in enumerate(zip(states, expected['script']['states']), 1):
-        require(isinstance(step, dict) and type(step.get('tick')) is int and step['tick'] == tick
-                and step.get('state') == state and all(type(step.get(k)) is int and step[k] > 0
-                    for k in ['draw_calls', 'pipeline_lookups']), 'Invalid equipment draw state')
-        keys = step.get('configurations')
-        require(isinstance(keys, list) and bool(keys) and all(isinstance(k, dict) and set(k) == {'type', 'hash'}
-                and type(k['type']) is int and k['type'] in [0, 1] and type(k['hash']) is int
-                and -(2**63) <= k['hash'] < 2**63 for k in keys), 'Invalid equipment state mapping')
-        keys = step['configurations']
-        require(len({(k['type'], k['hash']) for k in keys}) == len(keys) <= step['pipeline_lookups'],
-                'Incomplete equipment state mapping')
-    require(type(metadata.get('frames')) is int and metadata['frames'] == 4
-            and all(type(metadata.get(k)) is int and metadata[k] == sum(s[k] for s in states)
-                    for k in ['draw_calls', 'pipeline_lookups']), 'Invalid equipment draw totals')
+    scripted.check_state_steps(metadata, expected['script']['states'])
+
+
+def valid_identity(scenario, identity):
+    model = scenario == ARROW
+    return scripted.sized_hashes(identity, ['archive_sha256', 'model_sha256'] if model else ['particle_sha256'],
+                                 'model_bytes' if model else 'particle_bytes')
 
 
 def read_manifest(document):
-    require(document.get('schema') == 1 and document.get('kind') == 'equipment-actions'
-            and identifier(document.get('id')) and sha256(document.get('image_sha256'))
-            and sha256(document.get('contract_sha256')), 'Invalid equipment manifest identity/target')
-    collector = document.get('collector')
-    require(isinstance(collector, dict) and set(collector) == {'sha256', 'build_sha256'}
-            and all(sha256(v) for v in collector.values()) and text_list(document.get('exclusions')),
-            'Equipment manifest requires collector identities and exclusions')
-    rows = document.get('rows')
-    require(isinstance(rows, list) and 0 < len(rows) <= 16, 'Equipment manifest exceeds bounded row set')
-    rows = document['rows']
-    seen = set()
-    for row in rows:
-        require(isinstance(row, dict) and identifier(row.get('id')) and row['id'] not in seen
-                and identifier(row.get('family')) and text_list(row.get('source_references'))
-                and text_list(row.get('assumptions')), 'Invalid equipment row or source attribution')
-        seen.add(row['id'])
-        require(row.get('action') in ['exercise', 'unsupported', 'missing'], 'Unsupported equipment row action')
-        if row['action'] != 'exercise':
-            require(all(isinstance(row.get(k), str) and row[k].strip() for k in ['reason', 'owner']),
-                    'Equipment gap requires reason and owner')
-            continue
-        require(all(row.get(k) == v for k, v in recipe(row.get('scenario')).items()),
-                'Equipment row differs from fixed recipe')
-        identity = row.get('input_identity')
-        model = row['scenario'] == ARROW
-        hashes = ['archive_sha256', 'model_sha256'] if model else ['particle_sha256']
-        size = 'model_bytes' if model else 'particle_bytes'
-        require(isinstance(identity, dict) and set(identity) == {*hashes, size}
-                and all(sha256(identity.get(k)) for k in hashes)
-                and type(identity.get(size)) is int and identity[size] > 0, 'Invalid equipment input identity')
-    return document
+    return scripted.read_manifest(document, kind='equipment-actions', row_limit=16,
+                                  recipe=recipe, valid_identity=valid_identity)

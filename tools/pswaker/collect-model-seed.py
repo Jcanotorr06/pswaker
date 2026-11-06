@@ -20,6 +20,8 @@ from build_inputs import REPOSITORY
 from asset_inventory import read_manifest, model_resource
 import particle_collection as particle
 import equipment_collection as equipment
+import enemy_collection as enemy
+import scripted_collection as scripted
 
 
 DYNAMIC_SCENARIO = 'common-pot-debris-lifecycle-v1'
@@ -28,6 +30,12 @@ DYNAMIC_SCRIPT = {'effect_id': 24, 'random_seed': 0, 'max_ticks': 180,
                   'color': [255, 255, 255, 255], 'texture_indices': [0, 1]}
 DYNAMIC_UNHANDLED = ['model-shards-0x0017', 'actor-lighting-and-collision',
                      'other-pot-textures', 'overlapping-effects', 'other-cameras']
+SCRIPTED_KINDS = {'equipment-actions': equipment, 'enemy-actors': enemy}
+VARIATION_SCENARIOS = [particle.SCENARIO, equipment.NORMAL, equipment.CHEAP, *enemy.EFFECTS]
+
+
+def scripted_family(scenario):
+    return next((family for family in SCRIPTED_KINDS.values() if scenario in family.SCENARIOS), None)
 
 
 def source_inventory(directory):
@@ -36,8 +44,9 @@ def source_inventory(directory):
 
 
 def check_draw_report(metadata):
-    if isinstance(metadata, dict) and metadata.get('scenario') in equipment.SCENARIOS:
-        equipment.check_report(metadata)
+    family = scripted_family(metadata.get('scenario')) if isinstance(metadata, dict) else None
+    if family:
+        family.check_report(metadata)
         return
     if isinstance(metadata, dict) and metadata.get('scenario') == particle.SCENARIO:
         particle.check_report(metadata)
@@ -68,9 +77,9 @@ def check_draw_report(metadata):
 
 
 def check_dynamic_mapping(metadata, generated):
-    if metadata['method'] == 'scripted-equipment-draw':
+    if metadata['method'] in scripted.STATE_METHODS:
         mapped = {(key['type'], key['hash']) for state in metadata['states'] for key in state['configurations']}
-        require(mapped == set(generated), 'Incomplete equipment description-to-state mapping')
+        require(mapped == set(generated), 'Incomplete scripted description-to-state mapping')
     if metadata['method'] == 'dynamic-effect-draw':
         mapped = {(key['type'], key['hash']) for variation in metadata['variations']
                   for step in variation['steps'] for key in step['configurations']}
@@ -78,19 +87,31 @@ def check_dynamic_mapping(metadata, generated):
 
 
 def configuration_states(metadata, key):
-    if metadata['method'] == 'scripted-equipment-draw':
+    if metadata['method'] in scripted.STATE_METHODS:
         return {'states': [{'tick': step['tick'], 'state': step['state']} for step in metadata['states']
                            if {'type': key[0], 'hash': key[1]} in step['configurations']]}
     if metadata['method'] != 'dynamic-effect-draw':
         return {}
     return {'states': [{'texture_index': variation['texture_index'],
                         **({'variation': metadata['script']['variations'][variation['texture_index']]}
-                           if metadata['scenario'] in [particle.SCENARIO, equipment.NORMAL, equipment.CHEAP] else {}),
+                           if metadata['scenario'] in VARIATION_SCENARIOS else {}),
                         'ticks': [step['tick'] for step in variation['steps']
                                   if {'type': key[0], 'hash': key[1]} in step['configurations']]}
                        for variation in metadata['variations']
                        if any({'type': key[0], 'hash': key[1]} in step['configurations']
                               for step in variation['steps'])]}
+
+
+def member_identities(disc, files, resources):
+    identities, archives = {}, {}
+    for resource in resources:
+        path, member = resource.split(':')
+        if path not in archives:
+            offset, size = files[path.lstrip('/')]
+            archives[path] = expand(disc.read(offset, size, path))
+        data = archive_member(archives[path], member)
+        identities[resource] = {'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
+    return identities
 
 
 def run_logged(command, directory, log, *, timeout=None):
@@ -184,8 +205,9 @@ def collect(args):
     require(not any(args.output.is_relative_to(source) for source in [args.baseline, args.collector]),
             'Collection output must remain outside source assets and collector builds')
     resource = getattr(args, 'resource', None)
-    if args.scenario in equipment.SCENARIOS:
-        require(resource == equipment.recipe(args.scenario)['resource'], 'Equipment resource differs from fixed recipe')
+    family = scripted_family(args.scenario)
+    if family:
+        require(resource == family.recipe(args.scenario)['resource'], 'Scripted resource differs from fixed recipe')
         resource = str(resource)
     elif args.scenario == 'asset-model-stock-v1':
         require(model_resource(resource) and str(resource).endswith('.bdl'), 'A valid stock BDL resource is required')
@@ -209,7 +231,7 @@ def collect(args):
     with args.image.open('rb') as stream:
         disc = DiscImage(stream)
         files = disc.files(disc.read(0, 0x440, 'header'))
-        if args.scenario in [DYNAMIC_SCENARIO, particle.SCENARIO, equipment.NORMAL, equipment.CHEAP]:
+        if args.scenario in [DYNAMIC_SCENARIO, *VARIATION_SCENARIOS]:
             offset, size = files['res/Particle/common.jpc']
             particles = disc.read(offset, size, 'common particles')
             resources = {'particle_sha256': hashlib.sha256(particles).hexdigest(), 'particle_bytes': len(particles)}
@@ -220,13 +242,15 @@ def collect(args):
             model = archive_member(expand(archive), member)
             resources = {'archive_sha256': hashlib.sha256(archive).hexdigest(),
                          'model_sha256': hashlib.sha256(model).hexdigest(), 'model_bytes': len(model)}
+            if args.scenario in enemy.ACTORS:
+                resources['companions'] = member_identities(disc, files, enemy.companions(args.scenario))
     baseline_before = inventory(args.baseline)
     collector_before = inventory(args.collector)
     with collection_attempt(args.output) as work:
         command = ['xvfb-run', '-a', str(binary), str(args.image), str(args.baseline)]
         if args.scenario != 'always-small-pot-stock-v1':
             command.append(args.scenario)
-        if args.scenario in ['asset-model-stock-v1', particle.SCENARIO, *equipment.SCENARIOS]:
+        if args.scenario in ['asset-model-stock-v1', particle.SCENARIO, *equipment.SCENARIOS, *enemy.SCENARIOS]:
             command.append(resource)
         # The isolated collector has no game boot or card/settings paths.
         run_logged(command, work, work / 'collector.log', timeout=180)
@@ -390,7 +414,7 @@ def prepare_batch(manifest_path, collections, baseline, output):
     manifest_sha = digest(manifest_path)
     manifest = read_collection_manifest(manifest_path)
     particles = manifest.get('kind') == 'particle-effects'
-    equipment_actions = manifest.get('kind') == 'equipment-actions'
+    fixed_scripts = manifest.get('kind') in SCRIPTED_KINDS
     inputs = {'baseline': inventory(baseline), 'collections': inventory(collections)}
     original = checked_pipeline_asset(baseline)
     existing = records(baseline)
@@ -406,16 +430,16 @@ def prepare_batch(manifest_path, collections, baseline, output):
             collection = collections / identifier
             report = prepare(collection, baseline, validation / identifier)
             metadata = report['collection']
-            require((equipment_actions or metadata['method'] == ('dynamic-effect-draw' if particles else 'asset-material-draw'))
+            require((fixed_scripts or metadata['method'] == ('dynamic-effect-draw' if particles else 'asset-material-draw'))
                     and metadata['resource'] == row['resource']
                     and metadata.get('resources') == row['input_identity'],
                     'Collection resource differs from its inventory row')
             if particles:
                 require(metadata['scenario'] == particle.SCENARIO and metadata['script'] == row['script'],
                         'Collection particle script differs from manifest')
-            if equipment_actions:
+            if fixed_scripts:
                 require(metadata['scenario'] == row['scenario'] and metadata['script'] == row['script'],
-                        'Collection equipment scenario/script differs from manifest')
+                        'Collection scripted scenario differs from manifest')
             require(all(metadata.get(key) == manifest[key]
                         for key in ['collector', 'image_sha256', 'contract_sha256']),
                     'Collection target/input identity differs from inventory contract')
@@ -437,7 +461,8 @@ def prepare_batch(manifest_path, collections, baseline, output):
         additions = additional_records(existing, sources.values())
         seed = write_combined_seed(baseline, original, additions, manifests, work / 'assets')
         generated = {key: value for source in sources.values() for key, value in source.items()}
-        provenance = 'equipment-action-batch' if equipment_actions else ('particle-effect-batch' if particles else 'asset-material-batch')
+        provenance = (SCRIPTED_KINDS[manifest['kind']].PROVENANCE if fixed_scripts
+                      else 'particle-effect-batch' if particles else 'asset-material-batch')
         report = {'schema': 1, 'provenance': provenance, 'manifest': manifest,
                   'manifest_sha256': manifest_sha, 'baseline_rows': len(existing),
                   'collected_rows': len(generated), 'new_rows': len(additions), 'seed': seed,
@@ -458,8 +483,8 @@ def prepare_batch(manifest_path, collections, baseline, output):
 def read_collection_manifest(path):
     document = json.loads(path.read_text(encoding='utf-8'))
     require(isinstance(document, dict), 'Invalid collection manifest')
-    if document.get('kind') == 'equipment-actions':
-        return equipment.read_manifest(document)
+    if document.get('kind') in SCRIPTED_KINDS:
+        return SCRIPTED_KINDS[document['kind']].read_manifest(document)
     return particle.read_manifest(document) if document.get('kind') == 'particle-effects' else read_manifest(path)
 
 
@@ -478,7 +503,7 @@ def collect_batch(args):
             if row['action'] == 'exercise':
                 collect(argparse.Namespace(collector=args.collector, image=args.image, baseline=args.baseline,
                                            output=collections / row['id'], scenario=(row['scenario']
-                                               if manifest.get('kind') == 'equipment-actions' else particle.SCENARIO
+                                               if manifest.get('kind') in SCRIPTED_KINDS else particle.SCENARIO
                                                if manifest.get('kind') == 'particle-effects' else 'asset-model-stock-v1'),
                                            resource=row['resource']))
         report = prepare_batch(args.manifest, collections, args.baseline, work / 'prepared')
@@ -514,20 +539,21 @@ def freeze_inventory(args):
         files = disc.files(disc.read(0, 0x440, 'header'))
         archive_path, expanded_archive, archive_sha = None, b'', ''
         for row in plan['rows']:
-            if plan.get('kind') == 'equipment-actions':
-                require(isinstance(row, dict), 'Invalid equipment plan row')
+            family = SCRIPTED_KINDS.get(plan.get('kind', ''))
+            if family:
+                require(isinstance(row, dict), 'Invalid scripted plan row')
                 if row.get('action') != 'exercise':
                     rows.append(row)
                     continue
-                require(all(row.get(k) == v for k, v in equipment.recipe(row.get('scenario')).items()),
-                        'Equipment plan differs from fixed recipe')
-            if plan.get('kind') == 'particle-effects' or (plan.get('kind') == 'equipment-actions'
-                                                        and row.get('scenario') != equipment.ARROW):
+                require(all(row.get(k) == v for k, v in family.recipe(row.get('scenario')).items()),
+                        'Scripted plan differs from fixed recipe')
+            if plan.get('kind') == 'particle-effects' or (family and row.get('scenario') in VARIATION_SCENARIOS):
                 require(isinstance(row, dict), 'Invalid particle plan row')
                 if row.get('action') != 'exercise':
                     rows.append(row)
                     continue
-                particle.effect_ids(row.get('resource'))
+                if not family:
+                    particle.effect_ids(row.get('resource'))
                 offset, size = files['res/Particle/common.jpc']
                 particles = disc.read(offset, size, 'common particles')
                 rows.append({**row, 'input_identity': {'particle_sha256': hashlib.sha256(particles).hexdigest(),
@@ -542,8 +568,11 @@ def freeze_inventory(args):
                 archive_sha = hashlib.sha256(archive).hexdigest()
                 archive_path = path
             model = archive_member(expanded_archive, member)
-            rows.append({**row, 'input_identity': {'archive_sha256': archive_sha,
-                         'model_sha256': hashlib.sha256(model).hexdigest(), 'model_bytes': len(model)}})
+            identity = {'archive_sha256': archive_sha, 'model_sha256': hashlib.sha256(model).hexdigest(),
+                        'model_bytes': len(model)}
+            if row.get('scenario') in enemy.ACTORS:
+                identity['companions'] = member_identities(disc, files, enemy.companions(row['scenario']))
+            rows.append({**row, 'input_identity': identity})
     manifest = {**plan, 'rows': rows, 'plan_sha256': plan_sha,
                 'image_sha256': image['sha256'], 'contract_sha256': build['contract_sha256'],
                 'collector': {'sha256': build['binary_sha256'], 'build_sha256': digest(build_path)}}
@@ -582,7 +611,8 @@ def main():
     for name in ['game-root', 'platform-root', 'host-root', 'build-directory', 'output']:
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     command = commands.add_parser('collect')
-    command.add_argument('--scenario', choices=['always-small-pot-stock-v1', DYNAMIC_SCENARIO, 'asset-model-stock-v1', particle.SCENARIO, *equipment.SCENARIOS],
+    command.add_argument('--scenario', choices=['always-small-pot-stock-v1', DYNAMIC_SCENARIO, 'asset-model-stock-v1', particle.SCENARIO,
+                                                  *equipment.SCENARIOS, *enemy.SCENARIOS],
                          default='always-small-pot-stock-v1')
     command.add_argument('--resource', help='Exact model resource or fixed common.jpc effect ID combination')
     for name in ['collector', 'image', 'baseline', 'output']:

@@ -18,6 +18,7 @@ from synthetic_disc import generate
 from synthetic_program import stage_artwork, png_bytes
 from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_collection, make_particle_collection
 from synthetic_equipment import make_equipment_collection
+from synthetic_enemy import make_enemy_collection
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 from build_inputs import Locations
@@ -480,7 +481,10 @@ class RelocatableProgramTests(PreparationCliTestCase):
     def test_equipment_batch_seed_survives_fresh_game_package_inspection(self):
         self.check_batch_package(equipment=True)
 
-    def check_batch_package(self, particles=False, equipment=False):
+    def test_enemy_batch_seed_survives_fresh_game_package_inspection(self):
+        self.check_batch_package(enemy=True)
+
+    def check_batch_package(self, particles=False, equipment=False, enemy=False):
         collections = self.root / 'collections'
         metadata = (make_particle_collection if particles else make_model_collection)(collections / 'synthetic-pot')
         metadata.update(resources={'archive_sha256': 'd' * 64, 'model_sha256': 'e' * 64,
@@ -517,6 +521,19 @@ class RelocatableProgramTests(PreparationCliTestCase):
                                         'source_references': ['synthetic.cpp:equipment'],
                                         'assumptions': ['Synthetic isolated equipment states.']})
             manifest.write_text(json.dumps(document))
+        if enemy:
+            document = json.loads(manifest.read_text())
+            document.update(kind='enemy-actors', exclusions=['Other enemy and boss actors.'])
+            shutil.rmtree(collections / 'synthetic-pot')
+            document['rows'] = []
+            for name, actor, keys in [('peahat', True, (84, 126)), ('death', False, (126, 168))]:
+                metadata = make_enemy_collection(collections / name, actor=actor, keys=keys)
+                document['rows'].append({'id': name, 'family': name, 'action': 'exercise',
+                                        'scenario': metadata['scenario'], 'resource': metadata['resource'],
+                                        'script': metadata['script'], 'input_identity': metadata['resources'],
+                                        'source_references': ['synthetic.cpp:enemy'],
+                                        'assumptions': ['Synthetic isolated actor states.']})
+            manifest.write_text(json.dumps(document))
         prepared = self.root / 'prepared-batch'
         result = self.run_cli('prepare-batch', '--manifest', manifest, '--collections', collections,
                               '--baseline', self.reference / 'assembly-assets', '--output', prepared,
@@ -524,7 +541,7 @@ class RelocatableProgramTests(PreparationCliTestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         report = json.loads((prepared / 'batch-report.json').read_text())
         self.assertEqual((report['collected_rows'], report['new_rows'], report['seed']['rows']),
-                         (3, 2, 4) if equipment else (2, 1, 3))
+                         (3, 2, 4) if equipment or enemy else (2, 1, 3))
         stage, elf, _ = self.game_build()
         result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
                               '--elf', elf, '--platform-root', self.reference, '--kind', 'game',

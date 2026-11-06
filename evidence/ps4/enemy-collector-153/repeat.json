@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "exact_standalone_seed_bytes": true,
+  "exact_seed_provenance_bytes": true,
+  "exact_frozen_manifest_bytes": true,
+  "all_scenario_description_bytes_and_source_manifests_equal": true,
+  "all_scenario_scripts_states_lifetimes_counts_targets_and_inputs_equal": true,
+  "baseline_full_descriptions_preserved": 301,
+  "every_generated_description_in_seed": true,
+  "seed_sha256": "59453696df7ecf61e1769520c0eac6dcf712e4e71bed6b491ba5856d7fad7827",
+  "seed_source_sha256": "daf955de26a70fd52095579aaa5c5c397f2e5d54a6ee2a3ff7a507797e82f423",
+  "manifest_sha256": "7bc4c5a6f184884a98d6bbee321b3961288dceddd336e328a5d18e37a68e88b1",
+  "physical_verification": false
+}
