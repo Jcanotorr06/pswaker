@@ -45,6 +45,10 @@ def check_report(metadata):
             and all(metadata.get(k) == v for k, v in expected.items())
             and metadata.get('unhandled_states') == UNHANDLED, 'Scene report differs from fixed recipe')
     scripted.check_state_steps(metadata, expected['script']['states'])
+    check_layout(metadata)
+
+
+def check_layout(metadata):
     layout = metadata.get('layout')
     preparations = metadata.get('preparation_layouts')
     require(isinstance(layout, dict) and all(type(layout.get(k)) is int for k in LAYOUT)

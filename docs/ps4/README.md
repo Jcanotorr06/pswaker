@@ -242,6 +242,9 @@ pass establish no game DSP, game-save correctness or gameplay performance.
 
 ## Host checks
 
+For finite native menu picture, transition fade and alternate-clothes setups,
+use [presentation collection](PRESENTATION-COLLECTOR.md).
+
 For the bounded common-bank smoke/explosion manifest, scripted overlaps and
 independent test package, use [particle collection](PARTICLE-COLLECTOR.md).
 

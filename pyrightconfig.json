@@ -1,5 +1,8 @@
 {
   "include": [
+    "tools/pswaker/presentation_collection.py",
+    "tests/ps4/test_presentation_collection.py",
+    "tests/ps4/synthetic_presentation.py",
     "tools/pswaker/scene_collection.py",
     "tests/ps4/test_scene_collection.py",
     "tests/ps4/synthetic_scene.py",

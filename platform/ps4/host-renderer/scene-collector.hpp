@@ -112,15 +112,19 @@ static void write_scene_layout(FILE* report, const RenderTargetLayout& layout, c
 
 static void write_scene_report(FILE* report, const char* scenario, const std::vector<ActorState>& states,
                                unsigned draws, unsigned runtimeRows, const RenderTargetLayout& scene,
-                               const RenderTargetLayout& offscreen) {
-  fprintf(report, "{\"schema\":1,\"scenario\":\"%s\",\"method\":\"scripted-scene-draw\","
+                               const RenderTargetLayout& offscreen, bool presentation = false) {
+  fprintf(report, "{\"schema\":1,\"scenario\":\"%s\",\"method\":\"%s\","
           "\"resource\":\"/res/Object/Always.arc\",\"draw_calls\":%u,\"pipeline_lookups\":%u,"
           "\"runtime_identity_verified_rows\":%u,\"frames\":%zu,\"script\":{\"states\":[",
-          scenario, draws, drawCalls, runtimeRows, states.size());
+          scenario, presentation ? "scripted-presentation-draw" : "scripted-scene-draw",
+          draws, drawCalls, runtimeRows, states.size());
   for (size_t i = 0; i < states.size(); ++i) fprintf(report, "%s\"%s\"", i ? "," : "", states[i].name);
-  fprintf(report, "],\"frames_per_state\":1,\"setup\":\"fixed-scene-world-camera-v1\"},"
-          "\"unhandled_states\":[\"stage-and-weather-controllers\",\"wave-simulation\",\"real-shadow-receivers\","
-          "\"mirrors-and-reflections\",\"other-camera-and-effect-combinations\"],\"preparation_layouts\":[");
+  fprintf(report, "],\"frames_per_state\":1,\"setup\":\"%s\"},\"unhandled_states\":%s,\"preparation_layouts\":[",
+          presentation ? "fixed-presentation-v1" : "fixed-scene-world-camera-v1",
+          presentation ? "[\"menu-controllers-and-layouts\",\"story-and-camera-controllers\",\"framebuffer-effects\","
+                         "\"player-animation-and-attachments\",\"unreachable-one-time-states\"]"
+                       : "[\"stage-and-weather-controllers\",\"wave-simulation\",\"real-shadow-receivers\","
+                         "\"mirrors-and-reflections\",\"other-camera-and-effect-combinations\"]");
   write_scene_layout(report, scene, "scene");
   fprintf(report, ",");
   write_scene_layout(report, offscreen, "offscreen");

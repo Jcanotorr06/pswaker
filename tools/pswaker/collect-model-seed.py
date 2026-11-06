@@ -23,6 +23,7 @@ import equipment_collection as equipment
 import enemy_collection as enemy
 import scripted_collection as scripted
 import scene_collection as scene
+import presentation_collection as presentation
 
 
 DYNAMIC_SCENARIO = 'common-pot-debris-lifecycle-v1'
@@ -31,7 +32,8 @@ DYNAMIC_SCRIPT = {'effect_id': 24, 'random_seed': 0, 'max_ticks': 180,
                   'color': [255, 255, 255, 255], 'texture_indices': [0, 1]}
 DYNAMIC_UNHANDLED = ['model-shards-0x0017', 'actor-lighting-and-collision',
                      'other-pot-textures', 'overlapping-effects', 'other-cameras']
-SCRIPTED_KINDS = {'equipment-actions': equipment, 'enemy-actors': enemy, 'environment-scenes': scene}
+SCRIPTED_KINDS = {'equipment-actions': equipment, 'enemy-actors': enemy, 'environment-scenes': scene,
+                  'menu-cutscene-modes': presentation}
 VARIATION_SCENARIOS = [particle.SCENARIO, equipment.NORMAL, equipment.CHEAP, *enemy.EFFECTS]
 
 
@@ -90,7 +92,8 @@ def check_dynamic_mapping(metadata, generated):
 def configuration_states(metadata, key):
     if metadata['method'] in scripted.STATE_METHODS:
         return {'states': [{'tick': step['tick'], 'state': step['state'],
-                            **({'layout_keys': step['layout_keys']} if metadata['method'] == 'scripted-scene-draw' else {})}
+                            **({'layout_keys': step['layout_keys']} if metadata['method'] in
+                               ['scripted-scene-draw', 'scripted-presentation-draw'] else {})}
                            for step in metadata['states']
                            if {'type': key[0], 'hash': key[1]} in step['configurations']]}
     if metadata['method'] != 'dynamic-effect-draw':
@@ -234,7 +237,9 @@ def collect(args):
     with args.image.open('rb') as stream:
         disc = DiscImage(stream)
         files = disc.files(disc.read(0, 0x440, 'header'))
-        if args.scenario in scene.SCENARIOS:
+        if args.scenario in presentation.SCENARIOS:
+            resources = presentation.input_identity(args.scenario, disc, files)
+        elif args.scenario in scene.SCENARIOS:
             resources = scene.input_identity(disc, files)
         elif args.scenario in [DYNAMIC_SCENARIO, *VARIATION_SCENARIOS]:
             offset, size = files['res/Particle/common.jpc']
@@ -255,7 +260,8 @@ def collect(args):
         command = ['xvfb-run', '-a', str(binary), str(args.image), str(args.baseline)]
         if args.scenario != 'always-small-pot-stock-v1':
             command.append(args.scenario)
-        if args.scenario in ['asset-model-stock-v1', particle.SCENARIO, *equipment.SCENARIOS, *enemy.SCENARIOS, *scene.SCENARIOS]:
+        if args.scenario in ['asset-model-stock-v1', particle.SCENARIO, *equipment.SCENARIOS, *enemy.SCENARIOS,
+                             *scene.SCENARIOS, *presentation.SCENARIOS]:
             command.append(resource)
         # The isolated collector has no game boot or card/settings paths.
         run_logged(command, work, work / 'collector.log', timeout=180)
@@ -552,6 +558,9 @@ def freeze_inventory(args):
                     continue
                 require(all(row.get(k) == v for k, v in family.recipe(row.get('scenario')).items()),
                         'Scripted plan differs from fixed recipe')
+            if family is presentation:
+                rows.append({**row, 'input_identity': presentation.input_identity(row['scenario'], disc, files)})
+                continue
             if family is scene:
                 rows.append({**row, 'input_identity': scene.input_identity(disc, files)})
                 continue
@@ -581,6 +590,12 @@ def freeze_inventory(args):
             if row.get('scenario') in enemy.ACTORS:
                 identity['companions'] = member_identities(disc, files, enemy.companions(row['scenario']))
             rows.append({**row, 'input_identity': identity})
+    if plan.get('kind') == 'menu-cutscene-modes':
+        exercised = {row['id']: row for row in rows if row.get('action') == 'exercise'}
+        for row in rows:
+            if row.get('action') == 'shared':
+                require(row.get('shared_with') in exercised, 'Equivalent setup must reference an exercised row')
+                row['input_identity'] = exercised[row['shared_with']]['input_identity']
     manifest = {**plan, 'rows': rows, 'plan_sha256': plan_sha,
                 'image_sha256': image['sha256'], 'contract_sha256': build['contract_sha256'],
                 'collector': {'sha256': build['binary_sha256'], 'build_sha256': digest(build_path)}}
@@ -620,7 +635,7 @@ def main():
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     command = commands.add_parser('collect')
     command.add_argument('--scenario', choices=['always-small-pot-stock-v1', DYNAMIC_SCENARIO, 'asset-model-stock-v1', particle.SCENARIO,
-                                                  *equipment.SCENARIOS, *enemy.SCENARIOS, *scene.SCENARIOS],
+                                                  *equipment.SCENARIOS, *enemy.SCENARIOS, *scene.SCENARIOS, *presentation.SCENARIOS],
                          default='always-small-pot-stock-v1')
     command.add_argument('--resource', help='Exact model resource or fixed common.jpc effect ID combination')
     for name in ['collector', 'image', 'baseline', 'output']:
