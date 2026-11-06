@@ -14,6 +14,7 @@ from synthetic_model_collector import add_model_resource, make_collector, MODEL_
 from synthetic_equipment import make_equipment_collection
 from synthetic_enemy import add_enemy_resources, make_enemy_collection, member_bytes, PEAHAT_COMPANIONS, PEAHAT_RESOURCE
 from synthetic_scene import make_scene_collection
+from synthetic_presentation import make_presentation_collection, add_presentation_resources
 from contextlib import closing
 import sqlite3
 
@@ -169,6 +170,60 @@ class CollectorCommandTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         native = json.loads((self.output / 'collections/ocean/collection.json').read_text())
         self.assertEqual(native['commands'][0][-2:], ['scene-ocean-world-v1', '/res/Object/Always.arc'])
+        self.assertEqual(native['resources'], frozen)
+        for filename in ['initial_pipeline_cache.db', 'pipeline-seed.json']:
+            self.assertEqual((self.output / 'prepared/assets' / filename).read_bytes(), (self.baseline / filename).read_bytes())
+        self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def test_menu_freeze_and_batch_bind_archive_inputs_and_dispatch_the_fixed_recipe(self):
+        self.check_presentation_command()
+
+    def test_transition_freeze_and_batch_bind_archive_inputs_and_dispatch_the_fixed_recipe(self):
+        self.check_presentation_command(menu=False)
+
+    def test_mode_freeze_and_batch_bind_archive_inputs_and_dispatch_the_fixed_recipe(self):
+        self.check_presentation_command(clothes=True)
+
+    def check_presentation_command(self, *, menu=True, clothes=False):
+        _, self.image = generate(self.root, CLI.parents[2])
+        add_presentation_resources(self.image, self.root / 'repo/platform/ps4/content-contract.json')
+        metadata = make_presentation_collection(self.root / 'presentation-fixture', menu=menu, clothes=clothes, keys=(84,))
+        metadata['runtime_identity_verified_rows'] = 3
+        (self.collector / 'native-report.json').write_text(json.dumps(metadata))
+        row = {'id': 'ocean', 'family': 'ocean', 'scenario': metadata['scenario'], 'resource': metadata['resource'],
+               'script': metadata['script'], 'source_references': ['synthetic.cpp:scene'],
+               'action': 'exercise', 'assumptions': ['Synthetic scene process boundary.']}
+        plan = self.root / 'plan.json'
+        plan.write_text(json.dumps({'schema': 1, 'id': 'synthetic-scenes-v1', 'kind': 'menu-cutscene-modes',
+                                    'exclusions': ['Other scenes excluded.'], 'rows': [row]}))
+        manifest = self.root / 'manifest.json'
+        command = [sys.executable, str(self.cli), 'freeze-inventory', '--plan', str(plan),
+                   '--collector', str(self.collector), '--image', str(self.image)]
+        for target in [manifest, self.root / 'repeat-manifest.json']:
+            result = subprocess.run(command + ['--output', str(target)], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(manifest.read_bytes(), (self.root / 'repeat-manifest.json').read_bytes())
+        frozen = json.loads(manifest.read_text())['rows'][0]['input_identity']
+        expected = {'/res/Object/Always.arc', '/res/Object/System.arc'}
+        if clothes:
+            expected.add('/res/Object/Link.arc')
+        elif menu:
+            expected.add('/res/Msg/clctres.arc')
+        self.assertEqual(set(frozen), expected)
+        # The synthetic FST stores these two different archive payloads at known
+        # offsets. Check real input hashes, rather than copying report identities.
+        data = self.image.read_bytes()
+        for path, offset in [('/res/Object/Always.arc', 0x5000), ('/res/Object/System.arc', 0x6000), ('/res/Msg/clctres.arc', 0x7800), ('/res/Object/Link.arc', 0x7000)]:
+            if path not in expected:
+                continue
+            self.assertEqual(frozen[path]['sha256'], hashlib.sha256(data[offset:offset + frozen[path]['bytes']]).hexdigest())
+        before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
+        result = subprocess.run([sys.executable, str(self.cli), 'batch', '--manifest', str(manifest),
+                                 '--collector', str(self.collector), '--image', str(self.image),
+                                 '--baseline', str(self.baseline), '--output', str(self.output)], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        native = json.loads((self.output / 'collections/ocean/collection.json').read_text())
+        self.assertEqual(native['commands'][0][-2:], [metadata['scenario'], '/res/Object/Always.arc'])
         self.assertEqual(native['resources'], frozen)
         for filename in ['initial_pipeline_cache.db', 'pipeline-seed.json']:
             self.assertEqual((self.output / 'prepared/assets' / filename).read_bytes(), (self.baseline / filename).read_bytes())

@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "issue": 155,
+  "full_suite": {
+    "tests": 297,
+    "seconds": 591.559,
+    "skipped": 60,
+    "result": "pass",
+    "private_log_sha256": "99847f236c7bcda6ccd709b7e884ddde3aeab822061e7ca3c84e33a902cfbd6b"
+  },
+  "focused_collector_suites": {
+    "result": "pass",
+    "private_log_sha256": "99e36bb5fbcb56fc3ec059ae0b7873388e8b4bd522ddec3d889830bc291b0d1a"
+  },
+  "final_presentation_tests": {
+    "tests": 7,
+    "result": "pass",
+    "scope": "Final unsupported/missing assertions rerun after the full suite started; production sources unchanged."
+  },
+  "typecheck": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "compileall": "pass",
+  "shell_syntax": "pass",
+  "actual_collector_build": "pass",
+  "host_ps4_contract": "equal",
+  "actual_collection_repeat": "exact bytes and metadata except command paths",
+  "baseline_rows_preserved": 301,
+  "seed_rows": 312,
+  "expanded_seed_host_preparation": "all three recipes passed",
+  "existing_scene_description_control": "equal",
+  "private_complete_package_assembly": "pass",
+  "fresh_package_inspection": "pass",
+  "current_sources_match_built_and_validated_identities": true,
+  "standards_review_findings": 0,
+  "spec_review_findings": 0,
+  "physical_verification": false
+}

@@ -1,0 +1,769 @@
+{
+  "schema": 1,
+  "issue": 155,
+  "manifest_sha256": "70c84692c1c7bacffad8b9828cc9f0daca2e2bc6b573e9882fdc29601fa29c53",
+  "baseline_rows": 301,
+  "collected_rows": 11,
+  "new_rows": 11,
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "cutscene-fade-v1:observed.db": {
+        "bytes": 16384,
+        "sha256": "264d23d8f3f0e7a4c1b7ed49a3d01281eecb8b8c3fa8271975975234b9c520f6"
+      },
+      "menu-picture-colors-v1:observed.db": {
+        "bytes": 28672,
+        "sha256": "8429abbdad1a3b2388538e4284e1718e3b5fe6b0b8eb3f0a76b5d6aa7a20963f"
+      },
+      "mode-link-clothes-v1:observed.db": {
+        "bytes": 45056,
+        "sha256": "e17ea1b6cc86e867f88e700f4ae66d36a9c695bef58d97fc01c7a67f40bf9b31"
+      }
+    },
+    "rows": 312,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 311
+      }
+    ],
+    "bytes": 1302528,
+    "sha256": "e61cb301a7debdb1ff91abee77cc252ba3e4b634beef75eb296ea02d1c5534e3",
+    "asset_manifest_sha256": "49b18c6163cafc1ab4ab6d15b8d45e8ce564d5e28ea55a761c8cd1cf9c329e68"
+  },
+  "scenarios": [
+    {
+      "id": "cutscene-fade-v1",
+      "frames": 4,
+      "draw_calls": 4,
+      "pipeline_lookups": 4,
+      "configurations": 1,
+      "baseline_covered": 0,
+      "new": 1,
+      "layout": {
+        "key": 16288162637680331091,
+        "attachments": 1,
+        "color_format": 27,
+        "depth_format": 48,
+        "samples": 1,
+        "width": 1280,
+        "height": 720
+      },
+      "preparation_layouts": [
+        {
+          "role": "scene",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "role": "offscreen",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "states": [
+        {
+          "state": "black-half",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "black-full",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "white-half",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "black-half-repeated",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        }
+      ],
+      "first_state_with_the_same_description_set": {
+        "black-full": "black-half",
+        "white-half": "black-half",
+        "black-half-repeated": "black-half"
+      },
+      "physical_verification": false
+    },
+    {
+      "id": "menu-picture-colors-v1",
+      "frames": 4,
+      "draw_calls": 4,
+      "pipeline_lookups": 4,
+      "configurations": 3,
+      "baseline_covered": 0,
+      "new": 3,
+      "layout": {
+        "key": 16288162637680331091,
+        "attachments": 1,
+        "color_format": 27,
+        "depth_format": 48,
+        "samples": 1,
+        "width": 1280,
+        "height": 720
+      },
+      "preparation_layouts": [
+        {
+          "role": "scene",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "role": "offscreen",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "states": [
+        {
+          "state": "plain",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "tinted",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "faded",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "plain-repeated",
+          "draw_calls": 1,
+          "pipeline_lookups": 1,
+          "configurations": 1,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        }
+      ],
+      "first_state_with_the_same_description_set": {
+        "plain-repeated": "plain"
+      },
+      "physical_verification": false
+    },
+    {
+      "id": "mode-link-clothes-v1",
+      "frames": 3,
+      "draw_calls": 135,
+      "pipeline_lookups": 72,
+      "configurations": 7,
+      "baseline_covered": 0,
+      "new": 7,
+      "layout": {
+        "key": 16288162637680331091,
+        "attachments": 1,
+        "color_format": 27,
+        "depth_format": 48,
+        "samples": 1,
+        "width": 1280,
+        "height": 720
+      },
+      "preparation_layouts": [
+        {
+          "role": "scene",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "role": "offscreen",
+          "key": 16288162637680331091,
+          "attachments": 1,
+          "color_format": 27,
+          "depth_format": 48,
+          "samples": 1,
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "states": [
+        {
+          "state": "hero",
+          "draw_calls": 45,
+          "pipeline_lookups": 24,
+          "configurations": 7,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "casual",
+          "draw_calls": 45,
+          "pipeline_lookups": 24,
+          "configurations": 7,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        },
+        {
+          "state": "hero-repeated",
+          "draw_calls": 45,
+          "pipeline_lookups": 24,
+          "configurations": 7,
+          "layout_keys": [
+            16288162637680331091
+          ]
+        }
+      ],
+      "first_state_with_the_same_description_set": {
+        "casual": "hero",
+        "hero-repeated": "hero"
+      },
+      "physical_verification": false
+    }
+  ],
+  "rows": [
+    {
+      "id": "alternate-dialogue-content",
+      "family": "mode",
+      "action": "unsupported",
+      "reason": "Clear-count dialogue/language and gallery content are not reached by selecting clothes; no completed save is required by this slice.",
+      "owner": "#155 follow-up",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/include/d/d_com_inf_game.h:dComIfGs_setInitDataToCard"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred; requires follow-up automation."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "alternate-player-visibility",
+      "family": "mode",
+      "action": "unsupported",
+      "reason": "Casual hat/buckle material masking, body/face passes, equipment and animations are outside the texture-only recipe.",
+      "owner": "#155 follow-up",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_player_main.cpp:daPy_lk_c::hideHatAndBackle"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred; requires follow-up automation."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "cutscene-actors-equipment",
+      "family": "cutscene",
+      "action": "unsupported",
+      "reason": "Shared actor/equipment content belongs to actor/equipment slices; cinematic animation, lighting and combinations remain unexercised here.",
+      "owner": "#152/#153 follow-up",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_demo.cpp:dDemo_manager_c::update"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred; requires follow-up automation."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "cutscene-environment",
+      "family": "cutscene",
+      "action": "unsupported",
+      "reason": "Shared ocean/shadow/world content belongs to the environment slice; cinematic camera/weather states are not implied by shared archives.",
+      "owner": "#154 follow-up",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_demo.cpp:dDemo_manager_c::update"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred; requires follow-up automation."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "cutscene-fade-v1",
+      "family": "cutscene",
+      "action": "exercise",
+      "scenario": "cutscene-fade-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "black-half",
+          "black-full",
+          "white-half",
+          "black-half-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-presentation-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_graphic.cpp:mDoGph_gInf_c::fadeOut/calcFade"
+      ],
+      "assumptions": [
+        "Finite isolated setup; generated evidence is not a physical observation.",
+        "Stock 1280x720/single sample, original 30 Hz semantics; no storage or game loop.",
+        "Actual game loaders and synchronous renderer descriptions; host BGRA versus target RGBA remains a physical boundary.",
+        "Actual fadeOut then calcFade once per state: black at speed 0.5, black at speed 1, white at speed 0.5, black 0.5 repeated.",
+        "Each state resets fadeOut; isolated nonzero-alpha overlay, no elapsed cinematic or story event."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/cutscene-fade-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "cutscene-framebuffer-effects",
+      "family": "cutscene",
+      "action": "unsupported",
+      "reason": "Motion blur, monochrome, depth/spot and projection need capture-backed setup, not a fade-only state.",
+      "owner": "#155 follow-up",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_graphic.cpp:motionBlure/drawDepth/drawSpot"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred; requires follow-up automation."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "file-select-picture-tint-equivalent-v1",
+      "family": "menu",
+      "action": "shared",
+      "scenario": "menu-picture-colors-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "plain",
+          "tinted",
+          "faded",
+          "plain-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-presentation-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_file_select.cpp:dFile_select_c::menuColorChange",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/JSystem/J2DGraph/J2DPicture.cpp:J2DPicture::setTevMode/draw"
+      ],
+      "assumptions": [
+        "Finite isolated setup; generated evidence is not a physical observation.",
+        "Stock 1280x720/single sample, original 30 Hz semantics; no storage or game loop.",
+        "Actual game loaders and synchronous renderer descriptions; host BGRA versus target RGBA remains a physical boundary.",
+        "Native clctres.arc heart_piece_base.bti expanded with the game JKRDecomp decoder and drawn by real J2DPicture, not a full menu controller/layout.",
+        "Four 64x64 quads at (100,100), 640x480 ortho port; black/white (0,0,0,0)/(255,255,255,255), then (90,90,90,255)/(200,200,200,255), alpha 255 then 128 then original repeated.",
+        "Narrow equivalent of the native file menu black/white setup; no save slots, fonts, other images or pane animations."
+      ],
+      "shared_with": "menu-picture-colors-v1",
+      "owner": "#155",
+      "justification": "Same J2DPicture black/white/alpha setup only, using native menu texture. No complete file-select layout/controller or other texture equivalence claimed.",
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        },
+        "/res/Msg/clctres.arc": {
+          "sha256": "ea670b960068a3b82efded3444baa77bbdf44f1888a4a68a630b742bd2c6eaab",
+          "bytes": 16032
+        }
+      },
+      "classification": "shared",
+      "evidence": "validated/menu-picture-colors-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "menu-capture-cloth",
+      "family": "menu",
+      "action": "unsupported",
+      "reason": "Framebuffer capture and cloth simulation are not picture tint or fade; no offscreen content equivalence.",
+      "owner": "#155 follow-up",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_menu_capture.inc:dDlst_MENU_CAPTURE_c::draw/dDlst_MENU_CLOTH_c::draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred; requires follow-up automation."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "menu-picture-colors-v1",
+      "family": "menu",
+      "action": "exercise",
+      "scenario": "menu-picture-colors-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "plain",
+          "tinted",
+          "faded",
+          "plain-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-presentation-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_file_select.cpp:dFile_select_c::menuColorChange",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/JSystem/J2DGraph/J2DPicture.cpp:J2DPicture::setTevMode/draw"
+      ],
+      "assumptions": [
+        "Finite isolated setup; generated evidence is not a physical observation.",
+        "Stock 1280x720/single sample, original 30 Hz semantics; no storage or game loop.",
+        "Actual game loaders and synchronous renderer descriptions; host BGRA versus target RGBA remains a physical boundary.",
+        "Native clctres.arc heart_piece_base.bti expanded with the game JKRDecomp decoder and drawn by real J2DPicture, not a full menu controller/layout.",
+        "Four 64x64 quads at (100,100), 640x480 ortho port; black/white (0,0,0,0)/(255,255,255,255), then (90,90,90,255)/(200,200,200,255), alpha 255 then 128 then original repeated.",
+        "Narrow equivalent of the native file menu black/white setup; no save slots, fonts, other images or pane animations."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        },
+        "/res/Msg/clctres.arc": {
+          "sha256": "ea670b960068a3b82efded3444baa77bbdf44f1888a4a68a630b742bd2c6eaab",
+          "bytes": 16032
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/menu-picture-colors-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "mode-link-clothes-v1",
+      "family": "mode",
+      "action": "exercise",
+      "scenario": "mode-link-clothes-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "hero",
+          "casual",
+          "hero-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-presentation-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_player_main.cpp:daPy_lk_c::initModel/playerInit"
+      ],
+      "assumptions": [
+        "Finite isolated setup; generated evidence is not a physical observation.",
+        "Stock 1280x720/single sample, original 30 Hz semantics; no storage or game loop.",
+        "Actual game loaders and synchronous renderer descriptions; host BGRA versus target RGBA remains a physical boundary.",
+        "Real Link cl.bdl with player model flags 0x80000/0x37221222; second linktexS3TC texture header replaced with LINKTEXBCI4, then original header restored with resTIMGChanged.",
+        "Hero/casual/hero, one model draw each; fixed bind pose, no player creation, clear-count save, hat/buckle hiding, attachments or skeletal/texture animation.",
+        "Camera eye (0,1000,2000), target (0,0,-2000), up (0,1,0), FOV 45, aspect 4/3, near 1, far 160000; fixed scene day colors as #154."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        },
+        "/res/Object/Link.arc": {
+          "sha256": "eec58ba062a69f004a682db4ae5175d4f4cedf6802ffdfec15929e971d138ebe",
+          "bytes": 568694
+        }
+      },
+      "classification": "generated/exercised",
+      "evidence": "validated/mode-link-clothes-v1/collection-report.json",
+      "physical_verification": false
+    },
+    {
+      "id": "native-menu-layouts",
+      "family": "menu",
+      "action": "unsupported",
+      "reason": "Full inventory/file/map/options/name-entry screens, fonts and pane stacks need bounded controller-specific setup.",
+      "owner": "#155 follow-up",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_menu_collect.cpp:dMenu_Collect_c::_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred; requires follow-up automation."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    },
+    {
+      "id": "one-time-ending-title",
+      "family": "cutscene",
+      "action": "unsupported",
+      "reason": "One-time prologue/ending/title/name states not reached by isolated setup remain exposed, not story-replayed.",
+      "owner": "#155 follow-up",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_s_name.cpp:dScnName_c::draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred; requires follow-up automation."
+      ],
+      "classification": "unsupported",
+      "physical_verification": false
+    }
+  ],
+  "mapping": [
+    {
+      "type": 1,
+      "hash": -7828934020862915239,
+      "description_sha256": "a905d87d35265399431cc22af2b8a63a083637d3bfd59301b379f5820a9dbdaf",
+      "baseline_covered": false,
+      "sources": [
+        "file-select-picture-tint-equivalent-v1",
+        "menu-picture-colors-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -7556517025735748301,
+      "description_sha256": "b96e70e2bf173686e63d87c52b7f471c264c4d89ac11a91b426a37d0318d1402",
+      "baseline_covered": false,
+      "sources": [
+        "mode-link-clothes-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6523889959303284872,
+      "description_sha256": "6b33b6ae99252e2030938cd128e14fe0ce166080fa25f4c09b07d5e3b856ba2b",
+      "baseline_covered": false,
+      "sources": [
+        "file-select-picture-tint-equivalent-v1",
+        "menu-picture-colors-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4046520122633310004,
+      "description_sha256": "aff3009057695fcc360277bd79506008f9512d370a0fd0b6f90ceb398087383f",
+      "baseline_covered": false,
+      "sources": [
+        "cutscene-fade-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3477666079103581365,
+      "description_sha256": "e136b03115f49b7a93f0308913983a0bcc7abe69be55663d2bddce4a3b4f134f",
+      "baseline_covered": false,
+      "sources": [
+        "file-select-picture-tint-equivalent-v1",
+        "menu-picture-colors-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3197489351491980179,
+      "description_sha256": "c89bdca7c5e73186545a051a0f0d129b715739474e293bf930378c5ef3702ce2",
+      "baseline_covered": false,
+      "sources": [
+        "mode-link-clothes-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -1578045518625378308,
+      "description_sha256": "40bb97d51c1d6b191dd561d09d42368081c7437f364dbc640c16f808e4dbad02",
+      "baseline_covered": false,
+      "sources": [
+        "mode-link-clothes-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -678866588063733461,
+      "description_sha256": "9856d4ef3e51df3af1bbeffca1c261ee95df1e68f2047082a4b03c99af737aa2",
+      "baseline_covered": false,
+      "sources": [
+        "mode-link-clothes-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1629591848594034067,
+      "description_sha256": "21f111679dbddf985d492509ed9a01d342e48c4b193fe0aea05d81eca2e5c729",
+      "baseline_covered": false,
+      "sources": [
+        "mode-link-clothes-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6441834322033971654,
+      "description_sha256": "55fb8fa539b1da12d6f575756ceaba53b96bbb7bbaa9b3208afb947fc25094b6",
+      "baseline_covered": false,
+      "sources": [
+        "mode-link-clothes-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6746599188459929516,
+      "description_sha256": "160d25321e1ac452c0ff7a5d56960c34d556ce225b400692973dd44eb8e07e9f",
+      "baseline_covered": false,
+      "sources": [
+        "mode-link-clothes-v1"
+      ]
+    }
+  ],
+  "inventory_complete": false,
+  "residual_gaps": [
+    "alternate-dialogue-content",
+    "alternate-player-visibility",
+    "cutscene-actors-equipment",
+    "cutscene-environment",
+    "cutscene-framebuffer-effects",
+    "menu-capture-cloth",
+    "native-menu-layouts",
+    "one-time-ending-title"
+  ],
+  "candidate_controls": {
+    "cutscene-fade-v1": {
+      "all_descriptions_in_frozen_seed": true,
+      "host_candidate_preparation_completed": true,
+      "physical_verification": false
+    },
+    "menu-picture-colors-v1": {
+      "all_descriptions_in_frozen_seed": true,
+      "host_candidate_preparation_completed": true,
+      "physical_verification": false
+    },
+    "mode-link-clothes-v1": {
+      "all_descriptions_in_frozen_seed": true,
+      "host_candidate_preparation_completed": true,
+      "physical_verification": false
+    }
+  },
+  "existing_scene_control": {
+    "scenario": "scene-ocean-world-v1",
+    "equal_to_retained_full_descriptions": true,
+    "configurations": 4
+  },
+  "physical_verification": false
+}

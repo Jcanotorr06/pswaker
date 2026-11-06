@@ -644,6 +644,7 @@ static void write_state_steps(FILE* report, const std::vector<const char*>& name
 }
 
 #include "scene-collector.hpp"
+#include "presentation-collector.hpp"
 namespace pc { void loadAssets(); }
 
 int main(int argc, char* argv[]) {
@@ -659,13 +660,15 @@ int main(int argc, char* argv[]) {
   const bool inventory = argc == 5 && !strcmp(argv[3], "asset-model-stock-v1");
   const bool scene = argc == 5 && (!strcmp(argv[3], "scene-ocean-world-v1")
                      || !strcmp(argv[3], "scene-simple-shadows-v1") || !strcmp(argv[3], "scene-alpha-overlap-v1"));
+  const bool presentation = argc == 5 && (!strcmp(argv[3], "menu-picture-colors-v1")
+                     || !strcmp(argv[3], "cutscene-fade-v1") || !strcmp(argv[3], "mode-link-clothes-v1"));
   const ActorRecipe* actor = nullptr;
   for (const auto& recipe : actorRecipes)
     if (argc == 5 && !strcmp(argv[3], recipe.scenario)) actor = &recipe;
-  check(argc == 3 || dynamic || inventory || arrow || actor || scene || (argc == 4 && !strcmp(argv[3], "always-small-pot-stock-v1")),
+  check(argc == 3 || dynamic || inventory || arrow || actor || scene || presentation || (argc == 4 && !strcmp(argv[3], "always-small-pot-stock-v1")),
         "unknown scenario");
-  const std::string resource = inventory || particles || arrow || actor || scene ? argv[4] : "/res/Object/Always.arc:bdl/obm_kotubo1.bdl";
-  check(!scene || resource == "/res/Object/Always.arc", "fixed scene resource required");
+  const std::string resource = inventory || particles || arrow || actor || scene || presentation ? argv[4] : "/res/Object/Always.arc:bdl/obm_kotubo1.bdl";
+  check(!(scene || presentation) || resource == "/res/Object/Always.arc", "fixed scene resource required");
   check(!arrow || resource == "/res/Object/Link.arc:bdlm/arrow.bdl", "fixed arrow resource required");
   check(!actor || resource == actor->resource, "fixed actor resource required");
   check(!bombNormal || resource == "/res/Particle/common.jpc:0x000b+0x2009+0x200a+0x2008", "normal bomb recipe");
@@ -673,7 +676,7 @@ int main(int argc, char* argv[]) {
   check(!deathLarge || resource == "/res/Particle/common.jpc:0x0014+0x0013+0x0015+0x0016", "large enemy death recipe");
   check(!deathSmall || resource == "/res/Particle/common.jpc:0x043c+0x043d+0x043e", "small enemy death recipe");
   const auto particleIds = particles ? particle_ids(resource, deathLarge || deathSmall) : std::vector<unsigned>{};
-  const auto modelResource = particles || actor || scene ? std::string("/res/Object/Always.arc:bdl/obm_kotubo1.bdl") : resource;
+  const auto modelResource = particles || actor || scene || presentation ? std::string("/res/Object/Always.arc:bdl/obm_kotubo1.bdl") : resource;
   const auto separator = modelResource.find(':');
   check(separator != std::string::npos && modelResource.find(':', separator + 1) == std::string::npos,
         "one archive/member separator required");
@@ -714,7 +717,7 @@ int main(int argc, char* argv[]) {
         && disc->gameVersion == 0, "GZLE01 revision 0 required");
   // Scene packets consume disc-backed constant display lists/vertices. Follow
   // pc_main's validated runtime-asset loading before any game code uses them.
-  if (scene) pc::loadAssets();
+  if (scene || presentation) pc::loadAssets();
   OSInit();
   GXInit(nullptr, 0);
   GXSetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
@@ -724,10 +727,10 @@ int main(int argc, char* argv[]) {
   J3DModel* model = nullptr;
   unsigned materials = 0;
   std::vector<ActorState> actorStates;
-  if (scene) {
+  if (scene || presentation) {
     create_actor_runtime();
     mDoGph_gInf_c::createHeap();
-    actorStates = scene_states(argv[3]);
+    actorStates = presentation ? presentation_states(argv[3]) : scene_states(argv[3]);
   } else if (actor) {
     create_actor_runtime();
     load_object(actor->archive);
@@ -769,7 +772,7 @@ int main(int argc, char* argv[]) {
     renderedDraws = particles ? draw_particles(view, particleIds, setup) : draw_effect(view);
   } else if (scene) {
     renderedDraws = draw_scene_states(actorStates);
-  } else if (actor) {
+  } else if (actor || presentation) {
     renderedDraws = draw_actor_states(actorStates);
   } else if (arrow) {
     // daArrow_c::createInit/_draw: hide all tip shapes, show the selected
@@ -822,9 +825,9 @@ int main(int argc, char* argv[]) {
   check(sqlite3_close(observed) == SQLITE_OK, "close observation database");
   auto* report = fopen("collection.json", "wx");
   check(report, "new collection report");
-  if (scene) {
+  if (scene || presentation) {
     write_scene_report(report, argv[3], actorStates, renderedDraws, runtimeIdentityRows,
-                       preparationScene, preparationOffscreen);
+                       preparationScene, preparationOffscreen, presentation);
   } else if (particles) {
     fprintf(report, "{\"schema\":1,\"scenario\":\"%s\",\"method\":\"dynamic-effect-draw\","
             "\"resource\":\"%s\",\"draw_calls\":%u,\"pipeline_lookups\":%u,\"runtime_identity_verified_rows\":%u,"
