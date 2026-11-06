@@ -25,7 +25,7 @@
     },
     "game": {
       "files": [
-        "build-game.sh", "complete-package.py", "collect-model-seed.py", "content-failure-package.py",
+        "build-game.sh", "complete-package.py", "collect-model-seed.py", "asset_inventory.py", "content-failure-package.py",
         "disc_image.py", "frame-pacing.py", "game-build.py", "inspect-game-program.py",
         "prepare-content-contract.py", "prepare-game.py", "storage-cases.py",
         "package_validation.py", "desktop_app.py", "complete_package_workflow.py", "PSWaker.pyw", "build-desktop.py", "program_payload.py",

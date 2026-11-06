@@ -31,6 +31,8 @@
 #include <filesystem>
 #include <mutex>
 #include <algorithm>
+#include <cctype>
+#include <string>
 #include <vector>
 
 static sqlite3* observed;
@@ -208,9 +210,22 @@ static void write_effect_steps(FILE* report) {
 }
 
 int main(int argc, char* argv[]) {
-  check(argc == 3 || argc == 4, "usage: collector IMAGE BASELINE_ASSETS [SCENARIO] (new private directory)");
+  check(argc >= 3 && argc <= 5, "usage: collector IMAGE BASELINE_ASSETS [SCENARIO [RESOURCE]] (new private directory)");
   const bool dynamic = argc == 4 && !strcmp(argv[3], "common-pot-debris-lifecycle-v1");
-  check(argc == 3 || dynamic || !strcmp(argv[3], "always-small-pot-stock-v1"), "unknown scenario");
+  const bool inventory = argc == 5 && !strcmp(argv[3], "asset-model-stock-v1");
+  check(argc == 3 || dynamic || inventory || (argc == 4 && !strcmp(argv[3], "always-small-pot-stock-v1")),
+        "unknown scenario");
+  const std::string resource = inventory ? argv[4] : "/res/Object/Always.arc:bdl/obm_kotubo1.bdl";
+  const auto separator = resource.find(':');
+  check(separator != std::string::npos && resource.find(':', separator + 1) == std::string::npos,
+        "one archive/member separator required");
+  const auto archivePath = resource.substr(0, separator);
+  const auto memberPath = resource.substr(separator + 1);
+  check(archivePath.starts_with("/res/") && archivePath.ends_with(".arc") && memberPath.ends_with(".bdl")
+        && resource.find("..") == std::string::npos && !memberPath.starts_with('/')
+        && std::all_of(resource.begin(), resource.end(), [](unsigned char c) {
+          return std::isalnum(c) || c == '/' || c == '.' || c == '_' || c == '-' || c == ':';
+        }), "supported stock BDL resource path required");
   const auto runtimeIdentityRows = verify_runtime_identities(argv[2]);
   check(!std::filesystem::exists("observed.db") && !std::filesystem::exists("cache"), "retain earlier output");
   check(sqlite3_open("observed.db", &observed) == SQLITE_OK, "open observations");
@@ -241,14 +256,17 @@ int main(int argc, char* argv[]) {
   check(JKRExpHeap::createRoot(64, false), "create isolated game heap");
   check(JMANewSinTable(12), "initialize the game's transform tables as mDoMch_Create does");
   J3DModel* model = nullptr;
+  unsigned materials = 0;
   if (!dynamic) {
-    auto* archive = JKRArchive::mount("/res/Object/Always.arc", JKRArchive::MOUNT_MEM,
+    auto* archive = JKRArchive::mount(archivePath.c_str(), JKRArchive::MOUNT_MEM,
                                    JKRHeap::getCurrentHeap(), JKRArchive::MOUNT_DIRECTION_HEAD);
-    check(archive, "mount Always archive through game loader");
-    auto* bytes = archive->getResource("bdl/obm_kotubo1.bdl");
-    check(bytes, "find small pot model");
+    check(archive, "mount model archive through game loader");
+    auto* bytes = archive->getResource(memberPath.c_str());
+    check(bytes, "find requested stock model");
     auto* data = J3DModelLoaderDataBase::loadBinaryDisplayList(bytes, 0x2020);
-    check(data && data->getMaterialNum() == 1, "load the fixed one-material model");
+    check(data && data->getMaterialNum() > 0 && (inventory || data->getMaterialNum() == 1),
+          "load supported stock model materials");
+    materials = data->getMaterialNum();
     model = mDoExt_J3DModel__create(data, 0, 0x11000084);
     check(model, "create game model and material display lists");
   }
@@ -298,11 +316,13 @@ int main(int argc, char* argv[]) {
             "\"other-pot-textures\",\"overlapping-effects\",\"other-cameras\"]",
             renderedDraws, drawCalls, runtimeIdentityRows, effectSteps.size());
     write_effect_steps(report);
-  } else fprintf(report, "{\"schema\":1,\"scenario\":\"always-small-pot-stock-v1\","
-    "\"method\":\"asset-material-draw\",\"resource\":\"/res/Object/Always.arc:bdl/obm_kotubo1.bdl\","
-    "\"materials\":1,\"draw_calls\":%u,\"pipeline_lookups\":%u,\"runtime_identity_verified_rows\":%u,"
+  } else fprintf(report, "{\"schema\":1,\"scenario\":\"%s\","
+    "\"method\":\"asset-material-draw\",\"resource\":\"%s\","
+    "\"materials\":%u,\"draw_calls\":%u,\"pipeline_lookups\":%u,\"runtime_identity_verified_rows\":%u,"
     "\"frames\":3,\"loader_flags\":8224,"
-    "\"model_flags\":0,\"differed_display_list_flags\":285212804", renderedDraws, drawCalls, runtimeIdentityRows);
+    "\"model_flags\":0,\"differed_display_list_flags\":285212804",
+    inventory ? "asset-model-stock-v1" : "always-small-pot-stock-v1", resource.c_str(), materials,
+    renderedDraws, drawCalls, runtimeIdentityRows);
   fprintf(report, ",\"layout\":{\"key\":%llu,\"attachments\":%u,\"color_format\":%u,\"depth_format\":%u,"
     "\"samples\":%u,\"width\":%u,\"height\":%u}}\n",
     static_cast<unsigned long long>(observedLayout.key), observedLayout.colorAttachmentCount,

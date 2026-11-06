@@ -5,6 +5,9 @@ booting a stage, acquiring equipment, loading a save, or changing player setting
 Actual images, descriptions, builds, logs and complete packages remain private.
 The public fixtures contain synthetic bytes only.
 
+For the bounded multi-resource batch, fixed manifest, classifications and seed
+consolidation, see [ASSET-INVENTORY.md](ASSET-INVENTORY.md).
+
 ## Fixed scenario
 
 `always-small-pot-stock-v1` mounts `/res/Object/Always.arc` with `JKRArchive`,

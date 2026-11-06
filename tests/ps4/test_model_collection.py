@@ -76,6 +76,82 @@ class CollectorCommandTests(unittest.TestCase):
         self.assertEqual(repeated['resources'], report['resources'])
         self.assertEqual({p: p.read_bytes() for p in before}, before)
 
+    def test_inventory_resource_is_exercised_and_bound_to_its_requested_path(self):
+        path = self.collector / 'native-report.json'
+        report = json.loads(path.read_text())
+        report.update(scenario='asset-model-stock-v1', frames=3, loader_flags=8224,
+                      model_flags=0, differed_display_list_flags=285212804)
+        path.write_text(json.dumps(report))
+        self.scenario = ['--scenario', 'asset-model-stock-v1',
+                         '--resource', '/res/Object/Always.arc:bdl/obm_kotubo1.bdl']
+        result = self.collect()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        metadata = json.loads((self.output / 'collection.json').read_text())
+        self.assertEqual(metadata['resource'], '/res/Object/Always.arc:bdl/obm_kotubo1.bdl')
+        self.assertEqual(metadata['commands'][0][-2:],
+                         ['asset-model-stock-v1', '/res/Object/Always.arc:bdl/obm_kotubo1.bdl'])
+        (self.collector / 'mode').write_text('wrong-resource')
+        self.output = self.root / 'wrong-resource'
+        result = self.collect()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('different resource', result.stderr)
+
+    def test_batch_runs_exercises_and_retains_shared_source_mapping(self):
+        metadata_path = self.collector / 'native-report.json'
+        metadata = json.loads(metadata_path.read_text())
+        metadata.update(scenario='asset-model-stock-v1', frames=3, loader_flags=8224,
+                        model_flags=0, differed_display_list_flags=285212804)
+        metadata_path.write_text(json.dumps(metadata))
+        build = json.loads((self.collector / 'collector-build.json').read_text())
+        identity = {'archive_sha256': hashlib.sha256(self.image.read_bytes()[
+            0x5000:0x5000 + 0x100 + len(MODEL_BYTES)]).hexdigest(),
+                    'model_sha256': hashlib.sha256(MODEL_BYTES).hexdigest(), 'model_bytes': len(MODEL_BYTES)}
+        row = {'id': 'exterior', 'family': 'synthetic', 'resource': metadata['resource'],
+               'input_identity': identity, 'source_references': ['synthetic.cpp:draw'],
+               'dimensions': {'content': ['test-island'], 'mode': ['normal'], 'state': ['stock-bdl-v1']},
+               'action': 'exercise', 'assumptions': ['No actor lighting or animation.']}
+        manifest = self.root / 'inventory.json'
+        manifest.write_text(json.dumps({'schema': 1, 'id': 'synthetic-v1',
+            'image_sha256': hashlib.sha256(self.image.read_bytes()).hexdigest(),
+            'contract_sha256': build['contract_sha256'],
+            'collector': {'sha256': build['binary_sha256'],
+                          'build_sha256': hashlib.sha256((self.collector / 'collector-build.json').read_bytes()).hexdigest()},
+            'dynamic_exclusions': [{'id': 'lighting', 'owner': '#151', 'reason': 'Separate dynamic exercise'}],
+            'rows': [row, {**row, 'id': 'alternate', 'action': 'shared', 'shared_with': 'exterior',
+                           'justification': 'Same immutable source and stock state.'}]}))
+        result = subprocess.run([sys.executable, str(self.cli), 'batch', '--manifest', str(manifest),
+                                 '--collector', str(self.collector), '--image', str(self.image),
+                                 '--baseline', str(self.baseline), '--output', str(self.output)],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads((self.output / 'prepared/batch-report.json').read_text())
+        self.assertEqual((report['collected_rows'], report['new_rows'], report['seed']['rows']), (1, 0, 3))
+        self.assertEqual(report['mapping'][0]['sources'], ['alternate', 'exterior'])
+        self.assertFalse((self.output / 'collections/alternate').exists())
+        for name in ['initial_pipeline_cache.db', 'pipeline-seed.json']:
+            self.assertEqual((self.output / 'prepared/assets' / name).read_bytes(), (self.baseline / name).read_bytes())
+
+    def test_inventory_freeze_binds_resources_image_and_collector_repeatably(self):
+        plan = self.root / 'plan.json'
+        plan.write_text(json.dumps({'schema': 1, 'id': 'synthetic-freeze-v1',
+            'dynamic_exclusions': [{'id': 'lighting', 'owner': '#151', 'reason': 'Dynamic exercise'}],
+            'rows': [{'id': 'synthetic-pot', 'family': 'synthetic',
+                      'resource': '/res/Object/Always.arc:bdl/obm_kotubo1.bdl',
+                      'source_references': ['synthetic.cpp:draw'], 'action': 'exercise',
+                      'dimensions': {'content': ['synthetic'], 'mode': ['normal'], 'state': ['stock-bdl-v1']},
+                      'assumptions': ['Stock draw only.']}]}))
+        outputs = [self.root / 'frozen-a.json', self.root / 'frozen-b.json']
+        for output in outputs:
+            result = subprocess.run([sys.executable, str(self.cli), 'freeze-inventory', '--plan', str(plan),
+                                     '--collector', str(self.collector), '--image', str(self.image),
+                                     '--output', str(output)], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(outputs[0].read_bytes(), outputs[1].read_bytes())
+        manifest = json.loads(outputs[0].read_text())
+        self.assertEqual(manifest['image_sha256'], hashlib.sha256(self.image.read_bytes()).hexdigest())
+        self.assertEqual(manifest['rows'][0]['input_identity']['model_sha256'], hashlib.sha256(MODEL_BYTES).hexdigest())
+        self.assertEqual(manifest['plan_sha256'], hashlib.sha256(plan.read_bytes()).hexdigest())
+
     def test_malformed_or_no_draw_report_is_rejected_at_the_collector_boundary(self):
         for mode in ['malformed', 'no-draw']:
             with self.subTest(mode=mode):
