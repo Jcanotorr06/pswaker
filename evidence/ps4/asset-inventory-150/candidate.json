@@ -1,0 +1,197 @@
+{
+  "schema": 1,
+  "issue": 150,
+  "app_version": "01.24",
+  "program": {
+    "build_id": "35a453336a0e4b0d432c",
+    "elf_sha256": "c2d48776ed9f79d90ec71d61cc0732a3b2b673da361ca57d7c4a10596a2392fc",
+    "eboot_sha256": "76ddd46e09966d6372cb597f16329285b4bbea1450f6ead03102c66539ad97bc"
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "9c4bf9271bccc43396ba2d0e2e567daf3dfdc5e985c2690f0accbd41ec78adea",
+    "bytes": 1521287168
+  },
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "common-large-pot:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "common-small-pot:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "dragon-roost-dungeon:observed.db": {
+        "bytes": 32768,
+        "sha256": "c602be445d1521d1a2ed568d8984b14fb8bf851ede64b83ea356d949dc9044f9"
+      },
+      "earth-temple:observed.db": {
+        "bytes": 28672,
+        "sha256": "04594547c90450b308dc18629e7a11bbb83b2f79eb9ec6063406f32eb2b54fb6"
+      },
+      "forbidden-woods-boss-room:observed.db": {
+        "bytes": 28672,
+        "sha256": "a34f6d5b52f880e339669ba3f75310a362ce620c7444de6cc55954dd75fe4963"
+      },
+      "forest-haven-ground:observed.db": {
+        "bytes": 32768,
+        "sha256": "ab35ee9826d806f9f395acdc889fd4849c6f1e81e11b405b264f66c579a0a392"
+      },
+      "forsaken-fortress-room:observed.db": {
+        "bytes": 32768,
+        "sha256": "2fff2f1ae6997b097604947dd1abfce5c0da0a2e9745f4ca5c6401e3d0b5de22"
+      },
+      "ganons-tower:observed.db": {
+        "bytes": 28672,
+        "sha256": "5b4f0c5881722eb7c580b6bd07fd6e9900d1f1716034817844eaa675193322e5"
+      },
+      "link-boomerang:observed.db": {
+        "bytes": 16384,
+        "sha256": "7b866ca412656be6d55487bba1a410415f34706b3e1d74c28081629a4467ff7a"
+      },
+      "link-bow:observed.db": {
+        "bytes": 16384,
+        "sha256": "4a52c220ef08401179c03a031d89d626167d0747ef6af622f85703f391564aa6"
+      },
+      "link-casual-model:observed.db": {
+        "bytes": 45056,
+        "sha256": "e17ea1b6cc86e867f88e700f4ae66d36a9c695bef58d97fc01c7a67f40bf9b31"
+      },
+      "links-house:observed.db": {
+        "bytes": 28672,
+        "sha256": "74fde926fe1eaa2e16d9210260ba5ac875e60793b83d52bc3d69f9523b052f75"
+      },
+      "optional-cave:observed.db": {
+        "bytes": 28672,
+        "sha256": "c49a25d876bfc637b639f000f0a547155680b9c2c0aa2b027ea09cf25da5256b"
+      },
+      "outset-ground:observed.db": {
+        "bytes": 24576,
+        "sha256": "2400ff1f235476eddcfc7a6e2d8936a6d2dbb7797bf9ea43e5cd26db56dc8137"
+      },
+      "pirate-ship:observed.db": {
+        "bytes": 45056,
+        "sha256": "619dd45830297fc9e84fef08696f25ddc1c27e4c5cd312bc00abcef5f61dfe99"
+      },
+      "rito-bag:observed.db": {
+        "bytes": 16384,
+        "sha256": "2c236d2490ff0c9eb9adfe7f2d56c09494ec5a842f44ec4a3aa0b9484e8079f8"
+      },
+      "tower-of-gods:observed.db": {
+        "bytes": 24576,
+        "sha256": "2400ff1f235476eddcfc7a6e2d8936a6d2dbb7797bf9ea43e5cd26db56dc8137"
+      },
+      "wind-temple:observed.db": {
+        "bytes": 32768,
+        "sha256": "0b0948c653eb455c13dc369461d3ddc8d0fd7ff6737a0b76480eb31ea7dab65c"
+      },
+      "windfall-ground:observed.db": {
+        "bytes": 45056,
+        "sha256": "eabc3a9c1e84e4d63a6679119487e320f1886c58a4fe41e38f13d2bdb5659fff"
+      }
+    },
+    "rows": 333,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 332
+      }
+    ],
+    "bytes": 1396736,
+    "sha256": "e3559efe1e2920ef3880e73f9ae387ae856256dc71ba1c4aabe9e3004c46428a",
+    "asset_manifest_sha256": "4783c97a24747b93381d14ce54b2562d315806e5384daa746b13bac77f73c985"
+  },
+  "manifest_sha256": "efbb252dab8e9db799283e08c0c4248d37328141e7a7fed45cf8d705b4f8478b",
+  "plan_sha256": "22599f68ff271550fa080243d499d80a76a4e7dea5c88b333854cb7a406992a1",
+  "collector": {
+    "binary_sha256": "377742e2dfaa5da8c1313e0ae45433fa5b481dae12af4e99cccb48bd90786794",
+    "prepared_inputs_sha256": "a647390f913854b3ae59e68169c8aa70359f319c2fcbc235a7077606fc04cee1",
+    "renderer_sources_sha256": "e8c95694065f153501f6d4217328d42605fc9cd318f975f437b2ffad63399dab",
+    "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+    "contract_bytes": 2872,
+    "collector_sources": {
+      "CMakeLists.txt": "c2ccdabaff749f188e9826d496dd16185501e45c4ca37a4c558850bf4a666d59",
+      "main.cpp": "12dd481329a566e827ceef1da4caefcf89a8e6dd7345a5c1ce38d3b3a2ad08e5",
+      "model-collector.cpp": "4066e8f0fd66c4ac75842f3eae0c404f63ba3ff7dc9bb65ca55c15d6abe9ec35",
+      "model-contract.cpp": "7baf0056fea33c25868b164828471312415b98f5fe1899ab1853f86d274c6e0c"
+    },
+    "adapter_sources": {
+      "stock-textures.cpp": "963740b0fa44f1c9ed5cbc62b0b6746ede13b31b1d00e721d6133f949e1efb96",
+      "frame-pacing.hpp": "f074d1279621f8b4feae76e6a2ad9f0aba222d310dec455bebe6906b38d41b79",
+      "game-platform.hpp": "fdc1cd4f7f20dc80890ed3bd6fd0219789b30ebdb11d8e6e3dd7923a8463ddbd"
+    },
+    "build_tool_sha256": "c040b2b0d68a5668f4455c41fca447f493a9eca796e03168237e43cfcde7dce6"
+  },
+  "collector_build_sha256": "72ee7dd4fa5a06f09bc1b9fc886813565374730982df5def0af61b343024681a",
+  "assembly_sha256": "023b4269d3df971403431a920e5b50cc797c68f8638e736229459dd3ee455f2d",
+  "inspection_sha256": "8ecacba4ff050990ce767e544984db3877e0e0a2cfaad8c2b2bfd97c1d12f922",
+  "fresh_inspection_reproduces_assembly_inspection": true,
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "package_inputs_preserved_sha256": "f674373f888971db1832e1e3146614906335e136070c28353680bb8f740f1fdf",
+  "physical_verification": false,
+  "host_target_limits": [
+    "Host BGRA8 versus PS4 RGBA8; PS4 rebuilds descriptions with its target layouts.",
+    "No new physical preparation, per-configuration layout/pass trace, appearance or scaling observation.",
+    "Recipe draws stock model state; loaded material count does not establish every material/runtime variation."
+  ],
+  "generation": {
+    "coverage_sha256": "f66561d36581fc81ddf04826f56b4b80c20eaa73af39ec7360a273a49a738677",
+    "plan_sha256": "22599f68ff271550fa080243d499d80a76a4e7dea5c88b333854cb7a406992a1",
+    "manifest_sha256": "efbb252dab8e9db799283e08c0c4248d37328141e7a7fed45cf8d705b4f8478b"
+  }
+}

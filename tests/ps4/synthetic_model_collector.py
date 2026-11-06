@@ -72,8 +72,12 @@ if mode == 'recorder-mismatch':
     with sqlite3.connect('cache/pipeline_cache.db') as db:
         db.execute('DELETE FROM pipeline_cache WHERE hash=84')
 metadata = json.loads((root / 'native-report.json').read_text())
-if len(sys.argv) == 4 and sys.argv[3] != metadata['scenario']:
+if len(sys.argv) >= 4 and sys.argv[3] != metadata['scenario']:
     sys.exit('wrong scenario input')
+if len(sys.argv) == 5 and sys.argv[4] != metadata['resource']:
+    sys.exit('wrong resource input')
+if mode == 'wrong-resource':
+    metadata['resource'] = '/res/Object/Other.arc:bdl/model.bdl'
 if mode == 'no-draw':
     metadata['draw_calls'] = 0
 if mode == 'malformed':

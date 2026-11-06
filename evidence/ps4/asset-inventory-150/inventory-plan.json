@@ -1,0 +1,4952 @@
+{
+  "schema": 1,
+  "id": "asset-inventory-150-v2",
+  "scope": {
+    "bounded_archives": [
+      "res/Object/Always.arc",
+      "res/Object/Bk.arc",
+      "res/Object/Bm.arc",
+      "res/Object/Link.arc",
+      "res/Object/Title.arc",
+      "res/Stage/Cave01/Room0.arc",
+      "res/Stage/GanonA/Room0.arc",
+      "res/Stage/LinkRM/Room0.arc",
+      "res/Stage/M_Dai/Room0.arc",
+      "res/Stage/M_NewD2/Room0.arc",
+      "res/Stage/PShip/Room0.arc",
+      "res/Stage/Siren/Room0.arc",
+      "res/Stage/kaze/Room0.arc",
+      "res/Stage/kinBOSS/Room0.arc",
+      "res/Stage/majroom/Room0.arc",
+      "res/Stage/sea/Room11.arc",
+      "res/Stage/sea/Room41.arc",
+      "res/Stage/sea/Room44.arc"
+    ],
+    "family_resource_counts": {
+      "common-props": 31,
+      "player-equipment": 54,
+      "rito-actor": 17,
+      "bokoblin-actor": 4,
+      "title-models": 2,
+      "outset-exterior": 3,
+      "windfall-exterior": 3,
+      "forest-haven-exterior": 2,
+      "dragon-roost-cavern": 2,
+      "forbidden-woods": 1,
+      "tower-of-gods": 2,
+      "earth-temple": 1,
+      "wind-temple": 1,
+      "forsaken-fortress": 3,
+      "ganons-tower": 2,
+      "house-interior": 3,
+      "optional-cave": 1,
+      "pirate-ship": 2
+    },
+    "inventory_boundary": "All BDL/BMD members in these 18 fixed archives, plus one explicit stock-resource sharing row.",
+    "excluded_archive_count": 1264,
+    "outside_inventory": "Other archives, material tables/animations, unused/debug/stage variants and actor-specific state need follow-up.",
+    "owner_authorization": "2026-11-06: Proceed with asset expansion now despite remaining #149 acceptance gaps.",
+    "pilot_exploration_plan_sha256": "22dd0383cb901f22f54938ce8df189738e3c681ed5f7201127ada4ff4357623d"
+  },
+  "dynamic_exclusions": [
+    {
+      "id": "particles-and-shards",
+      "owner": "#151",
+      "reason": "Real effect lifetimes and texture/callback changes need separate scripted exercises."
+    },
+    {
+      "id": "equipment-player-mutations",
+      "owner": "#152",
+      "reason": "Stock model draws exclude equipment/action-dependent material and model changes."
+    },
+    {
+      "id": "enemy-boss-mutations",
+      "owner": "#153",
+      "reason": "Actor AI, animation, damage and boss phases are not instantiated."
+    },
+    {
+      "id": "environment-scene-mutations",
+      "owner": "#154",
+      "reason": "Scene model flags, actor/environment lighting, fog, water, shadows and layout-dependent paths are excluded."
+    },
+    {
+      "id": "menu-cutscene-alternate-mode",
+      "owner": "#155",
+      "reason": "Resource sharing does not exercise native menus, cutscenes or alternate-mode runtime state."
+    }
+  ],
+  "rows": [
+    {
+      "id": "bokoblin-actor-0b6ff14913a3",
+      "family": "bokoblin-actor",
+      "resource": "/res/Object/Bk.arc:bdlm/bk.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_boko.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "enemy"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 48,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "bokoblin-actor-206626a0211b",
+      "family": "bokoblin-actor",
+      "resource": "/res/Object/Bk.arc:bmd/bk_kb.bmd",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_boko.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "enemy"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bmd3",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "bokoblin-actor-686bdd78b9e3",
+      "family": "bokoblin-actor",
+      "resource": "/res/Object/Bk.arc:bmd/bk_tate.bmd",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_boko.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "enemy"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bmd3",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "bokoblin-actor-94919d105d2d",
+      "family": "bokoblin-actor",
+      "resource": "/res/Object/Bk.arc:bdlm/bouen.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_boko.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "enemy"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-large-pot",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/obm_ootubo1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      }
+    },
+    {
+      "id": "common-props-0b3e04d57956",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/obm_koisi2.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-0db6c1ce3341",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/mpm_tubo.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-1b1d97961527",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/vbell.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-2182d0658efb",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/mpa_simi.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-246963f864dc",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/nh.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-30ccbb9d948c",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/fa.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-36699345da44",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/arrowitem.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-36eeb04c83d9",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/vdokl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-406ea42cc1a1",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/ib.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 5,
+          "MAT3": 5,
+          "MDL3": 5
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-460e0f97d3b0",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/vbokl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-4a483c6e0dfd",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/vhutl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-564298c975ca",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/vesal.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-85a80ecb5bb5",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/obm_koisi1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-8c94072b9797",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/mpi_koishi.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-a49307e59ed7",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/vhkal.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-ab0b0d547298",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/vhanl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-b52e5e989e51",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/vlupl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-b98b5afe3ada",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/vchul.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-bce281d13b7e",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/vhapl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 5,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-bd7dbbda75b8",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/vkeyl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-c3d30da6f1f4",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/obm_syougekisw.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-c43fe7cb1e8a",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/yazirushi_01.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-c56e5adf2fa8",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/mpoda.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-cbe04000d768",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/ya.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-cc3248435cb9",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/krock_00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-db18718dd441",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/vhrtl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-ee4398a93c18",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/ythdr00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-efaf58ec42af",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/w_pillar_a.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-props-ff1d96865667",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdlm/mpodb.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "common-small-pot",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/obm_kotubo1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      }
+    },
+    {
+      "id": "common-small-pot-alternate-resource-state",
+      "family": "common-props",
+      "resource": "/res/Object/Always.arc:bdl/obm_kotubo1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_tsubo.cpp:Act_c::create_heap"
+      ],
+      "dimensions": {
+        "content": [
+          "shared-props"
+        ],
+        "mode": [
+          "alternate-quest-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "shared",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "shared_with": "common-small-pot",
+      "justification": "The same Always archive/member bytes and fixed stock state are reused; the pot heap selects the model by pot type, not quest mode. This maps only this immutable resource recipe; alternate gameplay is unexercised."
+    },
+    {
+      "id": "dragon-roost-cavern-a91656ae00ae",
+      "family": "dragon-roost-cavern",
+      "resource": "/res/Stage/M_NewD2/Room0.arc:bdl/model3.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "dragon-roost-cavern-room-0"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "dragon-roost-dungeon",
+      "family": "dragon-roost-cavern",
+      "resource": "/res/Stage/M_NewD2/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "dragon-roost-cavern-room-0"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 6,
+          "SHP1": 17,
+          "MAT3": 17,
+          "MDL3": 17
+        }
+      }
+    },
+    {
+      "id": "earth-temple",
+      "family": "earth-temple",
+      "resource": "/res/Stage/M_Dai/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "earth-temple-room-0"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 64,
+          "SHP1": 57,
+          "MAT3": 57,
+          "MDL3": 57
+        }
+      }
+    },
+    {
+      "id": "forbidden-woods-boss-room",
+      "family": "forbidden-woods",
+      "resource": "/res/Stage/kinBOSS/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "forbidden-woods-boss-room"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 8,
+          "MAT3": 8,
+          "MDL3": 8
+        }
+      }
+    },
+    {
+      "id": "forest-haven-exterior-4518211fcfd1",
+      "family": "forest-haven-exterior",
+      "resource": "/res/Stage/sea/Room41.arc:bdl/model1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "forest-haven"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 9,
+          "SHP1": 7,
+          "MAT3": 7,
+          "MDL3": 7
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "forest-haven-ground",
+      "family": "forest-haven-exterior",
+      "resource": "/res/Stage/sea/Room41.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "forest-haven"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 14,
+          "SHP1": 32,
+          "MAT3": 32,
+          "MDL3": 32
+        }
+      }
+    },
+    {
+      "id": "forsaken-fortress-8f401ca3da42",
+      "family": "forsaken-fortress",
+      "resource": "/res/Stage/majroom/Room0.arc:bdl/model1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "forsaken-fortress-room"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "forsaken-fortress-9c0dac471fb3",
+      "family": "forsaken-fortress",
+      "resource": "/res/Stage/majroom/Room0.arc:bdl/model2.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "forsaken-fortress-room"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 4,
+          "MAT3": 4,
+          "MDL3": 4
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "forsaken-fortress-room",
+      "family": "forsaken-fortress",
+      "resource": "/res/Stage/majroom/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "forsaken-fortress-room"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 13,
+          "MAT3": 13,
+          "MDL3": 13
+        }
+      }
+    },
+    {
+      "id": "ganons-tower",
+      "family": "ganons-tower",
+      "resource": "/res/Stage/GanonA/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "ganons-tower-room-0"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 6,
+          "MAT3": 6,
+          "MDL3": 6
+        }
+      }
+    },
+    {
+      "id": "ganons-tower-a671628af401",
+      "family": "ganons-tower",
+      "resource": "/res/Stage/GanonA/Room0.arc:bdl/model3.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "ganons-tower-room-0"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "house-interior-469e8cec3f85",
+      "family": "house-interior",
+      "resource": "/res/Stage/LinkRM/Room0.arc:bdl/model3.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "links-house"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "house-interior-857c597e22d2",
+      "family": "house-interior",
+      "resource": "/res/Stage/LinkRM/Room0.arc:bdl/model1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "links-house"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "link-boomerang",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/boomerang.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      }
+    },
+    {
+      "id": "link-bow",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/bow.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 12,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      }
+    },
+    {
+      "id": "link-casual-model",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/cl.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "casual-model-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 42,
+          "SHP1": 24,
+          "MAT3": 24,
+          "MDL3": 24
+        }
+      }
+    },
+    {
+      "id": "links-house",
+      "family": "house-interior",
+      "resource": "/res/Stage/LinkRM/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "links-house"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 19,
+          "MAT3": 19,
+          "MDL3": 19
+        }
+      }
+    },
+    {
+      "id": "optional-cave",
+      "family": "optional-cave",
+      "resource": "/res/Stage/Cave01/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "cave-01"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 13,
+          "SHP1": 6,
+          "MAT3": 6,
+          "MDL3": 6
+        }
+      }
+    },
+    {
+      "id": "outset-exterior-aa68ede51508",
+      "family": "outset-exterior",
+      "resource": "/res/Stage/sea/Room44.arc:bdl/model1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "outset"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 9,
+          "SHP1": 8,
+          "MAT3": 8,
+          "MDL3": 8
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "outset-exterior-fe339d144db6",
+      "family": "outset-exterior",
+      "resource": "/res/Stage/sea/Room44.arc:bdl/model3.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "outset"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "outset-ground",
+      "family": "outset-exterior",
+      "resource": "/res/Stage/sea/Room44.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "outset"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 6,
+          "SHP1": 8,
+          "MAT3": 8,
+          "MDL3": 8
+        }
+      }
+    },
+    {
+      "id": "pirate-ship",
+      "family": "pirate-ship",
+      "resource": "/res/Stage/PShip/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "pirate-ship-interior"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 22,
+          "SHP1": 27,
+          "MAT3": 27,
+          "MDL3": 27
+        }
+      }
+    },
+    {
+      "id": "pirate-ship-da2f2836bd7b",
+      "family": "pirate-ship",
+      "resource": "/res/Stage/PShip/Room0.arc:bdl2/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "pirate-ship-interior"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 22,
+          "SHP1": 27,
+          "MAT3": 27,
+          "MDL3": 27
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-020ee2916bfe",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/gwp00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-063de142794d",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/binliquidh.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-06dd2821bac7",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/fan.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 7,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-0a3f7aae4306",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlc/ropeend.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-0cf666614633",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/binho.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-0e85a654856b",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdli/garwfi00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 5,
+          "SHP1": 4,
+          "MAT3": 4,
+          "MDL3": 4
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-10028e0da334",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/cutfh.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-199cf4ee6e7c",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/ymsli00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 5,
+          "SHP1": 4,
+          "MAT3": 4,
+          "MDL3": 4
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-28c9acafeb36",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/tceiver.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-28d73bbf61ed",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlc/esa.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-2aaa24b6f94a",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/gicer01.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 27,
+          "SHP1": 18,
+          "MAT3": 18,
+          "MDL3": 18
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-2f23e569b65f",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/bottleemp.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-3239cf02c0a6",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/yaura00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-39bd03e6bf05",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/bomb.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 2,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-413b3bb3696e",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/fanb.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 13,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-41ddf712a68f",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/binliquid.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-482394202dcd",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/bottlecap.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-4bb1f37e8384",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/gicer00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 2,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-4cbfee11aab8",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/hyoinomi.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-5cbe9fb6c617",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/podms.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-5de099b30d4c",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/ybafo00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-603b4def2207",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/hammer.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 7,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-69e3f9f1442d",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/katsura.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-6ec15abedcfc",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/hookshot.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 5,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-7825a4d44a8a",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/camera.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-795600f08e41",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/swa.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-7aeb09420643",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlc/hboots.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-7e2039465930",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/ymsls00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-7f4d87db9ece",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/sha.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 6,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-829348e015a6",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/yuchw00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-8c128bed131b",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/tetolach.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-8c8792f8e4dc",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlc/telescope.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-8e9a6b09ece4",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/yhsls00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 4,
+          "MAT3": 4,
+          "MDL3": 4
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-9808c59bb94e",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/swms.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 5,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-983f8fe20b00",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/shms.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 6,
+          "SHP1": 3,
+          "MAT3": 3,
+          "MDL3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-99b6f557e099",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/swgripms.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-9a7d7b3948bd",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/swgripa.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-a0851eef6648",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/arrow.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 5,
+          "SHP1": 5,
+          "MAT3": 5,
+          "MDL3": 5
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-a18c4a5ed21d",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/hands.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 11,
+          "SHP1": 10,
+          "MAT3": 10,
+          "MDL3": 10
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-a46fe0957fe1",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/yamu.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-a89f93867319",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdli/garwg00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 5,
+          "SHP1": 4,
+          "MAT3": 4,
+          "MDL3": 4
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-ab5b50da6b22",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/binfairy.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-b382e61af597",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/suimen_munya.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-bbfb073c3b01",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/fansmall.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-bcd59830083c",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/arrowglitter.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-be95582eb33e",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/takt.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-c4e5c5def734",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/pring.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-ca35d4c02dab",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdli/garwfi01.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 5,
+          "SHP1": 4,
+          "MAT3": 4,
+          "MDL3": 4
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-efc70cb350c3",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdl/letter.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-effe9c855eb1",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/cutfm.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "player-equipment-fca0981bb7ff",
+      "family": "player-equipment",
+      "resource": "/res/Object/Link.arc:bdlm/ymgcs00.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_player_main.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "equipment",
+          "casual-player-model"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 42,
+          "SHP1": 6,
+          "MAT3": 6,
+          "MDL3": 6
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-1a61110437ac",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead05.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-278a7f6278ef",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdl/bmwing.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 11,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-298629bbb9a3",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead09.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-3c4417b81f7b",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdl/bm_knife.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-4856ecef3a22",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bm.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 15,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-771cdb8d22d3",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdl/bm_stick.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-7914924e3d22",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead06.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-7c4aa811cbea",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead01.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 3,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-7d43a9fb7966",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead02.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-a2aaf24bd21e",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead08.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-c7d590460f89",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead03.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-cc336548fc52",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead10.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-de55527149c3",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmarm.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 13,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-e1539e8b54c6",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdl/bm_binder.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-f5d84f117d33",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead07.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-actor-f5fb6ae76774",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdlm/bmhead04.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "rito-bag",
+      "family": "rito-actor",
+      "resource": "/res/Object/Bm.arc:bdl/bm_bag.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_npc_bm1.cpp:daNpc_Bm1_c::CreateHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "rito-npc"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      }
+    },
+    {
+      "id": "title-models-2d1f26ee6498",
+      "family": "title-models",
+      "resource": "/res/Object/Title.arc:bmdm/model.bmd",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_title.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "title-screen"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bmd3",
+        "block_counts": {
+          "JNT1": 13,
+          "SHP1": 12,
+          "MAT3": 12
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "title-models-f2ecbcf80c47",
+      "family": "title-models",
+      "resource": "/res/Object/Title.arc:bmd/vrbox.bmd",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_title.cpp"
+      ],
+      "dimensions": {
+        "content": [
+          "title-screen"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "unsupported",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "This BMD or nonstandard BDL loader family needs its own validated loading/material setup recipe.",
+      "model_structure": {
+        "format": "J3D2bmd3",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 3,
+          "MAT3": 3
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "tower-of-gods",
+      "family": "tower-of-gods",
+      "resource": "/res/Stage/Siren/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "tower-of-gods-room-0"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 25,
+          "MAT3": 25,
+          "MDL3": 25
+        }
+      }
+    },
+    {
+      "id": "tower-of-gods-aa1b7c9b59a0",
+      "family": "tower-of-gods",
+      "resource": "/res/Stage/Siren/Room0.arc:bdl/model3.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "tower-of-gods-room-0"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 1,
+          "MAT3": 1,
+          "MDL3": 1
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "wind-temple",
+      "family": "wind-temple",
+      "resource": "/res/Stage/kaze/Room0.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "wind-temple-room-0"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 1,
+          "SHP1": 15,
+          "MAT3": 15,
+          "MDL3": 15
+        }
+      }
+    },
+    {
+      "id": "windfall-exterior-411009be8468",
+      "family": "windfall-exterior",
+      "resource": "/res/Stage/sea/Room11.arc:bdl/model1.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "windfall"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 10,
+          "SHP1": 8,
+          "MAT3": 8,
+          "MDL3": 8
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "windfall-exterior-bbcddb15d800",
+      "family": "windfall-exterior",
+      "resource": "/res/Stage/sea/Room11.arc:bdl/model3.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "windfall"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "unexercised"
+        ]
+      },
+      "action": "missing",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "reason": "Not exercised in this bounded slice; retain this family for follow-up.",
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 2,
+          "MAT3": 2,
+          "MDL3": 2
+        }
+      },
+      "follow_up": "#150: remaining stock-family collection; #151-#155: applicable dynamic states."
+    },
+    {
+      "id": "windfall-ground",
+      "family": "windfall-exterior",
+      "resource": "/res/Stage/sea/Room11.arc:bdl/model.bdl",
+      "source_references": [
+        "game/src/d/d_resorce.cpp:dRes_info_c::setRes",
+        "game/src/d/actor/d_a_bg.cpp:daBg_c::createHeap"
+      ],
+      "dimensions": {
+        "content": [
+          "windfall"
+        ],
+        "mode": [
+          "normal-resource-state"
+        ],
+        "state": [
+          "stock-bdl-v1"
+        ]
+      },
+      "action": "exercise",
+      "assumptions": [
+        "Resource-level stock draw does not establish scene/actor reachability or all runtime states.",
+        "Actor, environment, equipment and alternate-mode mutations remain with #151-#155; stock draw state alone is mapped here."
+      ],
+      "model_structure": {
+        "format": "J3D2bdl4",
+        "block_counts": {
+          "JNT1": 4,
+          "SHP1": 32,
+          "MAT3": 32,
+          "MDL3": 32
+        }
+      }
+    }
+  ]
+}

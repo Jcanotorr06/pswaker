@@ -17,6 +17,7 @@ from disc_image import DiscImage, archive_member, expand, require, validate
 from package_artifact import PIPELINE_SEED, digest, inventory, validate_pipeline_seed, write_json
 from pipeline_assets import checked_pipeline_asset
 from build_inputs import REPOSITORY
+from asset_inventory import read_manifest, model_resource
 
 
 DYNAMIC_SCENARIO = 'common-pot-debris-lifecycle-v1'
@@ -41,10 +42,18 @@ def check_draw_report(metadata):
                 'Invalid dynamic collection script or unhandled states')
         check_dynamic_lifetimes(metadata)
         return
+    if isinstance(metadata, dict) and metadata.get('scenario') == 'asset-model-stock-v1':
+        require(model_resource(metadata.get('resource')) and metadata['resource'].endswith('.bdl')
+                and metadata.get('frames') == 3 and metadata.get('loader_flags') == 8224
+                and metadata.get('model_flags') == 0 and metadata.get('differed_display_list_flags') == 285212804,
+                'Invalid stock inventory collection state')
+        scenario, resource = 'asset-model-stock-v1', metadata['resource']
+    else:
+        scenario, resource = 'always-small-pot-stock-v1', '/res/Object/Always.arc:bdl/obm_kotubo1.bdl'
     require(isinstance(metadata, dict) and metadata.get('schema') == 1
-            and metadata.get('scenario') == 'always-small-pot-stock-v1'
+            and metadata.get('scenario') == scenario
             and metadata.get('method') == 'asset-material-draw'
-            and metadata.get('resource') == '/res/Object/Always.arc:bdl/obm_kotubo1.bdl'
+            and metadata.get('resource') == resource
             and type(metadata.get('draw_calls')) is int and metadata['draw_calls'] > 0
             and type(metadata.get('materials')) is int and metadata['materials'] > 0,
             'Invalid model collection or no actual material draws')
@@ -204,6 +213,13 @@ def collect(args):
     require(not args.output.resolve().is_relative_to(REPOSITORY), 'Collections must remain private')
     require(not any(args.output.is_relative_to(source) for source in [args.baseline, args.collector]),
             'Collection output must remain outside source assets and collector builds')
+    resource = getattr(args, 'resource', None)
+    if args.scenario == 'asset-model-stock-v1':
+        require(model_resource(resource) and str(resource).endswith('.bdl'), 'A valid stock BDL resource is required')
+        resource = str(resource)
+    else:
+        require(resource is None, 'Resource selection is only supported for inventory collection')
+        resource = '/res/Object/Always.arc:bdl/obm_kotubo1.bdl'
     build = json.loads((args.collector / 'collector-build.json').read_text())
     binary = args.collector / 'collector'
     require(digest(binary) == build['binary_sha256'], 'Collector binary differs from its build record')
@@ -222,9 +238,10 @@ def collect(args):
             particles = disc.read(offset, size, 'common particles')
             resources = {'particle_sha256': hashlib.sha256(particles).hexdigest(), 'particle_bytes': len(particles)}
         else:
-            offset, size = files['res/Object/Always.arc']
-            archive = disc.read(offset, size, 'Always archive')
-            model = archive_member(expand(archive), 'bdl/obm_kotubo1.bdl')
+            archive_path, member = resource.split(':')
+            offset, size = files[archive_path.lstrip('/')]
+            archive = disc.read(offset, size, archive_path)
+            model = archive_member(expand(archive), member)
             resources = {'archive_sha256': hashlib.sha256(archive).hexdigest(),
                          'model_sha256': hashlib.sha256(model).hexdigest(), 'model_bytes': len(model)}
     baseline_before = inventory(args.baseline)
@@ -233,11 +250,15 @@ def collect(args):
         command = ['xvfb-run', '-a', str(binary), str(args.image), str(args.baseline)]
         if args.scenario != 'always-small-pot-stock-v1':
             command.append(args.scenario)
+        if args.scenario == 'asset-model-stock-v1':
+            command.append(resource)
         # The isolated collector has no game boot or card/settings paths.
         run_logged(command, work, work / 'collector.log', timeout=180)
         native = json.loads((work / 'collection.json').read_text())
         check_draw_report(native)
         require(native['scenario'] == args.scenario, 'Collector returned a different scenario')
+        if args.scenario != DYNAMIC_SCENARIO:
+            require(native['resource'] == resource, 'Collector returned a different resource')
         seed_command = [sys.executable, str(REPOSITORY / 'tools/pswaker/complete-package.py'), 'pipeline-seed',
                         str(work / 'observed.db'), '--output', str(work / 'assets')]
         run_logged(seed_command, REPOSITORY, work / 'snapshot.log')
@@ -385,9 +406,155 @@ def prepare(collection, baseline, output):
     return report
 
 
+def prepare_batch(manifest_path, collections, baseline, output):
+    require(not output.exists(), 'Output already exists; retain it and choose a new directory')
+    require(not output.is_relative_to(REPOSITORY), 'Generated seeds must remain outside the repository')
+    require(not any(output.is_relative_to(source) for source in [collections, baseline, manifest_path]),
+            'Batch output must remain outside source inputs')
+    manifest_sha = digest(manifest_path)
+    manifest = read_manifest(manifest_path)
+    inputs = {'baseline': inventory(baseline), 'collections': inventory(collections)}
+    original = checked_pipeline_asset(baseline)
+    existing = records(baseline)
+    with tempfile.TemporaryDirectory(prefix='.batch-seed-', dir=output.parent) as folder:
+        work = Path(folder)
+        validation = work / 'validated'
+        validation.mkdir()
+        sources, manifests, rows = {}, [], []
+        for row in sorted(manifest['rows'], key=lambda row: row['id']):
+            identifier = row['id']
+            if row['action'] != 'exercise':
+                continue
+            collection = collections / identifier
+            report = prepare(collection, baseline, validation / identifier)
+            metadata = report['collection']
+            require(metadata['method'] == 'asset-material-draw'
+                    and metadata['resource'] == row['resource']
+                    and metadata.get('resources') == row['input_identity'],
+                    'Collection resource differs from its inventory row')
+            require(all(metadata.get(key) == manifest[key]
+                        for key in ['collector', 'image_sha256', 'contract_sha256']),
+                    'Collection target/input identity differs from inventory contract')
+            sources[identifier] = records(collection / 'assets')
+            manifests.append((identifier, report['generated']))
+            rows.append({**row, 'classification': 'generated/exercised',
+                         'evidence': f'validated/{identifier}/collection-report.json',
+                         'physical_verification': False})
+        for row in manifest['rows']:
+            if row['action'] != 'exercise':
+                evidence = {}
+                if row['action'] == 'shared':
+                    sources[row['id']] = sources[row['shared_with']]
+                    evidence = {'evidence': f"validated/{row['shared_with']}/collection-report.json"}
+                rows.append({**row, 'classification': row['action'], **evidence,
+                             'physical_verification': False})
+        rows.sort(key=lambda row: row['id'])
+        gaps = [row['id'] for row in rows if row['classification'] in ['unsupported', 'missing']]
+        additions = additional_records(existing, sources.values())
+        seed = write_combined_seed(baseline, original, additions, manifests, work / 'assets')
+        generated = {key: value for source in sources.values() for key, value in source.items()}
+        report = {'schema': 1, 'provenance': 'asset-material-batch', 'manifest': manifest,
+                  'manifest_sha256': manifest_sha, 'baseline_rows': len(existing),
+                  'collected_rows': len(generated), 'new_rows': len(additions), 'seed': seed,
+                  'rows': rows, 'physical_verification': False, 'input_files': inputs,
+                  'inventory_complete': not gaps, 'residual_gaps': gaps,
+                  'mapping': [{'type': key[0], 'hash': key[1],
+                               'description_sha256': hashlib.sha256(value[4]).hexdigest(),
+                               'baseline_covered': key in existing,
+                               'sources': sorted(name for name, source in sources.items() if key in source)}
+                              for key, value in sorted(generated.items())]}
+        require(digest(manifest_path) == manifest_sha and inventory(baseline) == inputs['baseline']
+                and inventory(collections) == inputs['collections'], 'Batch inputs changed during preparation')
+        write_json(work / 'batch-report.json', report)
+        work.rename(output)
+    return report
+
+
+def collect_batch(args):
+    require(not args.output.exists(), 'Output already exists; retain the earlier batch')
+    require(not args.output.is_relative_to(REPOSITORY), 'Batch collections must remain private')
+    require(not any(args.output.is_relative_to(source) for source in [args.baseline, args.collector]),
+            'Batch output must remain outside source inputs')
+    manifest = read_manifest(args.manifest)
+    manifest_sha = digest(args.manifest)
+    inputs = {'baseline': inventory(args.baseline), 'collector': inventory(args.collector)}
+    with collection_attempt(args.output) as work:
+        collections = work / 'collections'
+        collections.mkdir()
+        for row in sorted(manifest['rows'], key=lambda row: row['id']):
+            if row['action'] == 'exercise':
+                collect(argparse.Namespace(collector=args.collector, image=args.image, baseline=args.baseline,
+                                           output=collections / row['id'], scenario='asset-model-stock-v1',
+                                           resource=row['resource']))
+        report = prepare_batch(args.manifest, collections, args.baseline, work / 'prepared')
+        require(digest(args.manifest) == manifest_sha and digest(args.image) == manifest['image_sha256']
+                and inventory(args.baseline) == inputs['baseline']
+                and inventory(args.collector) == inputs['collector'], 'Batch inputs changed during collection')
+        write_json(work / 'batch-run.json', {'schema': 1, 'manifest_sha256': manifest_sha,
+                   'collection_tool_sha256': digest(Path(__file__)), 'manifest_tool_sha256': digest(
+                       REPOSITORY / 'tools/pswaker/asset_inventory.py'),
+                   'report_sha256': digest(work / 'prepared/batch-report.json'),
+                   'input_files': inputs,
+                   'physical_verification': False})
+    return report
+
+
+def freeze_inventory(args):
+    require(not args.output.exists(), 'Output already exists; retain the frozen inventory')
+    require(not args.output.is_relative_to(REPOSITORY), 'Freeze inventories privately before publishing data-free records')
+    require(not args.output.is_relative_to(args.collector), 'Inventory output must remain outside collector inputs')
+    plan_sha = digest(args.plan)
+    plan = json.loads(args.plan.read_text(encoding='utf-8'))
+    require(isinstance(plan, dict) and isinstance(plan.get('rows'), list), 'Invalid inventory plan')
+    build_path = args.collector / 'collector-build.json'
+    build = json.loads(build_path.read_text())
+    collector_before = inventory(args.collector)
+    require(digest(args.collector / 'collector') == build['binary_sha256']
+            and all(digest(args.collector / f'{label}-contract.bin') == build['contract_sha256']
+                    for label in ['host', 'ps4']), 'Collector differs from its build/target contract')
+    image = validate(args.image)
+    rows = []
+    with args.image.open('rb') as stream:
+        disc = DiscImage(stream)
+        files = disc.files(disc.read(0, 0x440, 'header'))
+        archive_path, expanded_archive, archive_sha = None, b'', ''
+        for row in plan['rows']:
+            require(isinstance(row, dict) and model_resource(row.get('resource')), 'Invalid inventory plan resource')
+            path, member = row['resource'].split(':')
+            if path != archive_path:
+                offset, size = files[path.lstrip('/')]
+                archive = disc.read(offset, size, path)
+                expanded_archive = expand(archive)
+                archive_sha = hashlib.sha256(archive).hexdigest()
+                archive_path = path
+            model = archive_member(expanded_archive, member)
+            rows.append({**row, 'input_identity': {'archive_sha256': archive_sha,
+                         'model_sha256': hashlib.sha256(model).hexdigest(), 'model_bytes': len(model)}})
+    manifest = {**plan, 'rows': rows, 'plan_sha256': plan_sha,
+                'image_sha256': image['sha256'], 'contract_sha256': build['contract_sha256'],
+                'collector': {'sha256': build['binary_sha256'], 'build_sha256': digest(build_path)}}
+    with tempfile.TemporaryDirectory(prefix='.inventory-', dir=args.output.parent) as folder:
+        path = Path(folder) / 'manifest.json'
+        write_json(path, manifest)
+        read_manifest(path)
+        require(digest(args.image) == image['sha256'] and digest(args.plan) == plan_sha
+                and inventory(args.collector) == collector_before, 'Inventory inputs changed during freezing')
+        path.rename(args.output)
+    return manifest
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
+    command = commands.add_parser('freeze-inventory', help='Bind an explicit resource/state plan to immutable inputs')
+    for name in ['plan', 'collector', 'image', 'output']:
+        command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
+    command = commands.add_parser('batch', help='Exercise a fixed stock-material inventory and prepare its seed')
+    for name in ['manifest', 'collector', 'image', 'baseline', 'output']:
+        command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
+    command = commands.add_parser('prepare-batch', help='Validate inventory collections and consolidate descriptions')
+    for name in ['manifest', 'collections', 'baseline', 'output']:
+        command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     command = commands.add_parser('correct', help='Supplement a seed with validated runtime snapshot assets')
     command.add_argument('--baseline', type=lambda value: Path(value).resolve(), required=True)
     command.add_argument('--runtime-snapshot', type=lambda value: Path(value).resolve(),
@@ -401,19 +568,29 @@ def main():
     for name in ['game-root', 'platform-root', 'host-root', 'build-directory', 'output']:
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     command = commands.add_parser('collect')
-    command.add_argument('--scenario', choices=['always-small-pot-stock-v1', DYNAMIC_SCENARIO],
+    command.add_argument('--scenario', choices=['always-small-pot-stock-v1', DYNAMIC_SCENARIO, 'asset-model-stock-v1'],
                          default='always-small-pot-stock-v1')
+    command.add_argument('--resource', help='Exact /res/archive.arc:member.bdl for the stock inventory scenario')
     for name in ['collector', 'image', 'baseline', 'output']:
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     args = parser.parse_args()
     try:
         if args.command == 'build':
             build_collector(args)
+        elif args.command == 'freeze-inventory':
+            manifest = freeze_inventory(args)
+            print(json.dumps({'inventory_rows': len(manifest['rows']), 'manifest_sha256': digest(args.output)}))
         elif args.command == 'collect':
             collect(args)
+        elif args.command == 'batch':
+            report = collect_batch(args)
+            print(json.dumps({'rows': report['seed']['rows'], 'new_rows': report['new_rows']}))
         elif args.command == 'correct':
             report = correct_seed(args.baseline, args.runtime_snapshot, args.output)
             print(json.dumps({'rows': report['seed']['rows'], 'added_rows': report['added_rows']}))
+        elif args.command == 'prepare-batch':
+            report = prepare_batch(args.manifest, args.collections, args.baseline, args.output)
+            print(json.dumps({'rows': report['seed']['rows'], 'new_rows': report['new_rows']}))
         else:
             report = prepare(args.collection.resolve(), args.baseline.resolve(), args.output.resolve())
             print(json.dumps({'rows': report['seed']['rows'], 'new_rows': report['new_rows']}))

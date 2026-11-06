@@ -470,6 +470,40 @@ class RelocatableProgramTests(PreparationCliTestCase):
         self.assertEqual(inspection['pipeline_seed'], collected['seed'])
         self.assertEqual(inspection['payload_sha256']['initial_pipeline_cache.db'], collected['seed']['sha256'])
 
+    def test_inventory_batch_seed_survives_fresh_game_package_inspection(self):
+        collections = self.root / 'collections'
+        metadata = make_model_collection(collections / 'synthetic-pot')
+        metadata.update(resources={'archive_sha256': 'd' * 64, 'model_sha256': 'e' * 64,
+                                   'model_bytes': 100}, contract_sha256='f' * 64)
+        (collections / 'synthetic-pot/collection.json').write_text(json.dumps(metadata))
+        manifest = self.root / 'inventory.json'
+        manifest.write_text(json.dumps({'schema': 1, 'id': 'synthetic-package-v1',
+            'image_sha256': metadata['image_sha256'], 'collector': metadata['collector'],
+            'contract_sha256': metadata['contract_sha256'],
+            'dynamic_exclusions': [{'id': 'lighting', 'owner': '#151', 'reason': 'Separate dynamic exercise'}],
+            'rows': [{'id': 'synthetic-pot', 'family': 'synthetic', 'resource': metadata['resource'],
+                      'source_references': ['synthetic.cpp:draw'], 'input_identity': metadata['resources'],
+                      'dimensions': {'content': ['synthetic'], 'mode': ['normal'], 'state': ['stock-bdl-v1']},
+                      'action': 'exercise', 'assumptions': ['Stock material only.']}]}))
+        prepared = self.root / 'prepared-batch'
+        result = self.run_cli('prepare-batch', '--manifest', manifest, '--collections', collections,
+                              '--baseline', self.reference / 'assembly-assets', '--output', prepared,
+                              cli=Locations(self.root / 'repo').command('collect-model-seed.py'))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads((prepared / 'batch-report.json').read_text())
+        self.assertEqual((report['collected_rows'], report['new_rows'], report['seed']['rows']), (2, 1, 3))
+        stage, elf, _ = self.game_build()
+        result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
+                              '--elf', elf, '--platform-root', self.reference, '--kind', 'game',
+                              '--app-version', '01.05', '--assembly-assets', prepared / 'assets',
+                              '--output', self.output)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        result = self.run_cli('inspect', self.output, '--platform-root', self.reference)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        inspection = json.loads((self.output / 'inspection.json').read_text())
+        self.assertEqual(inspection['pipeline_seed'], report['seed'])
+        self.assertEqual(inspection['payload_sha256']['initial_pipeline_cache.db'], report['seed']['sha256'])
+
     def test_game_release_carries_artwork_through_relocation_and_fresh_inspection(self):
         stage, elf, info = self.game_build()
         artwork = info['artwork']
