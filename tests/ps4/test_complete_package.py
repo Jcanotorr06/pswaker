@@ -16,7 +16,7 @@ import xml.etree.ElementTree as ET
 
 from synthetic_disc import generate
 from synthetic_program import stage_artwork, png_bytes
-from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_collection
+from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_collection, make_particle_collection
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/pswaker'))
 from build_inputs import Locations
@@ -471,8 +471,14 @@ class RelocatableProgramTests(PreparationCliTestCase):
         self.assertEqual(inspection['payload_sha256']['initial_pipeline_cache.db'], collected['seed']['sha256'])
 
     def test_inventory_batch_seed_survives_fresh_game_package_inspection(self):
+        self.check_batch_package()
+
+    def test_particle_batch_seed_survives_fresh_game_package_inspection(self):
+        self.check_batch_package(particles=True)
+
+    def check_batch_package(self, particles=False):
         collections = self.root / 'collections'
-        metadata = make_model_collection(collections / 'synthetic-pot')
+        metadata = (make_particle_collection if particles else make_model_collection)(collections / 'synthetic-pot')
         metadata.update(resources={'archive_sha256': 'd' * 64, 'model_sha256': 'e' * 64,
                                    'model_bytes': 100}, contract_sha256='f' * 64)
         (collections / 'synthetic-pot/collection.json').write_text(json.dumps(metadata))
@@ -485,6 +491,15 @@ class RelocatableProgramTests(PreparationCliTestCase):
                       'source_references': ['synthetic.cpp:draw'], 'input_identity': metadata['resources'],
                       'dimensions': {'content': ['synthetic'], 'mode': ['normal'], 'state': ['stock-bdl-v1']},
                       'action': 'exercise', 'assumptions': ['Stock material only.']}]}))
+        if particles:
+            document = json.loads(manifest.read_text())
+            document.update(kind='particle-effects', exclusions=['No scene particles.'])
+            document['rows'][0]['script'] = metadata['script']
+            identity = {'particle_sha256': 'd' * 64, 'particle_bytes': 100}
+            document['rows'][0]['input_identity'] = identity
+            metadata['resources'] = identity
+            (collections / 'synthetic-pot/collection.json').write_text(json.dumps(metadata))
+            manifest.write_text(json.dumps(document))
         prepared = self.root / 'prepared-batch'
         result = self.run_cli('prepare-batch', '--manifest', manifest, '--collections', collections,
                               '--baseline', self.reference / 'assembly-assets', '--output', prepared,

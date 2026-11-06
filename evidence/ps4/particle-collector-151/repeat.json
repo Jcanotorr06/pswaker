@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "baseline_rows": 301,
+  "combined_rows": 409,
+  "exact_seed_and_manifest_repeat": true,
+  "all_baseline_bytes_preserved": true,
+  "scenarios": [
+    {
+      "scenario": "common-bomb-fragments-v1",
+      "rows": 1,
+      "frames": 252,
+      "draw_calls": 18760,
+      "pipeline_lookups": 248,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-bomb-smoke-one-v1",
+      "rows": 79,
+      "frames": 307,
+      "draw_calls": 22240,
+      "pipeline_lookups": 606,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-bomb-smoke-two-v1",
+      "rows": 38,
+      "frames": 180,
+      "draw_calls": 3136,
+      "pipeline_lookups": 352,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-bomb-flash-v1",
+      "rows": 1,
+      "frames": 34,
+      "draw_calls": 30,
+      "pipeline_lookups": 30,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-death-cloud-v1",
+      "rows": 3,
+      "frames": 185,
+      "draw_calls": 8450,
+      "pipeline_lookups": 362,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-ascension-cloud-v1",
+      "rows": 3,
+      "frames": 85,
+      "draw_calls": 1862,
+      "pipeline_lookups": 162,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-pot-debris-v1",
+      "rows": 1,
+      "frames": 44,
+      "draw_calls": 40,
+      "pipeline_lookups": 40,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-bomb-light-smoke-v1",
+      "rows": 15,
+      "frames": 103,
+      "draw_calls": 3718,
+      "pipeline_lookups": 198,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-bomb-normal-overlap-v1",
+      "rows": 107,
+      "frames": 308,
+      "draw_calls": 44640,
+      "pipeline_lookups": 1241,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-smoke-overlap-v1",
+      "rows": 5,
+      "frames": 110,
+      "draw_calls": 616,
+      "pipeline_lookups": 388,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-flash-smoke-overlap-v1",
+      "rows": 4,
+      "frames": 100,
+      "draw_calls": 570,
+      "pipeline_lookups": 222,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-ground-smoke-v1",
+      "rows": 3,
+      "frames": 92,
+      "draw_calls": 236,
+      "pipeline_lookups": 176,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    },
+    {
+      "scenario": "common-ground-smoke-alt-v1",
+      "rows": 3,
+      "frames": 110,
+      "draw_calls": 382,
+      "pipeline_lookups": 212,
+      "comparison": "complete description bytes, variation ticks and native mappings identical"
+    }
+  ],
+  "mapping_sha256": "263fa4004b12ab5f76e2b2bcc29993e752287ae5845eba1319c01d5bba6b8913"
+}

@@ -8,7 +8,7 @@ import tempfile
 import shutil
 import unittest
 
-from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_collection
+from synthetic_pipeline import make_seed, make_model_collection, make_dynamic_collection, make_particle_collection
 from synthetic_disc import generate
 from synthetic_model_collector import add_model_resource, make_collector, MODEL_BYTES, PARTICLE_BYTES
 from contextlib import closing
@@ -53,6 +53,39 @@ class CollectorCommandTests(unittest.TestCase):
         repeated = json.loads((self.output / 'collection.json').read_text())
         for name in ['seed_sha256', 'variations', 'collector', 'resources', 'script']:
             self.assertEqual(repeated[name], report[name])
+        self.assertEqual({p: p.read_bytes() for p in before}, before)
+
+    def test_particle_batch_freezes_inputs_and_runs_the_requested_overlap(self):
+        fixture = self.root / 'particle-fixture'
+        metadata = make_particle_collection(fixture, '/res/Particle/common.jpc:0x000b+0x2009', (84,))
+        metadata['runtime_identity_verified_rows'] = 3
+        (self.collector / 'native-report.json').write_text(json.dumps(metadata))
+        row = {'id': 'overlap', 'family': 'bomb', 'resource': metadata['resource'],
+               'script': metadata['script'], 'source_references': ['synthetic.cpp:explode'],
+               'action': 'exercise', 'assumptions': ['Synthetic overlap.']}
+        plan = self.root / 'plan.json'
+        plan.write_text(json.dumps({'schema': 1, 'id': 'synthetic-particles-v1', 'kind': 'particle-effects',
+                                    'exclusions': ['Scene effects excluded.'], 'rows': [row]}))
+        manifest = self.root / 'manifest.json'
+        command = [sys.executable, str(self.cli), 'freeze-inventory', '--plan', str(plan),
+                   '--collector', str(self.collector), '--image', str(self.image)]
+        result = subprocess.run(command + ['--output', str(manifest)], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        result = subprocess.run(command + ['--output', str(self.root / 'repeat-manifest.json')],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(manifest.read_bytes(), (self.root / 'repeat-manifest.json').read_bytes())
+        before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
+        result = subprocess.run([sys.executable, str(self.cli), 'batch', '--manifest', str(manifest),
+                                 '--collector', str(self.collector), '--image', str(self.image),
+                                 '--baseline', str(self.baseline), '--output', str(self.output)],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads((self.output / 'prepared/batch-report.json').read_text())
+        self.assertEqual((report['collected_rows'], report['new_rows']), (1, 0))
+        collected = report['rows'][0]
+        self.assertEqual(collected['input_identity']['particle_sha256'], hashlib.sha256(PARTICLE_BYTES).hexdigest())
+        self.assertEqual(collected['script']['effect_ids'], [11, 8201])
         self.assertEqual({p: p.read_bytes() for p in before}, before)
 
     def test_command_repeats_export_and_attributes_exact_build_image_and_resource(self):

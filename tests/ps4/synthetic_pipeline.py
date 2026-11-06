@@ -58,3 +58,16 @@ def make_dynamic_collection(directory, *, keys=(84, 126)):
         for texture in [0, 1]]
     (directory / 'collection.json').write_text(json.dumps(report))
     return report
+
+
+def make_particle_collection(directory, resource='/res/Particle/common.jpc:0x000b', keys=(84, 126)):
+    metadata = make_dynamic_collection(directory, keys=keys)
+    metadata.update(scenario='particle-effect-lifecycle-v1', resource=resource,
+                    script={'effect_ids': [int(x, 16) for x in resource.split(':')[1].split('+')],
+                            'max_ticks': 240, 'continuous_emission_ticks': 30,
+                            'variations': [{'random_seed': 0, 'scale': 1, 'alpha': 255, 'texture_index': 0},
+                                           {'random_seed': 1, 'scale': 2, 'alpha': 128, 'texture_index': 1}]},
+                    unhandled_states=['stage-lighting-and-wind', 'projection-framebuffer',
+                                      'model-particles', 'actor-collision', 'other-cameras'])
+    (directory / 'collection.json').write_text(json.dumps(metadata))
+    return metadata

@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "issue": 151,
+  "app_version": "01.24",
+  "program": {
+    "build_id": "35a453336a0e4b0d432c",
+    "elf_sha256": "c2d48776ed9f79d90ec71d61cc0732a3b2b673da361ca57d7c4a10596a2392fc",
+    "eboot_sha256": "76ddd46e09966d6372cb597f16329285b4bbea1450f6ead03102c66539ad97bc"
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "1ad540305f75cd63135921dc249a2ba20efb6adf3c19b6597a993d1a4da16427",
+    "bytes": 1521614848
+  },
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "common-ascension-cloud-v1:observed.db": {
+        "bytes": 28672,
+        "sha256": "ece84ac67f0f788472190895366b8afab41b80d2f6ee97566b2c3dc2ac235bac"
+      },
+      "common-bomb-flash-v1:observed.db": {
+        "bytes": 16384,
+        "sha256": "7ad7e3139067bac8acc1bad076049b91592dc7125c6f1e1cb127d2bbd1efd0c6"
+      },
+      "common-bomb-fragments-v1:observed.db": {
+        "bytes": 16384,
+        "sha256": "04a182c542cdc0da13419d2c4b5de64c48b402bb0891836adbc2401a7ee1e6c6"
+      },
+      "common-bomb-light-smoke-v1:observed.db": {
+        "bytes": 77824,
+        "sha256": "b5cad7084b3b20e7b0720565a2d308458e9dbd34dacd6644e9803e3cea5e9ca3"
+      },
+      "common-bomb-normal-overlap-v1:observed.db": {
+        "bytes": 454656,
+        "sha256": "f1110c4d8620c7e3223f1a8243436b749cec09b142f570eb9cc7f116bf17a0cf"
+      },
+      "common-bomb-smoke-one-v1:observed.db": {
+        "bytes": 339968,
+        "sha256": "8c553a5c37f66b9d169bf575c08ec7a5e6b4a1d981546441b42538be1fe38c1a"
+      },
+      "common-bomb-smoke-two-v1:observed.db": {
+        "bytes": 172032,
+        "sha256": "4ec8fb9ff6273306ee948ec9e141552d289a9a2460f4cdbaaee6596749c79793"
+      },
+      "common-death-cloud-v1:observed.db": {
+        "bytes": 28672,
+        "sha256": "ece84ac67f0f788472190895366b8afab41b80d2f6ee97566b2c3dc2ac235bac"
+      },
+      "common-flash-smoke-overlap-v1:observed.db": {
+        "bytes": 32768,
+        "sha256": "6e135f14c829e074b19a9bbe63f271a5fe6cc34237ffa313312c3859b3b4f5fd"
+      },
+      "common-ground-smoke-alt-v1:observed.db": {
+        "bytes": 28672,
+        "sha256": "6af9a187c4fbaf6bdb79ef84d783d1c377c78a139ed37ab586a048b9af3d6528"
+      },
+      "common-ground-smoke-v1:observed.db": {
+        "bytes": 28672,
+        "sha256": "6af9a187c4fbaf6bdb79ef84d783d1c377c78a139ed37ab586a048b9af3d6528"
+      },
+      "common-pot-debris-v1:observed.db": {
+        "bytes": 16384,
+        "sha256": "3857bc4f6f33dee625e99fe651fb54bd66b297d06aa1dacab43409e81a9bd4eb"
+      },
+      "common-smoke-overlap-v1:observed.db": {
+        "bytes": 36864,
+        "sha256": "379097d7cdb33d075ea6b0836326b6071d760a04b8d7f11f4fbe1977032884e6"
+      }
+    },
+    "rows": 409,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 408
+      }
+    ],
+    "bytes": 1708032,
+    "sha256": "539c836848da045c471f3ee43d988f19c2716207566c3a615410ef223832bb43",
+    "asset_manifest_sha256": "6189ff7287f9548ba8acdb4af9f5dd0f4e1c9b0ca55e5020d40e543b9b5fd3fa"
+  },
+  "manifest_sha256": "2d337d2726c7c46060071c93e1e19fc5ef956ddcb9d3b841e42cc424ca1358bc",
+  "plan_sha256": "d279e590c1d77e751cda199ed81743a383b21cac87f74cf36b9c555662026f66",
+  "collector": {
+    "binary_sha256": "26700c6d362cf10d2dfd2e5000af6fce94ab5aa273923e3cc931385bffa540ac",
+    "prepared_inputs_sha256": "a647390f913854b3ae59e68169c8aa70359f319c2fcbc235a7077606fc04cee1",
+    "renderer_sources_sha256": "e8c95694065f153501f6d4217328d42605fc9cd318f975f437b2ffad63399dab",
+    "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+    "contract_bytes": 2872,
+    "collector_sources": {
+      "CMakeLists.txt": "c2ccdabaff749f188e9826d496dd16185501e45c4ca37a4c558850bf4a666d59",
+      "main.cpp": "12dd481329a566e827ceef1da4caefcf89a8e6dd7345a5c1ce38d3b3a2ad08e5",
+      "model-collector.cpp": "4ef68615612b110301b2c0d73c28a8731d31c1995eb56fda650428807dab5734",
+      "model-contract.cpp": "7baf0056fea33c25868b164828471312415b98f5fe1899ab1853f86d274c6e0c"
+    },
+    "adapter_sources": {
+      "stock-textures.cpp": "963740b0fa44f1c9ed5cbc62b0b6746ede13b31b1d00e721d6133f949e1efb96",
+      "frame-pacing.hpp": "f074d1279621f8b4feae76e6a2ad9f0aba222d310dec455bebe6906b38d41b79",
+      "game-platform.hpp": "fdc1cd4f7f20dc80890ed3bd6fd0219789b30ebdb11d8e6e3dd7923a8463ddbd"
+    },
+    "build_tool_sha256": "120fce9b4af6cbce276cb5b5f06549404568477bca5e296edbd1ee7d56db0c24"
+  },
+  "collector_build_sha256": "1de1920aca141d203ddb0bb3f439cf8a451f8f27314299f62eabbfca8a56be50",
+  "assembly_sha256": "fdf10c512a306b3569b66cea4b16cd2a2ad96d0cef53651a2671742478f15cbe",
+  "inspection_sha256": "663a68d943098201de40d2f075517f0dddaeea163955e49eae2c529783c98115",
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "package_inputs_preserved_sha256": "7e0d5ba27de0f296b4c03b4a8cbd915f136e4f49b3b77ccaadf64b02f0b60e56",
+  "repeat_verification_sha256": "b6a5acaeea0c004d4fac876afcdf36bee45800d3c7043d0b2c77e943a09953a7",
+  "physical_verification": false,
+  "baseline": "Corrected 301-description pilot, independent of asset expansion #150",
+  "limits": [
+    "Host BGRA versus PS4 RGBA; target rebuilds layout-specific driver objects.",
+    "No new physical preparation, appearance, timing, scaling, Quit or save/settings evidence.",
+    "Fixed common-bank recipes exclude scene, model and projection paths."
+  ],
+  "independent_fresh_inspections_agree": true,
+  "assembly_payload_matches_fresh_inspection": true
+}

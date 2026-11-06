@@ -1,5 +1,7 @@
 {
   "include": [
+    "tools/pswaker/particle_collection.py",
+    "tests/ps4/test_particle_collection.py",
     "tools/pswaker/asset_inventory.py",
     "tests/ps4/test_asset_inventory.py",
     "tests/ps4/test_resource_evidence.py",

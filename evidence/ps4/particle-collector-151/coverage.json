@@ -1,0 +1,1479 @@
+{
+  "schema": 1,
+  "issue": 151,
+  "manifest_sha256": "2d337d2726c7c46060071c93e1e19fc5ef956ddcb9d3b841e42cc424ca1358bc",
+  "provenance": "particle-effect-batch",
+  "physical_verification": false,
+  "baseline_rows": 301,
+  "collected_rows": 113,
+  "baseline_covered_rows": 5,
+  "new_rows": 108,
+  "seed_rows": 409,
+  "seed_sha256": "539c836848da045c471f3ee43d988f19c2716207566c3a615410ef223832bb43",
+  "inventory_complete": false,
+  "residual_gaps": [
+    "cheap-bomb-mutations-v1",
+    "common-smoke-one-v1",
+    "common-smoke-two-v1",
+    "common-smoke-zero-v1",
+    "model-shards-v1",
+    "projection-heat-haze-v1",
+    "scene-smoke-explosions-v1"
+  ],
+  "common_bank_resource_ids": 193,
+  "selected_available_effect_ids": 10,
+  "common_ids_outside_generated_boundary": 183,
+  "rows": [
+    {
+      "id": "cheap-bomb-mutations-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x000b+0x232a+0x200a+0x2008",
+      "classification": "unsupported",
+      "physical_verification": false,
+      "reason": "Light smoke alone is exercised; cheap-bomb lifetime, scale and velocity mutations are not."
+    },
+    {
+      "id": "common-ascension-cloud-v1",
+      "family": "death-explosion",
+      "resource": "/res/Particle/common.jpc:0x0019",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 3,
+      "frames": 85,
+      "draw_calls": 1862,
+      "pipeline_lookups": 162,
+      "peak_particles": 20,
+      "collection_report_sha256": "cf531216d7b7e45fa999a937feb36a607a88d55b9e28996cabd33dd499f0dc90",
+      "private_evidence": "prepared-d-first/validated/common-ascension-cloud-v1/collection-report.json"
+    },
+    {
+      "id": "common-bomb-flash-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x000b",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 1,
+      "frames": 34,
+      "draw_calls": 30,
+      "pipeline_lookups": 30,
+      "peak_particles": 35,
+      "collection_report_sha256": "1f3b180893654781295186c35b74a2663bbdb9767e69d3a8b8f61a8eb9d8fbbd",
+      "private_evidence": "prepared-d-first/validated/common-bomb-flash-v1/collection-report.json"
+    },
+    {
+      "id": "common-bomb-fragments-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x2008",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 1,
+      "frames": 252,
+      "draw_calls": 18760,
+      "pipeline_lookups": 248,
+      "peak_particles": 140,
+      "collection_report_sha256": "f985928d2e272f562febd314d1d0938a6309bc337fda3d2f233ac2bf3e9d33fd",
+      "private_evidence": "prepared-d-first/validated/common-bomb-fragments-v1/collection-report.json"
+    },
+    {
+      "id": "common-bomb-light-smoke-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x232a",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 15,
+      "frames": 103,
+      "draw_calls": 3718,
+      "pipeline_lookups": 198,
+      "peak_particles": 38,
+      "collection_report_sha256": "46c623c42de8572398f536ec0e730cb6ba6001ea1f86e59c9cdd0ada8f277b07",
+      "private_evidence": "prepared-d-first/validated/common-bomb-light-smoke-v1/collection-report.json"
+    },
+    {
+      "id": "common-bomb-normal-overlap-v1",
+      "family": "overlap",
+      "resource": "/res/Particle/common.jpc:0x000b+0x2009+0x200a+0x2008",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 107,
+      "frames": 308,
+      "draw_calls": 44640,
+      "pipeline_lookups": 1241,
+      "peak_particles": 236,
+      "collection_report_sha256": "32688017f0dc49928e65daadd0c7f4751e374f558859aa0e2526b8a3c5553048",
+      "private_evidence": "prepared-d-first/validated/common-bomb-normal-overlap-v1/collection-report.json"
+    },
+    {
+      "id": "common-bomb-smoke-one-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x2009",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 79,
+      "frames": 307,
+      "draw_calls": 22240,
+      "pipeline_lookups": 606,
+      "peak_particles": 76,
+      "collection_report_sha256": "b325933ab3d2b1b8a2b7f3fbd364efd9fea95f1f333c8fcbc58cce7fffc3cbfe",
+      "private_evidence": "prepared-d-first/validated/common-bomb-smoke-one-v1/collection-report.json"
+    },
+    {
+      "id": "common-bomb-smoke-two-v1",
+      "family": "explosion",
+      "resource": "/res/Particle/common.jpc:0x200a",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 38,
+      "frames": 180,
+      "draw_calls": 3136,
+      "pipeline_lookups": 352,
+      "peak_particles": 20,
+      "collection_report_sha256": "21b51ec3ed7019bf1acad339a3b907a6fbe6c13cf9cbe09707a5fc099fde9d7f",
+      "private_evidence": "prepared-d-first/validated/common-bomb-smoke-two-v1/collection-report.json"
+    },
+    {
+      "id": "common-death-cloud-v1",
+      "family": "death-explosion",
+      "resource": "/res/Particle/common.jpc:0x0013",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 3,
+      "frames": 185,
+      "draw_calls": 8450,
+      "pipeline_lookups": 362,
+      "peak_particles": 42,
+      "collection_report_sha256": "13da0729a398871afdc0a7bb12788fc04f2ec1a804298e0c26a5b727c8ee356c",
+      "private_evidence": "prepared-d-first/validated/common-death-cloud-v1/collection-report.json"
+    },
+    {
+      "id": "common-flash-smoke-overlap-v1",
+      "family": "overlap",
+      "resource": "/res/Particle/common.jpc:0x000b+0x2022",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 4,
+      "frames": 100,
+      "draw_calls": 570,
+      "pipeline_lookups": 222,
+      "peak_particles": 38,
+      "collection_report_sha256": "33b621f0da02a677b57bc2ea453d11cbb87373deb5e8dc216f2270cb9d2113f5",
+      "private_evidence": "prepared-d-first/validated/common-flash-smoke-overlap-v1/collection-report.json"
+    },
+    {
+      "id": "common-ground-smoke-alt-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2027",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 3,
+      "frames": 110,
+      "draw_calls": 382,
+      "pipeline_lookups": 212,
+      "peak_particles": 3,
+      "collection_report_sha256": "7e4854547730b6a621dc48f3cbe91e99423822f245059d9e73a616c8b41965a8",
+      "private_evidence": "prepared-d-first/validated/common-ground-smoke-alt-v1/collection-report.json"
+    },
+    {
+      "id": "common-ground-smoke-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2022",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 3,
+      "frames": 92,
+      "draw_calls": 236,
+      "pipeline_lookups": 176,
+      "peak_particles": 3,
+      "collection_report_sha256": "8bfe661e4842835d2a5ebef65a5f1a44ae71d0da2a0ea1ac67193e5098c1b381",
+      "private_evidence": "prepared-d-first/validated/common-ground-smoke-v1/collection-report.json"
+    },
+    {
+      "id": "common-pot-debris-v1",
+      "family": "debris",
+      "resource": "/res/Particle/common.jpc:0x0018",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 1,
+      "frames": 44,
+      "draw_calls": 40,
+      "pipeline_lookups": 40,
+      "peak_particles": 20,
+      "collection_report_sha256": "aa70a222075dbefd8b2f849e959472863f234c01057d82b0e2ab6901bd788d09",
+      "private_evidence": "prepared-d-first/validated/common-pot-debris-v1/collection-report.json"
+    },
+    {
+      "id": "common-smoke-one-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2006",
+      "classification": "missing",
+      "physical_verification": false,
+      "reason": "Symbol exists in the source enum but ID is absent from the supported revision common bank; actual creation failed."
+    },
+    {
+      "id": "common-smoke-overlap-v1",
+      "family": "overlap",
+      "resource": "/res/Particle/common.jpc:0x2022+0x2027",
+      "classification": "generated/exercised",
+      "physical_verification": false,
+      "configurations": 5,
+      "frames": 110,
+      "draw_calls": 616,
+      "pipeline_lookups": 388,
+      "peak_particles": 6,
+      "collection_report_sha256": "c65a5b134acc0d3e5e69658ed5c5c974c9dbe850da02f0103e820af0f9bf726f",
+      "private_evidence": "prepared-d-first/validated/common-smoke-overlap-v1/collection-report.json"
+    },
+    {
+      "id": "common-smoke-two-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2007",
+      "classification": "missing",
+      "physical_verification": false,
+      "reason": "Symbol exists in the source enum but ID is absent from the supported revision common bank; actual creation failed."
+    },
+    {
+      "id": "common-smoke-zero-v1",
+      "family": "smoke",
+      "resource": "/res/Particle/common.jpc:0x2005",
+      "classification": "missing",
+      "physical_verification": false,
+      "reason": "Symbol exists in the source enum but ID is absent from the supported revision common bank; actual creation failed."
+    },
+    {
+      "id": "model-shards-v1",
+      "family": "model-particles",
+      "resource": "/res/Particle/common.jpc:0x0017",
+      "classification": "unsupported",
+      "physical_verification": false,
+      "reason": "Requires model control, texture animation and lighting; plain JPA sprites are insufficient."
+    },
+    {
+      "id": "projection-heat-haze-v1",
+      "family": "projection",
+      "resource": "/res/Particle/common.jpc:0x4004",
+      "classification": "unsupported",
+      "physical_verification": false,
+      "reason": "Requires framebuffer swap texture and projection render pass."
+    },
+    {
+      "id": "scene-smoke-explosions-v1",
+      "family": "scene-particles",
+      "resource": "/res/Particle/PsceneNNN.jpc",
+      "classification": "unsupported",
+      "physical_verification": false,
+      "reason": "Scene bank selection, actor callbacks and stage lighting need separately bounded recipes."
+    }
+  ],
+  "mapping": [
+    {
+      "type": 1,
+      "hash": -9026454783789652685,
+      "description_sha256": "eead10e2e261c4b3fd1bd65ba88de09bc1dee038a39eb1cf9dd2323c855148e8",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8952351939696147408,
+      "description_sha256": "00f863295cc443221a8b1652c26fd00c519ce06bb6e6b92261a607e6f1bbeb30",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8951372190241645181,
+      "description_sha256": "0289d3911cf162cb4ec40442ade0cd8ba11de47d19a0d2a35129ade9f25732be",
+      "baseline_covered": false,
+      "sources": [
+        "common-flash-smoke-overlap-v1",
+        "common-ground-smoke-alt-v1",
+        "common-ground-smoke-v1",
+        "common-smoke-overlap-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8740786407264299663,
+      "description_sha256": "7be664640ab3977515dc818383714becb97a94dddf9a15f73dbff7207a885737",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8441651395697525929,
+      "description_sha256": "9a7280f93b54c44554bc53e508960c318457680ddeb180565416e639dddb5963",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8424778248458921230,
+      "description_sha256": "6c22dce52d56c971c338f47dd99793973acc0de4825e8e9193a1042fe5dc2837",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8395138218233622278,
+      "description_sha256": "7e1198895bb5e0a95061f6f99d80b4e29a8c863ac775812b381933fe15441441",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -8339893198862691409,
+      "description_sha256": "111568911585790f85cd2f95b59bf23df10f55d69d8b27d85cf844a01895f420",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -7183275656759142528,
+      "description_sha256": "abc302d6ef2df06c125fbdd9380a3f969859c3d4435f1edab0367284d562b88f",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -7029497707878460171,
+      "description_sha256": "c7f46b03690750e02f7d75ce32eef60019109e4233ebd81e63bc8ff9ae58709c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-flash-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-flash-smoke-overlap-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6771441247895228622,
+      "description_sha256": "c49f7cbe1b3a2e48011e9683d1d3d371d64466b137001dbbe0eb50fe12e4086e",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6323620762165790680,
+      "description_sha256": "fc26c21a7abe7f6c0c333cbf6b07405b8961bb93ae18c725e7979ae32bbbcd9b",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -6108497300145499359,
+      "description_sha256": "b5c3c2c8802b6e02bb5505f814227992dc1e776d659f358f2f431fa40644738f",
+      "baseline_covered": true,
+      "sources": [
+        "common-smoke-overlap-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5898213683800829546,
+      "description_sha256": "989b7d4af8a4341ece11a73a6288f91b975835790a2d817b6f9639ec576309a4",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5879565187501216215,
+      "description_sha256": "2e3ed10199491b6136f92c56fc1e36134d47de10e5ee1324e950b090eceeeb11",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5837594077073783528,
+      "description_sha256": "25300333fd5f9d1c162de3128de6cbe0a81876b53a0aa1374a3555d21fdaf256",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5151754359999216336,
+      "description_sha256": "ea660361455c84c7b3f16e57eb36e42103dcc4962e78ead8a9f3a9f282d6a09b",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -5020033242417597915,
+      "description_sha256": "17f5f1bc44151e8f576ed7e2c822732dacc46e18593ebdf6f639a4b548e8d09b",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4993697552264241401,
+      "description_sha256": "32b413de141e2a254b651d18c77889170333a8f80ea048a48879421a8c50dbcf",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4876368576268572860,
+      "description_sha256": "c06f6967fb0766899784cfc72bdbf43d34a4c2b044182b4e44ee50c0a0004355",
+      "baseline_covered": true,
+      "sources": [
+        "common-ascension-cloud-v1",
+        "common-bomb-fragments-v1",
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1",
+        "common-death-cloud-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4640232969825267032,
+      "description_sha256": "aa3738e505288b71b02ac0e6c2cbe60e1375714b0f1c90636a17df6ff955c96d",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4599895659791711028,
+      "description_sha256": "8fd33242d1ee6968990d3d3ad99e981b7eba2e1e9440514cedd4500bc8c2a68c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4567141094498682714,
+      "description_sha256": "6c48fc7b0c30212bf4eb603b12ccba8eec9449a80c9b320763c377779b5364e1",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4443503222725614165,
+      "description_sha256": "70c87b992ad1446d621aa287a01b2d0d297669536a9469daadaead17ea6001dc",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4396181233189901426,
+      "description_sha256": "08ca51f190689e2c51a934287075057fa8a3f0e5e63954f04c81d7037cda6b5c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -4391511051490115256,
+      "description_sha256": "b7d9dd2535067b2b554abc4648fd7db6de4cf04c259144db44fcbfb8af0ce97e",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3921588062476502815,
+      "description_sha256": "8692e0a8b27a33364bc8e533f85e83c9ada2af83430405c249cb7c4f0eb39deb",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3905160247353154299,
+      "description_sha256": "f7eacd421da9281f6703b2beeaa7df1df9a2f0c6b419241944fa15bb62f58481",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3725036169346607784,
+      "description_sha256": "b8a30c827dff68eeecdfae70450b33fda82dabfa8bf35ede8903408972a110ae",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3699783188783991797,
+      "description_sha256": "c81bdaa976350a0e632078b346e05482250ed3c486dcf9594b4657c771a77b35",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3097975247039589812,
+      "description_sha256": "f665bed77324c2bb064749b6bd2d239da10e06bf7d1fbb11faf8fe3b699ab1e9",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -3084914856323075293,
+      "description_sha256": "fee579485107ef94c59b51ad5b1689ee89a5946c453835f2602f5e91aa70d477",
+      "baseline_covered": true,
+      "sources": [
+        "common-flash-smoke-overlap-v1",
+        "common-ground-smoke-alt-v1",
+        "common-ground-smoke-v1",
+        "common-smoke-overlap-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2953812322304652718,
+      "description_sha256": "3a7980addff7d52c883087281d1bd4e6bfbcc4186e3fc38c007824a2590e54bf",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2756065165886587382,
+      "description_sha256": "2ccc341ffd84bada02413652e16b7ba1f5bca6b3102e44ee0ed7ae2ef829613c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2736195160034589370,
+      "description_sha256": "510384127d8b440739c1fb4a137ea69552ca9dabdd67261a8d3d437a87733939",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2724133692630833395,
+      "description_sha256": "db9ee00efecac97c125abcbbca5b53eb76821c5a1f117647399c93e27d45f60a",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2334178746416190059,
+      "description_sha256": "37b98f36d622002864c09652a015df101bff3060416d310b5575da1bcbda3825",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2233732171556006704,
+      "description_sha256": "9de4738929e6cd0460feaf075e0b4957c1a73911ceaa0226cd0eb69dc4e412bd",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -2065960151319331066,
+      "description_sha256": "4b7c9181dd0a44af213092b48bebb78a3e68062145c55b6c133afef003059fe9",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -1897909500406737586,
+      "description_sha256": "9917ce2118f6a1ad371d8fb7361148036370d664aa3f04ce44d0ca5f4f07e701",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -1876213806682984753,
+      "description_sha256": "dc125ba923e9127f37e89a487bc4fb350eb960bfe77eb6ecec831aa1853f2f35",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -951680460044722434,
+      "description_sha256": "68f00c0be89d6ec78ade0959e0b5852e8ae75850a65d33cbc64919096f6d7eed",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -756360970804668357,
+      "description_sha256": "ac289585ccd8c893522baea6ecf5edc6ff701050ba4a1301d624e3b94138e0b5",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -496038376264830113,
+      "description_sha256": "9e84b6297981def672ae47188635718f6b2da5698fe40c3e56996dbfce1e8f48",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -490103215238951590,
+      "description_sha256": "499282983d830461d9e3080fe84a142513134d401d4a626aadc9d8e6fc91d927",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -481682130151723518,
+      "description_sha256": "e2096f0ed19904336f5d67187da34b580900caea974cbd94871ab8ed287b1ceb",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": -359997696120495981,
+      "description_sha256": "2817f6d47b1dcdd167c1b00f3eeaf942b41051817102be3a21a5b879ea1cf5ac",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 96613525104680127,
+      "description_sha256": "25b07b67d0e87ec75f8ce490ba984df94ad591b8f81fde890358c339ea0467bf",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 105574391630655979,
+      "description_sha256": "7e65acb08df241f1a4bf6286577164e51c964d6f63f0ce9edad284c8d9a82e5d",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 292961225511408427,
+      "description_sha256": "9127e02854dac9a03da2e30583412076151eda07928b921082f81c934431eece",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 501483833243612513,
+      "description_sha256": "57cac99403febaedb15d47667223c4f55a3a68e50a01854b802dd5c87c9b86f3",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 567143335214413932,
+      "description_sha256": "59c63dae01e704c8a678da51a517eda3214fabe08ff6c5f3d335d78024a46b45",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 687218143710104838,
+      "description_sha256": "ea75fc7f98c5390ee11ee6e07b763dad51c0b48a8ac94240abb7313c1b21cf3e",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 705460845427752769,
+      "description_sha256": "9b0a6d642e0437e263d1254d75ecb56f1900c15340199a841d89c5691628c26c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 836995115160766003,
+      "description_sha256": "4d282aafe1ca30ee65b6b8bfa1132fda185675f2d161b234e733be9968133e3c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 961412724245169245,
+      "description_sha256": "136240be1222435e22b64c9d8d1927470b783582783bae5306fc1395f648eb95",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 972297034446234767,
+      "description_sha256": "b13294b61a43d15111c535d2e3204f39ee3d1854b04ac1d7381e12603be92939",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1017365187142733087,
+      "description_sha256": "ea7c147c5013d19e300fa8adc091172ebd2620a0d8b967c50a632dc51f85101a",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1023412947433272815,
+      "description_sha256": "6b88239c5b161259bce4922dc8120460e271c4be939eb818f4e1bc31bdda7276",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1092058693226493875,
+      "description_sha256": "4192708b1de113a951b98eadb3d8ba81f12c6939a6dc5c69992b82b4f34a9a23",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1177286202173182909,
+      "description_sha256": "075d604855aad59836076817b3ce4a1843712eef4bce3566525e892cef49b087",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1314049917168784139,
+      "description_sha256": "d9b2022c17bb07de567ad79e43f7b52def358ac48628425ef01561f2ef9cd0e9",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1420968895619951725,
+      "description_sha256": "e27d67c1c198444fcc5b8451b671760d95eae09fe65acd248818cb029bf0b2bb",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1501027100422446739,
+      "description_sha256": "cd9a7809f3bfed373d2124162e76c8e1760990188147911c9e0dee367a294ab4",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1586600390805162089,
+      "description_sha256": "487ff9b5c646492a4bd887d475a423d7c22d19f039797799775650cff1de2d7f",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1613186355662787003,
+      "description_sha256": "ab42045e0e8df7de63f7b979a09fbfcd159404f99f39481f214153452ad0fae6",
+      "baseline_covered": false,
+      "sources": [
+        "common-ascension-cloud-v1",
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1",
+        "common-death-cloud-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1687054160591597208,
+      "description_sha256": "487a282b6c10277fac31d33be05bb0e8e61f657e5511f51644435b6451116dea",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 1870608718498777680,
+      "description_sha256": "045902a82e13ff63adfc301f5eba74dec3afd0b7bff8f7ed3cf25e16e770db2e",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2022036149851115262,
+      "description_sha256": "2aaf029da81788c25baf7f14895094ba7e8226ef7d2be4cdac6ae062bc2a7267",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2443154721172588457,
+      "description_sha256": "934fbdd3464ecb2e25ffa252dc68d15d33ade2a77d417f9e1262d71a5950271a",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2455661842703301397,
+      "description_sha256": "1cfb493b7c1acb88b93ea28532b879fdd4658427659c0c102c43a639d9ce865d",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 2878204956025153747,
+      "description_sha256": "a7ce4ce5dd6e59c4a8d5add71ef0065ba56a3354b7fc41df2b4e25f3bf5ba3e8",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3379288233266289835,
+      "description_sha256": "0d00768a54622e8322830f81f12c7677f42f488661f56081dc0f2a382b3f9013",
+      "baseline_covered": true,
+      "sources": [
+        "common-pot-debris-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3381949977247392635,
+      "description_sha256": "c631d5023799c05558336f7e6c39497320700ec453ae5592a3c2a6688f7c50ce",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3487517623728072421,
+      "description_sha256": "129d192d05626932574b42b85eb7f767705d37ecdc7c5299b58e457f815e2592",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3504605903218914587,
+      "description_sha256": "f24658ef331b042ecd1b655867e6d207ca77246e4d01aa104fddb2a268b98204",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3594157853360434564,
+      "description_sha256": "c56248067f051b645919957ed05469a879f47af9f442f02750d597fe9f4e16f0",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3636356310424845780,
+      "description_sha256": "41cfbc8ecc297a255835688dbaf15db34de896b9e6d2d52030a13bf0462fd771",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 3720126365173197535,
+      "description_sha256": "5c8e48569b74532809a5e807840174bf15bdde183ed9c0f0fd0cbc9195116e41",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4103674452035955639,
+      "description_sha256": "7a604c940ddcbf0484fb9c52fe11868ca8ddd9ade571db23259bfc4884cf5d25",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4211108208361036617,
+      "description_sha256": "a7767f41626ca4718deabb1cb7352c9b7cc87bf2e5f590737dbaef275b9583fe",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4275086257270766433,
+      "description_sha256": "4c4425e9224fc5357aac0f56edbc26adddfe130b93c714642d5abcf8955cb464",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4600018606219484771,
+      "description_sha256": "1d6bfa05d8dcf8dab492fb8ffc632c420e8cd6380926e2427f78b37905f264a6",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4687236255765815903,
+      "description_sha256": "4b9fa52b1f613cd215cd924e0eade3a9b097187cd574b0bc0be10acd3931d30c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4899647301679848990,
+      "description_sha256": "9e1249d34009c0f1b2fc49547fca7694a9ada1dbe1b325bd6821a2d49ec51933",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4984816891910961730,
+      "description_sha256": "efa071fc1976873c0a129fea269eb2432d8b1e9e0339d7fe8d9190d579a24f7e",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 4991415644920488321,
+      "description_sha256": "ced670e81510f03ec59ad5e104cd6d13eb1f1d9a6d2a49ee10656025cb4a4ce4",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5180640799940085302,
+      "description_sha256": "2534768fd0a17d1486fafbed9baa51bcb8728d21f24c73ffcc69a6a57d6647ba",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5338065028906082634,
+      "description_sha256": "f6be6eb81d554b9d3e08d0f11a772ce1a613ca9856d81a789affc3f0a8e2cbb0",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5390163480107324236,
+      "description_sha256": "a5942f4ff89b7d7df98b4f020f90bea2bfd9dda1f6bdb840958355a07d8d01a6",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5468209093610006174,
+      "description_sha256": "b618ec5edc2f392f68101f369a1846e278cbc76959cd9a298bdcc2601e489268",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5469613917988594988,
+      "description_sha256": "b33cfc3826e645f60f9d0a7e4fa1262e26a8e0b8065dddc5294342e9c722cd1c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5472727232322752375,
+      "description_sha256": "750ac495e796ca40462c183740891bdfd3d83c43735ea3fc8808252c21ee2e41",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5897333344757873863,
+      "description_sha256": "e6df8f4840433ef9dedad32322f78f828797c6f4464af78d19b87f59e07c837c",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 5985898297029102024,
+      "description_sha256": "e83fd7d1feccb252cefec5b16e68f1ef3d8b565fbf8c97172d8771463b6286e4",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6365783691660805360,
+      "description_sha256": "da0c48a8ba4c772c4781d4f56ea8a2e7b5364969af4c15777f3703d277cc8f81",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6638300505970605384,
+      "description_sha256": "836c1240163f60da610e268662ebb33a77597d058acd887251dff0a291914286",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 6790523234000255674,
+      "description_sha256": "9021a9d6c81daac752f6b5d938421338231ac25fb354956db0f5da88effbd1af",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7273235206081416263,
+      "description_sha256": "42aaf9fccb91177958454320402f3f8aeab4385e4c8d3a87fddb253eb1206174",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7408943427610041066,
+      "description_sha256": "cd72e2a6dedad2af6b9491fc0dc4d1cb76097d40942ede5e273207140d87d792",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7747144420359714360,
+      "description_sha256": "d5369ec8b2c20bceebc4a4f43278da4f6c6e48a6c609a40621d9f13329339a70",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 7883284238365332803,
+      "description_sha256": "89b96f79dd077a7dfda669ec372db154619e7f9ba7df254032397d569c3e09e5",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8085692756027006818,
+      "description_sha256": "56dd07d53f463c91c4dddf29301fe6c43c502d01c887f5e2b07c034642505150",
+      "baseline_covered": false,
+      "sources": [
+        "common-ascension-cloud-v1",
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1",
+        "common-death-cloud-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8171675529420273238,
+      "description_sha256": "559d63f0b9fef05fcf081c1919ab5d44c139c60132de48784538443206ed6557",
+      "baseline_covered": true,
+      "sources": [
+        "common-flash-smoke-overlap-v1",
+        "common-ground-smoke-alt-v1",
+        "common-ground-smoke-v1",
+        "common-smoke-overlap-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8363315235830655977,
+      "description_sha256": "d7f07178c6207b9e4a26bed23d1f8d05050a66b429e0754f73e61e1295aa0660",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8419006030952542648,
+      "description_sha256": "7a888544f718584bfa50c9a9fb9559493904549569b9aa059ca1e42df35d2dc3",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8467377340695790908,
+      "description_sha256": "ddf40f9d209ce7437b20a99a4a5c2d41a0c8df9d351868249908132ff0cc0a3e",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8744742451552494154,
+      "description_sha256": "c87734f7a70e2235e849ae32902209cea4749136a015128a82cf52d4affdeea1",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8809123631478256754,
+      "description_sha256": "2bfdc978a400c92ffbbf55c4e1a15e895af19c3dbdfcdb5f52bdafc737460153",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8812278018789292873,
+      "description_sha256": "4aaede7781bca28b863c2b8020244cc16ff07a9fd652d8eaa375486197f76b8b",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8827603981508419940,
+      "description_sha256": "045bd89fc0ef33dd2ab621a62812c6f9b4eabe29eedf31348130627e4d965345",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-light-smoke-v1",
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-two-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8862486467014076740,
+      "description_sha256": "990a1bc31a26f52a27f858d815e449b0e3eb07ecd4a694c8659df24fab08eb01",
+      "baseline_covered": false,
+      "sources": [
+        "common-smoke-overlap-v1"
+      ]
+    },
+    {
+      "type": 1,
+      "hash": 8972579132857701728,
+      "description_sha256": "af3808abe90a77e540c637fe7fed03625fefe11cba868502a39c290ecff8430f",
+      "baseline_covered": false,
+      "sources": [
+        "common-bomb-normal-overlap-v1",
+        "common-bomb-smoke-one-v1"
+      ]
+    }
+  ],
+  "overlaps": [
+    {
+      "scenario": "common-bomb-normal-overlap-v1",
+      "singleton_controls": [
+        "common-bomb-flash-v1",
+        "common-bomb-smoke-one-v1",
+        "common-bomb-smoke-two-v1",
+        "common-bomb-fragments-v1"
+      ],
+      "configuration_count": 107,
+      "additional_to_singleton_union": [],
+      "interpretation": "No additional descriptions relative to singleton controls in this fixed setup."
+    },
+    {
+      "scenario": "common-flash-smoke-overlap-v1",
+      "singleton_controls": [
+        "common-bomb-flash-v1",
+        "common-ground-smoke-v1"
+      ],
+      "configuration_count": 4,
+      "additional_to_singleton_union": [],
+      "interpretation": "No additional descriptions relative to singleton controls in this fixed setup."
+    },
+    {
+      "scenario": "common-smoke-overlap-v1",
+      "singleton_controls": [
+        "common-ground-smoke-v1",
+        "common-ground-smoke-alt-v1"
+      ],
+      "configuration_count": 5,
+      "additional_to_singleton_union": [
+        {
+          "type": 1,
+          "hash": -6108497300145499359
+        },
+        {
+          "type": 1,
+          "hash": 8862486467014076740
+        }
+      ],
+      "interpretation": "Complete descriptions observed only in this combination."
+    }
+  ],
+  "sharing_justification": "Identical type/hash, version, size and complete description bytes observed through real GX; every source mapping retained. This does not imply identical effect appearance or physical verification."
+}
