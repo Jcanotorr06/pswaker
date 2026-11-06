@@ -1207,9 +1207,10 @@
         }
       },
       "post_sample_3min_resources": {
-        "samples": 28,
-        "first_ms": 282563.8,
+        "samples": 29,
+        "first_ms": 242156.3,
         "last_ms": 418074.3,
+        "span_seconds": 175.918,
         "query_failures": 0,
         "ranges": {
           "garlic": {
@@ -1233,7 +1234,7 @@
           "main-mspace-allocated": {
             "minimum": 316265248,
             "maximum": 318322160,
-            "first": 316265248,
+            "first": 318000720,
             "last": 317353680
           },
           "flexible-available": {
@@ -1296,10 +1297,10 @@
         "dawn_cache.db-wal": 4132392
       },
       "subsequent_observed_resources": {
-        "samples": 36,
-        "first_ms": 282563.8,
+        "samples": 37,
+        "first_ms": 242156.3,
         "last_ms": 458215.9,
-        "span_seconds": 175.65210000000005,
+        "span_seconds": 216.05960000000005,
         "query_failures": 0,
         "ranges": {
           "garlic": {
@@ -1323,7 +1324,7 @@
           "main-mspace-allocated": {
             "minimum": 316265248,
             "maximum": 318328016,
-            "first": 316265248,
+            "first": 318000720,
             "last": 318057104
           },
           "flexible-available": {
@@ -1334,7 +1335,7 @@
           }
         }
       },
-      "subsequent_first_observation_after_sample_end_seconds": 40.734940878,
+      "subsequent_first_observation_after_sample_end_seconds": 0.3274408779999902,
       "preparation_shutdown_markers": [
         "CACHE identity=35a453336a0e4b0d432c files-before-init=0; owner labels cold/warm",
         "STAGE completed=platform-initialized ms=342.6 build=35a453336a0e4b0d432c errors=0",
@@ -1355,7 +1356,13 @@
         "STAGE completed=shutdown-card-finished ms=466958.3 build=35a453336a0e4b0d432c errors=0",
         "STAGE completed=shutdown-requesting-sdk-stop ms=466959.6 build=35a453336a0e4b0d432c errors=0",
         "STAGE completed=shutdown-sdk-stop-requested ms=466960.8 build=35a453336a0e4b0d432c errors=0"
-      ]
+      ],
+      "subsequent_first_second_observation_gap_seconds": 40.4075,
+      "resource_window_definitions": {
+        "active_sample_resources": "Strictly between approximate sample-relative seconds 1 and 119; an interior window, not all sample observations",
+        "post_sample_3min_resources": "Every observation strictly after approximate sample-end and before end+180 seconds; includes first post-end heartbeat",
+        "subsequent_observed_resources": "Every observation strictly after approximate sample-end through the returned recording; includes first post-end heartbeat"
+      }
     },
     "warm": {
       "analyzer_exit_code": 2,
@@ -1871,9 +1878,10 @@
         }
       },
       "post_sample_3min_resources": {
-        "samples": 32,
-        "first_ms": 217047.0,
+        "samples": 33,
+        "first_ms": 193445.5,
         "last_ms": 372523.8,
+        "span_seconds": 179.07829999999998,
         "query_failures": 0,
         "ranges": {
           "garlic": {
@@ -1897,7 +1905,7 @@
           "main-mspace-allocated": {
             "minimum": 314793616,
             "maximum": 317275664,
-            "first": 314793616,
+            "first": 315882624,
             "last": 315899472
           },
           "flexible-available": {
@@ -1985,10 +1993,10 @@
         "dawn_cache.db-wal": 4132392
       },
       "subsequent_observed_resources": {
-        "samples": 37,
-        "first_ms": 217047.0,
+        "samples": 38,
+        "first_ms": 193445.5,
         "last_ms": 397562.0,
-        "span_seconds": 180.515,
+        "span_seconds": 204.1165,
         "query_failures": 0,
         "ranges": {
           "garlic": {
@@ -2012,7 +2020,7 @@
           "main-mspace-allocated": {
             "minimum": 314793616,
             "maximum": 317275664,
-            "first": 314793616,
+            "first": 315882624,
             "last": 316553984
           },
           "flexible-available": {
@@ -2023,7 +2031,7 @@
           }
         }
       },
-      "subsequent_first_observation_after_sample_end_seconds": 23.946742999999998,
+      "subsequent_first_observation_after_sample_end_seconds": 0.3452429999999964,
       "preparation_shutdown_markers": [
         "CACHE identity=35a453336a0e4b0d432c files-before-init=4; owner labels cold/warm",
         "STAGE completed=platform-initialized ms=358.2 build=35a453336a0e4b0d432c errors=0",
@@ -2052,7 +2060,13 @@
         "STAGE completed=shutdown-card-finished ms=408024.4 build=35a453336a0e4b0d432c errors=0",
         "STAGE completed=shutdown-requesting-sdk-stop ms=408025.6 build=35a453336a0e4b0d432c errors=0",
         "STAGE completed=shutdown-sdk-stop-requested ms=408027.0 build=35a453336a0e4b0d432c errors=0"
-      ]
+      ],
+      "subsequent_first_second_observation_gap_seconds": 23.6015,
+      "resource_window_definitions": {
+        "active_sample_resources": "Strictly between approximate sample-relative seconds 1 and 119; an interior window, not all sample observations",
+        "post_sample_3min_resources": "Every observation strictly after approximate sample-end and before end+180 seconds; includes first post-end heartbeat",
+        "subsequent_observed_resources": "Every observation strictly after approximate sample-end through the returned recording; includes first post-end heartbeat"
+      }
     }
   }
 }

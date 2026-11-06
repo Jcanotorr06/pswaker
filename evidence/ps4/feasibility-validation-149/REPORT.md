@@ -116,8 +116,8 @@ peak is lower. Before-renderer zero driver counters also mean no tracked device
 yet. There is no evidence of a startup allocation failure in these logs.
 
 The timed sample has 23 interior resource observations per run. Subsequent logged
-resource observations after sample end span 175.652 s cold (36 samples) and
-180.515 s warm (37 samples):
+resource observations after sample end span 216.060 s cold (37 samples) and
+204.117 s warm (38 samples), including the first post-end heartbeat:
 
 | Subsequent sampled quantity | Cold | Warm |
 | --- | ---: | ---: |
@@ -130,14 +130,15 @@ resource observations after sample end span 175.652 s cold (36 samples) and
 Flexible availability holds at **346 MiB** throughout both timed samples and the
 subsequent observation windows. Garlic grows by 64 KiB over each subsequent
 window, onion/buffer counts remain constant, and main-mspace varies within about
-2–2.5 MiB rather than showing unbounded growth in this short return. These
+2–2.5 MiB in these observation windows. These
 observations support bounded startup/subsequent-gameplay resource viability for
 this corpus. They are not a leak test, a full-game budget or evidence of normal
 termination.
 
-The first subsequent resource observation is about 40.735 s after sample end in
-cold and 23.947 s in warm. Do not fill those gaps or infer continuous active play
-from the owner's stated three minutes. Sample-relative alignment is approximate:
+The first subsequent resource observation is about 0.327 s after sample end in
+cold and 0.345 s in warm. The gaps from the first to second observations are
+40.408 s and 23.602 s respectively. Do not fill those gaps or infer continuous
+active play from the owner's stated three minutes. Sample-relative alignment is approximate:
 it relates the preparation RESOURCE launch clock to the immediately following
 loading-phase performance timestamp. Raw observation times and per-phase ranges
 are retained in [resource-observations.json](resource-observations.json).
@@ -202,3 +203,7 @@ Owner options are to resolve the known blocker and repeat the bounded checks;
 request targeted instrumentation/evidence for remaining gaps; or explicitly
 re-scope downstream expansion. This return does not establish resource/generation
 infeasibility, close the gate, change #136 or restore a manual campaign.
+
+[Independent review](REVIEW.md) found two reporting defects, both corrected before
+publication: an excluded first post-sample heartbeat and an incorrect universal
+overlap statement in the chart. There are no outstanding review findings.
