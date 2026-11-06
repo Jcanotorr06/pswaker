@@ -44,7 +44,7 @@ def check_draw_report(metadata):
                 and metadata.get('script') == DYNAMIC_SCRIPT
                 and metadata.get('unhandled_states') == DYNAMIC_UNHANDLED,
                 'Invalid dynamic collection script or unhandled states')
-        check_dynamic_lifetimes(metadata)
+        particle.check_lifetimes(metadata, max_ticks=DYNAMIC_SCRIPT['max_ticks'], emitter_limit=1)
         return
     if isinstance(metadata, dict) and metadata.get('scenario') == 'asset-model-stock-v1':
         require(model_resource(metadata.get('resource')) and metadata['resource'].endswith('.bdl')
@@ -61,52 +61,6 @@ def check_draw_report(metadata):
             and type(metadata.get('draw_calls')) is int and metadata['draw_calls'] > 0
             and type(metadata.get('materials')) is int and metadata['materials'] > 0,
             'Invalid model collection or no actual material draws')
-
-
-def check_dynamic_lifetimes(metadata):
-    variations = metadata.get('variations')
-    require(isinstance(variations, list) and len(variations) == 2,
-            'Invalid dynamic variations')
-    variations = metadata['variations']
-    totals = dict(frames=0, draw_calls=0, pipeline_lookups=0)
-    for texture, variation in enumerate(variations):
-        require(isinstance(variation, dict) and type(variation.get('texture_index')) is int
-                and variation['texture_index'] == texture,
-                'Invalid dynamic texture variation')
-        steps = variation.get('steps')
-        require(isinstance(steps, list) and 1 < len(steps) <= DYNAMIC_SCRIPT['max_ticks'],
-                'Invalid dynamic lifetime length')
-        steps = variation['steps']
-        peak = draws = lookups = 0
-        for tick, step in enumerate(steps, 1):
-            require(isinstance(step, dict) and type(step.get('tick')) is int and step['tick'] == tick
-                    and all(type(step.get(name)) is int and step[name] >= 0
-                            for name in ['particles', 'emitters', 'draw_calls', 'pipeline_lookups']),
-                    'Invalid dynamic lifetime step')
-            require(step['emitters'] == (0 if tick == len(steps) else 1),
-                    'Invalid dynamic emitter transition')
-            configurations = step.get('configurations')
-            require(isinstance(configurations, list) and all(
-                isinstance(key, dict) and set(key) == {'type', 'hash'}
-                and type(key['type']) is int and key['type'] in [0, 1]
-                and type(key['hash']) is int and -(2**63) <= key['hash'] < 2**63
-                for key in configurations), 'Invalid dynamic description mapping')
-            configurations = step['configurations']
-            require(len({(key['type'], key['hash']) for key in configurations}) == len(configurations)
-                    and bool(configurations) == (step['pipeline_lookups'] > 0)
-                    and len(configurations) <= step['pipeline_lookups'],
-                    'Incomplete dynamic description mapping')
-            peak = max(peak, step['particles'])
-            draws += step['draw_calls']
-            lookups += step['pipeline_lookups']
-        require(peak > 0 and draws > 0 and lookups > 0
-                and steps[-1]['particles'] == steps[-1]['emitters'] == 0,
-                'Incomplete dynamic particle lifetime or no actual draws')
-        totals['frames'] += len(steps)
-        totals['draw_calls'] += draws
-        totals['pipeline_lookups'] += lookups
-    require(all(type(metadata.get(name)) is int and metadata[name] == value
-                for name, value in totals.items()), 'Invalid dynamic collection totals')
 
 
 def check_dynamic_mapping(metadata, generated):
