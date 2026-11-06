@@ -30,7 +30,7 @@
       },
       "source_references": [
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
-        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/br_draw/useHeapInit",
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_material.cpp:dMat_ice_c::entryDL"
       ],
       "assumptions": [
@@ -39,7 +39,7 @@
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
         "Green and pink follow mpMorf->entryDL(table), which swaps table textures, plus the shield/telescope prop each draws.",
         "Frozen follows the shared dMat_ice_c material copy with no invisible packets, as daBk_Draw passes NULL; restoration returns to stock.",
-        "Swing blur follows br_draw: one BLURA/BLURB shape shown under the club or sword table chosen in daBk_Create.",
+        "Swing blur follows br_draw: one BLURA/BLURB shape shown under the club or sword table chosen in useHeapInit.",
         "Tables are swapped on one shared blur model between states; a spawned actor keeps the table chosen at creation."
       ],
       "input_identity": {
@@ -252,13 +252,14 @@
           "curse-end",
           "light-freeze",
           "possession",
-          "lantern"
+          "lantern",
+          "default-repeated"
         ],
         "frames_per_state": 1
       },
       "source_references": [
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
-        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:body_draw/torituki_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:body_draw/torituki_draw/kantera_draw/tori_useHeapInit",
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_list_c::entryZSortXluDrawList"
       ],
       "assumptions": [
@@ -343,7 +344,7 @@
         "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
         "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
-        "Phase two binds DEADA first and rebinds SOTAI as daBtd_Create does; defeat swaps the DEADA material table.",
+        "Phase two binds DEADA first and rebinds SOTAI as useHeapInit does; defeat swaps the DEADA material table.",
         "Rock debris, armor shards and the dead-head model are excluded."
       ],
       "input_identity": {
@@ -759,11 +760,11 @@
       ]
     }
   ],
-  "plan_sha256": "6f1b04c4a448b6208177ad206709b257cf763941a5149f156289c8dad495c11c",
+  "plan_sha256": "ab0f9a55a6df109c68d673a412181d5858627e2f9741f6e8ae997a08b88389b1",
   "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
   "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
   "collector": {
-    "sha256": "420826b70d70665f8f6c0d24c018b12a5e9564ca8df6d11b2e0c58d0c9efcdf6",
-    "build_sha256": "203e3af70f9dfe4ed80891f1c294c7c145f03dc2c1a98fef1f5285f9461779b5"
+    "sha256": "4865e5c0dc48bcdc80f9f3ec972e461675e487a03c5578ba9e19de8e2d94ea06",
+    "build_sha256": "85f6fa0bd6ed5b5a3aa157de9c98f6f4670977f56a3e01afd32d82ad9519bb08"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "issue": 153,
-  "manifest_sha256": "bc58c6f513946311ff9da7ae18dfc26ae7aa3f0b6d8ffd3f1166e4011a3ecbe3",
+  "manifest_sha256": "7bc4c5a6f184884a98d6bbee321b3961288dceddd336e328a5d18e37a68e88b1",
   "baseline_rows": 301,
   "collected_rows": 42,
   "new_rows": 41,
@@ -134,15 +134,15 @@
           "configurations": 5
         }
       ],
-      "states_sharing_their_exact_set_with_an_earlier_state": [],
+      "first_state_with_the_same_description_set": {},
       "lifetimes": [],
       "physical_verification": false
     },
     {
       "id": "boss-jalhalla-visibility-v1",
-      "frames": 7,
-      "draw_calls": 266,
-      "pipeline_lookups": 20,
+      "frames": 8,
+      "draw_calls": 310,
+      "pipeline_lookups": 23,
       "configurations": 6,
       "baseline_covered": 0,
       "new": 6,
@@ -188,14 +188,21 @@
           "draw_calls": 2,
           "pipeline_lookups": 2,
           "configurations": 2
+        },
+        {
+          "state": "default-repeated",
+          "draw_calls": 44,
+          "pipeline_lookups": 3,
+          "configurations": 3
         }
       ],
-      "states_sharing_their_exact_set_with_an_earlier_state": [
-        "curse-start",
-        "curse-end",
-        "light-freeze",
-        "possession"
-      ],
+      "first_state_with_the_same_description_set": {
+        "curse-start": "light-stun",
+        "curse-end": "light-stun",
+        "light-freeze": "light-stun",
+        "possession": "light-stun",
+        "default-repeated": "light-stun"
+      },
       "lifetimes": [],
       "physical_verification": false
     },
@@ -227,7 +234,7 @@
           "configurations": 2
         }
       ],
-      "states_sharing_their_exact_set_with_an_earlier_state": [],
+      "first_state_with_the_same_description_set": {},
       "lifetimes": [],
       "physical_verification": false
     },
@@ -295,12 +302,12 @@
           "configurations": 1
         }
       ],
-      "states_sharing_their_exact_set_with_an_earlier_state": [
-        "body-restored",
-        "blur-club-second",
-        "blur-sword-first",
-        "blur-sword-second"
-      ],
+      "first_state_with_the_same_description_set": {
+        "body-restored": "body-stock",
+        "blur-club-second": "blur-club-first",
+        "blur-sword-first": "blur-club-first",
+        "blur-sword-second": "blur-club-first"
+      },
       "lifetimes": [],
       "physical_verification": false
     },
@@ -350,9 +357,9 @@
           "configurations": 4
         }
       ],
-      "states_sharing_their_exact_set_with_an_earlier_state": [
-        "stone-second"
-      ],
+      "first_state_with_the_same_description_set": {
+        "stone-second": "stone-first"
+      },
       "lifetimes": [],
       "physical_verification": false
     },
@@ -365,7 +372,7 @@
       "baseline_covered": 1,
       "new": 3,
       "states": [],
-      "states_sharing_their_exact_set_with_an_earlier_state": [],
+      "first_state_with_the_same_description_set": {},
       "lifetimes": [
         {
           "variation": 0,
@@ -389,7 +396,7 @@
       "baseline_covered": 1,
       "new": 3,
       "states": [],
-      "states_sharing_their_exact_set_with_an_earlier_state": [],
+      "first_state_with_the_same_description_set": {},
       "lifetimes": [
         {
           "variation": 0,
@@ -432,9 +439,9 @@
           "configurations": 2
         }
       ],
-      "states_sharing_their_exact_set_with_an_earlier_state": [
-        "restored"
-      ],
+      "first_state_with_the_same_description_set": {
+        "restored": "stock"
+      },
       "lifetimes": [],
       "physical_verification": false
     }
@@ -477,7 +484,7 @@
         "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
         "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
-        "Phase two binds DEADA first and rebinds SOTAI as daBtd_Create does; defeat swaps the DEADA material table.",
+        "Phase two binds DEADA first and rebinds SOTAI as useHeapInit does; defeat swaps the DEADA material table.",
         "Rock debris, armor shards and the dead-head model are excluded."
       ],
       "input_identity": {
@@ -553,13 +560,14 @@
           "curse-end",
           "light-freeze",
           "possession",
-          "lantern"
+          "lantern",
+          "default-repeated"
         ],
         "frames_per_state": 1
       },
       "source_references": [
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
-        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:body_draw/torituki_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:body_draw/torituki_draw/kantera_draw/tori_useHeapInit",
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_list_c::entryZSortXluDrawList"
       ],
       "assumptions": [
@@ -699,7 +707,7 @@
       },
       "source_references": [
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_resorce.cpp:dRes_info_c::loadResource/setToonTex",
-        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/useHeapInit",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/br_draw/useHeapInit",
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_material.cpp:dMat_ice_c::entryDL"
       ],
       "assumptions": [
@@ -708,7 +716,7 @@
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
         "Green and pink follow mpMorf->entryDL(table), which swaps table textures, plus the shield/telescope prop each draws.",
         "Frozen follows the shared dMat_ice_c material copy with no invisible packets, as daBk_Draw passes NULL; restoration returns to stock.",
-        "Swing blur follows br_draw: one BLURA/BLURB shape shown under the club or sword table chosen in daBk_Create.",
+        "Swing blur follows br_draw: one BLURA/BLURB shape shown under the club or sword table chosen in useHeapInit.",
         "Tables are swapped on one shared blur model between states; a spawned actor keeps the table chosen at creation."
       ],
       "input_identity": {

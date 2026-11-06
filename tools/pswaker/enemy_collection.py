@@ -35,7 +35,8 @@ ACTORS = {
         ['bdlm/php.bdl']),
     'boss-jalhalla-visibility-v1': ActorRecipe(
         '/res/Object/Bpw.arc:bdlm/bpw.bdl',
-        ['default', 'light-stun', 'curse-start', 'curse-end', 'light-freeze', 'possession', 'lantern'],
+        ['default', 'light-stun', 'curse-start', 'curse-end', 'light-freeze', 'possession', 'lantern',
+         'default-repeated'],
         ['bdlm/bpw_kan1.bdl', 'brk/default.brk', 'brk/hit.brk', 'brk/noroi_s1.brk', 'brk/noroi_e1.brk',
          'brk/hiraru1.brk', 'brk/bpw_kan1.brk']),
     'boss-gohma-defeat-v1': ActorRecipe(

@@ -48,7 +48,7 @@ and the fixed view does not establish stage or attachment equivalence.
 | `enemy-bokoblin-materials-v1` | stock, green with shield, pink with telescope, frozen, restored, four swing blurs | `daBk_Draw`, `br_draw`, blur tables, shared freeze |
 | `enemy-chuchu-states-v1` | body, two stone overlays, puddle, breakup, frozen | `daCC_Draw` BMD/BDL branches, BRK/BTK, `iceUpdateDL` with invisible packets |
 | `enemy-peahat-freeze-v1` | stock, frozen, restored | `daPH_Draw` body/propeller freeze with invisible packets |
-| `boss-jalhalla-visibility-v1` | default, stun, curse start/end, light-freeze, possession, lantern | `body_draw`, `torituki_draw`, `kantera_draw`, mask-off list |
+| `boss-jalhalla-visibility-v1` | default, stun, curse start/end, light-freeze, possession, lantern, default repeated | `body_draw`, `torituki_draw`, `kantera_draw`, mask-off list |
 | `boss-gohma-defeat-v1` | phase one, phase two, defeat | `daBtd_Draw`, DEADA table and rebinding |
 | `boss-puppet-ganon-water-v1` | surface, mask, combined | `water0_disp`/`water1_disp` blend and depth mutation |
 | `enemy-death-large-v1` | 0x14+0x13+0x15+0x16 lifecycle | `set_disappear` default branch, stripes callback |

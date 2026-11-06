@@ -407,7 +407,7 @@ static mDoExt_btkAnm* actor_btk(J3DModelData* data, const char* archive, int ind
 }
 
 // daBk_Draw material/freeze choices and props, plus br_draw's swing blur with
-// daBk_Create's blur tables. Eye masking, BTP blinking and attachment remain gaps.
+// useHeapInit's blur tables. Eye masking, BTP blinking and attachment remain gaps.
 static std::vector<ActorState> bokoblin_states() {
   auto* morf = actor_morf("Bk", dRes_INDEX_BK_BDL_BK_e, 0x00080000, 0x37221203);
   auto* green = (J3DMaterialTable*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMT_GREEN_e);
@@ -538,7 +538,8 @@ static std::vector<ActorState> jalhalla_states() {
            }},
           {"lantern", [=] {
              lantern->calc(); lanternGlow->entry(lanternData); lantern->entryDL(); lanternGlow->remove(lanternData);
-           }}};
+           }},
+          {"default-repeated", [=] { bodyDraw(normal, false); }}};
 }
 
 // daBtd_Draw phases and the defeat branch's material-table replacement.
@@ -552,7 +553,7 @@ static std::vector<ActorState> gohma_states() {
   auto* defeat = (J3DMaterialTable*)dComIfG_getObjectRes("Btd", dRes_INDEX_BTD_BMT_DEADA_e);
   auto* defeatColor = (J3DAnmTevRegKey*)dComIfG_getObjectRes("Btd", dRes_INDEX_BTD_BRK_DEADA_e);
   auto* defeatScroll = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Btd", dRes_INDEX_BTD_BTK_DEADA_e);
-  // daBtd_Create sizes both animations for the larger defeat data, then rebinds.
+  // useHeapInit sizes both animations for the larger defeat data, then rebinds.
   auto* secondScroll = actor_btk(secondData, "Btd", dRes_INDEX_BTD_BTK_DEADA_e);
   auto* secondColor = actor_brk(secondData, "Btd", dRes_INDEX_BTD_BRK_DEADA_e);
   check(secondScroll->init(secondData, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Btd", dRes_INDEX_BTD_BTK_SOTAI_e),

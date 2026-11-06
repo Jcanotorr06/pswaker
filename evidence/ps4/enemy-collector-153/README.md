@@ -14,7 +14,7 @@ collector/build and contract identities, including every companion member each
 actor consumes. Actor recipes run the game's resource loading, material, freeze,
 invisible-packet and draw-list code; effect recipes run real JPA simulation and GX
 draws. The actor processes, AI, skeletal animation, actor lighting, fog, shadows
-and blur do not run. Each recipe reproduces the state selection of the named draw
+and screen blur do not run. Each recipe reproduces the state selection of the named draw
 function, so these are documented narrow setups, not reached encounter states.
 
 [coverage.json](coverage.json) records all source mappings and exclusions:
@@ -29,7 +29,7 @@ exact state/variation/tick mappings.
 | `enemy-bokoblin-materials-v1` | 9 | 76 | 21 | 7 | 7 |
 | `enemy-chuchu-states-v1` | 6 | 15 | 14 | 9 | 9 |
 | `enemy-peahat-freeze-v1` | 3 | 16 | 12 | 7 | 7 |
-| `boss-jalhalla-visibility-v1` | 7 | 266 | 20 | 6 | 6 |
+| `boss-jalhalla-visibility-v1` | 8 | 310 | 23 | 6 | 6 |
 | `boss-gohma-defeat-v1` | 3 | 60 | 17 | 9 | 9 |
 | `boss-puppet-ganon-water-v1` | 3 | 4 | 4 | 2 | 2 |
 | `enemy-death-large-v1` | 224 | 11,336 | 802 | 4 | 3 |
@@ -50,10 +50,19 @@ stock.
 
 Several exercised states add nothing, which is reported rather than hidden. The
 second stone overlay shares the first's set, and the three other swing-blur states
-share the first's. Jalhalla's curse, light-freeze and possession states share the
-default set: register changes and list placement do not select a new description
-here. Equal descriptions justify pipeline sharing for these observed states only.
-They do not imply identical visuals or cover other actors.
+share the first's. Jalhalla's stun, curse, light-freeze and possession states all
+share one set: register changes and list placement do not select a new description
+here. `coverage.json` names the first matching state for each. Equal descriptions
+justify pipeline sharing for these observed states only. They do not imply identical
+visuals or cover other actors.
+
+**Unexplained first-frame difference.** Jalhalla's first body frame observes one
+description that no later body frame does, while one description seen by every later
+body frame is absent from it. This is order-dependent, not an effect of the default
+BRK: `default-repeated` draws the same state last and matches the later set. The
+Bokoblin and Peahat recipes do not show it. The cause is not established. Both
+descriptions are retained, so the seed may hold one description that real play never
+requests. That costs preparation only; it is not evidence of a reachable state.
 
 ## Seed, repeat and package
 
@@ -75,9 +84,9 @@ assembly and independently repeated package inspection:
 
 - Seed SHA-256: `59453696df7ecf61e1769520c0eac6dcf712e4e71bed6b491ba5856d7fad7827`.
 - Complete package SHA-256:
-  `78ac176bb96b54cbeb9e8de551f0722dd879e891d0a2e3bae79c4e5e8ad97d18`.
+  `36da00c9b6ad7ea335280c64f5135882c8aff87621413de5bbd0f2d990496c69`.
 - Fresh inspection SHA-256:
-  `e3d3a31a6f8aacc8f3bf02fc4c9ff0378dedcfb1e36885dd3a28336aec3188b0`.
+  `3486794c1ea133f6d426bb7256698e4f13a892a745a9a6621d47afba628076e1`.
 
 Ordinary complete-package assembly inspected the output before publication. The
 subsequent independent inspection freshly extracted it, reproduced the assembly
@@ -121,4 +130,5 @@ mapping, deduplication, baseline and input preservation, repeatability, atomic
 rejection of bad scripts/identities/companions/mappings/lifetimes/conflicts/
 incompatibility, the external collector-process boundary, and actual package-tool
 assembly/fresh inspection. Actual rendering evidence above is separate from those
-fixtures.
+fixtures. Independent reviews are recorded in [REVIEW.md](REVIEW.md), with final
+automated checks in [FINAL-VERIFICATION.md](FINAL-VERIFICATION.md).
