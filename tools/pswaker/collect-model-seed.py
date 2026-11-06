@@ -34,17 +34,19 @@ SCRIPTED_KINDS = {'equipment-actions': equipment, 'enemy-actors': enemy}
 VARIATION_SCENARIOS = [particle.SCENARIO, equipment.NORMAL, equipment.CHEAP, *enemy.EFFECTS]
 
 
+def scripted_family(scenario):
+    return next((family for family in SCRIPTED_KINDS.values() if scenario in family.SCENARIOS), None)
+
+
 def source_inventory(directory):
     return {p.relative_to(directory).as_posix(): digest(p)
             for p in sorted(directory.rglob('*')) if p.is_file() and '__pycache__' not in p.parts}
 
 
 def check_draw_report(metadata):
-    if isinstance(metadata, dict) and metadata.get('scenario') in equipment.SCENARIOS:
-        equipment.check_report(metadata)
-        return
-    if isinstance(metadata, dict) and metadata.get('scenario') in enemy.SCENARIOS:
-        enemy.check_report(metadata)
+    family = scripted_family(metadata.get('scenario')) if isinstance(metadata, dict) else None
+    if family:
+        family.check_report(metadata)
         return
     if isinstance(metadata, dict) and metadata.get('scenario') == particle.SCENARIO:
         particle.check_report(metadata)
@@ -203,11 +205,9 @@ def collect(args):
     require(not any(args.output.is_relative_to(source) for source in [args.baseline, args.collector]),
             'Collection output must remain outside source assets and collector builds')
     resource = getattr(args, 'resource', None)
-    if args.scenario in equipment.SCENARIOS:
-        require(resource == equipment.recipe(args.scenario)['resource'], 'Equipment resource differs from fixed recipe')
-        resource = str(resource)
-    elif args.scenario in enemy.SCENARIOS:
-        require(resource == enemy.recipe(args.scenario)['resource'], 'Enemy resource differs from fixed recipe')
+    family = scripted_family(args.scenario)
+    if family:
+        require(resource == family.recipe(args.scenario)['resource'], 'Scripted resource differs from fixed recipe')
         resource = str(resource)
     elif args.scenario == 'asset-model-stock-v1':
         require(model_resource(resource) and str(resource).endswith('.bdl'), 'A valid stock BDL resource is required')
@@ -461,8 +461,8 @@ def prepare_batch(manifest_path, collections, baseline, output):
         additions = additional_records(existing, sources.values())
         seed = write_combined_seed(baseline, original, additions, manifests, work / 'assets')
         generated = {key: value for source in sources.values() for key, value in source.items()}
-        provenance = {'equipment-actions': 'equipment-action-batch', 'enemy-actors': 'enemy-actor-batch',
-                      'particle-effects': 'particle-effect-batch'}.get(manifest.get('kind', ''), 'asset-material-batch')
+        provenance = (SCRIPTED_KINDS[manifest['kind']].PROVENANCE if fixed_scripts
+                      else 'particle-effect-batch' if particles else 'asset-material-batch')
         report = {'schema': 1, 'provenance': provenance, 'manifest': manifest,
                   'manifest_sha256': manifest_sha, 'baseline_rows': len(existing),
                   'collected_rows': len(generated), 'new_rows': len(additions), 'seed': seed,
@@ -539,20 +539,21 @@ def freeze_inventory(args):
         files = disc.files(disc.read(0, 0x440, 'header'))
         archive_path, expanded_archive, archive_sha = None, b'', ''
         for row in plan['rows']:
-            fixed = SCRIPTED_KINDS.get(plan.get('kind', ''))
-            if fixed:
+            family = SCRIPTED_KINDS.get(plan.get('kind', ''))
+            if family:
                 require(isinstance(row, dict), 'Invalid scripted plan row')
                 if row.get('action') != 'exercise':
                     rows.append(row)
                     continue
-                require(all(row.get(k) == v for k, v in fixed.recipe(row.get('scenario')).items()),
+                require(all(row.get(k) == v for k, v in family.recipe(row.get('scenario')).items()),
                         'Scripted plan differs from fixed recipe')
-            if plan.get('kind') == 'particle-effects' or (fixed and row.get('scenario') in VARIATION_SCENARIOS):
+            if plan.get('kind') == 'particle-effects' or (family and row.get('scenario') in VARIATION_SCENARIOS):
                 require(isinstance(row, dict), 'Invalid particle plan row')
                 if row.get('action') != 'exercise':
                     rows.append(row)
                     continue
-                particle.effect_ids(row.get('resource'))
+                if not family:
+                    particle.effect_ids(row.get('resource'))
                 offset, size = files['res/Particle/common.jpc']
                 particles = disc.read(offset, size, 'common particles')
                 rows.append({**row, 'input_identity': {'particle_sha256': hashlib.sha256(particles).hexdigest(),

@@ -6,6 +6,12 @@ from disc_image import require
 STATE_METHODS = ['scripted-equipment-draw', 'scripted-actor-draw']
 
 
+def sized_hashes(value, hashes, size):
+    return (isinstance(value, dict) and set(value) == {*hashes, size}
+            and all(sha256(value.get(k)) for k in hashes)
+            and type(value.get(size)) is int and value[size] > 0)
+
+
 def check_state_steps(metadata, expected):
     states = metadata.get('states')
     require(isinstance(states, list) and len(states) == len(expected), 'Incomplete scripted state cycle')

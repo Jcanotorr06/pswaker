@@ -68,6 +68,15 @@ class EnemyBatchTests(unittest.TestCase):
         self.assertEqual(self.prepare().returncode, 0)
         self.assertEqual({p.relative_to(self.output): p.read_bytes() for p in self.output.rglob('*') if p.is_file()}, first)
 
+    def test_generic_particle_collection_refuses_enemy_death_effects(self):
+        unused = self.root / 'unused'
+        result = subprocess.run([sys.executable, str(CLI), 'collect', '--scenario', 'particle-effect-lifecycle-v1',
+                                 '--resource', '/res/Particle/common.jpc:0x0015', '--collector', str(unused),
+                                 '--image', str(unused), '--baseline', str(unused), '--output', str(self.output)],
+                                capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Unsupported or duplicate particle effect', result.stderr)
+
     def test_oversized_families_survive_without_implying_generated_or_physical_coverage(self):
         self.document['rows'].append({'id': 'phantom-ganon', 'family': 'boss', 'action': 'unsupported',
                                       'reason': 'Needs its own phase controller.', 'owner': '#153 follow-up',

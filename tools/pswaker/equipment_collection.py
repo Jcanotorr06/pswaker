@@ -1,10 +1,10 @@
 """Finite equipment recipes; shared assets never imply unexercised transitions."""
-from asset_inventory import sha256
 from disc_image import require
 import particle_collection as particle
 import scripted_collection as scripted
 
 
+PROVENANCE = 'equipment-action-batch'
 ARROW = 'equipment-arrow-tips-v1'
 NORMAL = 'equipment-bomb-normal-v1'
 CHEAP = 'equipment-bomb-cheap-v1'
@@ -42,11 +42,8 @@ def check_report(metadata):
 
 def valid_identity(scenario, identity):
     model = scenario == ARROW
-    hashes = ['archive_sha256', 'model_sha256'] if model else ['particle_sha256']
-    size = 'model_bytes' if model else 'particle_bytes'
-    return (isinstance(identity, dict) and set(identity) == {*hashes, size}
-            and all(sha256(identity.get(k)) for k in hashes)
-            and type(identity.get(size)) is int and identity[size] > 0)
+    return scripted.sized_hashes(identity, ['archive_sha256', 'model_sha256'] if model else ['particle_sha256'],
+                                 'model_bytes' if model else 'particle_bytes')
 
 
 def read_manifest(document):

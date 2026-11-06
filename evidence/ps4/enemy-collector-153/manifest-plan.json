@@ -17,12 +17,14 @@
       "script": {
         "states": [
           "body-stock",
-          "body-green",
-          "body-pink",
+          "green-with-shield",
+          "pink-with-telescope",
           "body-frozen",
           "body-restored",
-          "weapon-club",
-          "weapon-sword"
+          "blur-club-first",
+          "blur-club-second",
+          "blur-sword-first",
+          "blur-sword-second"
         ],
         "frames_per_state": 1
       },
@@ -35,9 +37,10 @@
         "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
         "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
-        "Green and pink tables follow mpMorf->entryDL(table), which swaps table textures for that draw.",
-        "Frozen follows the shared dMat_ice_c material copy; restoration returns to the stock state.",
-        "Club and sword follow daBk_Create setMaterialTable; the held attachment and eye-mask pass are excluded."
+        "Green and pink follow mpMorf->entryDL(table), which swaps table textures, plus the shield/telescope prop each draws.",
+        "Frozen follows the shared dMat_ice_c material copy with no invisible packets, as daBk_Draw passes NULL; restoration returns to stock.",
+        "Swing blur follows br_draw: one BLURA/BLURB shape shown under the club or sword table chosen in daBk_Create.",
+        "Tables are swapped on one shared blur model between states; a spawned actor keeps the table chosen at creation."
       ]
     },
     {
@@ -52,6 +55,7 @@
           "stone-first",
           "stone-second",
           "puddle",
+          "breakup",
           "frozen"
         ],
         "frames_per_state": 1
@@ -65,7 +69,8 @@
         "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
         "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
-        "Body, stone overlays, puddle and frozen branches use their own BRK/BTK bindings.",
+        "Body, stone, puddle and breakup entries and removals follow daCC_Draw; breakup draws without the BCK the actor binds.",
+        "Frozen keeps the body BRK entered and passes real invisible packets to iceUpdateDL, as daCC_Draw does.",
         "One color frame per state; BRK color frames change registers, not the description set selected here."
       ]
     },
@@ -109,7 +114,8 @@
           "curse-start",
           "curse-end",
           "light-freeze",
-          "possession"
+          "possession",
+          "lantern"
         ],
         "frames_per_state": 1
       },
@@ -123,7 +129,8 @@
         "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
         "Body states use the mask-off list; light-freeze uses the normal list and invisible packets as in body_draw.",
-        "Possession follows torituki_draw with the lantern model. Alpha is fixed at 255; split-Poe actors are excluded."
+        "Possession follows torituki_draw with tori_useHeapInit body model; lantern follows kantera_draw model and glow BRK.",
+        "KColor alpha is fixed at 255. Lantern and damage-ball alpha spheres, split Poes and shadows are excluded."
       ]
     },
     {
@@ -269,9 +276,36 @@
       "family": "bokoblin",
       "action": "unsupported",
       "owner": "#153 follow-up",
-      "reason": "Eye mask-off joint entry, BTP blinking, search light and held-prop attachment need actor-owned joint state.",
+      "reason": "Eye mask-off joint entry, BTP blinking, search light and attachment matrices need actor-owned joint state.",
       "source_references": [
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/br_draw/search_check_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "seahat-variant",
+      "family": "peahat",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "mType 1 loads the separate SH archive with different model flags; Peahat freeze does not establish it.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_ph.cpp:useHeapInit"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "jalhalla-alpha-spheres",
+      "family": "jalhalla",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Lantern and damage-ball spheres need dDlst_alphaModel, drawn outside these recipes with camera-specific setup.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:kantera_draw/damage_ball_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_alphaModel_c"
       ],
       "assumptions": [
         "No generated or physical coverage inferred from shared resources/configurations."

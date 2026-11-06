@@ -3,7 +3,7 @@
 This maintainer workflow extends the [model collector](MODEL-COLLECTOR.md) and
 [particle collector](PARTICLE-COLLECTOR.md). The fixed
 [manifest plan](../../evidence/ps4/enemy-collector-153/manifest-plan.json)
-contains eight exercised recipes and thirteen unsupported families. It is an
+contains eight exercised recipes and fifteen unsupported families. It is an
 independent slice of #136, starting from the corrected 301-description pilot
 baseline in #149. It does not accumulate the separate #150/#151/#152 expansions.
 Game resources, complete descriptions, seeds, packages and captures stay private.
@@ -45,10 +45,10 @@ and the fixed view does not establish stage or attachment equivalence.
 
 | Recipe | States | Real path |
 | --- | --- | --- |
-| `enemy-bokoblin-materials-v1` | stock, green, pink, frozen, restored, club, sword | `daBk_Draw`, weapon tables, shared freeze |
-| `enemy-chuchu-states-v1` | body, two stone overlays, puddle, frozen | `daCC_Draw` BMD/BDL branches, BRK/BTK, `iceUpdateDL` |
+| `enemy-bokoblin-materials-v1` | stock, green with shield, pink with telescope, frozen, restored, four swing blurs | `daBk_Draw`, `br_draw`, blur tables, shared freeze |
+| `enemy-chuchu-states-v1` | body, two stone overlays, puddle, breakup, frozen | `daCC_Draw` BMD/BDL branches, BRK/BTK, `iceUpdateDL` with invisible packets |
 | `enemy-peahat-freeze-v1` | stock, frozen, restored | `daPH_Draw` body/propeller freeze with invisible packets |
-| `boss-jalhalla-visibility-v1` | default, stun, curse start/end, light-freeze, possession | `body_draw`, `torituki_draw`, mask-off list |
+| `boss-jalhalla-visibility-v1` | default, stun, curse start/end, light-freeze, possession, lantern | `body_draw`, `torituki_draw`, `kantera_draw`, mask-off list |
 | `boss-gohma-defeat-v1` | phase one, phase two, defeat | `daBtd_Draw`, DEADA table and rebinding |
 | `boss-puppet-ganon-water-v1` | surface, mask, combined | `water0_disp`/`water1_disp` blend and depth mutation |
 | `enemy-death-large-v1` | 0x14+0x13+0x15+0x16 lifecycle | `set_disappear` default branch, stripes callback |
@@ -59,18 +59,23 @@ The two death recipes retain the particle collector's deterministic variations
 natural retirement by tick 240, drawn in the normal group `setNormal` uses.
 Attribution belongs to the collective effect, not an individual emitter.
 
-Some selected states add nothing. Green and pink swap textures through
-`entryDL(table)`, so they keep the stock description set; a state's value is
-that it was exercised, and an equal set is reported rather than hidden. Equal
-descriptions justify pipeline sharing for those observed states only. They do
-not imply identical visuals or coverage of any other actor using the same model.
+Each state mirrors its draw function's model, table and list choices. The swing
+blur shows only the `BLURA` or `BLURB` shape, as `br_draw` does; it swaps tables on
+one shared model between states, where a spawned actor keeps the table chosen at
+creation. The Bokoblin passes no invisible packets when frozen, because `daBk_Draw`
+passes none, while the Chuchu and Peahat pass theirs.
 
-The manifest names excluded Bokoblin eye/blink passes, Moblin/Darknut equipment,
-Poe/Floormaster/Wizzrobe, other ordinary enemies, line materials, hit/fire/ice
-effects, Kalle Demos, Gohdan, Molgera, Phantom Ganon/Ganondorf, Gohma debris,
-Puppet Ganon's other phases and environment combinations, with source references,
-reasons and follow-up ownership. Sharing the freeze path does not prove those
-actors. This is not all-enemy coverage.
+Some selected states may add nothing. A state's value is that it was exercised,
+and an equal description set is reported rather than hidden. Equal descriptions
+justify pipeline sharing for those observed states only. They do not imply
+identical visuals or coverage of any other actor using the same model.
+
+The manifest names excluded Bokoblin eye/blink passes, the Seahat variant,
+Jalhalla's alpha spheres, Moblin/Darknut equipment, Poe/Floormaster/Wizzrobe, other
+ordinary enemies, line materials, hit/fire/ice effects, Kalle Demos, Gohdan, Molgera,
+Phantom Ganon/Ganondorf, Gohma debris, Puppet Ganon's other phases and environment
+combinations, with source references, reasons and follow-up ownership. Sharing the
+freeze path does not prove those actors. This is not all-enemy coverage.
 
 ## Reproduce privately
 
@@ -155,7 +160,7 @@ Select from what an ordinary backed-up save already reaches:
   transition; a Chuchu covered in stone only if the save reaches one.
 - First ice-arrow freeze of any enemy, then a repeat and thaw, only where ice arrows
   are already available. This is the highest-risk shared state: it replaces every
-  material and, on Peahats and similar actors, adds depth-only packets.
+  material and, on Chuchus, Peahats and similar actors, adds depth-only packets.
 - The existing opening-Outset pot-break/dry-ground-roll route as a baseline
   regression control. It does not substitute for unavailable encounter evidence.
 

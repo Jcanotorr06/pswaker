@@ -17,12 +17,14 @@
       "script": {
         "states": [
           "body-stock",
-          "body-green",
-          "body-pink",
+          "green-with-shield",
+          "pink-with-telescope",
           "body-frozen",
           "body-restored",
-          "weapon-club",
-          "weapon-sword"
+          "blur-club-first",
+          "blur-club-second",
+          "blur-sword-first",
+          "blur-sword-second"
         ],
         "frames_per_state": 1
       },
@@ -35,9 +37,10 @@
         "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
         "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
-        "Green and pink tables follow mpMorf->entryDL(table), which swaps table textures for that draw.",
-        "Frozen follows the shared dMat_ice_c material copy; restoration returns to the stock state.",
-        "Club and sword follow daBk_Create setMaterialTable; the held attachment and eye-mask pass are excluded."
+        "Green and pink follow mpMorf->entryDL(table), which swaps table textures, plus the shield/telescope prop each draws.",
+        "Frozen follows the shared dMat_ice_c material copy with no invisible packets, as daBk_Draw passes NULL; restoration returns to stock.",
+        "Swing blur follows br_draw: one BLURA/BLURB shape shown under the club or sword table chosen in daBk_Create.",
+        "Tables are swapped on one shared blur model between states; a spawned actor keeps the table chosen at creation."
       ],
       "input_identity": {
         "archive_sha256": "7fda4e453a6c55eea2aeb89cd2b5c0f3e5522e664dd498140375104609442840",
@@ -63,6 +66,14 @@
           "/res/Object/Bk.arc:bmd/bk_kb.bmd": {
             "sha256": "4144f21fe8087b14c1ed385215d2f97b09df45527d521dc41d0eabe6ace3762a",
             "bytes": 37120
+          },
+          "/res/Object/Bk.arc:bmd/bk_tate.bmd": {
+            "sha256": "6d58e88e7843598c27db06aef4a8427f405a7058c4ccfbd8a01977ba3152d9b4",
+            "bytes": 8192
+          },
+          "/res/Object/Bk.arc:bdlm/bouen.bdl": {
+            "sha256": "0f5283c9dc2bb2143900ec42a5ab35b4fae03e22f53bf67cfc8549a8721b3fcd",
+            "bytes": 9440
           },
           "/res/Object/Always.arc:bmtm/ice.bmt": {
             "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
@@ -95,6 +106,7 @@
           "stone-first",
           "stone-second",
           "puddle",
+          "breakup",
           "frozen"
         ],
         "frames_per_state": 1
@@ -108,7 +120,8 @@
         "Fixed isolated origin/view and stock resources; no save, stage, actor process, AI or player controller.",
         "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
-        "Body, stone overlays, puddle and frozen branches use their own BRK/BTK bindings.",
+        "Body, stone, puddle and breakup entries and removals follow daCC_Draw; breakup draws without the BCK the actor binds.",
+        "Frozen keeps the body BRK entered and passes real invisible packets to iceUpdateDL, as daCC_Draw does.",
         "One color frame per state; BRK color frames change registers, not the description set selected here."
       ],
       "input_identity": {
@@ -123,6 +136,10 @@
           "/res/Object/Cc.arc:bdlm/cc_beta.bdl": {
             "sha256": "dbb6bce6a531303d727ba25de35b366825fbd7c34c71c7ae04cef8e05eff5953",
             "bytes": 12672
+          },
+          "/res/Object/Cc.arc:bdlm/cc_ptcl.bdl": {
+            "sha256": "ef34a5649529232418e4f04c211d4e2fd57cc008a936ceb1cb8d003400e28f98",
+            "bytes": 14624
           },
           "/res/Object/Cc.arc:brk/cc.brk": {
             "sha256": "79e0f77989b45f820578d878a8700c08a2b873e27503e4e67281e923d3ec19d1",
@@ -234,7 +251,8 @@
           "curse-start",
           "curse-end",
           "light-freeze",
-          "possession"
+          "possession",
+          "lantern"
         ],
         "frames_per_state": 1
       },
@@ -248,7 +266,8 @@
         "Actual game resource/J3D/JPA/GX paths and full descriptions; numeric uniforms are not assumed to add pipelines.",
         "Generated host observations only; PS4 preparation, appearance and full actor equivalence remain unverified.",
         "Body states use the mask-off list; light-freeze uses the normal list and invisible packets as in body_draw.",
-        "Possession follows torituki_draw with the lantern model. Alpha is fixed at 255; split-Poe actors are excluded."
+        "Possession follows torituki_draw with tori_useHeapInit body model; lantern follows kantera_draw model and glow BRK.",
+        "KColor alpha is fixed at 255. Lantern and damage-ball alpha spheres, split Poes and shadows are excluded."
       ],
       "input_identity": {
         "archive_sha256": "861c09175e65e2b5e814f7e210afcf8ca314ce4d089676e1d72099af214c0a40",
@@ -278,6 +297,10 @@
           "/res/Object/Bpw.arc:brk/hiraru1.brk": {
             "sha256": "aabbf1367bfe321b633d1a30233fd5a6695b0185cfd6becbbd7e63361fac51ca",
             "bytes": 288
+          },
+          "/res/Object/Bpw.arc:brk/bpw_kan1.brk": {
+            "sha256": "36d5076b6747374de3e27746a92ec27ce98f44a062e526fbfcafcf08f95d1040",
+            "bytes": 320
           },
           "/res/Object/Always.arc:bmtm/ice.bmt": {
             "sha256": "dbcf08bc689478a64d6644434c053ba94694de837c6ffcf85583267c6221cea0",
@@ -527,9 +550,36 @@
       "family": "bokoblin",
       "action": "unsupported",
       "owner": "#153 follow-up",
-      "reason": "Eye mask-off joint entry, BTP blinking, search light and held-prop attachment need actor-owned joint state.",
+      "reason": "Eye mask-off joint entry, BTP blinking, search light and attachment matrices need actor-owned joint state.",
       "source_references": [
         "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bk.cpp:daBk_Draw/br_draw/search_check_draw"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "seahat-variant",
+      "family": "peahat",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "mType 1 loads the separate SH archive with different model flags; Peahat freeze does not establish it.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_ph.cpp:useHeapInit"
+      ],
+      "assumptions": [
+        "No generated or physical coverage inferred from shared resources/configurations."
+      ]
+    },
+    {
+      "id": "jalhalla-alpha-spheres",
+      "family": "jalhalla",
+      "action": "unsupported",
+      "owner": "#153 follow-up",
+      "reason": "Lantern and damage-ball spheres need dDlst_alphaModel, drawn outside these recipes with camera-specific setup.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_bpw.cpp:kantera_draw/damage_ball_draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_alphaModel_c"
       ],
       "assumptions": [
         "No generated or physical coverage inferred from shared resources/configurations."
@@ -709,11 +759,11 @@
       ]
     }
   ],
-  "plan_sha256": "8dd1da871671dd1e05f3395761617c30e6d5795ee80f8e8285a9054d8b12973b",
+  "plan_sha256": "6f1b04c4a448b6208177ad206709b257cf763941a5149f156289c8dad495c11c",
   "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
   "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
   "collector": {
-    "sha256": "b63236f51e8b4572491dcd22e75788faeaf1deb0576b8a5df5e5a26534074141",
-    "build_sha256": "fc4164d51e83916e5a9237b10c2e0c76847f1b646115d5e4f6c169f2d05758f8"
+    "sha256": "420826b70d70665f8f6c0d24c018b12a5e9564ca8df6d11b2e0c58d0c9efcdf6",
+    "build_sha256": "203e3af70f9dfe4ed80891f1c294c7c145f03dc2c1a98fef1f5285f9461779b5"
   }
 }

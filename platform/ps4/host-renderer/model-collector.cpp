@@ -56,7 +56,7 @@ static std::mutex observationMutex;
 static unsigned drawCalls;
 static aurora::gfx::RenderTargetLayout observedLayout;
 struct EffectStep {
-  unsigned texture, tick, particles, emitters, draws = 0, lookups = 0;
+  unsigned variant, tick, particles, emitters, draws = 0, lookups = 0;
   std::vector<sqlite3_int64> configurations;
 };
 static std::vector<EffectStep> effectSteps;
@@ -210,7 +210,7 @@ static void write_effect_steps(FILE* report) {
     fprintf(report, "%s{\"texture_index\":%u,\"steps\":[", texture ? "," : "", texture);
     bool first = true;
     for (const auto& step : effectSteps) {
-      if (step.texture != texture) continue;
+      if (step.variant != texture) continue;
       fprintf(report, "%s{\"tick\":%u,\"particles\":%u,\"emitters\":%u,\"draw_calls\":%u,"
               "\"pipeline_lookups\":%u,\"configurations\":[", first ? "" : ",", step.tick,
               step.particles, step.emitters, step.draws, step.lookups);
@@ -225,7 +225,7 @@ static void write_effect_steps(FILE* report) {
   fprintf(report, "]");
 }
 
-static std::vector<unsigned> particle_ids(const std::string& resource) {
+static std::vector<unsigned> particle_ids(const std::string& resource, bool enemyDeath) {
   const std::string prefix = "/res/Particle/common.jpc:";
   check(resource.starts_with(prefix), "only the fixed common particle bank is supported");
   std::vector<unsigned> ids;
@@ -238,8 +238,9 @@ static std::vector<unsigned> particle_ids(const std::string& resource) {
           "fixed four-digit effect ID required");
     const unsigned id = std::stoul(token, nullptr, 16);
     check(id == 0x2022 || id == 0x2027 || id == 0x2008 || id == 0x2009 || id == 0x200a ||
-          id == 0x000b || id == 0x0013 || id == 0x0014 || id == 0x0015 || id == 0x0016 ||
-          id == 0x0018 || id == 0x0019 || id == 0x232a || id == 0x043c || id == 0x043d || id == 0x043e,
+          id == 0x000b || id == 0x0013 || id == 0x0018 || id == 0x0019 || id == 0x232a ||
+          (enemyDeath && (id == 0x0014 || id == 0x0015 || id == 0x0016 ||
+                          id == 0x043c || id == 0x043d || id == 0x043e)),
           "effect requires a separately validated recipe");
     check(ids.size() < 4 && std::find(ids.begin(), ids.end(), id) == ids.end(), "bounded unique effect IDs");
     ids.push_back(id);
@@ -278,7 +279,7 @@ static unsigned draw_particles(Mtx view, const std::vector<unsigned>& ids, Parti
       check(emitter, "instantiate selected particle effect");
       emitter->setGlobalScale(scale);
       emitter->setGlobalAlpha(variation ? 128 : 255);
-      if (id == 0x0015) {
+      if (setup == ParticleSetup::EnemyDeath && id == 0x0015) {
         // set_disappear -> setNormalStripes(..., 0xFF, 0x96) spirit callback.
         emitter->setEmitterCallBackPtr(&dPa_control_c::mStripes);
         dPa_control_c::mStripes.setup(emitter, nullptr, nullptr, -1);
@@ -405,37 +406,48 @@ static mDoExt_btkAnm* actor_btk(J3DModelData* data, const char* archive, int ind
   return anm;
 }
 
-// daBk_Draw material/freeze choices and daBk_Create's weapon material tables.
-// Eye masking, BTP blinking and the held-weapon attachment remain gaps.
+// daBk_Draw material/freeze choices and props, plus br_draw's swing blur with
+// daBk_Create's blur tables. Eye masking, BTP blinking and attachment remain gaps.
 static std::vector<ActorState> bokoblin_states() {
   auto* morf = actor_morf("Bk", dRes_INDEX_BK_BDL_BK_e, 0x00080000, 0x37221203);
   auto* green = (J3DMaterialTable*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMT_GREEN_e);
   auto* pink = (J3DMaterialTable*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMT_PINK_e);
-  auto* boko = (J3DMaterialTable*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMT_BK_BOKO_e);
-  auto* ken = (J3DMaterialTable*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMT_BK_KEN_e);
-  auto* weaponData = (J3DModelData*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMD_BK_KB_e);
-  weaponData->setMaterialTable(boko, J3DMatCopyFlag_Material);
-  auto* weapon = mDoExt_J3DModel__create(weaponData, 0, 0x11020203);
-  check(weapon, "create bokoblin weapon");
+  auto* club = (J3DMaterialTable*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMT_BK_BOKO_e);
+  auto* sword = (J3DMaterialTable*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMT_BK_KEN_e);
+  auto* blurData = (J3DModelData*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMD_BK_KB_e);
+  blurData->setMaterialTable(club, J3DMatCopyFlag_Material);
+  auto* blur = mDoExt_J3DModel__create(blurData, 0, 0x11020203);
+  auto* shield = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BMD_BK_TATE_e), 0, 0x11020203);
+  auto* telescope = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes("Bk", dRes_INDEX_BK_BDL_BOUEN_e), 0, 0x11020203);
+  check(blur && shield && telescope, "create bokoblin props");
   const auto body = [morf] { morf->calc(); morf->entryDL(); };
-  const auto weaponDraw = [=](J3DMaterialTable* table) {
-    weaponData->setMaterialTable(table, J3DMatCopyFlag_Material);
-    mDoExt_modelUpdateDL(weapon);
+  const auto blurDraw = [=](J3DMaterialTable* table, u16 shown) {
+    blurData->setMaterialTable(table, J3DMatCopyFlag_Material);
+    for (u16 joint = 0; joint < blurData->getJointNum(); joint++)
+      for (auto* material = blurData->getJointNodePointer(joint)->getMesh(); material; material = material->getNext()) {
+        if (joint == shown) material->getShape()->show();
+        else material->getShape()->hide();
+      }
+    mDoExt_modelUpdateDL(blur);
   };
   return {{"body-stock", body},
-          {"body-green", [=] { morf->calc(); morf->entryDL(green); }},
-          {"body-pink", [=] { morf->calc(); morf->entryDL(pink); }},
+          {"green-with-shield", [=] { morf->calc(); morf->entryDL(green); mDoExt_modelUpdateDL(shield); }},
+          {"pink-with-telescope", [=] { morf->calc(); morf->entryDL(pink); mDoExt_modelUpdateDL(telescope); }},
           {"body-frozen", [=] { morf->calc(); dMat_control_c::icePlay(); dMat_control_c::iceEntryDL(morf, -1, nullptr); }},
           {"body-restored", body},
-          {"weapon-club", [=] { weaponDraw(boko); }},
-          {"weapon-sword", [=] { weaponDraw(ken); }}};
+          {"blur-club-first", [=] { blurDraw(club, BK_KB_JNT_BLURA_e); }},
+          {"blur-club-second", [=] { blurDraw(club, BK_KB_JNT_BLURB_e); }},
+          {"blur-sword-first", [=] { blurDraw(sword, BK_KB_JNT_BLURA_e); }},
+          {"blur-sword-second", [=] { blurDraw(sword, BK_KB_JNT_BLURB_e); }}};
 }
 
-// daCC_Draw body, stone-covered, puddle and freeze branches.
+// daCC_Draw body, stone-covered, puddle, breakup and freeze branches. Like the
+// actor, the frozen branch keeps the body BRK entered and returns without removal.
 static std::vector<ActorState> chuchu_states() {
   auto* body = actor_morf("CC", dRes_INDEX_CC_BMD_CC_e, 0, 0x11020203);
   auto* rock = actor_morf("CC", dRes_INDEX_CC_BDL_CC_IWA_e, 0, 0x11020203);
   auto* puddle = actor_morf("CC", dRes_INDEX_CC_BDL_CC_BETA_e, 0, 0x11020203);
+  auto* breakup = actor_morf("CC", dRes_INDEX_CC_BDL_CC_PTCL_e, 0, 0x11020203);
   auto* bodyData = body->getModel()->getModelData();
   auto* rockData = rock->getModel()->getModelData();
   auto* puddleData = puddle->getModel()->getModelData();
@@ -445,16 +457,23 @@ static std::vector<ActorState> chuchu_states() {
   auto* rockScrollA = actor_btk(rockData, "CC", dRes_INDEX_CC_BTK_CC_IWA01_e);
   auto* rockScrollB = actor_btk(rockData, "CC", dRes_INDEX_CC_BTK_CC_IWA02_e);
   auto* puddleColor = actor_brk(puddleData, "CC", dRes_INDEX_CC_BRK_CC_BETA_e);
-  const auto bodyDraw = [=] { body->calc(); bodyColor->entry(bodyData); body->entryDL(); };
+  auto* mask = new mDoExt_invisibleModel();
+  check(mask->create(body->getModel()), "create invisible packets");
+  const auto bodyDraw = [=] { body->calc(); bodyColor->entry(bodyData); body->entryDL(); bodyColor->remove(bodyData); };
   const auto rockDraw = [=](mDoExt_brkAnm* color, mDoExt_btkAnm* scroll) {
     bodyDraw();
     rock->calc(); color->entry(rockData); scroll->entry(rockData); rock->updateDL();
+    color->remove(rockData); scroll->remove(rockData);
   };
   return {{"body", bodyDraw},
           {"stone-first", [=] { rockDraw(rockColorA, rockScrollA); }},
           {"stone-second", [=] { rockDraw(rockColorB, rockScrollB); }},
-          {"puddle", [=] { puddle->calc(); puddleColor->entry(puddleData); puddle->updateDL(); }},
-          {"frozen", [=] { body->calc(); dMat_control_c::icePlay(); dMat_control_c::iceUpdateDL(body, -1, nullptr); }}};
+          {"puddle", [=] { puddle->calc(); puddleColor->entry(puddleData); puddle->updateDL(); puddleColor->remove(puddleData); }},
+          {"breakup", [=] { breakup->calc(); bodyColor->entry(bodyData); breakup->updateDL(); bodyColor->remove(bodyData); }},
+          {"frozen", [=] {
+             body->calc(); bodyColor->entry(bodyData); dMat_control_c::icePlay();
+             dMat_control_c::iceUpdateDL(body, -1, mask);
+           }}};
 }
 
 // daPH_Draw: frozen body/propeller, each with its depth-only invisible packets.
@@ -474,23 +493,29 @@ static std::vector<ActorState> peahat_states() {
           {"restored", stock}};
 }
 
-// bpw body_draw/torituki_draw: Jalhalla's mask-off list and invisible packets.
+// bpw body_draw, torituki_draw and kantera_draw model paths. The lantern's and
+// damage ball's dDlst_alphaModel spheres remain a gap.
 static std::vector<ActorState> jalhalla_states() {
   auto* body = actor_morf("BPW", dRes_INDEX_BPW_BDL_BPW_e, 0x80000, 0x37441422);
+  auto* possessing = actor_morf("BPW", dRes_INDEX_BPW_BDL_BPW_e, 0x80000, 0x37441422);
   auto* lantern = actor_morf("BPW", dRes_INDEX_BPW_BDL_BPW_KAN1_e, 0x80000, 0x37441422);
   auto* data = body->getModel()->getModelData();
   auto* lanternData = lantern->getModel()->getModelData();
   auto* mask = new mDoExt_invisibleModel();
-  auto* lanternMask = new mDoExt_invisibleModel();
-  check(mask->create(body->getModel()) && lanternMask->create(lantern->getModel()), "create invisible packets");
+  auto* possessionMask = new mDoExt_invisibleModel();
+  check(mask->create(body->getModel()) && possessionMask->create(possessing->getModel()), "create invisible packets");
   auto* normal = actor_brk(data, "BPW", dRes_INDEX_BPW_BRK_DEFAULT_e, J3DFrameCtrl::EMode_LOOP);
   auto* stun = actor_brk(data, "BPW", dRes_INDEX_BPW_BRK_HIT_e, J3DFrameCtrl::EMode_LOOP);
   auto* curseStart = actor_brk(data, "BPW", dRes_INDEX_BPW_BRK_NOROI_S1_e);
   auto* curseEnd = actor_brk(data, "BPW", dRes_INDEX_BPW_BRK_NOROI_E1_e);
   auto* lightFreeze = actor_brk(data, "BPW", dRes_INDEX_BPW_BRK_HIRARU1_e);
+  auto* lanternGlow = actor_brk(lanternData, "BPW", dRes_INDEX_BPW_BRK_BPW_KAN1_e, J3DFrameCtrl::EMode_LOOP);
+  const auto opaque = [=] {
+    for (u16 i = 0; i < data->getMaterialNum(); i++) data->getMaterialNodePointer(i)->getTevKColor(3)->mColor.a = 255;
+  };
   const auto bodyDraw = [=](mDoExt_brkAnm* color, bool frozen) {
     body->calc();
-    for (u16 i = 0; i < data->getMaterialNum(); i++) data->getMaterialNodePointer(i)->getTevKColor(3)->mColor.a = 255;
+    opaque();
     if (!frozen) dComIfGd_setListMaskOff();
     color->entry(data);
     body->entryDL();
@@ -504,13 +529,15 @@ static std::vector<ActorState> jalhalla_states() {
           {"curse-end", [=] { bodyDraw(curseEnd, false); }},
           {"light-freeze", [=] { bodyDraw(lightFreeze, true); }},
           {"possession", [=] {
-             lantern->calc();
-             for (u16 i = 0; i < lanternData->getMaterialNum(); i++)
-               lanternData->getMaterialNodePointer(i)->getTevKColor(3)->mColor.a = 255;
+             possessing->calc();
+             opaque();
              dComIfGd_setListMaskOff();
-             lantern->updateDL();
+             possessing->updateDL();
              dComIfGd_setList();
-             lanternMask->entryMaskOff();
+             possessionMask->entryMaskOff();
+           }},
+          {"lantern", [=] {
+             lantern->calc(); lanternGlow->entry(lanternData); lantern->entryDL(); lanternGlow->remove(lanternData);
            }}};
 }
 
@@ -608,7 +635,7 @@ static void write_state_steps(FILE* report, const std::vector<const char*>& name
   for (size_t i = 0; i < effectSteps.size(); ++i) {
     const auto& step = effectSteps[i];
     fprintf(report, "%s{\"tick\":%u,\"state\":\"%s\",\"draw_calls\":%u,\"pipeline_lookups\":%u,\"configurations\":[",
-            i ? "," : "", step.tick, names[step.texture], step.draws, step.lookups);
+            i ? "," : "", step.tick, names[step.variant], step.draws, step.lookups);
     for (size_t k = 0; k < step.configurations.size(); ++k)
       fprintf(report, "%s{\"type\":1,\"hash\":%lld}", k ? "," : "", static_cast<long long>(step.configurations[k]));
     fprintf(report, "]}");
@@ -638,7 +665,7 @@ int main(int argc, char* argv[]) {
   check(!bombCheap || resource == "/res/Particle/common.jpc:0x000b+0x232a+0x200a+0x2008", "cheap bomb recipe");
   check(!deathLarge || resource == "/res/Particle/common.jpc:0x0014+0x0013+0x0015+0x0016", "large enemy death recipe");
   check(!deathSmall || resource == "/res/Particle/common.jpc:0x043c+0x043d+0x043e", "small enemy death recipe");
-  const auto particleIds = particles ? particle_ids(resource) : std::vector<unsigned>{};
+  const auto particleIds = particles ? particle_ids(resource, deathLarge || deathSmall) : std::vector<unsigned>{};
   const auto modelResource = particles || actor ? std::string("/res/Object/Always.arc:bdl/obm_kotubo1.bdl") : resource;
   const auto separator = modelResource.find(':');
   check(separator != std::string::npos && modelResource.find(':', separator + 1) == std::string::npos,
