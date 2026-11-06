@@ -15,6 +15,9 @@ No new physical PS4 observations or owner acceptance are claimed.
   immutable baseline records and repeat metadata.
 - [Candidate](candidate.json): private complete package, seed, native program,
   collector and fresh extraction/inspection identities.
+- [Independent standards and spec review](review.md): no findings on either axis.
+- [Verification summary](verification.json): 297 tests completed, 60 platform/tool
+  skips, no failures; final focused tests, typechecking, compile and syntax checks.
 - [Workflow and bounded console handoff](../../../docs/ps4/PRESENTATION-COLLECTOR.md).
 
 The generated candidate has 312 descriptions: the unchanged corrected
