@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "exact_standalone_seed_bytes": true,
+  "exact_seed_provenance_bytes": true,
+  "exact_frozen_manifest_bytes": true,
+  "all_scenario_description_bytes_and_source_manifests_equal": true,
+  "all_scenario_scripts_states_counts_layouts_and_inputs_equal": true,
+  "baseline_full_descriptions_and_frame_metadata_preserved": 301,
+  "every_generated_description_in_seed": true,
+  "seed_sha256": "fb0b83f4fc876ad572de7146b3d1b61b015051fde8f8c7777c96c06d72dbb9e6",
+  "seed_source_sha256": "884d2b6755d2433d539bb29cddb7308c36321da1a120ed8bfd67a3d61c49fffc",
+  "manifest_sha256": "173c6711bb953900f97e797ab41b1069a3a9e352ab7bd780eb8cf6cd604833ea",
+  "source_reference_correction_only_seed_and_collections_unchanged": true,
+  "physical_verification": false
+}

@@ -1,0 +1,276 @@
+{
+  "schema": 1,
+  "kind": "environment-scenes",
+  "id": "environment-scenes-154-v1",
+  "exclusions": [
+    "Three finite recipes only; stage progression and full-game simulation are excluded.",
+    "Other scene/world/camera/effect paths are explicit unsupported rows.",
+    "No physical acceptance or owner storage changes."
+  ],
+  "rows": [
+    {
+      "id": "scene-ocean-world-v1",
+      "family": "ocean",
+      "action": "exercise",
+      "scenario": "scene-ocean-world-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "day",
+          "night",
+          "dense-fog",
+          "range-adjusted",
+          "camera-raised",
+          "day-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-scene-world-camera-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_sea.cpp:daSea_packet_c::create/draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_kankyo.cpp:dKy_GxFog_sea_set/GxXFog_set/dKy_get_seacolor"
+      ],
+      "assumptions": [
+        "Finite isolated scene packet draws; no stage/player/weather process, logic loop, audio, saves or settings.",
+        "Generated full descriptions through actual game draw code and the normal synchronous renderer recorder.",
+        "Stock 1280x720/single-sample target; no optional normals, MSAA, texture replacement or driver binary portability.",
+        "Camera day: eye (0,1000,2000), look-at (0,0,-2000), up (0,1,0), FOV 45, aspect 4/3, near 1, far 160000.",
+        "Raised camera: eye Y 3000, FOV 60, near 10, far 80000; other camera components unchanged.",
+        "Day sea C0=(80,160,200,255), K0=(20,80,120,255); night C0=(10,20,40,255), K0=(5,10,20,255).",
+        "Fog uses day/night C0 and real perspective-linear dKy fog; start/end 1000/50000, dense 100/5000; range center 320/table 0.",
+        "Numeric colors, fog distances, transforms and scrolling are candidates for shared configuration only when full descriptions match.",
+        "Scene and single-color/single-sample offscreen preparation contracts are recorded separately even when their keys coincide.",
+        "Real create initializes a 65x65 flat height table at Y=1; fixed grid bounds +/-25600, 800-unit cells.",
+        "Draw advances the real texture counter once per frame; no wave execute or weather/time progression."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        }
+      }
+    },
+    {
+      "id": "scene-simple-shadows-v1",
+      "family": "simple",
+      "action": "exercise",
+      "scenario": "scene-simple-shadows-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "untextured",
+          "textured",
+          "sloped-raised",
+          "textured-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-scene-world-camera-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowControl_c::setSimple/draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowSimple_c::set/draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_s_logo.cpp:dScnLogo_Delete"
+      ],
+      "assumptions": [
+        "Finite isolated scene packet draws; no stage/player/weather process, logic loop, audio, saves or settings.",
+        "Generated full descriptions through actual game draw code and the normal synchronous renderer recorder.",
+        "Stock 1280x720/single-sample target; no optional normals, MSAA, texture replacement or driver binary portability.",
+        "Camera day: eye (0,1000,2000), look-at (0,0,-2000), up (0,1,0), FOV 45, aspect 4/3, near 1, far 160000.",
+        "Raised camera: eye Y 3000, FOV 60, near 10, far 80000; other camera components unchanged.",
+        "Day sea C0=(80,160,200,255), K0=(20,80,120,255); night C0=(10,20,40,255), K0=(5,10,20,255).",
+        "Fog uses day/night C0 and real perspective-linear dKy fog; start/end 1000/50000, dense 100/5000; range center 320/table 0.",
+        "Numeric colors, fog distances, transforms and scrolling are candidates for shared configuration only when full descriptions match.",
+        "Scene and single-color/single-sample offscreen preparation contracts are recorded separately even when their keys coincide.",
+        "Real volume/front/back/seal/clear display lists, default ball128b texture versus NULL.",
+        "Caster (0,50,0), ground Y=0, scale XZ=100, Z ratio=1, normal=(0,1,0), Y rotation=0.",
+        "Sloped state: raised camera, caster Y=200, normal=(0.6,0.8,0), rotation=4096, Z ratio=2.",
+        "Non-square custom actor shadow textures and real collision receivers remain unhandled."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        }
+      }
+    },
+    {
+      "id": "scene-alpha-overlap-v1",
+      "family": "alpha",
+      "action": "exercise",
+      "scenario": "scene-alpha-overlap-v1",
+      "resource": "/res/Object/Always.arc",
+      "script": {
+        "states": [
+          "sphere",
+          "cube",
+          "sphere-faded",
+          "sea-shadow-sphere",
+          "sphere-repeated"
+        ],
+        "frames_per_state": 1,
+        "setup": "fixed-scene-world-camera-v1"
+      },
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_alphaModelPacket::draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_sea.cpp:daSea_packet_c::draw",
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowControl_c::draw"
+      ],
+      "assumptions": [
+        "Finite isolated scene packet draws; no stage/player/weather process, logic loop, audio, saves or settings.",
+        "Generated full descriptions through actual game draw code and the normal synchronous renderer recorder.",
+        "Stock 1280x720/single-sample target; no optional normals, MSAA, texture replacement or driver binary portability.",
+        "Camera day: eye (0,1000,2000), look-at (0,0,-2000), up (0,1,0), FOV 45, aspect 4/3, near 1, far 160000.",
+        "Raised camera: eye Y 3000, FOV 60, near 10, far 80000; other camera components unchanged.",
+        "Day sea C0=(80,160,200,255), K0=(20,80,120,255); night C0=(10,20,40,255), K0=(5,10,20,255).",
+        "Fog uses day/night C0 and real perspective-linear dKy fog; start/end 1000/50000, dense 100/5000; range center 320/table 0.",
+        "Numeric colors, fog distances, transforms and scrolling are candidates for shared configuration only when full descriptions match.",
+        "Scene and single-color/single-sample offscreen preparation contracts are recorded separately even when their keys coincide.",
+        "Real alpha packet types 0 (sphere) and 3 (cube), transform scale 100, RGBA=(255,200,100,255/128).",
+        "Selected overlap draws ocean, default textured simple shadow, then faded sphere in one frame.",
+        "This packet sequence does not claim a reached gameplay state or full painter/actor ordering equivalence."
+      ],
+      "input_identity": {
+        "/res/Object/Always.arc": {
+          "sha256": "ee2b9b993e3361e13f12b64eea62d7e2fd03ee346300a3010616db4c977f5bfb",
+          "bytes": 212657
+        },
+        "/res/Object/System.arc": {
+          "sha256": "0f4a06d65a5f162ee8744b6aae6c2c65b6861f2e9aaeaee89a8ec33aff57c739",
+          "bytes": 34176
+        }
+      }
+    },
+    {
+      "id": "wave-simulation-and-storms",
+      "family": "ocean",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Player/stage wave bounds, storms and octopus interactions need dedicated scene controllers.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_sea.cpp:daSea_packet_c::execute"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    },
+    {
+      "id": "real-shadow-capture-and-receivers",
+      "family": "shadows",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Real caster image capture and collision/sea receivers need separate bounded setup; simple shadows do not cover them.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowReal_c::imageDraw/draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    },
+    {
+      "id": "rectangular-shadow-textures",
+      "family": "shadows",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Non-square actor textures take a different seal display list and are not supplied by this inventory.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_shadowSimple_c::draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    },
+    {
+      "id": "mirror-and-reflection-scenes",
+      "family": "reflections",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Mirror geometry/collision and room capture are oversized for this slice.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_mirrorPacket::draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    },
+    {
+      "id": "weather-rain-snow-clouds",
+      "family": "weather",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Weather packet initialization and camera/spawn controllers require follow-up recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_kankyo_wether.cpp"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    },
+    {
+      "id": "stage-sky-and-underwater",
+      "family": "world",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Stage sky resources, underwater room state and transitions are not reached by isolated packets.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_vrbox.cpp"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    },
+    {
+      "id": "waterfalls-and-dungeon-water",
+      "family": "water",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Stage resource actors, projected textures and offscreen capture inputs need independent bounded recipes.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/actor/d_a_waterfall.cpp:daWfall_c::_draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    },
+    {
+      "id": "other-alpha-volumes",
+      "family": "alpha",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Multi-volume accumulator/searchlight variants are distinct from the alpha packet exercised here.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/d/d_drawlist.cpp:dDlst_alphaModelData_c::draw"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    },
+    {
+      "id": "other-world-camera-overlaps",
+      "family": "world",
+      "action": "unsupported",
+      "owner": "#154 follow-up",
+      "reason": "Full painter order, clipping, other camera projections and arbitrary simultaneous effects are unhandled.",
+      "source_references": [
+        "switchwaker@ba8d0a31446cd53ceaebd6b7269cca641e73bf4c:game/src/m_Do/m_Do_graphic.cpp:mDoGph_Painter"
+      ],
+      "assumptions": [
+        "No generated, physical or owner-accepted coverage inferred."
+      ]
+    }
+  ],
+  "plan_sha256": "61fab633187121ffc9ff1ae1c9c9c294732c13dc2a70232b20b27a076e7d7a68",
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "contract_sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+  "collector": {
+    "sha256": "fc4d803e8c5e973bfae04f5b7a02f0dc9d41b12fdd0880aeebdfdf241196814c",
+    "build_sha256": "c97aa7c2f3a5232c370780cf1146ca66bfe7efdaa4e7760d149a932ad0153a56"
+  }
+}
