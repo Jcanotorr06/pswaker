@@ -1,5 +1,6 @@
 {
   "include": [
+    "tests/ps4/test_seed_consolidation.py",
     "tools/pswaker/presentation_collection.py",
     "tests/ps4/test_presentation_collection.py",
     "tests/ps4/synthetic_presentation.py",

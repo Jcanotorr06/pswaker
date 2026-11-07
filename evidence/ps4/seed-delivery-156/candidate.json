@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "issue": 156,
+  "app_version": "01.26",
+  "program": {
+    "build_id": "be0a6ae04878271c6c1d",
+    "elf_sha256": "7adad72f20bf479c56eeca1b16da8d6c994c72b9a2536a7b803a8741cb060e8e",
+    "eboot_sha256": "daffcb391bad273c289fac04b728549ec547d185baa5f9d6a5fad48eed43d598"
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "598035c3003e0fedf91d7a3d9d463bb036c0331473e1294726264ccb4e174151",
+    "bytes": 1521942528
+  },
+  "seed": {
+    "rows": 493,
+    "bytes": 2056192,
+    "sha256": "6bf9b8f47df5f0281bf69dfa352439763f7db199ca6c88fa70ae77da19fbc057",
+    "asset_manifest_sha256": "9442787477e06b6f15cf12c8249e0a78ea5eefbbcc592b5248f7b25681214dd7"
+  },
+  "assembly_sha256": "454c506a6be1d6bb2495b134c6ad95268b6809d146fc58a81c0235113a3bc654",
+  "inspection_sha256": "4cb6cde75ac2bd7801de546b2de4b086b2b0da7c6fc3c9aa8cc07154f58003d9",
+  "program_contract": {
+    "sha256": "8c3392d2bf28dae71adecc908ed8056d987a6b2db36bb27ddcf07cc138825700",
+    "bytes": 2872,
+    "actual_program_compiler_flags": true,
+    "equal_to_frozen_collector_contract": true,
+    "program_release_manifest_sha256": "02ea1ecbf78690307f3dfd1dbd9ce5f2ca7e397465971b357af760a6834981b0"
+  },
+  "desktop": {
+    "schema": 1,
+    "issue": 156,
+    "desktop_version": "0.1.0.156",
+    "program_build_id": "be0a6ae04878271c6c1d",
+    "application_release_sha256": "cee2a1864eecf4bd2868273a4982254e9c1f15ac3ab609b8f3f95a01fba8f43e",
+    "desktop_release_sha256": "e5d5230ebfd9c78574e16ebbd018059ffc778637b71af3fa4add08d4da3bfad4",
+    "seed_sha256": "6bf9b8f47df5f0281bf69dfa352439763f7db199ca6c88fa70ae77da19fbc057",
+    "seed_manifest_sha256": "9442787477e06b6f15cf12c8249e0a78ea5eefbbcc592b5248f7b25681214dd7",
+    "package": {
+      "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+      "sha256": "598035c3003e0fedf91d7a3d9d463bb036c0331473e1294726264ccb4e174151"
+    },
+    "inspection_sha256": "4cb6cde75ac2bd7801de546b2de4b086b2b0da7c6fc3c9aa8cc07154f58003d9",
+    "fresh_inspection_reproduces_assembly": true,
+    "physical_verification": false
+  },
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18",
+    "confirmation": "Owner-confirmed platform; new package not physically verified."
+  },
+  "fresh_inspection_reproduces_assembly": true,
+  "independent_extracted_seed_matches": true,
+  "source_asset_comparisons": 98,
+  "source_description_comparisons": 1090,
+  "all_source_full_descriptions_in_extracted_seed": true,
+  "physical_verification": false,
+  "private_artifact_group": "delivery-156-final"
+}

@@ -167,6 +167,9 @@ python tools/pswaker/build-installer.py --program C:\private\program-release --p
   Both builders require and verify it; owners receive it automatically with the
   app. Missing or incompatible seeds fail the build. No shader selection is added
   to the owner workflow, and no Outset action coverage is claimed.
+  To consolidate expansion manifests, audit gaps, update the private default and
+  freeze a desktop-built candidate, follow
+  [expanded seed delivery](docs/ps4/EXPANDED-SEED-DELIVERY.md).
 - `build-desktop.py` bundles the program release, validated seed, tools and production
   content contract into a `PSWaker` folder with a hash inventory. Keep the whole
   folder together, including `_internal` and `application-release.json`.

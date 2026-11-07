@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "issue": 156,
+  "full_suite": {
+    "tests": 306,
+    "seconds": 940.164,
+    "skipped": 60,
+    "result": "pass",
+    "private_log_sha256": "9d00fa1b1326221a73e44c668fa6b33ae9f156ee7975fde39733def41866db91"
+  },
+  "windows_checks": {
+    "test_seed_consolidation": {
+      "tests": 5,
+      "seconds": 8.867,
+      "skipped": 0,
+      "result": "pass",
+      "private_log_sha256": "91bbef6149a2d72ae44f01676742cc9bbf746d334f6676705529d86b27ab5e0e"
+    },
+    "test_desktop": {
+      "tests": 26,
+      "seconds": 346.106,
+      "skipped": 0,
+      "result": "pass",
+      "private_log_sha256": "180b4501ca28a11f46dc13fab84b2d0e4624f74a8e2d754343a70093f33ac925"
+    },
+    "test_complete_package_workflow": {
+      "tests": 20,
+      "seconds": 0.56,
+      "skipped": 0,
+      "result": "pass",
+      "private_log_sha256": "a2b92ee498c78e6753066333bc79cdefe2523c6ddf3ad033422fbd0b9c9c9e77"
+    },
+    "test_complete_package": {
+      "tests": 40,
+      "seconds": 14.794,
+      "skipped": 29,
+      "result": "pass",
+      "private_log_sha256": "8ea669de4dfa29c83b139768a0e9949a46afd2cd5dffbacf8ed78074ced7e546"
+    },
+    "test_windows_package": {
+      "tests": 21,
+      "seconds": 368.826,
+      "skipped": 0,
+      "result": "pass",
+      "private_log_sha256": "9510b4b694ae38ffc5677462b3ecd2bd1b20297bc242263c7f94ba3434f293f4"
+    },
+    "test_windows_tools": {
+      "tests": 1,
+      "seconds": 11.737,
+      "skipped": 0,
+      "result": "pass",
+      "private_log_sha256": "95596c6ed540ca065e5e25ecdb2dfa25ed0ee9a51ee93ca8087cb098d3f311ee"
+    },
+    "test_installer": {
+      "tests": 1,
+      "seconds": 202.04,
+      "skipped": 0,
+      "result": "pass",
+      "private_log_sha256": "51e2e8ece5f6c309038617978d7e82effc1d93434e31f178aff69faea9374a7f"
+    },
+    "test_seed_consolidation_final": {
+      "tests": 5,
+      "seconds": 8.976,
+      "skipped": 0,
+      "result": "pass",
+      "private_log_sha256": "10d11b6afd85f2cb3497273a909634214f72baed8bdeecc875584ca331922a36"
+    }
+  },
+  "typecheck": {
+    "errors": 0,
+    "warnings": 0,
+    "private_log_sha256": "6d88a1b220adb7a3d62092b6e38431f0b3fe8babe9864fab90e5849766260332"
+  },
+  "compileall": "pass",
+  "shell_syntax": {
+    "result": "pass",
+    "scripts": 8
+  },
+  "public_consolidation_initial_red": "CLI rejected unknown consolidate command before implementation.",
+  "preliminary_suite": "Interrupted after the frozen-plan contract was tightened; original log retained privately.",
+  "host_controls": {
+    "seed_sha256": "6bf9b8f47df5f0281bf69dfa352439763f7db199ca6c88fa70ae77da19fbc057",
+    "controls": [
+      {
+        "id": "static",
+        "scenario": "always-small-pot-stock-v1",
+        "preparation_rows": 493,
+        "full_identity_and_recorder_roundtrip": true,
+        "missing": 0,
+        "conflicting": 0
+      },
+      {
+        "id": "overlap",
+        "scenario": "scene-alpha-overlap-v1",
+        "preparation_rows": 493,
+        "full_identity_and_recorder_roundtrip": true,
+        "missing": 0,
+        "conflicting": 0
+      },
+      {
+        "id": "menu",
+        "scenario": "menu-picture-colors-v1",
+        "preparation_rows": 493,
+        "full_identity_and_recorder_roundtrip": true,
+        "missing": 0,
+        "conflicting": 0
+      }
+    ],
+    "native_preparation_and_cleanup_success": true,
+    "physical_verification": false
+  },
+  "linux_default_assembly": {
+    "package": {
+      "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+      "sha256": "7362df1dcb2b5122d4421f0757dc76aa77647f5dbf7ea40433329703b3d8241b"
+    },
+    "inspection_sha256": "d5c63c2dbd5a80293fe2d0b30afcd2b7a9558c5696011da4ea86830e4df90a52",
+    "seed_sha256": "6bf9b8f47df5f0281bf69dfa352439763f7db199ca6c88fa70ae77da19fbc057",
+    "normal_default_assembly": true,
+    "fresh_inspection_reproduces_assembly": true,
+    "physical_verification": false
+  },
+  "fresh_desktop_candidate": "candidate.json",
+  "physical_verification": false,
+  "current_collection_tool_sha256": "ce023261b5656f2d9c94533184e1935cdaa5c3f04d17746c477fa12b58cf13d4"
+}

@@ -492,7 +492,11 @@ class RelocatableProgramTests(PreparationCliTestCase):
     def test_presentation_batch_seed_survives_fresh_game_package_inspection(self):
         self.check_batch_package(presentation=True)
 
-    def check_batch_package(self, particles=False, equipment=False, enemy=False, scene=False, presentation=False):
+    def test_consolidated_seed_is_automatically_delivered_and_freshly_inspected(self):
+        self.check_batch_package(presentation=True, consolidated=True)
+
+    def check_batch_package(self, particles=False, equipment=False, enemy=False, scene=False, presentation=False,
+                            consolidated=False):
         collections = self.root / 'collections'
         metadata = (make_particle_collection if particles else make_model_collection)(collections / 'synthetic-pot')
         metadata.update(resources={'archive_sha256': 'd' * 64, 'model_sha256': 'e' * 64,
@@ -576,10 +580,27 @@ class RelocatableProgramTests(PreparationCliTestCase):
         report = json.loads((prepared / 'batch-report.json').read_text())
         self.assertEqual((report['collected_rows'], report['new_rows'], report['seed']['rows']),
                          (3, 2, 4) if equipment or enemy or scene or presentation else (2, 1, 3))
+        asset_args = ['--assembly-assets', prepared / 'assets']
+        if consolidated:
+            plan = self.root / 'consolidation-plan.json'
+            plan.write_text(json.dumps({'schema': 1, 'baseline_sha256': self.seed['sha256'],
+                'baseline_manifest_sha256': sha256(self.reference / 'assembly-assets/pipeline-seed.json'),
+                'image_sha256': metadata['image_sha256'], 'contract_sha256': metadata['contract_sha256'],
+                'sources': [{'id': name, 'manifest': manifest.name, 'manifest_sha256': sha256(manifest),
+                             'collections': collections.name} for name in ['original', 'repeated']]}))
+            union = self.root / 'union'
+            result = self.run_cli('consolidate', '--plan', plan, '--baseline', self.reference / 'assembly-assets',
+                                  '--output', union, cli=Locations(self.root / 'repo').command('collect-model-seed.py'))
+            self.assertEqual(result.returncode, 0, result.stderr)
+            report = json.loads((union / 'consolidation-report.json').read_text())
+            self.assertEqual((report['new_rows'], report['seed']['rows']), (2, 4))
+            (self.reference / 'assembly-assets').rename(self.root / 'previous-default-assets')
+            shutil.copytree(union / 'assets', self.reference / 'assembly-assets')
+            asset_args = []
         stage, elf, _ = self.game_build()
         result = self.run_cli('assemble', '--image', self.image, '--program-stage', stage,
                               '--elf', elf, '--platform-root', self.reference, '--kind', 'game',
-                              '--app-version', '01.05', '--assembly-assets', prepared / 'assets',
+                              '--app-version', '01.05', *asset_args,
                               '--output', self.output)
         self.assertEqual(result.returncode, 0, result.stderr)
         result = self.run_cli('inspect', self.output, '--platform-root', self.reference)
