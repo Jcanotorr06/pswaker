@@ -76,6 +76,17 @@ class SeedConsolidationTests(unittest.TestCase):
         source['manifest_sha256'] = self.sha(path)
         self.save_plan()
 
+    def refresh_seed_identity(self, path):
+        sha = self.sha(path)
+        manifest = path.parent / 'pipeline-seed.json'
+        document = json.loads(manifest.read_text())
+        document['sha256'] = sha
+        manifest.write_text(json.dumps(document))
+        metadata_path = path.parents[1] / 'collection.json'
+        metadata = json.loads(metadata_path.read_text())
+        metadata['seed_sha256'] = sha
+        metadata_path.write_text(json.dumps(metadata))
+
     def test_union_preserves_records_all_attribution_and_repeat_bytes(self):
         before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
         result = self.consolidate()
@@ -114,14 +125,7 @@ class SeedConsolidationTests(unittest.TestCase):
         path = self.root / 'particles-collections/draw/assets/initial_pipeline_cache.db'
         with closing(sqlite3.connect(path)) as db, db:
             db.execute('UPDATE pipeline_cache SET first_frame_used=123')
-        manifest = path.parent / 'pipeline-seed.json'
-        document = json.loads(manifest.read_text())
-        document['sha256'] = self.sha(path)
-        manifest.write_text(json.dumps(document))
-        metadata_path = path.parents[1] / 'collection.json'
-        metadata = json.loads(metadata_path.read_text())
-        metadata['seed_sha256'] = self.sha(path)
-        metadata_path.write_text(json.dumps(metadata))
+        self.refresh_seed_identity(path)
         result = self.consolidate()
         self.assertEqual(result.returncode, 0, result.stderr)
         report = json.loads((self.output / 'consolidation-report.json').read_text())
@@ -192,13 +196,7 @@ class SeedConsolidationTests(unittest.TestCase):
                         else:
                             db.execute("UPDATE pipeline_cache SET config=X'0500000000010100' WHERE hash=126")
                     if defect != 'changed':
-                        manifest = path.parent / 'pipeline-seed.json'
-                        document = json.loads(manifest.read_text())
-                        document['sha256'] = self.sha(path)
-                        manifest.write_text(json.dumps(document))
-                        metadata = json.loads(metadata_path.read_text())
-                        metadata['seed_sha256'] = self.sha(path)
-                        metadata_path.write_text(json.dumps(metadata))
+                        self.refresh_seed_identity(path)
                 before = {p: p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
                 result = self.consolidate()
                 self.assertNotEqual(result.returncode, 0)
