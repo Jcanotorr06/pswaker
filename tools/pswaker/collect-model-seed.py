@@ -17,7 +17,7 @@ from disc_image import DiscImage, archive_member, expand, require, validate
 from package_artifact import PIPELINE_SEED, digest, inventory, validate_pipeline_seed, write_json
 from pipeline_assets import checked_pipeline_asset
 from build_inputs import REPOSITORY
-from asset_inventory import read_manifest, model_resource
+from asset_inventory import read_manifest, model_resource, identifier, sha256
 import particle_collection as particle
 import equipment_collection as equipment
 import enemy_collection as enemy
@@ -499,6 +499,105 @@ def read_collection_manifest(path):
     return particle.read_manifest(document) if document.get('kind') == 'particle-effects' else read_manifest(path)
 
 
+def consolidate(plan_path, baseline, output):
+    """Revalidate every manifest/collection, then publish a deterministic union and audit."""
+    require(not output.exists(), 'Output already exists; retain it and choose a new directory')
+    require(not output.is_relative_to(REPOSITORY), 'Consolidated seeds must remain private')
+    plan_sha = digest(plan_path)
+    plan = json.loads(plan_path.read_text(encoding='utf-8'))
+    require(isinstance(plan, dict) and plan.get('schema') == 1
+            and all(sha256(plan.get(key)) for key in ['baseline_sha256', 'baseline_manifest_sha256',
+                                                     'image_sha256', 'contract_sha256'])
+            and isinstance(plan.get('sources'), list) and bool(plan['sources']), 'Invalid consolidation plan')
+    original = checked_pipeline_asset(baseline)
+    require(original['sha256'] == plan['baseline_sha256']
+            and original['asset_manifest_sha256'] == plan['baseline_manifest_sha256'],
+            'Consolidation baseline differs from frozen plan')
+    existing = records(baseline)
+    inputs = {'baseline': inventory(baseline)}
+    require(inputs['baseline'][PIPELINE_SEED] == plan['baseline_sha256']
+            and inputs['baseline']['pipeline-seed.json'] == plan['baseline_manifest_sha256'],
+            'Consolidation baseline changed')
+    sources = {}
+    for source in plan['sources']:
+        require(isinstance(source, dict) and identifier(source.get('id')) and source['id'] not in sources
+                and source['id'] != 'baseline' and sha256(source.get('manifest_sha256'))
+                and all(isinstance(source.get(key), str) and source[key].strip()
+                        for key in ['manifest', 'collections']), 'Invalid or duplicate consolidation source')
+        manifest_path = (plan_path.parent / source['manifest']).resolve()
+        collections = (plan_path.parent / source['collections']).resolve()
+        require(digest(manifest_path) == source['manifest_sha256'], 'Consolidation manifest changed')
+        manifest = read_collection_manifest(manifest_path)
+        require(all(manifest[key] == plan[key] for key in ['image_sha256', 'contract_sha256']),
+                'Consolidation source is renderer/input-incompatible')
+        sources[source['id']] = (manifest_path, collections)
+        inputs[source['id']] = inventory(collections)
+    require(not any(output.is_relative_to(path) for path in [baseline, plan_path,
+                    *(path for pair in sources.values() for path in pair)]),
+            'Consolidation output must remain outside source inputs')
+    with tempfile.TemporaryDirectory(prefix='.consolidated-seed-', dir=output.parent) as folder:
+        work = Path(folder)
+        validation = work / 'validated'
+        validation.mkdir()
+        reports, descriptions, manifests, rows = {}, {}, [], []
+        attribution = {key: [] for key in existing}
+        for name, (manifest_path, collections) in sorted(sources.items()):
+            report = prepare_batch(manifest_path, collections, baseline, validation / name)
+            expected_sha = next(source['manifest_sha256'] for source in plan['sources'] if source['id'] == name)
+            require(report['manifest_sha256'] == expected_sha, 'Consolidation manifest changed during validation')
+            reports[name] = report
+            descriptions[name] = records(validation / name / 'assets')
+            # Include even zero-addition sources: deduplication must not erase provenance.
+            for row in report['rows']:
+                rows.append({**row, 'source': name, 'evidence':
+                             f"validated/{name}/{row['evidence']}" if 'evidence' in row else None})
+                if row['action'] not in ['exercise', 'shared']:
+                    continue
+                target = row['shared_with'] if row['action'] == 'shared' else row['id']
+                collection = validation / name / 'validated' / target / 'collection-report.json'
+                collected = json.loads(collection.read_text(encoding='utf-8'))
+                manifests.append((f"{name}:{row['id']}", collected['generated']))
+                metadata = collected['collection']
+                for key, record in records(collections / target / 'assets').items():
+                    attribution.setdefault(key, []).append({
+                        'source': name, 'row': row['id'], 'method': metadata['method'],
+                        'first_frame_used': record[5], **configuration_states(metadata, key)})
+        additions = additional_records(existing, descriptions.values())
+        seed = write_combined_seed(baseline, original, additions, manifests, work / 'assets')
+        # write_combined_seed preserves exact assets for no additions. Consolidation
+        # also retains provenance from sources containing only duplicate descriptions.
+        if not additions:
+            document = json.loads((work / 'assets/pipeline-seed.json').read_text(encoding='utf-8'))
+            document['source_files'] = {f'{label}:{key}': value
+                for label, manifest in [('baseline', original), *manifests]
+                for key, value in manifest['source_files'].items()}
+            write_json(work / 'assets/pipeline-seed.json', document)
+            seed = checked_pipeline_asset(work / 'assets')
+        combined = {**existing, **additions}
+        gaps = [f"{row['source']}/{row['id']}" for row in rows
+                if row['classification'] in ['unsupported', 'missing']]
+        report = {'schema': 1, 'provenance': 'validated-expansion-consolidation',
+                  'plan_sha256': plan_sha, 'image_sha256': plan['image_sha256'],
+                  'contract_sha256': plan['contract_sha256'], 'baseline': original,
+                  'baseline_rows': len(existing), 'new_rows': len(additions), 'seed': seed,
+                  'sources': reports, 'rows': rows, 'residual_gaps': gaps,
+                  'inventory_complete': not gaps, 'inventory_scope': 'listed-manifest-rows-only',
+                  'physical_verification': False, 'input_files': inputs,
+                  'mapping': [{'type': key[0], 'hash': key[1], 'version': record[2], 'bytes': record[3],
+                               'description_sha256': hashlib.sha256(record[4]).hexdigest(),
+                               'baseline_covered': key in existing, 'first_frame_used': record[5],
+                               'sources': attribution.get(key, [])}
+                              for key, record in sorted(combined.items())]}
+        require(digest(plan_path) == plan_sha and inventory(baseline) == inputs['baseline']
+                and all(digest(path) == reports[name]['manifest_sha256']
+                        and inventory(collections) == inputs[name]
+                        for name, (path, collections) in sources.items()),
+                'Consolidation inputs changed during preparation')
+        write_json(work / 'consolidation-report.json', report)
+        work.rename(output)
+    return report
+
+
 def collect_batch(args):
     require(not args.output.exists(), 'Output already exists; retain the earlier batch')
     require(not args.output.is_relative_to(REPOSITORY), 'Batch collections must remain private')
@@ -612,6 +711,9 @@ def freeze_inventory(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
+    command = commands.add_parser('consolidate', help='Validate expansion manifests and combine all source mappings')
+    for name in ['plan', 'baseline', 'output']:
+        command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     command = commands.add_parser('freeze-inventory', help='Bind an explicit resource/state plan to immutable inputs')
     for name in ['plan', 'collector', 'image', 'output']:
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
@@ -642,7 +744,10 @@ def main():
         command.add_argument('--' + name, type=lambda value: Path(value).resolve(), required=True)
     args = parser.parse_args()
     try:
-        if args.command == 'build':
+        if args.command == 'consolidate':
+            report = consolidate(args.plan, args.baseline, args.output)
+            print(json.dumps({'rows': report['seed']['rows'], 'new_rows': report['new_rows']}))
+        elif args.command == 'build':
             build_collector(args)
         elif args.command == 'freeze-inventory':
             manifest = freeze_inventory(args)

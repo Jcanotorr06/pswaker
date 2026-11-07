@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "issue": 156,
+  "claim": "Audited union of bounded generated recipes and preserved compatible baseline descriptions; complete content coverage is unresolved.",
+  "inventory_complete": false,
+  "physical_verification": false,
+  "owner_acceptance": null,
+  "rows": [
+    {
+      "id": "story-locations",
+      "scope": "Story exteriors, interiors, dungeon rooms, islands and stage transitions",
+      "evidence": ["coverage.json:models", "coverage.json:scenes", "archive-audit.json"],
+      "mapping": "Only explicit resource/state rows map to generated descriptions. Archive references never cover all members or a loaded stage.",
+      "unresolved": "Every unlisted archive and every unexercised member/controller of a referenced archive; complete scene construction, fog/lighting and story state changes.",
+      "risk": "High: unexercised stages or actor-controlled material state can introduce first-use pipelines.",
+      "resolution": "Add validated asset/controller recipes and regenerate, or record explicit owner acceptance of this remaining generation gap at final validation."
+    },
+    {
+      "id": "optional-content",
+      "scope": "Optional caves, minigames, collectibles, sidequests and non-story interiors",
+      "evidence": ["coverage.json:models", "archive-audit.json"],
+      "mapping": "Listed stock optional-cave resources have only their isolated stock draw evidence; identical complete descriptions can share configuration mappings.",
+      "unresolved": "Unlisted optional locations, minigame controllers, special actors, optional reward and interaction states.",
+      "risk": "High: optional rendering setups are not established by story-resource sharing.",
+      "resolution": "Add recipes with source/state attribution or record explicit owner acceptance; obtaining progression saves is not a default prerequisite."
+    },
+    {
+      "id": "actors-bosses",
+      "scope": "Ordinary actors, NPCs, enemies, bosses and phase/state transitions",
+      "evidence": ["coverage.json:enemies", "coverage.json:models"],
+      "mapping": "Only the fixed actor/effect draws and explicit stock model rows are exercised; retained state mappings identify each complete configuration.",
+      "unresolved": "Other actors and boss phases, behavior/AI, collision/hit prerequisites, attachments, animation and environment-lighting/controller equivalence.",
+      "risk": "High: isolated models and shared effects do not certify complete actors or boss encounters.",
+      "resolution": "Add bounded actor/state recipes, retain known runtime supplementation without invented path attribution, or record explicit owner acceptance."
+    },
+    {
+      "id": "equipment-actions",
+      "scope": "Equipment models, projectiles, attacks, item effects and first/repeated actions",
+      "evidence": ["coverage.json:equipment", "coverage.json:particles", "coverage.json:models"],
+      "mapping": "Finite arrow and bomb/effect scripts retain their actual draw/state descriptions and source-specific mappings.",
+      "unresolved": "Other equipment controllers, hit/collision and trail effects, player attachment/animation, action/environment combinations and unsupported rows.",
+      "risk": "High: item ownership or model loading does not execute every action rendering state.",
+      "resolution": "Extend runnable action recipes or record explicit owner acceptance; selected physical equipment observations use only existing ordinary saves."
+    },
+    {
+      "id": "particles-effects",
+      "scope": "Smoke, explosions, debris, elemental effects, finite lifetimes and selected simultaneous emitters",
+      "evidence": ["coverage.json:particles", "coverage.json:equipment", "coverage.json:enemies"],
+      "mapping": "Real common-bank emitter update/draw lifetimes and selected overlaps map full descriptions to variations and ticks; equal descriptions justify only those shared configurations.",
+      "unresolved": "Other particle banks/IDs, model particles, stage wind/lighting, framebuffer/projection effects, actor collision, cameras and unselected overlaps.",
+      "risk": "High: the common bank and selected overlaps do not enumerate complete effect/controller behavior.",
+      "resolution": "Add validated bank/controller/overlap scripts or record explicit owner acceptance. Observed missing-pipeline waits always require correction."
+    },
+    {
+      "id": "environment-water-shadows",
+      "scope": "Ocean, water, fog, projected shadows, alpha volumes, weather, sky and reflections",
+      "evidence": ["coverage.json:scenes"],
+      "mapping": "Actual fixed ocean/simple-shadow/alpha packet draws and their bounded overlap retain state and layout mappings. Numeric uniform changes only share configurations when full bytes agree.",
+      "unresolved": "Waves/storm controllers, real shadow capture/receivers, rectangular textures, mirrors/reflections, precipitation/clouds, underwater/sky and dungeon water, other alpha packets and combinations.",
+      "risk": "High: supplied planes/flat grid and selected GX ordering do not establish complete gameplay equivalence.",
+      "resolution": "Extend scene/capture recipes or record explicit owner acceptance; selected shoreline regression does not close other environment gaps."
+    },
+    {
+      "id": "native-menus",
+      "scope": "File selection, inventory and other native UI layouts, text and controllers",
+      "evidence": ["coverage.json:presentation"],
+      "mapping": "J2DPicture plain/tinted/faded/repeated states and the explicitly justified shared setup have generated evidence only for the selected native texture and setup.",
+      "unresolved": "Other textures, fonts/text, complete layouts, menu controllers and framebuffer/cloth effects.",
+      "risk": "High: one shared color setup cannot certify all native menus.",
+      "resolution": "Add menu/layout/controller exercises or record explicit owner acceptance; retain first/repeat physical menu observations separately."
+    },
+    {
+      "id": "cutscenes-transitions",
+      "scope": "Transition overlays, cinematic rendering, one-time/title/ending scenes",
+      "evidence": ["coverage.json:presentation", "coverage.json:models"],
+      "mapping": "Actual transition fade overlay states and listed stock title resources are the bounded evidence; a fade is not cinematic playback.",
+      "unresolved": "Cinematic camera/story controllers, blur/monochrome/depth/spot framebuffer effects and inaccessible one-time scenes.",
+      "risk": "High: cinematic-specific setups remain unexercised.",
+      "resolution": "Add targeted maintainer recipes or record explicit owner acceptance; full story replay is not required by default."
+    },
+    {
+      "id": "alternate-modes",
+      "scope": "Hero/casual clothes, alternate playthrough, language/dialogue and mode-specific visibility",
+      "evidence": ["coverage.json:presentation", "coverage.json:models"],
+      "mapping": "The hero/casual/hero texture cycle and explicit stock-resource sharing establish only the listed configurations, not an alternate playthrough.",
+      "unresolved": "Hat/buckle visibility, face/body ordering, attachments, animation, dialogue, mode controllers and alternate-only events.",
+      "risk": "High: texture substitution alone does not reproduce all alternate-mode draw state.",
+      "resolution": "Add mode/visibility recipes or record explicit owner acceptance. Do not edit owner save flags or require a completion save."
+    },
+    {
+      "id": "layouts-variations-combinations",
+      "scope": "Camera/world/fog/state variations, scene/offscreen targets, destination-alpha variants and effect ordering",
+      "evidence": ["coverage.json:scenes", "coverage.json:presentation", "coverage.json:particles", "candidate.json:program_contract"],
+      "mapping": "The complete host/PS4 representation witness, ordinary recorder comparisons and exact selected draw-state identities support description compatibility. Host BGRA and PS4 RGBA driver objects remain distinct.",
+      "unresolved": "Actual PS4 preparation of every required layout, offscreen capture use, inherited GX state outside selected ordering and all unselected reachable combinations.",
+      "risk": "High: ABI equality and seed counts cannot certify target driver success or unexecuted runtime paths.",
+      "resolution": "Retain required target-layout/preparation evidence and bounded first/repeat observations; extend missing recipes or record eligible owner acceptance. Failed creation or observed missing waits cannot be waived."
+    }
+  ]
+}

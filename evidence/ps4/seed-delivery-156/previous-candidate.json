@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "issue": 156,
+  "provenance": "Starting candidate identities supplied by the owner in the implementation request.",
+  "app_version": "01.26",
+  "program_build_id": "be0a6ae04878271c6c1d",
+  "package_sha256": "91cc442d97551b5ec43745f6e4edff2c8a369b2170efe26a528b94f2ffa27714",
+  "elf_sha256": "7adad72f20bf479c56eeca1b16da8d6c994c72b9a2536a7b803a8741cb060e8e",
+  "seed_sha256": "e61cb301a7debdb1ff91abee77cc252ba3e4b634beef75eb296ea02d1c5534e3",
+  "platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "acceptance_transfer_to_changed_seed": false
+}

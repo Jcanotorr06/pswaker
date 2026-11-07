@@ -242,6 +242,9 @@ pass establish no game DSP, game-save correctness or gameplay performance.
 
 ## Host checks
 
+For consolidation of all expansion manifests, default private assets and the
+bounded final console selection, use [expanded seed delivery](EXPANDED-SEED-DELIVERY.md).
+
 For finite native menu picture, transition fade and alternate-clothes setups,
 use [presentation collection](PRESENTATION-COLLECTOR.md).
 
