@@ -1,0 +1,75 @@
+--- a/game/src/JSystem/JAudio/JASAudioThread.cpp
++++ b/game/src/JSystem/JAudio/JASAudioThread.cpp
+@@ -78,7 +78,12 @@
+ #endif
+     while (true) {
+         OSMessage message;
++#if defined(__ORBIS__)
++        // Host shutdown wakes an empty queue; its zeroed message would mean "update the DAC".
++        if (!OSReceiveMessage(&sAudioprocMQ, &message, 1)) OSExitThread(0);
++#else
+         OSReceiveMessage(&sAudioprocMQ, &message, 1);
++#endif
+ #if TARGET_PC
+         // The message is a small integer sent as an OSMessage (void*).
+         switch (int(intptr_t(message))) {
+--- a/game/src/JSystem/JKernel/JKRAram.cpp
++++ b/game/src/JSystem/JKernel/JKRAram.cpp
+@@ -87,7 +87,12 @@
+     JKRAramPiece::Message* message;
+     OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 4);
+     do {
++#if defined(__ORBIS__)
++        // Host shutdown wakes an empty queue; message still names the deleted previous command.
++        if (!OSReceiveMessage(&sMessageQueue, (OSMessage*)&message, OS_MESSAGE_BLOCK)) return NULL;
++#else
+         OSReceiveMessage(&sMessageQueue, (OSMessage*)&message, OS_MESSAGE_BLOCK);
++#endif
+         result = message->field_0x00;
+         command = message->command;
+         delete message;
+--- a/game/src/JSystem/JKernel/JKRAramStream.cpp
++++ b/game/src/JSystem/JKernel/JKRAramStream.cpp
+@@ -40,7 +40,12 @@
+ 
+     for (;;) {
+         OSMessage message;
++#if defined(__ORBIS__)
++        // Host shutdown wakes an empty queue without delivering a command.
++        if (!OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK)) return NULL;
++#else
+         OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK);
++#endif
+         JKRAramStreamCommand* command = (JKRAramStreamCommand*)message;
+ 
+         switch (command->mType) {
+--- a/game/src/JSystem/JKernel/JKRDecomp.cpp
++++ b/game/src/JSystem/JKernel/JKRDecomp.cpp
+@@ -35,7 +35,12 @@
+     OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 4);
+     while (true) {
+         OSMessage message;
++#if defined(__ORBIS__)
++        // Host shutdown wakes an empty queue without delivering a command.
++        if (!OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK)) return NULL;
++#else
+         OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK);
++#endif
+ 
+         JKRDecompCommand* command = (JKRDecompCommand*)message;
+         decode(command->mSrcBuffer, command->mDstBuffer, command->mSrcLength, command->mDstLength);
+--- a/game/src/JSystem/JUtility/JUTException.cpp
++++ b/game/src/JSystem/JUtility/JUTException.cpp
+@@ -105,7 +105,12 @@
+     OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 1);
+     OSMessage message;
+     while (true) {
++#if defined(__ORBIS__)
++        // Host shutdown wakes an empty queue without delivering a command.
++        if (!OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK)) return NULL;
++#else
+         OSReceiveMessage(&sMessageQueue, &message, OS_MESSAGE_BLOCK);
++#endif
+         CallbackObject* cb = (CallbackObject*)message;
+         JUTExceptionUserCallback callback = cb->callback;
+         u16 error = cb->error;
