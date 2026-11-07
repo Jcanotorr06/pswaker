@@ -100,9 +100,15 @@
   "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
   "host_lock_sha256": "3caf3ac8bd3c51aea9f0207ebdee966748833901122da2bcf7cdff911aecd290",
   "physical_verification": false,
+  "owner_reported_quit": {
+    "date": "2026-11-06",
+    "attempts": 1,
+    "ce_34878_0_observed": false,
+    "last_stage": "build=be0a6ae04878271c6c1d stage=shutdown-complete elapsed_ms=99224.9 checked_errors=0"
+  },
   "private_artifact_group": "quit-candidate-159",
   "limits": [
-    "No PS4 Quit, preparation, wait or preservation observation exists for this binary.",
+    "One owner-transcribed Quit only; logs were not returned. Cache state, recorder completion, card/settings handling and relaunch remain unconfirmed.",
     "Built from an uncommitted task-branch checkout; the identity binds file contents, not a commit."
   ]
 }

@@ -10,9 +10,9 @@ enters the crash logger. The logger then faults a second time, which is the faul
 GoldHEN reported.
 
 `0015-worker-shutdown.patch` corrects all five loops and passes the host
-reproduction. **No PS4 build containing it has been run, and successful normal
-Quit is not claimed.** The issue remains open until the console acceptance below
-passes.
+reproduction. **The owner reports one normal Quit on candidate 01.26 completing
+without error and reaching `shutdown-complete`.** The remaining console acceptance
+items are listed below; the issue stays open until they are dispositioned.
 
 The owner reports persistence in every subsequent version and confirms PS4 Slim,
 firmware 9.00, GoldHEN v2.4b18. This assessment verifies the supplied 01.25
@@ -181,9 +181,9 @@ execute a PS4, GoldHEN, the port's shutdown sequence or a real worker's dependen
 
 ## Remaining limits
 
-- Console shutdown beyond `shutdown-sdk-stop-requested` has never been observed.
-  Audio join, GPU synchronization, `aurora_shutdown` and recorder completion will
-  run for the first time, and any defect there would appear as a new result.
+- One reported Quit reached `shutdown-complete`, which follows audio join, GPU
+  synchronization and `aurora_shutdown`. Its logs have not been returned, so recorder
+  completion and the stored cache state of that run are not yet established.
 - `JASTaskThread::run` skips a null message, so it does no work on a failed receive,
   but it spins until the process exits. It is left unchanged. `mDoDvdThd`'s loop
   already ends on a failed receive.
@@ -215,6 +215,21 @@ the patch, but the build also records a host lock update for Ubuntu security
 updates (.NET, `ca-certificates`, `libpcre2`). The compiler, linker, CMake and Ninja
 are unchanged. The candidate was built from an uncommitted checkout, so its identity
 binds file contents, not a commit.
+
+## Console result
+
+Reported by the owner on 2026-11-06 for this candidate: Quit completed without
+error, and `last-stage.txt` contained:
+
+```text
+build=be0a6ae04878271c6c1d stage=shutdown-complete elapsed_ms=99224.9 checked_errors=0
+```
+
+The build ID matches the candidate. This is the owner's transcription of one
+attempt; the file and accompanying logs have not been returned. It satisfies the
+`CE-34878-0` and `shutdown-complete` criteria for that attempt only. The report does
+not state whether the attempt used empty or retained caches, and does not cover
+recorder drain/flush/close, card/settings handling or relaunch.
 
 ## Console acceptance
 
