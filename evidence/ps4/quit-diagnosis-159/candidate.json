@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "issue": 159,
+  "app_version": "01.26",
+  "program": {
+    "build_id": "be0a6ae04878271c6c1d",
+    "elf_sha256": "7adad72f20bf479c56eeca1b16da8d6c994c72b9a2536a7b803a8741cb060e8e",
+    "eboot_sha256": "a8a949df2255329674a98fddd74cd61f192ba48b383d906b4f9b65f53b740453"
+  },
+  "package": {
+    "filename": "IV0000-PSWK00001_00-PSWAKERGAME00000.pkg",
+    "sha256": "91cc442d97551b5ec43745f6e4edff2c8a369b2170efe26a528b94f2ffa27714",
+    "bytes": 1521156096
+  },
+  "seed": {
+    "schema": 1,
+    "installed_path": "/app0/initial_pipeline_cache.db",
+    "source_files": {
+      "baseline:baseline:baseline:baseline:pipeline_cache.db": {
+        "bytes": 835584,
+        "sha256": "c9ab6f97ccef18fcd08c2e4915140c5990f98fcae7cb4771df90619407864c2e"
+      },
+      "baseline:baseline:baseline:baseline:pipeline_cache.db-wal": {
+        "bytes": 4128272,
+        "sha256": "6c865d0295536048b31411a1aec5d758642c26134d86d0519ada76641a643886"
+      },
+      "baseline:baseline:baseline:generated:observed.db": {
+        "bytes": 16384,
+        "sha256": "dbb51c7f371dc0cd0abfbfc2828edf7de4e3f9c5ac0c870969475af5e8e721d6"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1318432,
+        "sha256": "1d42784fe2e49f54a68ed6425d7c774d920c34a3045df89444c5cce4067cd7f9"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1326672,
+        "sha256": "9cc4e224b39ad7c9144debfff7f9a5f362ac6702e50cb00094e8da4e43adf9f5"
+      },
+      "baseline:runtime-1:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-1:pipeline_cache.db-wal": {
+        "bytes": 1268992,
+        "sha256": "ac72355cde5c06946f459bf96853341329943634462f00651833a7b94ea0d1a3"
+      },
+      "baseline:runtime-2:pipeline_cache.db": {
+        "bytes": 4096,
+        "sha256": "f1c1d714b195aa1795c50ed2db1795613d868a07340cbf0b1a563384fdfebdcf"
+      },
+      "baseline:runtime-2:pipeline_cache.db-wal": {
+        "bytes": 1474992,
+        "sha256": "90742dadc1677205a13cc3f0d8a33994aa3b4761fd98cf2cef80523fe15f5b46"
+      },
+      "cutscene-fade-v1:observed.db": {
+        "bytes": 16384,
+        "sha256": "264d23d8f3f0e7a4c1b7ed49a3d01281eecb8b8c3fa8271975975234b9c520f6"
+      },
+      "menu-picture-colors-v1:observed.db": {
+        "bytes": 28672,
+        "sha256": "8429abbdad1a3b2388538e4284e1718e3b5fe6b0b8eb3f0a76b5d6aa7a20963f"
+      },
+      "mode-link-clothes-v1:observed.db": {
+        "bytes": 45056,
+        "sha256": "e17ea1b6cc86e867f88e700f4ae66d36a9c695bef58d97fc01c7a67f40bf9b31"
+      }
+    },
+    "rows": 312,
+    "configurations": [
+      {
+        "type": 0,
+        "version": 5,
+        "bytes": 8,
+        "rows": 1
+      },
+      {
+        "type": 1,
+        "version": 13,
+        "bytes": 2772,
+        "rows": 311
+      }
+    ],
+    "bytes": 1302528,
+    "sha256": "e61cb301a7debdb1ff91abee77cc252ba3e4b634beef75eb296ea02d1c5534e3",
+    "asset_manifest_sha256": "49b18c6163cafc1ab4ab6d15b8d45e8ce564d5e28ea55a761c8cd1cf9c329e68"
+  },
+  "seed_same_as_01_25": true,
+  "patch_sha256": "893a521d64cab8a4059e34d52eff2830bfe6a115fac3dcebe2dfc2eae0b8fd73",
+  "assembly_sha256": "6f077e9cfcaf727203244a05baedafd2ebc2a8861cb9d9c3aefccfc268cb28f5",
+  "inspection_sha256": "420c33e79789afdcb736422e1242a7dca522f16d5ddcc33bc4429e7bfb3f31f3",
+  "fresh_inspection_reproduces_assembly_inspection": true,
+  "image_sha256": "ec2d4ee790f48bee3d4c10feed166370df895f474e8db3f9af3b16ee001436df",
+  "host_lock_sha256": "3caf3ac8bd3c51aea9f0207ebdee966748833901122da2bcf7cdff911aecd290",
+  "physical_verification": false,
+  "private_artifact_group": "quit-candidate-159",
+  "limits": [
+    "No PS4 Quit, preparation, wait or preservation observation exists for this binary.",
+    "Built from an uncommitted task-branch checkout; the identity binds file contents, not a commit."
+  ]
+}
