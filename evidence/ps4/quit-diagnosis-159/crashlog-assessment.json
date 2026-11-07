@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "issue": 159,
+  "capture_sha256": "741595d1046a3c4539832d9cd43ab88a6293c13788e685ae1429ef492ea7dec8",
+  "capture_bytes": 8314,
+  "matching_elf_sha256": "c2d48776ed9f79d90ec71d61cc0732a3b2b673da361ca57d7c4a10596a2392fc",
+  "entries": [
+    {
+      "ordinal": 1,
+      "signal": 6,
+      "fault_address": "0x0",
+      "elf_rip": "0x7ffc01c2c",
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 2,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": null,
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 3,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x1629c",
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 4,
+      "signal": 11,
+      "fault_address": "0x8",
+      "elf_rip": "0x19420",
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 5,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x1629c",
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 6,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x29802",
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 7,
+      "signal": 11,
+      "fault_address": "0x8",
+      "elf_rip": "0x19420",
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 8,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x1629c",
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 9,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x29802",
+      "has_current_thread_wrapper": false
+    },
+    {
+      "ordinal": 10,
+      "signal": 11,
+      "fault_address": "0x8",
+      "elf_rip": "0x19420",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 11,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x1629c",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 12,
+      "signal": 11,
+      "fault_address": "0x8",
+      "elf_rip": "0x19420",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 13,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x29802",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 14,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x29802",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 15,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x1629c",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 16,
+      "signal": 11,
+      "fault_address": "0x8",
+      "elf_rip": "0x19420",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 17,
+      "signal": 11,
+      "fault_address": "0x8",
+      "elf_rip": "0x19420",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 18,
+      "signal": 11,
+      "fault_address": "0x8",
+      "elf_rip": "0x19420",
+      "has_current_thread_wrapper": true
+    },
+    {
+      "ordinal": 19,
+      "signal": 11,
+      "fault_address": "0x0",
+      "elf_rip": "0x29802",
+      "has_current_thread_wrapper": true
+    }
+  ],
+  "identity_limit": "Append-only log has no timestamps/build IDs. Current wrapper addresses support compatibility, not unique run attribution.",
+  "owner_reported_capture_directory": "/data/Dolphin",
+  "compiled_logger_directory": "/data/DolphinPS4",
+  "status": "worker receive/shutdown defect reproduced and correction host-validated; PS4 acceptance pending",
+  "host_red_uncorrected": {
+    "test_methods": 3,
+    "failing_scenarios": 7,
+    "exit_signals": [
+      "-11",
+      "-11",
+      "-11",
+      "-11",
+      "-6",
+      "-6",
+      "-6"
+    ]
+  },
+  "host_red_three_worker_patch": {
+    "failing_scenarios": [
+      "piece",
+      "audio",
+      "idle",
+      "after-work"
+    ],
+    "exit_signals": [
+      "-11",
+      "-11",
+      "-6",
+      "-6"
+    ],
+    "stderr_includes": "double free"
+  },
+  "host_green": {
+    "test_methods": 3,
+    "passing_scenarios": 7
+  },
+  "target_compiled_translation_units": [
+    "JKRAramStream.cpp",
+    "JKRDecomp.cpp",
+    "JUTException.cpp",
+    "JKRAram.cpp",
+    "JASAudioThread.cpp"
+  ],
+  "patch_sha256": "893a521d64cab8a4059e34d52eff2830bfe6a115fac3dcebe2dfc2eae0b8fd73",
+  "test_sources_sha256": {
+    "quit-workers.cpp": "a3c2ead18e0c47a57133fff9905411dfc03962116a274a8505b2ff97c151fcad",
+    "test_quit_workers.py": "05a007f17ef9fcd27379cf2d7d68a9422420f2339dadbc95e53e1fbc7c650ea1"
+  },
+  "private_artifact_group": "quit-all-workers-159-20261106",
+  "procedure_sha256": "4d1bb67a1bb8ff8fcaee80905f20b5c1e9602745b3d89ac54bedd7dfde95f5c9",
+  "console_fix_validated": false,
+  "limits": [
+    "Harness inserts production run() bodies verbatim; class construction, decoding, ARAM I/O and exception display are isolated.",
+    "Real SDK queues, blocking, threads and COSSdkRequestShutdown run on Linux; no PS4 shell/GoldHEN or full port shutdown is executed.",
+    "The separate crash-logger stack scan defect is not corrected by the worker patch.",
+    "crash.log contains no JKRAram or audioproc fault; their inclusion rests on source, the 01.25 machine code and the host harness.",
+    "Blocking waits for one in-flight operation and the movie-player queues remain unchanged; JASTaskThread does no work on a failed receive but keeps spinning until process exit."
+  ],
+  "superseded_three_worker_patch_group": "quit-crashlog-159-20261106",
+  "prepared_source_sha256": {
+    "JKernel/JKRAramStream.cpp": "b4566e0d2d80d4e6135c28a52360cad5caf1cc4adb0963e3034908f6e5a81c30",
+    "JKernel/JKRDecomp.cpp": "5e855a78a5c0d3c63292927c7507acbaa5c6ef5ac4384152e2224a86946343c0",
+    "JUtility/JUTException.cpp": "04dddeb2285825c53060b3aabac92d547190250c5978b651e6e2af22bcc895e8",
+    "JKernel/JKRAram.cpp": "878cc2f205b98ace5ef87f4bc61af243065a9cb249a0f272f2885cfe5bf1311a",
+    "JAudio/JASAudioThread.cpp": "df5d673cd4dcf79e85f2c29ad9dbf2b5aa578dd1edf9a434c1a41a91418e1690"
+  }
+}

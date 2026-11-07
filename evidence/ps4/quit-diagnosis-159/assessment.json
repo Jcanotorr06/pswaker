@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "issue": 159,
+  "assessment_date": "2026-11-06",
+  "status": "GoldHEN stage: secondary crash localized; original failure addressed by crashlog-assessment.json",
+  "superseded_by": "crashlog-assessment.json",
+  "owner_platform": {
+    "model": "PS4 Slim",
+    "firmware": "9.00",
+    "goldhen": "v2.4b18"
+  },
+  "app_version": "01.25",
+  "build_id": "35a453336a0e4b0d432c",
+  "verified_sha256": {
+    "log": "50911d8ba4b0b8063998b47a88c74fee72e38203493c31c6ec5548bf08df55e7",
+    "elf": "c2d48776ed9f79d90ec71d61cc0732a3b2b673da361ca57d7c4a10596a2392fc",
+    "package": "10ecd0e4a4c72a99aeb9b5ec9979757f62e3e550b1ddaa7d7a96484d815bea41",
+    "crash_logger_source": "ed2bd04990ec30187edb21411c337272dda9011d2980080549e7f0da3e462d77"
+  },
+  "capture_bytes": 41571,
+  "fault": {
+    "signal": "SIGSEGV",
+    "reason": "user read, page not present",
+    "runtime_rip": "0xb46760",
+    "load_bias": "0x400000",
+    "elf_rip": "0x746760",
+    "symbol": "(anonymous namespace)::crashHandler(int, __siginfo*, void*)",
+    "source": "DolphinPS4/port/ps4_crashlog.cpp:119",
+    "instruction": "movq (%r13,%r15,8), %rax",
+    "scan_base": "0x7ed4b7f20",
+    "scan_index": 28,
+    "read_address": "0x7ed4b8000",
+    "code_addresses_found_before_fault": 4
+  },
+  "thread_entry_return": {
+    "runtime": "0xbdcdd9",
+    "elf": "0x7dcdd9",
+    "call_site_elf": "0x7dcdd8",
+    "source": "OSThread.cpp:220",
+    "limit": "callback wrapper only; original faulting callback unidentified"
+  },
+  "private_artifact_group": "quit-diagnosis-159-20261106",
+  "procedure_sha256": "ab6ab9433a8ac75d92e7586628f73f795ba1c745df37c7f7062e71ef56bf08da",
+  "private_output_sha256": {
+    "assess-quit159.py": "ab6ab9433a8ac75d92e7586628f73f795ba1c745df37c7f7062e71ef56bf08da",
+    "commands.json": "960b458950760f412bf42b4c7a07f09c8c32fa93114bde7f49481e5a5422b0ea",
+    "disassembly.txt": "fe387bede94be25c3ef5ca06084b2cc5da7be1a1350552611de23def6ad5fcbc",
+    "input-locations.json": "c86f7c0ad44516448d058b15d7af006772e813fc85b0f6197f2e73c8882058d2",
+    "logs.txt": "50911d8ba4b0b8063998b47a88c74fee72e38203493c31c6ec5548bf08df55e7",
+    "ps4_crashlog.cpp": "ed2bd04990ec30187edb21411c337272dda9011d2980080549e7f0da3e462d77",
+    "symbolization.txt": "695c06300d9bb77cdd3a92d3d1f5cc7ba0b19c26504ed90c7f64d0c115a4b077"
+  },
+  "normal_quit_reproduced_by_agent": false,
+  "runtime_modified": false,
+  "limitations": [
+    "Evidence replay verifies a captured failure; it cannot go green when a runtime fix succeeds.",
+    "No original signal context or normal-Quit PS4 execution is available to the agent.",
+    "No original shutdown root cause, cache prerequisite or corrected-console outcome established.",
+    "Owner version-history statement retained as testimony, not a per-version artifact audit."
+  ]
+}
