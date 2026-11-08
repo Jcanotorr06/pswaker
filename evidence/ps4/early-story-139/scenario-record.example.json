@@ -1,0 +1,121 @@
+{
+  "scenario_id": null,
+  "cohort": "E",
+  "inventory_revision": 1,
+  "variant": null,
+  "status": "awaiting-save",
+  "run_id": null,
+  "run_purpose": "discovery",
+  "candidate": {
+    "id": "139-D1",
+    "app_version": "01.23",
+    "build": "6e885683f47a49a119ae",
+    "package_sha256": "b410b25cd7dabc7ca1abe648e24254c214cb6faf4ca768b08fa2a39dca73f0b0",
+    "elf_sha256": "400de6f1bb42fb4fc79f9399f290d2f0ee292e58ea03e4f8eea9c2e4dd7c32ab",
+    "eboot_sha256": "bc142562457d3acfd7d90c126aa6ca75753889d07dd01b02661448fc4a8d9811",
+    "seed_sha256": "7e3f8527203dc488b5ae646904c986ac596d7d4017db45a0fcb18ae29de51dc1",
+    "seed_asset_manifest_sha256": "e8d4b523aa45f58e272ccde4c258d76388200e26f28a9060b804f9969b4493fb",
+    "assembly_sha256": "f00542ee5ee6be4a9c2b3134bc26d96d4c90e8ef0f8a419a4a490eb6fcc2316d",
+    "inspection_sha256": "c74d1414cd597c893e1c24546ec008cdfc7db854e9472255609dee163ead3668"
+  },
+  "observed_platform": {
+    "model": null,
+    "firmware": null,
+    "goldhen": null,
+    "internal_resolution": null,
+    "logic_hz": null,
+    "textures": null,
+    "date_time_zone": null
+  },
+  "ordinary_saves": {
+    "entry_id": null,
+    "entry_private_reference": null,
+    "entry_sha256": null,
+    "actual_reload_location_and_approach": null,
+    "story_flags_equipment_controls": null,
+    "exit_id": null,
+    "exit_private_reference": null,
+    "exit_sha256": null,
+    "next_checkpoint": "CP-E1",
+    "backup_inventory_reference": null,
+    "save_reload_and_settings_preservation_observations": null
+  },
+  "cache": {
+    "state": null,
+    "before_listing_reference": null,
+    "closed_application_backup_reference": null,
+    "renamed_directory_reference": null,
+    "files_before_init": null,
+    "extra_gameplay_warmup": null,
+    "carried_cumulative_snapshot": "C000"
+  },
+  "startup": {
+    "known_shaders_prepared_before_gameplay": null,
+    "ready_total_pending_errors": null,
+    "progress_and_responsiveness_observations": null,
+    "full_preparation_ms": null,
+    "final_drain_ms": null,
+    "visible_launch_to_control_ms": null,
+    "memory_samples_private_reference": null,
+    "memory_viability_limitations": null
+  },
+  "actions": [
+    {
+      "id": null,
+      "description": "One timed record per actual first use/repeat/variant; Q rows require first use plus at least three repeats",
+      "actual_first_or_repeat": null,
+      "video_timecode": null,
+      "recorder_monotonic_ns": null,
+      "mapping_uncertainty": null,
+      "stage_room": null,
+      "graphics_audio_controls_observations": null,
+      "waits_and_other_stalls": null
+    }
+  ],
+  "returned_evidence": {
+    "private_launch_reference": null,
+    "file_inventory_sha256": null,
+    "video_reference_and_sha256": null,
+    "action_notes_reference_and_sha256": null,
+    "normal_quit_observation": null,
+    "shutdown_complete": null,
+    "source_database_sha256": null,
+    "source_wal_sha256_or_absence": null,
+    "source_shm_sha256_or_absence": null,
+    "source_hashes_unchanged_after_analysis": null,
+    "standalone_seed_manifest_reference": null,
+    "cumulative_snapshot_id": null,
+    "next_ordinary_save_reference": null
+  },
+  "analysis": {
+    "frozen_candidate_identity_confirmed": null,
+    "raw_shader_wait_count": null,
+    "raw_shader_wait_total_ns": null,
+    "raw_shader_wait_max_ns": null,
+    "frame_shader_counter_deltas": null,
+    "invalid_events_and_incomplete_intervals": null,
+    "complete_description_membership_report": null,
+    "new_description_identities": null,
+    "description_conflicts": null,
+    "timing_method_verified": false,
+    "physical_observations_verified": false,
+    "evidence_limitations": [
+      "No physical early-story return yet"
+    ],
+    "result": "pending"
+  },
+  "missing_observation_waivers": [],
+  "waiver_request_template": {
+    "scenario_variant": null,
+    "candidate_id": null,
+    "missing_evidence": null,
+    "risk": null,
+    "eligible_missing_observation_only": null,
+    "owner_acceptance_text": null,
+    "owner_acceptance_date": null,
+    "decision_reference": null
+  },
+  "route_room_variant_checklist_reference": null,
+  "cumulative_milestone_id": null,
+  "deferred_ledger_entries": []
+}
