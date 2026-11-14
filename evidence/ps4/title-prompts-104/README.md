@@ -2,6 +2,8 @@
 
 The source/resource audit and runtime behavior are described in
 [TITLE-PROMPTS.md](../../../docs/ps4/TITLE-PROMPTS.md).
+[validation.json](validation.json) records the implementation inputs, hosted
+checks and compile-only PS4 target identities (`unverified-104-compile`).
 [observations.json](observations.json) prepares representative stock-mode
 default/custom startup, default recovery and retained-refresh observations.
 Every physical observation is **UNTESTED**; there is no installed package or
