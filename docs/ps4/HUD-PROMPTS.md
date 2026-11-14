@@ -77,9 +77,10 @@ layout tag, all seven description pictures and every known `dMeter_actionTex`
 status. An unlisted action status is explicitly unresolved: the game otherwise
 silently substitutes its first action texture. The patch suppresses and reports
 such a description instead of guessing. An unresolved observation must be added
-to the inventory before declaring that context covered. Native-menu layouts,
-title/file-select, literal names and unreviewed embedded instructions remain
-unresolved under the other #79 slices.
+to the inventory before declaring that context covered. Native-menu/file-select
+ownership is documented in [NATIVE-MENU-PROMPTS.md](NATIVE-MENU-PROMPTS.md).
+Title, literal names and unreviewed embedded instructions remain unresolved
+under the other #79 slices.
 
 Validation uses the pre-agreed #79 boundaries. The resolver checks all 54
 action/target combinations, gestures and fixed-control variants. The installed

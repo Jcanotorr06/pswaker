@@ -4,6 +4,7 @@
 #include "prompts.hpp"
 #include "message-prompts.hpp"
 #include "hud-prompts.hpp"
+#include "menu-prompts.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
 #include "resource-evidence.hpp"
@@ -337,7 +338,8 @@ void pswaker_graphics_ready() {
     JKRPcHostAllocScope hostAlloc;
     if (!pswaker_register_prompt_adapter(&portPrompts, refreshPortPrompts) ||
         !pswaker_register_prompt_adapter(nullptr, pswaker_refresh_message_prompts) ||
-        !pswaker_register_prompt_adapter(nullptr, pswaker_refresh_hud_prompts))
+        !pswaker_register_prompt_adapter(nullptr, pswaker_refresh_hud_prompts) ||
+        !pswaker_register_prompt_adapter(nullptr, pswaker_refresh_menu_prompts))
         pswaker_installation_error("Port prompt refresh registration failed");
     graphics = true;
     pswaker_stage("graphics-initialized");
@@ -371,6 +373,7 @@ void pswaker_graphics_ready() {
     // Message pictures created before the first resume gate already follow this generation.
     pswaker_refresh_message_prompts(nullptr, pswaker_applied_controls());
     pswaker_refresh_hud_prompts(nullptr, pswaker_applied_controls());
+    pswaker_refresh_menu_prompts(nullptr, pswaker_applied_controls());
     if (*settings.controlsFeedback()) say("CONTROLS %s", settings.controlsFeedback());
     say("STORAGE checked shared-profile=/data/pswaker settings=/data/pswaker/settings.ini port-text=%s GCI-A='/data/pswaker/saves/USA/Card A' GCI-B='/data/pswaker/saves/USA/Card B' signed-in-user=independent", settings.largeText() ? "large" : "standard");
     pswaker_stage("writable-storage-checked");

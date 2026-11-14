@@ -3,6 +3,7 @@
 #include "prompts.hpp"
 #include "message-prompts.hpp"
 #include "hud-prompts.hpp"
+#include "menu-prompts.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
 #include "native/platform.h"
@@ -186,6 +187,7 @@ int main(int argc, char** argv) {
         assert(pswaker_register_prompt_adapter(&hud, rebuildPrompt));
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_message_prompts));
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_hud_prompts));
+        assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_menu_prompts));
         start();
         const auto previous = pswaker_applied_controls();
         // A dialog showing the A picture stays open across the whole Apply flow.
@@ -195,6 +197,15 @@ int main(int argc, char** argv) {
         const auto* r3 = message_prompt_texture({Ps4Icon::R3}, false);
         assert(openDialog.image == cross);
         MessagePicture hudButton, hudDescription;
+        MessagePicture menuConfirm, menuCancel, menuTrigger;
+        pswaker_menu_picture_set(&menuConfirm, PswakerMenuFamily::FileSelect, PswakerMenuControl::A, showHudPicture);
+        pswaker_menu_picture_set(&menuCancel, PswakerMenuFamily::FileSelect, PswakerMenuControl::B, showHudPicture);
+        pswaker_menu_picture_set(&menuTrigger, PswakerMenuFamily::SeaChart, PswakerMenuControl::L, showHudPicture);
+        assert(menuConfirm.image == cross);
+        assert(menuCancel.image == message_prompt_texture({Ps4Icon::Circle}, false));
+        assert(menuTrigger.image == message_prompt_texture({Ps4Icon::L2}, false));
+        assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::FileSelect)) == "Cross / Options: Select");
+        assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::WindowClose)) == "Circle / Options: Close");
         const unsigned char contextWords[] = {1, 2, 3}; // Synthetic native action texture.
         pswaker_hud_picture_set(&hudButton, PswakerHudControl::A, showHudPicture);
         pswaker_hud_description_set(&hudDescription, PswakerHudControl::A, 2, contextWords, showHudPicture);
@@ -202,6 +213,10 @@ int main(int argc, char** argv) {
         assert(dialog.rendered.name == "Cross" && dialog.rendered.generation == previous.generation);
         assert(hud.rendered.generation == previous.generation);
         openEditor(); assignButton(0, static_cast<unsigned>(ControlTarget::R3));
+        assignButton(1, static_cast<unsigned>(ControlTarget::L3));
+        assignButton(5, static_cast<unsigned>(ControlTarget::L1));
+        assert(menuConfirm.image == cross);
+        assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::FileSelect)) == "Cross / Options: Select");
         assert(hudButton.image == cross && hudDescription.image == contextWords);
         assert(resolve_ps4_prompt({GameAction::A}, pswaker_applied_controls()).name == "Cross");
         assert(dialog.rendered.generation == previous.generation);
@@ -221,6 +236,8 @@ int main(int argc, char** argv) {
                 assert(pswaker_port_view().screen == PortScreen::Controls);
                 assert(pswaker_applied_controls().generation == previous.generation + 1);
                 assert(pswaker_applied_controls().legend()[0] == "GameCube A = R3");
+                assert(menuConfirm.image == cross); // Remains paused until the shared refresh.
+                assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::WindowClose)) == "Circle / Options: Close");
                 tap(PAD_CIRCLE);
             }
         }
@@ -240,6 +257,11 @@ int main(int argc, char** argv) {
             assert(hud.rendered.name == "Cross" && hud.rendered.generation == previous.generation);
             assert(openDialog.image == r3); // Rebuilt before gameplay can resume.
             assert(hudButton.image == r3 && hudDescription.image == contextWords);
+            assert(menuConfirm.image == r3);
+            assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::FileSelect)) == "R3 / L1: Select");
+            assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::WindowClose)) == "L3 / L1: Close");
+            assert((published.fixedPort() == std::array<std::string, 2>{
+                "Touchpad click = Port settings; D-pad = Navigate", "Cross = Confirm; Circle = Cancel / Back"}));
             // Disconnect during refresh still requires a new fixed confirmation.
             connected = false; sample(PAD_R3); neutralGame();
             assert(pswaker_port_view().screen == PortScreen::InputLost);
@@ -261,6 +283,21 @@ int main(int argc, char** argv) {
         assert(openDialog.image == (hud.ready && scenario == "apply" ? r3 : cross));
         assert(hudButton.image == (hud.ready && scenario == "apply" ? r3 : cross));
         assert(hudDescription.image == contextWords); // Context survives either layout.
+        const bool changed = scenario == "apply";
+        assert(menuConfirm.image == (changed ? r3 : cross));
+        assert(menuCancel.image == message_prompt_texture({changed ? Ps4Icon::L3 : Ps4Icon::Circle}, false));
+        assert(menuTrigger.image == message_prompt_texture({Ps4Icon::L2}, false));
+        assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::FileSelect)) ==
+            (changed ? "R3 / L1: Select" : "Cross / Options: Select"));
+        assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::WindowClose)) ==
+            (changed ? "L3 / L1: Close" : "Circle / Options: Close"));
+        pswaker_menu_picture_released(&menuConfirm);
+        pswaker_menu_picture_released(&menuCancel);
+        pswaker_menu_picture_released(&menuTrigger);
+        MessagePicture reopenedMenu;
+        pswaker_menu_picture_set(&reopenedMenu, PswakerMenuFamily::FileSelect, PswakerMenuControl::A, showHudPicture);
+        assert(reopenedMenu.image == (changed ? r3 : cross));
+        pswaker_menu_picture_released(&reopenedMenu);
         pswaker_hud_picture_released(&hudButton);
         pswaker_hud_picture_released(&hudDescription);
         return 0;

@@ -3,7 +3,8 @@
 Post-first-playable #79 slices. #99 added the semantic resolver, port legend
 and refresh boundary. #100 converts message boxes and tutorials that use button
 pictures. #101 adapts the meter's HUD controls and separate action-description
-textures. Native-menu layouts, title, file selection and written instructions
+textures. #102 adapts the separate native-menu/file-selection pictures and
+accepted alternatives. Title, literal names and unreviewed embedded menu artwork
 remain unresolved. This does not extend #12/#18 acceptance or
 claim that the whole game now shows PS4 prompts.
 
@@ -187,6 +188,15 @@ independently of message tags. See [HUD-PROMPTS.md](HUD-PROMPTS.md) for source
 identifiers, the historical AStatus/B-action distinction, fallback behavior and
 remaining coverage, and the [hardware checklist](HUD-prompts-checklist.md) for
 default/remapped layouts and real retained-picture refresh observations.
+
+## Native game menus (#102)
+
+Inventory/window instructions share the message and meter adapters. Separate
+file-selection A/B and chart L/R pictures join the same applied-generation
+boundary, with context-specific Select and Close alternatives for Start. Port
+menus retain fixed navigation. See [NATIVE-MENU-PROMPTS.md](NATIVE-MENU-PROMPTS.md)
+for source ownership, unresolved resource handoffs, fit and validation limits,
+and the [console checklist](Native-menu-prompts-checklist.md).
 
 ## Coverage and source verification
 

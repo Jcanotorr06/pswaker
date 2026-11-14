@@ -1,0 +1,243 @@
+diff --git a/game/src/JSystem/J2DGraph/J2DPicture.cpp b/game/src/JSystem/J2DGraph/J2DPicture.cpp
+--- a/game/src/JSystem/J2DGraph/J2DPicture.cpp
++++ b/game/src/JSystem/J2DGraph/J2DPicture.cpp
+@@ -15,6 +15,7 @@
+ #if defined(__ORBIS__)
+ #include "pswaker/message-pictures.h"
+ #include "pswaker/hud-pictures.h"
++#include "pswaker/menu-pictures.h"
+ #endif
+ 
+ /* 802D2D94-802D2E1C       .text __ct__10J2DPictureFv */
+@@ -154,6 +155,7 @@
+ #if defined(__ORBIS__)
+     pswaker_message_picture_released(this);
+     pswaker_hud_picture_released(this);
++    pswaker_menu_picture_released(this);
+ #endif
+     for (int i = 0; i < mNumTexture; i++) {
+         if (mValidTexture & 1 << i) {
+diff --git a/game/src/d/d_file_select.cpp b/game/src/d/d_file_select.cpp
+--- a/game/src/d/d_file_select.cpp
++++ b/game/src/d/d_file_select.cpp
+@@ -155,6 +155,11 @@
+     delete stick2;
+     mDoHIO_deleteChild(g_fsHIO.mNo);
+ }
++
++#if defined(__ORBIS__)
++#include "pswaker/menu-draw.h"
++static bool ps4FileSelectAlternative;
++#endif
+ 
+ typedef void(dFile_select_c::*DataSelProcFunc_t)();
+ DataSelProcFunc_t DataSelProc[] = {
+@@ -3494,6 +3499,14 @@
+ 
+ /* 8018C9D0-8018CA0C       .text _draw__14dFile_select_cFv */
+ void dFile_select_c::_draw() {
++#if defined(__ORBIS__)
++    const DataSelProcFunc_t proc = DataSelProc[field_0x392b];
++    ps4FileSelectAlternative = proc == &dFile_select_c::dataSelect
++#if VERSION > VERSION_DEMO
++        || proc == &dFile_select_c::dataSelectEx
++#endif
++        ;
++#endif
+     dComIfGd_set2DOpa(&fileSel);
+ }
+ 
+@@ -3502,6 +3515,9 @@
+     J2DOrthoGraph* graf = dComIfGp_getCurrentGrafPort();
+     graf->setPort();
+     Scr->draw(0.0f, 0.0f, graf);
++#if defined(__ORBIS__)
++    if (ps4FileSelectAlternative) pswaker_menu_draw_instruction(PswakerMenuInstruction::FileSelect);
++#endif
+ }
+ 
+ /* 8018CA70-8018CC90       .text dataSelectEx__14dFile_select_cFv */
+diff --git a/game/src/d/d_menu_fmap2.cpp b/game/src/d/d_menu_fmap2.cpp
+--- a/game/src/d/d_menu_fmap2.cpp
++++ b/game/src/d/d_menu_fmap2.cpp
+@@ -15,6 +15,34 @@
+ #include "f_op/f_op_msg_mng.h"
+ #include "m_Do/m_Do_dvd_thread.h"
+ #include "m_Do/m_Do_controller_pad.h"
++
++#if defined(__ORBIS__)
++#include "pswaker/menu-pictures.h"
++
++// A drop shadow keeps the game's own tint: the same PS4 shape as a silhouette.
++static void dMenu_Fmap2_ps4ShadowApply(void* picture, const void* texture) {
++    ((J2DPicture*)picture)->changeTexture((const ResTIMG*)texture, 0);
++}
++
++static void dMenu_Fmap2_ps4Apply(void* picture, const void* texture) {
++    dMenu_Fmap2_ps4ShadowApply(picture, texture);
++    J2DPicture* pic = (J2DPicture*)picture;
++    pic->setWhite(0xFFFFFFFF);
++    pic->setBlack(0x00000000);
++    pic->setCornerColor(0xFFFFFFFF);
++}
++
++// Fixed L2/R2: the square 24-pixel slots already fit the PS4 tiles.
++static void dMenu_Fmap2_ps4Trigger(J2DScreen* screen, u32 tag, PswakerMenuControl control, PswakerMenuApply apply) {
++    J2DPane* pane = screen->search(tag);
++    // 0x12: J2DPicture. A layout without this picture has nothing to convert.
++    if (pane != NULL && pane->getTypeID() == 0x12) {
++        pswaker_menu_picture_set(pane, PswakerMenuFamily::SeaChart, control, apply);
++    } else {
++        pswaker_menu_missing_picture(PswakerMenuFamily::SeaChart, tag);
++    }
++}
++#endif
+ 
+ dMf2_HIO_c g_mf2HIO;
+ 
+@@ -160,6 +188,13 @@
+     int i;
+     fopMsgM_setPaneData(&mClPane, fmap2Dl.scrn->search('cl'));
+     fopMsgM_setPaneData(&mKdmPane, fmap2Dl.scrn->search('Kdm'));
++#if defined(__ORBIS__)
++    // Native game menu: the page arrows stay native beside fixed L2/R2.
++    dMenu_Fmap2_ps4Trigger(fmap2Dl.scrn, 'KL', PswakerMenuControl::L, dMenu_Fmap2_ps4Apply);
++    dMenu_Fmap2_ps4Trigger(fmap2Dl.scrn, 'KL2', PswakerMenuControl::L, dMenu_Fmap2_ps4ShadowApply);
++    dMenu_Fmap2_ps4Trigger(fmap2Dl.scrn, 'KR', PswakerMenuControl::R, dMenu_Fmap2_ps4Apply);
++    dMenu_Fmap2_ps4Trigger(fmap2Dl.scrn, 'KR2', PswakerMenuControl::R, dMenu_Fmap2_ps4ShadowApply);
++#endif
+     u32 r26 = 'Fc01';
+     u32 r30 = 'Fc11';
+     u32 r24 = 'cc01';
+diff --git a/game/src/d/d_menu_window.cpp b/game/src/d/d_menu_window.cpp
+--- a/game/src/d/d_menu_window.cpp
++++ b/game/src/d/d_menu_window.cpp
+@@ -794,7 +794,20 @@
+ }
+ 
+ /* 801DD6D8-801DD960       .text dMs_Draw__FP19sub_ms_screen_class */
+-static BOOL dMs_Draw(sub_ms_screen_class*) {
++#if defined(__ORBIS__)
++#include "pswaker/menu-draw.h"
++#include "JSystem/J2DGraph/J2DOrthoGraph.h"
++class dMs_Ps4CloseInstruction : public dDlst_base_c {
++public:
++    void draw() override {
++        dComIfGp_getCurrentGrafPort()->setPort();
++        pswaker_menu_draw_instruction(PswakerMenuInstruction::WindowClose);
++    }
++};
++static dMs_Ps4CloseInstruction ps4CloseInstruction;
++#endif
++
++static BOOL dMs_Draw(sub_ms_screen_class* i_Ms) {
+     if (dMenu_flag() == 1 || dMs_capture_c && dMs_capture_c->checkDrawFlag() != 0) {
+         if (dMs_capture_c) {
+             dComIfGd_set2DOpa(dMs_capture_c);
+@@ -812,6 +825,12 @@
+             }
+             if (dMi_c) {
+                 dComIfGd_set2DOpa(dMi_c);
++#if defined(__ORBIS__)
++                if (i_Ms->mMenuProc == MENU_STATE_ITEM_MOVE && !dMi_c->noteCheck() &&
++                    dMi_c->getItemMode() == 0 && !dMeter_subWinFlag()) {
++                    dComIfGd_set2DOpa(&ps4CloseInstruction);
++                }
++#endif
+             }
+         } else if (dMenu_getMenuStatus() == MENU_STATUS_COLLECT) {
+             // Collect screen
+@@ -820,6 +839,13 @@
+             }
+             if (dMc_c) {
+                 dComIfGd_set2DOpa(dMc_c);
++#if defined(__ORBIS__)
++                if ((i_Ms->mMenuProc == MENU_STATE_COLLECT_MOVE ||
++                     i_Ms->mMenuProc == MENU_STATE_COLLECT_MOVE_TACT) && !dMc_c->noteCheck() &&
++                    (dMc_c->getCollectMode() == 0 || dMc_c->getCollectMode() == 2)) {
++                    dComIfGd_set2DOpa(&ps4CloseInstruction);
++                }
++#endif
+             }
+         } else if (dMenu_getMenuStatus() == MENU_STATUS_MAP) {
+             // Map screen
+diff --git a/game/src/d/d_s_name.cpp b/game/src/d/d_s_name.cpp
+--- a/game/src/d/d_s_name.cpp
++++ b/game/src/d/d_s_name.cpp
+@@ -38,6 +38,37 @@
+ #include "pc/pc_harness.h"
+ #endif
+ 
++#if defined(__ORBIS__)
++#include "JSystem/J2DGraph/J2DPicture.h"
++#include "pswaker/menu-pictures.h"
++
++static void dScnName_ps4Apply(void* picture, const void* texture) {
++    J2DPicture* pic = (J2DPicture*)picture;
++    pic->changeTexture((const ResTIMG*)texture, 0);
++    pic->setWhite(0xFFFFFFFF);
++    pic->setBlack(0x00000000);
++    pic->setCornerColor(0xFFFFFFFF);
++}
++
++// Resize around the same centre, before pane data captures the dimensions.
++// The full PS4 tile needs room beyond the original 16-pixel GC letter overlay;
++// a square slot keeps round buttons round. The Select/Back words stay native.
++static void dScnName_ps4Button(J2DScreen* screen, u32 tag, PswakerMenuControl control) {
++    J2DPane* pane = screen->search(tag);
++    // 0x12: J2DPicture. A layout without this picture has nothing to convert.
++    if (pane == NULL || pane->getTypeID() != 0x12) {
++        pswaker_menu_missing_picture(PswakerMenuFamily::FileSelect, tag);
++        return;
++    }
++    const f32 size = 32.0f;
++    f32 x = pane->getBounds().i.x - (size - pane->getWidth()) * 0.5f;
++    f32 y = pane->getBounds().i.y - (size - pane->getHeight()) * 0.5f;
++    pane->move(x, y);
++    pane->resize(size, size);
++    pswaker_menu_picture_set(pane, PswakerMenuFamily::FileSelect, control, dScnName_ps4Apply);
++}
++#endif
++
+ dSn_HIO_c g_snHIO;
+ 
+ static int mBmgStatus;
+@@ -394,6 +425,11 @@
+     btnIcon.scr = new J2DScreen();
+     JUT_ASSERT(VERSION_SELECT(569, 582, 866, 870), btnIcon.scr != NULL);
+     btnIcon.scr->set("main_parts_fileselect.blo", mArchive);
++#if defined(__ORBIS__)
++    // Native game menu: these follow the applied gameplay A/B bindings.
++    dScnName_ps4Button(btnIcon.scr, 'baa', PswakerMenuControl::A);
++    dScnName_ps4Button(btnIcon.scr, 'bab', PswakerMenuControl::B);
++#endif
+     fopMsgM_setPaneData(&field_0x43c, btnIcon.scr->search('cent'));
+     fopMsgM_setPaneData(&field_0x474, btnIcon.scr->search('bab'));
+     fopMsgM_setPaneData(&field_0x4ac, btnIcon.scr->search('baat'));
+diff --git a/game/src/f_op/f_op_msg_mng.cpp b/game/src/f_op/f_op_msg_mng.cpp
+--- a/game/src/f_op/f_op_msg_mng.cpp
++++ b/game/src/f_op/f_op_msg_mng.cpp
+@@ -20,6 +20,7 @@
+ #if defined(__ORBIS__)
+ #include "pswaker/message-pictures.h"
+ #include "pswaker/hud-pictures.h"
++#include "pswaker/menu-pictures.h"
+ #endif
+ #if VERSION <= VERSION_JPN
+ #include "d/d_s_play.h"
+@@ -10075,6 +10076,7 @@
+     // The game is replacing this picture; any PS4 prompt is re-applied by its caller.
+     pswaker_message_picture_released(i_pane->pane);
+     pswaker_hud_picture_released(i_pane->pane);
++    pswaker_menu_picture_released(i_pane->pane);
+ #endif
+     i_pane->pane->show();
+     ((J2DPicture*)i_pane->pane)->remove();
+@@ -10087,6 +10089,7 @@
+     // The game is replacing this picture; any PS4 prompt is re-applied by its caller.
+     pswaker_message_picture_released(pic);
+     pswaker_hud_picture_released(pic);
++    pswaker_menu_picture_released(pic);
+ #endif
+     pic->show();
+     pic->remove();
