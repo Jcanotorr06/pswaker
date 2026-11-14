@@ -5,6 +5,7 @@
 #include "hud-prompts.hpp"
 #include "menu-prompts.hpp"
 #include "embedded-prompts.hpp"
+#include "prompt-art.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
 #include "native/platform.h"
@@ -184,6 +185,22 @@ bool pswaker_replace_embedded_texture(const void*, std::span<const uint8_t> pixe
     return true;
 }
 void pswaker_remove_embedded_texture(const void*) { embeddedImage.clear(); }
+
+void checkStartupTitle(const AppliedControls& applied, const char* expected) {
+    assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_embedded_prompts));
+    // Startup publishes the saved controls before constructing any title pane.
+    assert(pswaker_refresh_prompts(applied));
+    int title = 0, texture = 0;
+    pswaker_title_texture_set(&title, &texture);
+    assert(pswaker_title_texture_ready(&title));
+    const auto instruction = pswaker_title_instruction(applied);
+    assert(instruction.text == expected && instruction.generation == applied.generation);
+    std::vector<uint8_t> expectedImage(560 * 80 * 4);
+    assert(render_prompt_instruction(expected, 560, 80, expectedImage));
+    assert(embeddedImage == expectedImage);
+    pswaker_title_texture_released(&title);
+}
+
 int main(int argc, char** argv) {
     assert(argc == 3);
     PortSettings initialProfile(argv[2]);
@@ -786,6 +803,7 @@ int main(int argc, char** argv) {
             "GameCube Y = Triangle", "GameCube Z = R1", "GameCube Start = Options",
             "Saved camera inversion X: Off", "Saved camera inversion Y: Off"};
         assert(applied.legend() == expected);
+        checkStartupTitle(applied, "PRESS CROSS / CIRCLE / OPTIONS");
         const auto prompt = resolve_ps4_prompt({GameAction::A}, applied);
         assert(prompt.name == "Cross" && prompt.generation == applied.generation);
         start();
@@ -906,6 +924,7 @@ int main(int argc, char** argv) {
         assert(applied.config.invertCameraX && !applied.config.invertCameraY);
         assert(applied.legend()[0] == "GameCube A = L3");
         assert(applied.legend()[5] == "GameCube Start = Circle");
+        checkStartupTitle(applied, "PRESS L3 / R3 / CIRCLE");
         start();
         const uint32_t ds4[] = {PAD_L3, PAD_R3, PAD_L1, PAD_OPTIONS, PAD_CROSS, PAD_CIRCLE};
         const uint16_t gc[] = {0x100, 0x200, 0x400, 0x800, 0x10, 0x1000};

@@ -18,6 +18,7 @@ const void* source = nullptr;
 std::vector<uint8_t> pixels;
 std::optional<AppliedControls> snapshot;
 std::optional<uint64_t> renderedGeneration;
+bool reported = false;
 constexpr unsigned width = 560, height = 80;
 struct HostAllocation {
 #if defined(__ORBIS__)
@@ -25,24 +26,35 @@ struct HostAllocation {
 #endif
 };
 
+void report(const char* reason) {
+    if (reported) return;
+    pswaker_report_prompt_coverage("embedded-title", 0x1E, reason);
+    reported = true;
+}
+
 bool rebuild() {
     if (!source) return true;
     if (snapshot && renderedGeneration == snapshot->generation) return true;
+    if (!snapshot) {
+        report("No applied controls snapshot; title instruction suppressed");
+        return false;
+    }
     std::vector<uint8_t> next(width * height * 4);
-    const auto instruction = snapshot ? pswaker_title_instruction(*snapshot) :
-        EmbeddedInstruction{"", PromptStatus::Unresolved, 0};
+    const auto instruction = pswaker_title_instruction(*snapshot);
     if (instruction.status == PromptStatus::Unresolved ||
         !render_prompt_instruction(instruction.text, width, height, next)) {
-        pswaker_report_prompt_coverage("embedded-title", 0x1E,
-            "Instruction unresolved; stock controller artwork suppressed");
+        report("Instruction unresolved; stock controller artwork suppressed");
         std::fill(next.begin(), next.end(), 0);
     }
     // Raw replacement bytes are borrowed by Aurora: unregister before releasing
     // or changing them. Its registry and GX cache invalidation precede resume.
     pswaker_remove_embedded_texture(source);
     pixels = std::move(next);
-    if (!pswaker_replace_embedded_texture(source, pixels, width, height)) return false;
-    renderedGeneration = snapshot ? std::optional(snapshot->generation) : std::nullopt;
+    if (!pswaker_replace_embedded_texture(source, pixels, width, height)) {
+        report("Title texture registration unavailable; instruction suppressed until retry");
+        return false;
+    }
+    renderedGeneration = snapshot->generation;
     return true;
 }
 }
@@ -64,8 +76,19 @@ void pswaker_title_texture_set(const void* newOwner, const void* newSource) {
     owner = newOwner;
     source = newSource;
     renderedGeneration.reset();
-    if (!source || !rebuild())
-        pswaker_report_prompt_coverage("embedded-title", 0x1E, "Title texture registration unavailable");
+    reported = false;
+    if (!source) report("Title texture unavailable; instruction suppressed");
+    else rebuild();
+}
+
+bool pswaker_title_texture_ready(const void* titleOwner) {
+    if (!titleOwner || titleOwner != owner || !source) return false;
+    [[maybe_unused]] HostAllocation host;
+    return rebuild();
+}
+
+void pswaker_title_missing_instruction(unsigned item, const char* reason) {
+    pswaker_report_prompt_coverage("title-layout", item, reason);
 }
 
 void pswaker_title_texture_released(const void* releasedOwner) {
@@ -75,10 +98,12 @@ void pswaker_title_texture_released(const void* releasedOwner) {
     owner = source = nullptr;
     pixels.clear();
     renderedGeneration.reset();
+    reported = false;
 }
 
 bool pswaker_refresh_embedded_prompts(void*, const AppliedControls& applied) {
     [[maybe_unused]] HostAllocation host;
+    if (!snapshot || snapshot->generation != applied.generation) reported = false;
     snapshot = applied;
     return rebuild();
 }

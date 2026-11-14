@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "issue": 104,
+  "mode": "stock",
+  "console": "PS4 Slim / firmware 9.00 / GoldHEN v2.4b18",
+  "content": "USA GZLE01 revision 0",
+  "installed_build_id": null,
+  "installed_program_sha256": null,
+  "installed_elf_sha256": null,
+  "installed_package_sha256": null,
+  "cases": [
+    {"id": "title.startup.defaults", "expected": "PRESS CROSS / CIRCLE / OPTIONS", "observed": null, "status": "UNTESTED"},
+    {"id": "title.startup.saved.A-L3.B-R3.Start-Circle", "expected": "PRESS L3 / R3 / CIRCLE", "observed": null, "status": "UNTESTED"},
+    {"id": "title.startup.complete-default-recovery", "expected": "PRESS CROSS / CIRCLE / OPTIONS", "observed": null, "status": "UNTESTED"},
+    {"id": "title.fit.longest-three-names", "expected": "PRESS TRIANGLE / OPTIONS / SQUARE", "observed": null, "status": "UNTESTED"},
+    {"id": "title.retained.apply.A-R3.B-L3.Start-L1", "expected": "PRESS R3 / L3 / L1 before resume", "observed": null, "status": "UNTESTED"},
+    {"id": "title.retained.pending-discard-failed-apply", "expected": "Previous applied instruction remains", "observed": null, "status": "UNTESTED"},
+    {"id": "title.retained.restore-defaults", "expected": "Defaults only after successful Apply", "observed": null, "status": "UNTESTED"},
+    {"id": "title.artwork.models-materials-animation", "expected": "Surrounding title artwork and animation preserved", "observed": null, "status": "UNTESTED"},
+    {"id": "title.disconnect.resume", "expected": "Fixed fresh confirmation and neutral release; applied title retained", "observed": null, "status": "UNTESTED"},
+    {"id": "title.unresolved-and-registration-failure", "expected": "Coverage reported; suspect instruction suppressed; play usable", "observed": null, "status": "UNTESTED"}
+  ]
+}

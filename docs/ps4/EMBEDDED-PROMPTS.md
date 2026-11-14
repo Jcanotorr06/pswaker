@@ -23,7 +23,7 @@ metadata. It is a representative audit, not a full-game census.
 | `TlogoE.arc::bdlm/subtitle_start_anim_e.bdl::TEX1[logo_sub_e]` | RGB5A3, 256×64; logo artwork, preserved |
 | `TlogoE.arc::bdlm/subtitle_start_anim_e.bdl::TEX1[zel_grad_128x8_i8]` | I8, 128×8; shared gradient, preserved |
 
-`daTitle_proc_c::keyCheck` and `daTitle_c::_execute` accept A, B or Start.
+`daTitle_proc_c::proc_execute` and `daTitle_c::execute` accept A, B or Start.
 `pswaker_title_instruction` resolves each alternative from the same applied
 snapshot in native-game-menu context. The replacement says `PRESS` followed by
 the three accurate PS4 names, separated by slashes. It never guesses a binding
@@ -97,3 +97,7 @@ Physical stock-mode readability, surrounding art, pulse, retained refresh,
 relaunch and disconnect observations remain pending. Use
 [the console checklist](Embedded-prompts-checklist.md) and retain observations
 for the exact installed build; compilation cannot establish those results.
+
+The follow-up [title/start slice (#104)](TITLE-PROMPTS.md) verifies the actual
+layout binding, suppresses registration failures, audits all title model/material
+paths and prepares a dedicated startup/refresh hardware checklist.

@@ -1,0 +1,80 @@
+--- a/game/src/d/actor/d_a_title.cpp
++++ b/game/src/d/actor/d_a_title.cpp
+@@ -12,6 +12,7 @@
+ #include "m_Do/m_Do_Reset.h"
+ #include "JSystem/J2DGraph/J2DOrthoGraph.h"
+ #include "JSystem/J2DGraph/J2DScreen.h"
++#include "JSystem/J2DGraph/J2DPicture.h"
+ #include "JSystem/JKernel/JKRExpHeap.h"
+ #include "stdio.h"
+ #if TARGET_PC
+@@ -150,13 +151,6 @@
+ 
+     m_Screen->set(VERSION_SELECT("title_logo.blo", "title_logo.blo", "title_logo_e.blo", "title_logo_e.blo"), resInfo->getArchive());
+ 
+-#if defined(__ORBIS__)
+-    // The audited USA whole-instruction BTI. Logo/model atlases remain intact.
+-    const ResTIMG* instruction = (const ResTIMG*)dComIfG_getObjectRes(ARCNAME, dRes_INDEX_TLOGOE_BTI_PRESS_START_e);
+-    pswaker_title_texture_set(this, instruction ?
+-        (const u8*)instruction + (s32)(u32)instruction->imageOffset : NULL);
+-#endif
+-
+     m0A0[2] = m_Screen->search('pres');
+     m0A0[3] = m_Screen->search('nint');
+     m0A0[0] = m_Screen->search('zeld');
+@@ -164,7 +158,32 @@
+     m0A0[4] = m_Screen->search('eft1');
+     m0A0[5] = m_Screen->search('eft2');
+ 
++#if defined(__ORBIS__)
++    // Verify the visible picture, not just an archive index. Never replace an
++    // unknown atlas or leave its possible controller instruction on screen.
++    const ResTIMG* instruction = (const ResTIMG*)dComIfG_getObjectRes(ARCNAME, dRes_INDEX_TLOGOE_BTI_PRESS_START_e);
++    J2DPicture* picture = m0A0[2] && m0A0[2]->getTypeID() == 0x12 ? (J2DPicture*)m0A0[2] : NULL;
++    JUTTexture* texture = picture ? picture->getTexture(0) : NULL;
++    if (instruction && texture && texture->getTexInfo() == instruction &&
++        picture->getTexture(1) == NULL && instruction->format == GX_TF_RGB5A3 &&
++        (u16)instruction->width == 280 && (u16)instruction->height == 40 &&
++        (u32)instruction->imageOffset == 0x20) {
++        pswaker_title_texture_set(this, (const u8*)instruction + 0x20);
++    } else {
++        pswaker_title_texture_released(this);
++        pswaker_title_missing_instruction('pres',
++            "title_logo_e.blo[pres]/press_start.bti absent or unaudited; instruction suppressed");
++    }
++#endif
++
++
+     for (s32 i = 0; i < (s32)ARRAY_SIZE(pane); i++) {
++#if defined(__ORBIS__)
++        if (i == 2 && m0A0[2] == NULL) {
++            pane[i].mInitAlpha = 0.0f;
++            continue;
++        }
++#endif
+         fopMsgM_setPaneData(&pane[i], m0A0[i]);
+         fopMsgM_setNowAlpha(&pane[i], 0.0f);
+         fopMsgM_setAlpha(&pane[i]);
+@@ -426,6 +445,9 @@
+     }
+ 
+     for (int paneIdx = 0; paneIdx < 4; paneIdx++) {
++#if defined(__ORBIS__)
++        if (paneIdx == 2 && m0A0[2] == NULL) continue;
++#endif
+         fopMsgM_setAlpha(&pane[paneIdx]);
+     }
+ 
+@@ -480,6 +502,12 @@
+ 
+     J2DOrthoGraph* graf = dComIfGp_getCurrentGrafPort();
+     graf->setPort();
++#if defined(__ORBIS__)
++    if (m0A0[2]) {
++        if (pswaker_title_texture_ready(this)) m0A0[2]->show();
++        else m0A0[2]->hide();
++    }
++#endif
+     m_Screen->draw(0.0f, 0.0f, graf);
+ #if TARGET_PC
+     // Milestone M9 title (pc_title.cpp): the title BLO screen was drawn this frame.
