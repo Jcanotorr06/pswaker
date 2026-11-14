@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "issue": 102,
+  "date": "2026-11-14",
+  "scope": "Data-free host and PS4 target compilation only; no installed console observations",
+  "compiled_build_id": "unverified-102-compile",
+  "sources_reverified_against_pinned_archives_and_all_ordered_patches": true,
+  "target": "switchwaker_eboot",
+  "target_exit_code": 0,
+  "oelf_segments": "OK",
+  "elf_sha256": "b85002234205382637834718a88583a7477f78c15f25f2b629ed06aaa6d6a0aa",
+  "eboot_sha256": "2cde5d23d7a56889fbfe000b4ecfaf8e1414d608da624359fc752aa91c75eadf",
+  "inputs": {
+    "platform/ps4/game/CMakeLists.txt": "87a93a418473483f89eb4a43852b5bc16284c93ffc49e799ec57b5293b6a096d",
+    "platform/ps4/game/main.cpp": "6b642c1a1543db049190bc6150d34a12967763d3ee1a7c35e6cb290ec9f9d4bd",
+    "platform/ps4/game/menu-prompts.cpp": "d66f7d65aa164ef3d8555f157dd97c8ce7856e13aef6b8557d8c512f11b07fa5",
+    "platform/ps4/game/menu-prompts.hpp": "b96d2096e43db6893f715e13614c2e5ebc9fba51d7a138d4b3150053b41f5a1f",
+    "platform/ps4/game/include/pswaker/menu-draw.h": "8b9fb384d0868c0d6539896ecf015ee723986ada27720251728723e19d73ccc1",
+    "platform/ps4/game/include/pswaker/menu-pictures.h": "4828dafdc54ec1064472d85d868b5395b97698088a115110cd76b10ca27dda39",
+    "platform/ps4/patches/game/0016-native-menu-prompts.patch": "89a45fb5bc5540958d708518ff9fd86eb1166cf1a5247e207377d8c7a9a57d5d",
+    "platform/ps4/prompt-coverage.json": "6731bb1624eacbeff29d81269b037e6b1a3e24aeb73bd861c4549661168d2d8e",
+    "tests/ps4/controls-console.cpp": "ea17c350bedb6ed03a5e35831b4a53e2124ca6c8f0db828258bd3ec802182995",
+    "tests/ps4/test_controls.py": "174e5560c881dd278dbd3887445a630de8cb36f247a9e14fbb4c05b4ec685213"
+  },
+  "checks": {
+    "compileall": "pass",
+    "bash_syntax": "pass",
+    "pyright": "0 errors, 0 warnings",
+    "full_suite": {
+      "tests": 306,
+      "seconds": 567.708,
+      "skipped": 60,
+      "failures": 0
+    }
+  },
+  "console_status": "UNTESTED; stock resource audit and physical fit/refresh evidence remain pending"
+}
