@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "issue": 106,
+  "date": "2026-11-14",
+  "inventory": "platform/ps4/prompt-coverage.json",
+  "inventory_sha256": "73c3859e43f9fb774b8009089b78a2587634cb89779266ca2ee8471f6d5cf929",
+  "inventory_entries": 514,
+  "status_counts": {
+    "text-fallback": 35,
+    "converted": 455,
+    "unresolved": 24
+  },
+  "statuses_changed": false,
+  "scope": "Reconciliation of maintained identifiers and existing slice audits; no new disc-resource audit or physical observation",
+  "limits": [
+    "Source/resource/context entries overlap; counts are not screen counts or a completion percentage",
+    "Converted and text-fallback statuses describe implementation, not console passes",
+    "Representative samples do not establish full-game visual coverage",
+    "Known unresolved entries prevent declaring affected surfaces complete"
+  ],
+  "written_audit_source": "evidence/ps4/written-instructions-105/validation.json",
+  "written_audit": {
+    "entries_inspected": 4426,
+    "inventory_messages": 305,
+    "converted": 292,
+    "text-fallback": 4,
+    "unresolved": 9
+  },
+  "unresolved_entries": [
+    {
+      "id": "game/src/d/d_meter.cpp::dMeter_actionTex.unlisted-status",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.native-menu.item-and-window.embedded-instructions",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.native-menu.file-select.literal-instructions",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.native-menu.name-entry.embedded-instructions",
+      "status": "unresolved"
+    },
+    {
+      "id": "game/src/d/d_menu_item.cpp",
+      "status": "unresolved"
+    },
+    {
+      "id": "game/src/d/d_menu_window.cpp",
+      "status": "unresolved"
+    },
+    {
+      "id": "game/src/d/d_file_select.cpp",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.title.layout.unaudited-picture-or-texture",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.title.model-material.unaudited-instructions",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.title.other-language-or-revision.instructions",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.BMG.literal-control-names",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.embedded-instructions-and-shared-atlas-regions",
+      "status": "unresolved"
+    },
+    {
+      "id": "resource.partial-full-trigger-contexts",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00018]",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00023]",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00037]",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00049]",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00054]",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00060]",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00096]",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00134]",
+      "status": "unresolved"
+    },
+    {
+      "id": "res/Msg/bmgres.arc::zel_00.bmg.message[00612]",
+      "status": "unresolved"
+    },
+    {
+      "id": "context.written.other-language-or-revision.instructions",
+      "status": "unresolved"
+    },
+    {
+      "id": "context.written.console-fit-and-readability",
+      "status": "unresolved"
+    }
+  ]
+}

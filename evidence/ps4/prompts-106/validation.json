@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "issue": 106,
+  "date": "2026-11-14",
+  "baseline_commit": "786ad334685cf77e1f525db9a63b5fdecff52e4c",
+  "scope": "Stock candidate preparation, inventory reconciliation and hosted supporting checks; hardware acceptance pending",
+  "runtime_changes": false,
+  "new_test_seams": false,
+  "checks": {
+    "focused_prompts": {"tests": 8, "skipped": 0, "failures": 0},
+    "focused_installed_controls": {"tests": 30, "skipped": 0, "failures": 0},
+    "pyright": "0 errors, 0 warnings",
+    "compileall": "pass",
+    "bash_syntax": "pass",
+    "fresh_complete_package_inspection": "pass; unchanged report SHA-256 recorded in candidate.json",
+    "delivered_package_and_matching_elf_rehashed": "pass",
+    "maintained_program_inputs_and_ordered_patches_match_candidate": "pass",
+    "full_suite": {"status": "RUNNING"}
+  },
+  "supporting_evidence_limits": [
+    "Prompt tests compile the current resolver, artwork, synthetic adapters, written translation and exported precedence rule",
+    "Actual Aurora registry/GX cache check uses the retained #104 hosted binary; replacement sources and patches are unchanged",
+    "Installed-controls checks use the real current controls/storage code with simulated console services and synthetic retained presentations",
+    "No new PS4 program build is needed for documentation/evidence-only changes; the exact existing 01.27 candidate is reused",
+    "Hosted checks and fresh package inspection do not establish console input, visual coverage, refresh, readability or fit"
+  ],
+  "hardware": {
+    "status": "UNTESTED",
+    "installed_identity_owner_confirmed": false,
+    "returned_runs": 0,
+    "owner_confirmation": null,
+    "known_unresolved_inventory_entries": 24,
+    "issue_completion": "PENDING owner evidence and required coverage; keep #106 open with ready-for-human"
+  }
+}
