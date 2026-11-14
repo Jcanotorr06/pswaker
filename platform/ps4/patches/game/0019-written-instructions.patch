@@ -1,0 +1,137 @@
+diff --git a/game/src/f_op/f_op_msg_mng.cpp b/game/src/f_op/f_op_msg_mng.cpp
+--- a/game/src/f_op/f_op_msg_mng.cpp
++++ b/game/src/f_op/f_op_msg_mng.cpp
+@@ -19,6 +19,7 @@
+ #include <stdio.h>
+ #if defined(__ORBIS__)
+ #include "pswaker/message-pictures.h"
++#include "pswaker/written-instructions.h"
+ #include "pswaker/hud-pictures.h"
+ #include "pswaker/menu-pictures.h"
+ #endif
+@@ -1571,6 +1572,19 @@
+     return info->mEntries[mMsgIdx];
+ }
+ 
++#if defined(__ORBIS__)
++static const char* fopMsgM_ps4Written(const char* source, mesg_data* block, u16 message) {
++#if VERSION == VERSION_USA
++    if (source != NULL && !fopMsgM_hyrule_language_check(message)) {
++        size_t offset = source - (const char*)block;
++        size_t size = (u32)block->mSize;
++        if (offset < size) return pswaker_written_message(source, size - offset, message);
++    }
++#endif
++    return source;
++}
++#endif
++
+ /* 8002E378-8002E430       .text getMessage__16fopMsgM_msgGet_cFP11mesg_header */
+ const char* fopMsgM_msgGet_c::getMessage(mesg_header* i_head) {
+     mesg_info* info = getMesgInfo(i_head);
+@@ -1590,6 +1604,9 @@
+         }
+     }
+ 
++#if defined(__ORBIS__)
++    ret = fopMsgM_ps4Written(ret, getMesgData(i_head), mResMsgNo);
++#endif
+     return ret;
+ }
+ 
+@@ -1654,7 +1671,11 @@
+ 
+     const char* result = &data[info->mEntries[mMsgIdx].mDataOffs];
+     mResMsgNo = info->mEntries[mMsgIdx].mMsgNo;
++#if defined(__ORBIS__)
++    return fopMsgM_ps4Written(result, getMesgData(i_head), mResMsgNo);
++#else
+     return result;
++#endif
+ }
+ 
+ /* 8002E5FC-8002E794       .text __ct__21fopMsgM_msgDataProc_cFv */
+@@ -1874,6 +1895,16 @@
+ 
+     while (bmgData[r29] != '\0') {
+         if (bmgData[r29] == 0x1A) {
++#if defined(__ORBIS__)
++            if ((u8)bmgData[r29 + 1] == 6 && (u8)bmgData[r29 + 2] == 0 &&
++                (u8)bmgData[r29 + 3] == 0 && (u8)bmgData[r29 + 4] == pswakerWrittenTag) {
++                // Reserve one atomic span for every applied name. Apply never
++                // changes parser offsets, page progress or adjacent icon positions.
++                sp0C += sp08 * pswakerWrittenCells;
++                sp18[sp14] = (int)(sp0C + 0.5f);
++                sp10++;
++            } else
++#endif
+             if ((u8)bmgData[r29 + 2] == 0xFF && (u8)bmgData[r29 + 3] == 0 && (u8)bmgData[r29 + 4] == MsgSpclCode_UNK1) {
+                 int c = ((u8)bmgData[r29 + 5] << 8) | (u8)bmgData[r29 + 6];
+                 f32 f31 = (f32)c * 0.01f;
+@@ -3718,6 +3749,19 @@
+         }
+ 
+         if (bmgData[count] == 0x1A) {
++#if defined(__ORBIS__)
++            if ((u8)bmgData[count + 1] == 6 && (u8)bmgData[count + 2] == 0 &&
++                (u8)bmgData[count + 3] == 0 && (u8)bmgData[count + 4] == pswakerWrittenTag) {
++                char token[16];
++                sprintf(token, "\x1b" "PS[%u]", (u8)bmgData[count + 5]);
++                strcat(field_0x60, token);
++                strcat(field_0x68, token);
++                field_0x150++;
++                field_0x14 += field_0x148 * pswakerWrittenCells;
++                nowCursorPos = field_0xF8[lineCount] + field_0x14 + 0.5f;
++                count += 6;
++            } else
++#endif
+             if ((u8)bmgData[count + 2] == 0xFF && (u8)bmgData[count + 3] == 0 && (u8)bmgData[count + 4] == MsgSpclCode_COLOR) {
+ #if VERSION > VERSION_JPN
+                 if (mesgEntry->mMsgNo == 0x42 || mesgEntry->mMsgNo == 0x43 || mesgEntry->mMsgNo == 0x44 || mesgEntry->mMsgNo == 0x45 ||
+diff --git a/game/src/JSystem/J2DGraph/J2DPrint.cpp b/game/src/JSystem/J2DGraph/J2DPrint.cpp
+--- a/game/src/JSystem/J2DGraph/J2DPrint.cpp
++++ b/game/src/JSystem/J2DGraph/J2DPrint.cpp
+@@ -15,6 +15,10 @@
+ bool J2DPrint::mHeapFlag;
+ u32 J2DPrint::mStrBuffSize;
+ u8 J2DPrint::mBufferNotEnough;
++
++#if defined(__ORBIS__)
++#include "pswaker/written-instructions.h"
++#endif
+ 
+ /* 802CE108-802CE194       .text __ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor */
+ J2DPrint::J2DPrint(JUTFont* pFont, f32 param_2, f32 param_3, JUtility::TColor param_4, JUtility::TColor param_5, JUtility::TColor param_6, JUtility::TColor param_7) {
+@@ -200,6 +204,32 @@
+         } else {
+             r25 = true;
+             local_c0 = field_0x2c;
++#if defined(__ORBIS__)
++            if (r27 == 0x1b && param_2 - (param_1 - local_a4) >= 5 &&
++                param_1[0] == 'P' && param_1[1] == 'S' && param_1[2] == '[' &&
++                param_1[3] >= '0' && param_1[3] <= '5' && param_1[4] == ']') {
++                // Both measurement and drawing consume the same retained semantic
++                // span. Only drawing emits glyphs; colours/alpha/shadows stay native.
++                const char* label = pswaker_written_name(param_1[3] - '0');
++                param_1 += 5;
++                const f32 slot = field_0x18 * pswakerWrittenCells;
++                f32 width = 0.0f;
++                for (const char* c = label; *c; ++c) {
++                    if (c != label) width += field_0x10;
++                    width += (mFont->isFixed() ? mFont->getFixedWidth() : mFont->getWidth(*c)) *
++                        field_0x18 / mFont->getCellWidth();
++                }
++                const f32 scale = width > slot && width > 0.0f ? slot / width : 1.0f;
++                f32 x = field_0x2c + (param_4 ? (f32)(s16)param_4[r29] : 0.0f);
++                if (param_7) for (const char* c = label; *c; ++c) {
++                    mFont->drawChar_scale(x, mCursorV, field_0x18 * scale, field_0x1c, *c, true);
++                    x += ((mFont->isFixed() ? mFont->getFixedWidth() : mFont->getWidth(*c)) *
++                        field_0x18 / mFont->getCellWidth() + field_0x10) * scale;
++                }
++                field_0x34 = slot - field_0x10;
++                field_0x2c += field_0x34;
++            } else
++#endif
+             if (r27 < 0x20) {
+                 if (r27 == 0x1b) {
+                     u16 local_e8 = doEscapeCode(&param_1, param_6);

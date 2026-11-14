@@ -73,6 +73,10 @@ class PromptTests(unittest.TestCase):
         self.run_check('message-prompts.cpp', 'message-prompts.cpp', 'prompt-textures.cpp', 'prompt-art.cpp',
                        'prompts.cpp', 'controls-config.cpp')
 
+    def test_written_translation_and_retained_display(self):
+        self.run_check('written-instructions.cpp', 'written-instructions.cpp',
+                       'prompts.cpp', 'controls-config.cpp')
+
     def test_project_owned_artwork(self):
         # Set PSWAKER_PROMPT_ART_PREVIEW to a directory to review the artwork as PNG files.
         preview = os.environ.get('PSWAKER_PROMPT_ART_PREVIEW')

@@ -271,6 +271,12 @@ and applied-controls startup/refresh observations, use
 [title prompts](TITLE-PROMPTS.md) and the
 [title checklist](Title-prompts-checklist.md).
 
+Reviewed written control names use applied bindings through semantic inline text;
+already-open dialogs refresh with adjacent message pictures before resume. See
+[written instructions](WRITTEN-INSTRUCTIONS.md) and the
+[console checklist](Written-instructions-checklist.md). Unsupported system and
+peripheral instructions remain explicit coverage defects.
+
 The agreed test boundaries are the preparation and artifact-inspection CLIs:
 
 ```bash

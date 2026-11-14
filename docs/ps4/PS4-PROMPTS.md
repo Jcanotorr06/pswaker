@@ -5,8 +5,9 @@ and refresh boundary. #100 converts message boxes and tutorials that use button
 pictures. #101 adapts the meter's HUD controls and separate action-description
 textures. #102 adapts the separate native-menu/file-selection pictures and
 accepted alternatives. #103 replaces the embedded title instruction through
-Aurora with applied PS4 names. Literal names and unreviewed embedded menu artwork
-remain unresolved. This does not extend #12/#18 acceptance or
+Aurora with applied PS4 names. #105 translates reviewed written instructions
+and reports unsupported system/peripheral instructions. Unreviewed resources
+and embedded menu artwork remain unresolved. This does not extend #12/#18 acceptance or
 claim that the whole game now shows PS4 prompts.
 
 ## Public contract
@@ -200,6 +201,10 @@ for source ownership, unresolved resource handoffs, fit and validation limits,
 and the [console checklist](Native-menu-prompts-checklist.md).
 
 ## Coverage and source verification
+
+For the written-name resource audit, semantic inline text, retained refresh and
+remaining coverage defects, see [written instructions](WRITTEN-INSTRUCTIONS.md)
+and the [console checklist](Written-instructions-checklist.md).
 
 For the stock title texture, shared-logo audit, exported prompt-over-pack rule
 and exact cache checks, see [embedded instructions](EMBEDDED-PROMPTS.md).
