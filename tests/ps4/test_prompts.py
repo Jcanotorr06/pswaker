@@ -37,6 +37,13 @@ class CoverageInventoryTests(unittest.TestCase):
             self.assertEqual(set(entry), {'id', 'status'})
             self.assertIn(entry['status'], {'converted', 'text-fallback', 'unresolved'})
 
+    @unittest.skipUnless(os.environ.get('PSWAKER_REPLACEMENT_CHECK'),
+                         'Set PSWAKER_REPLACEMENT_CHECK to the hosted Aurora precedence check')
+    def test_aurora_registry_and_gx_caches(self):
+        run = subprocess.run([os.environ['PSWAKER_REPLACEMENT_CHECK']],
+                             capture_output=True, text=True, timeout=60)
+        self.assertEqual(run.returncode, 0, run.stdout + run.stderr)
+
 
 @unittest.skipUnless(shutil.which('clang++-21'), 'Linux Clang 21 required')
 class PromptTests(unittest.TestCase):
@@ -54,6 +61,13 @@ class PromptTests(unittest.TestCase):
 
     def test_public_resolver_contract(self):
         self.run_check('prompts.cpp', 'prompts.cpp', 'controls-config.cpp')
+
+    def test_public_prompt_over_pack_rule(self):
+        self.run_check('replacement-policy.cpp')
+
+    def test_embedded_instruction_and_retained_refresh(self):
+        self.run_check('embedded-prompts.cpp', 'embedded-prompts.cpp', 'prompt-art.cpp',
+                       'prompts.cpp', 'controls-config.cpp')
 
     def test_message_picture_adapter(self):
         self.run_check('message-prompts.cpp', 'message-prompts.cpp', 'prompt-textures.cpp', 'prompt-art.cpp',

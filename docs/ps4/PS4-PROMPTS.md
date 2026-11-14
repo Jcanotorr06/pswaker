@@ -4,7 +4,8 @@ Post-first-playable #79 slices. #99 added the semantic resolver, port legend
 and refresh boundary. #100 converts message boxes and tutorials that use button
 pictures. #101 adapts the meter's HUD controls and separate action-description
 textures. #102 adapts the separate native-menu/file-selection pictures and
-accepted alternatives. Title, literal names and unreviewed embedded menu artwork
+accepted alternatives. #103 replaces the embedded title instruction through
+Aurora with applied PS4 names. Literal names and unreviewed embedded menu artwork
 remain unresolved. This does not extend #12/#18 acceptance or
 claim that the whole game now shows PS4 prompts.
 
@@ -199,6 +200,10 @@ for source ownership, unresolved resource handoffs, fit and validation limits,
 and the [console checklist](Native-menu-prompts-checklist.md).
 
 ## Coverage and source verification
+
+For the stock title texture, shared-logo audit, exported prompt-over-pack rule
+and exact cache checks, see [embedded instructions](EMBEDDED-PROMPTS.md).
+Physical observations are tracked in its [console checklist](Embedded-prompts-checklist.md).
 
 [prompt-coverage.json](../../platform/ps4/prompt-coverage.json) contains identifiers
 and `converted`, `text-fallback` or `unresolved` statuses only. Later adapters

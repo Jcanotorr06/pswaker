@@ -1,0 +1,146 @@
+--- a/aurora/lib/gfx/texture_replacement.hpp
++++ b/aurora/lib/gfx/texture_replacement.hpp
+@@ -8,6 +8,7 @@
+ struct ReplacementResult {
+   TextureHandle handle;
+   uint64_t id = 0;
++  bool suppressOriginal = false;
+ };
+ 
+ struct StreamingStats {
+@@ -23,6 +24,9 @@
+ std::optional<ReplacementResult> find_pointer_replacement(const GXTexObj_& obj) noexcept;
+ std::optional<ReplacementResult> find_source_replacement(const GXTexObj_& obj,
+                                                          const texture::TextureSourceKey& sourceKey) noexcept;
++// Select ownership across pointer and source matches before either cache is used.
++std::optional<ReplacementResult> find_replacement(const GXTexObj_& obj,
++    const std::optional<texture::TextureSourceKey>& sourceKey) noexcept;
+ bool should_build_source_key() noexcept;
+ bool has_replacement(const GXTexObj_& obj) noexcept;
+ bool has_replacement(const GXTexObj_& obj, const GXTlutObj_& tlut) noexcept;
+--- a/aurora/lib/gfx/texture_replacement.cpp
++++ b/aurora/lib/gfx/texture_replacement.cpp
+@@ -1,4 +1,5 @@
+ #include "texture_replacement.hpp"
++#include "replacement-policy.hpp"
+ 
+ #include "../io.hpp"
+ #include "../gx/gx.hpp"
+@@ -1219,27 +1220,21 @@
+ }
+ 
+ std::optional<ReplacementKey> find_source_replacement_key_locked(const TextureSourceKey& key) noexcept {
+-  ReplacementKey exactKey{key};
+-  if (s_entriesByKey.contains(exactKey)) {
+-    return exactKey;
+-  }
+-
+-  if (key.hasTlut) {
+-    auto tlutWildcard = key;
+-    tlutWildcard.tlutHash = kReplacementWildcardTlutHash;
+-    ReplacementKey tlutWildcardKey{tlutWildcard};
+-    if (s_entriesByKey.contains(tlutWildcardKey)) {
+-      return tlutWildcardKey;
+-    }
+-  }
+-
++  using namespace pswaker::replacement;
++  auto tlutWildcard = key;
++  tlutWildcard.tlutHash = kReplacementWildcardTlutHash;
+   auto textureWildcard = key;
+   textureWildcard.textureHash = kReplacementWildcardTextureHash;
+-  ReplacementKey textureWildcardKey{textureWildcard};
+-  if (s_entriesByKey.contains(textureWildcardKey)) {
+-    return textureWildcardKey;
+-  }
+-
++  const std::array<ReplacementKey, 3> keys{key, tlutWildcard, textureWildcard};
++  std::array<Candidate, 3> candidates{};
++  for (size_t i = 0; i < keys.size(); ++i) {
++    if (i == 1 && !key.hasTlut) continue;
++    if (const auto* entry = find_selected_entry_locked(keys[i]))
++      candidates[i] = {entry->id, static_cast<KeyFamily>(i + 1), entry->priority, entry->sequence};
++  }
++  const auto selected = select(candidates);
++  for (size_t i = 0; i < candidates.size(); ++i)
++    if (selected && candidates[i].id == selected) return keys[i];
+   return std::nullopt;
+ }
+ 
+@@ -1980,6 +1975,35 @@
+   return find_source_replacement_locked(obj, sourceKey);
+ }
+ 
++std::optional<ReplacementResult> find_replacement(const GXTexObj_& obj,
++    const std::optional<TextureSourceKey>& sourceKey) noexcept {
++  using namespace pswaker::replacement;
++  std::lock_guard lk(s_registryMutex);
++  const ReplacementKey pointerKey{TexturePointerKey{.data = obj.data}};
++  const auto source = sourceKey ? find_source_replacement_key_locked(*sourceKey) : std::nullopt;
++  const auto* pointerEntry = obj.data ? find_selected_entry_locked(pointerKey) : nullptr;
++  const auto* sourceEntry = source ? find_selected_entry_locked(*source) : nullptr;
++  const std::array candidates{
++      Candidate{pointerEntry ? pointerEntry->id : 0, KeyFamily::Pointer,
++                pointerEntry ? pointerEntry->priority : 0, pointerEntry ? pointerEntry->sequence : 0},
++      Candidate{sourceEntry ? sourceEntry->id : 0, KeyFamily::Source,
++                sourceEntry ? sourceEntry->priority : 0, sourceEntry ? sourceEntry->sequence : 0}};
++  const auto selected = select(candidates);
++  const auto load = [&](const ReplacementKey& key, const ReplacementEntry& entry) {
++    const bool alreadyFailed = s_failedIds.contains(entry.id);
++    auto result = find_replacement_for_key_locked(key);
++    if (result && entry.priority == promptPriority && !result->handle) {
++      result->suppressOriginal = true;
++      if (!alreadyFailed)
++        Log.warn("PROMPT unresolved surface=embedded-texture reason=prompt-upload-failed");
++    }
++    return result;
++  };
++  if (pointerEntry && selected == pointerEntry->id) return load(pointerKey, *pointerEntry);
++  if (sourceEntry && selected == sourceEntry->id) return load(*source, *sourceEntry);
++  return std::nullopt;
++}
++
+ bool should_build_source_key() noexcept {
+   std::lock_guard lk(s_registryMutex);
+   return s_sourceEntryCount != 0 || g_config.allowTextureDumps;
+--- a/aurora/lib/gx/texture.cpp
++++ b/aurora/lib/gx/texture.cpp
+@@ -639,14 +639,11 @@
+ 
+   gfx::TextureHandle handle;
+   uint64_t replacementId = 0;
+-  std::optional<TextureKeys> keys;
+-  if (!use_replacement(gfx::texture_replacement::find_pointer_replacement(obj), handle, replacementId)) {
+-    const bool buildSourceKey = gfx::texture_replacement::should_build_source_key() || BuildSourceKeyForDebug;
+-    keys = hash_texture_source(obj, nullptr, buildSourceKey);
+-    if (keys->sourceKey.has_value()) {
+-      use_replacement(gfx::texture_replacement::find_source_replacement(obj, *keys->sourceKey), handle, replacementId);
+-    }
+-  }
++  std::optional<TextureKeys> keys = hash_texture_source(obj, nullptr,
++      gfx::texture_replacement::should_build_source_key() || BuildSourceKeyForDebug);
++  const auto replacement = gfx::texture_replacement::find_replacement(obj, keys->sourceKey);
++  if (replacement && replacement->suppressOriginal) return {};
++  use_replacement(replacement, handle, replacementId);
+   if (!handle) {
+     if (!keys.has_value()) {
+       keys = hash_texture_source(obj, nullptr, BuildSourceKeyForDebug);
+@@ -693,13 +690,11 @@
+ 
+   gfx::TextureHandle handle;
+   uint64_t replacementId = 0;
+-  std::optional<TextureKeys> keys;
+-  if (!use_replacement(gfx::texture_replacement::find_pointer_replacement(obj), handle, replacementId)) {
+-    keys = hash_texture_source(obj, &tlut, gfx::texture_replacement::should_build_source_key());
+-    if (keys->sourceKey.has_value()) {
+-      use_replacement(gfx::texture_replacement::find_source_replacement(obj, *keys->sourceKey), handle, replacementId);
+-    }
+-  }
++  std::optional<TextureKeys> keys = hash_texture_source(obj, &tlut,
++      gfx::texture_replacement::should_build_source_key());
++  const auto replacement = gfx::texture_replacement::find_replacement(obj, keys->sourceKey);
++  if (replacement && replacement->suppressOriginal) return {};
++  use_replacement(replacement, handle, replacementId);
+   if (!handle) {
+     if (!keys.has_value()) {
+       keys = hash_texture_source(obj, &tlut, false);

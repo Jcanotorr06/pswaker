@@ -1,0 +1,36 @@
+--- a/game/src/d/actor/d_a_title.cpp
++++ b/game/src/d/actor/d_a_title.cpp
+@@ -16,6 +16,9 @@
+ #include "stdio.h"
+ #if TARGET_PC
+ #include "pc/pc_harness.h"
++#if defined(__ORBIS__)
++#include "pswaker/embedded-textures.h"
++#endif
+ #endif
+ 
+ #if VERSION <= VERSION_JPN
+@@ -147,6 +150,13 @@
+ 
+     m_Screen->set(VERSION_SELECT("title_logo.blo", "title_logo.blo", "title_logo_e.blo", "title_logo_e.blo"), resInfo->getArchive());
+ 
++#if defined(__ORBIS__)
++    // The audited USA whole-instruction BTI. Logo/model atlases remain intact.
++    const ResTIMG* instruction = (const ResTIMG*)dComIfG_getObjectRes(ARCNAME, dRes_INDEX_TLOGOE_BTI_PRESS_START_e);
++    pswaker_title_texture_set(this, instruction ?
++        (const u8*)instruction + (s32)(u32)instruction->imageOffset : NULL);
++#endif
++
+     m0A0[2] = m_Screen->search('pres');
+     m0A0[3] = m_Screen->search('nint');
+     m0A0[0] = m_Screen->search('zeld');
+@@ -184,6 +194,9 @@
+ 
+ /* 00000C1C-00000D7C       .text __dt__14daTitle_proc_cFv */
+ daTitle_proc_c::~daTitle_proc_c() {
++#if defined(__ORBIS__)
++    pswaker_title_texture_released(this);
++#endif
+     JKRHeap* oldHeap = mDoExt_setCurrentHeap(m_exp_heap);
+     delete m_Screen;
+     m_Screen = NULL;

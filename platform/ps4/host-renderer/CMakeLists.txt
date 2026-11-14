@@ -93,6 +93,13 @@ add_subdirectory("${AURORA_SOURCE_DIR}" aurora)
 if(PSWAKER_GAME_ROOT)
   target_include_directories(aurora_core PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../game")
   target_include_directories(aurora_gx PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../game")
+  add_executable(replacement-precedence-check "${CMAKE_CURRENT_SOURCE_DIR}/../../../tests/ps4/replacement-runtime.cpp")
+  target_include_directories(replacement-precedence-check PRIVATE "${AURORA_SOURCE_DIR}/lib"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../game")
+  target_compile_options(replacement-precedence-check PRIVATE -UNDEBUG)
+  target_link_libraries(replacement-precedence-check PRIVATE aurora::core aurora::gx aurora::main aurora::vi absl::flat_hash_map)
+  target_link_options(replacement-precedence-check PRIVATE
+    "LINKER:--wrap=_ZN6aurora3gfx21new_static_texture_2dEjjjjNS_8ArrayRefIhEEbPKc")
   add_executable(shader-startup-check "${CMAKE_CURRENT_SOURCE_DIR}/../../../tests/ps4/shader-startup.cpp")
   target_include_directories(shader-startup-check PRIVATE "${AURORA_SOURCE_DIR}/lib"
     "${CMAKE_CURRENT_SOURCE_DIR}/../game")

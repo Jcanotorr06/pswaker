@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "issue": 103,
+  "date": "2026-11-14",
+  "scope": "Data-free hosted checks and PS4 target compilation; no installed console observations",
+  "compiled_build_id": "unverified-103-compile",
+  "sources_reverified_against_pinned_archives_and_all_ordered_patches": true,
+  "target": "switchwaker_eboot",
+  "target_exit_code": 0,
+  "oelf_segments": "OK",
+  "elf_sha256": "751ae7954c4dc20d6c9e18c22a4e70027dd46b2423cdd4ea231ce70bc284c0b2",
+  "eboot_sha256": "0dfd0b5649e06e4ad5b1fe635792d2da74850fbe3ea72499e8eb2ffb9757c6ef",
+  "hosted_replacement_check_sha256": "e1c224d18bbc7f3238c461c38e9dae150190dd0c6430847171a48eb9ffdd7ab8",
+  "inputs": {
+    "docs/ps4/EMBEDDED-PROMPTS.md": "bc641625ac54cc8b383fd61cca56f779a22b52b810647e32ea4db6718894f44b",
+    "docs/ps4/Embedded-prompts-checklist.md": "af2ecd7c7bceab8404e08200912e7715ee8cdc3a69cfceaaeb12efaa1710a8e5",
+    "docs/ps4/PS4-PROMPTS.md": "45c1e413c3b5cede71e609153d4f9920ed142dff71cb44032cbd2cb277759c89",
+    "platform/ps4/game/CMakeLists.txt": "84eed73a56360d00e5b3ac70954c06fbbea6167e868917792e14dab8b3f1a03f",
+    "platform/ps4/game/embedded-prompts.cpp": "cb0b3309953df39c652fbdb32c8d64790578eeb75d185c05a6035025b8e9d8ac",
+    "platform/ps4/game/embedded-prompts.hpp": "892182e89053dbd7db58e060c14a81154bf33548861bca3de00ef37e1a2d8c67",
+    "platform/ps4/game/embedded-textures.cpp": "21a63cd088e2943fe279032fb9d637a882c809c18123eb3be17d5c39ce5db375",
+    "platform/ps4/game/include/pswaker/embedded-textures.h": "7af6f9005b4d70d942f8d73d482da15ce6775fd8cbd42f2b7296c9255afcb0b9",
+    "platform/ps4/game/main.cpp": "37d38d701daea04c987e120ebcc8d865a27803825f61149b3449747996e1783b",
+    "platform/ps4/game/prompt-art.cpp": "0c83887da8daa58c1786b756c719f30b33be011bf75c76f5d0e328c90cf0b916",
+    "platform/ps4/game/prompt-art.hpp": "9646068c6a627b78762be528558c171c00c4cbdecb7585bbd8d4ce5a0874a917",
+    "platform/ps4/game/replacement-policy.hpp": "16316d6fe4108436186773af8cca8e376448b0552de5cff07604cc37da474387",
+    "platform/ps4/host-renderer/CMakeLists.txt": "c59970558cf5cde6955bd67608dc4726129ffab2807614b0805fc5fb75a5edc0",
+    "platform/ps4/patches/game-platform/0008-prompt-replacement-precedence.patch": "6314fdbb70ca088773ef537e53bfff4003ab497b9b78cb6b639bd2ffbbcf7eab",
+    "platform/ps4/patches/game/0017-embedded-title-prompts.patch": "24b7ab5d5d69906c3a20ec203a62c62ddcad4b7f30ec34ce830109063e585b14",
+    "platform/ps4/prompt-coverage.json": "a7a130a313bffb97101ecba57e49d373475894a7ea6cb52545ddc2eaa5c19108",
+    "tests/ps4/controls-console.cpp": "8e4ba97e921245968c4d7c00e4ea1d4d085c5c70fc4be3df369cfd1dbbe763f3",
+    "tests/ps4/embedded-prompts.cpp": "1fcb421de26bd959fd4c63f886adeb14aac2f4476901b87c3597170aa3cc325b",
+    "tests/ps4/replacement-policy.cpp": "63219d5ad1ba7d52c1e1d6ef815507dce55bc1209af20317e7db46a209b3cb87",
+    "tests/ps4/replacement-runtime.cpp": "fc88d2dd3cd4453f37ac04b64fc7ead33e073146716c8cdfed2d7c8b08d7320e",
+    "tests/ps4/test_controls.py": "a2306d20813613ed7a069005b80bad13baffc8ab83fa38dec41b0576cc028892",
+    "tests/ps4/test_prompts.py": "9689095316b0453a3878fec970d2bf31c741d2ce259fdb76d6cebe1985f2a291"
+  },
+  "checks": {
+    "compileall": "pass",
+    "bash_syntax": "pass",
+    "pyright": "0 errors, 0 warnings",
+    "public_precedence_and_actual_aurora_gx_cache_checks": "pass",
+    "retained_embedded_refresh_and_controls_resume_gate": "pass",
+    "full_suite": {
+      "tests": 309,
+      "seconds": 538.455,
+      "skipped": 60,
+      "failures": 0
+    }
+  },
+  "review": {
+    "standards_findings": 0,
+    "spec_findings": 0
+  },
+  "console_status": "UNTESTED; representative stock-mode physical observations pending; other unreviewed embedded/shared-atlas resources remain unresolved"
+}
