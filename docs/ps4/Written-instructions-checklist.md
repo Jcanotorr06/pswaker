@@ -4,6 +4,8 @@ Use PS4 Slim / firmware 9.00 / GoldHEN v2.4b18, USA GZLE01 revision 0, stock
 textures. Record build ID, program/ELF/package hashes, applied layout/generation,
 message ID, scene/substate and pass/fail. Keep captures and extracted text private.
 Add new observations; do not overwrite archived evidence. Every check is pending.
+The [prepared observation record](../../evidence/ps4/written-instructions-105/observations.json)
+contains expectations, not console passes.
 
 - [ ] Open message 3008 and the tutorial/paper paths for 816, 817 and 1108.
   The written control says Options on defaults; surrounding wording, page
