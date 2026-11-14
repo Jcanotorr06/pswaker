@@ -82,6 +82,7 @@ constexpr Glyph glyphs[]{
     {'U', {17, 17, 17, 17, 17, 17, 14}}, {'1', {4, 12, 4, 4, 4, 4, 14}},
     {'2', {14, 17, 1, 2, 4, 8, 31}}, {'3', {30, 1, 1, 14, 1, 1, 30}},
     {'-', {0, 0, 0, 31, 0, 0, 0}}, {' ', {0, 0, 0, 0, 0, 0, 0}},
+    {'/', {1, 2, 2, 4, 8, 8, 16}},
 };
 const Glyph* glyph(char c) {
     for (const auto& g : glyphs) if (g.c == c) return &g;
@@ -279,5 +280,35 @@ bool render_prompt_label(std::string_view label, PromptArtImage& out, uint8_t qu
     canvas.body(box(centre, {30, 22}, 7));
     text(canvas, label, centre, {50, 36}, 3, white);
     for (unsigned turn = 0; turn < quarterTurns; ++turn) turnCounterclockwise(out);
+    return true;
+}
+
+bool render_prompt_instruction(std::string_view label, unsigned width, unsigned height,
+                               std::span<uint8_t> rgba) {
+    if (label.empty() || label.size() > 80 || width < 8 || height < 12 ||
+        rgba.size() != size_t(width) * height * 4 ||
+        !std::all_of(label.begin(), label.end(), [](char c) { return glyph(c); })) return false;
+    const unsigned units = unsigned(label.size()) * 6 - 1;
+    const unsigned sx = std::min(4u, (width - 4) / units);
+    const unsigned sy = std::min(6u, (height - 4) / 7);
+    if (!sx || !sy) return false;
+    std::fill(rgba.begin(), rgba.end(), 0);
+    const unsigned left = (width - units * sx) / 2, top = (height - 7 * sy) / 2;
+    // Outline first, then fill: neighbouring strokes never erase white cells.
+    for (bool fill : {false, true})
+        for (unsigned i = 0; i < label.size(); ++i)
+            for (unsigned y = 0; y < 7; ++y)
+                for (unsigned x = 0; x < 5; ++x) {
+                    if (!(glyph(label[i])->rows[y] & (16 >> x))) continue;
+                    const int x0 = int(left + (i * 6 + x) * sx), y0 = int(top + y * sy);
+                    const int border = fill ? 0 : 2;
+                    for (int py = y0 - border; py < y0 + int(sy) + border; ++py)
+                        for (int px = x0 - border; px < x0 + int(sx) + border; ++px) {
+                            if (px < 0 || py < 0 || px >= int(width) || py >= int(height)) continue;
+                            auto* pixel = &rgba[(size_t(py) * width + unsigned(px)) * 4];
+                            pixel[0] = pixel[1] = pixel[2] = fill ? 255 : 12;
+                            pixel[3] = 255;
+                        }
+                }
     return true;
 }

@@ -3,6 +3,7 @@
 #include <array>
 #include <cstdint>
 #include <string_view>
+#include <span>
 
 // Original project-owned DualShock 4 prompt artwork, drawn by this code. No
 // image files, game textures or pack artwork are read. Any prompt adapter may
@@ -31,3 +32,7 @@ bool render_prompt_art(const PromptArtKey& key, PromptArtImage& out);
 bool render_prompt_label(std::string_view label, PromptArtImage& out, uint8_t quarterTurns = 0);
 // The compact accurate label used for missing artwork, for example "OPTIONS".
 const char* prompt_art_label(Ps4Icon icon);
+// Original 5x7 letters in a wide instruction slot, with a dark outline. No
+// extracted game text or font. False if the text cannot fit or has no glyph.
+bool render_prompt_instruction(std::string_view text, unsigned width, unsigned height,
+                               std::span<uint8_t> rgba);

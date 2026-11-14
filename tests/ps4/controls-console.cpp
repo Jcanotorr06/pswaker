@@ -4,6 +4,7 @@
 #include "message-prompts.hpp"
 #include "hud-prompts.hpp"
 #include "menu-prompts.hpp"
+#include "embedded-prompts.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
 #include "native/platform.h"
@@ -17,6 +18,7 @@
 #include <fstream>
 #include <filesystem>
 #include <thread>
+#include <vector>
 #include <time.h>
 
 namespace {
@@ -30,6 +32,7 @@ unsigned textChanges = 0;
 PortSettings* settings = nullptr;
 double clockValue = 1000;
 PADStatus gamepads[PAD_CHANMAX];
+std::vector<uint8_t> embeddedImage;
 
 struct RetainedPrompt {
     bool ready = true;
@@ -175,6 +178,12 @@ void pswaker_report_prompt_coverage(const char* surface, unsigned item, const ch
     std::fprintf(stderr, "unexpected unresolved %s %u: %s\n", surface, item, reason);
     std::abort();
 }
+bool pswaker_replace_embedded_texture(const void*, std::span<const uint8_t> pixels,
+                                     unsigned, unsigned) {
+    embeddedImage.assign(pixels.begin(), pixels.end());
+    return true;
+}
+void pswaker_remove_embedded_texture(const void*) { embeddedImage.clear(); }
 int main(int argc, char** argv) {
     assert(argc == 3);
     PortSettings initialProfile(argv[2]);
@@ -188,7 +197,12 @@ int main(int argc, char** argv) {
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_message_prompts));
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_hud_prompts));
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_menu_prompts));
+        assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_embedded_prompts));
         start();
+        int titleOwner = 0, titlePixels = 0;
+        pswaker_title_texture_set(&titleOwner, &titlePixels);
+        const auto defaultTitle = embeddedImage;
+        assert(!defaultTitle.empty());
         const auto previous = pswaker_applied_controls();
         // A dialog showing the A picture stays open across the whole Apply flow.
         MessagePicture openDialog;
@@ -243,6 +257,7 @@ int main(int argc, char** argv) {
         }
         assert(pswaker_port_view().screen == PortScreen::Settings);
         const auto published = pswaker_applied_controls();
+        assert(embeddedImage == defaultTitle); // Applied but paused: boundary still owns refresh.
         // Two retained surfaces join the real release gate. One needs another
         // frame to rebuild; successful peers must not release gameplay early.
         hud.ready = scenario == "discard" || scenario == "failure" || scenario == "uncertain";
@@ -258,6 +273,7 @@ int main(int argc, char** argv) {
             assert(openDialog.image == r3); // Rebuilt before gameplay can resume.
             assert(hudButton.image == r3 && hudDescription.image == contextWords);
             assert(menuConfirm.image == r3);
+            assert(embeddedImage != defaultTitle); // Rebuilt while the shared gate still blocks gameplay.
             assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::FileSelect)) == "R3 / L1: Select");
             assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::WindowClose)) == "L3 / L1: Close");
             assert((published.fixedPort() == std::array<std::string, 2>{
@@ -284,6 +300,7 @@ int main(int argc, char** argv) {
         assert(hudButton.image == (hud.ready && scenario == "apply" ? r3 : cross));
         assert(hudDescription.image == contextWords); // Context survives either layout.
         const bool changed = scenario == "apply";
+        assert((embeddedImage != defaultTitle) == changed);
         assert(menuConfirm.image == (changed ? r3 : cross));
         assert(menuCancel.image == message_prompt_texture({changed ? Ps4Icon::L3 : Ps4Icon::Circle}, false));
         assert(menuTrigger.image == message_prompt_texture({Ps4Icon::L2}, false));
@@ -300,6 +317,7 @@ int main(int argc, char** argv) {
         pswaker_menu_picture_released(&reopenedMenu);
         pswaker_hud_picture_released(&hudButton);
         pswaker_hud_picture_released(&hudDescription);
+        pswaker_title_texture_released(&titleOwner);
         return 0;
     }
     if (std::strncmp(argv[1], "inversion-apply-", 16) == 0) {
