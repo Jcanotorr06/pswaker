@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "issue": 104,
+  "date": "2026-11-14",
+  "scope": "Asset-free hosted checks and PS4 target compilation; stock-mode physical observations pending",
+  "implementation_commit": "bcea828a53fcb784782cb966fc6d397ba14d27d0",
+  "compiled_build_id": "unverified-104-compile",
+  "sources_reverified_against_pinned_archives_and_all_ordered_patches": true,
+  "game_lock_sha256": "ffec9f4ed994ea9849c6d108c6f154b860e0ae13de1305756561b0d168ddd873",
+  "prepared_input_record_sha256": "51b31e9e02b2755d3c96641e3fa08fc7eef0b65538991a608a5d4e72bfa86bf2",
+  "target": "switchwaker_eboot",
+  "target_exit_code": 0,
+  "oelf_segments": "OK",
+  "elf_sha256": "4e9b439eed086dee483680e0d1bbf23bff59cac17203d2c9fff4777d73035cba",
+  "eboot_sha256": "6a53fe935b361cb26c1124bb5c0dcb72f2737f4c9cc8b22a135a905592d23148",
+  "hosted_replacement_check_sha256": "5f83aaa98d50821e0fad862840b6885f0b289f8a5cbff7b0cf4755a664a20e01",
+  "inputs": {
+    "docs/ps4/EMBEDDED-PROMPTS.md": "2d4071ad695ebbfcfb4564a5eca030206089a61c579d7d801a1a796411b4c9e1",
+    "docs/ps4/README.md": "ac5c4bc77bc7658193f66f6fb6e61409d3ede5bf2591f1f62611948873b0b12a",
+    "docs/ps4/TITLE-PROMPTS.md": "a4e1bdcf9e6022a3154a4636a1a28736dc50b6c53f97f2cf5dae0f69c3fecb88",
+    "docs/ps4/Title-prompts-checklist.md": "c8c44cc5a15edb0b7c408cc3a83a2d9f8161ef1d8a99fee29e1f2a797b932243",
+    "evidence/ps4/title-prompts-104/README.md": "525794d43acf2eaa6798dcf662f647b88aaeb6290385a6f12f28d72e10bff992",
+    "evidence/ps4/title-prompts-104/observations.json": "3026ee65fed7ca2938b54dd7cebedc03cba191aa9e1c1b22c7ed389687b560c0",
+    "platform/ps4/game/embedded-prompts.cpp": "5cf0f896812539f3eec383a213ed14a4c1b9ac4d516c4b06175ea1b96dfc9685",
+    "platform/ps4/game/include/pswaker/embedded-textures.h": "22099b87e55b76b78e81d2eb14b810c6fccf9e374fea9f4d42d7e78bb2653047",
+    "platform/ps4/patches/game/0018-title-start-prompts.patch": "f6d23f7be8593c1cb31ede9ba7ade9530a2a7ecf7cd68afceaadb0dc214f0cc6",
+    "platform/ps4/prompt-coverage.json": "d754f0a03a3c8655a4c50650114d7d28dbb0da4151a763bfec114233a76b7d78",
+    "tests/ps4/controls-console.cpp": "917c3943a59137d46b62b01e4178b7800378b1be09c00b923f2f82ac0e726524",
+    "tests/ps4/embedded-prompts.cpp": "96b463956a85676dd7e005f3bdcd5616a1925e81f59c70fcad665cfd94eeaf28"
+  },
+  "checks": {
+    "compileall": "pass",
+    "bash_syntax": "pass",
+    "pyright": "0 errors, 0 warnings",
+    "focused_controls": {
+      "tests": 30,
+      "failures": 0
+    },
+    "focused_prompts": {
+      "tests": 7,
+      "skipped": 1,
+      "failures": 0
+    },
+    "public_precedence_and_actual_aurora_gx_cache_checks": "pass",
+    "title_startup_saved_controls_and_complete_default_recovery": "pass",
+    "title_retained_registration_retry_unresolved_suppression_and_longest_label_fit": "pass",
+    "retained_apply_discard_failure_and_disconnect_resume_gate": "pass",
+    "full_suite": {
+      "tests": 309,
+      "seconds": 560.974,
+      "skipped": 60,
+      "failures": 0
+    }
+  },
+  "review": {
+    "standards_findings": 0,
+    "spec_findings": 0,
+    "reviewed_commit": "bcea828"
+  },
+  "console_status": "UNTESTED; no installed package or hardware acceptance; see prepared stock-mode observations and checklist"
+}

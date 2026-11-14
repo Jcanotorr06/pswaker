@@ -266,6 +266,11 @@ and the [owner sampling checklist](Frame-pacing-checklist.md). The
 rolls, swimming and sword swings. Diagnostic or host FPS cannot establish the
 game's performance targets.
 
+For stock-mode title/start instructions, the layout and model/material audit,
+and applied-controls startup/refresh observations, use
+[title prompts](TITLE-PROMPTS.md) and the
+[title checklist](Title-prompts-checklist.md).
+
 The agreed test boundaries are the preparation and artifact-inspection CLIs:
 
 ```bash
