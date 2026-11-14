@@ -242,6 +242,10 @@ pass establish no game DSP, game-save correctness or gameplay performance.
 
 ## Host checks
 
+For applied controls in inventory, window and file-selection instructions, see
+[native menu prompts](NATIVE-MENU-PROMPTS.md) and their
+[console checklist](Native-menu-prompts-checklist.md).
+
 For consolidation of all expansion manifests, default private assets and the
 bounded final console selection, use [expanded seed delivery](EXPANDED-SEED-DELIVERY.md).
 
