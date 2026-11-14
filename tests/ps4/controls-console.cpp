@@ -5,6 +5,7 @@
 #include "hud-prompts.hpp"
 #include "menu-prompts.hpp"
 #include "embedded-prompts.hpp"
+#include "written-instructions.hpp"
 #include "prompt-art.hpp"
 #include "storage.hpp"
 #include "frame-pacing.hpp"
@@ -215,12 +216,14 @@ int main(int argc, char** argv) {
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_hud_prompts));
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_menu_prompts));
         assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_embedded_prompts));
+        assert(pswaker_register_prompt_adapter(nullptr, pswaker_refresh_written_instructions));
         start();
         int titleOwner = 0, titlePixels = 0;
         pswaker_title_texture_set(&titleOwner, &titlePixels);
         const auto defaultTitle = embeddedImage;
         assert(!defaultTitle.empty());
         const auto previous = pswaker_applied_controls();
+        assert(std::string(pswaker_written_name(5)) == "Options");
         // A dialog showing the A picture stays open across the whole Apply flow.
         MessagePicture openDialog;
         assert(pswaker_message_picture_set(&openDialog, nullptr, 0x00, 0, showMessagePicture));
@@ -246,6 +249,7 @@ int main(int argc, char** argv) {
         openEditor(); assignButton(0, static_cast<unsigned>(ControlTarget::R3));
         assignButton(1, static_cast<unsigned>(ControlTarget::L3));
         assignButton(5, static_cast<unsigned>(ControlTarget::L1));
+        assert(std::string(pswaker_written_name(5)) == "Options");
         assert(menuConfirm.image == cross);
         assert(std::string(pswaker_menu_instruction(PswakerMenuInstruction::FileSelect)) == "Cross / Options: Select");
         assert(hudButton.image == cross && hudDescription.image == contextWords);
@@ -274,6 +278,7 @@ int main(int argc, char** argv) {
         }
         assert(pswaker_port_view().screen == PortScreen::Settings);
         const auto published = pswaker_applied_controls();
+        assert(std::string(pswaker_written_name(5)) == "Options");
         assert(embeddedImage == defaultTitle); // Applied but paused: boundary still owns refresh.
         // Two retained surfaces join the real release gate. One needs another
         // frame to rebuild; successful peers must not release gameplay early.
@@ -288,6 +293,7 @@ int main(int argc, char** argv) {
             assert(dialog.rendered.name == "R3" && dialog.rendered.generation == published.generation);
             assert(hud.rendered.name == "Cross" && hud.rendered.generation == previous.generation);
             assert(openDialog.image == r3); // Rebuilt before gameplay can resume.
+            assert(std::string(pswaker_written_name(5)) == "L1");
             assert(hudButton.image == r3 && hudDescription.image == contextWords);
             assert(menuConfirm.image == r3);
             assert(embeddedImage != defaultTitle); // Rebuilt while the shared gate still blocks gameplay.
@@ -308,6 +314,7 @@ int main(int argc, char** argv) {
             sample();
         }
         assert(pswaker_port_view().screen == PortScreen::Game);
+        assert(std::string(pswaker_written_name(5)) == (scenario == "apply" ? "L1" : "Options"));
         assert(gamepads[0].button == 0);
         assert(dialog.rendered.generation == published.generation && hud.rendered.generation == published.generation);
         const auto expected = hud.ready && scenario == "apply" ? "R3" : "Cross";

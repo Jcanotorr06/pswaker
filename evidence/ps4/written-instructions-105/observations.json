@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "issue": 105,
+  "mode": "stock",
+  "console": "PS4 Slim / firmware 9.00 / GoldHEN v2.4b18",
+  "content": "USA GZLE01 revision 0",
+  "installed_build_id": null,
+  "installed_program_sha256": null,
+  "installed_elf_sha256": null,
+  "installed_package_sha256": null,
+  "cases": [
+    {"id": "written.message[00816].defaults", "expected": "Options; surrounding instruction and pictures preserved", "observed": null, "status": "UNTESTED"},
+    {"id": "written.message[00817].defaults", "expected": "Options; page progression preserved", "observed": null, "status": "UNTESTED"},
+    {"id": "written.message[01108].defaults", "expected": "Options; adjacent applied/fixed pictures agree", "observed": null, "status": "UNTESTED"},
+    {"id": "written.message[03008].defaults", "expected": "Options; item alternatives preserved", "observed": null, "status": "UNTESTED"},
+    {"id": "written.retained.apply.Start-R3", "expected": "R3 and adjacent applied pictures refresh together before resume without restarting typing", "observed": null, "status": "UNTESTED"},
+    {"id": "written.retained.pending-discard-failed-apply", "expected": "Previous names and pictures remain", "observed": null, "status": "UNTESTED"},
+    {"id": "written.retained.restore-defaults", "expected": "Defaults only after successful Apply", "observed": null, "status": "UNTESTED"},
+    {"id": "written.startup.saved-and-default-recovery", "expected": "First instruction agrees with applied controls", "observed": null, "status": "UNTESTED"},
+    {"id": "written.fit.Options-Triangle-L3-R3", "expected": "Readable full names, native colour/alpha/shadow/baseline, no clipping or overlap", "observed": null, "status": "UNTESTED"},
+    {"id": "tutorial.six-actions.nine-targets.fixed-controls", "expected": "Pictures/names agree; gestures, alternatives, directions and trigger semantics preserved", "observed": null, "status": "UNTESTED"},
+    {"id": "written.disconnect.resume", "expected": "Fixed fresh confirmation and neutral release; no held-input leak", "observed": null, "status": "UNTESTED"},
+    {"id": "written.unresolved.system-and-peripheral", "expected": "Nine explicit defects with readable dismissible unavailable notices; coverage remains unresolved", "observed": null, "status": "UNTESTED"},
+    {"id": "written.unresolved.malformed-or-changed-resource", "expected": "Explicit defect and usable neutral fallback, no guessed binding", "observed": null, "status": "UNTESTED"}
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "issue": 105,
+  "date": "2026-11-14",
+  "scope": "Asset-free hosted checks and PS4 target compilation; stock-mode physical observations pending",
+  "implementation_commit": "1eb5734",
+  "compiled_build_id": "unverified-105-compile",
+  "sources_reverified_against_pinned_archives_and_all_ordered_patches": true,
+  "game_lock_sha256": "ffec9f4ed994ea9849c6d108c6f154b860e0ae13de1305756561b0d168ddd873",
+  "prepared_input_record_sha256": "4142b5db268a289e8f3036e90abe98d0485e1c59915a789d714964f992f5c242",
+  "target": "switchwaker_eboot",
+  "target_exit_code": 0,
+  "oelf_segments": "OK",
+  "elf_sha256": "b57cdf46baa5080549c21dd781e2b9fc4f0f09da48e76a9c22c987b228ddd78d",
+  "eboot_sha256": "3b5c6364096167fa765846710cb75cac19a3b63b55654931bce86db076349fcb",
+  "inputs": {
+    "docs/ps4/PS4-PROMPTS.md": "61842295ea8a41a194cc3aa636c45f069e656276cf41985a47e869f93caaa377",
+    "docs/ps4/README.md": "5be4d1d70d948cce2fb44dfd11de14f9924b5901f3cf712e35ef2cc0e36f511d",
+    "docs/ps4/WRITTEN-INSTRUCTIONS.md": "1212440a68a4f193692e3310607324740099f3203f996937a18a15c32d4e13c2",
+    "docs/ps4/Written-instructions-checklist.md": "7f235960a9badc6db1218eb714b540cf20eb15f6dc85ef39ca91afbf20d4210b",
+    "platform/ps4/game/CMakeLists.txt": "e204233aaf917d4fb2a95e1f1427a28bac6ea79325671366bdc659a817eafc81",
+    "platform/ps4/game/include/pswaker/written-instructions.h": "92ed37cd8dbe9693d12480901c60311487183a882788de39c1778b0bfda0c071",
+    "platform/ps4/game/main.cpp": "446f4e8a0899584736c729549fe019b3cd61a754930dfdf56d3733537a879e86",
+    "platform/ps4/game/written-instructions.cpp": "d88b3c167712be23b576ecd3a4c481993f8e465c6d0534edaa3b5d9ab9b84e89",
+    "platform/ps4/game/written-instructions.hpp": "fed97369f5bcaad4a6d75b5933089b63a706be69c68d308733547bd1dcf03d47",
+    "platform/ps4/patches/game/0019-written-instructions.patch": "c8e580b88d52851b6f2e33604d53944920ada996c6ccc49eb141d712e1a8da9f",
+    "platform/ps4/prompt-coverage.json": "73c3859e43f9fb774b8009089b78a2587634cb89779266ca2ee8471f6d5cf929",
+    "tests/ps4/controls-console.cpp": "91757b2d6d4c953b504513b9bcd2a6879f7cbcd6c49d8e5b61128ce99fee98a1",
+    "tests/ps4/test_controls.py": "f74236b935ae0a74d2d9625774fd966a3afd7a38dfa77ecf05d9fe3345b0a456",
+    "tests/ps4/test_prompts.py": "4678061dc7d7370b4c4825fe14418b391ff2517cc9961aab038b16970727c140",
+    "tests/ps4/written-instructions.cpp": "6123650c6250ca54322de2b560f7158250e10c235d894fe36e03f1214a85d3ef"
+  },
+  "resource_audit": {
+    "content": "USA GZLE01 revision 0",
+    "bmg_message_entries_inspected": 4426,
+    "written_name_entries": 4,
+    "related_control_tag_entries": 297,
+    "distinct_inventory_messages": 305,
+    "converted": 292,
+    "text_fallback": 4,
+    "unresolved": 9,
+    "local_converter_probe": {
+      "rewritten": 4,
+      "suppressed_unresolved": 9,
+      "native_unchanged": 367
+    },
+    "local_font_metadata_check": "PS4 names fit the reserved font-cell span before spacing; actual rendering remains untested",
+    "extracted_or_converted_assets_committed": false
+  },
+  "checks": {
+    "compileall": "pass",
+    "bash_syntax": "pass",
+    "pyright": "0 errors, 0 warnings",
+    "focused_controls": {
+      "tests": 30,
+      "failures": 0
+    },
+    "focused_prompts": {
+      "tests": 8,
+      "skipped": 1,
+      "failures": 0
+    },
+    "public_precedence_and_actual_aurora_gx_cache_checks": "pass; unchanged registry checked with prior hosted binary",
+    "written_all_six_actions_on_nine_targets": "pass",
+    "translation_context_tags_lifetime_unresolved_and_retained_refresh": "pass",
+    "retained_apply_discard_failure_and_disconnect_resume_gate": "pass",
+    "full_suite": {
+      "tests": 310,
+      "seconds": 524.289,
+      "skipped": 60,
+      "failures": 0
+    }
+  },
+  "review": {
+    "standards_findings": 0,
+    "spec_findings": 0,
+    "reviewed_commit": "1eb5734"
+  },
+  "console_status": "UNTESTED; no installed package or hardware acceptance; nine known coverage defects remain unresolved"
+}
