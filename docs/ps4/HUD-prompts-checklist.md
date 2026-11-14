@@ -23,8 +23,9 @@ commit only asset-free observations. A new candidate needs new evidence.
 - [ ] Leave a contextual HUD visible, open port settings, remap and Apply.
   Before the first resumed game frame every retained HUD/control picture shows
   the new layout together with any open message. Repeat while a native menu
-  keeps the meter present; check the meter's pictures separately from that
-  menu's own still-unconverted layout. No mixture of generations is visible.
+  keeps the meter present; check the meter's pictures together with that menu's
+  [native prompts](Native-menu-prompts-checklist.md). No mixture of generations
+  is visible.
 - [ ] Repeat with pending edits, discard, failed/uncertain Apply, pending restore
   defaults and discarded restore: the previous applied prompts remain. A
   successful applied restore changes prompts back together before resume.

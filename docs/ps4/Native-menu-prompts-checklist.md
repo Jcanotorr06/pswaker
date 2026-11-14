@@ -26,6 +26,8 @@ commit only asset-free observations. All checks below are pending hardware.
   advertised as confirm in copy/erase/native confirmations or name entry. The
   window Close alternative disappears in nested descriptions, bags, save/option
   dialogs and transitions; both actions really close the advertised main window.
+  Repeat collection opened while conducting (`COLLECT_MOVE_TACT`): B and Start
+  still close it, and both applied physical bindings are shown.
 - [ ] Check the 32x32 file-select controls through the bottom-button animations,
   the 24x24 chart controls/shadows, message icons, item slot prompts and the new
   footer. Include the two longest labels (Triangle / Options), alternate

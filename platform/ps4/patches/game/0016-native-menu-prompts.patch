@@ -147,12 +147,13 @@ diff --git a/game/src/d/d_menu_window.cpp b/game/src/d/d_menu_window.cpp
              }
          } else if (dMenu_getMenuStatus() == MENU_STATUS_COLLECT) {
              // Collect screen
-@@ -820,6 +839,12 @@
+@@ -820,6 +839,13 @@
              }
              if (dMc_c) {
                  dComIfGd_set2DOpa(dMc_c);
 +#if defined(__ORBIS__)
-+                if (i_Ms->mMenuProc == MENU_STATE_COLLECT_MOVE && !dMc_c->noteCheck() &&
++                if ((i_Ms->mMenuProc == MENU_STATE_COLLECT_MOVE ||
++                     i_Ms->mMenuProc == MENU_STATE_COLLECT_MOVE_TACT) && !dMc_c->noteCheck() &&
 +                    (dMc_c->getCollectMode() == 0 || dMc_c->getCollectMode() == 2)) {
 +                    dComIfGd_set2DOpa(&ps4CloseInstruction);
 +                }
