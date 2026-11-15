@@ -99,7 +99,7 @@ to that environment. Keep a separate record for each numbered step below.
    name, slot, location and a concrete progress landmark. Make a normal in-game
    save only with progress the owner wants to retain. Wait for the game's save
    completion indication and record it. Do not treat unsaved gameplay as saved.
-4. Touchpad → **Change port text size** → Cross. Confirm both the visible text
+4. Open the port menu → **Text size** → Cross. Confirm both the visible text
    size and the displayed Large/Standard value change and that “Port text size
    saved” appears. Record the value. Resume gameplay with Circle.
 5. **Full relaunch check:** fully close the application from the PS4 system menu,

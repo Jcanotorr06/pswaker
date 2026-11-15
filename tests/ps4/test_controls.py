@@ -98,6 +98,20 @@ class InstalledControlsTests(unittest.TestCase):
     def test_port_menu_hold_clears_on_loss_or_touchpad_and_respects_confirmations_and_neutral_resume(self):
         self.check_scenario('menu-hold-invalidation')
 
+    def test_main_menu_order_fresh_navigation_and_neutral_resume(self):
+        self.check_scenario('main-menu')
+
+    def test_diagnostics_entry_back_and_input_loss_do_not_execute_actions(self):
+        self.check_scenario('diagnostics-menu')
+
+    def test_diagnostic_measurement_and_phase_requests_wait_for_neutral_resume(self):
+        for action in ['outset', 'forest', 'transition', 'gameplay']:
+            with self.subTest(action=action):
+                self.check_scenario('diagnostic-' + action)
+
+    def test_button_guide_pages_require_neutral_navigation_and_keep_launch_confirmation(self):
+        self.check_scenario('guide-pages')
+
     def test_prompts_refresh_before_resume_and_preserve_previous_generation_after_discard_or_failed_apply(self):
         for scenario in ['apply', 'discard', 'failure', 'uncertain']:
             with self.subTest(scenario=scenario):

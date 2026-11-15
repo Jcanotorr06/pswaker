@@ -4,21 +4,25 @@
 #include <array>
 
 enum class PortScreen { Legend, Game, Settings, Quit, InputLost, Exit,
-    Controls, Binding, DiscardControls, ApplyingControls, ControlsFailed, RestoreControls };
-enum class PortAction { Resume, ShowLegend, CheckFailedRead, ToggleText, Quit, SampleOutset, SampleForest, Transition, Gameplay, EditControls };
+    Controls, Binding, DiscardControls, ApplyingControls, ControlsFailed, RestoreControls, Diagnostics };
+enum class PortAction { Resume, ShowLegend, CheckFailedRead, ToggleText, Quit, SampleOutset, SampleForest, Transition, Gameplay, EditControls, ShowDiagnostics };
 struct PortMenuItem { PortAction action; const char* label; };
-inline constexpr std::array<PortMenuItem, 10> portMenuItems{{
-    {PortAction::Resume, "Resume game"},
-    {PortAction::ShowLegend, "DualShock 4 legend"},
-    {PortAction::CheckFailedRead, "Resume and check failed read in 5 seconds"},
-    {PortAction::ToggleText, "Change port text size"},
-    {PortAction::Quit, "Quit game..."},
-    {PortAction::SampleOutset, "Measure Outset (resume for two minutes)"},
-    {PortAction::SampleForest, "Measure forest (resume for two minutes)"},
-    {PortAction::Transition, "Mark loading / transition start and resume"},
-    {PortAction::Gameplay, "Mark visible gameplay ready and resume"},
-    {PortAction::EditControls, "Controls..."},
+inline constexpr std::array<PortMenuItem, 6> portMenuItems{{
+    {PortAction::Resume, "Resume"},
+    {PortAction::EditControls, "Controls"},
+    {PortAction::ShowLegend, "Button guide"},
+    {PortAction::ToggleText, "Text size"},
+    {PortAction::ShowDiagnostics, "Diagnostics"},
+    {PortAction::Quit, "Quit"},
 }};
+inline constexpr std::array<PortMenuItem, 5> portDiagnosticItems{{
+    {PortAction::CheckFailedRead, "Check failed read in 5 seconds"},
+    {PortAction::SampleOutset, "Measure Outset for two minutes"},
+    {PortAction::SampleForest, "Measure forest for two minutes"},
+    {PortAction::Transition, "Mark loading / transition start"},
+    {PortAction::Gameplay, "Mark visible gameplay ready"},
+}};
+inline constexpr unsigned portGuidePages = 3;
 struct PortView {
     PortScreen screen;
     unsigned selection;
@@ -30,6 +34,8 @@ struct PortView {
     bool controlsDirty = false;
     std::string controlsError{};
     bool refreshingPrompts = false;
+    unsigned diagnosticsSelection = 0;
+    unsigned guidePage = 0;
 };
 
 // Called by the SDL input hook, including while the port UI is on screen.

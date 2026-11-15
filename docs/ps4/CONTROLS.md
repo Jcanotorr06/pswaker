@@ -27,14 +27,16 @@ that same applied snapshot. Port-menu controls remain fixed.
 
 Supported in-game prompts use the applied PS4 controls; unconverted artwork may
 still show GameCube controls. See [PS4 prompts](PS4-PROMPTS.md) for coverage.
-The port legend appears before the
+The port Button guide appears before the
 first game frame on each launch and is available in port settings. Recording
 that it has been seen across launches belongs to the later persistent-settings
 work. Port UI draws PlayStation symbols as lines/shapes, avoiding missing font
 glyphs. Cross confirms; Circle returns/cancels. Quit has a separate confirmation;
-Circle does not quit. Settings includes Resume, the legend, a delayed failed-read
-check and Quit. Completing any menu action consumes the confirmation and waits
-for neutral controls before handing input back to gameplay.
+Circle does not quit. The main menu contains Resume, Controls, Button guide,
+Text size, Diagnostics and Quit. Diagnostics groups the five existing technical
+actions. See the [port-menu presentation](PORT-MENU.md) and its
+[owner checklist](Port-menu-checklist.md). Completing any menu action consumes
+the confirmation and waits for neutral controls before handing input back to gameplay.
 
 Both port-menu shortcuts work in gameplay and native game menus wherever the
 existing Touchpad shortcut works. Touchpad opens immediately. The stick-click
@@ -75,7 +77,7 @@ controls released again before resuming. A loss inside a port menu returns to
 that menu after explicit confirmation. A loss during a pending resume still
 requires explicit confirmation. Startup preparation cannot dismiss the legend.
 
-Select **Resume and check failed read in 5 seconds** in settings. After the
+Select **Diagnostics → Check failed read in 5 seconds** in the port menu. After the
 confirmation is released, gameplay resumes and a monotonic five-second deadline
 starts. One scePadReadState call then returns failure through the installed
 application's link wrapper. The ordinary native reader clears held input, the

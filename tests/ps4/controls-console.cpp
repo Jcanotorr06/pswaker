@@ -35,6 +35,7 @@ PortSettings* settings = nullptr;
 double clockValue = 1000;
 PADStatus gamepads[PAD_CHANMAX];
 std::vector<uint8_t> embeddedImage;
+std::vector<std::string> diagnosticRequests;
 
 struct RetainedPrompt {
     bool ready = true;
@@ -83,6 +84,13 @@ void start() {
 }
 void tap(uint32_t button) {
     sample(button); neutralGame(); sample(); neutralGame();
+}
+void mainRow(PortAction action) {
+    assert(pswaker_port_view().screen == PortScreen::Settings);
+    for (unsigned i = 0; portMenuItems[pswaker_port_view().selection].action != action; ++i) {
+        assert(i < portMenuItems.size());
+        tap(PAD_DOWN);
+    }
 }
 void openEditor() {
     tap(PAD_TOUCH_PAD);
@@ -171,9 +179,9 @@ void pswaker_toggle_text_size() {
     ++textChanges;
     assert(settings && settings->setLargeText(!settings->largeText()));
 }
-// Performance actions are outside the existing controls scenarios.
-void pswaker_perf_arm(const char*) {}
-void pswaker_perf_phase(const char*) {}
+// Observe requests at the existing diagnostics boundary; no renderer simulation.
+void pswaker_perf_arm(const char* scene) { diagnosticRequests.emplace_back(std::string("measure:") + scene); }
+void pswaker_perf_phase(const char* phase) { diagnosticRequests.emplace_back(std::string("phase:") + phase); }
 extern "C" uint64_t pswaker_perf_now() { return 0; }
 void pswaker_perf_diagnostic(PswakerDiagnostic, uint64_t) {}
 void pswaker_report_prompt_coverage(const char* surface, unsigned item, const char* reason) {
@@ -982,6 +990,27 @@ int main(int argc, char** argv) {
         neutralGame();
         return 0;
     }
+    if (std::strcmp(scenario, "guide-pages") == 0) {
+        assert(pad_open()); pswaker_enable_controls(*settings);
+        sample(PAD_DOWN);
+        assert(pswaker_port_view().guidePage == 0); // Launch needs a fresh release.
+        sample(); tap(PAD_DOWN);
+        assert(pswaker_port_view().guidePage == 1);
+        sample(PAD_DOWN); sample(PAD_DOWN);
+        assert(pswaker_port_view().guidePage == 2); // Held navigation only moves once.
+        sample(); tap(PAD_CIRCLE);
+        assert(pswaker_port_view().screen == PortScreen::Legend); // Launch cannot be cancelled.
+        tap(PAD_CROSS);
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        tap(PAD_TOUCH_PAD); mainRow(PortAction::ShowLegend); tap(PAD_CROSS);
+        assert(pswaker_port_view().guidePage == 0);
+        tap(PAD_UP);
+        assert(pswaker_port_view().guidePage == 2);
+        tap(PAD_CIRCLE);
+        assert(pswaker_port_view().screen == PortScreen::Settings);
+        assert(portMenuItems[pswaker_port_view().selection].action == PortAction::ShowLegend);
+        return 0;
+    }
     start();
     if (std::strcmp(scenario, "menu-hold-guide") == 0) {
         const auto applied = pswaker_applied_controls();
@@ -1134,6 +1163,75 @@ int main(int argc, char** argv) {
         neutralGame();
         return 0;
     }
+    if (std::strcmp(scenario, "diagnostics-menu") == 0) {
+        tap(PAD_TOUCH_PAD); mainRow(PortAction::ShowDiagnostics); tap(PAD_CROSS);
+        const auto submenu = pswaker_port_view().screen;
+        assert(submenu == PortScreen::Diagnostics);
+        assert(diagnosticRequests.empty());
+        tap(PAD_DOWN); tap(PAD_DOWN);
+        // Lose input inside the submenu. Recovery must retain the return screen.
+        fail = true; sample(PAD_DOWN); neutralGame();
+        assert(pswaker_port_view().screen == PortScreen::InputLost);
+        fail = false; sample(PAD_CROSS); sample();
+        assert(pswaker_port_view().screen == PortScreen::InputLost);
+        tap(PAD_CROSS);
+        assert(pswaker_port_view().screen == submenu);
+        assert(pswaker_port_view().diagnosticsSelection == 2);
+        tap(PAD_CIRCLE);
+        assert(pswaker_port_view().screen == PortScreen::Settings);
+        assert(portMenuItems[pswaker_port_view().selection].action == PortAction::ShowDiagnostics);
+        assert(diagnosticRequests.empty());
+        return 0;
+    }
+    if (std::strncmp(scenario, "diagnostic-", 11) == 0) {
+        const std::string action = scenario + 11;
+        const unsigned row = action == "outset" ? 1 : action == "forest" ? 2 : action == "transition" ? 3 : 4;
+        const std::string request = action == "outset" || action == "forest" ? "measure:" + action : "phase:" + action;
+        tap(PAD_TOUCH_PAD); mainRow(PortAction::ShowDiagnostics); tap(PAD_CROSS);
+        assert(pswaker_port_view().screen == PortScreen::Diagnostics);
+        assert(pswaker_port_view().diagnosticsSelection == 0);
+        tap(PAD_UP);
+        assert(pswaker_port_view().diagnosticsSelection == 4);
+        tap(PAD_DOWN);
+        assert(pswaker_port_view().diagnosticsSelection == 0);
+        for (unsigned i = 0; i < row; ++i) tap(PAD_DOWN);
+        assert(diagnosticRequests.empty());
+        sample(PAD_CROSS); sample(PAD_CROSS); neutralGame();
+        assert(diagnosticRequests == std::vector<std::string>{request});
+        assert(pswaker_port_view().screen == PortScreen::Diagnostics && pswaker_port_view().releasing);
+        lx = 255; rt = 255; sample(); neutralGame();
+        lx = 128; rt = 0; sample();
+        assert(pswaker_port_view().screen == PortScreen::Game && !pswaker_port_view().releasing);
+        assert(diagnosticRequests == std::vector<std::string>{request});
+        sample(PAD_TOUCH_PAD);
+        assert(pswaker_port_view().selection == 0);
+        return 0;
+    }
+    if (std::strcmp(scenario, "main-menu") == 0) {
+        const std::vector<std::string> expected{
+            "Resume", "Controls", "Button guide", "Text size", "Diagnostics", "Quit"};
+        std::vector<std::string> labels;
+        for (const auto& item : portMenuItems) labels.emplace_back(item.label);
+        assert(labels == expected);
+        sample(PAD_TOUCH_PAD); neutralGame();
+        assert(pswaker_port_view().screen == PortScreen::Settings);
+        assert(pswaker_port_view().selection == 0);
+        sample(PAD_DOWN); // Opening controls have not been released.
+        assert(pswaker_port_view().selection == 0);
+        sample(); sample(PAD_UP); sample(PAD_UP);
+        assert(pswaker_port_view().selection == 5);
+        sample(); sample(PAD_DOWN);
+        assert(pswaker_port_view().selection == 0);
+        sample(); sample(PAD_CROSS); neutralGame();
+        lx = 255; lt = 255; sample(PAD_CROSS); neutralGame();
+        sample(); neutralGame(); // Sticks and triggers must release too.
+        assert(pswaker_port_view().screen == PortScreen::Settings);
+        lx = 128; lt = 0; sample();
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        sample(PAD_TOUCH_PAD);
+        assert(pswaker_port_view().selection == 0);
+        return 0;
+    }
     if (std::strcmp(argv[1], "text-setting") == 0) {
         PortSettings profile(argv[2]);
         assert(profile.check() && profile.largeText());
@@ -1157,14 +1255,19 @@ int main(int argc, char** argv) {
         return 0;
     }
     if (std::strcmp(scenario, "fault-check") == 0) {
-        sample(PAD_TOUCH_PAD); sample();
-        sample(PAD_DOWN); sample(); sample(PAD_DOWN); sample();
+        tap(PAD_TOUCH_PAD); mainRow(PortAction::ShowDiagnostics); tap(PAD_CROSS);
+        assert(pswaker_port_view().screen == PortScreen::Diagnostics);
+        sample(PAD_CROSS); neutralGame(); sample(PAD_CROSS); neutralGame();
+        assert(pswaker_port_view().releasing);
         sample(PAD_CROSS); sample();
         assert(pswaker_port_view().screen == PortScreen::Game);
         lx = 255; lt = rt = 255;
         sample(heldActions);
         assert(gamepads[0].button == 0x170 && gamepads[0].stickX == 127);
-        clockValue += 5;
+        clockValue += 4.9;
+        sample(heldActions);
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        clockValue += .1;
         sample(heldActions); // Delayed failure interrupts active held input.
         neutralGame();
         assert(pswaker_port_view().screen == PortScreen::InputLost);
@@ -1176,14 +1279,14 @@ int main(int argc, char** argv) {
     if (std::strcmp(scenario, "menus") == 0) {
         sample(PAD_TOUCH_PAD); neutralGame();
         assert(pswaker_port_view().screen == PortScreen::Settings);
-        sample(); sample(PAD_DOWN); sample(); sample(PAD_CROSS); sample();
+        sample(); mainRow(PortAction::ShowLegend); sample(PAD_CROSS); sample();
         assert(pswaker_port_view().screen == PortScreen::Legend);
         sample(PAD_CIRCLE); sample();
         assert(pswaker_port_view().screen == PortScreen::Settings);
         sample(PAD_CIRCLE); neutralGame(); sample();
         assert(pswaker_port_view().screen == PortScreen::Game);
         sample(PAD_TOUCH_PAD); sample();
-        for (int i = 0; i < 4; ++i) { sample(PAD_DOWN); sample(); }
+        mainRow(PortAction::Quit);
         sample(PAD_CROSS); sample();
         assert(pswaker_port_view().screen == PortScreen::Quit);
         sample(PAD_CIRCLE); sample(); // Cancel exit, never quit from Circle.
