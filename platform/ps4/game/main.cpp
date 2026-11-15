@@ -127,7 +127,7 @@ void portContent() {
         for (const auto& line : portPrompts.legend) ImGui::TextUnformatted(line.c_str());
         for (const auto& line : portPrompts.fixedGameplay) ImGui::TextWrapped("%s", line.c_str());
         if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
-        ImGui::TextUnformatted("Original GameCube prompts remain in the game.");
+        ImGui::TextWrapped("Supported game prompts use your applied PS4 controls; unconverted artwork may still show GameCube controls.");
         ImGui::Separator();
         ImGui::TextUnformatted("Fixed port-menu controls");
         for (const auto& line : portPrompts.fixedPort) ImGui::TextWrapped("%s", line.c_str());
