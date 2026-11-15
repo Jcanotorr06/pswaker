@@ -1,5 +1,9 @@
 # Owner controls check — issue #18
 
+This checklist retains the historical #18 candidate observations. For the current
+menu layout and Diagnostics navigation, use the additional
+[#178 port-menu checklist](Port-menu-checklist.md).
+
 Use the exact 01.05 package in the [candidate report](../../evidence/ps4/controls-18/REPORT.md).
 Back up your completed saves/settings before updating; keep the same PSWK00001
 application. Install through your usual USB workflow. Confirm PS4 Slim, firmware

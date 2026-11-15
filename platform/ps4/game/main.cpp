@@ -22,6 +22,7 @@ class JKRHeap;
 #include "pc/game_hooks/jkr_heap.h"
 #include <SDL3/SDL.h>
 #include <imgui.h>
+#include "port-menu.hpp"
 #include "webgpu/gpu.hpp"
 #include "gfx/pipeline_cache.hpp"
 #include "window.hpp"
@@ -83,7 +84,7 @@ bool portIconAvailable(Ps4Icon icon) {
     return icon == Ps4Icon::Cross || icon == Ps4Icon::Circle ||
            icon == Ps4Icon::Square || icon == Ps4Icon::Triangle;
 }
-void symbolLine(FixedControl control, const char* text) {
+void symbolLine(FixedControl control, const char* text, bool wrap = false) {
     const auto prompt = resolve_ps4_prompt({control, PromptContext::PortMenu}, pswaker_applied_controls(), portIconAvailable);
     if (!prompt.icon) {
         ImGui::TextWrapped("%s: %s", prompt.status == PromptStatus::Unresolved ? "Control unavailable" : prompt.name.c_str(), text);
@@ -108,7 +109,9 @@ void symbolLine(FixedControl control, const char* text) {
         draw->AddLine(ImVec2(center.x-radius, center.y+radius), ImVec2(center.x+radius, center.y-radius), color, 2);
     }
     ImGui::Dummy(ImVec2(size, size));
-    ImGui::SameLine(); ImGui::TextUnformatted(text);
+    ImGui::SameLine();
+    if (wrap) ImGui::TextWrapped("%s", text);
+    else ImGui::TextUnformatted(text);
 }
 void portNavigationLine(const char* text) {
     const auto applied = pswaker_applied_controls();
@@ -123,98 +126,165 @@ void portContent() {
     if (view.screen == PortScreen::Legend) {
         const auto applied = pswaker_applied_controls();
         refreshPortPrompts(nullptr, applied);
-        ImGui::TextUnformatted("Applied gameplay controls");
-        for (const auto& line : portPrompts.legend) ImGui::TextUnformatted(line.c_str());
-        for (const auto& line : portPrompts.fixedGameplay) ImGui::TextWrapped("%s", line.c_str());
-        if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
-        ImGui::TextUnformatted("Original GameCube prompts remain in the game.");
-        ImGui::Separator();
-        ImGui::TextUnformatted("Fixed port-menu controls");
-        for (const auto& line : portPrompts.fixedPort) ImGui::TextWrapped("%s", line.c_str());
-        symbolLine(FixedControl::PortConfirm, "Continue / Return to settings");
-        symbolLine(FixedControl::PortCancel, "Back to settings (when opened from settings)");
+        ImGui::Text("Page %u / %u", view.guidePage + 1, portGuidePages);
+        if (view.guidePage == 0) {
+            ImGui::TextUnformatted("Applied action buttons");
+            for (unsigned i = 0; i < gameActions.size(); ++i)
+                ImGui::TextWrapped("%s", portPrompts.legend[i].c_str());
+        } else if (view.guidePage == 1) {
+            ImGui::TextUnformatted("Sticks, triggers and camera");
+            for (unsigned i = gameActions.size(); i < portPrompts.legend.size(); ++i)
+                ImGui::TextWrapped("%s", portPrompts.legend[i].c_str());
+            for (const auto& line : portPrompts.fixedGameplay) ImGui::TextWrapped("%s", line.c_str());
+        } else {
+            ImGui::TextUnformatted("Fixed port-menu controls");
+            for (const auto& line : portPrompts.fixedPort) ImGui::TextWrapped("%s", line.c_str());
+            ImGui::TextWrapped("In-game PS4 prompts use your applied controls where supported.");
+            if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
+        }
+        ImGui::SetScrollY(0);
     } else if (view.screen == PortScreen::Settings) {
         if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
-        portNavigationLine("Choose");
-        for (unsigned i = 0; i < portMenuItems.size(); ++i)
-            ImGui::Text("%s %s", view.selection == i ? ">" : " ", portMenuItems[i].label);
         ImGui::Text("Port text size: %s", settings.largeText() ? "Large" : "Standard");
-        ImGui::TextWrapped("%s", pswaker_perf_status());
         if (!textError.empty()) {
             ImGui::TextWrapped("Port text size could not be saved: %s", textError.c_str());
-            ImGui::TextWrapped("Check free space/permissions, then select Change port text size to retry. Saving was not confirmed.");
+            ImGui::TextWrapped("Check free space/permissions, then select Text size to retry. Saving was not confirmed.");
         } else if (settingsSaved) ImGui::TextUnformatted("Port text size saved.");
-        ImGui::Separator();
-        symbolLine(FixedControl::PortConfirm, "Confirm"); symbolLine(FixedControl::PortCancel, "Cancel / Resume game");
-        ImGui::TextWrapped("The read check resumes gameplay, then pauses after 5 seconds. Hold movement, buttons and triggers during the check; explicitly resume afterward.");
+        for (unsigned i = 0; i < portMenuItems.size(); ++i) {
+            if (portMenuItems[i].action == PortAction::Quit) { ImGui::Spacing(); ImGui::Separator(); }
+            port_menu::row(portMenuItems[i].label, view.selection == i);
+        }
+        if (view.selection == 0) ImGui::SetScrollY(0);
+    } else if (view.screen == PortScreen::Diagnostics) {
+        ImGui::TextWrapped("Actions resume gameplay after you release all controls. Measurements observe the current scene; they do not load or move you to a scene.");
+        ImGui::TextWrapped("%s", pswaker_perf_status());
+        for (unsigned i = 0; i < portDiagnosticItems.size(); ++i)
+            port_menu::row(portDiagnosticItems[i].label, view.diagnosticsSelection == i);
+        if (view.diagnosticsSelection == 0) ImGui::SetScrollY(0);
     } else if (view.screen == PortScreen::Controls) {
         const auto applied = pswaker_applied_controls();
-        ImGui::TextUnformatted("Controls: pending edits / applied layout");
-        portNavigationLine("Choose");
-        symbolLine(FixedControl::PortConfirm, "Confirm");
-        ImGui::TextUnformatted("Pending edits take effect only after Apply succeeds.");
+        ImGui::TextWrapped("Pending edits take effect only after Apply succeeds. Applied values are the saved gameplay layout.");
         for (unsigned i = 0; i < gameActions.size(); ++i) {
             const auto action = gameActions[i];
-            ImGui::Text("%s GameCube %s: pending %s | applied %s", view.controlsSelection == i ? ">" : " ",
+            char label[256];
+            std::snprintf(label, sizeof(label), "GameCube %s\nPending: %s  |  Applied: %s",
                 control_action_name(action), control_target_name(view.pendingControls.binding(action)),
                 resolve_ps4_prompt({action}, applied).name.c_str());
+            port_menu::row(label, view.controlsSelection == i);
         }
-        ImGui::Text("%s Invert camera X: pending %s | applied %s",
-            view.controlsSelection == gameActions.size() ? ">" : " ",
+        char label[256];
+        std::snprintf(label, sizeof(label), "Invert camera X\nPending: %s  |  Applied: %s",
             view.pendingControls.invertCameraX ? "On" : "Off", applied.config.invertCameraX ? "On" : "Off");
-        ImGui::Text("%s Invert camera Y: pending %s | applied %s",
-            view.controlsSelection == gameActions.size() + 1 ? ">" : " ",
+        port_menu::row(label, view.controlsSelection == gameActions.size());
+        std::snprintf(label, sizeof(label), "Invert camera Y\nPending: %s  |  Applied: %s",
             view.pendingControls.invertCameraY ? "On" : "Off", applied.config.invertCameraY ? "On" : "Off");
-        ImGui::Text("%s Restore defaults...", view.controlsSelection == gameActions.size() + 2 ? ">" : " ");
-        ImGui::Text("%s Apply", view.controlsSelection == gameActions.size() + 3 ? ">" : " ");
-        ImGui::Text("%s Back to settings", view.controlsSelection == gameActions.size() + 4 ? ">" : " ");
-        ImGui::TextUnformatted(view.controlsDirty ? "Unsaved changes" : "Pending values match the applied layout.");
-        symbolLine(FixedControl::PortCancel, "Back (unsaved edits require confirmation)");
+        port_menu::row(label, view.controlsSelection == gameActions.size() + 1);
+        ImGui::Spacing(); ImGui::Separator();
+        port_menu::row("Restore defaults...", view.controlsSelection == gameActions.size() + 2);
+        port_menu::row("Apply pending controls", view.controlsSelection == gameActions.size() + 3);
+        port_menu::row("Back to port menu", view.controlsSelection == gameActions.size() + 4);
+        if (view.controlsSelection == 0) ImGui::SetScrollY(0);
     } else if (view.screen == PortScreen::Binding) {
-        ImGui::Text("Choose a pending button for GameCube %s", control_action_name(gameActions[view.controlsSelection]));
-        portNavigationLine("Choose; occupied buttons swap actions.");
-        for (unsigned i = 0; i < 9; ++i)
-            ImGui::Text("%s %s", view.bindingSelection == i ? ">" : " ", control_target_name(static_cast<ControlTarget>(i)));
-        symbolLine(FixedControl::PortConfirm, "Assign to pending layout");
-        symbolLine(FixedControl::PortCancel, "Keep the current pending binding");
+        ImGui::TextWrapped("Choose a pending button for GameCube %s. Occupied buttons swap actions.",
+            control_action_name(gameActions[view.controlsSelection]));
+        const auto applied = pswaker_applied_controls();
+        ImGui::TextWrapped("Pending: %s  |  Applied: %s",
+            control_target_name(view.pendingControls.binding(gameActions[view.controlsSelection])),
+            resolve_ps4_prompt({gameActions[view.controlsSelection]}, applied).name.c_str());
+        for (unsigned i = 0; i < 9; ++i) {
+            const auto target = static_cast<ControlTarget>(i);
+            const char* occupant = "Unused in pending layout";
+            for (const auto action : gameActions)
+                if (view.pendingControls.binding(action) == target) occupant = control_action_name(action);
+            char label[256];
+            std::snprintf(label, sizeof(label), "%s  |  %s", control_target_name(target), occupant);
+            port_menu::row(label, view.bindingSelection == i);
+        }
+        if (view.bindingSelection == 0) ImGui::SetScrollY(0);
     } else if (view.screen == PortScreen::RestoreControls) {
-        ImGui::TextUnformatted("Restore default controls in pending edits?");
-        ImGui::TextUnformatted("A = Cross; B = Circle; X = Square; Y = Triangle; Z = R1; Start = Options");
-        ImGui::TextUnformatted("Both camera inversion switches will be Off. Other settings stay as they are.");
-        ImGui::TextUnformatted("Review the pending defaults afterward, then Apply to save or Discard to keep the applied layout.");
-        symbolLine(FixedControl::PortConfirm, "Restore pending defaults");
-        symbolLine(FixedControl::PortCancel, "Keep the current pending edits");
+        ImGui::TextWrapped("Replace pending edits with these defaults?");
+        for (const auto action : gameActions)
+            ImGui::TextWrapped("GameCube %s: %s", control_action_name(action),
+                control_target_name(ControlsConfig::defaults().binding(action)));
+        ImGui::TextWrapped("Both camera inversion switches will be Off. Other settings stay as they are.");
+        ImGui::TextWrapped("Applied controls stay active. Review the pending defaults, then Apply to save or Discard to keep the applied layout.");
     } else if (view.screen == PortScreen::DiscardControls) {
-        ImGui::TextUnformatted("Discard unsaved controls changes?");
-        symbolLine(FixedControl::PortConfirm, "Discard and return to settings");
-        symbolLine(FixedControl::PortCancel, "Keep editing");
+        ImGui::TextWrapped("Your pending bindings and camera switches have unsaved changes. Discard them and return to the port menu?");
+        ImGui::TextWrapped("The saved, applied layout will remain active. Circle keeps your pending edits so you can continue editing.");
     } else if (view.screen == PortScreen::ApplyingControls) {
-        ImGui::TextUnformatted("Applying controls...");
-        ImGui::TextUnformatted("Saving the complete layout. Gameplay remains paused.");
+        ImGui::TextWrapped("Saving the complete pending layout and camera switches. Gameplay remains paused.");
+        ImGui::TextWrapped("Applied controls change only after saving is confirmed. Please wait.");
     } else if (view.screen == PortScreen::ControlsFailed) {
-        ImGui::TextUnformatted("Controls Apply was not confirmed.");
+        ImGui::TextWrapped("Apply was not confirmed. The previous applied layout remains active; pending edits are kept.");
+        ImGui::Separator();
         ImGui::TextWrapped("%s", view.controlsError.c_str());
-        ImGui::TextUnformatted("The previous applied layout remains active; pending edits are kept.");
+        ImGui::Separator();
         ImGui::TextWrapped("Check free space and permissions in /data/pswaker, then Retry. Disk completion may be uncertain; Retry saves the entire pending layout again.");
-        symbolLine(FixedControl::PortConfirm, "Retry Apply");
-        symbolLine(FixedControl::PortCancel, "Discard edits and return to settings");
     } else if (view.screen == PortScreen::Quit) {
-        ImGui::TextUnformatted("Quit PSWaker?");
-        ImGui::TextUnformatted("Only completed in-game saves are retained. Quitting does not save current progress.");
-        symbolLine(FixedControl::PortConfirm, "Confirm quit"); symbolLine(FixedControl::PortCancel, "Cancel / Back to settings");
+        ImGui::TextWrapped("Only completed in-game saves are retained. Quitting does not save current progress.");
     } else if (view.screen == PortScreen::InputLost) {
-        ImGui::TextUnformatted("Game paused. Controller disconnected or a controller read failed.");
-        ImGui::TextUnformatted(view.connected ? "Controller connected. Release all buttons, sticks and triggers." : "Reconnect your controller to continue.");
-        symbolLine(FixedControl::PortConfirm, "After releasing all controls, press to resume, then release again.");
-        ImGui::TextUnformatted("Reconnection alone does not resume the game.");
+        ImGui::TextWrapped("Game paused. The controller disconnected or a controller read failed.");
+        ImGui::TextWrapped("%s", view.connected ?
+            "Controller input restored. Release all buttons, sticks and triggers, then press Cross and release again to continue." :
+            "No controller input. Reconnect your controller; wait for valid input before continuing.");
+        ImGui::TextWrapped("Reconnection alone does not resume the game. You will return to the interrupted screen or gameplay; pending edits and unconfirmed decisions are preserved.");
     }
-    if (view.refreshingPrompts) ImGui::TextUnformatted("Updating control prompts...");
-    else if (view.releasing) ImGui::TextUnformatted("Release all buttons, sticks and triggers to continue.");
+    if (!portScreenInfo(view.screen).title) {
+        if (view.refreshingPrompts) ImGui::TextUnformatted("Updating control prompts...");
+        else if (view.releasing) ImGui::TextUnformatted("Release all buttons, sticks and triggers to continue.");
+    }
+}
+void portPanel(const PortView& view) {
+    const auto info = portScreenInfo(view.screen);
+    port_menu::Panel panel(info.title, settings.largeText());
+    portContent();
+    const bool information = info.navigation == PortNavigation::Information;
+    // Clamp each fresh navigation step to the actual wrapped content bounds.
+    // Extra Down presses at the bottom must not delay the next Up press.
+    static PortScreen previousScreen = PortScreen::Game;
+    static int previousScroll = 0;
+    if (information) {
+        if (previousScreen != view.screen) ImGui::SetScrollY(0);
+        else if (previousScroll != view.informationScroll) {
+            const float delta = static_cast<float>(static_cast<double>(view.informationScroll) - previousScroll);
+            ImGui::SetScrollY(std::clamp(ImGui::GetScrollY() + delta * 3 * ImGui::GetTextLineHeightWithSpacing(),
+                0.f, ImGui::GetScrollMaxY()));
+        }
+    }
+    previousScreen = view.screen;
+    previousScroll = view.informationScroll;
+    panel.footer();
+    if (information) portNavigationLine("Scroll details");
+    else if (info.navigation != PortNavigation::None)
+        portNavigationLine(info.navigation == PortNavigation::GuidePage ? "Change guide page" : "Choose");
+    const char* confirm = info.confirm;
+    if (view.screen == PortScreen::InputLost && view.connected) confirm = "Continue, then release";
+    if (confirm) symbolLine(FixedControl::PortConfirm, confirm, true);
+    if (info.cancel) symbolLine(FixedControl::PortCancel, info.cancel, true);
+    if (view.refreshingPrompts) ImGui::TextWrapped("Updating control prompts...");
+    else if (view.releasing) ImGui::TextWrapped("Release all buttons, sticks and triggers to continue.");
+    else if (view.screen == PortScreen::Controls || view.screen == PortScreen::Binding)
+        ImGui::TextWrapped("%s", view.controlsDirty ? "Unsaved changes. Apply to save." : "No unsaved changes. Pending = applied.");
+    else if (view.screen == PortScreen::ControlsFailed)
+        ImGui::TextWrapped("Apply unconfirmed. Pending edits kept; game paused.");
+    else if (view.screen == PortScreen::InputLost)
+        ImGui::TextWrapped("%s", view.connected ? "Game paused. Release controls before a fresh Cross press." : "Waiting for controller input. Game paused.");
+    else if (view.screen == PortScreen::Settings && !textError.empty())
+        ImGui::TextWrapped("Text size could not be saved. Check free space/permissions, then retry Text size.");
+    else if (view.screen == PortScreen::Settings && settingsSaved)
+        ImGui::Text("Port text size saved: %s.", settings.largeText() ? "Large" : "Standard");
+    else ImGui::TextUnformatted("Game paused.");
 }
 void screen(const char* title, const char* text, float progress = -1,
             const char* confirm = nullptr, const char* cancel = nullptr) {
     events();
     if (!aurora_begin_frame()) { usleep(16000); return; }
+    const auto view = pswaker_port_view();
+    if (!text && portScreenInfo(view.screen).title) {
+        portPanel(view);
+        aurora_end_frame();
+        return;
+    }
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
     ImGui::Begin("PSWaker", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |

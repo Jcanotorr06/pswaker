@@ -79,6 +79,39 @@ class InstalledControlsTests(unittest.TestCase):
     def test_legend_confirmation_does_not_leak_into_game(self):
         self.check_scenario('legend')
 
+    def test_port_menu_opens_at_500_ms_and_held_chord_does_not_toggle(self):
+        self.check_scenario('menu-hold-threshold')
+
+    def test_port_menu_shortcuts_cannot_dismiss_launch_guide_or_bypass_confirmation_release(self):
+        self.check_scenario('menu-hold-launch')
+
+    def test_port_menu_guide_and_prompts_describe_both_shortcuts_with_applied_native_menu_bindings(self):
+        for layout in ['', 'custom-']:
+            with self.subTest(layout=layout):
+                self.check_scenario(layout + 'menu-hold-guide')
+
+    def test_port_menu_hold_restarts_after_either_click_releases_without_delaying_applied_actions(self):
+        for layout in ['', 'custom-']:
+            with self.subTest(layout=layout):
+                self.check_scenario(layout + 'menu-hold-order')
+
+    def test_port_menu_hold_clears_on_loss_or_touchpad_and_respects_confirmations_and_neutral_resume(self):
+        self.check_scenario('menu-hold-invalidation')
+
+    def test_main_menu_order_fresh_navigation_and_neutral_resume(self):
+        self.check_scenario('main-menu')
+
+    def test_diagnostics_entry_back_and_input_loss_do_not_execute_actions(self):
+        self.check_scenario('diagnostics-menu')
+
+    def test_diagnostic_measurement_and_phase_requests_wait_for_neutral_resume(self):
+        for action in ['outset', 'forest', 'transition', 'gameplay']:
+            with self.subTest(action=action):
+                self.check_scenario('diagnostic-' + action)
+
+    def test_button_guide_pages_require_neutral_navigation_and_keep_launch_confirmation(self):
+        self.check_scenario('guide-pages')
+
     def test_prompts_refresh_before_resume_and_preserve_previous_generation_after_discard_or_failed_apply(self):
         for scenario in ['apply', 'discard', 'failure', 'uncertain']:
             with self.subTest(scenario=scenario):
@@ -123,6 +156,9 @@ class InstalledControlsTests(unittest.TestCase):
 
     def test_controller_loss_preserves_pending_edits_and_requires_fixed_confirmation_in_each_editor_state(self):
         self.check_scenario('editor-loss')
+
+    def test_apply_failure_scroll_and_repeated_read_loss_preserve_edits_until_deliberate_retry(self):
+        self.check_scenario('editor-failure-read-loss')
 
     def test_editor_noop_unused_assignment_leave_keep_editing_and_discard(self):
         self.check_scenario('editor-discard')

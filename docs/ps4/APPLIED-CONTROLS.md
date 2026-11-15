@@ -4,7 +4,8 @@ This is the saved-layout foundation for #78, after first playable. It does not
 extend the accepted #18/#20 checkpoints. #95 adds button editing and Apply
 persistence; #96 adds confirmed restore defaults. #97 adds independent camera
 and aiming inversion, with a retained [source-path inventory](CAMERA-INVERSION.md).
-Original in-game GameCube prompts remain until #79.
+Supported in-game prompts now use applied PS4 controls; see the coverage in
+[PS4 prompts](PS4-PROMPTS.md) for remaining unconverted artwork.
 The [#99 resolver slice](PS4-PROMPTS.md) now supplies the port legend and fixed
 instructions and coordinates generation refresh at the existing resume gate.
 
@@ -85,7 +86,9 @@ keep their existing behavior. Stick clicks are digital targets only.
 
 ## Button editor (#95)
 
-Touchpad opens settings; choose **Controls...** with D-pad Up/Down and Cross.
+Touchpad click or holding L3 + R3 together for 500 ms opens settings; choose
+**Controls...** with D-pad Up/Down and Cross. Individual applied stick-click
+actions remain immediate during the hold. See [shortcut behavior and checks](MENU-HOLD.md).
 The editor starts with the whole applied snapshot, including both saved camera
 inversion switches. Each action row shows its pending and applied button.
 Cross opens a picker containing all nine allowed targets. D-pad Up/Down selects,

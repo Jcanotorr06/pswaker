@@ -112,6 +112,13 @@ PromptResult resolve_ps4_prompt(const PromptRequest& request, const AppliedContr
         if (!trigger) return unresolved("Trigger prompts require a fixed L2 or R2 trigger");
         break;
     }
+    if (request.context == PromptContext::PortMenu && icon == Ps4Icon::Touchpad) {
+        // The settings shortcut has two alternatives, including two controls
+        // held together. A single controller icon cannot describe that chord.
+        result.name = "Touchpad click or hold L3 + R3 together for 500 ms";
+        result.status = PromptStatus::TextFallback;
+        return result;
+    }
     result.icon = available && available(icon) ? std::optional(icon) : std::nullopt;
     result.status = result.icon ? PromptStatus::Icon : PromptStatus::TextFallback;
     return result;
