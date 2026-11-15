@@ -31,7 +31,11 @@ Results carry the snapshot generation and preserve gesture, variant and directio
 
 The nine action targets come from the existing applied bindings. Native game
 menus use those same bindings. In port context A/Confirm is Cross, B/Cancel is
-Circle and Start/Settings is Touchpad click, regardless of gameplay remapping;
+Circle and Start/Settings describes Touchpad click or holding L3 + R3 together
+for 500 ms, regardless of gameplay remapping. This shortcut description always
+uses text fallback, even if icon artwork is available: the two-control chord
+must not be represented as a single icon. Native game Start keeps its applied
+binding. See [menu shortcut checks](MENU-HOLD.md);
 other game actions have no assumed port meaning. Explicit port-control requests
 require port context. D-pad navigation remains fixed.
 

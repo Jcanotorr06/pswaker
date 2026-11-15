@@ -60,7 +60,7 @@ int main() {
         const auto port = resolve_ps4_prompt({action, PromptContext::PortMenu}, custom, faceIcons);
         if (action == GameAction::A) assert(port.name == "Cross" && port.icon == Ps4Icon::Cross);
         if (action == GameAction::B) assert(port.name == "Circle" && port.icon == Ps4Icon::Circle);
-        if (action == GameAction::Start) assert(port.name == "Touchpad click" && !port.icon);
+        if (action == GameAction::Start) assert(port.name == "Touchpad click or hold L3 + R3 together for 500 ms" && !port.icon);
         assert(port.generation == 17);
     }
 
@@ -100,7 +100,7 @@ int main() {
     }
     const std::array<FixedControl, 3> portControls{
         FixedControl::PortConfirm, FixedControl::PortCancel, FixedControl::PortSettings};
-    const char* portNames[]{"Cross", "Circle", "Touchpad click"};
+    const char* portNames[]{"Cross", "Circle", "Touchpad click or hold L3 + R3 together for 500 ms"};
     for (unsigned i = 0; i < portControls.size(); ++i)
         assert(resolve_ps4_prompt({portControls[i], PromptContext::PortMenu}, custom).name == portNames[i]);
     const char* directions[]{"up", "down", "left", "right", "up-left", "up-right", "down-left", "down-right"};

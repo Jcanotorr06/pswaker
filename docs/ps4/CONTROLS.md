@@ -23,9 +23,11 @@ that same applied snapshot. Port-menu controls remain fixed.
 | L2 / R2 | Analog L / R, with digital terminal click at 90% |
 | Options | Start |
 | Left stick / right stick / D-pad | Control Stick / C Stick / D-pad |
-| Touchpad click | Port settings; gameplay pauses |
+| Touchpad click, or hold L3 + R3 together for 500 ms | Port settings; gameplay pauses |
 
-Original in-game prompts remain unchanged. The port legend appears before the
+Supported in-game prompts use the applied PS4 controls; unconverted artwork may
+still show GameCube controls. See [PS4 prompts](PS4-PROMPTS.md) for coverage.
+The port legend appears before the
 first game frame on each launch and is available in port settings. Recording
 that it has been seen across launches belongs to the later persistent-settings
 work. Port UI draws PlayStation symbols as lines/shapes, avoiding missing font
@@ -33,6 +35,22 @@ glyphs. Cross confirms; Circle returns/cancels. Quit has a separate confirmation
 Circle does not quit. Settings includes Resume, the legend, a delayed failed-read
 check and Quit. Completing any menu action consumes the confirmation and waits
 for neutral controls before handing input back to gameplay.
+
+Both port-menu shortcuts work in gameplay and native game menus wherever the
+existing Touchpad shortcut works. Touchpad opens immediately. The stick-click
+shortcut starts timing when both L3 and R3 are observed held, and opens once
+after 500 ms of continuous monotonic elapsed time, with Resume selected. A lone
+click or shorter hold does not open it. Releasing either click, opening another
+port screen, disconnecting or a failed controller read clears partial progress.
+The shortcuts only open the menu; they do not close it or bypass confirmations.
+
+Applied actions on L3 and R3 remain immediate before the menu opens, so those
+gameplay actions can occur during the hold. The port does not reserve or buffer
+the clicks. Opening the menu pauses gameplay and neutralizes all game-facing
+input. Circle or Resume still requires every button, both sticks and both
+triggers to release before gameplay resumes. The launch guide and controller
+recovery still require their existing deliberate confirmation and release.
+See the [#177 host evidence and owner checks](MENU-HOLD.md).
 
 The native reader's existing 12% stick dead zone is retained, with clamped
 GameCube axes and inverted Y (up positive). L2/R2 retain their full 0–255 analog

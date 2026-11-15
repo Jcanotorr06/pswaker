@@ -22,6 +22,7 @@ PortScreen destination = PortScreen::Game;
 PortScreen beforeLoss = PortScreen::Legend;
 PortScreen afterLegend = PortScreen::Game;
 PortSettings* settings = nullptr;
+double menuHoldStarted = -1;
 
 const char* screenName(PortScreen screen) {
     constexpr const char* names[] = {"legend", "game", "settings", "quit", "input-lost", "exit",
@@ -35,6 +36,7 @@ void enter(PortScreen screen) {
     if (screen != PortScreen::Game) pad_player_vibrate(0, 0, 0);
     view.screen = screen;
     armed = false;
+    menuHoldStarted = -1;
 }
 
 extern "C" int __real_scePadReadState(int32_t handle, void* data);
@@ -112,7 +114,14 @@ void pswaker_poll_controls() {
         return;
     }
     if (view.screen == PortScreen::Game) {
-        if (current.held & PAD_TOUCH_PAD) {
+        // The same gate covers gameplay and native game menus. Keep mapped
+        // stick-click actions live until activation; no chord reservation.
+        constexpr auto chord = PAD_L3 | PAD_R3;
+        const double now = now_seconds();
+        if ((current.held & chord) != chord) menuHoldStarted = -1;
+        else if (menuHoldStarted < 0) menuHoldStarted = now;
+        if ((current.held & PAD_TOUCH_PAD) ||
+            (menuHoldStarted >= 0 && now - menuHoldStarted >= .5)) {
             view.selection = 0;
             enter(PortScreen::Settings);
         }
