@@ -1,4 +1,4 @@
-# Port menu presentation (#178)
+# Port menu presentation (#178 / #179)
 
 The main port menu contains **Resume → Controls → Button guide → Text size →
 Diagnostics → Quit**. Quit is separated from everyday settings and still asks
@@ -45,6 +45,39 @@ the same submenu selection.
 
 ## Presentation scope and follow-up
 
+### Controls editing and input recovery
+
+Controls, the binding picker, Restore/Discard confirmations, Apply progress,
+Apply failure and input-loss recovery now use the same scoped panel. Each
+editor row wraps its pending and applied values inside the blue selection
+highlight. D-pad Up/Down keeps the active row visible, including both inversion
+switches, Restore, Apply and Back. Returning to the first row reveals the
+introduction. The picker identifies occupied pending buttons; assigning one
+still swaps the actions. Its introduction shows the edited action's pending
+and applied bindings. Unsaved-change status stays in the footer.
+
+Restore changes only pending controls; Discard retains the applied layout.
+Applying shows a paused, saving state without offering an ineffective cancel.
+Failure keeps pending edits and the previous applied layout, explains uncertain
+disk completion, and offers **Cross: Retry Apply** or **Circle: Discard and
+return to port menu**. These actions retain the existing complete-save and
+publication contracts. Prompts still refresh before the gameplay gate opens.
+
+On information screens (Restore, Discard, Apply failure, input loss and Quit),
+fixed D-pad Up/Down scrolls details by three text lines per fresh press. This
+reaches long wrapped errors and instructions without a mouse. Each step clamps
+to the actual body bounds, so pressing Down again at the bottom never delays
+the next Up press. Hints, status and release feedback remain in the reserved
+footer. Scrolling uses the same complete neutral-release navigation gate as
+selection and never confirms or cancels an action.
+
+Input loss distinguishes absent/failed controller input from restored input
+awaiting release and a fresh Cross press. No confirmation hint appears while
+input is unavailable; Circle never leaves recovery. Cross and a complete release
+return to the interrupted destination, preserving pending edits and decisions.
+The hint says Continue rather than promising to resume gameplay from an editor
+or confirmation. Reconnection alone keeps gameplay paused.
+
 `platform/ps4/game/port-menu.hpp` provides scoped Dear ImGui `Panel` and `row`
 helpers. `Panel` owns local colors/spacing, a centered window, a scrolling body
 and a reserved footer; call `footer()` before drawing hints. Each screen title
@@ -53,13 +86,11 @@ native controls state machine remains responsible for selection and gating.
 No renderer, settings schema or extra production testing interface was added.
 
 Only the explicit `themedPortScreen` list in `main.cpp` opts into this theme.
-Controls editing, binding selection, restore/discard confirmations, Apply
-progress/failure and input-loss recovery retain their existing presentation in
-this slice. #179 can reuse these helpers and extend that opt-in list. Startup
-content checks, installation/storage recovery, shader preparation and shutdown
-progress continue through the existing shared `screen` path.
+Startup content checks, installation/storage recovery, shader preparation and
+shutdown progress continue through the existing shared `screen` path.
 
-See the [host evidence](../../evidence/ps4/port-menu-178/REPORT.md) and
+See the [main-menu host evidence](../../evidence/ps4/port-menu-178/REPORT.md),
+[controls/recovery host evidence](../../evidence/ps4/port-menu-179/REPORT.md) and
 [physical PS4 checklist](Port-menu-checklist.md). Host checks establish native
 behavior and target compilation; appearance and physical controller acceptance
 remain pending.

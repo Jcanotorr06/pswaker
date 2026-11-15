@@ -35,6 +35,7 @@ void enter(PortScreen screen) {
     say("INPUT screen=%s->%s connected=%d; gameplay neutral outside Game", screenName(view.screen), screenName(screen), view.connected);
     if (screen != PortScreen::Game) pad_player_vibrate(0, 0, 0);
     view.screen = screen;
+    view.informationScroll = 0;
     armed = false;
     menuHoldStarted = -1;
 }
@@ -142,6 +143,15 @@ void pswaker_poll_controls() {
     if (!armed) return;
     const bool cross = current.held & PAD_CROSS;
     const bool circle = current.held & PAD_CIRCLE;
+    if ((view.screen == PortScreen::RestoreControls || view.screen == PortScreen::DiscardControls ||
+         view.screen == PortScreen::ControlsFailed || view.screen == PortScreen::InputLost ||
+         view.screen == PortScreen::Quit) && (current.held & (PAD_UP | PAD_DOWN))) {
+        if (current.held & PAD_DOWN) {
+            if (view.informationScroll < std::numeric_limits<int>::max()) ++view.informationScroll;
+        } else if (view.informationScroll > std::numeric_limits<int>::min()) --view.informationScroll;
+        armed = false;
+        return;
+    }
     if (view.screen == PortScreen::Legend && (current.held & (PAD_UP | PAD_DOWN))) {
         view.guidePage = (view.guidePage + ((current.held & PAD_DOWN) ? 1 : portGuidePages - 1)) % portGuidePages;
         armed = false;

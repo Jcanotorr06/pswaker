@@ -36,6 +36,9 @@ struct PortView {
     bool refreshingPrompts = false;
     unsigned diagnosticsSelection = 0;
     unsigned guidePage = 0;
+    // Signed D-pad scroll steps for information screens; presentation clamps at
+    // its actual content bounds. Reset on screen entry, gated like selection.
+    int informationScroll = 0;
 };
 
 // Called by the SDL input hook, including while the port UI is on screen.
