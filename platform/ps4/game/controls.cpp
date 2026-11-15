@@ -26,7 +26,7 @@ double menuHoldStarted = -1;
 
 const char* screenName(PortScreen screen) {
     constexpr const char* names[] = {"legend", "game", "settings", "quit", "input-lost", "exit",
-        "controls", "binding", "discard-controls", "applying-controls", "controls-failed", "restore-controls"};
+        "controls", "binding", "discard-controls", "applying-controls", "controls-failed", "restore-controls", "diagnostics"};
     return names[static_cast<unsigned>(screen)];
 }
 
@@ -142,9 +142,16 @@ void pswaker_poll_controls() {
     if (!armed) return;
     const bool cross = current.held & PAD_CROSS;
     const bool circle = current.held & PAD_CIRCLE;
-    if (view.screen == PortScreen::Settings && (current.held & (PAD_UP | PAD_DOWN))) {
-        const unsigned count = portMenuItems.size();
-        view.selection = (view.selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
+    if (view.screen == PortScreen::Legend && (current.held & (PAD_UP | PAD_DOWN))) {
+        view.guidePage = (view.guidePage + ((current.held & PAD_DOWN) ? 1 : portGuidePages - 1)) % portGuidePages;
+        armed = false;
+        return;
+    }
+    if ((view.screen == PortScreen::Settings || view.screen == PortScreen::Diagnostics) &&
+        (current.held & (PAD_UP | PAD_DOWN))) {
+        const unsigned count = view.screen == PortScreen::Settings ? portMenuItems.size() : portDiagnosticItems.size();
+        auto& selection = view.screen == PortScreen::Settings ? view.selection : view.diagnosticsSelection;
+        selection = (selection + ((current.held & PAD_DOWN) ? 1 : count - 1)) % count;
         armed = false;
         return;
     }
@@ -169,10 +176,8 @@ void pswaker_poll_controls() {
         if (circle || (cross && action == PortAction::Resume)) destination = PortScreen::Game;
         else if (cross && action == PortAction::ShowLegend) {
             afterLegend = PortScreen::Settings;
+            view.guidePage = 0;
             destination = PortScreen::Legend;
-        } else if (cross && action == PortAction::CheckFailedRead) {
-            checkAfterResume = true;
-            destination = PortScreen::Game;
         } else if (cross && action == PortAction::ToggleText) {
             pswaker_toggle_text_size();
             armed = false;
@@ -182,11 +187,19 @@ void pswaker_poll_controls() {
             view.controlsError.clear();
             destination = PortScreen::Controls;
         } else if (cross && action == PortAction::Quit) destination = PortScreen::Quit;
-        else if (cross && (action == PortAction::SampleOutset || action == PortAction::SampleForest)) {
-            pswaker_perf_arm(action == PortAction::SampleOutset ? "outset" : "forest");
-            destination = PortScreen::Game;
-        } else if (cross && (action == PortAction::Transition || action == PortAction::Gameplay)) {
-            pswaker_perf_phase(action == PortAction::Transition ? "transition" : "gameplay");
+        else if (cross && action == PortAction::ShowDiagnostics) {
+            view.diagnosticsSelection = 0;
+            destination = PortScreen::Diagnostics;
+        }
+        break;
+    case PortScreen::Diagnostics:
+        if (circle) destination = PortScreen::Settings;
+        else if (cross) {
+            const auto diagnostic = portDiagnosticItems[view.diagnosticsSelection].action;
+            if (diagnostic == PortAction::CheckFailedRead) checkAfterResume = true;
+            else if (diagnostic == PortAction::SampleOutset || diagnostic == PortAction::SampleForest)
+                pswaker_perf_arm(diagnostic == PortAction::SampleOutset ? "outset" : "forest");
+            else pswaker_perf_phase(diagnostic == PortAction::Transition ? "transition" : "gameplay");
             destination = PortScreen::Game;
         }
         break;

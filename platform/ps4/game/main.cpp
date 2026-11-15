@@ -22,6 +22,7 @@ class JKRHeap;
 #include "pc/game_hooks/jkr_heap.h"
 #include <SDL3/SDL.h>
 #include <imgui.h>
+#include "port-menu.hpp"
 #include "webgpu/gpu.hpp"
 #include "gfx/pipeline_cache.hpp"
 #include "window.hpp"
@@ -83,7 +84,7 @@ bool portIconAvailable(Ps4Icon icon) {
     return icon == Ps4Icon::Cross || icon == Ps4Icon::Circle ||
            icon == Ps4Icon::Square || icon == Ps4Icon::Triangle;
 }
-void symbolLine(FixedControl control, const char* text) {
+void symbolLine(FixedControl control, const char* text, bool wrap = false) {
     const auto prompt = resolve_ps4_prompt({control, PromptContext::PortMenu}, pswaker_applied_controls(), portIconAvailable);
     if (!prompt.icon) {
         ImGui::TextWrapped("%s: %s", prompt.status == PromptStatus::Unresolved ? "Control unavailable" : prompt.name.c_str(), text);
@@ -108,7 +109,9 @@ void symbolLine(FixedControl control, const char* text) {
         draw->AddLine(ImVec2(center.x-radius, center.y+radius), ImVec2(center.x+radius, center.y-radius), color, 2);
     }
     ImGui::Dummy(ImVec2(size, size));
-    ImGui::SameLine(); ImGui::TextUnformatted(text);
+    ImGui::SameLine();
+    if (wrap) ImGui::TextWrapped("%s", text);
+    else ImGui::TextUnformatted(text);
 }
 void portNavigationLine(const char* text) {
     const auto applied = pswaker_applied_controls();
@@ -118,35 +121,50 @@ void portNavigationLine(const char* text) {
         PromptGesture::Press, PromptVariant::Direction, PromptDirection::Down}, applied);
     ImGui::TextWrapped("%s / %s: %s", up.name.c_str(), down.name.c_str(), text);
 }
+bool themedPortScreen(PortScreen screen) {
+    return screen == PortScreen::Settings || screen == PortScreen::Diagnostics ||
+           screen == PortScreen::Legend || screen == PortScreen::Quit;
+}
 void portContent() {
     const auto view = pswaker_port_view();
     if (view.screen == PortScreen::Legend) {
         const auto applied = pswaker_applied_controls();
         refreshPortPrompts(nullptr, applied);
-        ImGui::TextUnformatted("Applied gameplay controls");
-        for (const auto& line : portPrompts.legend) ImGui::TextUnformatted(line.c_str());
-        for (const auto& line : portPrompts.fixedGameplay) ImGui::TextWrapped("%s", line.c_str());
-        if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
-        ImGui::TextWrapped("Supported game prompts use your applied PS4 controls; unconverted artwork may still show GameCube controls.");
-        ImGui::Separator();
-        ImGui::TextUnformatted("Fixed port-menu controls");
-        for (const auto& line : portPrompts.fixedPort) ImGui::TextWrapped("%s", line.c_str());
-        symbolLine(FixedControl::PortConfirm, "Continue / Return to settings");
-        symbolLine(FixedControl::PortCancel, "Back to settings (when opened from settings)");
+        ImGui::Text("Page %u / %u", view.guidePage + 1, portGuidePages);
+        if (view.guidePage == 0) {
+            ImGui::TextUnformatted("Applied action buttons");
+            for (unsigned i = 0; i < gameActions.size(); ++i)
+                ImGui::TextWrapped("%s", portPrompts.legend[i].c_str());
+        } else if (view.guidePage == 1) {
+            ImGui::TextUnformatted("Sticks, triggers and camera");
+            for (unsigned i = gameActions.size(); i < portPrompts.legend.size(); ++i)
+                ImGui::TextWrapped("%s", portPrompts.legend[i].c_str());
+            for (const auto& line : portPrompts.fixedGameplay) ImGui::TextWrapped("%s", line.c_str());
+        } else {
+            ImGui::TextUnformatted("Fixed port-menu controls");
+            for (const auto& line : portPrompts.fixedPort) ImGui::TextWrapped("%s", line.c_str());
+            ImGui::TextWrapped("In-game PS4 prompts use your applied controls where supported.");
+            if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
+        }
+        ImGui::SetScrollY(0);
     } else if (view.screen == PortScreen::Settings) {
         if (*settings.controlsFeedback()) ImGui::TextWrapped("%s", settings.controlsFeedback());
-        portNavigationLine("Choose");
-        for (unsigned i = 0; i < portMenuItems.size(); ++i)
-            ImGui::Text("%s %s", view.selection == i ? ">" : " ", portMenuItems[i].label);
         ImGui::Text("Port text size: %s", settings.largeText() ? "Large" : "Standard");
-        ImGui::TextWrapped("%s", pswaker_perf_status());
         if (!textError.empty()) {
             ImGui::TextWrapped("Port text size could not be saved: %s", textError.c_str());
-            ImGui::TextWrapped("Check free space/permissions, then select Change port text size to retry. Saving was not confirmed.");
+            ImGui::TextWrapped("Check free space/permissions, then select Text size to retry. Saving was not confirmed.");
         } else if (settingsSaved) ImGui::TextUnformatted("Port text size saved.");
-        ImGui::Separator();
-        symbolLine(FixedControl::PortConfirm, "Confirm"); symbolLine(FixedControl::PortCancel, "Cancel / Resume game");
-        ImGui::TextWrapped("The read check resumes gameplay, then pauses after 5 seconds. Hold movement, buttons and triggers during the check; explicitly resume afterward.");
+        for (unsigned i = 0; i < portMenuItems.size(); ++i) {
+            if (portMenuItems[i].action == PortAction::Quit) { ImGui::Spacing(); ImGui::Separator(); }
+            port_menu::row(portMenuItems[i].label, view.selection == i);
+        }
+        if (view.selection == 0) ImGui::SetScrollY(0);
+    } else if (view.screen == PortScreen::Diagnostics) {
+        ImGui::TextWrapped("Actions resume gameplay after you release all controls. Measurements observe the current scene; they do not load or move you to a scene.");
+        ImGui::TextWrapped("%s", pswaker_perf_status());
+        for (unsigned i = 0; i < portDiagnosticItems.size(); ++i)
+            port_menu::row(portDiagnosticItems[i].label, view.diagnosticsSelection == i);
+        if (view.diagnosticsSelection == 0) ImGui::SetScrollY(0);
     } else if (view.screen == PortScreen::Controls) {
         const auto applied = pswaker_applied_controls();
         ImGui::TextUnformatted("Controls: pending edits / applied layout");
@@ -199,22 +217,50 @@ void portContent() {
         symbolLine(FixedControl::PortConfirm, "Retry Apply");
         symbolLine(FixedControl::PortCancel, "Discard edits and return to settings");
     } else if (view.screen == PortScreen::Quit) {
-        ImGui::TextUnformatted("Quit PSWaker?");
-        ImGui::TextUnformatted("Only completed in-game saves are retained. Quitting does not save current progress.");
-        symbolLine(FixedControl::PortConfirm, "Confirm quit"); symbolLine(FixedControl::PortCancel, "Cancel / Back to settings");
+        ImGui::TextWrapped("Only completed in-game saves are retained. Quitting does not save current progress.");
     } else if (view.screen == PortScreen::InputLost) {
         ImGui::TextUnformatted("Game paused. Controller disconnected or a controller read failed.");
         ImGui::TextUnformatted(view.connected ? "Controller connected. Release all buttons, sticks and triggers." : "Reconnect your controller to continue.");
         symbolLine(FixedControl::PortConfirm, "After releasing all controls, press to resume, then release again.");
         ImGui::TextUnformatted("Reconnection alone does not resume the game.");
     }
-    if (view.refreshingPrompts) ImGui::TextUnformatted("Updating control prompts...");
-    else if (view.releasing) ImGui::TextUnformatted("Release all buttons, sticks and triggers to continue.");
+    if (!themedPortScreen(view.screen)) {
+        if (view.refreshingPrompts) ImGui::TextUnformatted("Updating control prompts...");
+        else if (view.releasing) ImGui::TextUnformatted("Release all buttons, sticks and triggers to continue.");
+    }
+}
+void portPanel(const PortView& view) {
+    const char* title = view.screen == PortScreen::Settings ? "Port menu" :
+        view.screen == PortScreen::Diagnostics ? "Diagnostics" :
+        view.screen == PortScreen::Legend ? "Button guide" : "Quit PSWaker?";
+    port_menu::Panel panel(title, settings.largeText());
+    portContent();
+    panel.footer();
+    if (view.screen != PortScreen::Quit)
+        portNavigationLine(view.screen == PortScreen::Legend ? "Change guide page" : "Choose");
+    symbolLine(FixedControl::PortConfirm, view.screen == PortScreen::Quit ? "Confirm quit" :
+        view.screen == PortScreen::Legend ? "Continue / Return to port menu" :
+        view.screen == PortScreen::Diagnostics ? "Run action and resume" : "Confirm", true);
+    symbolLine(FixedControl::PortCancel, view.screen == PortScreen::Settings ? "Resume game" :
+        view.screen == PortScreen::Legend ? "Back (when opened from port menu)" : "Back to port menu", true);
+    if (view.refreshingPrompts) ImGui::TextWrapped("Updating control prompts...");
+    else if (view.releasing) ImGui::TextWrapped("Release all buttons, sticks and triggers to continue.");
+    else if (view.screen == PortScreen::Settings && !textError.empty())
+        ImGui::TextWrapped("Text size could not be saved. Check free space/permissions, then retry Text size.");
+    else if (view.screen == PortScreen::Settings && settingsSaved)
+        ImGui::Text("Port text size saved: %s.", settings.largeText() ? "Large" : "Standard");
+    else ImGui::TextUnformatted("Game paused.");
 }
 void screen(const char* title, const char* text, float progress = -1,
             const char* confirm = nullptr, const char* cancel = nullptr) {
     events();
     if (!aurora_begin_frame()) { usleep(16000); return; }
+    const auto view = pswaker_port_view();
+    if (!text && themedPortScreen(view.screen)) {
+        portPanel(view);
+        aurora_end_frame();
+        return;
+    }
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
     ImGui::Begin("PSWaker", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove |

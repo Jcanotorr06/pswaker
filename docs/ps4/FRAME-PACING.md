@@ -53,7 +53,9 @@ because host compilation or rate checks succeeded.
 
 ## Sample and hitch accounting
 
-In port settings, choose **Measure Outset** or **Measure forest**. Cross arms a
+In the port menu, open **Diagnostics**, then choose **Measure Outset for two
+minutes** or **Measure forest for two minutes**. Neither entry loads a scene;
+both measure the current scene under the selected sample label. Cross arms a
 new numbered sample and resumes after neutral release. Its first completed game
 presentation establishes the baseline; the first subsequent presentation at or
 after 120 seconds closes it. Include the whole closing interval, even if it
