@@ -85,7 +85,7 @@ has its own scroll position. The destructor restores the style stack. The
 native controls state machine remains responsible for selection and gating.
 No renderer, settings schema or extra production testing interface was added.
 
-Only the explicit `themedPortScreen` list in `main.cpp` opts into this theme.
+Only screens with a title in `portScreenInfo` in `controls.hpp` opt into this theme.
 Startup content checks, installation/storage recovery, shader preparation and
 shutdown progress continue through the existing shared `screen` path.
 
