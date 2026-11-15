@@ -1,6 +1,6 @@
 # Port-menu host checks (#178)
 
-Implementation worktree: `C:/Users/Joseph Cano/.t3/worktrees/pswaker/t3-962b26b1`.
+Implementation worktree: `<worktree-root>/t3-962b26b1`.
 Task branch: `feature/178-port-menu-design`, created from the verified clean
 integration branch `feature/176-port-menu` at `6b2aecb` (also then `develop`).
 Commands below run from this worktree's repository root on WSL Ubuntu.
@@ -46,7 +46,7 @@ its existing save-error path and adds pinned feedback.
 
 ```powershell
 wsl -d Ubuntu -- bash -lc 'PSWAKER_GAME_ROOT=~/.cache/pswaker/prompts-105-console-01.27 python3 -m unittest discover -s tests/ps4 -p test_controls.py -v'
-wsl -d Ubuntu -- python3 evidence/ps4/port-menu-178/compile-target.py /home/joseph_cano/.cache/pswaker/prompts-105-console-01.27
+wsl -d Ubuntu -- bash -lc 'python3 evidence/ps4/port-menu-178/compile-target.py "$HOME/.cache/pswaker/prompts-105-console-01.27"'
 wsl -d Ubuntu -- bash -lc 'PSWAKER_GAME_ROOT=~/.cache/pswaker/prompts-105-console-01.27 python3 -m unittest discover -s tests/ps4 -p test_prompts.py -v'
 wsl -d Ubuntu -- bash -lc 'python3 -m unittest discover -s tests/ps4 -p test_persistence.py -v'
 wsl -d Ubuntu -- bash -lc 'python3 -m unittest discover -s tests/ps4 -p test_frame_pacing.py -v'

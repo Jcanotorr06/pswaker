@@ -27,7 +27,7 @@ console services, clock and existing filesystem fault boundaries are simulated.
 The native `now_seconds()` uses `clock_gettime(CLOCK_MONOTONIC, ...)`.
 
 ```powershell
-wsl.exe -d Ubuntu -- env PSWAKER_GAME_ROOT=/home/joseph_cano/.cache/pswaker/game-97-controls python3 -m unittest discover -s tests/ps4 -p test_controls.py -k test_port_menu_opens_at_500_ms -v
+wsl.exe -d Ubuntu -- bash -lc 'PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-97-controls" python3 -m unittest discover -s tests/ps4 -p test_controls.py -k test_port_menu_opens_at_500_ms -v'
 ```
 
 Red: the new `menu-hold-threshold` scenario aborted at the assertion that the
@@ -37,7 +37,7 @@ The fixture uses an exact clock origin and exact half-second endpoint, checking
 499 ms first and continued held input afterward without sleeping.
 
 ```powershell
-wsl.exe -d Ubuntu -- env PSWAKER_GAME_ROOT=/home/joseph_cano/.cache/pswaker/game-97-controls python3 -m unittest discover -s tests/ps4 -p test_controls.py -k test_port_menu_guide -v
+wsl.exe -d Ubuntu -- bash -lc 'PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-97-controls" python3 -m unittest discover -s tests/ps4 -p test_controls.py -k test_port_menu_guide -v'
 ```
 
 Red: default and custom layouts failed because `AppliedControls::fixedPort()`
@@ -46,7 +46,7 @@ shared prompt result and completing native-menu adapter setup in the fixture,
 the guide scenarios passed as part of the focused run below.
 
 ```powershell
-wsl.exe -d Ubuntu -- env PSWAKER_GAME_ROOT=/home/joseph_cano/.cache/pswaker/game-97-controls python3 -m unittest discover -s tests/ps4 -p test_controls.py -k test_port_menu -v
+wsl.exe -d Ubuntu -- bash -lc 'PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-97-controls" python3 -m unittest discover -s tests/ps4 -p test_controls.py -k test_port_menu -v'
 ```
 
 Green: 5 tests passed before adding the launch-shortcut regression. Covered the
@@ -60,7 +60,7 @@ textures with default and custom bindings. They do not run native game logic.
 Final checks on 2026-11-14:
 
 ```powershell
-wsl.exe -d Ubuntu -- env PSWAKER_GAME_ROOT=/home/joseph_cano/.cache/pswaker/game-97-controls python3 -m unittest discover -s tests/ps4 -p test_controls.py -v
+wsl.exe -d Ubuntu -- bash -lc 'PSWAKER_GAME_ROOT="$HOME/.cache/pswaker/game-97-controls" python3 -m unittest discover -s tests/ps4 -p test_controls.py -v'
 wsl.exe -d Ubuntu -- python3 -m unittest discover -s tests/ps4 -p test_prompts.py -v
 git diff --check
 git merge --no-edit feature/176-port-menu
