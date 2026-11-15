@@ -616,6 +616,56 @@ int main(int argc, char** argv) {
         }
         return 0;
     }
+    if (std::strcmp(argv[1], "editor-failure-read-loss") == 0) {
+        assert(settings->check());
+        start(); openEditor(); assignButton(0, 6);
+        const auto pending = pswaker_port_view().pendingControls;
+        const auto applied = pswaker_applied_controls();
+        editorRow(9); tap(PAD_CROSS);
+        failRename = true; sample(); failRename = false;
+        const auto error = pswaker_port_view().controlsError;
+        assert(!error.empty() && pswaker_port_view().screen == PortScreen::ControlsFailed);
+        // Long failure details are reachable with fixed, fresh-release navigation.
+        sample(PAD_DOWN);
+        assert(pswaker_port_view().informationScroll == 0); // Failure entry is not armed yet.
+        sample(); sample(PAD_DOWN); sample(PAD_DOWN); neutralGame();
+        assert(pswaker_port_view().informationScroll == 1);
+        sample(); tap(PAD_UP);
+        assert(pswaker_port_view().informationScroll == 0);
+        fail = true; sample(PAD_CROSS); neutralGame();
+        assert(pswaker_port_view().screen == PortScreen::InputLost && !pswaker_port_view().connected);
+        fail = false; lx = 255; rt = 255;
+        sample(PAD_CROSS); sample(); neutralGame();
+        assert(pswaker_port_view().connected && pswaker_port_view().screen == PortScreen::InputLost);
+        lx = 128; rt = 0; sample(); sample(PAD_CROSS); neutralGame();
+        assert(pswaker_port_view().releasing);
+        // Another failed read during confirmation release cannot skip the saved destination.
+        fail = true; sample(PAD_CROSS); fail = false;
+        sample(PAD_CROSS); sample(); neutralGame();
+        assert(pswaker_port_view().screen == PortScreen::InputLost);
+        sample(PAD_CIRCLE); sample(); // Circle never resumes recovery.
+        assert(pswaker_port_view().screen == PortScreen::InputLost);
+        sample(PAD_CROSS); sample(PAD_CROSS); neutralGame(); sample();
+        assert(pswaker_port_view().screen == PortScreen::ControlsFailed);
+        assert(pswaker_port_view().controlsError == error);
+        assert(pswaker_port_view().pendingControls == pending && pswaker_port_view().controlsDirty);
+        assert(pswaker_applied_controls().generation == applied.generation);
+        sample(); // Recovery confirmation did not retry Apply.
+        assert(pswaker_port_view().screen == PortScreen::ControlsFailed);
+        tap(PAD_CROSS); // Deliberate retry.
+        assert(pswaker_port_view().screen == PortScreen::ApplyingControls);
+        sample(); sample(); neutralGame();
+        assert(pswaker_port_view().screen == PortScreen::Controls);
+        assert(!pswaker_port_view().controlsDirty && pswaker_port_view().controlsError.empty());
+        assert(pswaker_applied_controls().config == pending);
+        assert(pswaker_applied_controls().generation == applied.generation + 1);
+        PortSettings disk(argv[2]);
+        assert(disk.check() && disk.controls() == pending);
+        tap(PAD_CIRCLE); tap(PAD_CIRCLE);
+        assert(pswaker_port_view().screen == PortScreen::Game);
+        sample(PAD_L3); assert(gamepads[0].button == 0x100);
+        return 0;
+    }
     if (std::strcmp(argv[1], "editor-loss") == 0) {
         assert(settings->check());
         start(); openEditor(); assignButton(0, 6);

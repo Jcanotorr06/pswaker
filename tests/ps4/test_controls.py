@@ -157,6 +157,9 @@ class InstalledControlsTests(unittest.TestCase):
     def test_controller_loss_preserves_pending_edits_and_requires_fixed_confirmation_in_each_editor_state(self):
         self.check_scenario('editor-loss')
 
+    def test_apply_failure_scroll_and_repeated_read_loss_preserve_edits_until_deliberate_retry(self):
+        self.check_scenario('editor-failure-read-loss')
+
     def test_editor_noop_unused_assignment_leave_keep_editing_and_discard(self):
         self.check_scenario('editor-discard')
 
