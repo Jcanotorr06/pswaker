@@ -247,6 +247,13 @@ Rechecked against the source selection in `game.lock.json` and
 
 ## Validation and owner follow-up
 
+For the integrated #106 stock-mode run, use the
+[integrated checklist](Integrated-prompts-checklist.md) and its
+[candidate, coverage review and observation records](../../evidence/ps4/prompts-106/README.md).
+The nine focused layouts cover all 54 action/target combinations. Converted
+inventory entries and passing hosted checks do not establish installed visual
+acceptance; all owner observations and known coverage gaps remain explicit.
+
 Run on Linux/WSL, with `PSWAKER_GAME_ROOT` pointing to prepared maintained sources:
 
 ```sh

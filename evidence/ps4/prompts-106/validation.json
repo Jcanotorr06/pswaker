@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "issue": 106,
+  "date": "2026-11-14",
+  "baseline_commit": "786ad334685cf77e1f525db9a63b5fdecff52e4c",
+  "scope": "Stock candidate preparation, inventory reconciliation and hosted supporting checks; hardware acceptance pending",
+  "runtime_changes": false,
+  "new_test_seams": false,
+  "checks": {
+    "focused_prompts": {
+      "tests": 8,
+      "skipped": 0,
+      "failures": 0
+    },
+    "focused_installed_controls": {
+      "tests": 30,
+      "skipped": 0,
+      "failures": 0
+    },
+    "pyright": "0 errors, 0 warnings",
+    "compileall": "pass",
+    "bash_syntax": "pass",
+    "fresh_complete_package_inspection": "pass; unchanged report SHA-256 recorded in candidate.json",
+    "delivered_package_and_matching_elf_rehashed": "pass",
+    "maintained_program_inputs_and_ordered_patches_match_candidate": "pass",
+    "full_suite": {
+      "status": "PASS",
+      "tests": 310,
+      "passed": 250,
+      "skipped": 60,
+      "failures": 0,
+      "seconds": 521.319,
+      "private_log_sha256": "ebe2f57df620c550fa9e2f8479baf0f87be5584575f7dffe26321f4559048791",
+      "skip_reason": "Unavailable native Windows dependencies/platform"
+    },
+    "candidate_identity_matches_inspected_sfo_and_package_header": "pass",
+    "evidence_structure_matrix_pending_statuses_inventory_and_links": "pass"
+  },
+  "supporting_evidence_limits": [
+    "Prompt tests compile the current resolver, artwork, synthetic adapters, written translation and exported precedence rule",
+    "Actual Aurora registry/GX cache check uses the retained #104 hosted binary; replacement sources and patches are unchanged",
+    "Installed-controls checks use the real current controls/storage code with simulated console services and synthetic retained presentations",
+    "No new PS4 program build is needed for documentation/evidence-only changes; the exact existing 01.27 candidate is reused",
+    "Hosted checks and fresh package inspection do not establish console input, visual coverage, refresh, readability or fit"
+  ],
+  "hardware": {
+    "status": "UNTESTED",
+    "installed_identity_owner_confirmed": false,
+    "returned_runs": 0,
+    "owner_confirmation": null,
+    "known_unresolved_inventory_entries": 24,
+    "issue_completion": "PENDING owner evidence and required coverage; keep #106 open with ready-for-human",
+    "owner_run_status": "PS4 run is pending",
+    "owner_run_status_source": "Owner statement in this task, 2026-11-14; this is not installed identity confirmation or acceptance"
+  },
+  "review": {
+    "fixed_point": "786ad334685cf77e1f525db9a63b5fdecff52e4c",
+    "reviewed_commit": "717d2cd",
+    "standards_open_findings": 0,
+    "spec_open_preparation_findings": 0,
+    "resolved_during_review": "Corrected candidate content ID against both inspected SFO and package header; expected candidate synchronized",
+    "human_acceptance": "Incomplete; all required physical checks and owner confirmations pending"
+  },
+  "supporting_aurora_hosted_binary_sha256": "5f83aaa98d50821e0fad862840b6885f0b289f8a5cbff7b0cf4755a664a20e01"
+}

@@ -277,6 +277,12 @@ already-open dialogs refresh with adjacent message pictures before resume. See
 [console checklist](Written-instructions-checklist.md). Unsupported system and
 peripheral instructions remain explicit coverage defects.
 
+For integrated stock-mode PS4 prompt validation (#106), follow the
+[focused checklist](Integrated-prompts-checklist.md). Its
+[evidence handoff](../../evidence/ps4/prompts-106/README.md) identifies the complete
+package, all 54 action/target checks and the unresolved coverage inventory.
+Owner observations on the installed binary remain required.
+
 The agreed test boundaries are the preparation and artifact-inspection CLIs:
 
 ```bash

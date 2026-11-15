@@ -1,0 +1,981 @@
+{
+  "schema": 1,
+  "issue": 106,
+  "record_kind": "unfilled-template",
+  "expected_candidate": {
+    "app_version": "01.27",
+    "title_id": "PSWK00001",
+    "source_commit": "99ff3dcf70b599e81fabd73b71bc341700114aa0",
+    "build_id": "a21e4fc7a440bcaa3359",
+    "package": "PSWaker-01.27-written-instructions.pkg",
+    "package_bytes": 1521942528,
+    "package_sha256": "e4311f2201c121450d5b7c096e9f53436ed28f3232f17674558fa93aa8a16ae9",
+    "elf_sha256": "26de1d76e33042430c1ec9792ea46a6ca628353e34e3958c032f8f26a906d9ff",
+    "eboot_sha256": "d1c3467d13a05e33b733d833107cc87a21678590ea56217f0c3abfe2a840c93e",
+    "assembly_sha256": "3c987aca3aad412a0b44193316a982029201fbf0514a4006b7dca813307bcd30",
+    "inspection_sha256": "07852b22a852cc815948b82e80346b10b5776e8321359e9f06ea916b36d9a8a6",
+    "schema": 1,
+    "issue": 106,
+    "prepared_date": "2026-11-14",
+    "mode": "stock",
+    "content_id": "IV0000-PSWK00001_00-PSWAKERGAME00000",
+    "content": "USA GZLE01 revision 0",
+    "console": "PS4 Slim / firmware 9.00 / GoldHEN v2.4b18",
+    "program_input_record_sha256": "ec8db7be381b76d9d7305044687cc72467dcf79c2532a5319fd61a39f1837ab7",
+    "maintained_input_count": 216,
+    "maintained_inputs_match_baseline": true,
+    "baseline_commit": "786ad334685cf77e1f525db9a63b5fdecff52e4c",
+    "game_patch_count": 19,
+    "platform_patch_count": 8,
+    "reused_unchanged_from_issue": 105,
+    "fresh_inspection_date": "2026-11-14",
+    "fresh_inspection_reproduces_previous_report": true,
+    "hardware_status": "UNTESTED",
+    "installed_identity_confirmed_by_owner": null,
+    "seed": {
+      "sha256": "6bf9b8f47df5f0281bf69dfa352439763f7db199ca6c88fa70ae77da19fbc057",
+      "rows": 493,
+      "bytes": 2056192,
+      "asset_manifest_sha256": "9442787477e06b6f15cf12c8249e0a78ea5eefbbcc592b5248f7b25681214dd7"
+    }
+  },
+  "owner_confirmation": null,
+  "runs": [],
+  "run_template": {
+    "id": null,
+    "utc": null,
+    "console": null,
+    "content": null,
+    "mode": null,
+    "installed_app_version": null,
+    "installed_build_id": null,
+    "installed_package_sha256": null,
+    "installed_elf_sha256": null,
+    "installed_program_sha256": null,
+    "applied_bindings": null,
+    "invert_camera_x": null,
+    "invert_camera_y": null,
+    "applied_generation": null,
+    "generation_observation_limit": null,
+    "text_and_aspect_settings": null,
+    "owner_confirmation": null
+  },
+  "observation_template": {
+    "run_id": null,
+    "scene_or_menu_substate": null,
+    "message_or_resource_id": null,
+    "physical_input": null,
+    "resulting_action": null,
+    "applied_legend": null,
+    "icon_instruction": null,
+    "written_name": null,
+    "before_after_generation_or_limit": null,
+    "observed": null,
+    "status": "UNTESTED",
+    "coverage_status": null,
+    "limits_or_failure_reason": null,
+    "owner_confirmation": null
+  },
+  "allowed_statuses": [
+    "UNTESTED",
+    "BLOCKED",
+    "FAIL",
+    "PASS"
+  ],
+  "recording_rules": [
+    "Each observation references a filled run with the actual installed identity",
+    "Record absent surfaces and unavailable contexts explicitly; do not infer them from other samples",
+    "PASS requires actual observation and owner confirmation",
+    "Append failed attempts and new runs; preserve archived records",
+    "Never commit extracted text, images, saves, raw game-bearing logs or personal paths"
+  ],
+  "defaults": {
+    "bindings": {
+      "A": "Cross",
+      "B": "Circle",
+      "X": "Square",
+      "Y": "Triangle",
+      "Z": "R1",
+      "Start": "Options"
+    },
+    "invert_camera_x": false,
+    "invert_camera_y": false
+  },
+  "layouts": [
+    {
+      "id": "M0",
+      "bindings": {
+        "A": "Cross",
+        "B": "Circle",
+        "X": "Square",
+        "Y": "Triangle",
+        "Z": "L1",
+        "Start": "R1"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "Cross",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "Circle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "Square",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "Triangle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "L1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "R1",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    },
+    {
+      "id": "M1",
+      "bindings": {
+        "A": "Circle",
+        "B": "Square",
+        "X": "Triangle",
+        "Y": "L1",
+        "Z": "R1",
+        "Start": "L3"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "Circle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "Square",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "Triangle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "L1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "R1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "L3",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "bindings": {
+        "A": "Square",
+        "B": "Triangle",
+        "X": "L1",
+        "Y": "R1",
+        "Z": "L3",
+        "Start": "R3"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "Square",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "Triangle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "L1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "R1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "L3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "R3",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "bindings": {
+        "A": "Triangle",
+        "B": "L1",
+        "X": "R1",
+        "Y": "L3",
+        "Z": "R3",
+        "Start": "Options"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "Triangle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "L1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "R1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "L3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "R3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "Options",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    },
+    {
+      "id": "M4",
+      "bindings": {
+        "A": "L1",
+        "B": "R1",
+        "X": "L3",
+        "Y": "R3",
+        "Z": "Options",
+        "Start": "Cross"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "L1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "R1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "L3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "R3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "Options",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "Cross",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    },
+    {
+      "id": "M5",
+      "bindings": {
+        "A": "R1",
+        "B": "L3",
+        "X": "R3",
+        "Y": "Options",
+        "Z": "Cross",
+        "Start": "Circle"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "R1",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "L3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "R3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "Options",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "Cross",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "Circle",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    },
+    {
+      "id": "M6",
+      "bindings": {
+        "A": "L3",
+        "B": "R3",
+        "X": "Options",
+        "Y": "Cross",
+        "Z": "Circle",
+        "Start": "Square"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "L3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "R3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "Options",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "Cross",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "Circle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "Square",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    },
+    {
+      "id": "M7",
+      "bindings": {
+        "A": "R3",
+        "B": "Options",
+        "X": "Cross",
+        "Y": "Circle",
+        "Z": "Square",
+        "Start": "Triangle"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "R3",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "Options",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "Cross",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "Circle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "Square",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "Triangle",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    },
+    {
+      "id": "M8",
+      "bindings": {
+        "A": "Options",
+        "B": "Cross",
+        "X": "Circle",
+        "Y": "Square",
+        "Z": "Triangle",
+        "Start": "L1"
+      },
+      "invert_camera_x": false,
+      "invert_camera_y": false,
+      "action_checks": [
+        {
+          "action": "A",
+          "expected_target": "Options",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "B",
+          "expected_target": "Cross",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "X",
+          "expected_target": "Circle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Y",
+          "expected_target": "Square",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Z",
+          "expected_target": "Triangle",
+          "status": "UNTESTED",
+          "observations": []
+        },
+        {
+          "action": "Start",
+          "expected_target": "L1",
+          "status": "UNTESTED",
+          "observations": []
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "defaults.hud-context",
+      "expected": "Actual input, applied legend and presented instructions agree; readable contrast/fit and contextual meaning preserved",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "defaults.message-tutorial",
+      "expected": "Actual input, applied legend and presented instructions agree; readable contrast/fit and contextual meaning preserved",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "defaults.native-menu",
+      "expected": "Actual input, applied legend and presented instructions agree; readable contrast/fit and contextual meaning preserved",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "defaults.file-selection",
+      "expected": "Actual input, applied legend and presented instructions agree; readable contrast/fit and contextual meaning preserved",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "defaults.title-start",
+      "expected": "Actual input, applied legend and presented instructions agree; readable contrast/fit and contextual meaning preserved",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "defaults.written-names",
+      "expected": "Actual input, applied legend and presented instructions agree; readable contrast/fit and contextual meaning preserved",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "defaults.port-ui",
+      "expected": "Actual input, applied legend and presented instructions agree; readable contrast/fit and contextual meaning preserved",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fixed.left-stick",
+      "expected": "Fixed meaning, direction/animation, move versus click and travel semantics preserved; absent context remains pending",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fixed.right-stick",
+      "expected": "Fixed meaning, direction/animation, move versus click and travel semantics preserved; absent context remains pending",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fixed.dpad",
+      "expected": "Fixed meaning, direction/animation, move versus click and travel semantics preserved; absent context remains pending",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fixed.l2-r2-plain-press",
+      "expected": "Fixed meaning, direction/animation, move versus click and travel semantics preserved; absent context remains pending",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fixed.partial-full-trigger",
+      "expected": "Fixed meaning, direction/animation, move versus click and travel semantics preserved; absent context remains pending",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fixed.stick-direction-animation",
+      "expected": "Fixed meaning, direction/animation, move versus click and travel semantics preserved; absent context remains pending",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "remapped.port-controls",
+      "expected": "Gameplay A/B/Start remaps do not change fixed Cross/Circle/Touchpad click or navigation",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fit.longest-title-labels",
+      "expected": "A=Triangle B=Options X=Cross Y=Circle Z=L3 Start=Square; complete readable title alternatives, normal and alternate text/aspect settings",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fit.hud-menu-written-labels",
+      "expected": "Options, Triangle, L3 and R3 readable with native spacing/shadows and preserved instruction meaning",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.hud.pending-keep-editing",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.hud.discard",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.hud.apply-success",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.hud.apply-failed",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.hud.apply-uncertain-retry",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.hud.reset-discard",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.hud.reset-apply",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.open-dialog.pending-keep-editing",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.open-dialog.discard",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.open-dialog.apply-success",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.open-dialog.apply-failed",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.open-dialog.apply-uncertain-retry",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.open-dialog.reset-discard",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.open-dialog.reset-apply",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.native-menu-file-select.pending-keep-editing",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.native-menu-file-select.discard",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.native-menu-file-select.apply-success",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.native-menu-file-select.apply-failed",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.native-menu-file-select.apply-uncertain-retry",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.native-menu-file-select.reset-discard",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.native-menu-file-select.reset-apply",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.title.pending-keep-editing",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.title.discard",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.title.apply-success",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.title.apply-failed",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.title.apply-uncertain-retry",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.title.reset-discard",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.title.reset-apply",
+      "expected": "Previous layout until successful publication; visible and later instructions refresh together before resume; keep failures and uncertainty",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "retained.later-instructions-and-recreation",
+      "expected": "Later dialogs, menus and recreated pictures agree after scene/menu changes, without stale pictures, lost typing, hang or crash",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "startup.saved-custom-full-relaunch",
+      "expected": "Saved M6 controls and prompts agree from first title/file-select/HUD/written instructions after full shell close/relaunch",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "startup.missing-controls",
+      "expected": "Complete six-binding/two-switch defaults, with expected recovery feedback and first title prompts; preserve saves/unrelated settings",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "startup.invalid-controls",
+      "expected": "Complete six-binding/two-switch defaults, with expected recovery feedback and first title prompts; preserve saves/unrelated settings",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "preservation.restore-profile",
+      "expected": "Original progress and selected applied configuration preserved after restoring the private profile backup and relaunching",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "disconnect.mapped-button",
+      "expected": "Pause and neutralization; no automatic resume; fresh fixed Cross and neutral release; no stale held action",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "disconnect.left-stick",
+      "expected": "Pause and neutralization; no automatic resume; fresh fixed Cross and neutral release; no stale held action",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "disconnect.right-stick",
+      "expected": "Pause and neutralization; no automatic resume; fresh fixed Cross and neutral release; no stale held action",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "disconnect.left-trigger",
+      "expected": "Pause and neutralization; no automatic resume; fresh fixed Cross and neutral release; no stale held action",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "disconnect.right-trigger",
+      "expected": "Pause and neutralization; no automatic resume; fresh fixed Cross and neutral release; no stale held action",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "disconnect.pending-edit",
+      "expected": "Pending edits survive controller loss; fixed confirmation and neutral release still required",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "disconnect.after-apply",
+      "expected": "New applied prompts and neutral inputs survive controller loss without automatic resume",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "disconnect.during-refresh",
+      "expected": "Disconnect cancels pending resume; fixed fresh Cross and neutral release after reconnect; record unobservable refresh window",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "fallback.accurate-text",
+      "expected": "Accurate PS4 name observed where icon is unavailable; distinguish text fallback from converted icon coverage",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00018]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00023]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00037]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00049]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00054]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00060]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00096]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00134]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "unresolved.message[00612]",
+      "expected": "Readable dismissible neutral unavailable notice and coverage report; remains unresolved; absent encounter is UNTESTED",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "coverage.resource-review",
+      "expected": "Native/embedded/shared-atlas/trigger gaps remain explicit; any new identifiers reconciled without committing asset bytes",
+      "status": "UNTESTED",
+      "observations": []
+    },
+    {
+      "id": "owner.evidence-review",
+      "expected": "Owner confirms installed identity, observations, failures, coverage limits and preservation; no acceptance from expectations or host checks",
+      "status": "UNTESTED",
+      "observations": []
+    }
+  ]
+}
