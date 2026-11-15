@@ -1,6 +1,6 @@
 # Controls-menu and input-recovery host checks (#179 / #176)
 
-Implementation worktree: `C:/Users/Joseph Cano/.t3/worktrees/pswaker/t3-053be06e`.
+Implementation worktree: `<worktree-root>/t3-053be06e`.
 Task branch: `feature/179-controls-menu-design`. The clean prepared worktree
 matched integration `feature/176-port-menu` at
 `f5c3db65a92d4b34498736ab933255926e8be4f8`, including #177 and #178, before edits.
@@ -54,7 +54,7 @@ or packaging the prepared game.
 wsl -d Ubuntu -- bash -lc 'PSWAKER_GAME_ROOT=~/.cache/pswaker/prompts-105-console-01.27 python3 -m unittest discover -s tests/ps4 -p test_controls.py -v'
 wsl -d Ubuntu -- bash -lc 'python3 -m unittest discover -s tests/ps4 -p test_persistence.py -v'
 wsl -d Ubuntu -- bash -lc 'PSWAKER_GAME_ROOT=~/.cache/pswaker/prompts-105-console-01.27 python3 -m unittest discover -s tests/ps4 -p test_prompts.py -v'
-wsl -d Ubuntu -- python3 evidence/ps4/port-menu-178/compile-target.py /home/joseph_cano/.cache/pswaker/prompts-105-console-01.27
+wsl -d Ubuntu -- bash -lc 'python3 evidence/ps4/port-menu-178/compile-target.py "$HOME/.cache/pswaker/prompts-105-console-01.27"'
 git diff --check
 git diff --cached --check
 ```

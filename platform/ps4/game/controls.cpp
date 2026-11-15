@@ -143,9 +143,7 @@ void pswaker_poll_controls() {
     if (!armed) return;
     const bool cross = current.held & PAD_CROSS;
     const bool circle = current.held & PAD_CIRCLE;
-    if ((view.screen == PortScreen::RestoreControls || view.screen == PortScreen::DiscardControls ||
-         view.screen == PortScreen::ControlsFailed || view.screen == PortScreen::InputLost ||
-         view.screen == PortScreen::Quit) && (current.held & (PAD_UP | PAD_DOWN))) {
+    if (portScreenInfo(view.screen).navigation == PortNavigation::Information && (current.held & (PAD_UP | PAD_DOWN))) {
         if (current.held & PAD_DOWN) {
             if (view.informationScroll < std::numeric_limits<int>::max()) ++view.informationScroll;
         } else if (view.informationScroll > std::numeric_limits<int>::min()) --view.informationScroll;

@@ -121,14 +121,6 @@ void portNavigationLine(const char* text) {
         PromptGesture::Press, PromptVariant::Direction, PromptDirection::Down}, applied);
     ImGui::TextWrapped("%s / %s: %s", up.name.c_str(), down.name.c_str(), text);
 }
-bool themedPortScreen(PortScreen screen) {
-    return screen == PortScreen::Settings || screen == PortScreen::Diagnostics ||
-           screen == PortScreen::Legend || screen == PortScreen::Quit ||
-           screen == PortScreen::Controls || screen == PortScreen::Binding ||
-           screen == PortScreen::RestoreControls || screen == PortScreen::DiscardControls ||
-           screen == PortScreen::ApplyingControls || screen == PortScreen::ControlsFailed ||
-           screen == PortScreen::InputLost;
-}
 void portContent() {
     const auto view = pswaker_port_view();
     if (view.screen == PortScreen::Legend) {
@@ -237,26 +229,16 @@ void portContent() {
             "No controller input. Reconnect your controller; wait for valid input before continuing.");
         ImGui::TextWrapped("Reconnection alone does not resume the game. You will return to the interrupted screen or gameplay; pending edits and unconfirmed decisions are preserved.");
     }
-    if (!themedPortScreen(view.screen)) {
+    if (!portScreenInfo(view.screen).title) {
         if (view.refreshingPrompts) ImGui::TextUnformatted("Updating control prompts...");
         else if (view.releasing) ImGui::TextUnformatted("Release all buttons, sticks and triggers to continue.");
     }
 }
 void portPanel(const PortView& view) {
-    const char* title = view.screen == PortScreen::Settings ? "Port menu" :
-        view.screen == PortScreen::Diagnostics ? "Diagnostics" :
-        view.screen == PortScreen::Legend ? "Button guide" :
-        view.screen == PortScreen::Controls ? "Controls" :
-        view.screen == PortScreen::Binding ? "Choose a binding" :
-        view.screen == PortScreen::RestoreControls ? "Restore default controls?" :
-        view.screen == PortScreen::DiscardControls ? "Discard pending controls?" :
-        view.screen == PortScreen::ApplyingControls ? "Applying controls..." :
-        view.screen == PortScreen::ControlsFailed ? "Controls could not be applied" :
-        view.screen == PortScreen::InputLost ? "Controller input lost" : "Quit PSWaker?";
-    port_menu::Panel panel(title, settings.largeText());
+    const auto info = portScreenInfo(view.screen);
+    port_menu::Panel panel(info.title, settings.largeText());
     portContent();
-    const bool information = view.screen == PortScreen::RestoreControls || view.screen == PortScreen::DiscardControls ||
-        view.screen == PortScreen::ControlsFailed || view.screen == PortScreen::InputLost || view.screen == PortScreen::Quit;
+    const bool information = info.navigation == PortNavigation::Information;
     // Clamp each fresh navigation step to the actual wrapped content bounds.
     // Extra Down presses at the bottom must not delay the next Up press.
     static PortScreen previousScreen = PortScreen::Game;
@@ -273,28 +255,12 @@ void portPanel(const PortView& view) {
     previousScroll = view.informationScroll;
     panel.footer();
     if (information) portNavigationLine("Scroll details");
-    else if (view.screen != PortScreen::ApplyingControls)
-        portNavigationLine(view.screen == PortScreen::Legend ? "Change guide page" : "Choose");
-    const char* confirm = view.screen == PortScreen::Quit ? "Confirm quit" :
-        view.screen == PortScreen::Legend ? "Continue / Return to port menu" :
-        view.screen == PortScreen::Diagnostics ? "Run action and resume" :
-        view.screen == PortScreen::Controls ? "Edit / Confirm selected action" :
-        view.screen == PortScreen::Binding ? "Assign pending binding" :
-        view.screen == PortScreen::RestoreControls ? "Restore pending defaults" :
-        view.screen == PortScreen::DiscardControls ? "Discard and return to port menu" :
-        view.screen == PortScreen::ControlsFailed ? "Retry Apply" :
-        view.screen == PortScreen::InputLost ? (view.connected ? "Continue, then release" : nullptr) :
-        view.screen == PortScreen::ApplyingControls ? nullptr : "Confirm";
-    const char* cancel = view.screen == PortScreen::Settings ? "Resume game" :
-        view.screen == PortScreen::Legend ? "Back (when opened from port menu)" :
-        view.screen == PortScreen::Controls ? "Back (asks before discarding edits)" :
-        view.screen == PortScreen::Binding ? "Keep current pending binding" :
-        view.screen == PortScreen::RestoreControls ? "Keep current pending edits" :
-        view.screen == PortScreen::DiscardControls ? "Keep editing" :
-        view.screen == PortScreen::ControlsFailed ? "Discard and return to port menu" :
-        view.screen == PortScreen::InputLost || view.screen == PortScreen::ApplyingControls ? nullptr : "Back to port menu";
+    else if (info.navigation != PortNavigation::None)
+        portNavigationLine(info.navigation == PortNavigation::GuidePage ? "Change guide page" : "Choose");
+    const char* confirm = info.confirm;
+    if (view.screen == PortScreen::InputLost && view.connected) confirm = "Continue, then release";
     if (confirm) symbolLine(FixedControl::PortConfirm, confirm, true);
-    if (cancel) symbolLine(FixedControl::PortCancel, cancel, true);
+    if (info.cancel) symbolLine(FixedControl::PortCancel, info.cancel, true);
     if (view.refreshingPrompts) ImGui::TextWrapped("Updating control prompts...");
     else if (view.releasing) ImGui::TextWrapped("Release all buttons, sticks and triggers to continue.");
     else if (view.screen == PortScreen::Controls || view.screen == PortScreen::Binding)
@@ -314,7 +280,7 @@ void screen(const char* title, const char* text, float progress = -1,
     events();
     if (!aurora_begin_frame()) { usleep(16000); return; }
     const auto view = pswaker_port_view();
-    if (!text && themedPortScreen(view.screen)) {
+    if (!text && portScreenInfo(view.screen).title) {
         portPanel(view);
         aurora_end_frame();
         return;

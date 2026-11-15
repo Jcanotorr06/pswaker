@@ -5,6 +5,44 @@
 
 enum class PortScreen { Legend, Game, Settings, Quit, InputLost, Exit,
     Controls, Binding, DiscardControls, ApplyingControls, ControlsFailed, RestoreControls, Diagnostics };
+enum class PortNavigation { None, Selection, GuidePage, Information };
+struct PortScreenInfo {
+    const char* title = nullptr; // A title opts this screen into the port-menu panel.
+    const char* confirm = nullptr;
+    const char* cancel = nullptr;
+    PortNavigation navigation = PortNavigation::None;
+};
+// Shared by input and presentation so information scrolling and hints agree.
+// Connection-dependent hints and release/status feedback stay contextual.
+inline constexpr PortScreenInfo portScreenInfo(PortScreen screen) {
+    switch (screen) {
+    case PortScreen::Settings:
+        return {"Port menu", "Confirm", "Resume game", PortNavigation::Selection};
+    case PortScreen::Diagnostics:
+        return {"Diagnostics", "Run action and resume", "Back to port menu", PortNavigation::Selection};
+    case PortScreen::Legend:
+        return {"Button guide", "Continue / Return to port menu", "Back (when opened from port menu)", PortNavigation::GuidePage};
+    case PortScreen::Controls:
+        return {"Controls", "Edit / Confirm selected action", "Back (asks before discarding edits)", PortNavigation::Selection};
+    case PortScreen::Binding:
+        return {"Choose a binding", "Assign pending binding", "Keep current pending binding", PortNavigation::Selection};
+    case PortScreen::RestoreControls:
+        return {"Restore default controls?", "Restore pending defaults", "Keep current pending edits", PortNavigation::Information};
+    case PortScreen::DiscardControls:
+        return {"Discard pending controls?", "Discard and return to port menu", "Keep editing", PortNavigation::Information};
+    case PortScreen::ApplyingControls:
+        return {"Applying controls..."};
+    case PortScreen::ControlsFailed:
+        return {"Controls could not be applied", "Retry Apply", "Discard and return to port menu", PortNavigation::Information};
+    case PortScreen::InputLost:
+        return {"Controller input lost", nullptr, nullptr, PortNavigation::Information};
+    case PortScreen::Quit:
+        return {"Quit PSWaker?", "Confirm quit", "Back to port menu", PortNavigation::Information};
+    default:
+        return {};
+    }
+}
+
 enum class PortAction { Resume, ShowLegend, CheckFailedRead, ToggleText, Quit, SampleOutset, SampleForest, Transition, Gameplay, EditControls, ShowDiagnostics };
 struct PortMenuItem { PortAction action; const char* label; };
 inline constexpr std::array<PortMenuItem, 6> portMenuItems{{
